@@ -1,57 +1,65 @@
 name: Fetch files
-
 on:
   schedule:
-    - cron: "*/5 * * * *"  # every minute
+    - cron: "*/5 * * * *"  # every 5 minutes
   workflow_dispatch: # allow manual trigger
-
 permissions:
   contents: write
-
 jobs:
   fetch-and-push:
     runs-on: ubuntu-latest
-
     steps:
       - name: Checkout repository
         uses: actions/checkout@v3
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
-
-      - name: Fetch JS files twice with 30s interval
+      
+      - name: Setup Bun
+        uses: oven-sh/setup-bun@v1
+        with:
+          bun-version: latest
+      
+      - name: Install Prettier
+        run: bun add -g prettier
+      
+      - name: Fetch JS files with Bun and format with Prettier
         run: |
           #!/usr/bin/env bash
           set -e
-
           FILE_URLS=(
             "https://webtiles.kicya.net/s/dist/game.js"
             "https://webtiles.kicya.net/s/dist/embed.js"
           )
-
           DEST_DIR="ordered-js"
           mkdir -p "$DEST_DIR"
-
           for ROUND in 1 2 3 4 5; do
             echo "Fetch round $ROUND"
-
             for URL in "${FILE_URLS[@]}"; do
               FILENAME=$(basename "$URL")
               echo "Fetching $URL -> $DEST_DIR/$FILENAME"
-              curl -sSL "$URL" -o "$DEST_DIR/$FILENAME"
+              
+              # Fetch with Bun
+              bun run -e "
+                const response = await fetch('$URL');
+                const text = await response.text();
+                await Bun.write('$DEST_DIR/$FILENAME', text);
+              "
+              
+              # Format with Prettier
+              echo "Formatting $FILENAME with Prettier..."
+              prettier --write "$DEST_DIR/$FILENAME" --print-width 100 --tab-width 2
             done
-
+            
             git config user.name "github-actions[bot]"
             git config user.email "github-actions[bot]@users.noreply.github.com"
-
             git add "$DEST_DIR"
-
             # Use GMT timestamp in commit message
             TIMESTAMP=$(date -u +"%Y-%m-%d %H:%M:%S GMT")
             git commit -m "$TIMESTAMP" || echo "No changes to commit"
             git push origin HEAD
-
-            # Sleep 30s before second round
-            if [ $ROUND -eq 1 ]; then
+            
+            # Sleep 30s before next round (except after last round)
+            if [ $ROUND -lt 5 ]; then
               echo "Sleeping 30s..."
               sleep 30
             fi
