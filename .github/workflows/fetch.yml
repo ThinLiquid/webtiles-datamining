@@ -1,0 +1,50 @@
+name: Fetch and Push JS Files Every 30s
+
+on:
+  schedule:
+    - cron: "*/1 * * * *"  # every minute
+  workflow_dispatch: # allow manual trigger
+
+jobs:
+  fetch-and-push:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      - name: Fetch JS files twice with 30s interval
+        run: |
+          #!/usr/bin/env bash
+          set -e
+
+          FILE_URLS=(
+            "https://webtiles.kicya.net/s/dist/game.js"
+            "https://webtiles.kicya.net/s/dist/embed.js"
+          )
+
+          DEST_DIR="ordered-js"
+          mkdir -p "$DEST_DIR"
+
+          for ROUND in 1 2; do
+            echo "Fetch round $ROUND"
+
+            for URL in "${FILE_URLS[@]}"; do
+              FILENAME=$(basename "$URL")
+              echo "Fetching $URL -> $DEST_DIR/$FILENAME"
+              curl -sSL "$URL" -o "$DEST_DIR/$FILENAME"
+            done
+
+            git config user.name "github-actions[bot]"
+            git config user.email "github-actions[bot]@users.noreply.github.com"
+
+            git add "$DEST_DIR"
+            git commit -m "Fetch JS files round $ROUND" || echo "No changes to commit"
+            git push origin HEAD
+
+            # Sleep 30s before second round
+            if [ $ROUND -eq 1 ]; then
+              echo "Sleeping 30s..."
+              sleep 30
+            fi
+          done
