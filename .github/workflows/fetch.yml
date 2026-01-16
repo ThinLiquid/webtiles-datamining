@@ -22,9 +22,8 @@ jobs:
       - name: Install Prettier
         run: bun add -g prettier
       
-      - name: Fetch JS files with Bun and format with Prettier
+      - name: Fetch JS files with curl and format with Prettier
         run: |
-          #!/usr/bin/env bash
           set -e
           FILE_URLS=(
             "https://webtiles.kicya.net/s/dist/game.js"
@@ -32,33 +31,31 @@ jobs:
           )
           DEST_DIR="ordered-js"
           mkdir -p "$DEST_DIR"
+      
           for ROUND in 1 2 3 4 5; do
             echo "Fetch round $ROUND"
             for URL in "${FILE_URLS[@]}"; do
               FILENAME=$(basename "$URL")
-              echo "Fetching $URL -> $DEST_DIR/$FILENAME"
-              
-              # Fetch with Bun
-              bun run -e "
-                const response = await fetch('$URL');
-                const text = await response.text();
-                await Bun.write('$DEST_DIR/$FILENAME', text);
-              "
-              
+              DEST_PATH="$DEST_DIR/$FILENAME"
+              echo "Fetching $URL -> $DEST_PATH"
+      
+              # Fetch with curl
+              curl -sSL "$URL" -o "$DEST_PATH"
+      
               # Format with Prettier
               echo "Formatting $FILENAME with Prettier..."
-              prettier --write "$DEST_DIR/$FILENAME" --print-width 100 --tab-width 2
+              prettier --write "$DEST_PATH" --print-width 100 --tab-width 2
             done
-            
+      
+            # Commit changes
             git config user.name "github-actions[bot]"
             git config user.email "github-actions[bot]@users.noreply.github.com"
             git add "$DEST_DIR"
-            # Use GMT timestamp in commit message
             TIMESTAMP=$(date -u +"%Y-%m-%d %H:%M:%S GMT")
             git commit -m "$TIMESTAMP" || echo "No changes to commit"
             git push origin HEAD
-            
-            # Sleep 30s before next round (except after last round)
+      
+            # Sleep 30s before next round (except last)
             if [ $ROUND -lt 5 ]; then
               echo "Sleeping 30s..."
               sleep 30
