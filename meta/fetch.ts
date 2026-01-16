@@ -1,13 +1,11 @@
 // fetch-files.ts
-import { exec } from "child_process";
-import { promisify } from "util";
 import { mkdir, rm, writeFile, access } from "fs/promises";
 import path from "path";
-import https from "https";
+import { exec } from "child_process";
+import { promisify } from "util";
 
 const execAsync = promisify(exec);
 
-// URLs to fetch
 const FILE_URLS = [
   "https://webtiles.kicya.net/s/dist/game.js",
   "https://webtiles.kicya.net/s/dist/embed.js",
@@ -17,32 +15,15 @@ const FILE_URLS = [
 
 const DEST_DIR = "src";
 
-// Helper to fetch a file from a URL
+// Fetch file using native fetch
 async function fetchFile(url: string, destPath: string) {
-  return new Promise<void>((resolve, reject) => {
-    const file = writeFile(destPath, ""); // just to reserve the path
-    https
-      .get(url, (res) => {
-        if (res.statusCode && res.statusCode >= 400) {
-          reject(new Error(`Failed to fetch ${url}: ${res.statusCode}`));
-          return;
-        }
-        const data: Uint8Array[] = [];
-        res.on("data", (chunk) => data.push(chunk));
-        res.on("end", async () => {
-          try {
-            await writeFile(destPath, Buffer.concat(data));
-            resolve();
-          } catch (err) {
-            reject(err);
-          }
-        });
-      })
-      .on("error", reject);
-  });
+  const res = await fetch(url);
+  if (!res.ok) throw new Error(`Failed to fetch ${url}: ${res.status}`);
+  const data = new Uint8Array(await res.arrayBuffer());
+  await writeFile(destPath, data);
 }
 
-// Ensure clean destination directory
+// Ensure clean directory
 async function prepareDir() {
   try {
     await access(DEST_DIR);
@@ -69,7 +50,7 @@ async function main() {
     await execAsync(`prettier --write "${destPath}" --print-width 100 --tab-width 2`);
   }
 
-  // Git commit
+  // Git commit & push
   await execAsync(`git config user.name "github-actions[bot]"`);
   await execAsync(`git config user.email "github-actions[bot]@users.noreply.github.com"`);
   await execAsync(`git add "${DEST_DIR}"`);
@@ -84,4 +65,8 @@ async function main() {
   console.log("Done!");
 }
 
-setInterval(() => main(), 30 * 1000)
+// Run every 30 seconds
+setInterval(() => main().catch(console.error), 30_000);
+
+// Run immediately
+main().catch(console.error);
