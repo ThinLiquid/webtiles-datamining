@@ -1,21 +1,21 @@
-/* 86f28ecaeaf64f27a9aeba207a6959dc64966db31c1cca0bf0ac14657d3c1e8f */
-var st = {
+/* 0e15b0c6d0dbf69775932d7567a57d6d3c8e803f4c1294f032363d2144b8a3d6 */
+var ot = {
     user: null,
     settings: {
       logCalls: localStorage.logCalls === "true",
       disableJS: localStorage.disableJS === "true"
     }
   },
-  ot = document.getElementById("user-data");
-if (ot) try {
-  let t = JSON.parse(ot.textContent);
-  t && t.email_verified && (st.user = t)
+  nt = document.getElementById("user-data");
+if (nt) try {
+  let t = JSON.parse(nt.textContent);
+  t && t.email_verified && (ot.user = t)
 } catch (t) {
   console.error(t)
 }
-var d = st;
+var d = ot;
 
-function it(t, u, l) {
+function st(t, u, l) {
   let r = new WeakMap,
     h = 2048,
     N = 1e4,
@@ -37,8 +37,8 @@ function it(t, u, l) {
     throw TypeError("Illegal constructor")
   }, !0);
   t.setProperty(u, "CanvasGradient", I);
-  let E = t.getProperty(I, "prototype");
-  t.setProperty(E, "addColorStop", t.createNativeFunction(function(n, s) {
+  let p = t.getProperty(I, "prototype");
+  t.setProperty(p, "addColorStop", t.createNativeFunction(function(n, s) {
     this.native.addColorStop(n, s)
   }));
 
@@ -46,13 +46,13 @@ function it(t, u, l) {
     let s = t.createObject(I);
     return s.native = n, s
   }
-  let S = t.createNativeFunction(function() {
+  let T = t.createNativeFunction(function() {
     throw TypeError("Illegal constructor")
   }, !0);
-  t.setProperty(u, "CanvasPattern", S);
+  t.setProperty(u, "CanvasPattern", T);
 
   function y(n) {
-    let s = t.createObject(S);
+    let s = t.createObject(T);
     return s.native = n, s
   }
   let i = t.createNativeFunction(function(n, s) {
@@ -79,16 +79,16 @@ function it(t, u, l) {
       let f = t.nativeToPseudo({});
       t.setProperty(f, "length", n.length), t.setProperty(f, "get", t.createNativeFunction(function(v) {
         return n[v]
-      })), t.setProperty(f, "set", t.createNativeFunction(function(v, p) {
-        d.settings.logCalls && console.log(l.domain, "setImageData", this, v, p), n[v] = p
+      })), t.setProperty(f, "set", t.createNativeFunction(function(v, E) {
+        d.settings.logCalls && console.log(l.domain, "setImageData", this, v, E), n[v] = E
       }));
-      for (let v = 0; v < Math.min(n.length, 1e3); v++)(p => {
-        t.setProperty(f, p, Interpreter.VALUE_IN_DESCRIPTOR, {
+      for (let v = 0; v < Math.min(n.length, 1e3); v++)(E => {
+        t.setProperty(f, E, Interpreter.VALUE_IN_DESCRIPTOR, {
           get: t.createNativeFunction(function() {
-            return n[p]
+            return n[E]
           }),
           set: t.createNativeFunction(function(A) {
-            d.settings.logCalls && console.log(l.domain, "setImageData", this, p, A), n[p] = A
+            d.settings.logCalls && console.log(l.domain, "setImageData", this, E, A), n[E] = A
           })
         })
       })(v);
@@ -134,26 +134,26 @@ function it(t, u, l) {
       lineTo: function(n, s) {
         this.native.lineTo(n, s)
       },
-      bezierCurveTo: function(n, s, f, v, p, A) {
-        this.native.bezierCurveTo(n, s, f, v, p, A)
+      bezierCurveTo: function(n, s, f, v, E, A) {
+        this.native.bezierCurveTo(n, s, f, v, E, A)
       },
       quadraticCurveTo: function(n, s, f, v) {
         this.native.quadraticCurveTo(n, s, f, v)
       },
-      arc: function(n, s, f, v, p, A) {
-        this.native.arc(n, s, f, v, p, A)
+      arc: function(n, s, f, v, E, A) {
+        this.native.arc(n, s, f, v, E, A)
       },
-      arcTo: function(n, s, f, v, p) {
-        this.native.arcTo(n, s, f, v, p)
+      arcTo: function(n, s, f, v, E) {
+        this.native.arcTo(n, s, f, v, E)
       },
-      ellipse: function(n, s, f, v, p, A, D, k) {
-        this.native.ellipse(n, s, f, v, p, A, D, k)
+      ellipse: function(n, s, f, v, E, A, D, k) {
+        this.native.ellipse(n, s, f, v, E, A, D, k)
       },
       rect: function(n, s, f, v) {
         this.native.rect(n, s, f, v)
       },
-      roundRect: function(n, s, f, v, p) {
-        this.native.roundRect(n, s, f, v, p)
+      roundRect: function(n, s, f, v, E) {
+        this.native.roundRect(n, s, f, v, E)
       }
     };
   for (let [n, s] of Object.entries(O)) t.setProperty(z, n, t.createNativeFunction(s));
@@ -214,8 +214,8 @@ function it(t, u, l) {
     createLinearGradient: function(n, s, f, v) {
       return C(this.native.createLinearGradient(n, s, f, v))
     },
-    createRadialGradient: function(n, s, f, v, p, A) {
-      return C(this.native.createRadialGradient(n, s, f, v, p, A))
+    createRadialGradient: function(n, s, f, v, E, A) {
+      return C(this.native.createRadialGradient(n, s, f, v, E, A))
     },
     createConicGradient: function(n, s, f) {
       return C(this.native.createConicGradient(n, s, f))
@@ -238,26 +238,26 @@ function it(t, u, l) {
     lineTo: function(n, s) {
       this.native.lineTo(n, s)
     },
-    bezierCurveTo: function(n, s, f, v, p, A) {
-      this.native.bezierCurveTo(n, s, f, v, p, A)
+    bezierCurveTo: function(n, s, f, v, E, A) {
+      this.native.bezierCurveTo(n, s, f, v, E, A)
     },
     quadraticCurveTo: function(n, s, f, v) {
       this.native.quadraticCurveTo(n, s, f, v)
     },
-    arc: function(n, s, f, v, p, A) {
-      this.native.arc(n, s, f, v, p, A)
+    arc: function(n, s, f, v, E, A) {
+      this.native.arc(n, s, f, v, E, A)
     },
-    arcTo: function(n, s, f, v, p) {
-      this.native.arcTo(n, s, f, v, p)
+    arcTo: function(n, s, f, v, E) {
+      this.native.arcTo(n, s, f, v, E)
     },
-    ellipse: function(n, s, f, v, p, A, D, k) {
-      this.native.ellipse(n, s, f, v, p, A, D, k)
+    ellipse: function(n, s, f, v, E, A, D, k) {
+      this.native.ellipse(n, s, f, v, E, A, D, k)
     },
     rect: function(n, s, f, v) {
       this.native.rect(n, s, f, v)
     },
-    roundRect: function(n, s, f, v, p) {
-      let A = t.pseudoToNative(p);
+    roundRect: function(n, s, f, v, E) {
+      let A = t.pseudoToNative(E);
       this.native.roundRect(n, s, f, v, A)
     },
     fill: function(n, s) {
@@ -295,22 +295,22 @@ function it(t, u, l) {
     translate: function(n, s) {
       this.native.translate(n, s)
     },
-    transform: function(n, s, f, v, p, A) {
-      this.native.transform(n, s, f, v, p, A)
+    transform: function(n, s, f, v, E, A) {
+      this.native.transform(n, s, f, v, E, A)
     },
-    setTransform: function(n, s, f, v, p, A) {
+    setTransform: function(n, s, f, v, E, A) {
       if (typeof n == "object" && n !== null) {
         let D = t.pseudoToNative(n);
         this.native.setTransform(D)
-      } else this.native.setTransform(n, s, f, v, p, A)
+      } else this.native.setTransform(n, s, f, v, E, A)
     },
     resetTransform: function() {
       this.native.resetTransform()
     },
-    drawImage: function(n, s, f, v, p, A, D, k, Y) {
+    drawImage: function(n, s, f, v, E, A, D, k, Y) {
       this.native;
       let e = n?.native || n;
-      e && (k !== void 0 ? this.native.drawImage(e, s, f, v, p, A, D, k, Y) : v !== void 0 ? this.native.drawImage(e, s, f, v, p) : this.native.drawImage(e, s, f))
+      e && (k !== void 0 ? this.native.drawImage(e, s, f, v, E, A, D, k, Y) : v !== void 0 ? this.native.drawImage(e, s, f, v, E) : this.native.drawImage(e, s, f))
     },
     createImageData: function(n, s) {
       if (n?.native) return P(this.native.createImageData(n.native));
@@ -321,8 +321,8 @@ function it(t, u, l) {
       if (f > h || v > h) throw new Error(`ImageData size exceeds maximum (${h}x${h})`);
       return P(this.native.getImageData(n, s, f, v))
     },
-    putImageData: function(n, s, f, v, p, A, D) {
-      this.native, n?.native && (v !== void 0 ? this.native.putImageData(n.native, s, f, v, p, A, D) : this.native.putImageData(n.native, s, f))
+    putImageData: function(n, s, f, v, E, A, D) {
+      this.native, n?.native && (v !== void 0 ? this.native.putImageData(n.native, s, f, v, E, A, D) : this.native.putImageData(n.native, s, f))
     },
     save: function() {
       this.native.save()
@@ -339,10 +339,10 @@ function it(t, u, l) {
     extendElement: function(n, s) {
       t.setProperty(n, "getContext", t.createNativeFunction(function(f, v) {
         d.settings.logCalls && console.log(l.domain, "getContext", this, f, v);
-        let p = this.native;
-        if (p.tagName !== "CANVAS") throw new Error("getContext is only available on canvas elements");
-        if (p.width > h && (p.width = h), p.height > h && (p.height = h), f === "2d") {
-          let A = p.getContext("2d", v ? t.pseudoToNative(v) : void 0);
+        let E = this.native;
+        if (E.tagName !== "CANVAS") throw new Error("getContext is only available on canvas elements");
+        if (E.width > h && (E.width = h), E.height > h && (E.height = h), f === "2d") {
+          let A = E.getContext("2d", v ? t.pseudoToNative(v) : void 0);
           return R(A, this)
         }
         throw new Error(`Context type "${f}" is not supported`)
@@ -370,7 +370,7 @@ function it(t, u, l) {
   }
 }
 
-function at(t, u, l) {
+function it(t, u, l) {
   let m = 0,
     w = window.location.origin;
 
@@ -389,7 +389,7 @@ function at(t, u, l) {
     I = t.nativeToPseudo({});
   t.setProperty(u, "__xhrCallbacks", I);
 
-  function E(i, ...c) {
+  function p(i, ...c) {
     if (!i || typeof i != "object") return;
     let P = R++;
     t.setProperty(I, "fn" + P, i);
@@ -404,15 +404,15 @@ function at(t, u, l) {
     d.settings.logCalls && console.log(l.domain, "XMLHttpRequest", this), this.native = new window.XMLHttpRequest, this._method = null, this._url = null, this._async = !0, this._headers = {}, this._eventHandlers = {};
     let c = this;
     this.native.onreadystatechange = function() {
-      t.setProperty(c, "readyState", c.native.readyState), c.native.readyState === 4 && (t.setProperty(c, "status", c.native.status), t.setProperty(c, "statusText", c.native.statusText), t.setProperty(c, "responseText", c.native.responseText?.slice(0, 5242880) || ""), t.setProperty(c, "responseURL", c.native.responseURL), m = Math.max(0, m - 1)), c._eventHandlers.onreadystatechange && E(c._eventHandlers.onreadystatechange)
+      t.setProperty(c, "readyState", c.native.readyState), c.native.readyState === 4 && (t.setProperty(c, "status", c.native.status), t.setProperty(c, "statusText", c.native.statusText), t.setProperty(c, "responseText", c.native.responseText?.slice(0, 5242880) || ""), t.setProperty(c, "responseURL", c.native.responseURL), m = Math.max(0, m - 1)), c._eventHandlers.onreadystatechange && p(c._eventHandlers.onreadystatechange)
     }, this.native.onload = function() {
-      c._eventHandlers.onload && E(c._eventHandlers.onload)
+      c._eventHandlers.onload && p(c._eventHandlers.onload)
     }, this.native.onerror = function() {
-      m = Math.max(0, m - 1), c._eventHandlers.onerror && E(c._eventHandlers.onerror)
+      m = Math.max(0, m - 1), c._eventHandlers.onerror && p(c._eventHandlers.onerror)
     }, this.native.ontimeout = function() {
-      m = Math.max(0, m - 1), c._eventHandlers.ontimeout && E(c._eventHandlers.ontimeout)
+      m = Math.max(0, m - 1), c._eventHandlers.ontimeout && p(c._eventHandlers.ontimeout)
     }, this.native.onabort = function() {
-      m = Math.max(0, m - 1), c._eventHandlers.onabort && E(c._eventHandlers.onabort)
+      m = Math.max(0, m - 1), c._eventHandlers.onabort && p(c._eventHandlers.onabort)
     }, this.native.onprogress = function(P) {
       if (c._eventHandlers.onprogress) {
         let _ = t.nativeToPseudo({
@@ -420,19 +420,19 @@ function at(t, u, l) {
           total: P.total,
           lengthComputable: P.lengthComputable
         });
-        E(c._eventHandlers.onprogress, _)
+        p(c._eventHandlers.onprogress, _)
       }
     }, this.native.onloadstart = function() {
-      c._eventHandlers.onloadstart && E(c._eventHandlers.onloadstart)
+      c._eventHandlers.onloadstart && p(c._eventHandlers.onloadstart)
     }, this.native.onloadend = function() {
-      c._eventHandlers.onloadend && E(c._eventHandlers.onloadend)
+      c._eventHandlers.onloadend && p(c._eventHandlers.onloadend)
     }, t.setProperty(this, "readyState", 0), t.setProperty(this, "status", 0), t.setProperty(this, "statusText", ""), t.setProperty(this, "responseText", ""), t.setProperty(this, "responseURL", "")
   }, !0);
   t.setProperty(u, "XMLHttpRequest", C);
-  let S = t.getProperty(C, "prototype");
-  t.setProperty(C, "UNSENT", 0), t.setProperty(C, "OPENED", 1), t.setProperty(C, "HEADERS_RECEIVED", 2), t.setProperty(C, "LOADING", 3), t.setProperty(C, "DONE", 4), t.setProperty(S, "UNSENT", 0), t.setProperty(S, "OPENED", 1), t.setProperty(S, "HEADERS_RECEIVED", 2), t.setProperty(S, "LOADING", 3), t.setProperty(S, "DONE", 4);
+  let T = t.getProperty(C, "prototype");
+  t.setProperty(C, "UNSENT", 0), t.setProperty(C, "OPENED", 1), t.setProperty(C, "HEADERS_RECEIVED", 2), t.setProperty(C, "LOADING", 3), t.setProperty(C, "DONE", 4), t.setProperty(T, "UNSENT", 0), t.setProperty(T, "OPENED", 1), t.setProperty(T, "HEADERS_RECEIVED", 2), t.setProperty(T, "LOADING", 3), t.setProperty(T, "DONE", 4);
   let y = ["onreadystatechange", "onload", "onerror", "ontimeout", "onabort", "onprogress", "onloadstart", "onloadend"];
-  for (let i of y) t.setProperty(S, i, Interpreter.VALUE_IN_DESCRIPTOR, {
+  for (let i of y) t.setProperty(T, i, Interpreter.VALUE_IN_DESCRIPTOR, {
     get: t.createNativeFunction(function() {
       return this._eventHandlers[i] || null
     }),
@@ -440,66 +440,66 @@ function at(t, u, l) {
       d.settings.logCalls && console.log(l.domain, "XMLHttpRequest set " + i, this, c), this._eventHandlers[i] = c
     })
   });
-  t.setProperty(S, "timeout", Interpreter.VALUE_IN_DESCRIPTOR, {
+  t.setProperty(T, "timeout", Interpreter.VALUE_IN_DESCRIPTOR, {
     get: t.createNativeFunction(function() {
       return this.native.timeout
     }),
     set: t.createNativeFunction(function(i) {
       this.native.timeout = Math.min(i, 3e4)
     })
-  }), t.setProperty(S, "withCredentials", Interpreter.VALUE_IN_DESCRIPTOR, {
+  }), t.setProperty(T, "withCredentials", Interpreter.VALUE_IN_DESCRIPTOR, {
     get: t.createNativeFunction(function() {
       return this.native.withCredentials
     }),
     set: t.createNativeFunction(function(i) {
       this.native.withCredentials = !1
     })
-  }), t.setProperty(S, "responseType", Interpreter.VALUE_IN_DESCRIPTOR, {
+  }), t.setProperty(T, "responseType", Interpreter.VALUE_IN_DESCRIPTOR, {
     get: t.createNativeFunction(function() {
       return this.native.responseType
     }),
     set: t.createNativeFunction(function(i) {
       (i === "" || i === "text" || i === "json") && (this.native.responseType = i)
     })
-  }), t.setProperty(S, "response", Interpreter.VALUE_IN_DESCRIPTOR, {
+  }), t.setProperty(T, "response", Interpreter.VALUE_IN_DESCRIPTOR, {
     get: t.createNativeFunction(function() {
       let i = this.native.response;
       return this.native.responseType === "json" ? t.nativeToPseudo(i) : typeof i == "string" ? i.slice(0, 5242880) : i
     })
-  }), t.setProperty(S, "open", t.createNativeFunction(function(i, c, P, _, F) {
+  }), t.setProperty(T, "open", t.createNativeFunction(function(i, c, P, _, F) {
     if (!b(c)) throw new Error(`XHR request blocked: URL "${c}" is not allowed. Only absolute URLs to external origins are permitted.`);
     let x = ["GET", "POST", "PUT", "DELETE", "PATCH", "HEAD", "OPTIONS"];
     if (i = String(i).toUpperCase(), !x.includes(i)) throw new Error(`HTTP method "${i}" is not allowed`);
     d.settings.logCalls && console.log(l.domain, "XMLHttpRequest open", this, i, c, P, _, F), this._method = i, this._url = c, this._async = P !== !1, this.native.open(i, c, this._async), this.native.timeout = 3e4, t.setProperty(this, "readyState", this.native.readyState)
-  })), t.setProperty(S, "setRequestHeader", t.createNativeFunction(function(i, c) {
+  })), t.setProperty(T, "setRequestHeader", t.createNativeFunction(function(i, c) {
     if (["cookie", "cookie2", "set-cookie", "set-cookie2", "host", "origin", "referer"].includes(i.toLowerCase())) throw new Error(`Setting header "${i}" is not allowed`);
     d.settings.logCalls && console.log(l.domain, "XMLHttpRequest setRequestHeader", this, i, c), this._headers[i] = c, this.native.setRequestHeader(i, c)
-  })), t.setProperty(S, "send", t.createNativeFunction(function(i) {
+  })), t.setProperty(T, "send", t.createNativeFunction(function(i) {
     if (m >= 5) throw new Error("Maximum concurrent requests (5) exceeded");
     d.settings.logCalls && console.log(l.domain, "XMLHttpRequest send", this, i), m++;
     let c = null;
     i != null && (typeof i == "string" ? c = i.slice(0, 5242880) : typeof i == "object" && (c = JSON.stringify(t.pseudoToNative(i)))), this.native.send(c)
-  })), t.setProperty(S, "abort", t.createNativeFunction(function() {
+  })), t.setProperty(T, "abort", t.createNativeFunction(function() {
     d.settings.logCalls && console.log(l.domain, "XMLHttpRequest abort", this), this.native.abort(), m = Math.max(0, m - 1)
-  })), t.setProperty(S, "getResponseHeader", t.createNativeFunction(function(i) {
+  })), t.setProperty(T, "getResponseHeader", t.createNativeFunction(function(i) {
     return this.native.getResponseHeader(i)
-  })), t.setProperty(S, "getAllResponseHeaders", t.createNativeFunction(function() {
+  })), t.setProperty(T, "getAllResponseHeaders", t.createNativeFunction(function() {
     return this.native.getAllResponseHeaders()
-  })), t.setProperty(S, "overrideMimeType", t.createNativeFunction(function(i) {
+  })), t.setProperty(T, "overrideMimeType", t.createNativeFunction(function(i) {
     this.native.overrideMimeType(i)
   }))
 }
-var Nt = "webtiles_storage",
-  pt = 1,
+var Pt = "webtiles_storage",
+  Nt = 1,
   M = "localStorage",
-  rt = 1024 * 1024,
-  ct = 100,
+  at = 1024 * 1024,
+  rt = 100,
   V = null,
   K = null;
 
 function B() {
   return K || (K = new Promise((t, u) => {
-    let l = indexedDB.open(Nt, pt);
+    let l = indexedDB.open(Pt, Nt);
     l.onerror = () => u(l.error), l.onsuccess = () => {
       V = l.result, t(V)
     }, l.onupgradeneeded = r => {
@@ -512,7 +512,7 @@ function B() {
     }
   }), K)
 }
-async function lt(t, u) {
+async function ct(t, u) {
   return await B(), new Promise((l, r) => {
     let m = V.transaction(M, "readonly").objectStore(M).get([t, u]);
     m.onsuccess = () => l(m.result?.value ?? null), m.onerror = () => r(m.error)
@@ -528,13 +528,13 @@ async function Et(t, u, l) {
     w.onsuccess = () => r(), w.onerror = () => h(w.error)
   })
 }
-async function Ct(t, u) {
+async function pt(t, u) {
   return await B(), new Promise((l, r) => {
     let m = V.transaction(M, "readwrite").objectStore(M).delete([t, u]);
     m.onsuccess = () => l(), m.onerror = () => r(m.error)
   })
 }
-async function wt(t) {
+async function Ct(t) {
   return await B(), new Promise((u, l) => {
     let m = V.transaction(M, "readonly").objectStore(M).index("site").getAll(t);
     m.onsuccess = () => {
@@ -543,7 +543,7 @@ async function wt(t) {
     }, m.onerror = () => l(m.error)
   })
 }
-async function ut(t) {
+async function lt(t) {
   return await B(), new Promise((u, l) => {
     let m = V.transaction(M, "readonly").objectStore(M).index("site").getAll(t);
     m.onsuccess = () => {
@@ -556,7 +556,7 @@ async function ut(t) {
     }, m.onerror = () => l(m.error)
   })
 }
-async function St(t) {
+async function wt(t) {
   return await B(), new Promise((u, l) => {
     let m = V.transaction(M, "readwrite").objectStore(M).index("site").openCursor(t);
     m.onsuccess = w => {
@@ -566,14 +566,14 @@ async function St(t) {
   })
 }
 
-function ht(t, u, l) {
+function ut(t, u, l) {
   let r = t.nativeToPseudo({});
   t.setProperty(r, "getItem", t.createAsyncFunction(function(h, N) {
     if (d.settings.logCalls && console.log(l, "localStorage.getItem", this, h), h == null) {
       N(null);
       return
     }
-    h = String(h), lt(l, h).then(m => N(m)).catch(m => {
+    h = String(h), ct(l, h).then(m => N(m)).catch(m => {
       console.error("localStorage.getItem error:", m), N(null)
     })
   })), t.setProperty(r, "setItem", t.createAsyncFunction(function(h, N, m) {
@@ -581,15 +581,15 @@ function ht(t, u, l) {
       m();
       return
     }
-    h = String(h), N = String(N), ut(l).then(({
+    h = String(h), N = String(N), lt(l).then(({
       size: w,
       count: b
     }) => {
-      lt(l, h).then(R => {
-        if (R === null && b >= ct) throw new Error(`localStorage item limit exceeded (max ${ct} items)`);
-        let E = R ? (h.length + R.length) * 2 : 0,
+      ct(l, h).then(R => {
+        if (R === null && b >= rt) throw new Error(`localStorage item limit exceeded (max ${rt} items)`);
+        let p = R ? (h.length + R.length) * 2 : 0,
           C = (h.length + N.length) * 2;
-        if (w - E + C > rt) throw new Error(`localStorage size limit exceeded (max ${rt/1024}KB)`);
+        if (w - p + C > at) throw new Error(`localStorage size limit exceeded (max ${at/1024}KB)`);
         return Et(l, h, N)
       }).then(() => m()).catch(R => {
         throw console.error("localStorage.setItem error:", R), R
@@ -602,21 +602,21 @@ function ht(t, u, l) {
       N();
       return
     }
-    h = String(h), Ct(l, h).then(() => N()).catch(m => {
+    h = String(h), pt(l, h).then(() => N()).catch(m => {
       console.error("localStorage.removeItem error:", m), N()
     })
   })), t.setProperty(r, "clear", t.createAsyncFunction(function(h) {
-    d.settings.logCalls && console.log(l, "localStorage.clear", this), St(l).then(() => h()).catch(N => {
+    d.settings.logCalls && console.log(l, "localStorage.clear", this), wt(l).then(() => h()).catch(N => {
       console.error("localStorage.clear error:", N), h()
     })
   })), t.setProperty(r, "key", t.createAsyncFunction(function(h, N) {
-    h = parseInt(h) || 0, wt(l).then(m => {
+    h = parseInt(h) || 0, Ct(l).then(m => {
       N(h >= 0 && h < m.length ? m[h] : null)
     }).catch(m => {
       console.error("localStorage.key error:", m), N(null)
     })
   })), t.setProperty(r, "getLength", t.createAsyncFunction(function(h) {
-    ut(l).then(({
+    lt(l).then(({
       count: N
     }) => h(N)).catch(N => {
       console.error("localStorage.getLength error:", N), h(0)
@@ -627,7 +627,7 @@ B().catch(t => {
   console.error("Failed to initialize storage DB:", t)
 });
 
-function ft(t, u, l, r) {
+function ht(t, u, l, r) {
   let h = t.createNativeFunction(function() {}, !0);
   t.setProperty(u, "DOMParser", h);
   let N = t.getProperty(h, "prototype");
@@ -635,12 +635,12 @@ function ft(t, u, l, r) {
     if (d.settings.logCalls && console.log(r.domain, "DOMParser parseFromString", this, m, w), !["text/html", "text/xml", "application/xml", "application/xhtml+xml", "image/svg+xml"].includes(w)) throw new Error(`DOMParser: Unsupported MIME type "${w}"`);
     if (typeof m != "string" && (m = String(m)), m.length > 1e5) throw new Error("DOMParser: Input string too large (max 100KB)");
     let I = new DOMParser().parseFromString(m, w),
-      E = t.createObjectProto(t.OBJECT_PROTO);
+      p = t.createObjectProto(t.OBJECT_PROTO);
 
-    function C(S) {
-      if (S == null) return null;
+    function C(T) {
+      if (T == null) return null;
       let y = t.createObjectProto(t.OBJECT_PROTO);
-      return y.native = S, y.fromDOMParser = !0, t.setProperty(y, "nodeName", Interpreter.VALUE_IN_DESCRIPTOR, {
+      return y.native = T, y.fromDOMParser = !0, t.setProperty(y, "nodeName", Interpreter.VALUE_IN_DESCRIPTOR, {
         get: t.createNativeFunction(function() {
           return this.native.nodeName
         })
@@ -787,46 +787,46 @@ function ft(t, u, l, r) {
         return C(this.native.getElementById ? this.native.getElementById(i) : null)
       })), y
     }
-    return t.setProperty(E, "documentElement", Interpreter.VALUE_IN_DESCRIPTOR, {
+    return t.setProperty(p, "documentElement", Interpreter.VALUE_IN_DESCRIPTOR, {
       get: t.createNativeFunction(function() {
         return C(I.documentElement)
       })
-    }), t.setProperty(E, "head", Interpreter.VALUE_IN_DESCRIPTOR, {
+    }), t.setProperty(p, "head", Interpreter.VALUE_IN_DESCRIPTOR, {
       get: t.createNativeFunction(function() {
         return d.settings.logCalls && console.log(r.domain, "DOMParser get head", this), C(I.head)
       })
-    }), t.setProperty(E, "body", Interpreter.VALUE_IN_DESCRIPTOR, {
+    }), t.setProperty(p, "body", Interpreter.VALUE_IN_DESCRIPTOR, {
       get: t.createNativeFunction(function() {
         return d.settings.logCalls && console.log(r.domain, "DOMParser get body", this), C(I.body)
       })
-    }), t.setProperty(E, "title", Interpreter.VALUE_IN_DESCRIPTOR, {
+    }), t.setProperty(p, "title", Interpreter.VALUE_IN_DESCRIPTOR, {
       get: t.createNativeFunction(function() {
         return I.title
       })
-    }), t.setProperty(E, "querySelector", t.createNativeFunction(function(S) {
-      return C(I.querySelector(S))
-    })), t.setProperty(E, "querySelectorAll", t.createNativeFunction(function(S) {
-      let y = Array.from(I.querySelectorAll(S)),
+    }), t.setProperty(p, "querySelector", t.createNativeFunction(function(T) {
+      return C(I.querySelector(T))
+    })), t.setProperty(p, "querySelectorAll", t.createNativeFunction(function(T) {
+      let y = Array.from(I.querySelectorAll(T)),
         i = t.createObjectProto(t.ARRAY_PROTO);
       for (let c = 0; c < y.length; c++) t.setProperty(i, c, C(y[c]));
       return t.setProperty(i, "length", y.length), i
-    })), t.setProperty(E, "getElementById", t.createNativeFunction(function(S) {
-      return C(I.getElementById(S))
-    })), t.setProperty(E, "getElementsByTagName", t.createNativeFunction(function(S) {
-      let y = Array.from(I.getElementsByTagName(S)),
+    })), t.setProperty(p, "getElementById", t.createNativeFunction(function(T) {
+      return C(I.getElementById(T))
+    })), t.setProperty(p, "getElementsByTagName", t.createNativeFunction(function(T) {
+      let y = Array.from(I.getElementsByTagName(T)),
         i = t.createObjectProto(t.ARRAY_PROTO);
       for (let c = 0; c < y.length; c++) t.setProperty(i, c, C(y[c]));
       return t.setProperty(i, "length", y.length), i
-    })), t.setProperty(E, "getElementsByClassName", t.createNativeFunction(function(S) {
-      let y = Array.from(I.getElementsByClassName(S)),
+    })), t.setProperty(p, "getElementsByClassName", t.createNativeFunction(function(T) {
+      let y = Array.from(I.getElementsByClassName(T)),
         i = t.createObjectProto(t.ARRAY_PROTO);
       for (let c = 0; c < y.length; c++) t.setProperty(i, c, C(y[c]));
       return t.setProperty(i, "length", y.length), i
-    })), E
+    })), p
   }))
 }
 
-function dt(t, u, l, r) {
+function ft(t, u, l, r) {
   let h = new WeakMap,
     N = 1e3,
     m = 5,
@@ -840,15 +840,15 @@ function dt(t, u, l, r) {
     t.setProperty(R, "fn" + a, e), t.setProperty(R, "ev" + a, o), t.appendCode(`__eventCallbacks.fn${a}(__eventCallbacks.ev${a}); delete __eventCallbacks.fn${a}; delete __eventCallbacks.ev${a};`)
   }
 
-  function E() {
+  function p() {
     return l.getElementsByTagName("*").length
   }
 
   function C(e = 1) {
-    if (E() + e > N) throw new Error(`DOM element limit exceeded (max ${N})`)
+    if (p() + e > N) throw new Error(`DOM element limit exceeded (max ${N})`)
   }
 
-  function S(e) {
+  function T(e) {
     return e instanceof Element ? 1 + e.getElementsByTagName("*").length : 0
   }
 
@@ -935,13 +935,13 @@ function dt(t, u, l, r) {
     appendChild: function(e) {
       if (!e?.native) return null;
       if (e.fromDOMParser) throw new Error("You cannot append DOMParser elements to the DOM.");
-      return C(S(e.native)), this.native.appendChild(e.native), d.settings.logCalls && console.log(r.domain, "appendChild", this, e), e
+      return C(T(e.native)), this.native.appendChild(e.native), d.settings.logCalls && console.log(r.domain, "appendChild", this, e), e
     },
     append: function(e) {
       for (let o of e)
         if (o?.native) {
           if (o.fromDOMParser) throw new Error("You cannot append DOMParser elements to the DOM.");
-          C(S(o.native)), this.native.appendChild(o.native)
+          C(T(o.native)), this.native.appendChild(o.native)
         } return d.settings.logCalls && console.log(r.domain, "append", this, e), e
     },
     removeChild: function(e) {
@@ -951,7 +951,7 @@ function dt(t, u, l, r) {
       if (!e?.native) return null;
       if (e.fromDOMParser) throw new Error("You cannot insert DOMParser elements into the DOM.");
       if (this.native.isSameNode(l)) throw new Error("No access.");
-      C(S(e.native));
+      C(T(e.native));
       let a = o?.native || null;
       return this.native.insertBefore(e.native, a), d.settings.logCalls && console.log(r.domain, "insertBefore", this, e, a), e
     },
@@ -969,13 +969,13 @@ function dt(t, u, l, r) {
       if (!e?.native) return null;
       if (e.fromDOMParser) throw new Error("You cannot insert DOMParser elements into the DOM.");
       if (this.native.isSameNode(l)) throw new Error("No access.");
-      return C(S(e.native)), this.native.after(e.native), d.settings.logCalls && console.log(r.domain, "after", this, e), e
+      return C(T(e.native)), this.native.after(e.native), d.settings.logCalls && console.log(r.domain, "after", this, e), e
     },
     before: function(e) {
       if (!e?.native) return null;
       if (e.fromDOMParser) throw new Error("You cannot insert DOMParser elements into the DOM.");
       if (this.native.isSameNode(l)) throw new Error("No access.");
-      return C(S(e.native)), this.native.before(e.native), d.settings.logCalls && console.log(r.domain, "before", this, e), e
+      return C(T(e.native)), this.native.before(e.native), d.settings.logCalls && console.log(r.domain, "before", this, e), e
     }
   };
   for (let [e, o] of Object.entries($)) t.setProperty(F, e, t.createNativeFunction(o));
@@ -1396,16 +1396,16 @@ function dt(t, u, l, r) {
         o = this,
         a = null,
         g = null;
-      return d.settings.logCalls && console.log(r.domain, "play", this), t.setProperty(e, "then", t.createNativeFunction(function(T) {
-        return a = T, e
-      })), t.setProperty(e, "catch", t.createNativeFunction(function(T) {
-        return g = T, e
+      return d.settings.logCalls && console.log(r.domain, "play", this), t.setProperty(e, "then", t.createNativeFunction(function(S) {
+        return a = S, e
+      })), t.setProperty(e, "catch", t.createNativeFunction(function(S) {
+        return g = S, e
       })), o.native.play().then(() => {
         a && I(a, t.nativeToPseudo(void 0))
-      }).catch(T => {
+      }).catch(S => {
         g && I(g, t.nativeToPseudo({
-          message: T.message,
-          name: T.name
+          message: S.message,
+          name: S.name
         }))
       }), e
     },
@@ -1428,7 +1428,7 @@ function dt(t, u, l, r) {
         } : {},
         a = this.native.getAnimations(o),
         g = t.createObjectProto(t.ARRAY_PROTO);
-      for (let T = 0; T < a.length; T++) g.properties[T] = n(a[T]);
+      for (let S = 0; S < a.length; S++) g.properties[S] = n(a[S]);
       return t.setProperty(g, "length", a.length), g
     }
   };
@@ -1540,8 +1540,8 @@ function dt(t, u, l, r) {
         get: t.createNativeFunction(function() {
           return e[g]
         }),
-        set: t.createNativeFunction(function(T) {
-          e[g] = T, d.settings.logCalls && console.log(r.domain, "set style", this, g, T)
+        set: t.createNativeFunction(function(S) {
+          e[g] = S, d.settings.logCalls && console.log(r.domain, "set style", this, g, S)
         })
       });
       return t.setProperty(o, "cssText", Interpreter.VALUE_IN_DESCRIPTOR, {
@@ -1551,9 +1551,9 @@ function dt(t, u, l, r) {
         set: t.createNativeFunction(function(g) {
           e.cssText = g, d.settings.logCalls && console.log(r.domain, "set cssText", this, g)
         })
-      }), t.setProperty(o, "setProperty", t.createNativeFunction(function(g, T, L) {
+      }), t.setProperty(o, "setProperty", t.createNativeFunction(function(g, S, L) {
         if (this.native?.className === "tile-body") throw new Error("No access.");
-        e.setProperty(g, T, L), d.settings.logCalls && console.log(r.domain, "setProperty", this, g, T, L)
+        e.setProperty(g, S, L), d.settings.logCalls && console.log(r.domain, "setProperty", this, g, S, L)
       })), t.setProperty(o, "getPropertyValue", t.createNativeFunction(function(g) {
         return e.getPropertyValue(g)
       })), t.setProperty(o, "removeProperty", t.createNativeFunction(function(g) {
@@ -1589,11 +1589,11 @@ function dt(t, u, l, r) {
     for (let g of a) t.setProperty(o, g, e[g]);
     if (e instanceof MouseEvent || e instanceof PointerEvent) {
       let g = ["clientX", "clientY", "pageX", "pageY", "screenX", "screenY", "offsetX", "offsetY", "movementX", "movementY", "button", "buttons", "altKey", "ctrlKey", "shiftKey", "metaKey"];
-      for (let T of g) t.setProperty(o, T, e[T])
+      for (let S of g) t.setProperty(o, S, e[S])
     }
     if (e instanceof KeyboardEvent) {
       let g = ["key", "code", "keyCode", "charCode", "altKey", "ctrlKey", "shiftKey", "metaKey", "repeat"];
-      for (let T of g) t.setProperty(o, T, e[T])
+      for (let S of g) t.setProperty(o, S, e[S])
     }
     return typeof TouchEvent == "function" && e instanceof TouchEvent && (t.setProperty(o, "touches", t.nativeToPseudo({
       length: e.touches.length
@@ -1615,14 +1615,14 @@ function dt(t, u, l, r) {
     w.has(a) || w.set(a, new Map);
     let g = w.get(a);
     g.has(e) || g.set(e, []);
-    let T = g.get(e);
-    if (T.length >= m) throw new Error(`Maximum listeners (${m}) reached for event "${e}"`);
-    if (T.some(H => H.pseudo === o)) return;
+    let S = g.get(e);
+    if (S.length >= m) throw new Error(`Maximum listeners (${m}) reached for event "${e}"`);
+    if (S.some(H => H.pseudo === o)) return;
     let L = function(H) {
       let J = v(H);
       I(o, J)
     };
-    T.push({
+    S.push({
       pseudo: o,
       native: L
     }), a.addEventListener(e, L)
@@ -1633,39 +1633,39 @@ function dt(t, u, l, r) {
     if (!w.has(a)) return;
     let g = w.get(a);
     if (!g.has(e)) return;
-    let T = g.get(e),
-      L = T.findIndex(H => H.pseudo === o);
-    L !== -1 && (a.removeEventListener(e, T[L].native), T.splice(L, 1))
+    let S = g.get(e),
+      L = S.findIndex(H => H.pseudo === o);
+    L !== -1 && (a.removeEventListener(e, S[L].native), S.splice(L, 1))
   }));
-  let p = ["click", "dblclick", "mousedown", "mouseup", "mousemove", "mouseenter", "mouseleave", "mouseover", "mouseout", "keydown", "keyup", "keypress", "focus", "blur", "input", "change", "submit", "touchstart", "touchend", "touchmove", "wheel", "scroll", "contextmenu", "play", "pause", "playing", "waiting", "seeking", "seeked", "ended", "loadstart", "loadeddata", "loadedmetadata", "progress", "canplay", "canplaythrough", "timeupdate", "durationchange", "volumechange", "ratechange", "stalled", "suspend", "emptied", "abort", "error", "load"];
-  for (let e of p) {
+  let E = ["click", "dblclick", "mousedown", "mouseup", "mousemove", "mouseenter", "mouseleave", "mouseover", "mouseout", "keydown", "keyup", "keypress", "focus", "blur", "input", "change", "submit", "touchstart", "touchend", "touchmove", "wheel", "scroll", "contextmenu", "play", "pause", "playing", "waiting", "seeking", "seeked", "ended", "loadstart", "loadeddata", "loadedmetadata", "progress", "canplay", "canplaythrough", "timeupdate", "durationchange", "volumechange", "ratechange", "stalled", "suspend", "emptied", "abort", "error", "load"];
+  for (let e of E) {
     let o = "on" + e;
     t.setProperty(O, o, Interpreter.VALUE_IN_DESCRIPTOR, {
       get: t.createNativeFunction(function() {
         let a = this.native;
         if (!w.has(a)) return null;
         let g = w.get(a),
-          T = `__${o}`;
-        return g.get(T) || null
+          S = `__${o}`;
+        return g.get(S) || null
       }),
       set: t.createNativeFunction(function(a) {
         let g = this.native;
         w.has(g) || w.set(g, new Map);
-        let T = w.get(g),
+        let S = w.get(g),
           L = `__${o}`;
         d.settings.logCalls && console.log(r.domain, "setOn" + e, this, a);
-        let H = T.get(L + "_native");
-        if (H && (g.removeEventListener(e, H), T.delete(L), T.delete(L + "_native")), a && typeof a == "object") {
-          let J = function(yt) {
-            let Pt = v(yt);
-            I(a, Pt)
+        let H = S.get(L + "_native");
+        if (H && (g.removeEventListener(e, H), S.delete(L), S.delete(L + "_native")), a && typeof a == "object") {
+          let J = function(gt) {
+            let yt = v(gt);
+            I(a, yt)
           };
-          g.addEventListener(e, J), T.set(L, a), T.set(L + "_native", J)
+          g.addEventListener(e, J), S.set(L, a), S.set(L + "_native", J)
         }
       })
     })
   }
-  it(t, u, r).extendElement(O, y), at(t, u, r), ht(t, u, r.domain), ft(t, u, l, r);
+  st(t, u, r).extendElement(O, y), it(t, u, r), ut(t, u, r.domain), ht(t, u, l, r);
   let D = t.nativeToPseudo({});
   t.setProperty(u, "document", D);
   let k = {
@@ -1772,7 +1772,7 @@ var Tt = {
             h(b, R), l.setProperty(m, w, R)
           }
         };
-        h(Tt, r), dt(l, r, this.tile.contentElement, this.tile), l.setProperty(r, "embedded", l.nativeToPseudo(!!this.tile.embed))
+        h(Tt, r), ft(l, r, this.tile.contentElement, this.tile), l.setProperty(r, "embedded", l.nativeToPseudo(!!this.tile.embed))
       }), this.runInterval = null, this.running = !1
     }
     roughValueMemorySize() {
@@ -1820,28 +1820,25 @@ var Tt = {
       d.settings.disableJS || this.interpreter.appendCode(u)
     }
   },
-  mt = tt;
-var It = document.getElementById("plot");
-localStorage.getItem("lowend") || (localStorage.lowend = "true");
-var et = new CSSStyleSheet,
-  vt = () => {
-    et.replaceSync(`
+  dt = tt;
+var St = document.getElementById("plot"),
+  mt = new CSSStyleSheet,
+  It = () => {
+    mt.replaceSync(`
         .tile-body:not(.active) * {
             animation-play-state: paused !important;
         }
-        ${localStorage.lowend,`
         .tile-body:not(.active) * {
             text-shadow: none !important;
             box-shadow: none !important;
             filter: none !important;
             backdrop-filter: none !important;
         }
-        `}
     `)
   };
-vt();
-var gt = new CSSStyleSheet;
-gt.replaceSync(`
+It();
+var vt = new CSSStyleSheet;
+vt.replaceSync(`
     .free {
         width: 100%;
         height: 100%;
@@ -1858,7 +1855,7 @@ gt.replaceSync(`
 `);
 var W = class t {
   constructor(u) {
-    this.x = u.x ?? 0, this.y = u.y ?? 0, this.domain = u.domain, this.free = !u.domain, this.locked = !1, this.id = `${this.x},${this.y}`, this.rendered = !1, this.active = !1, this.element = null, this.contentElement = null, this.path = u.path || "/index.html", this.content = "", this.lastRender = 0, this.preview = u.nocontrols || !1, this.embed = u.embed || !1, this.container = u.container || It, this.interpreter = null, this.render()
+    this.x = u.x ?? 0, this.y = u.y ?? 0, this.domain = u.domain, this.free = !u.domain, this.locked = !1, this.id = `${this.x},${this.y}`, this.rendered = !1, this.active = !1, this.element = null, this.contentElement = null, this.path = u.path || "/index.html", this.content = "", this.lastRender = 0, this.preview = u.nocontrols || !1, this.embed = u.embed || !1, this.container = u.container || St, this.interpreter = null, this.render()
   }
   static toTilePosition(u, l) {
     return {
@@ -1883,15 +1880,15 @@ var W = class t {
         try {
           let R = new URL(b.href);
           if (R.hostname !== location.hostname) {
-            let E = document.createElement("a");
-            E.href = b.href, E.target = "_blank", E.click();
+            let p = document.createElement("a");
+            p.href = b.href, p.target = "_blank", p.click();
             return
           }
           let I = R.pathname;
           if (I.startsWith(`/t/${this.domain}/`) || (I = `/t/${this.domain}/${I}`.replaceAll("//", "/")), I.startsWith(`/t/${this.domain}`) && (I.endsWith(".html") || I === `/t/${this.domain}/` || I === `/t/${this.domain}`)) await this.fetchContent(I.replace(`/t/${this.domain}`, "")), this.setActive(!0);
           else {
-            let E = document.createElement("a");
-            E.href = b.href, E.target = "_blank", E.click()
+            let p = document.createElement("a");
+            p.href = b.href, p.target = "_blank", p.click()
           }
         } catch (R) {
           console.error(R)
@@ -1911,7 +1908,7 @@ var W = class t {
     let r = this.free ? `<div class="free">
                 <p>${this.locked?"Locked tile":"Free tile"} ${this.x}, ${this.y}</p>
             </div>` : this.path === u && this.content && !l ? this.content : await fetch(`/t/${this.domain}${u}`).then(m => m.text()).catch(m => "<p>Error loading tile</p>");
-    this.free ? this.shadow.adoptedStyleSheets = [gt] : this.shadow.adoptedStyleSheets = [et], this.interpreter && (this.interpreter.stop(), this.interpreter = null), this.path = u, this.contentElement.innerHTML = r, this.content = r;
+    this.free ? this.shadow.adoptedStyleSheets = [vt] : this.shadow.adoptedStyleSheets = [mt], this.interpreter && (this.interpreter.stop(), this.interpreter = null), this.path = u, this.contentElement.innerHTML = r, this.content = r;
     let h = this.contentElement.querySelectorAll("style");
     this.fonts.textContent = "";
     let N = 0;
@@ -1932,7 +1929,7 @@ var W = class t {
     this.preview && this.interpreter.start()
   }
   setActive(u) {
-    if (this.element && (u && (this.interpreter || (this.interpreter = new mt(this), this.executeScripts()), this.interpreter.start()), u !== this.active)) {
+    if (this.element && (u && (this.interpreter || (this.interpreter = new dt(this), this.executeScripts()), this.interpreter.start()), u !== this.active)) {
       if (this.active = u, u) {
         if (this.element.classList.add("active"), this.contentElement.classList.add("active"), !this.preview && d.ui) {
           let r = d.ui.createVoteMenu(this);
@@ -1969,20 +1966,20 @@ var W = class t {
           R = h.has(`${N.x-1},${N.y}`),
           I = h.has(`${N.x+1},${N.y}`);
         if (!w) {
-          let E = document.createElement("div");
-          E.className = "clan-border clan-border-top", m.element.appendChild(E)
+          let p = document.createElement("div");
+          p.className = "clan-border clan-border-top", m.element.appendChild(p)
         }
         if (!b) {
-          let E = document.createElement("div");
-          E.className = "clan-border clan-border-bottom", m.element.appendChild(E)
+          let p = document.createElement("div");
+          p.className = "clan-border clan-border-bottom", m.element.appendChild(p)
         }
         if (!R) {
-          let E = document.createElement("div");
-          E.className = "clan-border clan-border-left", m.element.appendChild(E)
+          let p = document.createElement("div");
+          p.className = "clan-border clan-border-left", m.element.appendChild(p)
         }
         if (!I) {
-          let E = document.createElement("div");
-          E.className = "clan-border clan-border-right", m.element.appendChild(E)
+          let p = document.createElement("div");
+          p.className = "clan-border clan-border-right", m.element.appendChild(p)
         }
       }
     } catch (u) {
@@ -1999,19 +1996,15 @@ var W = class t {
   setFree() {
     this.interpreter && this.interpreter.stop(), this.domain = null, this.free = !0, this.content = "", this.element && this.element.classList.add("f"), this.fetchContent("/index.html")
   }
-  static updateLowendStyles() {
-    if (vt(), d.plot && d.plot.tiles)
-      for (let u of Object.values(d.plot.tiles)) u.shadow && !u.free && (u.shadow.adoptedStyleSheets = [et])
-  }
   setLocked(u) {
     this.locked = u, this.element && this.element.classList.toggle("locked", u), this.fetchContent("/index.html", !0)
   }
 };
 var X = JSON.parse(document.getElementById("embed-data").textContent),
-  nt = document.getElementById("tile");
+  et = document.getElementById("tile");
 window.tile = new W({
   domain: X.domain,
-  container: nt,
+  container: et,
   nocontrols: !0,
   embed: !0,
   path: "/index.html",
@@ -2019,9 +2012,9 @@ window.tile = new W({
   y: X.y
 });
 window.onmessage = t => {
-  t.data.type === "update" && (window.tile.unrender(), nt.innerHTML = "", window.tile = new W({
+  t.data.type === "update" && (window.tile.unrender(), et.innerHTML = "", window.tile = new W({
     domain: X.domain,
-    container: nt,
+    container: et,
     nocontrols: !0,
     embed: !0,
     path: t.data.path,
