@@ -1,10 +1,18 @@
 import { css, html, js } from 'js-beautify';
 
+const b = 'https://webtiles.kicya.net/'
+const t = 't/webtiles.kicya.net/'
+
 const FILE_URLS = [
-  'https://webtiles.kicya.net/s/dist/game.js',
-  'https://webtiles.kicya.net/s/dist/embed.js',
-  'https://webtiles.kicya.net/s/js/lib/interpreter.js',
-  'https://webtiles.kicya.net/s/css/main.css',
+	b,
+  b + 's/dist/game.js',
+  b + 's/dist/embed.js',
+  b + 's/js/lib/interpreter.js',
+  b + 's/css/main.css',
+	b + t + 'index.html',
+	b + t + 'rules.html',
+	b + t + 'js.html',
+	b + t + 'html.html'
 ];
 
 const GITHUB_OWNER = 'ThinLiquid';
@@ -47,9 +55,19 @@ async function computeHash(str) {
     .join('');
 }
 
+// Strip hash comment depending on file type
 function stripHashComment(path, content) {
-  // Remove existing top /* ... */ comment
-  return content.replace(/^\/\* [a-f0-9]{64} \*\/\n/, '');
+  if (path.endsWith('.html')) {
+    return content.replace(/^<!-- [a-f0-9]{64} -->\n?/, '');
+  } else {
+    return content.replace(/^\/\* [a-f0-9]{64} \*\/\n?/, '');
+  }
+}
+
+// Generate hash comment depending on file type
+function getHashComment(path, hash) {
+  if (path.endsWith('.html')) return `<!-- ${hash} -->\n`;
+  return `/* ${hash} */\n`;
 }
 
 async function putRepoFile(env, path, content, sha) {
@@ -61,14 +79,16 @@ async function putRepoFile(env, path, content, sha) {
   const newHash = await computeHash(contentWithoutHash);
 
   // Prepend hash comment
-  formattedContent = `/* ${newHash} */\n${contentWithoutHash}`;
+  formattedContent = getHashComment(path, newHash) + contentWithoutHash;
 
   // Skip update if hash matches existing file
   if (sha) {
     const existingFile = await getRepoFile(env, path);
     if (existingFile) {
       const existingContent = atob(existingFile.content);
-      const existingHashMatch = existingContent.match(/^\/\* ([a-f0-9]{64}) \*\//);
+      const existingHashMatch = existingContent.match(path.endsWith('.html')
+        ? /^<!-- ([a-f0-9]{64}) -->/
+        : /^\/\* ([a-f0-9]{64}) \*\//);
       if (existingHashMatch && existingHashMatch[1] === newHash) {
         console.log(`${path} unchanged (hash matched)`);
         return;
@@ -77,7 +97,7 @@ async function putRepoFile(env, path, content, sha) {
   }
 
   const body = {
-    message: `Update ${path} (hash: ${newHash})`,
+    message: `[${Date.now()}] ${path}`,
     content: toBase64(formattedContent),
     branch: BRANCH,
     ...(sha && { sha }),
@@ -96,7 +116,8 @@ async function putRepoFile(env, path, content, sha) {
   );
 
   if (!res.ok) {
-    throw new Error(await res.text());
+		console.log(path + ' doesnt exist lol')
+    return
   }
 
   console.log(`${path} updated (hash: ${newHash})`);
@@ -104,13 +125,22 @@ async function putRepoFile(env, path, content, sha) {
 
 export default {
   async scheduled(event, env, ctx) {
-    for (const url of FILE_URLS) {
-      const path = new URL(url).pathname.replace(/^\/+/, '');
-      const fileRes = await fetch(url);
+    for (let url of FILE_URLS) {
+      let pathname = new URL(url).pathname.replace(/^\/+/, '');
+      // Treat paths ending with / as index.html
+      if (pathname.endsWith('/') || pathname.length === 0) pathname += 'index.html';
+      const path = pathname;
+
+			console.log(path)
+      const fileRes = await fetch(url, { headers: {
+				Referer: 'https://webtiles.kicya.net/'
+			} });
       if (!fileRes.ok) {
-        console.error(`Failed to fetch ${url}`);
+
+        console.error(`Failed to fetch ${url}`, fileRes.status, await fileRes.text());
         continue;
       }
+
       const content = await fileRes.text();
       const existing = await getRepoFile(env, path);
       await putRepoFile(env, path, content, existing?.sha);
