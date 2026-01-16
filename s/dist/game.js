@@ -1,27 +1,27 @@
-/* 40be4c313971b4b68d56888da82aaeb381757839e4e1343b097b911bce075255 */
-var tt = Object.defineProperty;
-var nt = (e, t, n) => t in e ? tt(e, t, {
+/* 37db1930bfb67ada2d82cec1e54cc47416e32817bd7e8325abbb92740e8d273c */
+var et = Object.defineProperty;
+var tt = (e, t, n) => t in e ? et(e, t, {
   enumerable: !0,
   configurable: !0,
   writable: !0,
   value: n
 }) : e[t] = n;
-var pe = (e, t, n) => nt(e, typeof t != "symbol" ? t + "" : t, n);
-var Ie = {
+var pe = (e, t, n) => tt(e, typeof t != "symbol" ? t + "" : t, n);
+var Pe = {
     user: null,
     settings: {
       logCalls: localStorage.logCalls === "true",
       disableJS: localStorage.disableJS === "true"
     }
   },
-  Pe = document.getElementById("user-data");
-if (Pe) try {
-  let e = JSON.parse(Pe.textContent);
-  e && e.email_verified && (Ie.user = e)
+  Se = document.getElementById("user-data");
+if (Se) try {
+  let e = JSON.parse(Se.textContent);
+  e && e.email_verified && (Pe.user = e)
 } catch (e) {
   console.error(e)
 }
-var s = Ie;
+var s = Pe;
 var A = class A {
   static init() {
     A.container || (A.container = document.createElement("div"), A.container.id = "modal-container", A.container.className = "modal-overlay", A.container.addEventListener("click", t => {
@@ -77,26 +77,26 @@ var A = class A {
   }
 };
 pe(A, "container", null), pe(A, "activeModal", null);
-var N = A;
+var M = A;
 
 function ue() {
   return document.querySelector('meta[name="turnstile-sitekey"]')?.content || ""
 }
-var st = ue(),
+var nt = ue(),
   B = localStorage.getItem("captchaToken"),
   ge = parseInt(localStorage.getItem("captchaExpiresAt") || "0"),
   X = null,
   oe = [],
   le = !1,
-  Le = 0,
-  it = 5e3;
+  Ie = 0,
+  st = 5e3;
 ge < Date.now() && (B = null, localStorage.removeItem("captchaToken"), localStorage.removeItem("captchaExpiresAt"));
 
-function Me() {
+function Le() {
   B = null, localStorage.removeItem("captchaToken"), localStorage.removeItem("captchaExpiresAt")
 }
 
-function ot(e, t) {
+function it(e, t) {
   B = e, ge = t, localStorage.setItem("captchaToken", e), localStorage.setItem("captchaExpiresAt", t)
 }
 
@@ -106,7 +106,7 @@ function ae() {
 
 function de(e, t) {
   if (!ae()) return console.error("[Captcha] Turnstile not ready"), !1;
-  let n = ue() || st || "";
+  let n = ue() || nt || "";
   if (!n) return !0;
   let i = typeof e == "string" ? document.querySelector(e) : e;
   if (!i) return console.error("[Captcha] Container not found:", e), !1;
@@ -128,7 +128,7 @@ function de(e, t) {
           })
         })).json();
         if (g.success) {
-          if (ot(g.token, g.expiresAt), c && (c.textContent = "Loading..."), t && X) {
+          if (it(g.token, g.expiresAt), c && (c.textContent = "Loading..."), t && X) {
             X.close(), X = null;
             let v = [...oe];
             oe = [], v.forEach(d => d())
@@ -150,20 +150,20 @@ function de(e, t) {
 
 function Ne() {
   if (ue()) return new Promise(e => {
-    if (Date.now() - Le < it) {
+    if (Date.now() - Ie < st) {
       e();
       return
     }
-    if (N.activeModal) {
+    if (M.activeModal) {
       oe.push(e);
       return
     }
-    Le = Date.now(), oe.push(e);
+    Ie = Date.now(), oe.push(e);
     let n = document.createElement("div");
     n.id = "captcha-modal-turnstile", n.style.display = "flex", n.style.justifyContent = "center", n.style.padding = "20px";
     let i = document.createElement("div"),
       o = document.createElement("p");
-    if (o.textContent = "Please complete the captcha to continue.", i.appendChild(o), i.appendChild(n), X = new N({
+    if (o.textContent = "Please complete the captcha to continue.", i.appendChild(o), i.appendChild(n), X = new M({
         title: "Verification Required",
         content: i,
         buttons: [{
@@ -209,7 +209,7 @@ s.api = {
   getTokenExpiry() {
     return ge
   },
-  clearToken: Me,
+  clearToken: Le,
   showCaptchaModal: Ne,
   renderCaptchaOnLoadingScreen: ve,
   getTurnstileSiteKey: ue,
@@ -220,7 +220,7 @@ s.api = {
     if (i.status === 403) {
       let o = i.clone();
       try {
-        if ((await o.json()).code === "CAPTCHA_REQUIRED") return Me(), await Ne(), n !== "GET" && B && (t.headers = t.headers || {}, t.headers["X-Captcha-Token"] = B), fetch(e, t)
+        if ((await o.json()).code === "CAPTCHA_REQUIRED") return Le(), await Ne(), n !== "GET" && B && (t.headers = t.headers || {}, t.headers["X-Captcha-Token"] = B), fetch(e, t)
       } catch {}
     }
     return i
@@ -228,9 +228,9 @@ s.api = {
 };
 var $t = s.api;
 var W = [.25, .5, .75, 1, 1.5],
-  Re = 50;
+  Me = 50;
 
-function Ae(e, t, n) {
+function Re(e, t, n) {
   let i = new WeakMap,
     o = 2048,
     r = 1e4,
@@ -302,8 +302,8 @@ function Ae(e, t, n) {
           get: e.createNativeFunction(function() {
             return l[P]
           }),
-          set: e.createNativeFunction(function(M) {
-            s.settings.logCalls && console.log(n.domain, "setImageData", this, P, M), l[P] = M
+          set: e.createNativeFunction(function(N) {
+            s.settings.logCalls && console.log(n.domain, "setImageData", this, P, N), l[P] = N
           })
         })
       })(x);
@@ -349,20 +349,20 @@ function Ae(e, t, n) {
       lineTo: function(l, m) {
         this.native.lineTo(l, m)
       },
-      bezierCurveTo: function(l, m, E, x, P, M) {
-        this.native.bezierCurveTo(l, m, E, x, P, M)
+      bezierCurveTo: function(l, m, E, x, P, N) {
+        this.native.bezierCurveTo(l, m, E, x, P, N)
       },
       quadraticCurveTo: function(l, m, E, x) {
         this.native.quadraticCurveTo(l, m, E, x)
       },
-      arc: function(l, m, E, x, P, M) {
-        this.native.arc(l, m, E, x, P, M)
+      arc: function(l, m, E, x, P, N) {
+        this.native.arc(l, m, E, x, P, N)
       },
       arcTo: function(l, m, E, x, P) {
         this.native.arcTo(l, m, E, x, P)
       },
-      ellipse: function(l, m, E, x, P, M, F, q) {
-        this.native.ellipse(l, m, E, x, P, M, F, q)
+      ellipse: function(l, m, E, x, P, N, D, q) {
+        this.native.ellipse(l, m, E, x, P, N, D, q)
       },
       rect: function(l, m, E, x) {
         this.native.rect(l, m, E, x)
@@ -429,8 +429,8 @@ function Ae(e, t, n) {
     createLinearGradient: function(l, m, E, x) {
       return b(this.native.createLinearGradient(l, m, E, x))
     },
-    createRadialGradient: function(l, m, E, x, P, M) {
-      return b(this.native.createRadialGradient(l, m, E, x, P, M))
+    createRadialGradient: function(l, m, E, x, P, N) {
+      return b(this.native.createRadialGradient(l, m, E, x, P, N))
     },
     createConicGradient: function(l, m, E) {
       return b(this.native.createConicGradient(l, m, E))
@@ -453,27 +453,27 @@ function Ae(e, t, n) {
     lineTo: function(l, m) {
       this.native.lineTo(l, m)
     },
-    bezierCurveTo: function(l, m, E, x, P, M) {
-      this.native.bezierCurveTo(l, m, E, x, P, M)
+    bezierCurveTo: function(l, m, E, x, P, N) {
+      this.native.bezierCurveTo(l, m, E, x, P, N)
     },
     quadraticCurveTo: function(l, m, E, x) {
       this.native.quadraticCurveTo(l, m, E, x)
     },
-    arc: function(l, m, E, x, P, M) {
-      this.native.arc(l, m, E, x, P, M)
+    arc: function(l, m, E, x, P, N) {
+      this.native.arc(l, m, E, x, P, N)
     },
     arcTo: function(l, m, E, x, P) {
       this.native.arcTo(l, m, E, x, P)
     },
-    ellipse: function(l, m, E, x, P, M, F, q) {
-      this.native.ellipse(l, m, E, x, P, M, F, q)
+    ellipse: function(l, m, E, x, P, N, D, q) {
+      this.native.ellipse(l, m, E, x, P, N, D, q)
     },
     rect: function(l, m, E, x) {
       this.native.rect(l, m, E, x)
     },
     roundRect: function(l, m, E, x, P) {
-      let M = e.pseudoToNative(P);
-      this.native.roundRect(l, m, E, x, M)
+      let N = e.pseudoToNative(P);
+      this.native.roundRect(l, m, E, x, N)
     },
     fill: function(l, m) {
       this.native, l?.native ? this.native.fill(l.native, m) : this.native.fill(l)
@@ -510,22 +510,22 @@ function Ae(e, t, n) {
     translate: function(l, m) {
       this.native.translate(l, m)
     },
-    transform: function(l, m, E, x, P, M) {
-      this.native.transform(l, m, E, x, P, M)
+    transform: function(l, m, E, x, P, N) {
+      this.native.transform(l, m, E, x, P, N)
     },
-    setTransform: function(l, m, E, x, P, M) {
+    setTransform: function(l, m, E, x, P, N) {
       if (typeof l == "object" && l !== null) {
-        let F = e.pseudoToNative(l);
-        this.native.setTransform(F)
-      } else this.native.setTransform(l, m, E, x, P, M)
+        let D = e.pseudoToNative(l);
+        this.native.setTransform(D)
+      } else this.native.setTransform(l, m, E, x, P, N)
     },
     resetTransform: function() {
       this.native.resetTransform()
     },
-    drawImage: function(l, m, E, x, P, M, F, q, ie) {
+    drawImage: function(l, m, E, x, P, N, D, q, ie) {
       this.native;
       let a = l?.native || l;
-      a && (q !== void 0 ? this.native.drawImage(a, m, E, x, P, M, F, q, ie) : x !== void 0 ? this.native.drawImage(a, m, E, x, P) : this.native.drawImage(a, m, E))
+      a && (q !== void 0 ? this.native.drawImage(a, m, E, x, P, N, D, q, ie) : x !== void 0 ? this.native.drawImage(a, m, E, x, P) : this.native.drawImage(a, m, E))
     },
     createImageData: function(l, m) {
       if (l?.native) return k(this.native.createImageData(l.native));
@@ -536,8 +536,8 @@ function Ae(e, t, n) {
       if (E > o || x > o) throw new Error(`ImageData size exceeds maximum (${o}x${o})`);
       return k(this.native.getImageData(l, m, E, x))
     },
-    putImageData: function(l, m, E, x, P, M, F) {
-      this.native, l?.native && (x !== void 0 ? this.native.putImageData(l.native, m, E, x, P, M, F) : this.native.putImageData(l.native, m, E))
+    putImageData: function(l, m, E, x, P, N, D) {
+      this.native, l?.native && (x !== void 0 ? this.native.putImageData(l.native, m, E, x, P, N, D) : this.native.putImageData(l.native, m, E))
     },
     save: function() {
       this.native.save()
@@ -557,8 +557,8 @@ function Ae(e, t, n) {
         let P = this.native;
         if (P.tagName !== "CANVAS") throw new Error("getContext is only available on canvas elements");
         if (P.width > o && (P.width = o), P.height > o && (P.height = o), E === "2d") {
-          let M = P.getContext("2d", x ? e.pseudoToNative(x) : void 0);
-          return v(M, this)
+          let N = P.getContext("2d", x ? e.pseudoToNative(x) : void 0);
+          return v(N, this)
         }
         throw new Error(`Context type "${E}" is not supported`)
       })), e.setProperty(l, "width", Interpreter.VALUE_IN_DESCRIPTOR, {
@@ -585,7 +585,7 @@ function Ae(e, t, n) {
   }
 }
 
-function _e(e, t, n) {
+function Ae(e, t, n) {
   let c = 0,
     p = window.location.origin;
 
@@ -704,22 +704,22 @@ function _e(e, t, n) {
     this.native.overrideMimeType(f)
   }))
 }
-var at = "webtiles_storage",
-  rt = 1,
-  $ = "localStorage",
-  Oe = 1024 * 1024,
-  De = 100,
+var ot = "webtiles_storage",
+  at = 1,
+  F = "localStorage",
+  _e = 1024 * 1024,
+  Oe = 100,
   V = null,
   he = null;
 
 function Z() {
   return he || (he = new Promise((e, t) => {
-    let n = indexedDB.open(at, rt);
+    let n = indexedDB.open(ot, at);
     n.onerror = () => t(n.error), n.onsuccess = () => {
       V = n.result, e(V)
     }, n.onupgradeneeded = i => {
       let o = i.target.result;
-      o.objectStoreNames.contains($) || o.createObjectStore($, {
+      o.objectStoreNames.contains(F) || o.createObjectStore(F, {
         keyPath: ["site", "key"]
       }).createIndex("site", "site", {
         unique: !1
@@ -727,15 +727,15 @@ function Z() {
     }
   }), he)
 }
-async function Fe(e, t) {
+async function De(e, t) {
   return await Z(), new Promise((n, i) => {
-    let c = V.transaction($, "readonly").objectStore($).get([e, t]);
+    let c = V.transaction(F, "readonly").objectStore(F).get([e, t]);
     c.onsuccess = () => n(c.result?.value ?? null), c.onerror = () => i(c.error)
   })
 }
-async function ct(e, t, n) {
+async function rt(e, t, n) {
   return await Z(), new Promise((i, o) => {
-    let p = V.transaction($, "readwrite").objectStore($).put({
+    let p = V.transaction(F, "readwrite").objectStore(F).put({
       site: e,
       key: t,
       value: n
@@ -743,24 +743,24 @@ async function ct(e, t, n) {
     p.onsuccess = () => i(), p.onerror = () => o(p.error)
   })
 }
-async function lt(e, t) {
+async function ct(e, t) {
   return await Z(), new Promise((n, i) => {
-    let c = V.transaction($, "readwrite").objectStore($).delete([e, t]);
+    let c = V.transaction(F, "readwrite").objectStore(F).delete([e, t]);
     c.onsuccess = () => n(), c.onerror = () => i(c.error)
   })
 }
-async function dt(e) {
+async function lt(e) {
   return await Z(), new Promise((t, n) => {
-    let c = V.transaction($, "readonly").objectStore($).index("site").getAll(e);
+    let c = V.transaction(F, "readonly").objectStore(F).index("site").getAll(e);
     c.onsuccess = () => {
       let p = c.result.map(g => g.key);
       t(p)
     }, c.onerror = () => n(c.error)
   })
 }
-async function $e(e) {
+async function Fe(e) {
   return await Z(), new Promise((t, n) => {
-    let c = V.transaction($, "readonly").objectStore($).index("site").getAll(e);
+    let c = V.transaction(F, "readonly").objectStore(F).index("site").getAll(e);
     c.onsuccess = () => {
       let p = 0;
       for (let g of c.result) p += (g.key.length + g.value.length) * 2;
@@ -771,9 +771,9 @@ async function $e(e) {
     }, c.onerror = () => n(c.error)
   })
 }
-async function ut(e) {
+async function dt(e) {
   return await Z(), new Promise((t, n) => {
-    let c = V.transaction($, "readwrite").objectStore($).index("site").openCursor(e);
+    let c = V.transaction(F, "readwrite").objectStore(F).index("site").openCursor(e);
     c.onsuccess = p => {
       let g = p.target.result;
       g ? (g.delete(), g.continue()) : t()
@@ -781,14 +781,14 @@ async function ut(e) {
   })
 }
 
-function Be(e, t, n) {
+function $e(e, t, n) {
   let i = e.nativeToPseudo({});
   e.setProperty(i, "getItem", e.createAsyncFunction(function(o, r) {
     if (s.settings.logCalls && console.log(n, "localStorage.getItem", this, o), o == null) {
       r(null);
       return
     }
-    o = String(o), Fe(n, o).then(c => r(c)).catch(c => {
+    o = String(o), De(n, o).then(c => r(c)).catch(c => {
       console.error("localStorage.getItem error:", c), r(null)
     })
   })), e.setProperty(i, "setItem", e.createAsyncFunction(function(o, r, c) {
@@ -796,16 +796,16 @@ function Be(e, t, n) {
       c();
       return
     }
-    o = String(o), r = String(r), $e(n).then(({
+    o = String(o), r = String(r), Fe(n).then(({
       size: p,
       count: g
     }) => {
-      Fe(n, o).then(v => {
-        if (v === null && g >= De) throw new Error(`localStorage item limit exceeded (max ${De} items)`);
+      De(n, o).then(v => {
+        if (v === null && g >= Oe) throw new Error(`localStorage item limit exceeded (max ${Oe} items)`);
         let u = v ? (o.length + v.length) * 2 : 0,
           b = (o.length + r.length) * 2;
-        if (p - u + b > Oe) throw new Error(`localStorage size limit exceeded (max ${Oe/1024}KB)`);
-        return ct(n, o, r)
+        if (p - u + b > _e) throw new Error(`localStorage size limit exceeded (max ${_e/1024}KB)`);
+        return rt(n, o, r)
       }).then(() => c()).catch(v => {
         throw console.error("localStorage.setItem error:", v), v
       })
@@ -817,21 +817,21 @@ function Be(e, t, n) {
       r();
       return
     }
-    o = String(o), lt(n, o).then(() => r()).catch(c => {
+    o = String(o), ct(n, o).then(() => r()).catch(c => {
       console.error("localStorage.removeItem error:", c), r()
     })
   })), e.setProperty(i, "clear", e.createAsyncFunction(function(o) {
-    s.settings.logCalls && console.log(n, "localStorage.clear", this), ut(n).then(() => o()).catch(r => {
+    s.settings.logCalls && console.log(n, "localStorage.clear", this), dt(n).then(() => o()).catch(r => {
       console.error("localStorage.clear error:", r), o()
     })
   })), e.setProperty(i, "key", e.createAsyncFunction(function(o, r) {
-    o = parseInt(o) || 0, dt(n).then(c => {
+    o = parseInt(o) || 0, lt(n).then(c => {
       r(o >= 0 && o < c.length ? c[o] : null)
     }).catch(c => {
       console.error("localStorage.key error:", c), r(null)
     })
   })), e.setProperty(i, "getLength", e.createAsyncFunction(function(o) {
-    $e(n).then(({
+    Fe(n).then(({
       count: r
     }) => o(r)).catch(r => {
       console.error("localStorage.getLength error:", r), o(0)
@@ -842,7 +842,7 @@ Z().catch(e => {
   console.error("Failed to initialize storage DB:", e)
 });
 
-function He(e, t, n, i) {
+function Be(e, t, n, i) {
   let o = e.createNativeFunction(function() {}, !0);
   e.setProperty(t, "DOMParser", o);
   let r = e.getProperty(o, "prototype");
@@ -1041,7 +1041,7 @@ function He(e, t, n, i) {
   }))
 }
 
-function je(e, t, n, i) {
+function He(e, t, n, i) {
   let o = new WeakMap,
     r = 1e3,
     c = 5,
@@ -1766,9 +1766,9 @@ function je(e, t, n, i) {
         set: e.createNativeFunction(function(S) {
           a.cssText = S, s.settings.logCalls && console.log(i.domain, "set cssText", this, S)
         })
-      }), e.setProperty(h, "setProperty", e.createNativeFunction(function(S, L, D) {
+      }), e.setProperty(h, "setProperty", e.createNativeFunction(function(S, L, O) {
         if (this.native?.className === "tile-body") throw new Error("No access.");
-        a.setProperty(S, L, D), s.settings.logCalls && console.log(i.domain, "setProperty", this, S, L, D)
+        a.setProperty(S, L, O), s.settings.logCalls && console.log(i.domain, "setProperty", this, S, L, O)
       })), e.setProperty(h, "getPropertyValue", e.createNativeFunction(function(S) {
         return a.getPropertyValue(S)
       })), e.setProperty(h, "removeProperty", e.createNativeFunction(function(S) {
@@ -1833,14 +1833,14 @@ function je(e, t, n, i) {
     let L = S.get(a);
     if (L.length >= c) throw new Error(`Maximum listeners (${c}) reached for event "${a}"`);
     if (L.some(U => U.pseudo === h)) return;
-    let D = function(U) {
+    let O = function(U) {
       let ce = x(U);
       d(h, ce)
     };
     L.push({
       pseudo: h,
-      native: D
-    }), y.addEventListener(a, D)
+      native: O
+    }), y.addEventListener(a, O)
   })), e.setProperty(_, "removeEventListener", e.createNativeFunction(function(a, h) {
     if (!a || typeof a != "string" || !h || typeof h != "object") return;
     s.settings.logCalls && console.log(i.domain, "removeEventListener", this, a, h), a = a.toLowerCase();
@@ -1849,8 +1849,8 @@ function je(e, t, n, i) {
     let S = p.get(y);
     if (!S.has(a)) return;
     let L = S.get(a),
-      D = L.findIndex(U => U.pseudo === h);
-    D !== -1 && (y.removeEventListener(a, L[D].native), L.splice(D, 1))
+      O = L.findIndex(U => U.pseudo === h);
+    O !== -1 && (y.removeEventListener(a, L[O].native), L.splice(O, 1))
   }));
   let P = ["click", "dblclick", "mousedown", "mouseup", "mousemove", "mouseenter", "mouseleave", "mouseover", "mouseout", "keydown", "keyup", "keypress", "focus", "blur", "input", "change", "submit", "touchstart", "touchend", "touchmove", "wheel", "scroll", "contextmenu", "play", "pause", "playing", "waiting", "seeking", "seeked", "ended", "loadstart", "loadeddata", "loadedmetadata", "progress", "canplay", "canplaythrough", "timeupdate", "durationchange", "volumechange", "ratechange", "stalled", "suspend", "emptied", "abort", "error", "load"];
   for (let a of P) {
@@ -1867,22 +1867,22 @@ function je(e, t, n, i) {
         let S = this.native;
         p.has(S) || p.set(S, new Map);
         let L = p.get(S),
-          D = `__${h}`;
+          O = `__${h}`;
         s.settings.logCalls && console.log(i.domain, "setOn" + a, this, y);
-        let U = L.get(D + "_native");
-        if (U && (S.removeEventListener(a, U), L.delete(D), L.delete(D + "_native")), y && typeof y == "object") {
-          let ce = function(Qe) {
-            let et = x(Qe);
-            d(y, et)
+        let U = L.get(O + "_native");
+        if (U && (S.removeEventListener(a, U), L.delete(O), L.delete(O + "_native")), y && typeof y == "object") {
+          let ce = function(Ke) {
+            let Qe = x(Ke);
+            d(y, Qe)
           };
-          S.addEventListener(a, ce), L.set(D, y), L.set(D + "_native", ce)
+          S.addEventListener(a, ce), L.set(O, y), L.set(O + "_native", ce)
         }
       })
     })
   }
-  Ae(e, t, i).extendElement(_, C), _e(e, t, i), Be(e, t, i.domain), He(e, t, n, i);
-  let F = e.nativeToPseudo({});
-  e.setProperty(t, "document", F);
+  Re(e, t, i).extendElement(_, C), Ae(e, t, i), $e(e, t, i.domain), Be(e, t, n, i);
+  let D = e.nativeToPseudo({});
+  e.setProperty(t, "document", D);
   let q = {
     getElementById: function(a) {
       let h = n.querySelector(`#${CSS.escape(a)}`);
@@ -1912,12 +1912,12 @@ function je(e, t, n, i) {
       return s.settings.logCalls && console.log(i.domain, "createTextNode", this, a), C(document.createTextNode(a))
     }
   };
-  for (let [a, h] of Object.entries(q)) e.setProperty(F, a, e.createNativeFunction(h));
-  e.setProperty(F, "body", Interpreter.VALUE_IN_DESCRIPTOR, {
+  for (let [a, h] of Object.entries(q)) e.setProperty(D, a, e.createNativeFunction(h));
+  e.setProperty(D, "body", Interpreter.VALUE_IN_DESCRIPTOR, {
     get: e.createNativeFunction(function() {
       return s.settings.logCalls && console.log(i.domain, "get body", this), C(n)
     })
-  }), e.setProperty(F, "documentElement", Interpreter.VALUE_IN_DESCRIPTOR, {
+  }), e.setProperty(D, "documentElement", Interpreter.VALUE_IN_DESCRIPTOR, {
     get: e.createNativeFunction(function() {
       return s.settings.logCalls && console.log(i.domain, "get documentElement", this), C(n)
     })
@@ -1948,7 +1948,7 @@ function je(e, t, n, i) {
     i.fetchContent(i.path, !0).then(() => i.setActive(!0))
   }))
 }
-var ht = {
+var ut = {
     console: {
       log: function(...e) {
         this.logCount++ > 1e3 || console.log(`[${this.tile.domain}]`, ...e)
@@ -1987,7 +1987,7 @@ var ht = {
             o(g, v), n.setProperty(c, p, v)
           }
         };
-        o(ht, i), je(n, i, this.tile.contentElement, this.tile), n.setProperty(i, "embedded", n.nativeToPseudo(!!this.tile.embed))
+        o(ut, i), He(n, i, this.tile.contentElement, this.tile), n.setProperty(i, "embedded", n.nativeToPseudo(!!this.tile.embed))
       }), this.runInterval = null, this.running = !1
     }
     roughValueMemorySize() {
@@ -2035,28 +2035,25 @@ var ht = {
       s.settings.disableJS || this.interpreter.appendCode(t)
     }
   },
-  ze = ye;
-var ft = document.getElementById("plot");
-localStorage.getItem("lowend") || (localStorage.lowend = "true");
-var we = new CSSStyleSheet,
-  qe = () => {
-    we.replaceSync(`
+  je = ye;
+var ht = document.getElementById("plot"),
+  ze = new CSSStyleSheet,
+  ft = () => {
+    ze.replaceSync(`
         .tile-body:not(.active) * {
             animation-play-state: paused !important;
         }
-        ${localStorage.lowend,`
         .tile-body:not(.active) * {
             text-shadow: none !important;
             box-shadow: none !important;
             filter: none !important;
             backdrop-filter: none !important;
         }
-        `}
     `)
   };
-qe();
-var Ue = new CSSStyleSheet;
-Ue.replaceSync(`
+ft();
+var qe = new CSSStyleSheet;
+qe.replaceSync(`
     .free {
         width: 100%;
         height: 100%;
@@ -2071,9 +2068,9 @@ Ue.replaceSync(`
         user-select: none;
     }    
 `);
-var O = class e {
+var $ = class e {
   constructor(t) {
-    this.x = t.x ?? 0, this.y = t.y ?? 0, this.domain = t.domain, this.free = !t.domain, this.locked = !1, this.id = `${this.x},${this.y}`, this.rendered = !1, this.active = !1, this.element = null, this.contentElement = null, this.path = t.path || "/index.html", this.content = "", this.lastRender = 0, this.preview = t.nocontrols || !1, this.embed = t.embed || !1, this.container = t.container || ft, this.interpreter = null, this.render()
+    this.x = t.x ?? 0, this.y = t.y ?? 0, this.domain = t.domain, this.free = !t.domain, this.locked = !1, this.id = `${this.x},${this.y}`, this.rendered = !1, this.active = !1, this.element = null, this.contentElement = null, this.path = t.path || "/index.html", this.content = "", this.lastRender = 0, this.preview = t.nocontrols || !1, this.embed = t.embed || !1, this.container = t.container || ht, this.interpreter = null, this.render()
   }
   static toTilePosition(t, n) {
     return {
@@ -2126,7 +2123,7 @@ var O = class e {
     let i = this.free ? `<div class="free">
                 <p>${this.locked?"Locked tile":"Free tile"} ${this.x}, ${this.y}</p>
             </div>` : this.path === t && this.content && !n ? this.content : await fetch(`/t/${this.domain}${t}`).then(c => c.text()).catch(c => "<p>Error loading tile</p>");
-    this.free ? this.shadow.adoptedStyleSheets = [Ue] : this.shadow.adoptedStyleSheets = [we], this.interpreter && (this.interpreter.stop(), this.interpreter = null), this.path = t, this.contentElement.innerHTML = i, this.content = i;
+    this.free ? this.shadow.adoptedStyleSheets = [qe] : this.shadow.adoptedStyleSheets = [ze], this.interpreter && (this.interpreter.stop(), this.interpreter = null), this.path = t, this.contentElement.innerHTML = i, this.content = i;
     let o = this.contentElement.querySelectorAll("style");
     this.fonts.textContent = "";
     let r = 0;
@@ -2147,7 +2144,7 @@ var O = class e {
     this.preview && this.interpreter.start()
   }
   setActive(t) {
-    if (this.element && (t && (this.interpreter || (this.interpreter = new ze(this), this.executeScripts()), this.interpreter.start()), t !== this.active)) {
+    if (this.element && (t && (this.interpreter || (this.interpreter = new je(this), this.executeScripts()), this.interpreter.start()), t !== this.active)) {
       if (this.active = t, t) {
         if (this.element.classList.add("active"), this.contentElement.classList.add("active"), !this.preview && s.ui) {
           let i = s.ui.createVoteMenu(this);
@@ -2214,10 +2211,6 @@ var O = class e {
   setFree() {
     this.interpreter && this.interpreter.stop(), this.domain = null, this.free = !0, this.content = "", this.element && this.element.classList.add("f"), this.fetchContent("/index.html")
   }
-  static updateLowendStyles() {
-    if (qe(), s.plot && s.plot.tiles)
-      for (let t of Object.values(s.plot.tiles)) t.shadow && !t.free && (t.shadow.adoptedStyleSheets = [we])
-  }
   setLocked(t) {
     this.locked = t, this.element && this.element.classList.toggle("locked", t), this.fetchContent("/index.html", !0)
   }
@@ -2226,7 +2219,6 @@ s.ui = {
   coords: document.querySelector("#coords"),
   zoomSlider: document.querySelector("#zoom-slider > input"),
   siteSelector: document.querySelector("#kicya-site-selector"),
-  siteSettingsButton: document.querySelector("#kicya-site-settings"),
   siteJumpButton: document.querySelector("#kicya-site-jump"),
   siteCenterButton: document.querySelector("#kicya-site-center"),
   siteEditButton: document.querySelector("#kicya-site-edit"),
@@ -2241,7 +2233,7 @@ s.ui = {
   },
   escapeHTML: e => e ? e.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;").replace(/'/g, "&#039;") : "",
   showDashboard: e => {
-    Xe.src = `/dashboard?site=${encodeURIComponent(e)}&path=/`, Ve && (Ve.textContent = `File Manager - ${e}`), Ye.classList.add("active"), fe && (fe.style.display = "none"), s.camera && s.camera.setZoomEnabled(!1), s.ws?.isConnected && setTimeout(() => {
+    Ye.src = `/dashboard?site=${encodeURIComponent(e)}&path=/`, We && (We.textContent = `File Manager - ${e}`), Ve.classList.add("active"), fe && (fe.style.display = "none"), s.camera && s.camera.setZoomEnabled(!1), s.ws?.isConnected && setTimeout(() => {
       let t = new Int16Array(3);
       t[0] = 0, t[1] = 0, t[2] = 0, s.ws.send(t.buffer)
     }, 100)
@@ -2258,7 +2250,7 @@ s.ui = {
     }
     let n = t.domain,
       i = t.tile ? `<strong>Warning</strong>Your current tile at (${t.tile.x}, ${t.tile.y}) will be unclaimed and your site will be moved to this new tile.` : null;
-    new N({
+    new M({
       title: "Claim Tile",
       content: `<p>Do you want to claim tile (${e.x}, ${e.y}) for <strong>${s.ui.escapeHTML(n)}</strong>?</p>`,
       warning: i,
@@ -2321,7 +2313,7 @@ s.ui = {
     }
     let n = t.domain,
       i = t.tile ? `<strong>Warning</strong>Your current tile at (${t.tile.x}, ${t.tile.y}) will be unclaimed and your site will be moved to this new tile.` : null,
-      o = new N({
+      o = new M({
         title: "Unlock & Claim Tile",
         content: `
                 <p>Enter the unlock code to claim the tile at (${e.x}, ${e.y}) for <strong>${s.ui.escapeHTML(n)}</strong>:</p>
@@ -2385,34 +2377,6 @@ s.ui = {
       r && r.focus()
     }, 100)
   },
-  showSettingsModal: () => {
-    let e = localStorage.lowend === "true",
-      t = document.createElement("div");
-    t.innerHTML = `
-            <div style="margin-bottom: 20px;">
-                <label style="display: flex; align-items: center; gap: 10px; cursor: pointer;">
-                    <input type="checkbox" id="lowend-setting" ${e?"checked":""} style="width: 18px; height: 18px; cursor: pointer;">
-                    <div>
-                        <strong>Optimized rendering</strong>
-                        <div style="font-size: 0.9em; color: #666; margin-top: 4px;">
-                            Disables heavy visual effects (shadows, filters) for better performance
-                        </div>
-                    </div>
-                </label>
-            </div>
-        `, new N({
-      title: "Settings",
-      content: t,
-      buttons: [{
-        text: "Close",
-        type: "cancel",
-        id: "close",
-        onClick: o => o.close()
-      }]
-    }).open(), t.querySelector("#lowend-setting").addEventListener("change", o => {
-      o.target.checked ? localStorage.lowend = "true" : localStorage.lowend = "false", O.updateLowendStyles()
-    })
-  },
   updateClanIndicator: () => {
     s.ui.clanIndicator && (s.ui.clanIndicator.hidden = s.ui.pendingClanInvites.length === 0)
   },
@@ -2433,7 +2397,7 @@ s.ui = {
       alert("Please select a site first");
       return
     }
-    let e = new N({
+    let e = new M({
       title: "Clan Management",
       content: "<p>Loading...</p>",
       buttons: [{
@@ -2723,7 +2687,7 @@ s.ui = {
     })
   },
   showAdminInvitesModal: async () => {
-    let e = new N({
+    let e = new M({
       title: "Admin: All Clan Invites",
       content: "<p>Loading...</p>",
       buttons: [{
@@ -2781,7 +2745,7 @@ s.ui = {
     }
   },
   showAdminClansModal: async () => {
-    let e = new N({
+    let e = new M({
       title: "Admin: All Clans",
       content: "<p>Loading...</p>",
       buttons: [{
@@ -2854,7 +2818,7 @@ s.ui = {
       location.href = "https://kicya.net/auth/login?redirect=" + encodeURIComponent("https://webtiles.kicya.net/");
       return
     }
-    let t = new N({
+    let t = new M({
       title: "Free Tile",
       content: `
                 <p>What would you like to do with the tile at (${e.x}, ${e.y})?</p>
@@ -2962,7 +2926,7 @@ s.ui = {
     }
     let n = t.domain,
       i = t.tile ? `<strong>Warning</strong>Your current tile at (${t.tile.x}, ${t.tile.y}) will be freed and your site will be moved to this new tile.` : null,
-      o = new N({
+      o = new M({
         title: "Take Tile",
         content: `
                 <p>Enter the code to take the tile at (${e.x}, ${e.y}) for <strong>${s.ui.escapeHTML(n)}</strong>:</p>
@@ -3023,7 +2987,7 @@ s.ui = {
     }, 100)
   },
   showAdminFreeModal: e => {
-    new N({
+    new M({
       title: "Admin: Free Tile",
       content: `
                 <p>Are you sure you want to <strong>free</strong> the tile at (${e.x}, ${e.y})?</p>
@@ -3060,7 +3024,7 @@ s.ui = {
     }).open()
   },
   showAdminBanModal: e => {
-    new N({
+    new M({
       title: "Admin: Ban User",
       content: `
                 <p>Are you sure you want to <strong>ban</strong> the owner of <strong>${s.ui.escapeHTML(e.domain)}</strong>?</p>
@@ -3104,7 +3068,7 @@ s.ui = {
   showAdminLockModal: (e, t) => {
     let n = t ? "unlock" : "lock",
       i = t ? "unlocked" : "locked";
-    new N({
+    new M({
       title: `Admin: ${t?"Unlock":"Lock"} Tile`,
       content: `
                 <p>Are you sure you want to <strong>${n}</strong> the tile at (${e.x}, ${e.y})?</p>
@@ -3145,7 +3109,7 @@ s.ui = {
     try {
       let n = await (await s.api.makeRequest(`/api/admin/lockcode?x=${e.x}&y=${e.y}`)).json();
       if (n.success) {
-        let i = new N({
+        let i = new M({
           title: "Lock Code",
           content: `
                         <p>Lock code for tile at (${e.x}, ${e.y}):</p>
@@ -3178,7 +3142,7 @@ s.ui = {
     try {
       let n = await (await s.api.makeRequest(`/api/admin/tilecode?x=${e.x}&y=${e.y}`)).json();
       if (n.success) {
-        let i = new N({
+        let i = new M({
           title: "Tile Secret Code",
           content: `
                         <p>Secret code for tile at (${e.x}, ${e.y}):</p>
@@ -3208,7 +3172,7 @@ s.ui = {
     }
   },
   showAdminSwapModal: e => {
-    let t = new N({
+    let t = new M({
       title: "Admin: Swap Tiles",
       content: `
                 <p>Enter the coordinates of the tile to swap with tile at (${e.x}, ${e.y}):</p>
@@ -3536,7 +3500,7 @@ s.ui = {
                 </p>
             `
     }
-    new N({
+    new M({
       title: "Attack Tile",
       content: `
                 <p>
@@ -3676,7 +3640,7 @@ s.ui = {
     f.style.cssText = "font-size: 12px; color: #666; margin-top: 10px;", f.innerHTML = "You can detect if your tile is embedded in JS by checking the <b>embedded</b> variable. For CSS, body has an <b>embedded</b> class.", g.appendChild(f), u.addEventListener("change", k => {
       t = k.target.checked, p.src = n(t), T.value = i(t)
     }), o.appendChild(r), o.appendChild(g);
-    let w = new N({
+    let w = new M({
       title: "Embed Tile",
       content: o,
       buttons: [{
@@ -3711,14 +3675,11 @@ s.ui.siteSelector && s.ui.siteSelector.addEventListener("change", () => {
   Q()
 });
 Q();
-var Ye = document.getElementById("dashboard-modal"),
-  Xe = document.getElementById("dashboard-iframe"),
-  We = document.getElementById("dashboard-modal-close"),
-  Ve = document.getElementById("dashboard-modal-title"),
+var Ve = document.getElementById("dashboard-modal"),
+  Ye = document.getElementById("dashboard-iframe"),
+  Ue = document.getElementById("dashboard-modal-close"),
+  We = document.getElementById("dashboard-modal-title"),
   fe = document.getElementById("app");
-s.ui.siteSettingsButton && s.ui.siteSettingsButton.addEventListener("click", () => {
-  s.ui.showSettingsModal()
-});
 s.ui.siteEditButton && s.ui.siteEditButton.addEventListener("click", () => {
   !s.user || !s.user.selectedSite || s.ui.showDashboard(s.user.selectedSite.domain)
 });
@@ -3740,18 +3701,18 @@ s.ui.siteEmbedButton && s.ui.siteEmbedButton.addEventListener("click", () => {
 });
 
 function mt() {
-  Ye.classList.remove("active"), Xe.src = "", fe && (fe.style.display = ""), s.camera && s.camera.setZoomEnabled(!0)
+  Ve.classList.remove("active"), Ye.src = "", fe && (fe.style.display = ""), s.camera && s.camera.setZoomEnabled(!0)
 }
-We && We.addEventListener("click", mt);
+Ue && Ue.addEventListener("click", mt);
 s.ui.zoomSlider.addEventListener("input", e => {
   s.camera.zoomTo(s.camera.width / 2, s.camera.height / 2, +e.target.value)
 });
-var be = document.getElementById("kicya-menu-toggle"),
+var we = document.getElementById("kicya-menu-toggle"),
   K = document.getElementById("kicya-links");
-be && K && (be.addEventListener("click", function(e) {
+we && K && (we.addEventListener("click", function(e) {
   e.stopPropagation(), K.classList.toggle("active")
 }), document.addEventListener("click", function(e) {
-  !K.contains(e.target) && !be.contains(e.target) && K.classList.remove("active")
+  !K.contains(e.target) && !we.contains(e.target) && K.classList.remove("active")
 }), K.querySelectorAll("a").forEach(function(e) {
   e.addEventListener("click", function() {
     K.classList.remove("active")
@@ -3760,7 +3721,7 @@ be && K && (be.addEventListener("click", function(e) {
 
 function pt() {
   if (!s.user || localStorage.getItem("rules_accepted")) return;
-  new N({
+  new M({
     title: "Rules",
     content: `
             <p>Please read and accept the following rules:</p>
@@ -3785,8 +3746,8 @@ function pt() {
 }
 pt();
 s.user && s.user.selectedSite && s.ui.fetchClanInvites();
-var fn = s.ui;
-var Ce = class {
+var mn = s.ui;
+var be = class {
   constructor() {
     this.ws = null, this.reconnectTimeout = null, this.handlers = new Map, this.binaryHandlers = [], this.connected = !1, this.messageQueue = [], this.connectionAttempted = !1, this.consecutiveFailures = 0, this.lastConnectionTime = 0, this.waitForCaptchaAndConnect()
   }
@@ -3882,13 +3843,13 @@ var Ce = class {
     return this.ws && this.ws.readyState === WebSocket.OPEN
   }
 };
-s.ws = new Ce;
-var gn = s.ws;
+s.ws = new be;
+var vn = s.ws;
 var gt = new Set(["aaa", "aarp", "abb", "abbott", "abbvie", "abc", "able", "abogado", "abudhabi", "ac", "academy", "accenture", "accountant", "accountants", "aco", "actor", "ad", "ads", "adult", "ae", "aeg", "aero", "aetna", "af", "afl", "africa", "ag", "agakhan", "agency", "ai", "aig", "airbus", "airforce", "airtel", "akdn", "al", "alibaba", "alipay", "allfinanz", "allstate", "ally", "alsace", "alstom", "am", "amazon", "americanexpress", "americanfamily", "amex", "amfam", "amica", "amsterdam", "analytics", "android", "anquan", "anz", "ao", "aol", "apartments", "app", "apple", "aq", "aquarelle", "ar", "arab", "aramco", "archi", "army", "arpa", "art", "arte", "as", "asda", "asia", "associates", "at", "athleta", "attorney", "au", "auction", "audi", "audible", "audio", "auspost", "author", "auto", "autos", "aw", "aws", "ax", "axa", "az", "azure", "ba", "baby", "baidu", "banamex", "band", "bank", "bar", "barcelona", "barclaycard", "barclays", "barefoot", "bargains", "baseball", "basketball", "bauhaus", "bayern", "bb", "bbc", "bbt", "bbva", "bcg", "bcn", "bd", "be", "beats", "beauty", "beer", "berlin", "best", "bestbuy", "bet", "bf", "bg", "bh", "bharti", "bi", "bible", "bid", "bike", "bing", "bingo", "bio", "biz", "bj", "black", "blackfriday", "blockbuster", "blog", "bloomberg", "blue", "bm", "bms", "bmw", "bn", "bnpparibas", "bo", "boats", "boehringer", "bofa", "bom", "bond", "boo", "book", "booking", "bosch", "bostik", "boston", "bot", "boutique", "box", "br", "bradesco", "bridgestone", "broadway", "broker", "brother", "brussels", "bs", "bt", "build", "builders", "business", "buy", "buzz", "bv", "bw", "by", "bz", "bzh", "ca", "cab", "cafe", "cal", "call", "calvinklein", "cam", "camera", "camp", "canon", "capetown", "capital", "capitalone", "car", "caravan", "cards", "care", "career", "careers", "cars", "casa", "case", "cash", "casino", "cat", "catering", "catholic", "cba", "cbn", "cbre", "cc", "cd", "center", "ceo", "cern", "cf", "cfa", "cfd", "cg", "ch", "chanel", "channel", "charity", "chase", "chat", "cheap", "chintai", "christmas", "chrome", "church", "ci", "cipriani", "circle", "cisco", "citadel", "citi", "citic", "city", "ck", "cl", "claims", "cleaning", "click", "clinic", "clinique", "clothing", "cloud", "club", "clubmed", "cm", "cn", "co", "coach", "codes", "coffee", "college", "cologne", "com", "commbank", "community", "company", "compare", "computer", "comsec", "condos", "construction", "consulting", "contact", "contractors", "cooking", "cool", "coop", "corsica", "country", "coupon", "coupons", "courses", "cpa", "cr", "credit", "creditcard", "creditunion", "cricket", "crown", "crs", "cruise", "cruises", "cu", "cuisinella", "cv", "cw", "cx", "cy", "cymru", "cyou", "cz", "dad", "dance", "data", "date", "dating", "datsun", "day", "dclk", "dds", "de", "deal", "dealer", "deals", "degree", "delivery", "dell", "deloitte", "delta", "democrat", "dental", "dentist", "desi", "design", "dev", "dhl", "diamonds", "diet", "digital", "direct", "directory", "discount", "discover", "dish", "diy", "dj", "dk", "dm", "dnp", "do", "docs", "doctor", "dog", "domains", "dot", "download", "drive", "dtv", "dubai", "dupont", "durban", "dvag", "dvr", "dz", "earth", "eat", "ec", "eco", "edeka", "edu", "education", "ee", "eg", "email", "emerck", "energy", "engineer", "engineering", "enterprises", "epson", "equipment", "er", "ericsson", "erni", "es", "esq", "estate", "et", "eu", "eurovision", "eus", "events", "exchange", "expert", "exposed", "express", "extraspace", "fage", "fail", "fairwinds", "faith", "family", "fan", "fans", "farm", "farmers", "fashion", "fast", "fedex", "feedback", "ferrari", "ferrero", "fi", "fidelity", "fido", "film", "final", "finance", "financial", "fire", "firestone", "firmdale", "fish", "fishing", "fit", "fitness", "fj", "fk", "flickr", "flights", "flir", "florist", "flowers", "fly", "fm", "fo", "foo", "food", "football", "ford", "forex", "forsale", "forum", "foundation", "fox", "fr", "free", "fresenius", "frl", "frogans", "frontier", "ftr", "fujitsu", "fun", "fund", "furniture", "futbol", "fyi", "ga", "gal", "gallery", "gallo", "gallup", "game", "games", "gap", "garden", "gay", "gb", "gbiz", "gd", "gdn", "ge", "gea", "gent", "genting", "george", "gf", "gg", "ggee", "gh", "gi", "gift", "gifts", "gives", "giving", "gl", "glass", "gle", "global", "globo", "gm", "gmail", "gmbh", "gmo", "gmx", "gn", "godaddy", "gold", "goldpoint", "golf", "goo", "goodyear", "goog", "google", "gop", "got", "gov", "gp", "gq", "gr", "grainger", "graphics", "gratis", "green", "gripe", "grocery", "group", "gs", "gt", "gu", "gucci", "guge", "guide", "guitars", "guru", "gw", "gy", "hair", "hamburg", "hangout", "haus", "hbo", "hdfc", "hdfcbank", "health", "healthcare", "help", "helsinki", "here", "hermes", "hiphop", "hisamitsu", "hitachi", "hiv", "hk", "hkt", "hm", "hn", "hockey", "holdings", "holiday", "homedepot", "homegoods", "homes", "homesense", "honda", "horse", "hospital", "host", "hosting", "hot", "hotels", "hotmail", "house", "how", "hr", "hsbc", "ht", "hu", "hughes", "hyatt", "hyundai", "ibm", "icbc", "ice", "icu", "id", "ie", "ieee", "ifm", "ikano", "il", "im", "imamat", "imdb", "immo", "immobilien", "in", "inc", "industries", "infiniti", "info", "ing", "ink", "institute", "insurance", "insure", "int", "international", "intuit", "investments", "io", "ipiranga", "iq", "ir", "irish", "is", "ismaili", "ist", "istanbul", "it", "itau", "itv", "jaguar", "java", "jcb", "je", "jeep", "jetzt", "jewelry", "jio", "jll", "jm", "jmp", "jnj", "jo", "jobs", "joburg", "jot", "joy", "jp", "jpmorgan", "jprs", "juegos", "juniper", "kaufen", "kddi", "ke", "kerryhotels", "kerryproperties", "kfh", "kg", "kh", "ki", "kia", "kids", "kim", "kindle", "kitchen", "kiwi", "km", "kn", "koeln", "komatsu", "kosher", "kp", "kpmg", "kpn", "kr", "krd", "kred", "kuokgroup", "kw", "ky", "kyoto", "kz", "la", "lacaixa", "lamborghini", "lamer", "land", "landrover", "lanxess", "lasalle", "lat", "latino", "latrobe", "law", "lawyer", "lb", "lc", "lds", "lease", "leclerc", "lefrak", "legal", "lego", "lexus", "lgbt", "li", "lidl", "life", "lifeinsurance", "lifestyle", "lighting", "like", "lilly", "limited", "limo", "lincoln", "link", "live", "living", "lk", "llc", "llp", "loan", "loans", "locker", "locus", "lol", "london", "lotte", "lotto", "love", "lpl", "lplfinancial", "lr", "ls", "lt", "ltd", "ltda", "lu", "lundbeck", "luxe", "luxury", "lv", "ly", "ma", "madrid", "maif", "maison", "makeup", "man", "management", "mango", "map", "market", "marketing", "markets", "marriott", "marshalls", "mattel", "mba", "mc", "mckinsey", "md", "me", "med", "media", "meet", "melbourne", "meme", "memorial", "men", "menu", "merckmsd", "mg", "mh", "miami", "microsoft", "mil", "mini", "mint", "mit", "mitsubishi", "mk", "ml", "mlb", "mls", "mm", "mma", "mn", "mo", "mobi", "mobile", "moda", "moe", "moi", "mom", "monash", "money", "monster", "mormon", "mortgage", "moscow", "moto", "motorcycles", "mov", "movie", "mp", "mq", "mr", "ms", "msd", "mt", "mtn", "mtr", "mu", "museum", "music", "mv", "mw", "mx", "my", "mz", "na", "nab", "nagoya", "name", "navy", "nba", "nc", "ne", "nec", "net", "netbank", "netflix", "network", "neustar", "new", "news", "next", "nextdirect", "nexus", "nf", "nfl", "ng", "ngo", "nhk", "ni", "nico", "nike", "nikon", "ninja", "nissan", "nissay", "nl", "no", "nokia", "norton", "now", "nowruz", "nowtv", "np", "nr", "nra", "nrw", "ntt", "nu", "nyc", "nz", "obi", "observer", "office", "okinawa", "olayan", "olayangroup", "ollo", "om", "omega", "one", "ong", "onl", "online", "ooo", "open", "oracle", "orange", "org", "organic", "origins", "osaka", "otsuka", "ott", "ovh", "pa", "page", "panasonic", "paris", "pars", "partners", "parts", "party", "pay", "pccw", "pe", "pet", "pf", "pfizer", "pg", "ph", "pharmacy", "phd", "philips", "phone", "photo", "photography", "photos", "physio", "pics", "pictet", "pictures", "pid", "pin", "ping", "pink", "pioneer", "pizza", "pk", "pl", "place", "play", "playstation", "plumbing", "plus", "pm", "pn", "pnc", "pohl", "poker", "politie", "porn", "post", "pr", "praxi", "press", "prime", "pro", "prod", "productions", "prof", "progressive", "promo", "properties", "property", "protection", "pru", "prudential", "ps", "pt", "pub", "pw", "pwc", "py", "qa", "qpon", "quebec", "quest", "racing", "radio", "re", "read", "realestate", "realtor", "realty", "recipes", "red", "redumbrella", "rehab", "reise", "reisen", "reit", "reliance", "ren", "rent", "rentals", "repair", "report", "republican", "rest", "restaurant", "review", "reviews", "rexroth", "rich", "richardli", "ricoh", "ril", "rio", "rip", "ro", "rocks", "rodeo", "rogers", "room", "rs", "rsvp", "ru", "rugby", "ruhr", "run", "rw", "rwe", "ryukyu", "sa", "saarland", "safe", "safety", "sakura", "sale", "salon", "samsclub", "samsung", "sandvik", "sandvikcoromant", "sanofi", "sap", "sarl", "sas", "save", "saxo", "sb", "sbi", "sbs", "sc", "scb", "schaeffler", "schmidt", "scholarships", "school", "schule", "schwarz", "science", "scot", "sd", "se", "search", "seat", "secure", "security", "seek", "select", "sener", "services", "seven", "sew", "sex", "sexy", "sfr", "sg", "sh", "shangrila", "sharp", "shell", "shia", "shiksha", "shoes", "shop", "shopping", "shouji", "show", "si", "silk", "sina", "singles", "site", "sj", "sk", "ski", "skin", "sky", "skype", "sl", "sling", "sm", "smart", "smile", "sn", "sncf", "so", "soccer", "social", "softbank", "software", "sohu", "solar", "solutions", "song", "sony", "soy", "spa", "space", "sport", "spot", "sr", "srl", "ss", "st", "stada", "staples", "star", "statebank", "statefarm", "stc", "stcgroup", "stockholm", "storage", "store", "stream", "studio", "study", "style", "su", "sucks", "supplies", "supply", "support", "surf", "surgery", "suzuki", "sv", "swatch", "swiss", "sx", "sy", "sydney", "systems", "sz", "tab", "taipei", "talk", "taobao", "target", "tatamotors", "tatar", "tattoo", "tax", "taxi", "tc", "tci", "td", "tdk", "team", "tech", "technology", "tel", "temasek", "tennis", "teva", "tf", "tg", "th", "thd", "theater", "theatre", "tiaa", "tickets", "tienda", "tips", "tires", "tirol", "tj", "tjmaxx", "tjx", "tk", "tkmaxx", "tl", "tm", "tmall", "tn", "to", "today", "tokyo", "tools", "top", "toray", "toshiba", "total", "tours", "town", "toyota", "toys", "tr", "trade", "trading", "training", "travel", "travelers", "travelersinsurance", "trust", "trv", "tt", "tube", "tui", "tunes", "tushu", "tv", "tvs", "tw", "tz", "ua", "ubank", "ubs", "ug", "uk", "unicom", "university", "uno", "uol", "ups", "us", "uy", "uz", "va", "vacations", "vana", "vanguard", "vc", "ve", "vegas", "ventures", "verisign", "versicherung", "vet", "vg", "vi", "viajes", "video", "vig", "viking", "villas", "vin", "vip", "virgin", "visa", "vision", "viva", "vivo", "vlaanderen", "vn", "vodka", "volvo", "vote", "voting", "voto", "voyage", "vu", "wales", "walmart", "walter", "wang", "wanggou", "watch", "watches", "weather", "weatherchannel", "webcam", "weber", "website", "wed", "wedding", "weibo", "weir", "wf", "whoswho", "wien", "wiki", "williamhill", "win", "windows", "wine", "winners", "wme", "wolterskluwer", "woodside", "work", "works", "world", "wow", "ws", "wtc", "wtf", "xbox", "xerox", "xihuan", "xin", "xxx", "xyz", "yachts", "yahoo", "yamaxun", "yandex", "ye", "yodobashi", "yoga", "yokohama", "you", "youtube", "yt", "yun", "za", "zappos", "zara", "zero", "zip", "zm", "zone", "zuerich", "zw"]),
-  Ze = 100,
+  Xe = 100,
   vt = 3,
   yt = 5e3,
-  Ee = class {
+  Ce = class {
     constructor() {
       this.messages = [], this.isOpen = !0, this.unreadCount = 0, this.container = document.getElementById("chat-container"), this.messageTimestamps = [], this.showedRules = !1, this.container && (this.createUI(), this.setupWsHandlers(), this.setupInputHandlers(), this.createUserMenu(), this.createModMenu())
     }
@@ -4119,7 +4080,7 @@ var gt = new Set(["aaa", "aarp", "abb", "abbott", "abbvie", "abc", "able", "abog
             break
           }
       }
-      this.messages.push(t), this.messages.length > Ze && this.messages.shift(), this.appendMessageEl(t), this.isOpen ? this.scrollToBottom() : (this.unreadCount++, this.updateUnreadBadge())
+      this.messages.push(t), this.messages.length > Xe && this.messages.shift(), this.appendMessageEl(t), this.isOpen ? this.scrollToBottom() : (this.unreadCount++, this.updateUnreadBadge())
     }
     escapeHTML(t) {
       return t.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;").replace(/'/g, "&#039;")
@@ -4186,7 +4147,7 @@ var gt = new Set(["aaa", "aarp", "abb", "abbott", "abbvie", "abc", "able", "abog
       let g = document.createElement("span");
       g.className = "chat-time";
       let v = new Date(t.time || Date.now());
-      for (g.textContent = v.getHours().toString().padStart(2, "0") + ":" + v.getMinutes().toString().padStart(2, "0"), n.appendChild(i), n.appendChild(r), n.appendChild(g), this.messagesEl.appendChild(n); this.messagesEl.children.length > Ze;) this.messagesEl.removeChild(this.messagesEl.firstChild)
+      for (g.textContent = v.getHours().toString().padStart(2, "0") + ":" + v.getMinutes().toString().padStart(2, "0"), n.appendChild(i), n.appendChild(r), n.appendChild(g), this.messagesEl.appendChild(n); this.messagesEl.children.length > Xe;) this.messagesEl.removeChild(this.messagesEl.firstChild)
     }
     renderMessages() {
       this.messagesEl.innerHTML = "";
@@ -4252,8 +4213,8 @@ var gt = new Set(["aaa", "aarp", "abb", "abbott", "abbvie", "abc", "able", "abog
       n.className = "chat-message chat-system", n.innerHTML = this.parseMessage(this.escapeHTML(t)).replace(/\n/g, "<br>"), this.messagesEl.appendChild(n), this.scrollToBottom()
     }
   };
-s.chat = new Ee;
-var wn = s.chat;
+s.chat = new Ce;
+var bn = s.chat;
 var wt = document.getElementById("loading-text"),
   bt = 0,
   Ct = setInterval(() => {
@@ -4261,7 +4222,7 @@ var wt = document.getElementById("loading-text"),
   }, 200),
   ee = class {
     constructor() {
-      this.tiles = {}, this.container = document.getElementById("plot"), this.worldSize = Re, this.activeTile = null, this.tileCache = {}, this.lockCache = {}, this.loaded = !1, setInterval(() => {
+      this.tiles = {}, this.container = document.getElementById("plot"), this.worldSize = Me, this.activeTile = null, this.tileCache = {}, this.lockCache = {}, this.loaded = !1, setInterval(() => {
         for (let t in this.tiles) {
           let n = this.tiles[t];
           !n.rendered && Date.now() - n.lastRender > 3e4 && delete this.tiles[t]
@@ -4364,7 +4325,7 @@ var wt = document.getElementById("loading-text"),
       if (!this.tiles[`${t},${n}`]) {
         let i = this.tileCache?.[t]?.[n],
           o = typeof i == "string" ? i : i?.domain ?? null;
-        this.tiles[`${t},${n}`] = new O({
+        this.tiles[`${t},${n}`] = new $({
           x: t,
           y: n,
           domain: o ?? null
@@ -4519,16 +4480,16 @@ var Et = document.getElementById("plot"),
         o = n * this.zoom - this.height / 2;
       this.move(i, o)
     }* getTilesInView() {
-      let t = O.toTilePosition((this.x - 250 * this.zoom) / this.zoom, (this.y - 250 * this.zoom) / this.zoom),
-        n = O.toTilePosition((this.x + 250 * this.zoom + this.width) / this.zoom, (this.y + 250 * this.zoom + this.height) / this.zoom);
+      let t = $.toTilePosition((this.x - 250 * this.zoom) / this.zoom, (this.y - 250 * this.zoom) / this.zoom),
+        n = $.toTilePosition((this.x + 250 * this.zoom + this.width) / this.zoom, (this.y + 250 * this.zoom + this.height) / this.zoom);
       for (let i = t.x; i < n.x; i++)
         for (let o = t.y; o < n.y; o++) {
           let r = s.plot.getTile(i, o);
           r && (yield r)
         }
     }* getTilesInViewWithBuffer(t = 500) {
-      let n = O.toTilePosition((this.x - 250 * this.zoom - t) / this.zoom, (this.y - 250 * this.zoom - t) / this.zoom),
-        i = O.toTilePosition((this.x + 250 * this.zoom + this.width + t) / this.zoom, (this.y + 250 * this.zoom + this.height + t) / this.zoom);
+      let n = $.toTilePosition((this.x - 250 * this.zoom - t) / this.zoom, (this.y - 250 * this.zoom - t) / this.zoom),
+        i = $.toTilePosition((this.x + 250 * this.zoom + this.width + t) / this.zoom, (this.y + 250 * this.zoom + this.height + t) / this.zoom);
       for (let o = n.x; o < i.x; o++)
         for (let r = n.y; r < i.y; r++) {
           let c = s.plot.getTile(o, r);
@@ -4588,7 +4549,7 @@ var ne = class {
         this.x = v, this.y = d;
         let u = s.camera;
         this.worldX = (u.x + this.x) / u.zoom, this.worldY = (u.y + this.y) / u.zoom;
-        let b = O.toTilePosition(this.worldX, this.worldY);
+        let b = $.toTilePosition(this.worldX, this.worldY);
         if (this.tileX = b.x, this.tileY = b.y, s.ui.coords.textContent = `${this.tileX}, ${this.tileY}`, document.documentElement.style.setProperty("--coords-width", s.ui.coords.offsetWidth + "px"), this.down) {
           let T = this.x - i,
             C = this.y - o;
@@ -4630,10 +4591,10 @@ var Tt = document.getElementById("plot"),
   Pt = 50,
   It = 100,
   Lt = 100,
-  Te = 150,
-  Je = 500,
-  Ge = .6,
-  ke = class {
+  Ee = 150,
+  Ze = 500,
+  Je = .6,
+  Te = class {
     constructor() {
       this.cursors = new Map, this.lastPositionSent = 0, this.currentNick = null, this.mouseWorldX = 0, this.mouseWorldY = 0, this.setupWsHandlers(), this.setupMouseTracking(), this.setupSiteChangeListener(), this.setupMiddleClick(), this.setupViewportChangeListener()
     }
@@ -4724,7 +4685,7 @@ var Tt = document.getElementById("plot"),
       let t = this.mouseWorldX - It,
         n = this.mouseWorldY - Lt,
         i = Math.sqrt(t * t + n * n);
-      return i <= Te ? 0 : i >= Je ? Ge : (i - Te) / (Je - Te) * Ge
+      return i <= Ee ? 0 : i >= Ze ? Je : (i - Ee) / (Ze - Ee) * Je
     }
     updateAllCursorOpacities() {
       let t = this.getCursorOpacityFromCenter();
@@ -4740,7 +4701,7 @@ var Tt = document.getElementById("plot"),
     setupMouseTracking() {
       document.addEventListener("mousemove", t => {
         let n = s.camera;
-        if (!n || (this.mouseWorldX = Math.round((n.x + t.clientX) / n.zoom), this.mouseWorldY = Math.round((n.y + t.clientY) / n.zoom), this.updateAllNickOpacities(), this.updateAllCursorOpacities(), this.updateAllCursorVisibility(), !s.ws.isConnected) || !this.currentNick || N.activeModal || kt?.classList.contains("active") || Date.now() - this.lastPositionSent < 25) return;
+        if (!n || (this.mouseWorldX = Math.round((n.x + t.clientX) / n.zoom), this.mouseWorldY = Math.round((n.y + t.clientY) / n.zoom), this.updateAllNickOpacities(), this.updateAllCursorOpacities(), this.updateAllCursorVisibility(), !s.ws.isConnected) || !this.currentNick || M.activeModal || kt?.classList.contains("active") || Date.now() - this.lastPositionSent < 25) return;
         let i = new Int16Array(3);
         i[0] = this.mouseWorldX, i[1] = this.mouseWorldY, i[2] = 0, s.ws.send(i.buffer), this.lastPositionSent = Date.now()
       })
@@ -4796,7 +4757,7 @@ var Tt = document.getElementById("plot"),
       return t ? t.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;").replace(/'/g, "&#039;") : ""
     }
   },
-  xe = ke;
+  ke = Te;
 if ("serviceWorker" in navigator) {
   let t = "sw_version",
     n = async () => {
@@ -4825,29 +4786,29 @@ if ("serviceWorker" in navigator) {
     })
   })
 }
-s.cursors = new xe;
+s.cursors = new ke;
 s.user?.admin && (window.WebTiles = {
   ...s,
   classes: {
-    Tile: O,
+    Tile: $,
     Camera: te,
     Plot: ee,
     Mouse: ne,
-    Cursors: xe
+    Cursors: ke
   }
 });
-var Se = Date.now();
-async function Ke() {
+var xe = Date.now();
+async function Ge() {
   let t = await (await s.api.makeRequest("/s/dist/buildtime.txt")).text();
   return parseInt(t)
 }
-Ke().then(e => {
-  Se = e
+Ge().then(e => {
+  xe = e
 });
-var Mt = setInterval(async () => {
-  let e = await Ke();
-  if (e !== Se) {
-    clearInterval(Mt), Se = e;
+var Nt = setInterval(async () => {
+  let e = await Ge();
+  if (e !== xe) {
+    clearInterval(Nt), xe = e;
     let t = document.createElement("div");
     t.id = "update-toast", t.innerHTML = `
             <span>A new WebTiles version is available!</span>
