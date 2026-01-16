@@ -1,4 +1,4 @@
-/* c67df44e281107ca405c65fa8e0fad6c433019da49cc73e4d84513e0de826ea3 */
+/* 40be4c313971b4b68d56888da82aaeb381757839e4e1343b097b911bce075255 */
 var tt = Object.defineProperty;
 var nt = (e, t, n) => t in e ? tt(e, t, {
   enumerable: !0,
@@ -6,26 +6,27 @@ var nt = (e, t, n) => t in e ? tt(e, t, {
   writable: !0,
   value: n
 }) : e[t] = n;
-var ge = (e, t, n) => nt(e, typeof t != "symbol" ? t + "" : t, n);
-var re = {
+var pe = (e, t, n) => nt(e, typeof t != "symbol" ? t + "" : t, n);
+var Ie = {
     user: null,
     settings: {
-      logCalls: localStorage.logCalls === "true"
+      logCalls: localStorage.logCalls === "true",
+      disableJS: localStorage.disableJS === "true"
     }
   },
-  Ie = document.getElementById("user-data");
-if (Ie) try {
-  let e = JSON.parse(Ie.textContent);
-  e && e.email_verified && (re.user = e, re.user.admin || (re.settings.logCalls = !1))
+  Pe = document.getElementById("user-data");
+if (Pe) try {
+  let e = JSON.parse(Pe.textContent);
+  e && e.email_verified && (Ie.user = e)
 } catch (e) {
   console.error(e)
 }
-var s = re;
-var R = class R {
+var s = Ie;
+var A = class A {
   static init() {
-    R.container || (R.container = document.createElement("div"), R.container.id = "modal-container", R.container.className = "modal-overlay", R.container.addEventListener("click", t => {
-      t.target === R.container && R.activeModal && R.activeModal.close()
-    }), document.body.appendChild(R.container))
+    A.container || (A.container = document.createElement("div"), A.container.id = "modal-container", A.container.className = "modal-overlay", A.container.addEventListener("click", t => {
+      t.target === A.container && A.activeModal && A.activeModal.close()
+    }), document.body.appendChild(A.container))
   }
   constructor(t = {}) {
     this.title = t.title || "", this.content = t.content || "", this.warning = t.warning || null, this.buttons = t.buttons || [], this.onClose = t.onClose || null, this.element = null, this._buttonElements = new Map
@@ -55,10 +56,10 @@ var R = class R {
     return this.element = t, t
   }
   open() {
-    return R.init(), R.activeModal && R.activeModal.close(), this._build(), R.container.innerHTML = "", R.container.appendChild(this.element), R.container.classList.add("active"), R.activeModal = this, s.camera && s.camera.setZoomEnabled(!1), this
+    return A.init(), A.activeModal && A.activeModal.close(), this._build(), A.container.innerHTML = "", A.container.appendChild(this.element), A.container.classList.add("active"), A.activeModal = this, s.camera && s.camera.setZoomEnabled(!1), this
   }
   close() {
-    return R.container && R.container.classList.remove("active"), R.activeModal = null, this._buttonElements.clear(), s.camera && s.camera.setZoomEnabled(!0), this.onClose && this.onClose(this), this
+    return A.container && A.container.classList.remove("active"), A.activeModal = null, this._buttonElements.clear(), s.camera && s.camera.setZoomEnabled(!0), this.onClose && this.onClose(this), this
   }
   setContent(t) {
     let n = this.element?.querySelector(".modal-body");
@@ -75,37 +76,37 @@ var R = class R {
     return o ? (n ? (o._originalText = o._originalText || o.textContent, o.textContent = i || "Loading...", o.disabled = !0) : (o.textContent = o._originalText || o.textContent, o.disabled = !1), this) : this
   }
 };
-ge(R, "container", null), ge(R, "activeModal", null);
-var M = R;
+pe(A, "container", null), pe(A, "activeModal", null);
+var N = A;
 
-function de() {
+function ue() {
   return document.querySelector('meta[name="turnstile-sitekey"]')?.content || ""
 }
-var st = de(),
+var st = ue(),
   B = localStorage.getItem("captchaToken"),
-  ve = parseInt(localStorage.getItem("captchaExpiresAt") || "0"),
-  Y = null,
-  ie = [],
-  ce = !1,
+  ge = parseInt(localStorage.getItem("captchaExpiresAt") || "0"),
+  X = null,
+  oe = [],
+  le = !1,
   Le = 0,
   it = 5e3;
-ve < Date.now() && (B = null, localStorage.removeItem("captchaToken"), localStorage.removeItem("captchaExpiresAt"));
+ge < Date.now() && (B = null, localStorage.removeItem("captchaToken"), localStorage.removeItem("captchaExpiresAt"));
 
 function Me() {
   B = null, localStorage.removeItem("captchaToken"), localStorage.removeItem("captchaExpiresAt")
 }
 
 function ot(e, t) {
-  B = e, ve = t, localStorage.setItem("captchaToken", e), localStorage.setItem("captchaExpiresAt", t)
+  B = e, ge = t, localStorage.setItem("captchaToken", e), localStorage.setItem("captchaExpiresAt", t)
 }
 
-function oe() {
-  return ce ? !0 : window.turnstile ? (ce = !0, !0) : !1
+function ae() {
+  return le ? !0 : window.turnstile ? (le = !0, !0) : !1
 }
 
-function le(e, t) {
-  if (!oe()) return console.error("[Captcha] Turnstile not ready"), !1;
-  let n = de() || st || "";
+function de(e, t) {
+  if (!ae()) return console.error("[Captcha] Turnstile not ready"), !1;
+  let n = ue() || st || "";
   if (!n) return !0;
   let i = typeof e == "string" ? document.querySelector(e) : e;
   if (!i) return console.error("[Captcha] Container not found:", e), !1;
@@ -127,10 +128,10 @@ function le(e, t) {
           })
         })).json();
         if (g.success) {
-          if (ot(g.token, g.expiresAt), c && (c.textContent = "Loading..."), t && Y) {
-            Y.close(), Y = null;
-            let m = [...ie];
-            ie = [], m.forEach(h => h())
+          if (ot(g.token, g.expiresAt), c && (c.textContent = "Loading..."), t && X) {
+            X.close(), X = null;
+            let v = [...oe];
+            oe = [], v.forEach(d => d())
           }
         } else c && (c.textContent = "Verification failed. Please try again."), o.reset(i)
       } catch (p) {
@@ -148,70 +149,70 @@ function le(e, t) {
 }
 
 function Ne() {
-  if (de()) return new Promise(e => {
+  if (ue()) return new Promise(e => {
     if (Date.now() - Le < it) {
       e();
       return
     }
-    if (M.activeModal) {
-      ie.push(e);
+    if (N.activeModal) {
+      oe.push(e);
       return
     }
-    Le = Date.now(), ie.push(e);
+    Le = Date.now(), oe.push(e);
     let n = document.createElement("div");
     n.id = "captcha-modal-turnstile", n.style.display = "flex", n.style.justifyContent = "center", n.style.padding = "20px";
     let i = document.createElement("div"),
       o = document.createElement("p");
-    if (o.textContent = "Please complete the captcha to continue.", i.appendChild(o), i.appendChild(n), Y = new M({
+    if (o.textContent = "Please complete the captcha to continue.", i.appendChild(o), i.appendChild(n), X = new N({
         title: "Verification Required",
         content: i,
         buttons: [{
           text: "Cancel",
           type: "cancel",
           onClick: r => {
-            r.close(), Y = null, ie = []
+            r.close(), X = null, oe = []
           }
         }],
         onClose: () => {
-          Y = null
+          X = null
         }
-      }), Y.open(), oe()) le(n, !0);
+      }), X.open(), ae()) de(n, !0);
     else {
       let r = setInterval(() => {
-        oe() && (clearInterval(r), le(n, !0))
+        ae() && (clearInterval(r), de(n, !0))
       }, 100);
       setTimeout(() => clearInterval(r), 1e4)
     }
   })
 }
 
-function ye() {
+function ve() {
   if (B) return;
   let e = document.querySelector("#turnstile-container");
   if (e)
-    if (oe()) le(e, !1);
+    if (ae()) de(e, !1);
     else {
       let t = setInterval(() => {
-        oe() && (clearInterval(t), B || le(e, !1))
+        ae() && (clearInterval(t), B || de(e, !1))
       }, 100);
       setTimeout(() => clearInterval(t), 1e4)
     }
 }
 window.onTurnstileLoad = function() {
-  ce = !0, B || ye()
+  le = !0, B || ve()
 };
-window.turnstile && (ce = !0, B || ye());
+window.turnstile && (le = !0, B || ve());
 s.api = {
   getToken() {
     return B
   },
   getTokenExpiry() {
-    return ve
+    return ge
   },
   clearToken: Me,
   showCaptchaModal: Ne,
-  renderCaptchaOnLoadingScreen: ye,
-  getTurnstileSiteKey: de,
+  renderCaptchaOnLoadingScreen: ve,
+  getTurnstileSiteKey: ue,
   async makeRequest(e, t = {}) {
     let n = (t.method || "GET").toUpperCase();
     n !== "GET" && B && (t.headers = t.headers || {}, t.headers["X-Captcha-Token"] = B);
@@ -226,219 +227,219 @@ s.api = {
   }
 };
 var $t = s.api;
-var q = [.25, .5, .75, 1, 1.5],
+var W = [.25, .5, .75, 1, 1.5],
   Re = 50;
 
-function Ae(e, t, n, i) {
-  let o = new WeakMap,
-    r = 2048,
-    c = 1e4,
-    p = new WeakMap;
+function Ae(e, t, n) {
+  let i = new WeakMap,
+    o = 2048,
+    r = 1e4,
+    c = new WeakMap;
 
-  function g(l) {}
+  function p(l) {}
 
-  function m() {
-    p.clear = new WeakMap
+  function g() {
+    c.clear = new WeakMap
   }
 
-  function h(l, v) {
+  function v(l, m) {
     if (!l) return null;
-    if (o.has(l)) return o.get(l);
-    let E = e.createObject(se);
-    return E.native = l, E.canvas = v, o.set(l, E), E
+    if (i.has(l)) return i.get(l);
+    let E = e.createObject(z);
+    return E.native = l, E.canvas = m, i.set(l, E), E
   }
   let d = e.createNativeFunction(function() {
     throw TypeError("Illegal constructor")
   }, !0);
   e.setProperty(t, "CanvasGradient", d);
-  let b = e.getProperty(d, "prototype");
-  e.setProperty(b, "addColorStop", e.createNativeFunction(function(l, v) {
-    this.native.addColorStop(l, v)
+  let u = e.getProperty(d, "prototype");
+  e.setProperty(u, "addColorStop", e.createNativeFunction(function(l, m) {
+    this.native.addColorStop(l, m)
   }));
 
-  function C(l) {
-    let v = e.createObject(d);
-    return v.native = l, v
+  function b(l) {
+    let m = e.createObject(d);
+    return m.native = l, m
   }
-  let u = e.createNativeFunction(function() {
+  let T = e.createNativeFunction(function() {
     throw TypeError("Illegal constructor")
   }, !0);
-  e.setProperty(t, "CanvasPattern", u);
+  e.setProperty(t, "CanvasPattern", T);
 
-  function w(l) {
-    let v = e.createObject(u);
-    return v.native = l, v
+  function C(l) {
+    let m = e.createObject(T);
+    return m.native = l, m
   }
-  let k = e.createNativeFunction(function(l, v) {
-    if (l > r || v > r) throw new Error(`ImageData size exceeds maximum (${r}x${r})`);
-    s.settings.logCalls && console.log("create ImageData", this, l, v);
-    let E = new ImageData(l, v);
-    this.native = E, this.width = l, this.height = v
+  let f = e.createNativeFunction(function(l, m) {
+    if (l > o || m > o) throw new Error(`ImageData size exceeds maximum (${o}x${o})`);
+    s.settings.logCalls && console.log(n.domain, "create ImageData", this, l, m);
+    let E = new ImageData(l, m);
+    this.native = E, this.width = l, this.height = m
   }, !0);
-  e.setProperty(t, "ImageData", k);
-  let S = e.getProperty(k, "prototype");
-  e.setProperty(S, "width", Interpreter.VALUE_IN_DESCRIPTOR, {
+  e.setProperty(t, "ImageData", f);
+  let w = e.getProperty(f, "prototype");
+  e.setProperty(w, "width", Interpreter.VALUE_IN_DESCRIPTOR, {
     get: e.createNativeFunction(function() {
       return this.native.width
     })
-  }), e.setProperty(S, "height", Interpreter.VALUE_IN_DESCRIPTOR, {
+  }), e.setProperty(w, "height", Interpreter.VALUE_IN_DESCRIPTOR, {
     get: e.createNativeFunction(function() {
       return this.native.height
     })
-  }), e.setProperty(S, "data", Interpreter.VALUE_IN_DESCRIPTOR, {
+  }), e.setProperty(w, "data", Interpreter.VALUE_IN_DESCRIPTOR, {
     get: e.createNativeFunction(function() {
       let l = this.native.data,
-        v = e.createObjectProto(e.ARRAY_PROTO);
-      e.setProperty(v, "length", l.length);
+        m = e.createObjectProto(e.ARRAY_PROTO);
+      e.setProperty(m, "length", l.length);
       let E = e.nativeToPseudo({});
-      e.setProperty(E, "length", l.length), e.setProperty(E, "get", e.createNativeFunction(function(T) {
-        return l[T]
-      })), e.setProperty(E, "set", e.createNativeFunction(function(T, P) {
-        s.settings.logCalls && console.log("setImageData", this, T, P), l[T] = P
+      e.setProperty(E, "length", l.length), e.setProperty(E, "get", e.createNativeFunction(function(x) {
+        return l[x]
+      })), e.setProperty(E, "set", e.createNativeFunction(function(x, P) {
+        s.settings.logCalls && console.log(n.domain, "setImageData", this, x, P), l[x] = P
       }));
-      for (let T = 0; T < Math.min(l.length, 1e3); T++)(P => {
+      for (let x = 0; x < Math.min(l.length, 1e3); x++)(P => {
         e.setProperty(E, P, Interpreter.VALUE_IN_DESCRIPTOR, {
           get: e.createNativeFunction(function() {
             return l[P]
           }),
-          set: e.createNativeFunction(function(L) {
-            s.settings.logCalls && console.log("setImageData", this, P, L), l[P] = L
+          set: e.createNativeFunction(function(M) {
+            s.settings.logCalls && console.log(n.domain, "setImageData", this, P, M), l[P] = M
           })
         })
-      })(T);
+      })(x);
       return E
     })
   });
 
-  function A(l) {
-    let v = e.createObject(k);
-    return v.native = l, v
+  function k(l) {
+    let m = e.createObject(f);
+    return m.native = l, m
   }
-  let F = e.createNativeFunction(function() {
+  let I = e.createNativeFunction(function() {
     throw TypeError("Illegal constructor")
   }, !0);
-  e.setProperty(t, "TextMetrics", F);
-  let ne = e.getProperty(F, "prototype"),
-    W = ["width", "actualBoundingBoxLeft", "actualBoundingBoxRight", "fontBoundingBoxAscent", "fontBoundingBoxDescent", "actualBoundingBoxAscent", "actualBoundingBoxDescent", "emHeightAscent", "emHeightDescent", "hangingBaseline", "alphabeticBaseline", "ideographicBaseline"];
-  for (let l of W) e.setProperty(ne, l, Interpreter.VALUE_IN_DESCRIPTOR, {
+  e.setProperty(t, "TextMetrics", I);
+  let j = e.getProperty(I, "prototype"),
+    H = ["width", "actualBoundingBoxLeft", "actualBoundingBoxRight", "fontBoundingBoxAscent", "fontBoundingBoxDescent", "actualBoundingBoxAscent", "actualBoundingBoxDescent", "emHeightAscent", "emHeightDescent", "hangingBaseline", "alphabeticBaseline", "ideographicBaseline"];
+  for (let l of H) e.setProperty(j, l, Interpreter.VALUE_IN_DESCRIPTOR, {
     get: e.createNativeFunction(function() {
       return this.native[l]
     })
   });
 
-  function fe(l) {
-    let v = e.createObject(F);
-    return v.native = l, v
+  function J(l) {
+    let m = e.createObject(I);
+    return m.native = l, m
   }
-  let Z = e.createNativeFunction(function(l) {
+  let Y = e.createNativeFunction(function(l) {
     l && l.native ? this.native = new Path2D(l.native) : typeof l == "string" ? this.native = new Path2D(l) : this.native = new Path2D
   }, !0);
-  e.setProperty(t, "Path2D", Z);
-  let _ = e.getProperty(Z, "prototype"),
-    J = {
-      addPath: function(l, v) {
-        l?.native && this.native.addPath(l.native, v)
+  e.setProperty(t, "Path2D", Y);
+  let se = e.getProperty(Y, "prototype"),
+    _ = {
+      addPath: function(l, m) {
+        l?.native && this.native.addPath(l.native, m)
       },
       closePath: function() {
         this.native.closePath()
       },
-      moveTo: function(l, v) {
-        this.native.moveTo(l, v)
+      moveTo: function(l, m) {
+        this.native.moveTo(l, m)
       },
-      lineTo: function(l, v) {
-        this.native.lineTo(l, v)
+      lineTo: function(l, m) {
+        this.native.lineTo(l, m)
       },
-      bezierCurveTo: function(l, v, E, T, P, L) {
-        this.native.bezierCurveTo(l, v, E, T, P, L)
+      bezierCurveTo: function(l, m, E, x, P, M) {
+        this.native.bezierCurveTo(l, m, E, x, P, M)
       },
-      quadraticCurveTo: function(l, v, E, T) {
-        this.native.quadraticCurveTo(l, v, E, T)
+      quadraticCurveTo: function(l, m, E, x) {
+        this.native.quadraticCurveTo(l, m, E, x)
       },
-      arc: function(l, v, E, T, P, L) {
-        this.native.arc(l, v, E, T, P, L)
+      arc: function(l, m, E, x, P, M) {
+        this.native.arc(l, m, E, x, P, M)
       },
-      arcTo: function(l, v, E, T, P) {
-        this.native.arcTo(l, v, E, T, P)
+      arcTo: function(l, m, E, x, P) {
+        this.native.arcTo(l, m, E, x, P)
       },
-      ellipse: function(l, v, E, T, P, L, H, j) {
-        this.native.ellipse(l, v, E, T, P, L, H, j)
+      ellipse: function(l, m, E, x, P, M, F, q) {
+        this.native.ellipse(l, m, E, x, P, M, F, q)
       },
-      rect: function(l, v, E, T) {
-        this.native.rect(l, v, E, T)
+      rect: function(l, m, E, x) {
+        this.native.rect(l, m, E, x)
       },
-      roundRect: function(l, v, E, T, P) {
-        this.native.roundRect(l, v, E, T, P)
+      roundRect: function(l, m, E, x, P) {
+        this.native.roundRect(l, m, E, x, P)
       }
     };
-  for (let [l, v] of Object.entries(J)) e.setProperty(_, l, e.createNativeFunction(v));
-  let se = e.createNativeFunction(function() {
+  for (let [l, m] of Object.entries(_)) e.setProperty(se, l, e.createNativeFunction(m));
+  let z = e.createNativeFunction(function() {
     throw TypeError("Illegal constructor")
   }, !0);
-  e.setProperty(t, "CanvasRenderingContext2D", se);
-  let V = e.getProperty(se, "prototype"),
-    me = ["globalAlpha", "globalCompositeOperation", "lineWidth", "lineCap", "lineJoin", "miterLimit", "lineDashOffset", "font", "textAlign", "textBaseline", "direction", "shadowBlur", "shadowColor", "shadowOffsetX", "shadowOffsetY", "imageSmoothingEnabled", "imageSmoothingQuality", "filter"];
-  for (let l of me) e.setProperty(V, l, Interpreter.VALUE_IN_DESCRIPTOR, {
+  e.setProperty(t, "CanvasRenderingContext2D", z);
+  let G = e.getProperty(z, "prototype"),
+    re = ["globalAlpha", "globalCompositeOperation", "lineWidth", "lineCap", "lineJoin", "miterLimit", "lineDashOffset", "font", "textAlign", "textBaseline", "direction", "shadowBlur", "shadowColor", "shadowOffsetX", "shadowOffsetY", "imageSmoothingEnabled", "imageSmoothingQuality", "filter"];
+  for (let l of re) e.setProperty(G, l, Interpreter.VALUE_IN_DESCRIPTOR, {
     get: e.createNativeFunction(function() {
       return this.native[l]
     }),
-    set: e.createNativeFunction(function(v) {
-      s.settings.logCalls && console.log("context set " + l, this, v), this.native[l] = v
+    set: e.createNativeFunction(function(m) {
+      s.settings.logCalls && console.log(n.domain, "context set " + l, this, m), this.native[l] = m
     })
   });
-  for (let l of ["fillStyle", "strokeStyle"]) e.setProperty(V, l, Interpreter.VALUE_IN_DESCRIPTOR, {
+  for (let l of ["fillStyle", "strokeStyle"]) e.setProperty(G, l, Interpreter.VALUE_IN_DESCRIPTOR, {
     get: e.createNativeFunction(function() {
-      let v = this.native[l];
-      return v
+      let m = this.native[l];
+      return m
     }),
-    set: e.createNativeFunction(function(v) {
-      v?.native ? this.native[l] = v.native : this.native[l] = v
+    set: e.createNativeFunction(function(m) {
+      m?.native ? this.native[l] = m.native : this.native[l] = m
     })
   });
-  e.setProperty(V, "canvas", Interpreter.VALUE_IN_DESCRIPTOR, {
+  e.setProperty(G, "canvas", Interpreter.VALUE_IN_DESCRIPTOR, {
     get: e.createNativeFunction(function() {
       return this.canvas
     })
   });
-  let pe = {
-    clearRect: function(l, v, E, T) {
-      this.native, this.native.clearRect(l, v, E, T)
+  let me = {
+    clearRect: function(l, m, E, x) {
+      this.native, this.native.clearRect(l, m, E, x)
     },
-    fillRect: function(l, v, E, T) {
-      this.native, this.native.fillRect(l, v, E, T)
+    fillRect: function(l, m, E, x) {
+      this.native, this.native.fillRect(l, m, E, x)
     },
-    strokeRect: function(l, v, E, T) {
-      this.native, this.native.strokeRect(l, v, E, T)
+    strokeRect: function(l, m, E, x) {
+      this.native, this.native.strokeRect(l, m, E, x)
     },
-    fillText: function(l, v, E, T) {
-      this.native, T !== void 0 ? this.native.fillText(String(l).slice(0, 1e3), v, E, T) : this.native.fillText(String(l).slice(0, 1e3), v, E)
+    fillText: function(l, m, E, x) {
+      this.native, x !== void 0 ? this.native.fillText(String(l).slice(0, 1e3), m, E, x) : this.native.fillText(String(l).slice(0, 1e3), m, E)
     },
-    strokeText: function(l, v, E, T) {
-      this.native, T !== void 0 ? this.native.strokeText(String(l).slice(0, 1e3), v, E, T) : this.native.strokeText(String(l).slice(0, 1e3), v, E)
+    strokeText: function(l, m, E, x) {
+      this.native, x !== void 0 ? this.native.strokeText(String(l).slice(0, 1e3), m, E, x) : this.native.strokeText(String(l).slice(0, 1e3), m, E)
     },
     measureText: function(l) {
-      return fe(this.native.measureText(String(l).slice(0, 1e3)))
+      return J(this.native.measureText(String(l).slice(0, 1e3)))
     },
     getLineDash: function() {
       return e.nativeToPseudo(this.native.getLineDash())
     },
     setLineDash: function(l) {
-      let v = e.pseudoToNative(l);
-      this.native.setLineDash(v)
+      let m = e.pseudoToNative(l);
+      this.native.setLineDash(m)
     },
-    createLinearGradient: function(l, v, E, T) {
-      return C(this.native.createLinearGradient(l, v, E, T))
+    createLinearGradient: function(l, m, E, x) {
+      return b(this.native.createLinearGradient(l, m, E, x))
     },
-    createRadialGradient: function(l, v, E, T, P, L) {
-      return C(this.native.createRadialGradient(l, v, E, T, P, L))
+    createRadialGradient: function(l, m, E, x, P, M) {
+      return b(this.native.createRadialGradient(l, m, E, x, P, M))
     },
-    createConicGradient: function(l, v, E) {
-      return C(this.native.createConicGradient(l, v, E))
+    createConicGradient: function(l, m, E) {
+      return b(this.native.createConicGradient(l, m, E))
     },
-    createPattern: function(l, v) {
+    createPattern: function(l, m) {
       let E = l?.native || l;
       if (!E) return null;
-      let T = this.native.createPattern(E, v);
-      return T ? w(T) : null
+      let x = this.native.createPattern(E, m);
+      return x ? C(x) : null
     },
     beginPath: function() {
       this.native.beginPath()
@@ -446,48 +447,48 @@ function Ae(e, t, n, i) {
     closePath: function() {
       this.native.closePath()
     },
-    moveTo: function(l, v) {
-      this.native.moveTo(l, v)
+    moveTo: function(l, m) {
+      this.native.moveTo(l, m)
     },
-    lineTo: function(l, v) {
-      this.native.lineTo(l, v)
+    lineTo: function(l, m) {
+      this.native.lineTo(l, m)
     },
-    bezierCurveTo: function(l, v, E, T, P, L) {
-      this.native.bezierCurveTo(l, v, E, T, P, L)
+    bezierCurveTo: function(l, m, E, x, P, M) {
+      this.native.bezierCurveTo(l, m, E, x, P, M)
     },
-    quadraticCurveTo: function(l, v, E, T) {
-      this.native.quadraticCurveTo(l, v, E, T)
+    quadraticCurveTo: function(l, m, E, x) {
+      this.native.quadraticCurveTo(l, m, E, x)
     },
-    arc: function(l, v, E, T, P, L) {
-      this.native.arc(l, v, E, T, P, L)
+    arc: function(l, m, E, x, P, M) {
+      this.native.arc(l, m, E, x, P, M)
     },
-    arcTo: function(l, v, E, T, P) {
-      this.native.arcTo(l, v, E, T, P)
+    arcTo: function(l, m, E, x, P) {
+      this.native.arcTo(l, m, E, x, P)
     },
-    ellipse: function(l, v, E, T, P, L, H, j) {
-      this.native.ellipse(l, v, E, T, P, L, H, j)
+    ellipse: function(l, m, E, x, P, M, F, q) {
+      this.native.ellipse(l, m, E, x, P, M, F, q)
     },
-    rect: function(l, v, E, T) {
-      this.native.rect(l, v, E, T)
+    rect: function(l, m, E, x) {
+      this.native.rect(l, m, E, x)
     },
-    roundRect: function(l, v, E, T, P) {
-      let L = e.pseudoToNative(P);
-      this.native.roundRect(l, v, E, T, L)
+    roundRect: function(l, m, E, x, P) {
+      let M = e.pseudoToNative(P);
+      this.native.roundRect(l, m, E, x, M)
     },
-    fill: function(l, v) {
-      this.native, l?.native ? this.native.fill(l.native, v) : this.native.fill(l)
+    fill: function(l, m) {
+      this.native, l?.native ? this.native.fill(l.native, m) : this.native.fill(l)
     },
     stroke: function(l) {
       this.native, l?.native ? this.native.stroke(l.native) : this.native.stroke()
     },
-    clip: function(l, v) {
-      l?.native ? this.native.clip(l.native, v) : this.native.clip(l)
+    clip: function(l, m) {
+      l?.native ? this.native.clip(l.native, m) : this.native.clip(l)
     },
-    isPointInPath: function(l, v, E, T) {
-      return l?.native ? this.native.isPointInPath(l.native, v, E, T) : this.native.isPointInPath(l, v, E)
+    isPointInPath: function(l, m, E, x) {
+      return l?.native ? this.native.isPointInPath(l.native, m, E, x) : this.native.isPointInPath(l, m, E)
     },
-    isPointInStroke: function(l, v, E) {
-      return l?.native ? this.native.isPointInStroke(l.native, v, E) : this.native.isPointInStroke(l, v)
+    isPointInStroke: function(l, m, E) {
+      return l?.native ? this.native.isPointInStroke(l.native, m, E) : this.native.isPointInStroke(l, m)
     },
     getTransform: function() {
       let l = this.native.getTransform();
@@ -503,40 +504,40 @@ function Ae(e, t, n, i) {
     rotate: function(l) {
       this.native.rotate(l)
     },
-    scale: function(l, v) {
-      this.native.scale(l, v)
+    scale: function(l, m) {
+      this.native.scale(l, m)
     },
-    translate: function(l, v) {
-      this.native.translate(l, v)
+    translate: function(l, m) {
+      this.native.translate(l, m)
     },
-    transform: function(l, v, E, T, P, L) {
-      this.native.transform(l, v, E, T, P, L)
+    transform: function(l, m, E, x, P, M) {
+      this.native.transform(l, m, E, x, P, M)
     },
-    setTransform: function(l, v, E, T, P, L) {
+    setTransform: function(l, m, E, x, P, M) {
       if (typeof l == "object" && l !== null) {
-        let H = e.pseudoToNative(l);
-        this.native.setTransform(H)
-      } else this.native.setTransform(l, v, E, T, P, L)
+        let F = e.pseudoToNative(l);
+        this.native.setTransform(F)
+      } else this.native.setTransform(l, m, E, x, P, M)
     },
     resetTransform: function() {
       this.native.resetTransform()
     },
-    drawImage: function(l, v, E, T, P, L, H, j, a) {
+    drawImage: function(l, m, E, x, P, M, F, q, ie) {
       this.native;
-      let f = l?.native || l;
-      f && (j !== void 0 ? this.native.drawImage(f, v, E, T, P, L, H, j, a) : T !== void 0 ? this.native.drawImage(f, v, E, T, P) : this.native.drawImage(f, v, E))
+      let a = l?.native || l;
+      a && (q !== void 0 ? this.native.drawImage(a, m, E, x, P, M, F, q, ie) : x !== void 0 ? this.native.drawImage(a, m, E, x, P) : this.native.drawImage(a, m, E))
     },
-    createImageData: function(l, v) {
-      if (l?.native) return A(this.native.createImageData(l.native));
-      if (l > r || v > r) throw new Error(`ImageData size exceeds maximum (${r}x${r})`);
-      return A(this.native.createImageData(l, v))
+    createImageData: function(l, m) {
+      if (l?.native) return k(this.native.createImageData(l.native));
+      if (l > o || m > o) throw new Error(`ImageData size exceeds maximum (${o}x${o})`);
+      return k(this.native.createImageData(l, m))
     },
-    getImageData: function(l, v, E, T) {
-      if (E > r || T > r) throw new Error(`ImageData size exceeds maximum (${r}x${r})`);
-      return A(this.native.getImageData(l, v, E, T))
+    getImageData: function(l, m, E, x) {
+      if (E > o || x > o) throw new Error(`ImageData size exceeds maximum (${o}x${o})`);
+      return k(this.native.getImageData(l, m, E, x))
     },
-    putImageData: function(l, v, E, T, P, L, H) {
-      this.native, l?.native && (T !== void 0 ? this.native.putImageData(l.native, v, E, T, P, L, H) : this.native.putImageData(l.native, v, E))
+    putImageData: function(l, m, E, x, P, M, F) {
+      this.native, l?.native && (x !== void 0 ? this.native.putImageData(l.native, m, E, x, P, M, F) : this.native.putImageData(l.native, m, E))
     },
     save: function() {
       this.native.save()
@@ -548,16 +549,16 @@ function Ae(e, t, n, i) {
       this.native.reset()
     }
   };
-  for (let [l, v] of Object.entries(pe)) e.setProperty(V, l, e.createNativeFunction(v));
+  for (let [l, m] of Object.entries(me)) e.setProperty(G, l, e.createNativeFunction(m));
   return {
-    extendElement: function(l, v) {
-      e.setProperty(l, "getContext", e.createNativeFunction(function(E, T) {
-        s.settings.logCalls && console.log("getContext", this, E, T);
+    extendElement: function(l, m) {
+      e.setProperty(l, "getContext", e.createNativeFunction(function(E, x) {
+        s.settings.logCalls && console.log(n.domain, "getContext", this, E, x);
         let P = this.native;
         if (P.tagName !== "CANVAS") throw new Error("getContext is only available on canvas elements");
-        if (P.width > r && (P.width = r), P.height > r && (P.height = r), E === "2d") {
-          let L = P.getContext("2d", T ? e.pseudoToNative(T) : void 0);
-          return h(L, this)
+        if (P.width > o && (P.width = o), P.height > o && (P.height = o), E === "2d") {
+          let M = P.getContext("2d", x ? e.pseudoToNative(x) : void 0);
+          return v(M, this)
         }
         throw new Error(`Context type "${E}" is not supported`)
       })), e.setProperty(l, "width", Interpreter.VALUE_IN_DESCRIPTOR, {
@@ -565,142 +566,142 @@ function Ae(e, t, n, i) {
           return this.native.tagName === "CANVAS" ? this.native.width : this.native.width
         }),
         set: e.createNativeFunction(function(E) {
-          s.settings.logCalls && console.log("set width", this, E), this.native.tagName === "CANVAS" && (this.native.width = Math.min(E, r))
+          s.settings.logCalls && console.log(n.domain, "set width", this, E), this.native.tagName === "CANVAS" && (this.native.width = Math.min(E, o))
         })
       }), e.setProperty(l, "height", Interpreter.VALUE_IN_DESCRIPTOR, {
         get: e.createNativeFunction(function() {
           return this.native.tagName === "CANVAS" ? this.native.height : this.native.height
         }),
         set: e.createNativeFunction(function(E) {
-          s.settings.logCalls && console.log("set height", this, E), this.native.tagName === "CANVAS" && (this.native.height = Math.min(E, r))
+          s.settings.logCalls && console.log(n.domain, "set height", this, E), this.native.tagName === "CANVAS" && (this.native.height = Math.min(E, o))
         })
-      }), e.setProperty(l, "toDataURL", e.createNativeFunction(function(E, T) {
+      }), e.setProperty(l, "toDataURL", e.createNativeFunction(function(E, x) {
         if (this.native.tagName !== "CANVAS") throw new Error("toDataURL is only available on canvas elements");
-        return s.settings.logCalls && console.log("toDataURL", this, E, T), this.native.toDataURL(E, T)
+        return s.settings.logCalls && console.log(n.domain, "toDataURL", this, E, x), this.native.toDataURL(E, x)
       }))
     },
-    resetDrawCounts: m,
-    contextToPseudo: h
+    resetDrawCounts: g,
+    contextToPseudo: v
   }
 }
 
-function _e(e, t) {
-  let r = 0,
-    c = window.location.origin;
+function _e(e, t, n) {
+  let c = 0,
+    p = window.location.origin;
 
-  function p(u) {
-    if (typeof u != "string" || u.startsWith("/") || u.startsWith("./") || u.startsWith("../") || !u.startsWith("http://") && !u.startsWith("https://")) return !1;
+  function g(f) {
+    if (typeof f != "string" || f.startsWith("/") || f.startsWith("./") || f.startsWith("../") || !f.startsWith("http://") && !f.startsWith("https://")) return !1;
     try {
-      let w = new URL(u);
-      if (w.origin === c || w.hostname === "kicya.net" || w.hostname.endsWith(".kicya.net") || w.hostname === "nekoweb.org") return !1;
+      let w = new URL(f);
+      if (w.origin === p || w.hostname === "kicya.net" || w.hostname.endsWith(".kicya.net") || w.hostname === "nekoweb.org") return !1;
       let k = w.hostname.toLowerCase();
       return !(k === "localhost" || k === "127.0.0.1" || k === "0.0.0.0" || k.startsWith("192.168.") || k.startsWith("10.") || k.startsWith("172.16.") || k.startsWith("172.17.") || k.startsWith("172.18.") || k.startsWith("172.19.") || k.startsWith("172.2") || k.startsWith("172.30.") || k.startsWith("172.31.") || k === "[::1]")
     } catch {
       return !1
     }
   }
-  let g = 0,
-    m = e.nativeToPseudo({});
-  e.setProperty(t, "__xhrCallbacks", m);
+  let v = 0,
+    d = e.nativeToPseudo({});
+  e.setProperty(t, "__xhrCallbacks", d);
 
-  function h(u, ...w) {
-    if (!u || typeof u != "object") return;
-    let k = g++;
-    e.setProperty(m, "fn" + k, u);
-    let S = w.map((F, ne) => {
-        let W = "arg" + k + "_" + ne;
-        return e.setProperty(m, W, F), W
+  function u(f, ...w) {
+    if (!f || typeof f != "object") return;
+    let k = v++;
+    e.setProperty(d, "fn" + k, f);
+    let I = w.map((H, J) => {
+        let Y = "arg" + k + "_" + J;
+        return e.setProperty(d, Y, H), Y
       }),
-      A = S.map(F => `__xhrCallbacks.${F}`).join(",");
-    e.appendCode(`__xhrCallbacks.fn${k}(${A}); delete __xhrCallbacks.fn${k}; ${S.map(F=>`delete __xhrCallbacks.${F}`).join("; ")};`)
+      j = I.map(H => `__xhrCallbacks.${H}`).join(",");
+    e.appendCode(`__xhrCallbacks.fn${k}(${j}); delete __xhrCallbacks.fn${k}; ${I.map(H=>`delete __xhrCallbacks.${H}`).join("; ")};`)
   }
-  let d = e.createNativeFunction(function() {
-    s.settings.logCalls && console.log("XMLHttpRequest", this), this.native = new window.XMLHttpRequest, this._method = null, this._url = null, this._async = !0, this._headers = {}, this._eventHandlers = {};
+  let b = e.createNativeFunction(function() {
+    s.settings.logCalls && console.log(n.domain, "XMLHttpRequest", this), this.native = new window.XMLHttpRequest, this._method = null, this._url = null, this._async = !0, this._headers = {}, this._eventHandlers = {};
     let w = this;
     this.native.onreadystatechange = function() {
-      e.setProperty(w, "readyState", w.native.readyState), w.native.readyState === 4 && (e.setProperty(w, "status", w.native.status), e.setProperty(w, "statusText", w.native.statusText), e.setProperty(w, "responseText", w.native.responseText?.slice(0, 5242880) || ""), e.setProperty(w, "responseURL", w.native.responseURL), r = Math.max(0, r - 1)), w._eventHandlers.onreadystatechange && h(w._eventHandlers.onreadystatechange)
+      e.setProperty(w, "readyState", w.native.readyState), w.native.readyState === 4 && (e.setProperty(w, "status", w.native.status), e.setProperty(w, "statusText", w.native.statusText), e.setProperty(w, "responseText", w.native.responseText?.slice(0, 5242880) || ""), e.setProperty(w, "responseURL", w.native.responseURL), c = Math.max(0, c - 1)), w._eventHandlers.onreadystatechange && u(w._eventHandlers.onreadystatechange)
     }, this.native.onload = function() {
-      w._eventHandlers.onload && h(w._eventHandlers.onload)
+      w._eventHandlers.onload && u(w._eventHandlers.onload)
     }, this.native.onerror = function() {
-      r = Math.max(0, r - 1), w._eventHandlers.onerror && h(w._eventHandlers.onerror)
+      c = Math.max(0, c - 1), w._eventHandlers.onerror && u(w._eventHandlers.onerror)
     }, this.native.ontimeout = function() {
-      r = Math.max(0, r - 1), w._eventHandlers.ontimeout && h(w._eventHandlers.ontimeout)
+      c = Math.max(0, c - 1), w._eventHandlers.ontimeout && u(w._eventHandlers.ontimeout)
     }, this.native.onabort = function() {
-      r = Math.max(0, r - 1), w._eventHandlers.onabort && h(w._eventHandlers.onabort)
+      c = Math.max(0, c - 1), w._eventHandlers.onabort && u(w._eventHandlers.onabort)
     }, this.native.onprogress = function(k) {
       if (w._eventHandlers.onprogress) {
-        let S = e.nativeToPseudo({
+        let I = e.nativeToPseudo({
           loaded: k.loaded,
           total: k.total,
           lengthComputable: k.lengthComputable
         });
-        h(w._eventHandlers.onprogress, S)
+        u(w._eventHandlers.onprogress, I)
       }
     }, this.native.onloadstart = function() {
-      w._eventHandlers.onloadstart && h(w._eventHandlers.onloadstart)
+      w._eventHandlers.onloadstart && u(w._eventHandlers.onloadstart)
     }, this.native.onloadend = function() {
-      w._eventHandlers.onloadend && h(w._eventHandlers.onloadend)
+      w._eventHandlers.onloadend && u(w._eventHandlers.onloadend)
     }, e.setProperty(this, "readyState", 0), e.setProperty(this, "status", 0), e.setProperty(this, "statusText", ""), e.setProperty(this, "responseText", ""), e.setProperty(this, "responseURL", "")
   }, !0);
-  e.setProperty(t, "XMLHttpRequest", d);
-  let b = e.getProperty(d, "prototype");
-  e.setProperty(d, "UNSENT", 0), e.setProperty(d, "OPENED", 1), e.setProperty(d, "HEADERS_RECEIVED", 2), e.setProperty(d, "LOADING", 3), e.setProperty(d, "DONE", 4), e.setProperty(b, "UNSENT", 0), e.setProperty(b, "OPENED", 1), e.setProperty(b, "HEADERS_RECEIVED", 2), e.setProperty(b, "LOADING", 3), e.setProperty(b, "DONE", 4);
+  e.setProperty(t, "XMLHttpRequest", b);
+  let T = e.getProperty(b, "prototype");
+  e.setProperty(b, "UNSENT", 0), e.setProperty(b, "OPENED", 1), e.setProperty(b, "HEADERS_RECEIVED", 2), e.setProperty(b, "LOADING", 3), e.setProperty(b, "DONE", 4), e.setProperty(T, "UNSENT", 0), e.setProperty(T, "OPENED", 1), e.setProperty(T, "HEADERS_RECEIVED", 2), e.setProperty(T, "LOADING", 3), e.setProperty(T, "DONE", 4);
   let C = ["onreadystatechange", "onload", "onerror", "ontimeout", "onabort", "onprogress", "onloadstart", "onloadend"];
-  for (let u of C) e.setProperty(b, u, Interpreter.VALUE_IN_DESCRIPTOR, {
+  for (let f of C) e.setProperty(T, f, Interpreter.VALUE_IN_DESCRIPTOR, {
     get: e.createNativeFunction(function() {
-      return this._eventHandlers[u] || null
+      return this._eventHandlers[f] || null
     }),
     set: e.createNativeFunction(function(w) {
-      s.settings.logCalls && console.log("XMLHttpRequest set " + u, this, w), this._eventHandlers[u] = w
+      s.settings.logCalls && console.log(n.domain, "XMLHttpRequest set " + f, this, w), this._eventHandlers[f] = w
     })
   });
-  e.setProperty(b, "timeout", Interpreter.VALUE_IN_DESCRIPTOR, {
+  e.setProperty(T, "timeout", Interpreter.VALUE_IN_DESCRIPTOR, {
     get: e.createNativeFunction(function() {
       return this.native.timeout
     }),
-    set: e.createNativeFunction(function(u) {
-      this.native.timeout = Math.min(u, 3e4)
+    set: e.createNativeFunction(function(f) {
+      this.native.timeout = Math.min(f, 3e4)
     })
-  }), e.setProperty(b, "withCredentials", Interpreter.VALUE_IN_DESCRIPTOR, {
+  }), e.setProperty(T, "withCredentials", Interpreter.VALUE_IN_DESCRIPTOR, {
     get: e.createNativeFunction(function() {
       return this.native.withCredentials
     }),
-    set: e.createNativeFunction(function(u) {
+    set: e.createNativeFunction(function(f) {
       this.native.withCredentials = !1
     })
-  }), e.setProperty(b, "responseType", Interpreter.VALUE_IN_DESCRIPTOR, {
+  }), e.setProperty(T, "responseType", Interpreter.VALUE_IN_DESCRIPTOR, {
     get: e.createNativeFunction(function() {
       return this.native.responseType
     }),
-    set: e.createNativeFunction(function(u) {
-      (u === "" || u === "text" || u === "json") && (this.native.responseType = u)
+    set: e.createNativeFunction(function(f) {
+      (f === "" || f === "text" || f === "json") && (this.native.responseType = f)
     })
-  }), e.setProperty(b, "response", Interpreter.VALUE_IN_DESCRIPTOR, {
+  }), e.setProperty(T, "response", Interpreter.VALUE_IN_DESCRIPTOR, {
     get: e.createNativeFunction(function() {
-      let u = this.native.response;
-      return this.native.responseType === "json" ? e.nativeToPseudo(u) : typeof u == "string" ? u.slice(0, 5242880) : u
+      let f = this.native.response;
+      return this.native.responseType === "json" ? e.nativeToPseudo(f) : typeof f == "string" ? f.slice(0, 5242880) : f
     })
-  }), e.setProperty(b, "open", e.createNativeFunction(function(u, w, k, S, A) {
-    if (!p(w)) throw new Error(`XHR request blocked: URL "${w}" is not allowed. Only absolute URLs to external origins are permitted.`);
-    let F = ["GET", "POST", "PUT", "DELETE", "PATCH", "HEAD", "OPTIONS"];
-    if (u = String(u).toUpperCase(), !F.includes(u)) throw new Error(`HTTP method "${u}" is not allowed`);
-    s.settings.logCalls && console.log("XMLHttpRequest open", this, u, w, k, S, A), this._method = u, this._url = w, this._async = k !== !1, this.native.open(u, w, this._async), this.native.timeout = 3e4, e.setProperty(this, "readyState", this.native.readyState)
-  })), e.setProperty(b, "setRequestHeader", e.createNativeFunction(function(u, w) {
-    if (["cookie", "cookie2", "set-cookie", "set-cookie2", "host", "origin", "referer"].includes(u.toLowerCase())) throw new Error(`Setting header "${u}" is not allowed`);
-    s.settings.logCalls && console.log("XMLHttpRequest setRequestHeader", this, u, w), this._headers[u] = w, this.native.setRequestHeader(u, w)
-  })), e.setProperty(b, "send", e.createNativeFunction(function(u) {
-    if (r >= 5) throw new Error("Maximum concurrent requests (5) exceeded");
-    s.settings.logCalls && console.log("XMLHttpRequest send", this, u), r++;
+  }), e.setProperty(T, "open", e.createNativeFunction(function(f, w, k, I, j) {
+    if (!g(w)) throw new Error(`XHR request blocked: URL "${w}" is not allowed. Only absolute URLs to external origins are permitted.`);
+    let H = ["GET", "POST", "PUT", "DELETE", "PATCH", "HEAD", "OPTIONS"];
+    if (f = String(f).toUpperCase(), !H.includes(f)) throw new Error(`HTTP method "${f}" is not allowed`);
+    s.settings.logCalls && console.log(n.domain, "XMLHttpRequest open", this, f, w, k, I, j), this._method = f, this._url = w, this._async = k !== !1, this.native.open(f, w, this._async), this.native.timeout = 3e4, e.setProperty(this, "readyState", this.native.readyState)
+  })), e.setProperty(T, "setRequestHeader", e.createNativeFunction(function(f, w) {
+    if (["cookie", "cookie2", "set-cookie", "set-cookie2", "host", "origin", "referer"].includes(f.toLowerCase())) throw new Error(`Setting header "${f}" is not allowed`);
+    s.settings.logCalls && console.log(n.domain, "XMLHttpRequest setRequestHeader", this, f, w), this._headers[f] = w, this.native.setRequestHeader(f, w)
+  })), e.setProperty(T, "send", e.createNativeFunction(function(f) {
+    if (c >= 5) throw new Error("Maximum concurrent requests (5) exceeded");
+    s.settings.logCalls && console.log(n.domain, "XMLHttpRequest send", this, f), c++;
     let w = null;
-    u != null && (typeof u == "string" ? w = u.slice(0, 5242880) : typeof u == "object" && (w = JSON.stringify(e.pseudoToNative(u)))), this.native.send(w)
-  })), e.setProperty(b, "abort", e.createNativeFunction(function() {
-    s.settings.logCalls && console.log("XMLHttpRequest abort", this), this.native.abort(), r = Math.max(0, r - 1)
-  })), e.setProperty(b, "getResponseHeader", e.createNativeFunction(function(u) {
-    return this.native.getResponseHeader(u)
-  })), e.setProperty(b, "getAllResponseHeaders", e.createNativeFunction(function() {
+    f != null && (typeof f == "string" ? w = f.slice(0, 5242880) : typeof f == "object" && (w = JSON.stringify(e.pseudoToNative(f)))), this.native.send(w)
+  })), e.setProperty(T, "abort", e.createNativeFunction(function() {
+    s.settings.logCalls && console.log(n.domain, "XMLHttpRequest abort", this), this.native.abort(), c = Math.max(0, c - 1)
+  })), e.setProperty(T, "getResponseHeader", e.createNativeFunction(function(f) {
+    return this.native.getResponseHeader(f)
+  })), e.setProperty(T, "getAllResponseHeaders", e.createNativeFunction(function() {
     return this.native.getAllResponseHeaders()
-  })), e.setProperty(b, "overrideMimeType", e.createNativeFunction(function(u) {
-    this.native.overrideMimeType(u)
+  })), e.setProperty(T, "overrideMimeType", e.createNativeFunction(function(f) {
+    this.native.overrideMimeType(f)
   }))
 }
 var at = "webtiles_storage",
@@ -708,14 +709,14 @@ var at = "webtiles_storage",
   $ = "localStorage",
   Oe = 1024 * 1024,
   De = 100,
-  U = null,
-  ue = null;
+  V = null,
+  he = null;
 
-function X() {
-  return ue || (ue = new Promise((e, t) => {
+function Z() {
+  return he || (he = new Promise((e, t) => {
     let n = indexedDB.open(at, rt);
     n.onerror = () => t(n.error), n.onsuccess = () => {
-      U = n.result, e(U)
+      V = n.result, e(V)
     }, n.onupgradeneeded = i => {
       let o = i.target.result;
       o.objectStoreNames.contains($) || o.createObjectStore($, {
@@ -724,17 +725,17 @@ function X() {
         unique: !1
       })
     }
-  }), ue)
+  }), he)
 }
 async function Fe(e, t) {
-  return await X(), new Promise((n, i) => {
-    let c = U.transaction($, "readonly").objectStore($).get([e, t]);
+  return await Z(), new Promise((n, i) => {
+    let c = V.transaction($, "readonly").objectStore($).get([e, t]);
     c.onsuccess = () => n(c.result?.value ?? null), c.onerror = () => i(c.error)
   })
 }
 async function ct(e, t, n) {
-  return await X(), new Promise((i, o) => {
-    let p = U.transaction($, "readwrite").objectStore($).put({
+  return await Z(), new Promise((i, o) => {
+    let p = V.transaction($, "readwrite").objectStore($).put({
       site: e,
       key: t,
       value: n
@@ -743,14 +744,14 @@ async function ct(e, t, n) {
   })
 }
 async function lt(e, t) {
-  return await X(), new Promise((n, i) => {
-    let c = U.transaction($, "readwrite").objectStore($).delete([e, t]);
+  return await Z(), new Promise((n, i) => {
+    let c = V.transaction($, "readwrite").objectStore($).delete([e, t]);
     c.onsuccess = () => n(), c.onerror = () => i(c.error)
   })
 }
 async function dt(e) {
-  return await X(), new Promise((t, n) => {
-    let c = U.transaction($, "readonly").objectStore($).index("site").getAll(e);
+  return await Z(), new Promise((t, n) => {
+    let c = V.transaction($, "readonly").objectStore($).index("site").getAll(e);
     c.onsuccess = () => {
       let p = c.result.map(g => g.key);
       t(p)
@@ -758,8 +759,8 @@ async function dt(e) {
   })
 }
 async function $e(e) {
-  return await X(), new Promise((t, n) => {
-    let c = U.transaction($, "readonly").objectStore($).index("site").getAll(e);
+  return await Z(), new Promise((t, n) => {
+    let c = V.transaction($, "readonly").objectStore($).index("site").getAll(e);
     c.onsuccess = () => {
       let p = 0;
       for (let g of c.result) p += (g.key.length + g.value.length) * 2;
@@ -771,8 +772,8 @@ async function $e(e) {
   })
 }
 async function ut(e) {
-  return await X(), new Promise((t, n) => {
-    let c = U.transaction($, "readwrite").objectStore($).index("site").openCursor(e);
+  return await Z(), new Promise((t, n) => {
+    let c = V.transaction($, "readwrite").objectStore($).index("site").openCursor(e);
     c.onsuccess = p => {
       let g = p.target.result;
       g ? (g.delete(), g.continue()) : t()
@@ -783,7 +784,7 @@ async function ut(e) {
 function Be(e, t, n) {
   let i = e.nativeToPseudo({});
   e.setProperty(i, "getItem", e.createAsyncFunction(function(o, r) {
-    if (s.settings.logCalls && console.log("localStorage.getItem", this, o), o == null) {
+    if (s.settings.logCalls && console.log(n, "localStorage.getItem", this, o), o == null) {
       r(null);
       return
     }
@@ -791,7 +792,7 @@ function Be(e, t, n) {
       console.error("localStorage.getItem error:", c), r(null)
     })
   })), e.setProperty(i, "setItem", e.createAsyncFunction(function(o, r, c) {
-    if (s.settings.logCalls && console.log("localStorage.setItem", this, o, r), o == null) {
+    if (s.settings.logCalls && console.log(n, "localStorage.setItem", this, o, r), o == null) {
       c();
       return
     }
@@ -799,20 +800,20 @@ function Be(e, t, n) {
       size: p,
       count: g
     }) => {
-      Fe(n, o).then(m => {
-        if (m === null && g >= De) throw new Error(`localStorage item limit exceeded (max ${De} items)`);
-        let d = m ? (o.length + m.length) * 2 : 0,
+      Fe(n, o).then(v => {
+        if (v === null && g >= De) throw new Error(`localStorage item limit exceeded (max ${De} items)`);
+        let u = v ? (o.length + v.length) * 2 : 0,
           b = (o.length + r.length) * 2;
-        if (p - d + b > Oe) throw new Error(`localStorage size limit exceeded (max ${Oe/1024}KB)`);
+        if (p - u + b > Oe) throw new Error(`localStorage size limit exceeded (max ${Oe/1024}KB)`);
         return ct(n, o, r)
-      }).then(() => c()).catch(m => {
-        throw console.error("localStorage.setItem error:", m), m
+      }).then(() => c()).catch(v => {
+        throw console.error("localStorage.setItem error:", v), v
       })
     }).catch(p => {
       console.error("localStorage.setItem error:", p), c()
     })
   })), e.setProperty(i, "removeItem", e.createAsyncFunction(function(o, r) {
-    if (s.settings.logCalls && console.log("localStorage.removeItem", this, o), o == null) {
+    if (s.settings.logCalls && console.log(n, "localStorage.removeItem", this, o), o == null) {
       r();
       return
     }
@@ -820,7 +821,7 @@ function Be(e, t, n) {
       console.error("localStorage.removeItem error:", c), r()
     })
   })), e.setProperty(i, "clear", e.createAsyncFunction(function(o) {
-    s.settings.logCalls && console.log("localStorage.clear", this), ut(n).then(() => o()).catch(r => {
+    s.settings.logCalls && console.log(n, "localStorage.clear", this), ut(n).then(() => o()).catch(r => {
       console.error("localStorage.clear error:", r), o()
     })
   })), e.setProperty(i, "key", e.createAsyncFunction(function(o, r) {
@@ -837,24 +838,24 @@ function Be(e, t, n) {
     })
   })), e.setProperty(t, "localStorage", i), e.setProperty(t, "sessionStorage", i)
 }
-X().catch(e => {
+Z().catch(e => {
   console.error("Failed to initialize storage DB:", e)
 });
 
-function He(e, t, n) {
-  let i = e.createNativeFunction(function() {}, !0);
-  e.setProperty(t, "DOMParser", i);
-  let o = e.getProperty(i, "prototype");
-  e.setProperty(o, "parseFromString", e.createNativeFunction(function(r, c) {
-    if (s.settings.logCalls && console.log("DOMParser parseFromString", this, r, c), !["text/html", "text/xml", "application/xml", "application/xhtml+xml", "image/svg+xml"].includes(c)) throw new Error(`DOMParser: Unsupported MIME type "${c}"`);
-    if (typeof r != "string" && (r = String(r)), r.length > 1e5) throw new Error("DOMParser: Input string too large (max 100KB)");
-    let m = new DOMParser().parseFromString(r, c),
-      h = e.createObjectProto(e.OBJECT_PROTO);
+function He(e, t, n, i) {
+  let o = e.createNativeFunction(function() {}, !0);
+  e.setProperty(t, "DOMParser", o);
+  let r = e.getProperty(o, "prototype");
+  e.setProperty(r, "parseFromString", e.createNativeFunction(function(c, p) {
+    if (s.settings.logCalls && console.log(i.domain, "DOMParser parseFromString", this, c, p), !["text/html", "text/xml", "application/xml", "application/xhtml+xml", "image/svg+xml"].includes(p)) throw new Error(`DOMParser: Unsupported MIME type "${p}"`);
+    if (typeof c != "string" && (c = String(c)), c.length > 1e5) throw new Error("DOMParser: Input string too large (max 100KB)");
+    let d = new DOMParser().parseFromString(c, p),
+      u = e.createObjectProto(e.OBJECT_PROTO);
 
-    function d(b) {
-      if (b == null) return null;
+    function b(T) {
+      if (T == null) return null;
       let C = e.createObjectProto(e.OBJECT_PROTO);
-      return C.native = b, C.fromDOMParser = !0, e.setProperty(C, "nodeName", Interpreter.VALUE_IN_DESCRIPTOR, {
+      return C.native = T, C.fromDOMParser = !0, e.setProperty(C, "nodeName", Interpreter.VALUE_IN_DESCRIPTOR, {
         get: e.createNativeFunction(function() {
           return this.native.nodeName
         })
@@ -866,15 +867,15 @@ function He(e, t, n) {
         get: e.createNativeFunction(function() {
           return this.native.nodeValue
         }),
-        set: e.createNativeFunction(function(u) {
-          s.settings.logCalls && console.log("DOMParser set nodeValue", this, u), this.native.nodeValue = u
+        set: e.createNativeFunction(function(f) {
+          s.settings.logCalls && console.log(i.domain, "DOMParser set nodeValue", this, f), this.native.nodeValue = f
         })
       }), e.setProperty(C, "textContent", Interpreter.VALUE_IN_DESCRIPTOR, {
         get: e.createNativeFunction(function() {
           return this.native.textContent
         }),
-        set: e.createNativeFunction(function(u) {
-          s.settings.logCalls && console.log("DOMParser set textContent", this, u), this.native.textContent = String(u).slice(0, 5e4)
+        set: e.createNativeFunction(function(f) {
+          s.settings.logCalls && console.log(i.domain, "DOMParser set textContent", this, f), this.native.textContent = String(f).slice(0, 5e4)
         })
       }), e.setProperty(C, "tagName", Interpreter.VALUE_IN_DESCRIPTOR, {
         get: e.createNativeFunction(function() {
@@ -884,21 +885,21 @@ function He(e, t, n) {
         get: e.createNativeFunction(function() {
           return this.native.id
         }),
-        set: e.createNativeFunction(function(u) {
-          s.settings.logCalls && console.log("DOMParser set id", this, u), this.native.id = String(u).slice(0, 100)
+        set: e.createNativeFunction(function(f) {
+          s.settings.logCalls && console.log(i.domain, "DOMParser set id", this, f), this.native.id = String(f).slice(0, 100)
         })
       }), e.setProperty(C, "className", Interpreter.VALUE_IN_DESCRIPTOR, {
         get: e.createNativeFunction(function() {
           return this.native.className
         }),
-        set: e.createNativeFunction(function(u) {
-          s.settings.logCalls && console.log("DOMParser set className", this, u), this.native.className = String(u).slice(0, 1e3)
+        set: e.createNativeFunction(function(f) {
+          s.settings.logCalls && console.log(i.domain, "DOMParser set className", this, f), this.native.className = String(f).slice(0, 1e3)
         })
       }), e.setProperty(C, "innerHTML", Interpreter.VALUE_IN_DESCRIPTOR, {
         get: e.createNativeFunction(function() {
           return this.native.innerHTML
         }),
-        set: e.createNativeFunction(function(u) {
+        set: e.createNativeFunction(function(f) {
           throw new Error("innerHTML is not allowed. Create elements using document.createElement and append them instead or use innerText instead.")
         })
       }), e.setProperty(C, "outerHTML", Interpreter.VALUE_IN_DESCRIPTOR, {
@@ -907,136 +908,136 @@ function He(e, t, n) {
         })
       }), e.setProperty(C, "children", Interpreter.VALUE_IN_DESCRIPTOR, {
         get: e.createNativeFunction(function() {
-          let u = Array.from(this.native.children),
+          let f = Array.from(this.native.children),
             w = e.createObjectProto(e.ARRAY_PROTO);
-          for (let k = 0; k < u.length; k++) e.setProperty(w, k, d(u[k]));
-          return e.setProperty(w, "length", u.length), w
+          for (let k = 0; k < f.length; k++) e.setProperty(w, k, b(f[k]));
+          return e.setProperty(w, "length", f.length), w
         })
       }), e.setProperty(C, "childNodes", Interpreter.VALUE_IN_DESCRIPTOR, {
         get: e.createNativeFunction(function() {
-          let u = Array.from(this.native.childNodes),
+          let f = Array.from(this.native.childNodes),
             w = e.createObjectProto(e.ARRAY_PROTO);
-          for (let k = 0; k < u.length; k++) e.setProperty(w, k, d(u[k]));
-          return e.setProperty(w, "length", u.length), w
+          for (let k = 0; k < f.length; k++) e.setProperty(w, k, b(f[k]));
+          return e.setProperty(w, "length", f.length), w
         })
       }), e.setProperty(C, "firstChild", Interpreter.VALUE_IN_DESCRIPTOR, {
         get: e.createNativeFunction(function() {
-          return d(this.native.firstChild)
+          return b(this.native.firstChild)
         })
       }), e.setProperty(C, "lastChild", Interpreter.VALUE_IN_DESCRIPTOR, {
         get: e.createNativeFunction(function() {
-          return d(this.native.lastChild)
+          return b(this.native.lastChild)
         })
       }), e.setProperty(C, "firstElementChild", Interpreter.VALUE_IN_DESCRIPTOR, {
         get: e.createNativeFunction(function() {
-          return d(this.native.firstElementChild)
+          return b(this.native.firstElementChild)
         })
       }), e.setProperty(C, "lastElementChild", Interpreter.VALUE_IN_DESCRIPTOR, {
         get: e.createNativeFunction(function() {
-          return d(this.native.lastElementChild)
+          return b(this.native.lastElementChild)
         })
       }), e.setProperty(C, "parentNode", Interpreter.VALUE_IN_DESCRIPTOR, {
         get: e.createNativeFunction(function() {
           if (!this.fromDOMParser) throw new Error("No access.");
-          return this.native.isSameNode(n) ? null : (s.settings.logCalls && console.log("DOMParser get parentNode", this), d(this.native.parentNode))
+          return this.native.isSameNode(n) ? null : (s.settings.logCalls && console.log(i.domain, "DOMParser get parentNode", this), b(this.native.parentNode))
         })
       }), e.setProperty(C, "parentElement", Interpreter.VALUE_IN_DESCRIPTOR, {
         get: e.createNativeFunction(function() {
           if (!this.fromDOMParser) throw new Error("No access.");
-          return this.native.isSameNode(n) ? null : (s.settings.logCalls && console.log("DOMParser get parentElement", this), d(this.native.parentElement))
+          return this.native.isSameNode(n) ? null : (s.settings.logCalls && console.log(i.domain, "DOMParser get parentElement", this), b(this.native.parentElement))
         })
       }), e.setProperty(C, "nextSibling", Interpreter.VALUE_IN_DESCRIPTOR, {
         get: e.createNativeFunction(function() {
           if (!this.fromDOMParser) throw new Error("No access.");
-          return this.native.isSameNode(n) ? null : (s.settings.logCalls && console.log("DOMParser get nextSibling", this), d(this.native.nextSibling))
+          return this.native.isSameNode(n) ? null : (s.settings.logCalls && console.log(i.domain, "DOMParser get nextSibling", this), b(this.native.nextSibling))
         })
       }), e.setProperty(C, "previousSibling", Interpreter.VALUE_IN_DESCRIPTOR, {
         get: e.createNativeFunction(function() {
           if (!this.fromDOMParser) throw new Error("No access.");
-          return this.native.isSameNode(n) ? null : (s.settings.logCalls && console.log("DOMParser get previousSibling", this), d(this.native.previousSibling))
+          return this.native.isSameNode(n) ? null : (s.settings.logCalls && console.log(i.domain, "DOMParser get previousSibling", this), b(this.native.previousSibling))
         })
       }), e.setProperty(C, "getAttributeNames", e.createNativeFunction(function() {
         if (!this.fromDOMParser) throw new Error("No access.");
-        let u = Array.from(this.native.getAttributeNames()),
+        let f = Array.from(this.native.getAttributeNames()),
           w = e.createObjectProto(e.ARRAY_PROTO);
-        for (let k = 0; k < u.length; k++) e.setProperty(w, k, u[k]);
-        return e.setProperty(w, "length", u.length), w
-      })), e.setProperty(C, "getAttribute", e.createNativeFunction(function(u) {
+        for (let k = 0; k < f.length; k++) e.setProperty(w, k, f[k]);
+        return e.setProperty(w, "length", f.length), w
+      })), e.setProperty(C, "getAttribute", e.createNativeFunction(function(f) {
         if (!this.fromDOMParser) throw new Error("No access.");
-        return this.native.getAttribute(u)
-      })), e.setProperty(C, "setAttribute", e.createNativeFunction(function(u, w) {
+        return this.native.getAttribute(f)
+      })), e.setProperty(C, "setAttribute", e.createNativeFunction(function(f, w) {
         if (!this.fromDOMParser) throw new Error("No access.");
-        if (u = String(u).toLowerCase(), u.startsWith("on")) throw new Error("Event handlers are not allowed");
-        this.native.setAttribute(u, String(w)), s.settings.logCalls && console.log("DOMParser set attribute", this, u, w)
-      })), e.setProperty(C, "hasAttribute", e.createNativeFunction(function(u) {
+        if (f = String(f).toLowerCase(), f.startsWith("on")) throw new Error("Event handlers are not allowed");
+        this.native.setAttribute(f, String(w)), s.settings.logCalls && console.log(i.domain, "DOMParser set attribute", this, f, w)
+      })), e.setProperty(C, "hasAttribute", e.createNativeFunction(function(f) {
         if (!this.fromDOMParser) throw new Error("No access.");
-        return this.native.hasAttribute(u)
-      })), e.setProperty(C, "removeAttribute", e.createNativeFunction(function(u) {
+        return this.native.hasAttribute(f)
+      })), e.setProperty(C, "removeAttribute", e.createNativeFunction(function(f) {
         if (!this.fromDOMParser) throw new Error("No access.");
         if (this.native.isSameNode(n)) throw new Error("No access.");
-        this.native.removeAttribute(u), s.settings.logCalls && console.log("DOMParser remove attribute", this, u)
-      })), e.setProperty(C, "querySelector", e.createNativeFunction(function(u) {
+        this.native.removeAttribute(f), s.settings.logCalls && console.log(i.domain, "DOMParser remove attribute", this, f)
+      })), e.setProperty(C, "querySelector", e.createNativeFunction(function(f) {
         if (!this.fromDOMParser) throw new Error("No access.");
-        return d(this.native.querySelector(u))
-      })), e.setProperty(C, "querySelectorAll", e.createNativeFunction(function(u) {
+        return b(this.native.querySelector(f))
+      })), e.setProperty(C, "querySelectorAll", e.createNativeFunction(function(f) {
         if (!this.fromDOMParser) throw new Error("No access.");
-        let w = Array.from(this.native.querySelectorAll(u)),
+        let w = Array.from(this.native.querySelectorAll(f)),
           k = e.createObjectProto(e.ARRAY_PROTO);
-        for (let S = 0; S < w.length; S++) e.setProperty(k, S, d(w[S]));
+        for (let I = 0; I < w.length; I++) e.setProperty(k, I, b(w[I]));
         return e.setProperty(k, "length", w.length), k
-      })), e.setProperty(C, "getElementsByTagName", e.createNativeFunction(function(u) {
+      })), e.setProperty(C, "getElementsByTagName", e.createNativeFunction(function(f) {
         if (!this.fromDOMParser) throw new Error("No access.");
-        let w = Array.from(this.native.getElementsByTagName(u)),
+        let w = Array.from(this.native.getElementsByTagName(f)),
           k = e.createObjectProto(e.ARRAY_PROTO);
-        for (let S = 0; S < w.length; S++) e.setProperty(k, S, d(w[S]));
+        for (let I = 0; I < w.length; I++) e.setProperty(k, I, b(w[I]));
         return e.setProperty(k, "length", w.length), k
-      })), e.setProperty(C, "getElementsByClassName", e.createNativeFunction(function(u) {
+      })), e.setProperty(C, "getElementsByClassName", e.createNativeFunction(function(f) {
         if (!this.fromDOMParser) throw new Error("No access.");
-        let w = Array.from(this.native.getElementsByClassName(u)),
+        let w = Array.from(this.native.getElementsByClassName(f)),
           k = e.createObjectProto(e.ARRAY_PROTO);
-        for (let S = 0; S < w.length; S++) e.setProperty(k, S, d(w[S]));
+        for (let I = 0; I < w.length; I++) e.setProperty(k, I, b(w[I]));
         return e.setProperty(k, "length", w.length), k
-      })), e.setProperty(C, "getElementById", e.createNativeFunction(function(u) {
+      })), e.setProperty(C, "getElementById", e.createNativeFunction(function(f) {
         if (!this.fromDOMParser) throw new Error("No access.");
-        return d(this.native.getElementById ? this.native.getElementById(u) : null)
+        return b(this.native.getElementById ? this.native.getElementById(f) : null)
       })), C
     }
-    return e.setProperty(h, "documentElement", Interpreter.VALUE_IN_DESCRIPTOR, {
+    return e.setProperty(u, "documentElement", Interpreter.VALUE_IN_DESCRIPTOR, {
       get: e.createNativeFunction(function() {
-        return d(m.documentElement)
+        return b(d.documentElement)
       })
-    }), e.setProperty(h, "head", Interpreter.VALUE_IN_DESCRIPTOR, {
+    }), e.setProperty(u, "head", Interpreter.VALUE_IN_DESCRIPTOR, {
       get: e.createNativeFunction(function() {
-        return s.settings.logCalls && console.log("DOMParser get head", this), d(m.head)
+        return s.settings.logCalls && console.log(i.domain, "DOMParser get head", this), b(d.head)
       })
-    }), e.setProperty(h, "body", Interpreter.VALUE_IN_DESCRIPTOR, {
+    }), e.setProperty(u, "body", Interpreter.VALUE_IN_DESCRIPTOR, {
       get: e.createNativeFunction(function() {
-        return s.settings.logCalls && console.log("DOMParser get body", this), d(m.body)
+        return s.settings.logCalls && console.log(i.domain, "DOMParser get body", this), b(d.body)
       })
-    }), e.setProperty(h, "title", Interpreter.VALUE_IN_DESCRIPTOR, {
+    }), e.setProperty(u, "title", Interpreter.VALUE_IN_DESCRIPTOR, {
       get: e.createNativeFunction(function() {
-        return m.title
+        return d.title
       })
-    }), e.setProperty(h, "querySelector", e.createNativeFunction(function(b) {
-      return d(m.querySelector(b))
-    })), e.setProperty(h, "querySelectorAll", e.createNativeFunction(function(b) {
-      let C = Array.from(m.querySelectorAll(b)),
-        u = e.createObjectProto(e.ARRAY_PROTO);
-      for (let w = 0; w < C.length; w++) e.setProperty(u, w, d(C[w]));
-      return e.setProperty(u, "length", C.length), u
-    })), e.setProperty(h, "getElementById", e.createNativeFunction(function(b) {
-      return d(m.getElementById(b))
-    })), e.setProperty(h, "getElementsByTagName", e.createNativeFunction(function(b) {
-      let C = Array.from(m.getElementsByTagName(b)),
-        u = e.createObjectProto(e.ARRAY_PROTO);
-      for (let w = 0; w < C.length; w++) e.setProperty(u, w, d(C[w]));
-      return e.setProperty(u, "length", C.length), u
-    })), e.setProperty(h, "getElementsByClassName", e.createNativeFunction(function(b) {
-      let C = Array.from(m.getElementsByClassName(b)),
-        u = e.createObjectProto(e.ARRAY_PROTO);
-      for (let w = 0; w < C.length; w++) e.setProperty(u, w, d(C[w]));
-      return e.setProperty(u, "length", C.length), u
-    })), h
+    }), e.setProperty(u, "querySelector", e.createNativeFunction(function(T) {
+      return b(d.querySelector(T))
+    })), e.setProperty(u, "querySelectorAll", e.createNativeFunction(function(T) {
+      let C = Array.from(d.querySelectorAll(T)),
+        f = e.createObjectProto(e.ARRAY_PROTO);
+      for (let w = 0; w < C.length; w++) e.setProperty(f, w, b(C[w]));
+      return e.setProperty(f, "length", C.length), f
+    })), e.setProperty(u, "getElementById", e.createNativeFunction(function(T) {
+      return b(d.getElementById(T))
+    })), e.setProperty(u, "getElementsByTagName", e.createNativeFunction(function(T) {
+      let C = Array.from(d.getElementsByTagName(T)),
+        f = e.createObjectProto(e.ARRAY_PROTO);
+      for (let w = 0; w < C.length; w++) e.setProperty(f, w, b(C[w]));
+      return e.setProperty(f, "length", C.length), f
+    })), e.setProperty(u, "getElementsByClassName", e.createNativeFunction(function(T) {
+      let C = Array.from(d.getElementsByClassName(T)),
+        f = e.createObjectProto(e.ARRAY_PROTO);
+      for (let w = 0; w < C.length; w++) e.setProperty(f, w, b(C[w]));
+      return e.setProperty(f, "length", C.length), f
+    })), u
   }))
 }
 
@@ -1046,74 +1047,74 @@ function je(e, t, n, i) {
     c = 5,
     p = new WeakMap,
     g = 0,
-    m = e.nativeToPseudo({});
-  e.setProperty(t, "__eventCallbacks", m);
+    v = e.nativeToPseudo({});
+  e.setProperty(t, "__eventCallbacks", v);
 
-  function h(a, f) {
+  function d(a, h) {
     let y = g++;
-    e.setProperty(m, "fn" + y, a), e.setProperty(m, "ev" + y, f), e.appendCode(`__eventCallbacks.fn${y}(__eventCallbacks.ev${y}); delete __eventCallbacks.fn${y}; delete __eventCallbacks.ev${y};`)
+    e.setProperty(v, "fn" + y, a), e.setProperty(v, "ev" + y, h), e.appendCode(`__eventCallbacks.fn${y}(__eventCallbacks.ev${y}); delete __eventCallbacks.fn${y}; delete __eventCallbacks.ev${y};`)
   }
 
-  function d() {
+  function u() {
     return n.getElementsByTagName("*").length
   }
 
   function b(a = 1) {
-    if (d() + a > r) throw new Error(`DOM element limit exceeded (max ${r})`)
+    if (u() + a > r) throw new Error(`DOM element limit exceeded (max ${r})`)
   }
 
-  function C(a) {
+  function T(a) {
     return a instanceof Element ? 1 + a.getElementsByTagName("*").length : 0
   }
 
-  function u(a, f = !1) {
+  function C(a, h = !1) {
     if (a == null) return null;
     if (o.has(a)) return o.get(a);
-    let y = a instanceof Element ? Z : A,
-      x = e.createObject(y);
-    return x.native = a, x.fromDOMParser || (x.fromDOMParser = f), o.set(a, x), x
+    let y = a instanceof Element ? se : I,
+      S = e.createObject(y);
+    return S.native = a, S.fromDOMParser || (S.fromDOMParser = h), o.set(a, S), S
   }
 
-  function w(a) {
+  function f(a) {
     return a && n.contains(a)
   }
 
-  function k(a) {
-    return w(a) ? a : null
+  function w(a) {
+    return f(a) ? a : null
   }
 
-  function S(a) {
-    let f = e.createObjectProto(e.ARRAY_PROTO);
-    for (let y = 0; y < a.length; y++) e.setProperty(f, y, u(a[y]));
-    return e.setProperty(f, "length", a.length), f
+  function k(a) {
+    let h = e.createObjectProto(e.ARRAY_PROTO);
+    for (let y = 0; y < a.length; y++) e.setProperty(h, y, C(a[y]));
+    return e.setProperty(h, "length", a.length), h
   }
-  let A = e.createNativeFunction(function() {
+  let I = e.createNativeFunction(function() {
     throw TypeError("Illegal constructor")
   }, !0);
-  e.setProperty(t, "Node", A);
-  let F = e.getProperty(A, "prototype"),
-    ne = {
+  e.setProperty(t, "Node", I);
+  let j = e.getProperty(I, "prototype"),
+    H = {
       firstChild: function() {
-        return u(k(this.native.firstChild))
+        return C(w(this.native.firstChild))
       },
       lastChild: function() {
-        return u(k(this.native.lastChild))
+        return C(w(this.native.lastChild))
       },
       parentNode: function() {
-        return u(k(this.native.parentNode))
+        return C(w(this.native.parentNode))
       },
       parentElement: function() {
-        return u(k(this.native.parentElement))
+        return C(w(this.native.parentElement))
       },
       nextSibling: function() {
-        return u(k(this.native.nextSibling))
+        return C(w(this.native.nextSibling))
       },
       previousSibling: function() {
-        return u(k(this.native.previousSibling))
+        return C(w(this.native.previousSibling))
       },
       childNodes: function() {
-        let a = Array.from(this.native.childNodes).filter(w);
-        return S(a)
+        let a = Array.from(this.native.childNodes).filter(f);
+        return k(a)
       },
       nodeName: function() {
         return this.native.nodeName
@@ -1128,96 +1129,96 @@ function je(e, t, n, i) {
         return this.native.textContent
       }
     },
-    W = {
+    J = {
       textContent: function(a) {
-        s.settings.logCalls && console.log("set textContent", this, a), this.native.textContent = a
+        s.settings.logCalls && console.log(i.domain, "set textContent", this, a), this.native.textContent = a
       },
       nodeValue: function(a) {
-        s.settings.logCalls && console.log("set nodeValue", this, a), this.native.nodeValue = a
+        s.settings.logCalls && console.log(i.domain, "set nodeValue", this, a), this.native.nodeValue = a
       }
     };
-  for (let [a, f] of Object.entries(ne)) {
+  for (let [a, h] of Object.entries(H)) {
     let y = {
-      get: e.createNativeFunction(f)
+      get: e.createNativeFunction(h)
     };
-    W[a] && (y.set = e.createNativeFunction(W[a])), e.setProperty(F, a, Interpreter.VALUE_IN_DESCRIPTOR, y)
+    J[a] && (y.set = e.createNativeFunction(J[a])), e.setProperty(j, a, Interpreter.VALUE_IN_DESCRIPTOR, y)
   }
-  let fe = {
+  let Y = {
     hasChildNodes: function() {
       return this.native.hasChildNodes()
     },
     appendChild: function(a) {
       if (!a?.native) return null;
       if (a.fromDOMParser) throw new Error("You cannot append DOMParser elements to the DOM.");
-      return b(C(a.native)), this.native.appendChild(a.native), s.settings.logCalls && console.log("appendChild", this, a), a
+      return b(T(a.native)), this.native.appendChild(a.native), s.settings.logCalls && console.log(i.domain, "appendChild", this, a), a
     },
     append: function(a) {
-      for (let f of a)
-        if (f?.native) {
-          if (f.fromDOMParser) throw new Error("You cannot append DOMParser elements to the DOM.");
-          b(C(f.native)), this.native.appendChild(f.native)
-        } return s.settings.logCalls && console.log("append", this, a), a
+      for (let h of a)
+        if (h?.native) {
+          if (h.fromDOMParser) throw new Error("You cannot append DOMParser elements to the DOM.");
+          b(T(h.native)), this.native.appendChild(h.native)
+        } return s.settings.logCalls && console.log(i.domain, "append", this, a), a
     },
     removeChild: function(a) {
-      return !a?.native || !w(a.native) ? null : (s.settings.logCalls && console.log("removeChild", this, a), u(this.native.removeChild(a.native)))
+      return !a?.native || !f(a.native) ? null : (s.settings.logCalls && console.log(i.domain, "removeChild", this, a), C(this.native.removeChild(a.native)))
     },
-    insertBefore: function(a, f) {
+    insertBefore: function(a, h) {
       if (!a?.native) return null;
       if (a.fromDOMParser) throw new Error("You cannot insert DOMParser elements into the DOM.");
       if (this.native.isSameNode(n)) throw new Error("No access.");
-      b(C(a.native));
-      let y = f?.native || null;
-      return this.native.insertBefore(a.native, y), s.settings.logCalls && console.log("insertBefore", this, a, y), a
+      b(T(a.native));
+      let y = h?.native || null;
+      return this.native.insertBefore(a.native, y), s.settings.logCalls && console.log(i.domain, "insertBefore", this, a, y), a
     },
     cloneNode: function(a) {
-      return s.settings.logCalls && console.log("cloneNode", this, a), u(this.native.cloneNode(a), this.fromDOMParser)
+      return s.settings.logCalls && console.log(i.domain, "cloneNode", this, a), C(this.native.cloneNode(a), this.fromDOMParser)
     },
     contains: function(a) {
       return a?.native ? this.native.contains(a.native) : !1
     },
     remove: function() {
       if (this.native.isSameNode(n)) throw new Error("No access.");
-      this.native.remove(), s.settings.logCalls && console.log("remove", this)
+      this.native.remove(), s.settings.logCalls && console.log(i.domain, "remove", this)
     },
     after: function(a) {
       if (!a?.native) return null;
       if (a.fromDOMParser) throw new Error("You cannot insert DOMParser elements into the DOM.");
       if (this.native.isSameNode(n)) throw new Error("No access.");
-      return b(C(a.native)), this.native.after(a.native), s.settings.logCalls && console.log("after", this, a), a
+      return b(T(a.native)), this.native.after(a.native), s.settings.logCalls && console.log(i.domain, "after", this, a), a
     },
     before: function(a) {
       if (!a?.native) return null;
       if (a.fromDOMParser) throw new Error("You cannot insert DOMParser elements into the DOM.");
       if (this.native.isSameNode(n)) throw new Error("No access.");
-      return b(C(a.native)), this.native.before(a.native), s.settings.logCalls && console.log("before", this, a), a
+      return b(T(a.native)), this.native.before(a.native), s.settings.logCalls && console.log(i.domain, "before", this, a), a
     }
   };
-  for (let [a, f] of Object.entries(fe)) e.setProperty(F, a, e.createNativeFunction(f));
-  let Z = e.createNativeFunction(function() {
+  for (let [a, h] of Object.entries(Y)) e.setProperty(j, a, e.createNativeFunction(h));
+  let se = e.createNativeFunction(function() {
     throw TypeError("Illegal constructor")
   }, !0);
-  e.setProperty(t, "Element", Z);
-  let _ = e.createObject(A);
-  e.setProperty(Z, "prototype", _);
+  e.setProperty(t, "Element", se);
+  let _ = e.createObject(I);
+  e.setProperty(se, "prototype", _);
 
-  function J(a) {
+  function z(a) {
     if (!a) return "";
     a = String(a);
-    let f = a.toLowerCase().trim();
-    if (f.startsWith("javascript:") || f.startsWith("vbscript:")) throw new Error("javascript: URLs are not allowed");
-    if (f.startsWith("data:")) return a;
+    let h = a.toLowerCase().trim();
+    if (h.startsWith("javascript:") || h.startsWith("vbscript:")) throw new Error("javascript: URLs are not allowed");
+    if (h.startsWith("data:")) return a;
     try {
       let y = new URL(a, location.href);
       if (y.hostname !== location.hostname) throw new Error("External URLs are not allowed");
-      let x = y.pathname + y.search + y.hash;
-      return x.startsWith(`/t/${i.domain}/`) || (x = `/t/${i.domain}/${x}`.replaceAll("//", "/")), x
+      let S = y.pathname + y.search + y.hash;
+      return S.startsWith(`/t/${i.domain}/`) || (S = `/t/${i.domain}/${S}`.replaceAll("//", "/")), S
     } catch (y) {
       if (y.message.includes("not allowed")) throw y;
-      let x = a;
-      return !x.startsWith(`/t/${i.domain}/`) && !x.startsWith("#") && (x = `/t/${i.domain}/${x}`.replaceAll("//", "/")), x
+      let S = a;
+      return !S.startsWith(`/t/${i.domain}/`) && !S.startsWith("#") && (S = `/t/${i.domain}/${S}`.replaceAll("//", "/")), S
     }
   }
-  let se = {
+  let G = {
       innerText: function() {
         return this.native.innerText
       },
@@ -1237,20 +1238,20 @@ function je(e, t, n, i) {
         return this.native.tagName
       },
       children: function() {
-        let a = Array.from(this.native.children).filter(w);
-        return S(a)
+        let a = Array.from(this.native.children).filter(f);
+        return k(a)
       },
       firstElementChild: function() {
-        return u(k(this.native.firstElementChild))
+        return C(w(this.native.firstElementChild))
       },
       lastElementChild: function() {
-        return u(k(this.native.lastElementChild))
+        return C(w(this.native.lastElementChild))
       },
       nextElementSibling: function() {
-        return u(k(this.native.nextElementSibling))
+        return C(w(this.native.nextElementSibling))
       },
       previousElementSibling: function() {
-        return u(k(this.native.previousElementSibling))
+        return C(w(this.native.previousElementSibling))
       },
       childElementCount: function() {
         return this.native.childElementCount
@@ -1391,7 +1392,7 @@ function je(e, t, n, i) {
         return this.native.videoHeight || 0
       }
     },
-    V = {
+    re = {
       innerText: function(a) {
         this.native.innerText = a.slice(0, 1e3)
       },
@@ -1400,17 +1401,17 @@ function je(e, t, n, i) {
       },
       id: function(a) {
         if (this.native.className === "tile-body") throw new Error("No access.");
-        this.native.id = a, s.settings.logCalls && console.log("set id", this, a)
+        this.native.id = a, s.settings.logCalls && console.log(i.domain, "set id", this, a)
       },
       className: function(a) {
         if (this.native.className === "tile-body") throw new Error("No access.");
-        this.native.className = a, s.settings.logCalls && console.log("set className", this, a)
+        this.native.className = a, s.settings.logCalls && console.log(i.domain, "set className", this, a)
       },
       src: function(a) {
-        this.native.src = J(a), s.settings.logCalls && console.log("set src", this, a)
+        this.native.src = z(a), s.settings.logCalls && console.log(i.domain, "set src", this, a)
       },
       href: function(a) {
-        this.native.href = this.native.tagName === "A" ? a : J(a), s.settings.logCalls && console.log("set href", this, a)
+        this.native.href = this.native.tagName === "A" ? a : z(a), s.settings.logCalls && console.log(i.domain, "set href", this, a)
       },
       hidden: function(a) {
         if (this.native.className === "tile-body") throw new Error("No access.");
@@ -1488,35 +1489,35 @@ function je(e, t, n, i) {
       },
       preload: function(a) {
         if (this.native instanceof HTMLMediaElement) {
-          let f = ["none", "metadata", "auto"];
-          this.native.preload = f.includes(a) ? a : "auto"
+          let h = ["none", "metadata", "auto"];
+          this.native.preload = h.includes(a) ? a : "auto"
         }
       },
       poster: function(a) {
-        this.native instanceof HTMLVideoElement && (this.native.poster = J(a))
+        this.native instanceof HTMLVideoElement && (this.native.poster = z(a))
       }
     };
-  for (let [a, f] of Object.entries(se)) {
+  for (let [a, h] of Object.entries(G)) {
     let y = {
-      get: e.createNativeFunction(f)
+      get: e.createNativeFunction(h)
     };
-    V[a] && (y.set = e.createNativeFunction(V[a])), e.setProperty(_, a, Interpreter.VALUE_IN_DESCRIPTOR, y)
+    re[a] && (y.set = e.createNativeFunction(re[a])), e.setProperty(_, a, Interpreter.VALUE_IN_DESCRIPTOR, y)
   }
   let me = {
     getAttributeNames: function() {
       let a = Array.from(this.native.getAttributeNames()),
-        f = e.createObjectProto(e.ARRAY_PROTO);
-      for (let y = 0; y < a.length; y++) e.setProperty(f, y, a[y]);
-      return e.setProperty(f, "length", a.length), f
+        h = e.createObjectProto(e.ARRAY_PROTO);
+      for (let y = 0; y < a.length; y++) e.setProperty(h, y, a[y]);
+      return e.setProperty(h, "length", a.length), h
     },
     getAttribute: function(a) {
       return this.native.getAttribute(a)
     },
-    setAttribute: function(a, f) {
+    setAttribute: function(a, h) {
       if (this.native.className === "tile-body") throw new Error("No access.");
-      if (a = String(a).toLowerCase(), f = String(f), s.settings.logCalls && console.log("setAttribute", this, a, f), a === "style" && f.includes("animation-play-state") && f.includes("!important")) throw new Error("Cannot set animation-play-state to !important");
+      if (a = String(a).toLowerCase(), h = String(h), s.settings.logCalls && console.log(i.domain, "setAttribute", this, a, h), a === "style" && h.includes("animation-play-state") && h.includes("!important")) throw new Error("Cannot set animation-play-state to !important");
       if (a === "src" || a === "poster" || a === "data" || this.native.tagName !== "A" && a === "href") {
-        this.native.setAttribute(a, J(f));
+        this.native.setAttribute(a, z(h));
         return
       }
       if (a === "autoplay") throw new Error("autoplay is not allowed");
@@ -1524,10 +1525,10 @@ function je(e, t, n, i) {
       if (a === "action" || a === "formaction") throw new Error("action and formaction are not allowed");
       if (a.startsWith("on")) throw new Error("Event handlers are not allowed. Use addEventListener instead.");
       if (a === "width" || a === "height") {
-        let y = parseFloat(f);
+        let y = parseFloat(h);
         if (isNaN(y) || y < 0 || y > 4096) throw new Error("Invalid width or height")
       }
-      this.native.setAttribute(a, f)
+      this.native.setAttribute(a, h)
     },
     focus: function() {
       this.native.focus()
@@ -1541,40 +1542,40 @@ function je(e, t, n, i) {
     scrollIntoView: function(a) {
       a && typeof a == "object" ? this.native.scrollIntoView(e.pseudoToNative(a)) : this.native.scrollIntoView(a)
     },
-    scrollTo: function(a, f) {
-      this.native.scrollTo(a, f)
+    scrollTo: function(a, h) {
+      this.native.scrollTo(a, h)
     },
-    scrollBy: function(a, f) {
-      this.native.scrollBy(a, f)
+    scrollBy: function(a, h) {
+      this.native.scrollBy(a, h)
     },
     removeAttribute: function(a) {
       if (this.native.className === "tile-body") throw new Error("No access.");
       if (a = String(a).toLowerCase(), a === "target") throw new Error("removing target is not allowed");
-      s.settings.logCalls && console.log("removeAttribute", this, a), this.native.removeAttribute(a)
+      s.settings.logCalls && console.log(i.domain, "removeAttribute", this, a), this.native.removeAttribute(a)
     },
     hasAttribute: function(a) {
       return this.native.hasAttribute(a)
     },
     querySelector: function(a) {
-      let f = this.native.querySelector(a);
-      return u(k(f))
+      let h = this.native.querySelector(a);
+      return C(w(h))
     },
     querySelectorAll: function(a) {
-      let f = Array.from(this.native.querySelectorAll(a)).filter(w);
-      return S(f)
+      let h = Array.from(this.native.querySelectorAll(a)).filter(f);
+      return k(h)
     },
     getElementsByClassName: function(a) {
-      let f = Array.from(this.native.getElementsByClassName(a)).filter(w);
-      return S(f)
+      let h = Array.from(this.native.getElementsByClassName(a)).filter(f);
+      return k(h)
     },
     getElementsByTagName: function(a) {
-      let f = Array.from(this.native.getElementsByTagName(a)).filter(w);
-      return S(f)
+      let h = Array.from(this.native.getElementsByTagName(a)).filter(f);
+      return k(h)
     },
     closest: function(a) {
-      let f = this.native.closest(a);
-      for (; f && !n.contains(f);) f = null;
-      return u(f)
+      let h = this.native.closest(a);
+      for (; h && !n.contains(h);) h = null;
+      return C(h)
     },
     matches: function(a) {
       return this.native.matches(a)
@@ -1583,11 +1584,11 @@ function je(e, t, n, i) {
       if (this.native.className === "tile-body") throw new Error("No access.");
       let a = this.native.classList;
       return e.nativeToPseudo({
-        add: (...f) => a.add(...f),
-        remove: (...f) => a.remove(...f),
-        toggle: (f, y) => a.toggle(f, y),
-        contains: f => a.contains(f),
-        replace: (f, y) => a.replace(f, y)
+        add: (...h) => a.add(...h),
+        remove: (...h) => a.remove(...h),
+        toggle: (h, y) => a.toggle(h, y),
+        contains: h => a.contains(h),
+        replace: (h, y) => a.replace(h, y)
       })
     },
     getBoundingClientRect: function() {
@@ -1607,19 +1608,19 @@ function je(e, t, n, i) {
       if (!(this.native instanceof HTMLMediaElement)) return e.createObjectProto(e.OBJECT_PROTO);
       if (!this.native.isConnected) throw new Error("Element is not connected to the DOM. Append it to the DOM before playing.");
       let a = e.createObjectProto(e.OBJECT_PROTO),
-        f = this,
+        h = this,
         y = null,
-        x = null;
-      return s.settings.logCalls && console.log("play", this), e.setProperty(a, "then", e.createNativeFunction(function(I) {
-        return y = I, a
-      })), e.setProperty(a, "catch", e.createNativeFunction(function(I) {
-        return x = I, a
-      })), f.native.play().then(() => {
-        y && h(y, e.nativeToPseudo(void 0))
-      }).catch(I => {
-        x && h(x, e.nativeToPseudo({
-          message: I.message,
-          name: I.name
+        S = null;
+      return s.settings.logCalls && console.log(i.domain, "play", this), e.setProperty(a, "then", e.createNativeFunction(function(L) {
+        return y = L, a
+      })), e.setProperty(a, "catch", e.createNativeFunction(function(L) {
+        return S = L, a
+      })), h.native.play().then(() => {
+        y && d(y, e.nativeToPseudo(void 0))
+      }).catch(L => {
+        S && d(S, e.nativeToPseudo({
+          message: L.message,
+          name: L.name
         }))
       }), a
     },
@@ -1636,314 +1637,314 @@ function je(e, t, n, i) {
       this.native instanceof HTMLMediaElement && typeof this.native.fastSeek == "function" && this.native.fastSeek(Math.max(0, Number(a) || 0))
     },
     getAnimations: function(a) {
-      if (!this.native.getAnimations) return S([]);
-      let f = a ? {
+      if (!this.native.getAnimations) return k([]);
+      let h = a ? {
           subtree: !!e.pseudoToNative(a)?.subtree
         } : {},
-        y = this.native.getAnimations(f),
-        x = e.createObjectProto(e.ARRAY_PROTO);
-      for (let I = 0; I < y.length; I++) x.properties[I] = pe(y[I]);
-      return e.setProperty(x, "length", y.length), x
+        y = this.native.getAnimations(h),
+        S = e.createObjectProto(e.ARRAY_PROTO);
+      for (let L = 0; L < y.length; L++) S.properties[L] = l(y[L]);
+      return e.setProperty(S, "length", y.length), S
     }
   };
-  for (let [a, f] of Object.entries(me)) e.setProperty(_, a, e.createNativeFunction(f));
+  for (let [a, h] of Object.entries(me)) e.setProperty(_, a, e.createNativeFunction(h));
 
-  function pe(a) {
-    let f = e.createObjectProto(e.OBJECT_PROTO);
-    return e.setProperty(f, "id", Interpreter.VALUE_IN_DESCRIPTOR, {
+  function l(a) {
+    let h = e.createObjectProto(e.OBJECT_PROTO);
+    return e.setProperty(h, "id", Interpreter.VALUE_IN_DESCRIPTOR, {
       get: e.createNativeFunction(function() {
         return a.id
       })
-    }), e.setProperty(f, "playState", Interpreter.VALUE_IN_DESCRIPTOR, {
+    }), e.setProperty(h, "playState", Interpreter.VALUE_IN_DESCRIPTOR, {
       get: e.createNativeFunction(function() {
         return a.playState
       })
-    }), e.setProperty(f, "pending", Interpreter.VALUE_IN_DESCRIPTOR, {
+    }), e.setProperty(h, "pending", Interpreter.VALUE_IN_DESCRIPTOR, {
       get: e.createNativeFunction(function() {
         return a.pending
       })
-    }), e.setProperty(f, "replaceState", Interpreter.VALUE_IN_DESCRIPTOR, {
+    }), e.setProperty(h, "replaceState", Interpreter.VALUE_IN_DESCRIPTOR, {
       get: e.createNativeFunction(function() {
         return a.replaceState
       })
-    }), e.setProperty(f, "currentTime", Interpreter.VALUE_IN_DESCRIPTOR, {
+    }), e.setProperty(h, "currentTime", Interpreter.VALUE_IN_DESCRIPTOR, {
       get: e.createNativeFunction(function() {
         return a.currentTime
       }),
       set: e.createNativeFunction(function(y) {
         a.currentTime = y
       })
-    }), e.setProperty(f, "playbackRate", Interpreter.VALUE_IN_DESCRIPTOR, {
+    }), e.setProperty(h, "playbackRate", Interpreter.VALUE_IN_DESCRIPTOR, {
       get: e.createNativeFunction(function() {
         return a.playbackRate
       }),
       set: e.createNativeFunction(function(y) {
         a.playbackRate = Math.max(-10, Math.min(10, Number(y) || 1))
       })
-    }), e.setProperty(f, "startTime", Interpreter.VALUE_IN_DESCRIPTOR, {
+    }), e.setProperty(h, "startTime", Interpreter.VALUE_IN_DESCRIPTOR, {
       get: e.createNativeFunction(function() {
         return a.startTime
       }),
       set: e.createNativeFunction(function(y) {
         a.startTime = y
       })
-    }), e.setProperty(f, "play", e.createNativeFunction(function() {
+    }), e.setProperty(h, "play", e.createNativeFunction(function() {
       a.play()
-    })), e.setProperty(f, "pause", e.createNativeFunction(function() {
+    })), e.setProperty(h, "pause", e.createNativeFunction(function() {
       a.pause()
-    })), e.setProperty(f, "cancel", e.createNativeFunction(function() {
+    })), e.setProperty(h, "cancel", e.createNativeFunction(function() {
       a.cancel()
-    })), e.setProperty(f, "finish", e.createNativeFunction(function() {
+    })), e.setProperty(h, "finish", e.createNativeFunction(function() {
       a.finish()
-    })), e.setProperty(f, "reverse", e.createNativeFunction(function() {
+    })), e.setProperty(h, "reverse", e.createNativeFunction(function() {
       a.reverse()
-    })), e.setProperty(f, "updatePlaybackRate", e.createNativeFunction(function(y) {
+    })), e.setProperty(h, "updatePlaybackRate", e.createNativeFunction(function(y) {
       a.updatePlaybackRate(Math.max(-10, Math.min(10, Number(y) || 1)))
-    })), f
+    })), h
   }
 
-  function l(a) {
-    let f = e.createObjectProto(e.OBJECT_PROTO),
+  function m(a) {
+    let h = e.createObjectProto(e.OBJECT_PROTO),
       y = a ? a.length : 0;
-    return e.setProperty(f, "length", y), e.setProperty(f, "start", e.createNativeFunction(function(x) {
-      if (!a || x < 0 || x >= a.length) throw new Error("Index out of bounds");
-      return a.start(x)
-    })), e.setProperty(f, "end", e.createNativeFunction(function(x) {
-      if (!a || x < 0 || x >= a.length) throw new Error("Index out of bounds");
-      return a.end(x)
-    })), f
+    return e.setProperty(h, "length", y), e.setProperty(h, "start", e.createNativeFunction(function(S) {
+      if (!a || S < 0 || S >= a.length) throw new Error("Index out of bounds");
+      return a.start(S)
+    })), e.setProperty(h, "end", e.createNativeFunction(function(S) {
+      if (!a || S < 0 || S >= a.length) throw new Error("Index out of bounds");
+      return a.end(S)
+    })), h
   }
   e.setProperty(_, "buffered", Interpreter.VALUE_IN_DESCRIPTOR, {
     get: e.createNativeFunction(function() {
-      return this.native instanceof HTMLMediaElement ? l(this.native.buffered) : l(null)
+      return this.native instanceof HTMLMediaElement ? m(this.native.buffered) : m(null)
     })
   }), e.setProperty(_, "played", Interpreter.VALUE_IN_DESCRIPTOR, {
     get: e.createNativeFunction(function() {
-      return this.native instanceof HTMLMediaElement ? l(this.native.played) : l(null)
+      return this.native instanceof HTMLMediaElement ? m(this.native.played) : m(null)
     })
   }), e.setProperty(_, "seekable", Interpreter.VALUE_IN_DESCRIPTOR, {
     get: e.createNativeFunction(function() {
-      return this.native instanceof HTMLMediaElement ? l(this.native.seekable) : l(null)
+      return this.native instanceof HTMLMediaElement ? m(this.native.seekable) : m(null)
     })
   }), e.setProperty(_, "classList", Interpreter.VALUE_IN_DESCRIPTOR, {
     get: e.createNativeFunction(function() {
       let a = this.native.classList,
-        f = e.nativeToPseudo({});
-      return e.setProperty(f, "add", e.createNativeFunction(function(...y) {
+        h = e.nativeToPseudo({});
+      return e.setProperty(h, "add", e.createNativeFunction(function(...y) {
         if (this.native.className === "tile-body") throw new Error("No access.");
         a.add(...y)
-      })), e.setProperty(f, "remove", e.createNativeFunction(function(...y) {
+      })), e.setProperty(h, "remove", e.createNativeFunction(function(...y) {
         if (this.native.className === "tile-body") throw new Error("No access.");
         a.remove(...y)
-      })), e.setProperty(f, "toggle", e.createNativeFunction(function(y, x) {
+      })), e.setProperty(h, "toggle", e.createNativeFunction(function(y, S) {
         if (this.native.className === "tile-body") throw new Error("No access.");
-        return a.toggle(y, x)
-      })), e.setProperty(f, "contains", e.createNativeFunction(function(y) {
+        return a.toggle(y, S)
+      })), e.setProperty(h, "contains", e.createNativeFunction(function(y) {
         return a.contains(y)
-      })), e.setProperty(f, "replace", e.createNativeFunction(function(y, x) {
+      })), e.setProperty(h, "replace", e.createNativeFunction(function(y, S) {
         if (this.native.className === "tile-body") throw new Error("No access.");
-        return a.replace(y, x)
-      })), f
+        return a.replace(y, S)
+      })), h
     })
   }), e.setProperty(_, "style", Interpreter.VALUE_IN_DESCRIPTOR, {
     get: e.createNativeFunction(function() {
       let a = this.native.style,
-        f = e.nativeToPseudo({}),
+        h = e.nativeToPseudo({}),
         y = ["color", "backgroundColor", "width", "height", "margin", "padding", "border", "display", "position", "top", "left", "right", "bottom", "fontSize", "fontFamily", "fontWeight", "textAlign", "lineHeight", "opacity", "visibility", "overflow", "zIndex", "transform", "transition", "animation", "flexDirection", "justifyContent", "alignItems", "gap", "gridTemplateColumns", "gridTemplateRows"];
-      for (let x of y) e.setProperty(f, x, Interpreter.VALUE_IN_DESCRIPTOR, {
+      for (let S of y) e.setProperty(h, S, Interpreter.VALUE_IN_DESCRIPTOR, {
         get: e.createNativeFunction(function() {
-          return a[x]
+          return a[S]
         }),
-        set: e.createNativeFunction(function(I) {
-          a[x] = I, s.settings.logCalls && console.log("set style", this, x, I)
+        set: e.createNativeFunction(function(L) {
+          a[S] = L, s.settings.logCalls && console.log(i.domain, "set style", this, S, L)
         })
       });
-      return e.setProperty(f, "cssText", Interpreter.VALUE_IN_DESCRIPTOR, {
+      return e.setProperty(h, "cssText", Interpreter.VALUE_IN_DESCRIPTOR, {
         get: e.createNativeFunction(function() {
           return a.cssText
         }),
-        set: e.createNativeFunction(function(x) {
-          a.cssText = x, s.settings.logCalls && console.log("set cssText", this, x)
+        set: e.createNativeFunction(function(S) {
+          a.cssText = S, s.settings.logCalls && console.log(i.domain, "set cssText", this, S)
         })
-      }), e.setProperty(f, "setProperty", e.createNativeFunction(function(x, I, D) {
+      }), e.setProperty(h, "setProperty", e.createNativeFunction(function(S, L, D) {
         if (this.native?.className === "tile-body") throw new Error("No access.");
-        a.setProperty(x, I, D), s.settings.logCalls && console.log("setProperty", this, x, I, D)
-      })), e.setProperty(f, "getPropertyValue", e.createNativeFunction(function(x) {
-        return a.getPropertyValue(x)
-      })), e.setProperty(f, "removeProperty", e.createNativeFunction(function(x) {
+        a.setProperty(S, L, D), s.settings.logCalls && console.log(i.domain, "setProperty", this, S, L, D)
+      })), e.setProperty(h, "getPropertyValue", e.createNativeFunction(function(S) {
+        return a.getPropertyValue(S)
+      })), e.setProperty(h, "removeProperty", e.createNativeFunction(function(S) {
         if (this.native?.className === "tile-body") throw new Error("No access.");
-        return s.settings.logCalls && console.log("removeProperty", this, x), a.removeProperty(x)
-      })), f
+        return s.settings.logCalls && console.log(i.domain, "removeProperty", this, S), a.removeProperty(S)
+      })), h
     })
   }), e.setProperty(_, "dataset", Interpreter.VALUE_IN_DESCRIPTOR, {
     get: e.createNativeFunction(function() {
       let a = this.native.dataset,
-        f = e.nativeToPseudo({});
-      for (let y in a) e.setProperty(f, y, a[y]);
-      return e.setProperty(f, "get", e.createNativeFunction(function(y) {
+        h = e.nativeToPseudo({});
+      for (let y in a) e.setProperty(h, y, a[y]);
+      return e.setProperty(h, "get", e.createNativeFunction(function(y) {
         return a[y]
-      })), e.setProperty(f, "set", e.createNativeFunction(function(y, x) {
-        a[y] = String(x).slice(0, 1e3), s.settings.logCalls && console.log("set dataset", this, y, x)
-      })), e.setProperty(f, "delete", e.createNativeFunction(function(y) {
-        delete a[y], s.settings.logCalls && console.log("delete dataset", this, y)
-      })), e.setProperty(f, "has", e.createNativeFunction(function(y) {
+      })), e.setProperty(h, "set", e.createNativeFunction(function(y, S) {
+        a[y] = String(S).slice(0, 1e3), s.settings.logCalls && console.log(i.domain, "set dataset", this, y, S)
+      })), e.setProperty(h, "delete", e.createNativeFunction(function(y) {
+        delete a[y], s.settings.logCalls && console.log(i.domain, "delete dataset", this, y)
+      })), e.setProperty(h, "has", e.createNativeFunction(function(y) {
         return y in a
-      })), f
+      })), h
     })
   }), e.setProperty(_, "offsetParent", Interpreter.VALUE_IN_DESCRIPTOR, {
     get: e.createNativeFunction(function() {
-      return u(k(this.native.offsetParent))
+      return C(w(this.native.offsetParent))
     })
   });
-  let v = ["click", "dblclick", "mousedown", "mouseup", "mousemove", "mouseenter", "mouseleave", "mouseover", "mouseout", "keydown", "keyup", "keypress", "focus", "blur", "focusin", "focusout", "input", "change", "submit", "reset", "touchstart", "touchend", "touchmove", "touchcancel", "wheel", "scroll", "resize", "dragstart", "drag", "dragend", "dragenter", "dragleave", "dragover", "drop", "animationstart", "animationend", "animationiteration", "transitionstart", "transitionend", "transitioncancel", "contextmenu", "pointerdown", "pointerup", "pointermove", "pointerenter", "pointerleave", "pointerover", "pointerout", "play", "pause", "playing", "waiting", "seeking", "seeked", "ended", "loadstart", "loadeddata", "loadedmetadata", "progress", "canplay", "canplaythrough", "timeupdate", "durationchange", "volumechange", "ratechange", "stalled", "suspend", "emptied", "abort", "error", "load"];
+  let E = ["click", "dblclick", "mousedown", "mouseup", "mousemove", "mouseenter", "mouseleave", "mouseover", "mouseout", "keydown", "keyup", "keypress", "focus", "blur", "focusin", "focusout", "input", "change", "submit", "reset", "touchstart", "touchend", "touchmove", "touchcancel", "wheel", "scroll", "resize", "dragstart", "drag", "dragend", "dragenter", "dragleave", "dragover", "drop", "animationstart", "animationend", "animationiteration", "transitionstart", "transitionend", "transitioncancel", "contextmenu", "pointerdown", "pointerup", "pointermove", "pointerenter", "pointerleave", "pointerover", "pointerout", "play", "pause", "playing", "waiting", "seeking", "seeked", "ended", "loadstart", "loadeddata", "loadedmetadata", "progress", "canplay", "canplaythrough", "timeupdate", "durationchange", "volumechange", "ratechange", "stalled", "suspend", "emptied", "abort", "error", "load"];
 
-  function E(a) {
-    let f = e.nativeToPseudo({}),
+  function x(a) {
+    let h = e.nativeToPseudo({}),
       y = ["type", "bubbles", "cancelable", "defaultPrevented", "timeStamp"];
-    for (let x of y) e.setProperty(f, x, a[x]);
+    for (let S of y) e.setProperty(h, S, a[S]);
     if (a instanceof MouseEvent || a instanceof PointerEvent) {
-      let x = ["clientX", "clientY", "pageX", "pageY", "screenX", "screenY", "offsetX", "offsetY", "movementX", "movementY", "button", "buttons", "altKey", "ctrlKey", "shiftKey", "metaKey"];
-      for (let I of x) e.setProperty(f, I, a[I])
+      let S = ["clientX", "clientY", "pageX", "pageY", "screenX", "screenY", "offsetX", "offsetY", "movementX", "movementY", "button", "buttons", "altKey", "ctrlKey", "shiftKey", "metaKey"];
+      for (let L of S) e.setProperty(h, L, a[L])
     }
     if (a instanceof KeyboardEvent) {
-      let x = ["key", "code", "keyCode", "charCode", "altKey", "ctrlKey", "shiftKey", "metaKey", "repeat"];
-      for (let I of x) e.setProperty(f, I, a[I])
+      let S = ["key", "code", "keyCode", "charCode", "altKey", "ctrlKey", "shiftKey", "metaKey", "repeat"];
+      for (let L of S) e.setProperty(h, L, a[L])
     }
-    return typeof TouchEvent == "function" && a instanceof TouchEvent && (e.setProperty(f, "touches", e.nativeToPseudo({
+    return typeof TouchEvent == "function" && a instanceof TouchEvent && (e.setProperty(h, "touches", e.nativeToPseudo({
       length: a.touches.length
-    })), e.setProperty(f, "changedTouches", e.nativeToPseudo({
+    })), e.setProperty(h, "changedTouches", e.nativeToPseudo({
       length: a.changedTouches.length
-    }))), typeof WheelEvent == "function" && a instanceof WheelEvent && (e.setProperty(f, "deltaX", a.deltaX), e.setProperty(f, "deltaY", a.deltaY), e.setProperty(f, "deltaZ", a.deltaZ), e.setProperty(f, "deltaMode", a.deltaMode)), a.target && w(a.target) && e.setProperty(f, "target", u(a.target)), a.currentTarget && w(a.currentTarget) && e.setProperty(f, "currentTarget", u(a.currentTarget)), e.setProperty(f, "preventDefault", e.createNativeFunction(function() {
+    }))), typeof WheelEvent == "function" && a instanceof WheelEvent && (e.setProperty(h, "deltaX", a.deltaX), e.setProperty(h, "deltaY", a.deltaY), e.setProperty(h, "deltaZ", a.deltaZ), e.setProperty(h, "deltaMode", a.deltaMode)), a.target && f(a.target) && e.setProperty(h, "target", C(a.target)), a.currentTarget && f(a.currentTarget) && e.setProperty(h, "currentTarget", C(a.currentTarget)), e.setProperty(h, "preventDefault", e.createNativeFunction(function() {
       a.preventDefault()
-    })), e.setProperty(f, "stopPropagation", e.createNativeFunction(function() {
+    })), e.setProperty(h, "stopPropagation", e.createNativeFunction(function() {
       a.stopPropagation()
-    })), e.setProperty(f, "stopImmediatePropagation", e.createNativeFunction(function() {
+    })), e.setProperty(h, "stopImmediatePropagation", e.createNativeFunction(function() {
       a.stopImmediatePropagation()
-    })), f
+    })), h
   }
-  e.setProperty(_, "addEventListener", e.createNativeFunction(function(a, f) {
-    if (!a || typeof a != "string" || !f || typeof f != "object") return;
-    if (a = a.toLowerCase(), !v.includes(a)) throw new Error(`Event type "${a}" is not allowed`);
-    s.settings.logCalls && console.log("addEventListener", this, a, f);
+  e.setProperty(_, "addEventListener", e.createNativeFunction(function(a, h) {
+    if (!a || typeof a != "string" || !h || typeof h != "object") return;
+    if (a = a.toLowerCase(), !E.includes(a)) throw new Error(`Event type "${a}" is not allowed`);
+    s.settings.logCalls && console.log(i.domain, "addEventListener", this, a, h);
     let y = this.native;
     p.has(y) || p.set(y, new Map);
-    let x = p.get(y);
-    x.has(a) || x.set(a, []);
-    let I = x.get(a);
-    if (I.length >= c) throw new Error(`Maximum listeners (${c}) reached for event "${a}"`);
-    if (I.some(z => z.pseudo === f)) return;
-    let D = function(z) {
-      let ae = E(z);
-      h(f, ae)
+    let S = p.get(y);
+    S.has(a) || S.set(a, []);
+    let L = S.get(a);
+    if (L.length >= c) throw new Error(`Maximum listeners (${c}) reached for event "${a}"`);
+    if (L.some(U => U.pseudo === h)) return;
+    let D = function(U) {
+      let ce = x(U);
+      d(h, ce)
     };
-    I.push({
-      pseudo: f,
+    L.push({
+      pseudo: h,
       native: D
     }), y.addEventListener(a, D)
-  })), e.setProperty(_, "removeEventListener", e.createNativeFunction(function(a, f) {
-    if (!a || typeof a != "string" || !f || typeof f != "object") return;
-    s.settings.logCalls && console.log("removeEventListener", this, a, f), a = a.toLowerCase();
+  })), e.setProperty(_, "removeEventListener", e.createNativeFunction(function(a, h) {
+    if (!a || typeof a != "string" || !h || typeof h != "object") return;
+    s.settings.logCalls && console.log(i.domain, "removeEventListener", this, a, h), a = a.toLowerCase();
     let y = this.native;
     if (!p.has(y)) return;
-    let x = p.get(y);
-    if (!x.has(a)) return;
-    let I = x.get(a),
-      D = I.findIndex(z => z.pseudo === f);
-    D !== -1 && (y.removeEventListener(a, I[D].native), I.splice(D, 1))
+    let S = p.get(y);
+    if (!S.has(a)) return;
+    let L = S.get(a),
+      D = L.findIndex(U => U.pseudo === h);
+    D !== -1 && (y.removeEventListener(a, L[D].native), L.splice(D, 1))
   }));
-  let T = ["click", "dblclick", "mousedown", "mouseup", "mousemove", "mouseenter", "mouseleave", "mouseover", "mouseout", "keydown", "keyup", "keypress", "focus", "blur", "input", "change", "submit", "touchstart", "touchend", "touchmove", "wheel", "scroll", "contextmenu", "play", "pause", "playing", "waiting", "seeking", "seeked", "ended", "loadstart", "loadeddata", "loadedmetadata", "progress", "canplay", "canplaythrough", "timeupdate", "durationchange", "volumechange", "ratechange", "stalled", "suspend", "emptied", "abort", "error", "load"];
-  for (let a of T) {
-    let f = "on" + a;
-    e.setProperty(_, f, Interpreter.VALUE_IN_DESCRIPTOR, {
+  let P = ["click", "dblclick", "mousedown", "mouseup", "mousemove", "mouseenter", "mouseleave", "mouseover", "mouseout", "keydown", "keyup", "keypress", "focus", "blur", "input", "change", "submit", "touchstart", "touchend", "touchmove", "wheel", "scroll", "contextmenu", "play", "pause", "playing", "waiting", "seeking", "seeked", "ended", "loadstart", "loadeddata", "loadedmetadata", "progress", "canplay", "canplaythrough", "timeupdate", "durationchange", "volumechange", "ratechange", "stalled", "suspend", "emptied", "abort", "error", "load"];
+  for (let a of P) {
+    let h = "on" + a;
+    e.setProperty(_, h, Interpreter.VALUE_IN_DESCRIPTOR, {
       get: e.createNativeFunction(function() {
         let y = this.native;
         if (!p.has(y)) return null;
-        let x = p.get(y),
-          I = `__${f}`;
-        return x.get(I) || null
+        let S = p.get(y),
+          L = `__${h}`;
+        return S.get(L) || null
       }),
       set: e.createNativeFunction(function(y) {
-        let x = this.native;
-        p.has(x) || p.set(x, new Map);
-        let I = p.get(x),
-          D = `__${f}`;
-        s.settings.logCalls && console.log("setOn" + a, this, y);
-        let z = I.get(D + "_native");
-        if (z && (x.removeEventListener(a, z), I.delete(D), I.delete(D + "_native")), y && typeof y == "object") {
-          let ae = function(Qe) {
-            let et = E(Qe);
-            h(y, et)
+        let S = this.native;
+        p.has(S) || p.set(S, new Map);
+        let L = p.get(S),
+          D = `__${h}`;
+        s.settings.logCalls && console.log(i.domain, "setOn" + a, this, y);
+        let U = L.get(D + "_native");
+        if (U && (S.removeEventListener(a, U), L.delete(D), L.delete(D + "_native")), y && typeof y == "object") {
+          let ce = function(Qe) {
+            let et = x(Qe);
+            d(y, et)
           };
-          x.addEventListener(a, ae), I.set(D, y), I.set(D + "_native", ae)
+          S.addEventListener(a, ce), L.set(D, y), L.set(D + "_native", ce)
         }
       })
     })
   }
-  Ae(e, t, u, w).extendElement(_, u), _e(e, t), Be(e, t, i.domain), He(e, t, n);
-  let L = e.nativeToPseudo({});
-  e.setProperty(t, "document", L);
-  let H = {
+  Ae(e, t, i).extendElement(_, C), _e(e, t, i), Be(e, t, i.domain), He(e, t, n, i);
+  let F = e.nativeToPseudo({});
+  e.setProperty(t, "document", F);
+  let q = {
     getElementById: function(a) {
-      let f = n.querySelector(`#${CSS.escape(a)}`);
-      return u(f)
+      let h = n.querySelector(`#${CSS.escape(a)}`);
+      return C(h)
     },
     getElementsByClassName: function(a) {
-      let f = Array.from(n.getElementsByClassName(a));
-      return S(f)
+      let h = Array.from(n.getElementsByClassName(a));
+      return k(h)
     },
     getElementsByTagName: function(a) {
-      let f = Array.from(n.getElementsByTagName(a));
-      return S(f)
+      let h = Array.from(n.getElementsByTagName(a));
+      return k(h)
     },
     querySelector: function(a) {
-      return u(n.querySelector(a))
+      return C(n.querySelector(a))
     },
     querySelectorAll: function(a) {
-      let f = Array.from(n.querySelectorAll(a));
-      return S(f)
+      let h = Array.from(n.querySelectorAll(a));
+      return k(h)
     },
     createElement: function(a) {
       if (typeof a != "string") throw new Error("Invalid tag");
       if (a = a.toLowerCase().trim(), ["script", "style", "iframe", "embed", "object", "frame", "frameset", "layer", "ilayer", "applet", "meta", "base", "link", "title", "source", "geolocation", "permission"].includes(a)) throw new Error("Creating " + a + " elements is not allowed");
-      return s.settings.logCalls && console.log("createElement", this, a), u(document.createElement(a))
+      return s.settings.logCalls && console.log(i.domain, "createElement", this, a), C(document.createElement(a))
     },
     createTextNode: function(a) {
-      return s.settings.logCalls && console.log("createTextNode", this, a), u(document.createTextNode(a))
+      return s.settings.logCalls && console.log(i.domain, "createTextNode", this, a), C(document.createTextNode(a))
     }
   };
-  for (let [a, f] of Object.entries(H)) e.setProperty(L, a, e.createNativeFunction(f));
-  e.setProperty(L, "body", Interpreter.VALUE_IN_DESCRIPTOR, {
+  for (let [a, h] of Object.entries(q)) e.setProperty(F, a, e.createNativeFunction(h));
+  e.setProperty(F, "body", Interpreter.VALUE_IN_DESCRIPTOR, {
     get: e.createNativeFunction(function() {
-      return s.settings.logCalls && console.log("get body", this), u(n)
+      return s.settings.logCalls && console.log(i.domain, "get body", this), C(n)
     })
-  }), e.setProperty(L, "documentElement", Interpreter.VALUE_IN_DESCRIPTOR, {
+  }), e.setProperty(F, "documentElement", Interpreter.VALUE_IN_DESCRIPTOR, {
     get: e.createNativeFunction(function() {
-      return s.settings.logCalls && console.log("get documentElement", this), u(n)
+      return s.settings.logCalls && console.log(i.domain, "get documentElement", this), C(n)
     })
   });
-  let j = e.nativeToPseudo({});
-  e.setProperty(t, "location", j), e.setProperty(j, "href", Interpreter.VALUE_IN_DESCRIPTOR, {
+  let ie = e.nativeToPseudo({});
+  e.setProperty(t, "location", ie), e.setProperty(ie, "href", Interpreter.VALUE_IN_DESCRIPTOR, {
     get: e.createNativeFunction(function() {
       return `/t/${i.domain}${i.path}`
     }),
     set: e.createNativeFunction(function(a) {
       if (typeof a == "string") {
-        s.settings.logCalls && console.log("set href", this, a);
+        s.settings.logCalls && console.log(i.domain, "set href", this, a);
         try {
-          let f = new URL(a, `http://${i.domain}`);
-          if (f.hostname && f.hostname !== location.hostname) throw new Error("External URLs are not allowed");
-          let y = f.pathname + f.search + f.hash;
+          let h = new URL(a, `http://${i.domain}`);
+          if (h.hostname && h.hostname !== location.hostname) throw new Error("External URLs are not allowed");
+          let y = h.pathname + h.search + h.hash;
           if (y.startsWith(`/t/${i.domain}/`) ? y = y.substring(`/t/${i.domain}`.length) : y === `/t/${i.domain}` && (y = "/"), y.startsWith("/") || (y = "/" + y), y.endsWith(".html") || y === "/" || y === "") i.fetchContent(y || "/index.html"), i.setActive(!0);
           else throw new Error("Only HTML files can be navigated to")
-        } catch (f) {
-          if (f.message.includes("not allowed") || f.message.includes("Only HTML")) throw f;
+        } catch (h) {
+          if (h.message.includes("not allowed") || h.message.includes("Only HTML")) throw h;
           let y = a;
           if (y.startsWith("/") || (y = "/" + y), y.endsWith(".html") || y === "/" || y === "") i.fetchContent(y || "/index.html").then(() => i.setActive(!0));
           else throw new Error("Only HTML files can be navigated to")
         }
       }
     })
-  }), e.setProperty(j, "reload", e.createNativeFunction(function() {
+  }), e.setProperty(ie, "reload", e.createNativeFunction(function() {
     i.fetchContent(i.path, !0).then(() => i.setActive(!0))
   }))
 }
@@ -1975,15 +1976,15 @@ var ht = {
       return btoa(e)
     }
   },
-  we = class {
+  ye = class {
     constructor(t) {
       this.running = !1, this.logCount = 0, this.alertCount = 0, this.tile = t, this.waitUntil = null, this.index = 0, this.sizeLimitReached = !1, this.interpreter = new Interpreter("", (n, i) => {
         let o = (r, c) => {
           for (let [p, g] of Object.entries(r))
             if (typeof g == "function") n.setProperty(c, p, n.createNativeFunction(g.bind(this)));
             else if (typeof g == "object" && g !== null) {
-            let m = n.nativeToPseudo({});
-            o(g, m), n.setProperty(c, p, m)
+            let v = n.nativeToPseudo({});
+            o(g, v), n.setProperty(c, p, v)
           }
         };
         o(ht, i), je(n, i, this.tile.contentElement, this.tile), n.setProperty(i, "embedded", n.nativeToPseudo(!!this.tile.embed))
@@ -2007,7 +2008,7 @@ var ht = {
       return i
     }
     start() {
-      this.running || this.sizeLimitReached || (this.running = !0, this.runInterval = setInterval(() => {
+      this.running || s.settings.disableJS || this.sizeLimitReached || (this.running = !0, this.runInterval = setInterval(() => {
         if (!(this.waitUntil && Date.now() < this.waitUntil) && this.running)
           for (let t = 0; t < 5e3; t++) try {
             if (!this.interpreter.step()) {
@@ -2031,15 +2032,15 @@ var ht = {
       this.running && (clearInterval(this.runInterval), this.running = !1)
     }
     runCode(t) {
-      this.interpreter.appendCode(t)
+      s.settings.disableJS || this.interpreter.appendCode(t)
     }
   },
-  ze = we;
+  ze = ye;
 var ft = document.getElementById("plot");
 localStorage.getItem("lowend") || (localStorage.lowend = "true");
-var be = new CSSStyleSheet,
+var we = new CSSStyleSheet,
   qe = () => {
-    be.replaceSync(`
+    we.replaceSync(`
         .tile-body:not(.active) * {
             animation-play-state: paused !important;
         }
@@ -2087,28 +2088,28 @@ var O = class e {
     t.classList.add("tile"), this.free && t.classList.add("f"), this.preview ? t.style.cssText = "width: 100%; height: 100%; position: relative;" : (t.style.left = `${this.x*250}px`, t.style.top = `${this.y*250}px`, this.x % 10 === 0 && t.classList.add("b-left"), this.y % 10 === 0 && t.classList.add("b-top")), this.element = t;
     let n = document.createElement("div");
     n.classList.add("tile-content"), this.preview && (n.style.cssText = "width: 100%; height: 100%;"), n.addEventListener("click", async o => {
-      let r = o.composedPath()?.filter(m => m instanceof Element);
+      let r = o.composedPath()?.filter(v => v instanceof Element);
       if (!r) return;
-      let c = r.findIndex(m => m.isSameNode(n));
+      let c = r.findIndex(v => v.isSameNode(n));
       if (c === -1) return;
-      let g = r.slice(0, c).find(m => m.tagName === "A");
+      let g = r.slice(0, c).find(v => v.tagName === "A");
       if (g) {
         o.preventDefault();
         try {
-          let m = new URL(g.href);
-          if (m.hostname !== location.hostname) {
-            let d = document.createElement("a");
-            d.href = g.href, d.target = "_blank", d.click();
+          let v = new URL(g.href);
+          if (v.hostname !== location.hostname) {
+            let u = document.createElement("a");
+            u.href = g.href, u.target = "_blank", u.click();
             return
           }
-          let h = m.pathname;
-          if (h.startsWith(`/t/${this.domain}/`) || (h = `/t/${this.domain}/${h}`.replaceAll("//", "/")), h.startsWith(`/t/${this.domain}`) && (h.endsWith(".html") || h === `/t/${this.domain}/` || h === `/t/${this.domain}`)) await this.fetchContent(h.replace(`/t/${this.domain}`, "")), this.setActive(!0);
+          let d = v.pathname;
+          if (d.startsWith(`/t/${this.domain}/`) || (d = `/t/${this.domain}/${d}`.replaceAll("//", "/")), d.startsWith(`/t/${this.domain}`) && (d.endsWith(".html") || d === `/t/${this.domain}/` || d === `/t/${this.domain}`)) await this.fetchContent(d.replace(`/t/${this.domain}`, "")), this.setActive(!0);
           else {
-            let d = document.createElement("a");
-            d.href = g.href, d.target = "_blank", d.click()
+            let u = document.createElement("a");
+            u.href = g.href, u.target = "_blank", u.click()
           }
-        } catch (m) {
-          console.error(m)
+        } catch (v) {
+          console.error(v)
         }
       }
     }), this.shadow = n.attachShadow({
@@ -2125,7 +2126,7 @@ var O = class e {
     let i = this.free ? `<div class="free">
                 <p>${this.locked?"Locked tile":"Free tile"} ${this.x}, ${this.y}</p>
             </div>` : this.path === t && this.content && !n ? this.content : await fetch(`/t/${this.domain}${t}`).then(c => c.text()).catch(c => "<p>Error loading tile</p>");
-    this.free ? this.shadow.adoptedStyleSheets = [Ue] : this.shadow.adoptedStyleSheets = [be], this.interpreter && (this.interpreter.stop(), this.interpreter = null), this.path = t, this.contentElement.innerHTML = i, this.content = i;
+    this.free ? this.shadow.adoptedStyleSheets = [Ue] : this.shadow.adoptedStyleSheets = [we], this.interpreter && (this.interpreter.stop(), this.interpreter = null), this.path = t, this.contentElement.innerHTML = i, this.content = i;
     let o = this.contentElement.querySelectorAll("style");
     this.fonts.textContent = "";
     let r = 0;
@@ -2180,23 +2181,23 @@ var O = class e {
         c.element.classList.add("clan-highlight");
         let p = o.has(`${r.x},${r.y-1}`),
           g = o.has(`${r.x},${r.y+1}`),
-          m = o.has(`${r.x-1},${r.y}`),
-          h = o.has(`${r.x+1},${r.y}`);
+          v = o.has(`${r.x-1},${r.y}`),
+          d = o.has(`${r.x+1},${r.y}`);
         if (!p) {
-          let d = document.createElement("div");
-          d.className = "clan-border clan-border-top", c.element.appendChild(d)
+          let u = document.createElement("div");
+          u.className = "clan-border clan-border-top", c.element.appendChild(u)
         }
         if (!g) {
-          let d = document.createElement("div");
-          d.className = "clan-border clan-border-bottom", c.element.appendChild(d)
+          let u = document.createElement("div");
+          u.className = "clan-border clan-border-bottom", c.element.appendChild(u)
         }
-        if (!m) {
-          let d = document.createElement("div");
-          d.className = "clan-border clan-border-left", c.element.appendChild(d)
+        if (!v) {
+          let u = document.createElement("div");
+          u.className = "clan-border clan-border-left", c.element.appendChild(u)
         }
-        if (!h) {
-          let d = document.createElement("div");
-          d.className = "clan-border clan-border-right", c.element.appendChild(d)
+        if (!d) {
+          let u = document.createElement("div");
+          u.className = "clan-border clan-border-right", c.element.appendChild(u)
         }
       }
     } catch (t) {
@@ -2215,7 +2216,7 @@ var O = class e {
   }
   static updateLowendStyles() {
     if (qe(), s.plot && s.plot.tiles)
-      for (let t of Object.values(s.plot.tiles)) t.shadow && !t.free && (t.shadow.adoptedStyleSheets = [be])
+      for (let t of Object.values(s.plot.tiles)) t.shadow && !t.free && (t.shadow.adoptedStyleSheets = [we])
   }
   setLocked(t) {
     this.locked = t, this.element && this.element.classList.toggle("locked", t), this.fetchContent("/index.html", !0)
@@ -2240,7 +2241,7 @@ s.ui = {
   },
   escapeHTML: e => e ? e.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;").replace(/'/g, "&#039;") : "",
   showDashboard: e => {
-    Xe.src = `/dashboard?site=${encodeURIComponent(e)}&path=/`, Ve && (Ve.textContent = `File Manager - ${e}`), Ye.classList.add("active"), he && (he.style.display = "none"), s.camera && s.camera.setZoomEnabled(!1), s.ws?.isConnected && setTimeout(() => {
+    Xe.src = `/dashboard?site=${encodeURIComponent(e)}&path=/`, Ve && (Ve.textContent = `File Manager - ${e}`), Ye.classList.add("active"), fe && (fe.style.display = "none"), s.camera && s.camera.setZoomEnabled(!1), s.ws?.isConnected && setTimeout(() => {
       let t = new Int16Array(3);
       t[0] = 0, t[1] = 0, t[2] = 0, s.ws.send(t.buffer)
     }, 100)
@@ -2257,7 +2258,7 @@ s.ui = {
     }
     let n = t.domain,
       i = t.tile ? `<strong>Warning</strong>Your current tile at (${t.tile.x}, ${t.tile.y}) will be unclaimed and your site will be moved to this new tile.` : null;
-    new M({
+    new N({
       title: "Claim Tile",
       content: `<p>Do you want to claim tile (${e.x}, ${e.y}) for <strong>${s.ui.escapeHTML(n)}</strong>?</p>`,
       warning: i,
@@ -2299,7 +2300,7 @@ s.ui = {
               }
               setTimeout(() => {
                 e.setDomain(s.user.selectedSite.domain), e.setActive(!1), e.element && e.element.classList.toggle("locked", !1)
-              }, 400), r.close(), K()
+              }, 400), r.close(), Q()
             } else alert(p.error || "Failed to claim tile"), r.setButtonLoading("confirm", !1)
           } catch (c) {
             console.error(c), alert("Failed to claim tile: " + c.message), r.setButtonLoading("confirm", !1)
@@ -2320,7 +2321,7 @@ s.ui = {
     }
     let n = t.domain,
       i = t.tile ? `<strong>Warning</strong>Your current tile at (${t.tile.x}, ${t.tile.y}) will be unclaimed and your site will be moved to this new tile.` : null,
-      o = new M({
+      o = new N({
         title: "Unlock & Claim Tile",
         content: `
                 <p>Enter the unlock code to claim the tile at (${e.x}, ${e.y}) for <strong>${s.ui.escapeHTML(n)}</strong>:</p>
@@ -2346,7 +2347,7 @@ s.ui = {
             }
             r.setButtonLoading("confirm", !0, "Unlocking...");
             try {
-              let m = await (await s.api.makeRequest("/api/claim", {
+              let v = await (await s.api.makeRequest("/api/claim", {
                 method: "POST",
                 headers: {
                   "Content-Type": "application/json"
@@ -2357,22 +2358,22 @@ s.ui = {
                   code: p
                 })
               })).json();
-              if (m.success) {
+              if (v.success) {
                 if (delete s.plot.lockCache[e.x + "," + e.y], s.user.selectedSite) {
                   if (s.user.selectedSite.tile) {
-                    let h = s.plot.getTile(s.user.selectedSite.tile.x, s.user.selectedSite.tile.y);
-                    h && h.setFree()
+                    let d = s.plot.getTile(s.user.selectedSite.tile.x, s.user.selectedSite.tile.y);
+                    d && d.setFree()
                   }
                   s.user.selectedSite.tile = {
                     x: e.x,
                     y: e.y,
-                    code: m.code,
+                    code: v.code,
                     domain: s.user.selectedSite.domain,
                     created_at: Date.now()
                   }
                 }
-                e.setDomain(s.user.selectedSite.domain), e.setActive(!1), r.close(), K()
-              } else alert(m.error || "Failed to unlock tile"), r.setButtonLoading("confirm", !1)
+                e.setDomain(s.user.selectedSite.domain), e.setActive(!1), r.close(), Q()
+              } else alert(v.error || "Failed to unlock tile"), r.setButtonLoading("confirm", !1)
             } catch (g) {
               console.error(g), alert("Failed to unlock tile: " + g.message), r.setButtonLoading("confirm", !1)
             }
@@ -2399,7 +2400,7 @@ s.ui = {
                     </div>
                 </label>
             </div>
-        `, new M({
+        `, new N({
       title: "Settings",
       content: t,
       buttons: [{
@@ -2432,7 +2433,7 @@ s.ui = {
       alert("Please select a site first");
       return
     }
-    let e = new M({
+    let e = new N({
       title: "Clan Management",
       content: "<p>Loading...</p>",
       buttons: [{
@@ -2460,20 +2461,20 @@ s.ui = {
     i += `<div class="clan-section">
             <div class="clan-section-title">Members</div>
             <div class="clan-members-list">`;
-    for (let h of t.members) {
-      let d = h.domain === s.user.sites.find(b => b.tile?.x === h.x && b.tile?.y === h.y)?.domain;
+    for (let d of t.members) {
+      let u = d.domain === s.user.sites.find(b => b.tile?.x === d.x && b.tile?.y === d.y)?.domain;
       i += `<div class="clan-member-item">
-                <span class="clan-member-domain">${s.ui.escapeHTML(h.domain)}</span>
-                <div>`, t.isOwner && h.domain !== s.user.selectedSite?.domain && (i += `<button class="clan-member-kick" data-domain="${s.ui.escapeHTML(h.domain)}">Kick</button>`), i += `</div>
+                <span class="clan-member-domain">${s.ui.escapeHTML(d.domain)}</span>
+                <div>`, t.isOwner && d.domain !== s.user.selectedSite?.domain && (i += `<button class="clan-member-kick" data-domain="${s.ui.escapeHTML(d.domain)}">Kick</button>`), i += `</div>
             </div>`
     }
     if (i += "</div></div>", t.isOwner && t.pendingInvites && t.pendingInvites.length > 0) {
       i += `<div class="clan-section">
                 <div class="clan-section-title">Pending Invites</div>
                 <div class="clan-pending-list">`;
-      for (let h of t.pendingInvites) i += `<div class="clan-pending-item">
-                    <span>${s.ui.escapeHTML(h.domain)}</span>
-                    <button class="clan-pending-cancel" data-invite="${h.id}">Cancel</button>
+      for (let d of t.pendingInvites) i += `<div class="clan-pending-item">
+                    <span>${s.ui.escapeHTML(d.domain)}</span>
+                    <button class="clan-pending-cancel" data-invite="${d.id}">Cancel</button>
                 </div>`;
       i += "</div></div>"
     }
@@ -2492,15 +2493,15 @@ s.ui = {
       text: "Close",
       type: "cancel",
       id: "close",
-      onClick: h => h.close()
+      onClick: d => d.close()
     }];
     t.isOwner ? o.unshift({
       text: "Disband Clan",
       type: "cancel",
       id: "disband",
-      onClick: async h => {
+      onClick: async d => {
         if (confirm("Are you sure you want to disband this clan?")) {
-          h.setButtonLoading("disband", !0, "Disbanding...");
+          d.setButtonLoading("disband", !0, "Disbanding...");
           try {
             let b = await (await s.api.makeRequest("/api/clans/disband", {
               method: "POST",
@@ -2508,9 +2509,9 @@ s.ui = {
                 "Content-Type": "application/json"
               }
             })).json();
-            b.success ? (h.close(), s.ui.showClanModal()) : (alert(b.error || "Failed to disband clan"), h.setButtonLoading("disband", !1))
-          } catch (d) {
-            alert("Failed to disband clan: " + d.message), h.setButtonLoading("disband", !1)
+            b.success ? (d.close(), s.ui.showClanModal()) : (alert(b.error || "Failed to disband clan"), d.setButtonLoading("disband", !1))
+          } catch (u) {
+            alert("Failed to disband clan: " + u.message), d.setButtonLoading("disband", !1)
           }
         }
       }
@@ -2518,9 +2519,9 @@ s.ui = {
       text: "Leave Clan",
       type: "cancel",
       id: "leave",
-      onClick: async h => {
+      onClick: async d => {
         if (confirm("Are you sure you want to leave this clan?")) {
-          h.setButtonLoading("leave", !0, "Leaving...");
+          d.setButtonLoading("leave", !0, "Leaving...");
           try {
             let b = await (await s.api.makeRequest("/api/clans/leave", {
               method: "POST",
@@ -2528,62 +2529,62 @@ s.ui = {
                 "Content-Type": "application/json"
               }
             })).json();
-            b.success ? (h.close(), s.ui.showClanModal()) : (alert(b.error || "Failed to leave clan"), h.setButtonLoading("leave", !1))
-          } catch (d) {
-            alert("Failed to leave clan: " + d.message), h.setButtonLoading("leave", !1)
+            b.success ? (d.close(), s.ui.showClanModal()) : (alert(b.error || "Failed to leave clan"), d.setButtonLoading("leave", !1))
+          } catch (u) {
+            alert("Failed to leave clan: " + u.message), d.setButtonLoading("leave", !1)
           }
         }
       }
     }), e.buttons = o;
     let r = e.element.querySelector(".modal-actions");
     r.innerHTML = "", e._buttonElements.clear();
-    for (let h of e.buttons) r.appendChild(e._createButton(h));
-    e.element.querySelectorAll(".clan-member-kick").forEach(h => {
-      h.addEventListener("click", async () => {
-        let d = h.dataset.domain;
-        if (confirm(`Are you sure you want to kick ${d}?`)) {
-          h.disabled = !0, h.textContent = "...";
+    for (let d of e.buttons) r.appendChild(e._createButton(d));
+    e.element.querySelectorAll(".clan-member-kick").forEach(d => {
+      d.addEventListener("click", async () => {
+        let u = d.dataset.domain;
+        if (confirm(`Are you sure you want to kick ${u}?`)) {
+          d.disabled = !0, d.textContent = "...";
           try {
-            let C = await (await s.api.makeRequest("/api/clans/kick", {
+            let T = await (await s.api.makeRequest("/api/clans/kick", {
               method: "POST",
               headers: {
                 "Content-Type": "application/json"
               },
               body: JSON.stringify({
-                domain: d
+                domain: u
               })
             })).json();
-            C.success ? (s.ui.showClanModal(), e.close()) : (alert(C.error || "Failed to kick member"), h.disabled = !1, h.textContent = "Kick")
+            T.success ? (s.ui.showClanModal(), e.close()) : (alert(T.error || "Failed to kick member"), d.disabled = !1, d.textContent = "Kick")
           } catch (b) {
-            alert("Failed to kick member: " + b.message), h.disabled = !1, h.textContent = "Kick"
+            alert("Failed to kick member: " + b.message), d.disabled = !1, d.textContent = "Kick"
           }
         }
       })
-    }), e.element.querySelectorAll(".clan-pending-cancel").forEach(h => {
-      h.addEventListener("click", async () => {
-        let d = h.dataset.invite;
-        h.disabled = !0, h.textContent = "...";
+    }), e.element.querySelectorAll(".clan-pending-cancel").forEach(d => {
+      d.addEventListener("click", async () => {
+        let u = d.dataset.invite;
+        d.disabled = !0, d.textContent = "...";
         try {
-          let C = await (await s.api.makeRequest("/api/clans/cancel-invite", {
+          let T = await (await s.api.makeRequest("/api/clans/cancel-invite", {
             method: "POST",
             headers: {
               "Content-Type": "application/json"
             },
             body: JSON.stringify({
-              invite: parseInt(d)
+              invite: parseInt(u)
             })
           })).json();
-          C.success ? h.closest(".clan-pending-item").remove() : (alert(C.error || "Failed to cancel invite"), h.disabled = !1, h.textContent = "Cancel")
+          T.success ? d.closest(".clan-pending-item").remove() : (alert(T.error || "Failed to cancel invite"), d.disabled = !1, d.textContent = "Cancel")
         } catch (b) {
-          alert("Failed to cancel invite: " + b.message), h.disabled = !1, h.textContent = "Cancel"
+          alert("Failed to cancel invite: " + b.message), d.disabled = !1, d.textContent = "Cancel"
         }
       })
     });
     let c = e.element.querySelector("#clan-invite-btn"),
       p = e.element.querySelector("#clan-invite-domain");
     c && p && c.addEventListener("click", async () => {
-      let h = p.value.trim();
-      if (!h) {
+      let d = p.value.trim();
+      if (!d) {
         alert("Please enter a domain");
         return
       }
@@ -2595,20 +2596,20 @@ s.ui = {
             "Content-Type": "application/json"
           },
           body: JSON.stringify({
-            domain: h
+            domain: d
           })
         })).json();
         b.success ? (p.value = "", s.ui.showClanModal(), e.close()) : (alert(b.error || "Failed to send invite"), c.disabled = !1, c.textContent = "Send Invite")
-      } catch (d) {
-        alert("Failed to send invite: " + d.message), c.disabled = !1, c.textContent = "Send Invite"
+      } catch (u) {
+        alert("Failed to send invite: " + u.message), c.disabled = !1, c.textContent = "Send Invite"
       }
     });
     let g = e.element.querySelector("#clan-admin-invites-btn");
     g && g.addEventListener("click", () => {
       e.close(), setTimeout(() => s.ui.showAdminInvitesModal(), 50)
     });
-    let m = e.element.querySelector("#clan-admin-clans-btn");
-    m && m.addEventListener("click", () => {
+    let v = e.element.querySelector("#clan-admin-clans-btn");
+    v && v.addEventListener("click", () => {
       e.close(), setTimeout(() => s.ui.showAdminClansModal(), 50)
     })
   },
@@ -2643,40 +2644,40 @@ s.ui = {
                 <button class="modal-btn modal-btn-cancel" id="clan-admin-clans-btn" style="margin-left: 5px;">View All Clans</button>
             </div>`), e.setContent(i), e.element.querySelectorAll(".clan-invite-accept").forEach(g => {
       g.addEventListener("click", async () => {
-        let m = g.dataset.invite;
+        let v = g.dataset.invite;
         g.disabled = !0, g.textContent = "...";
         try {
-          let d = await (await s.api.makeRequest("/api/clans/accept-invite", {
+          let u = await (await s.api.makeRequest("/api/clans/accept-invite", {
             method: "POST",
             headers: {
               "Content-Type": "application/json"
             },
             body: JSON.stringify({
-              invite: parseInt(m)
+              invite: parseInt(v)
             })
           })).json();
-          d.success ? (s.ui.pendingClanInvites = s.ui.pendingClanInvites.filter(b => b.id !== parseInt(m)), s.ui.updateClanIndicator(), s.ui.showClanModal(), e.close()) : (alert(d.error || "Failed to accept invite"), g.disabled = !1, g.textContent = "Accept")
-        } catch (h) {
-          alert("Failed to accept invite: " + h.message), g.disabled = !1, g.textContent = "Accept"
+          u.success ? (s.ui.pendingClanInvites = s.ui.pendingClanInvites.filter(b => b.id !== parseInt(v)), s.ui.updateClanIndicator(), s.ui.showClanModal(), e.close()) : (alert(u.error || "Failed to accept invite"), g.disabled = !1, g.textContent = "Accept")
+        } catch (d) {
+          alert("Failed to accept invite: " + d.message), g.disabled = !1, g.textContent = "Accept"
         }
       })
     }), e.element.querySelectorAll(".clan-invite-reject").forEach(g => {
       g.addEventListener("click", async () => {
-        let m = g.dataset.invite;
+        let v = g.dataset.invite;
         g.disabled = !0, g.textContent = "...";
         try {
-          let d = await (await s.api.makeRequest("/api/clans/reject-invite", {
+          let u = await (await s.api.makeRequest("/api/clans/reject-invite", {
             method: "POST",
             headers: {
               "Content-Type": "application/json"
             },
             body: JSON.stringify({
-              invite: parseInt(m)
+              invite: parseInt(v)
             })
           })).json();
-          d.success ? (s.ui.pendingClanInvites = s.ui.pendingClanInvites.filter(b => b.id !== parseInt(m)), s.ui.updateClanIndicator(), g.closest(".clan-invite-item").remove()) : (alert(d.error || "Failed to reject invite"), g.disabled = !1, g.textContent = "Reject")
-        } catch (h) {
-          alert("Failed to reject invite: " + h.message), g.disabled = !1, g.textContent = "Reject"
+          u.success ? (s.ui.pendingClanInvites = s.ui.pendingClanInvites.filter(b => b.id !== parseInt(v)), s.ui.updateClanIndicator(), g.closest(".clan-invite-item").remove()) : (alert(u.error || "Failed to reject invite"), g.disabled = !1, g.textContent = "Reject")
+        } catch (d) {
+          alert("Failed to reject invite: " + d.message), g.disabled = !1, g.textContent = "Reject"
         }
       })
     });
@@ -2698,7 +2699,7 @@ s.ui = {
       }
       o.disabled = !0, o.textContent = "Creating...";
       try {
-        let h = await (await s.api.makeRequest("/api/clans/create", {
+        let d = await (await s.api.makeRequest("/api/clans/create", {
           method: "POST",
           headers: {
             "Content-Type": "application/json"
@@ -2707,9 +2708,9 @@ s.ui = {
             name: g
           })
         })).json();
-        h.success ? (s.ui.showClanModal(), e.close()) : (alert(h.error || "Failed to create clan"), o.disabled = !1, o.textContent = "Create Clan")
-      } catch (m) {
-        alert("Failed to create clan: " + m.message), o.disabled = !1, o.textContent = "Create Clan"
+        d.success ? (s.ui.showClanModal(), e.close()) : (alert(d.error || "Failed to create clan"), o.disabled = !1, o.textContent = "Create Clan")
+      } catch (v) {
+        alert("Failed to create clan: " + v.message), o.disabled = !1, o.textContent = "Create Clan"
       }
     });
     let c = e.element.querySelector("#clan-admin-invites-btn");
@@ -2722,7 +2723,7 @@ s.ui = {
     })
   },
   showAdminInvitesModal: async () => {
-    let e = new M({
+    let e = new N({
       title: "Admin: All Clan Invites",
       content: "<p>Loading...</p>",
       buttons: [{
@@ -2780,7 +2781,7 @@ s.ui = {
     }
   },
   showAdminClansModal: async () => {
-    let e = new M({
+    let e = new N({
       title: "Admin: All Clans",
       content: "<p>Loading...</p>",
       buttons: [{
@@ -2853,7 +2854,7 @@ s.ui = {
       location.href = "https://kicya.net/auth/login?redirect=" + encodeURIComponent("https://webtiles.kicya.net/");
       return
     }
-    let t = new M({
+    let t = new N({
       title: "Free Tile",
       content: `
                 <p>What would you like to do with the tile at (${e.x}, ${e.y})?</p>
@@ -2936,8 +2937,8 @@ s.ui = {
               })
             })).json();
             if (p.success) {
-              let g = s.user.sites.find(m => m.domain === e.domain);
-              g && (g.tile = null), e.setFree(), e.setActive(!1), r.close(), K()
+              let g = s.user.sites.find(v => v.domain === e.domain);
+              g && (g.tile = null), e.setFree(), e.setActive(!1), r.close(), Q()
             } else alert(p.error || "Failed to free tile"), r.setButtonLoading("confirm", !1)
           } catch (c) {
             console.error(c), alert("Failed to free tile: " + c.message), r.setButtonLoading("confirm", !1)
@@ -2961,7 +2962,7 @@ s.ui = {
     }
     let n = t.domain,
       i = t.tile ? `<strong>Warning</strong>Your current tile at (${t.tile.x}, ${t.tile.y}) will be freed and your site will be moved to this new tile.` : null,
-      o = new M({
+      o = new N({
         title: "Take Tile",
         content: `
                 <p>Enter the code to take the tile at (${e.x}, ${e.y}) for <strong>${s.ui.escapeHTML(n)}</strong>:</p>
@@ -2987,7 +2988,7 @@ s.ui = {
             }
             r.setButtonLoading("confirm", !0, "Taking...");
             try {
-              let m = await (await s.api.makeRequest("/api/take", {
+              let v = await (await s.api.makeRequest("/api/take", {
                 method: "POST",
                 headers: {
                   "Content-Type": "application/json"
@@ -2998,18 +2999,18 @@ s.ui = {
                   code: p
                 })
               })).json();
-              if (m.success) {
+              if (v.success) {
                 if (s.user.selectedSite && s.user.selectedSite.tile) {
-                  let h = s.plot.getTile(s.user.selectedSite.tile.x, s.user.selectedSite.tile.y);
-                  h && h.setFree()
+                  let d = s.plot.getTile(s.user.selectedSite.tile.x, s.user.selectedSite.tile.y);
+                  d && d.setFree()
                 }
                 s.user.selectedSite && (s.user.selectedSite.tile = {
                   x: e.x,
                   y: e.y,
                   domain: s.user.selectedSite.domain,
                   created_at: Date.now()
-                }), e.setDomain(n), e.setActive(!1), r.close(), K()
-              } else alert(m.error || "Failed to take tile"), r.setButtonLoading("confirm", !1)
+                }), e.setDomain(n), e.setActive(!1), r.close(), Q()
+              } else alert(v.error || "Failed to take tile"), r.setButtonLoading("confirm", !1)
             } catch (g) {
               console.error(g), alert("Failed to take tile: " + g.message), r.setButtonLoading("confirm", !1)
             }
@@ -3022,7 +3023,7 @@ s.ui = {
     }, 100)
   },
   showAdminFreeModal: e => {
-    new M({
+    new N({
       title: "Admin: Free Tile",
       content: `
                 <p>Are you sure you want to <strong>free</strong> the tile at (${e.x}, ${e.y})?</p>
@@ -3059,7 +3060,7 @@ s.ui = {
     }).open()
   },
   showAdminBanModal: e => {
-    new M({
+    new N({
       title: "Admin: Ban User",
       content: `
                 <p>Are you sure you want to <strong>ban</strong> the owner of <strong>${s.ui.escapeHTML(e.domain)}</strong>?</p>
@@ -3103,7 +3104,7 @@ s.ui = {
   showAdminLockModal: (e, t) => {
     let n = t ? "unlock" : "lock",
       i = t ? "unlocked" : "locked";
-    new M({
+    new N({
       title: `Admin: ${t?"Unlock":"Lock"} Tile`,
       content: `
                 <p>Are you sure you want to <strong>${n}</strong> the tile at (${e.x}, ${e.y})?</p>
@@ -3144,7 +3145,7 @@ s.ui = {
     try {
       let n = await (await s.api.makeRequest(`/api/admin/lockcode?x=${e.x}&y=${e.y}`)).json();
       if (n.success) {
-        let i = new M({
+        let i = new N({
           title: "Lock Code",
           content: `
                         <p>Lock code for tile at (${e.x}, ${e.y}):</p>
@@ -3177,7 +3178,7 @@ s.ui = {
     try {
       let n = await (await s.api.makeRequest(`/api/admin/tilecode?x=${e.x}&y=${e.y}`)).json();
       if (n.success) {
-        let i = new M({
+        let i = new N({
           title: "Tile Secret Code",
           content: `
                         <p>Secret code for tile at (${e.x}, ${e.y}):</p>
@@ -3207,7 +3208,7 @@ s.ui = {
     }
   },
   showAdminSwapModal: e => {
-    let t = new M({
+    let t = new N({
       title: "Admin: Swap Tiles",
       content: `
                 <p>Enter the coordinates of the tile to swap with tile at (${e.x}, ${e.y}):</p>
@@ -3257,9 +3258,9 @@ s.ui = {
               })
             })).json();
             g.success ? (n.close(), e.setActive(!1), setTimeout(() => {
-              let m = s.plot.getTile(e.x, e.y),
-                h = s.plot.getTile(r, c);
-              m && (m.setActive(!1), m.fetchContent("/index.html", !0)), h && (h.setActive(!1), h.fetchContent("/index.html", !0))
+              let v = s.plot.getTile(e.x, e.y),
+                d = s.plot.getTile(r, c);
+              v && (v.setActive(!1), v.fetchContent("/index.html", !0)), d && (d.setActive(!1), d.fetchContent("/index.html", !0))
             }, 100)) : (alert(g.error || "Failed to swap tiles"), n.setButtonLoading("confirm", !1))
           } catch (p) {
             console.error(p), alert("Failed to swap tiles: " + p.message), n.setButtonLoading("confirm", !1)
@@ -3452,7 +3453,7 @@ s.ui = {
       p = t;
     (t === 1 && r || t === -1 && c) && (p = 0), n.disabled = !0, i.disabled = !0;
     try {
-      let m = await (await s.api.makeRequest("/api/votes/vote", {
+      let v = await (await s.api.makeRequest("/api/votes/vote", {
         method: "POST",
         headers: {
           "Content-Type": "application/json"
@@ -3462,10 +3463,10 @@ s.ui = {
           vote: p
         })
       })).json();
-      if (m.success) {
-        let h = m.score || 0;
-        o.textContent = h, n.classList.remove("active"), i.classList.remove("active"), p === 1 ? n.classList.add("active") : p === -1 && i.classList.add("active")
-      } else alert(m.error || "Failed to vote")
+      if (v.success) {
+        let d = v.score || 0;
+        o.textContent = d, n.classList.remove("active"), i.classList.remove("active"), p === 1 ? n.classList.add("active") : p === -1 && i.classList.add("active")
+      } else alert(v.error || "Failed to vote")
     } catch (g) {
       console.error("Failed to vote:", g), alert("Failed to vote: " + g.message)
     } finally {
@@ -3512,10 +3513,10 @@ s.ui = {
       r = null,
       c = null;
     try {
-      let h = await (await s.api.makeRequest(`/api/attack/success-chance?attacked_domain=${encodeURIComponent(i)}`)).json();
-      h.success ? (o = h.successChance, r = h.cooldown) : c = h.error || "Failed to get attack success chance"
-    } catch (m) {
-      console.error(m), c = "Failed to get attack success chance: " + m.message
+      let d = await (await s.api.makeRequest(`/api/attack/success-chance?attacked_domain=${encodeURIComponent(i)}`)).json();
+      d.success ? (o = d.successChance, r = d.cooldown) : c = d.error || "Failed to get attack success chance"
+    } catch (v) {
+      console.error(v), c = "Failed to get attack success chance: " + v.message
     }
     if (c) {
       alert(c);
@@ -3527,15 +3528,15 @@ s.ui = {
     }
     let p = "";
     if (r && r.isOnCooldown) {
-      let m = r.hoursRemaining;
+      let v = r.hoursRemaining;
       p = `
                 <p style="margin: 15px 0; padding: 10px; background-color: #fff3cd; border: 1px solid #ffc107; border-radius: 4px; color: #856404;">
                     <strong>Warning:</strong> Your attack chance is penalized because less than 12 hours have passed since your last attack. 
-                    ${m>1?`Approximately ${m} hours remaining until full chance.`:"Less than 1 hour remaining until full chance."}
+                    ${v>1?`Approximately ${v} hours remaining until full chance.`:"Less than 1 hour remaining until full chance."}
                 </p>
             `
     }
-    new M({
+    new N({
       title: "Attack Tile",
       content: `
                 <p>
@@ -3551,15 +3552,15 @@ s.ui = {
         text: "Cancel",
         type: "cancel",
         id: "cancel",
-        onClick: m => m.close()
+        onClick: v => v.close()
       }, {
         text: "Attack",
         type: "confirm",
         id: "confirm",
-        onClick: async m => {
-          m.setButtonLoading("confirm", !0, "Attacking...");
+        onClick: async v => {
+          v.setButtonLoading("confirm", !0, "Attacking...");
           try {
-            let d = await (await s.api.makeRequest("/api/attack/perform", {
+            let u = await (await s.api.makeRequest("/api/attack/perform", {
               method: "POST",
               headers: {
                 "Content-Type": "application/json"
@@ -3569,8 +3570,8 @@ s.ui = {
                 y: e.y
               })
             })).json();
-            if (d.success) {
-              m.setContent(`
+            if (u.success) {
+              v.setContent(`
                                     <p style="color: #4caf50; font-weight: bold; text-align: center; padding: 0px;">
                                         \u2713 Attack Successful!
                                     </p>
@@ -3578,42 +3579,42 @@ s.ui = {
                                         Your tile and the attacked tile have been swapped.
                                     </p>
                                 `), setTimeout(() => {
-                let C = s.plot.getTile(s.user.selectedSite.tile.x, s.user.selectedSite.tile.y);
-                C && (C.fetchContent("/index.html", !0), C.setActive(!1)), e.fetchContent("/index.html", !0), e.setActive(!1), s.user.selectedSite && (s.user.selectedSite.tile = {
+                let T = s.plot.getTile(s.user.selectedSite.tile.x, s.user.selectedSite.tile.y);
+                T && (T.fetchContent("/index.html", !0), T.setActive(!1)), e.fetchContent("/index.html", !0), e.setActive(!1), s.user.selectedSite && (s.user.selectedSite.tile = {
                   x: e.x,
                   y: e.y,
                   domain: n,
                   created_at: Date.now()
                 })
-              }, 500), m.buttons = [{
+              }, 500), v.buttons = [{
                 text: "Close",
                 type: "cancel",
                 id: "close",
-                onClick: C => C.close()
+                onClick: T => T.close()
               }];
-              let b = m.element.querySelector(".modal-actions");
-              b.innerHTML = "", m._buttonElements.clear();
-              for (let C of m.buttons) b.appendChild(m._createButton(C))
+              let b = v.element.querySelector(".modal-actions");
+              b.innerHTML = "", v._buttonElements.clear();
+              for (let T of v.buttons) b.appendChild(v._createButton(T))
             } else {
-              m.setContent(`
+              v.setContent(`
                                     <p style="color: #f44336; font-weight: bold; text-align: center; padding: 0px;">
                                         \u2717 Attack Failed
                                     </p>
                                     <p style="text-align: center;">
-                                        ${s.ui.escapeHTML(d.error||"The attack was unsuccessful.")}
+                                        ${s.ui.escapeHTML(u.error||"The attack was unsuccessful.")}
                                     </p>
-                                `), m.buttons = [{
+                                `), v.buttons = [{
                 text: "Close",
                 type: "cancel",
                 id: "close",
-                onClick: C => C.close()
+                onClick: T => T.close()
               }];
-              let b = m.element.querySelector(".modal-actions");
-              b.innerHTML = "", m._buttonElements.clear();
-              for (let C of m.buttons) b.appendChild(m._createButton(C))
+              let b = v.element.querySelector(".modal-actions");
+              b.innerHTML = "", v._buttonElements.clear();
+              for (let T of v.buttons) b.appendChild(v._createButton(T))
             }
-          } catch (h) {
-            console.error(h), alert("Failed to attack tile: " + h.message), m.setButtonLoading("confirm", !1)
+          } catch (d) {
+            console.error(d), alert("Failed to attack tile: " + d.message), v.setButtonLoading("confirm", !1)
           }
         }
       }]
@@ -3634,11 +3635,11 @@ s.ui = {
     }
     let e = s.user.selectedSite.domain,
       t = !1,
-      n = S => {
-        let A = `/e/${e}`;
-        return S ? `${A}?dark=true` : A
+      n = k => {
+        let I = `/e/${e}`;
+        return k ? `${I}?dark=true` : I
       },
-      i = S => `<iframe src="https://webtiles.kicya.net${n(S)}" width="250" height="270" frameborder="0"></iframe>`,
+      i = k => `<iframe src="https://webtiles.kicya.net${n(k)}" width="250" height="270" frameborder="0"></iframe>`,
       o = document.createElement("div");
     o.style.cssText = "display: flex; gap: 20px; align-items: flex-start; flex-wrap: wrap;";
     let r = document.createElement("div");
@@ -3649,47 +3650,47 @@ s.ui = {
     p.src = n(t), p.width = "250", p.height = "270", p.style.cssText = "border: 1px solid #ddd; border-radius: 4px;", p.setAttribute("frameborder", "0"), r.appendChild(p);
     let g = document.createElement("div");
     g.style.cssText = "flex: 1; min-width: 300px; max-width: 100%;";
-    let m = document.createElement("h4");
-    m.textContent = "Embed Code", m.style.cssText = "margin: 0 0 10px 0; font-size: 14px;", g.appendChild(m);
-    let h = document.createElement("div");
-    h.style.cssText = "margin-bottom: 10px; display: flex; align-items: center; gap: 3px;";
-    let d = document.createElement("input");
-    d.type = "checkbox", d.id = "embed-dark-mode", d.style.cssText = "cursor: pointer;";
+    let v = document.createElement("h4");
+    v.textContent = "Embed Code", v.style.cssText = "margin: 0 0 10px 0; font-size: 14px;", g.appendChild(v);
+    let d = document.createElement("div");
+    d.style.cssText = "margin-bottom: 10px; display: flex; align-items: center; gap: 3px;";
+    let u = document.createElement("input");
+    u.type = "checkbox", u.id = "embed-dark-mode", u.style.cssText = "cursor: pointer;";
     let b = document.createElement("label");
-    b.setAttribute("for", "embed-dark-mode"), b.textContent = "Dark mode", b.style.cssText = "cursor: pointer; font-size: 13px; user-select: none;", h.appendChild(d), h.appendChild(b), r.appendChild(h);
-    let C = document.createElement("textarea");
-    C.value = i(t), C.style.cssText = "width: 100%; height: 80px; padding: 8px; font-family: monospace; font-size: 12px; border: 1px solid #ddd; border-radius: 4px; resize: vertical; box-sizing: border-box;", C.readOnly = !0, g.appendChild(C);
-    let u = document.createElement("button");
-    u.textContent = "Copy Code", u.style.cssText = "margin-top: 10px; padding: 6px 12px; background-color: var(--main-color, #d85252); color: white; border: none; border-radius: 4px; cursor: pointer; font-size: 12px;", u.addEventListener("click", async () => {
+    b.setAttribute("for", "embed-dark-mode"), b.textContent = "Dark mode", b.style.cssText = "cursor: pointer; font-size: 13px; user-select: none;", d.appendChild(u), d.appendChild(b), r.appendChild(d);
+    let T = document.createElement("textarea");
+    T.value = i(t), T.style.cssText = "width: 100%; height: 80px; padding: 8px; font-family: monospace; font-size: 12px; border: 1px solid #ddd; border-radius: 4px; resize: vertical; box-sizing: border-box;", T.readOnly = !0, g.appendChild(T);
+    let C = document.createElement("button");
+    C.textContent = "Copy Code", C.style.cssText = "margin-top: 10px; padding: 6px 12px; background-color: var(--main-color, #d85252); color: white; border: none; border-radius: 4px; cursor: pointer; font-size: 12px;", C.addEventListener("click", async () => {
       try {
-        await navigator.clipboard.writeText(C.value), u.textContent = "Copied!", setTimeout(() => {
-          u.textContent = "Copy Code"
+        await navigator.clipboard.writeText(T.value), C.textContent = "Copied!", setTimeout(() => {
+          C.textContent = "Copy Code"
         }, 2e3)
       } catch {
-        C.select(), document.execCommand("copy"), u.textContent = "Copied!", setTimeout(() => {
-          u.textContent = "Copy Code"
+        T.select(), document.execCommand("copy"), C.textContent = "Copied!", setTimeout(() => {
+          C.textContent = "Copy Code"
         }, 2e3)
       }
-    }), g.appendChild(u);
-    let w = document.createElement("div");
-    w.style.cssText = "font-size: 12px; color: #666; margin-top: 10px;", w.innerHTML = "You can detect if your tile is embedded in JS by checking the <b>embedded</b> variable. For CSS, body has an <b>embedded</b> class.", g.appendChild(w), d.addEventListener("change", S => {
-      t = S.target.checked, p.src = n(t), C.value = i(t)
+    }), g.appendChild(C);
+    let f = document.createElement("div");
+    f.style.cssText = "font-size: 12px; color: #666; margin-top: 10px;", f.innerHTML = "You can detect if your tile is embedded in JS by checking the <b>embedded</b> variable. For CSS, body has an <b>embedded</b> class.", g.appendChild(f), u.addEventListener("change", k => {
+      t = k.target.checked, p.src = n(t), T.value = i(t)
     }), o.appendChild(r), o.appendChild(g);
-    let k = new M({
+    let w = new N({
       title: "Embed Tile",
       content: o,
       buttons: [{
         text: "Close",
         type: "cancel",
         id: "close",
-        onClick: S => S.close()
+        onClick: k => k.close()
       }]
     });
-    k.open(), k.element && (k.element.style.maxWidth = "700px")
+    w.open(), w.element && (w.element.style.maxWidth = "700px")
   }
 };
 
-function K() {
+function Q() {
   if (!s.user) return;
   let e = s.ui.siteSelector.value,
     t = s.user.sites.find(i => i.domain === e);
@@ -3707,14 +3708,14 @@ s.ui.siteSelector && s.ui.siteSelector.addEventListener("change", () => {
     let n = document.querySelector("#kicya-site-select-option");
     n && n.remove(), s.ui.fetchClanInvites()
   }
-  K()
+  Q()
 });
-K();
+Q();
 var Ye = document.getElementById("dashboard-modal"),
   Xe = document.getElementById("dashboard-iframe"),
   We = document.getElementById("dashboard-modal-close"),
   Ve = document.getElementById("dashboard-modal-title"),
-  he = document.getElementById("app");
+  fe = document.getElementById("app");
 s.ui.siteSettingsButton && s.ui.siteSettingsButton.addEventListener("click", () => {
   s.ui.showSettingsModal()
 });
@@ -3739,27 +3740,27 @@ s.ui.siteEmbedButton && s.ui.siteEmbedButton.addEventListener("click", () => {
 });
 
 function mt() {
-  Ye.classList.remove("active"), Xe.src = "", he && (he.style.display = ""), s.camera && s.camera.setZoomEnabled(!0)
+  Ye.classList.remove("active"), Xe.src = "", fe && (fe.style.display = ""), s.camera && s.camera.setZoomEnabled(!0)
 }
 We && We.addEventListener("click", mt);
 s.ui.zoomSlider.addEventListener("input", e => {
   s.camera.zoomTo(s.camera.width / 2, s.camera.height / 2, +e.target.value)
 });
-var Ce = document.getElementById("kicya-menu-toggle"),
-  G = document.getElementById("kicya-links");
-Ce && G && (Ce.addEventListener("click", function(e) {
-  e.stopPropagation(), G.classList.toggle("active")
+var be = document.getElementById("kicya-menu-toggle"),
+  K = document.getElementById("kicya-links");
+be && K && (be.addEventListener("click", function(e) {
+  e.stopPropagation(), K.classList.toggle("active")
 }), document.addEventListener("click", function(e) {
-  !G.contains(e.target) && !Ce.contains(e.target) && G.classList.remove("active")
-}), G.querySelectorAll("a").forEach(function(e) {
+  !K.contains(e.target) && !be.contains(e.target) && K.classList.remove("active")
+}), K.querySelectorAll("a").forEach(function(e) {
   e.addEventListener("click", function() {
-    G.classList.remove("active")
+    K.classList.remove("active")
   })
 }));
 
 function pt() {
   if (!s.user || localStorage.getItem("rules_accepted")) return;
-  new M({
+  new N({
     title: "Rules",
     content: `
             <p>Please read and accept the following rules:</p>
@@ -3784,8 +3785,8 @@ function pt() {
 }
 pt();
 s.user && s.user.selectedSite && s.ui.fetchClanInvites();
-var hn = s.ui;
-var Ee = class {
+var fn = s.ui;
+var Ce = class {
   constructor() {
     this.ws = null, this.reconnectTimeout = null, this.handlers = new Map, this.binaryHandlers = [], this.connected = !1, this.messageQueue = [], this.connectionAttempted = !1, this.consecutiveFailures = 0, this.lastConnectionTime = 0, this.waitForCaptchaAndConnect()
   }
@@ -3881,13 +3882,13 @@ var Ee = class {
     return this.ws && this.ws.readyState === WebSocket.OPEN
   }
 };
-s.ws = new Ee;
-var pn = s.ws;
+s.ws = new Ce;
+var gn = s.ws;
 var gt = new Set(["aaa", "aarp", "abb", "abbott", "abbvie", "abc", "able", "abogado", "abudhabi", "ac", "academy", "accenture", "accountant", "accountants", "aco", "actor", "ad", "ads", "adult", "ae", "aeg", "aero", "aetna", "af", "afl", "africa", "ag", "agakhan", "agency", "ai", "aig", "airbus", "airforce", "airtel", "akdn", "al", "alibaba", "alipay", "allfinanz", "allstate", "ally", "alsace", "alstom", "am", "amazon", "americanexpress", "americanfamily", "amex", "amfam", "amica", "amsterdam", "analytics", "android", "anquan", "anz", "ao", "aol", "apartments", "app", "apple", "aq", "aquarelle", "ar", "arab", "aramco", "archi", "army", "arpa", "art", "arte", "as", "asda", "asia", "associates", "at", "athleta", "attorney", "au", "auction", "audi", "audible", "audio", "auspost", "author", "auto", "autos", "aw", "aws", "ax", "axa", "az", "azure", "ba", "baby", "baidu", "banamex", "band", "bank", "bar", "barcelona", "barclaycard", "barclays", "barefoot", "bargains", "baseball", "basketball", "bauhaus", "bayern", "bb", "bbc", "bbt", "bbva", "bcg", "bcn", "bd", "be", "beats", "beauty", "beer", "berlin", "best", "bestbuy", "bet", "bf", "bg", "bh", "bharti", "bi", "bible", "bid", "bike", "bing", "bingo", "bio", "biz", "bj", "black", "blackfriday", "blockbuster", "blog", "bloomberg", "blue", "bm", "bms", "bmw", "bn", "bnpparibas", "bo", "boats", "boehringer", "bofa", "bom", "bond", "boo", "book", "booking", "bosch", "bostik", "boston", "bot", "boutique", "box", "br", "bradesco", "bridgestone", "broadway", "broker", "brother", "brussels", "bs", "bt", "build", "builders", "business", "buy", "buzz", "bv", "bw", "by", "bz", "bzh", "ca", "cab", "cafe", "cal", "call", "calvinklein", "cam", "camera", "camp", "canon", "capetown", "capital", "capitalone", "car", "caravan", "cards", "care", "career", "careers", "cars", "casa", "case", "cash", "casino", "cat", "catering", "catholic", "cba", "cbn", "cbre", "cc", "cd", "center", "ceo", "cern", "cf", "cfa", "cfd", "cg", "ch", "chanel", "channel", "charity", "chase", "chat", "cheap", "chintai", "christmas", "chrome", "church", "ci", "cipriani", "circle", "cisco", "citadel", "citi", "citic", "city", "ck", "cl", "claims", "cleaning", "click", "clinic", "clinique", "clothing", "cloud", "club", "clubmed", "cm", "cn", "co", "coach", "codes", "coffee", "college", "cologne", "com", "commbank", "community", "company", "compare", "computer", "comsec", "condos", "construction", "consulting", "contact", "contractors", "cooking", "cool", "coop", "corsica", "country", "coupon", "coupons", "courses", "cpa", "cr", "credit", "creditcard", "creditunion", "cricket", "crown", "crs", "cruise", "cruises", "cu", "cuisinella", "cv", "cw", "cx", "cy", "cymru", "cyou", "cz", "dad", "dance", "data", "date", "dating", "datsun", "day", "dclk", "dds", "de", "deal", "dealer", "deals", "degree", "delivery", "dell", "deloitte", "delta", "democrat", "dental", "dentist", "desi", "design", "dev", "dhl", "diamonds", "diet", "digital", "direct", "directory", "discount", "discover", "dish", "diy", "dj", "dk", "dm", "dnp", "do", "docs", "doctor", "dog", "domains", "dot", "download", "drive", "dtv", "dubai", "dupont", "durban", "dvag", "dvr", "dz", "earth", "eat", "ec", "eco", "edeka", "edu", "education", "ee", "eg", "email", "emerck", "energy", "engineer", "engineering", "enterprises", "epson", "equipment", "er", "ericsson", "erni", "es", "esq", "estate", "et", "eu", "eurovision", "eus", "events", "exchange", "expert", "exposed", "express", "extraspace", "fage", "fail", "fairwinds", "faith", "family", "fan", "fans", "farm", "farmers", "fashion", "fast", "fedex", "feedback", "ferrari", "ferrero", "fi", "fidelity", "fido", "film", "final", "finance", "financial", "fire", "firestone", "firmdale", "fish", "fishing", "fit", "fitness", "fj", "fk", "flickr", "flights", "flir", "florist", "flowers", "fly", "fm", "fo", "foo", "food", "football", "ford", "forex", "forsale", "forum", "foundation", "fox", "fr", "free", "fresenius", "frl", "frogans", "frontier", "ftr", "fujitsu", "fun", "fund", "furniture", "futbol", "fyi", "ga", "gal", "gallery", "gallo", "gallup", "game", "games", "gap", "garden", "gay", "gb", "gbiz", "gd", "gdn", "ge", "gea", "gent", "genting", "george", "gf", "gg", "ggee", "gh", "gi", "gift", "gifts", "gives", "giving", "gl", "glass", "gle", "global", "globo", "gm", "gmail", "gmbh", "gmo", "gmx", "gn", "godaddy", "gold", "goldpoint", "golf", "goo", "goodyear", "goog", "google", "gop", "got", "gov", "gp", "gq", "gr", "grainger", "graphics", "gratis", "green", "gripe", "grocery", "group", "gs", "gt", "gu", "gucci", "guge", "guide", "guitars", "guru", "gw", "gy", "hair", "hamburg", "hangout", "haus", "hbo", "hdfc", "hdfcbank", "health", "healthcare", "help", "helsinki", "here", "hermes", "hiphop", "hisamitsu", "hitachi", "hiv", "hk", "hkt", "hm", "hn", "hockey", "holdings", "holiday", "homedepot", "homegoods", "homes", "homesense", "honda", "horse", "hospital", "host", "hosting", "hot", "hotels", "hotmail", "house", "how", "hr", "hsbc", "ht", "hu", "hughes", "hyatt", "hyundai", "ibm", "icbc", "ice", "icu", "id", "ie", "ieee", "ifm", "ikano", "il", "im", "imamat", "imdb", "immo", "immobilien", "in", "inc", "industries", "infiniti", "info", "ing", "ink", "institute", "insurance", "insure", "int", "international", "intuit", "investments", "io", "ipiranga", "iq", "ir", "irish", "is", "ismaili", "ist", "istanbul", "it", "itau", "itv", "jaguar", "java", "jcb", "je", "jeep", "jetzt", "jewelry", "jio", "jll", "jm", "jmp", "jnj", "jo", "jobs", "joburg", "jot", "joy", "jp", "jpmorgan", "jprs", "juegos", "juniper", "kaufen", "kddi", "ke", "kerryhotels", "kerryproperties", "kfh", "kg", "kh", "ki", "kia", "kids", "kim", "kindle", "kitchen", "kiwi", "km", "kn", "koeln", "komatsu", "kosher", "kp", "kpmg", "kpn", "kr", "krd", "kred", "kuokgroup", "kw", "ky", "kyoto", "kz", "la", "lacaixa", "lamborghini", "lamer", "land", "landrover", "lanxess", "lasalle", "lat", "latino", "latrobe", "law", "lawyer", "lb", "lc", "lds", "lease", "leclerc", "lefrak", "legal", "lego", "lexus", "lgbt", "li", "lidl", "life", "lifeinsurance", "lifestyle", "lighting", "like", "lilly", "limited", "limo", "lincoln", "link", "live", "living", "lk", "llc", "llp", "loan", "loans", "locker", "locus", "lol", "london", "lotte", "lotto", "love", "lpl", "lplfinancial", "lr", "ls", "lt", "ltd", "ltda", "lu", "lundbeck", "luxe", "luxury", "lv", "ly", "ma", "madrid", "maif", "maison", "makeup", "man", "management", "mango", "map", "market", "marketing", "markets", "marriott", "marshalls", "mattel", "mba", "mc", "mckinsey", "md", "me", "med", "media", "meet", "melbourne", "meme", "memorial", "men", "menu", "merckmsd", "mg", "mh", "miami", "microsoft", "mil", "mini", "mint", "mit", "mitsubishi", "mk", "ml", "mlb", "mls", "mm", "mma", "mn", "mo", "mobi", "mobile", "moda", "moe", "moi", "mom", "monash", "money", "monster", "mormon", "mortgage", "moscow", "moto", "motorcycles", "mov", "movie", "mp", "mq", "mr", "ms", "msd", "mt", "mtn", "mtr", "mu", "museum", "music", "mv", "mw", "mx", "my", "mz", "na", "nab", "nagoya", "name", "navy", "nba", "nc", "ne", "nec", "net", "netbank", "netflix", "network", "neustar", "new", "news", "next", "nextdirect", "nexus", "nf", "nfl", "ng", "ngo", "nhk", "ni", "nico", "nike", "nikon", "ninja", "nissan", "nissay", "nl", "no", "nokia", "norton", "now", "nowruz", "nowtv", "np", "nr", "nra", "nrw", "ntt", "nu", "nyc", "nz", "obi", "observer", "office", "okinawa", "olayan", "olayangroup", "ollo", "om", "omega", "one", "ong", "onl", "online", "ooo", "open", "oracle", "orange", "org", "organic", "origins", "osaka", "otsuka", "ott", "ovh", "pa", "page", "panasonic", "paris", "pars", "partners", "parts", "party", "pay", "pccw", "pe", "pet", "pf", "pfizer", "pg", "ph", "pharmacy", "phd", "philips", "phone", "photo", "photography", "photos", "physio", "pics", "pictet", "pictures", "pid", "pin", "ping", "pink", "pioneer", "pizza", "pk", "pl", "place", "play", "playstation", "plumbing", "plus", "pm", "pn", "pnc", "pohl", "poker", "politie", "porn", "post", "pr", "praxi", "press", "prime", "pro", "prod", "productions", "prof", "progressive", "promo", "properties", "property", "protection", "pru", "prudential", "ps", "pt", "pub", "pw", "pwc", "py", "qa", "qpon", "quebec", "quest", "racing", "radio", "re", "read", "realestate", "realtor", "realty", "recipes", "red", "redumbrella", "rehab", "reise", "reisen", "reit", "reliance", "ren", "rent", "rentals", "repair", "report", "republican", "rest", "restaurant", "review", "reviews", "rexroth", "rich", "richardli", "ricoh", "ril", "rio", "rip", "ro", "rocks", "rodeo", "rogers", "room", "rs", "rsvp", "ru", "rugby", "ruhr", "run", "rw", "rwe", "ryukyu", "sa", "saarland", "safe", "safety", "sakura", "sale", "salon", "samsclub", "samsung", "sandvik", "sandvikcoromant", "sanofi", "sap", "sarl", "sas", "save", "saxo", "sb", "sbi", "sbs", "sc", "scb", "schaeffler", "schmidt", "scholarships", "school", "schule", "schwarz", "science", "scot", "sd", "se", "search", "seat", "secure", "security", "seek", "select", "sener", "services", "seven", "sew", "sex", "sexy", "sfr", "sg", "sh", "shangrila", "sharp", "shell", "shia", "shiksha", "shoes", "shop", "shopping", "shouji", "show", "si", "silk", "sina", "singles", "site", "sj", "sk", "ski", "skin", "sky", "skype", "sl", "sling", "sm", "smart", "smile", "sn", "sncf", "so", "soccer", "social", "softbank", "software", "sohu", "solar", "solutions", "song", "sony", "soy", "spa", "space", "sport", "spot", "sr", "srl", "ss", "st", "stada", "staples", "star", "statebank", "statefarm", "stc", "stcgroup", "stockholm", "storage", "store", "stream", "studio", "study", "style", "su", "sucks", "supplies", "supply", "support", "surf", "surgery", "suzuki", "sv", "swatch", "swiss", "sx", "sy", "sydney", "systems", "sz", "tab", "taipei", "talk", "taobao", "target", "tatamotors", "tatar", "tattoo", "tax", "taxi", "tc", "tci", "td", "tdk", "team", "tech", "technology", "tel", "temasek", "tennis", "teva", "tf", "tg", "th", "thd", "theater", "theatre", "tiaa", "tickets", "tienda", "tips", "tires", "tirol", "tj", "tjmaxx", "tjx", "tk", "tkmaxx", "tl", "tm", "tmall", "tn", "to", "today", "tokyo", "tools", "top", "toray", "toshiba", "total", "tours", "town", "toyota", "toys", "tr", "trade", "trading", "training", "travel", "travelers", "travelersinsurance", "trust", "trv", "tt", "tube", "tui", "tunes", "tushu", "tv", "tvs", "tw", "tz", "ua", "ubank", "ubs", "ug", "uk", "unicom", "university", "uno", "uol", "ups", "us", "uy", "uz", "va", "vacations", "vana", "vanguard", "vc", "ve", "vegas", "ventures", "verisign", "versicherung", "vet", "vg", "vi", "viajes", "video", "vig", "viking", "villas", "vin", "vip", "virgin", "visa", "vision", "viva", "vivo", "vlaanderen", "vn", "vodka", "volvo", "vote", "voting", "voto", "voyage", "vu", "wales", "walmart", "walter", "wang", "wanggou", "watch", "watches", "weather", "weatherchannel", "webcam", "weber", "website", "wed", "wedding", "weibo", "weir", "wf", "whoswho", "wien", "wiki", "williamhill", "win", "windows", "wine", "winners", "wme", "wolterskluwer", "woodside", "work", "works", "world", "wow", "ws", "wtc", "wtf", "xbox", "xerox", "xihuan", "xin", "xxx", "xyz", "yachts", "yahoo", "yamaxun", "yandex", "ye", "yodobashi", "yoga", "yokohama", "you", "youtube", "yt", "yun", "za", "zappos", "zara", "zero", "zip", "zm", "zone", "zuerich", "zw"]),
   Ze = 100,
   vt = 3,
   yt = 5e3,
-  Te = class {
+  Ee = class {
     constructor() {
       this.messages = [], this.isOpen = !0, this.unreadCount = 0, this.container = document.getElementById("chat-container"), this.messageTimestamps = [], this.showedRules = !1, this.container && (this.createUI(), this.setupWsHandlers(), this.setupInputHandlers(), this.createUserMenu(), this.createModMenu())
     }
@@ -3917,19 +3918,19 @@ var gt = new Set(["aaa", "aarp", "abb", "abbott", "abbvie", "abc", "able", "abog
         c = 0,
         p = 0,
         g = 0,
-        m = (h, d) => {
-          this.isOpen && (o = d, r = h.clientX, c = h.clientY, p = this.container.offsetWidth, g = this.container.offsetHeight, document.body.style.userSelect = "none", d === "left" ? document.body.style.cursor = "ew-resize" : d === "top" ? document.body.style.cursor = "ns-resize" : document.body.style.cursor = "nwse-resize", h.preventDefault())
+        v = (d, u) => {
+          this.isOpen && (o = u, r = d.clientX, c = d.clientY, p = this.container.offsetWidth, g = this.container.offsetHeight, document.body.style.userSelect = "none", u === "left" ? document.body.style.cursor = "ew-resize" : u === "top" ? document.body.style.cursor = "ns-resize" : document.body.style.cursor = "nwse-resize", d.preventDefault())
         };
-      t.addEventListener("mousedown", h => m(h, "left")), n.addEventListener("mousedown", h => m(h, "top")), i.addEventListener("mousedown", h => m(h, "corner")), document.addEventListener("mousemove", h => {
+      t.addEventListener("mousedown", d => v(d, "left")), n.addEventListener("mousedown", d => v(d, "top")), i.addEventListener("mousedown", d => v(d, "corner")), document.addEventListener("mousemove", d => {
         if (o) {
           if (o === "left" || o === "corner") {
-            let d = r - h.clientX,
-              b = Math.min(Math.max(p + d, 250), 800);
+            let u = r - d.clientX,
+              b = Math.min(Math.max(p + u, 250), 800);
             this.container.style.width = b + "px"
           }
           if (o === "top" || o === "corner") {
-            let d = c - h.clientY,
-              b = Math.min(Math.max(g + d, 100), 700);
+            let u = c - d.clientY,
+              b = Math.min(Math.max(g + u, 100), 700);
             this.container.style.height = b + "px"
           }
         }
@@ -4132,36 +4133,36 @@ var gt = new Set(["aaa", "aarp", "abb", "abbott", "abbvie", "abc", "able", "abog
     parseMessage(t) {
       let n = /@([a-zA-Z0-9][-a-zA-Z0-9]*(?:\.[a-zA-Z0-9][-a-zA-Z0-9]*)*\.[a-zA-Z]{2,})/g,
         i = [];
-      t = t.replace(n, (h, d) => (i.push(d), `<span class="chat-ping">@${this.escapeHTML(d)}</span>`));
+      t = t.replace(n, (d, u) => (i.push(u), `<span class="chat-ping">@${this.escapeHTML(u)}</span>`));
       let o = /(?!\.)(https?:\/\/[^\s<>"']+)|(?<![/])(\b(?:[a-zA-Z0-9][-a-zA-Z0-9]*\.)+([a-zA-Z]{2,})(?:\/[^\s<>"']*)?)/g,
         r = 250,
         p = 50 / 2;
-      t = t.replace(o, (h, d, b, C) => {
-        if (d) {
-          let u = d.match(/^https?:\/\/(?:www\.)?webtiles\.kicya\.net\/?#(-?\d+),(-?\d+)$/);
-          if (u) {
-            let w = parseInt(u[1]),
-              k = parseInt(u[2]),
-              S = Math.floor(w / r),
-              A = Math.floor(k / r);
-            if (S >= -p && S <= p && A >= -p && A <= p) return `<a href="#" class="chat-coord-link" data-x="${S}" data-y="${A}">${S}, ${A}</a>`
+      t = t.replace(o, (d, u, b, T) => {
+        if (u) {
+          let C = u.match(/^https?:\/\/(?:www\.)?webtiles\.kicya\.net\/?#(-?\d+),(-?\d+)$/);
+          if (C) {
+            let f = parseInt(C[1]),
+              w = parseInt(C[2]),
+              k = Math.floor(f / r),
+              I = Math.floor(w / r);
+            if (k >= -p && k <= p && I >= -p && I <= p) return `<a href="#" class="chat-coord-link" data-x="${k}" data-y="${I}">${k}, ${I}</a>`
           }
-          return `<a href="${this.escapeURL(d)}" target="_blank" rel="noopener noreferrer">${this.escapeURLDisplay(this.escapeURL(d))}</a>`
+          return `<a href="${this.escapeURL(u)}" target="_blank" rel="noopener noreferrer">${this.escapeURLDisplay(this.escapeURL(u))}</a>`
         }
-        if (b && gt.has(C.toLowerCase()) && !i.includes(b)) {
-          let u = "https://" + b;
-          return `<a href="${this.escapeURL(u)}" target="_blank" rel="noopener noreferrer">${this.escapeURLDisplay(b)}</a>`
+        if (b && gt.has(T.toLowerCase()) && !i.includes(b)) {
+          let C = "https://" + b;
+          return `<a href="${this.escapeURL(C)}" target="_blank" rel="noopener noreferrer">${this.escapeURLDisplay(b)}</a>`
         }
-        return h
+        return d
       });
       let g = /(-?\d+),\s*(-?\d+)/g;
-      t = t.replace(g, (h, d, b) => {
-        let C = parseInt(d),
-          u = parseInt(b);
-        return C >= -p && C <= p && u >= -p && u <= p ? `<a href="#" class="chat-coord-link" data-x="${d}" data-y="${b}">${h}</a>` : h
+      t = t.replace(g, (d, u, b) => {
+        let T = parseInt(u),
+          C = parseInt(b);
+        return T >= -p && T <= p && C >= -p && C <= p ? `<a href="#" class="chat-coord-link" data-x="${u}" data-y="${b}">${d}</a>` : d
       });
-      let m = (h, d, b, C) => `<img class="emoji" src="https://cdn.discordapp.com/emojis/${C}.${d?"gif":"png"}?v=1" alt=":${this.escapeHTML(b)}:" title=":${this.escapeHTML(b)}:" width="20">`;
-      return t = t.replace(/&lt;(a?):([a-zA-Z0-9_~]+):(\d{1,20})&gt;/g, m), t = t.replace(/<(a?):([a-zA-Z0-9_~]+):(\d{1,20})>/g, m), t = t.replace(/\*\*([^*]+)\*\*/g, (h, d) => `<strong>${d}</strong>`), t = t.replace(/\*([^*]+)\*/g, (h, d) => `<em>${d}</em>`), t = t.replace(/~~([^~]+)~~/g, (h, d) => `<s>${d}</s>`), t = t.replace(/__([^_]+)__/g, (h, d) => `<u>${d}</u>`), t = t.replace(/\|\|([^|]+)\|\|/g, (h, d) => `<span class="chat-spoiler">${d}</span>`), t
+      let v = (d, u, b, T) => `<img class="emoji" src="https://cdn.discordapp.com/emojis/${T}.${u?"gif":"png"}?v=1" alt=":${this.escapeHTML(b)}:" title=":${this.escapeHTML(b)}:" width="20">`;
+      return t = t.replace(/&lt;(a?):([a-zA-Z0-9_~]+):(\d{1,20})&gt;/g, v), t = t.replace(/<(a?):([a-zA-Z0-9_~]+):(\d{1,20})>/g, v), t = t.replace(/\*\*([^*]+)\*\*/g, (d, u) => `<strong>${u}</strong>`), t = t.replace(/\*([^*]+)\*/g, (d, u) => `<em>${u}</em>`), t = t.replace(/~~([^~]+)~~/g, (d, u) => `<s>${u}</s>`), t = t.replace(/__([^_]+)__/g, (d, u) => `<u>${u}</u>`), t = t.replace(/\|\|([^|]+)\|\|/g, (d, u) => `<span class="chat-spoiler">${u}</span>`), t
     }
     appendMessageEl(t) {
       let n = document.createElement("div");
@@ -4169,23 +4170,23 @@ var gt = new Set(["aaa", "aarp", "abb", "abbott", "abbvie", "abc", "able", "abog
       let i = document.createElement("span");
       i.className = "chat-nick", i.dataset.nick = t.nick;
       let o = s.user?.admin || s.user?.moderator;
-      t.discord || (i.classList.add("chat-nick-clickable"), i.addEventListener("click", h => {
-        h.stopPropagation(), o && !t.admin ? this.showModMenu(t, h.clientX, h.clientY) : this.findUserTile(t.nick) && this.showUserMenu(t.nick, h.clientX, h.clientY)
+      t.discord || (i.classList.add("chat-nick-clickable"), i.addEventListener("click", d => {
+        d.stopPropagation(), o && !t.admin ? this.showModMenu(t, d.clientX, d.clientY) : this.findUserTile(t.nick) && this.showUserMenu(t.nick, d.clientX, d.clientY)
       })), t.admin ? i.innerHTML = '<span class="chat-admin-icon">\u2605</span> ' + this.escapeHTML(t.nick) + ": " : t.mod ? i.innerHTML = '<span class="chat-mod-icon">\u25C6</span> ' + this.escapeHTML(t.nick) + ": " : t.discord ? i.innerHTML = '<span class="chat-discord-icon">[D]</span> ' + this.escapeHTML(t.nick) + ": " : i.textContent = t.nick + ": ";
       let r = document.createElement("span");
       r.className = "chat-text", t.admin || t.mod ? r.innerHTML = this.parseMessage(t.message).replace(/\n/g, "<br>") : r.innerHTML = this.parseMessage(this.escapeHTML(t.message)).replace(/\n/g, "<br>");
       let c = r.querySelectorAll(".emoji");
-      for (let h of c) h.addEventListener("error", d => {
-        d.target.remove()
+      for (let d of c) d.addEventListener("error", u => {
+        u.target.remove()
       });
       let p = r.querySelectorAll(".chat-spoiler");
-      for (let h of p) h.addEventListener("click", d => {
-        d.target.closest(".chat-spoiler").classList.toggle("chat-spoiler-revealed")
+      for (let d of p) d.addEventListener("click", u => {
+        u.target.closest(".chat-spoiler").classList.toggle("chat-spoiler-revealed")
       });
       let g = document.createElement("span");
       g.className = "chat-time";
-      let m = new Date(t.time || Date.now());
-      for (g.textContent = m.getHours().toString().padStart(2, "0") + ":" + m.getMinutes().toString().padStart(2, "0"), n.appendChild(i), n.appendChild(r), n.appendChild(g), this.messagesEl.appendChild(n); this.messagesEl.children.length > Ze;) this.messagesEl.removeChild(this.messagesEl.firstChild)
+      let v = new Date(t.time || Date.now());
+      for (g.textContent = v.getHours().toString().padStart(2, "0") + ":" + v.getMinutes().toString().padStart(2, "0"), n.appendChild(i), n.appendChild(r), n.appendChild(g), this.messagesEl.appendChild(n); this.messagesEl.children.length > Ze;) this.messagesEl.removeChild(this.messagesEl.firstChild)
     }
     renderMessages() {
       this.messagesEl.innerHTML = "";
@@ -4251,14 +4252,14 @@ var gt = new Set(["aaa", "aarp", "abb", "abbott", "abbvie", "abc", "able", "abog
       n.className = "chat-message chat-system", n.innerHTML = this.parseMessage(this.escapeHTML(t)).replace(/\n/g, "<br>"), this.messagesEl.appendChild(n), this.scrollToBottom()
     }
   };
-s.chat = new Te;
-var yn = s.chat;
+s.chat = new Ee;
+var wn = s.chat;
 var wt = document.getElementById("loading-text"),
   bt = 0,
   Ct = setInterval(() => {
     wt.innerText = `Loading${".".repeat(bt++%4)}`
   }, 200),
-  Q = class {
+  ee = class {
     constructor() {
       this.tiles = {}, this.container = document.getElementById("plot"), this.worldSize = Re, this.activeTile = null, this.tileCache = {}, this.lockCache = {}, this.loaded = !1, setInterval(() => {
         for (let t in this.tiles) {
@@ -4412,34 +4413,34 @@ var wt = document.getElementById("loading-text"),
       }
     }
   };
-s.plot = new Q;
+s.plot = new ee;
 var Et = document.getElementById("plot"),
-  ee = class {
+  te = class {
     constructor() {
       if (this.x = 0, this.y = 0, this.zoom = 1, this.width = window.innerWidth, this.height = window.innerHeight, this.renderedTiles = new Set, this.centerOn(100, 100), location.hash.startsWith("#") && location.hash.includes(",")) try {
-        let [d, b] = location.hash.slice(1).split(",");
-        this.centerOn(parseInt(d), parseInt(b)), location.hash = ""
+        let [u, b] = location.hash.slice(1).split(",");
+        this.centerOn(parseInt(u), parseInt(b)), location.hash = ""
       } catch {}
       let t = 0,
         n = 0;
       setInterval(() => {
-        let d = this.x + this.width / 2,
+        let u = this.x + this.width / 2,
           b = this.y + this.height / 2;
-        (d != t || b != n) && (t = d, n = b)
+        (u != t || b != n) && (t = u, n = b)
       }, 1e3), window.addEventListener("resize", () => {
         this.width = window.innerWidth, this.height = window.innerHeight, this.renderTilesInView()
       });
       let i = 0;
-      this.zoomEnabled = !0, this.wheelHandler = d => {
-        if (!this.zoomEnabled || d.target.closest(".tile.active")) return;
-        d.preventDefault();
-        let b = d.deltaY;
+      this.zoomEnabled = !0, this.wheelHandler = u => {
+        if (!this.zoomEnabled || u.target.closest(".tile.active")) return;
+        u.preventDefault();
+        let b = u.deltaY;
         if (Math.abs(b) > 1 && Date.now() - i > 100) {
-          let u = q.indexOf(this.zoom) + (b > 0 ? -1 : 1);
-          if (u >= 1 && u < q.length) {
-            let w = s.mouse?.x || this.width / 2,
-              k = s.mouse?.y || this.height / 2;
-            this.zoomTo(w, k, q[u]), i = Date.now()
+          let C = W.indexOf(this.zoom) + (b > 0 ? -1 : 1);
+          if (C >= 1 && C < W.length) {
+            let f = s.mouse?.x || this.width / 2,
+              w = s.mouse?.y || this.height / 2;
+            this.zoomTo(f, w, W[C]), i = Date.now()
           }
         }
       }, window.addEventListener("wheel", this.wheelHandler, {
@@ -4450,57 +4451,57 @@ var Et = document.getElementById("plot"),
           x: 0,
           y: 0
         },
-        c = d => {
-          let b = d[0].clientX - d[1].clientX,
-            C = d[0].clientY - d[1].clientY;
-          return Math.sqrt(b * b + C * C)
+        c = u => {
+          let b = u[0].clientX - u[1].clientX,
+            T = u[0].clientY - u[1].clientY;
+          return Math.sqrt(b * b + T * T)
         },
-        p = d => ({
-          x: (d[0].clientX + d[1].clientX) / 2,
-          y: (d[0].clientY + d[1].clientY) / 2
+        p = u => ({
+          x: (u[0].clientX + u[1].clientX) / 2,
+          y: (u[0].clientY + u[1].clientY) / 2
         });
-      document.addEventListener("touchstart", d => {
-        d.touches.length === 2 && (o = c(d.touches), r = p(d.touches))
+      document.addEventListener("touchstart", u => {
+        u.touches.length === 2 && (o = c(u.touches), r = p(u.touches))
       }, {
         passive: !0
-      }), document.addEventListener("touchmove", d => {
-        if (this.zoomEnabled && d.touches.length === 2) {
-          if (d.target.closest(".tile.active")) return;
-          let b = c(d.touches),
-            C = p(d.touches);
+      }), document.addEventListener("touchmove", u => {
+        if (this.zoomEnabled && u.touches.length === 2) {
+          if (u.target.closest(".tile.active")) return;
+          let b = c(u.touches),
+            T = p(u.touches);
           if (o > 0) {
-            let u = b / o,
-              w = q.indexOf(this.zoom);
-            u > 1.1 && w < q.length - 1 ? (this.zoomTo(C.x, C.y, q[w + 1]), o = b) : u < .9 && w > 1 && (this.zoomTo(C.x, C.y, q[w - 1]), o = b)
+            let C = b / o,
+              f = W.indexOf(this.zoom);
+            C > 1.1 && f < W.length - 1 ? (this.zoomTo(T.x, T.y, W[f + 1]), o = b) : C < .9 && f > 1 && (this.zoomTo(T.x, T.y, W[f - 1]), o = b)
           }
-          r = C, d.preventDefault()
+          r = T, u.preventDefault()
         }
       }, {
         passive: !1
-      }), document.addEventListener("touchend", d => {
-        d.touches.length < 2 && (o = 0)
+      }), document.addEventListener("touchend", u => {
+        u.touches.length < 2 && (o = 0)
       }), this.keysPressed = {
         ArrowUp: !1,
         ArrowDown: !1,
         ArrowLeft: !1,
         ArrowRight: !1
       }, this.moveSpeed = 5;
-      let g = d => {
-          d.key in this.keysPressed && (d.preventDefault(), this.keysPressed[d.key] = !0)
+      let g = u => {
+          u.key in this.keysPressed && (u.preventDefault(), this.keysPressed[u.key] = !0)
         },
-        m = d => {
-          d.key in this.keysPressed && (d.preventDefault(), this.keysPressed[d.key] = !1)
+        v = u => {
+          u.key in this.keysPressed && (u.preventDefault(), this.keysPressed[u.key] = !1)
         };
-      window.addEventListener("keydown", g), window.addEventListener("keyup", m);
-      let h = () => {
+      window.addEventListener("keydown", g), window.addEventListener("keyup", v);
+      let d = () => {
         if (!s.plot?.activeTile) {
-          let d = 0,
+          let u = 0,
             b = 0;
-          this.keysPressed.ArrowLeft && (d -= this.moveSpeed), this.keysPressed.ArrowRight && (d += this.moveSpeed), this.keysPressed.ArrowUp && (b -= this.moveSpeed), this.keysPressed.ArrowDown && (b += this.moveSpeed), (d !== 0 || b !== 0) && this.move(this.x + d, this.y + b)
+          this.keysPressed.ArrowLeft && (u -= this.moveSpeed), this.keysPressed.ArrowRight && (u += this.moveSpeed), this.keysPressed.ArrowUp && (b -= this.moveSpeed), this.keysPressed.ArrowDown && (b += this.moveSpeed), (u !== 0 || b !== 0) && this.move(this.x + u, this.y + b)
         }
-        requestAnimationFrame(h)
+        requestAnimationFrame(d)
       };
-      h()
+      d()
     }
     move(t, n) {
       this.x = Math.round(t), this.y = Math.round(n), this.updatePlotTransform(), this.renderTilesInView()
@@ -4541,14 +4542,14 @@ var Et = document.getElementById("plot"),
         c = this.x / this.zoom,
         p = (this.x + this.width) / this.zoom,
         g = this.y / this.zoom,
-        m = (this.y + this.height) / this.zoom,
-        h = i + r,
-        d = o + r,
+        v = (this.y + this.height) / this.zoom,
+        d = i + r,
+        u = o + r,
         b = n / this.zoom,
-        C = 0;
-      h < c ? C = c - h : i > p && (C = i - p);
-      let u = 0;
-      return d < g ? u = g - d : o > m && (u = o - m), Math.sqrt(C * C + u * u) <= b
+        T = 0;
+      d < c ? T = c - d : i > p && (T = i - p);
+      let C = 0;
+      return u < g ? C = g - u : o > v && (C = o - v), Math.sqrt(T * T + C * C) <= b
     }
     renderTilesInView() {
       let t = new Set,
@@ -4562,8 +4563,8 @@ var Et = document.getElementById("plot"),
       this.zoomEnabled = t
     }
   };
-s.camera = new ee;
-var te = class {
+s.camera = new te;
+var ne = class {
   constructor() {
     this.x = 0, this.y = 0, this.worldX = 0, this.worldY = 0, this.tileX = 0, this.tileY = 0, this.down = !1;
     let t = 0,
@@ -4571,57 +4572,57 @@ var te = class {
       i = 0,
       o = 0,
       r = 0,
-      c = (m, h, d) => {
-        if (!d.closest("#plot") || d.closest(".tile-info, .tile-admin-panel, .tile-vote-menu")) return !1;
+      c = (v, d, u) => {
+        if (!u.closest("#plot") || u.closest(".tile-info, .tile-admin-panel, .tile-vote-menu")) return !1;
         let b = s.plot.getTile(this.tileX, this.tileY);
-        return s.plot.activeTile && s.plot.activeTile.id === b.id ? !1 : (this.down = !0, i = m, o = h, t = s.camera.x, n = s.camera.y, r = Date.now(), !0)
+        return s.plot.activeTile && s.plot.activeTile.id === b.id ? !1 : (this.down = !0, i = v, o = d, t = s.camera.x, n = s.camera.y, r = Date.now(), !0)
       },
       p = () => {
         if (!this.down) return;
         this.down = !1;
-        let m = Math.abs(this.x - i),
-          h = Math.abs(this.y - o);
-        Date.now() - r < 400 && m < 10 && h < 10 && s.plot.getTile(this.tileX, this.tileY).setActive(!0)
+        let v = Math.abs(this.x - i),
+          d = Math.abs(this.y - o);
+        Date.now() - r < 400 && v < 10 && d < 10 && s.plot.getTile(this.tileX, this.tileY).setActive(!0)
       },
-      g = (m, h) => {
-        this.x = m, this.y = h;
-        let d = s.camera;
-        this.worldX = (d.x + this.x) / d.zoom, this.worldY = (d.y + this.y) / d.zoom;
+      g = (v, d) => {
+        this.x = v, this.y = d;
+        let u = s.camera;
+        this.worldX = (u.x + this.x) / u.zoom, this.worldY = (u.y + this.y) / u.zoom;
         let b = O.toTilePosition(this.worldX, this.worldY);
         if (this.tileX = b.x, this.tileY = b.y, s.ui.coords.textContent = `${this.tileX}, ${this.tileY}`, document.documentElement.style.setProperty("--coords-width", s.ui.coords.offsetWidth + "px"), this.down) {
-          let C = this.x - i,
-            u = this.y - o;
-          d.move(t - C, n - u)
+          let T = this.x - i,
+            C = this.y - o;
+          u.move(t - T, n - C)
         }
       };
-    document.addEventListener("mousedown", m => {
-      c(m.clientX, m.clientY, m.target) && m.preventDefault()
-    }), document.addEventListener("mouseup", m => {
+    document.addEventListener("mousedown", v => {
+      c(v.clientX, v.clientY, v.target) && v.preventDefault()
+    }), document.addEventListener("mouseup", v => {
       p()
-    }), document.addEventListener("mousemove", m => {
-      g(m.clientX, m.clientY)
-    }), document.addEventListener("touchstart", m => {
-      if (m.touches.length === 1) {
-        let h = m.touches[0];
-        c(h.clientX, h.clientY, h.target)
+    }), document.addEventListener("mousemove", v => {
+      g(v.clientX, v.clientY)
+    }), document.addEventListener("touchstart", v => {
+      if (v.touches.length === 1) {
+        let d = v.touches[0];
+        c(d.clientX, d.clientY, d.target)
       }
     }, {
       passive: !0
-    }), document.addEventListener("touchend", m => {
+    }), document.addEventListener("touchend", v => {
       p()
-    }), document.addEventListener("touchcancel", m => {
+    }), document.addEventListener("touchcancel", v => {
       this.down = !1
-    }), document.addEventListener("touchmove", m => {
-      if (m.touches.length === 1) {
-        let h = m.touches[0];
-        g(h.clientX, h.clientY), this.down && h.target.closest("#plot") && !h.target.closest(".tile.active") && m.preventDefault()
+    }), document.addEventListener("touchmove", v => {
+      if (v.touches.length === 1) {
+        let d = v.touches[0];
+        g(d.clientX, d.clientY), this.down && d.target.closest("#plot") && !d.target.closest(".tile.active") && v.preventDefault()
       }
     }, {
       passive: !1
     })
   }
 };
-s.mouse = new te;
+s.mouse = new ne;
 var Tt = document.getElementById("plot"),
   kt = document.getElementById("dashboard-modal"),
   xt = "/s/img/cursor.png",
@@ -4629,10 +4630,10 @@ var Tt = document.getElementById("plot"),
   Pt = 50,
   It = 100,
   Lt = 100,
-  ke = 150,
+  Te = 150,
   Je = 500,
   Ge = .6,
-  xe = class {
+  ke = class {
     constructor() {
       this.cursors = new Map, this.lastPositionSent = 0, this.currentNick = null, this.mouseWorldX = 0, this.mouseWorldY = 0, this.setupWsHandlers(), this.setupMouseTracking(), this.setupSiteChangeListener(), this.setupMiddleClick(), this.setupViewportChangeListener()
     }
@@ -4723,7 +4724,7 @@ var Tt = document.getElementById("plot"),
       let t = this.mouseWorldX - It,
         n = this.mouseWorldY - Lt,
         i = Math.sqrt(t * t + n * n);
-      return i <= ke ? 0 : i >= Je ? Ge : (i - ke) / (Je - ke) * Ge
+      return i <= Te ? 0 : i >= Je ? Ge : (i - Te) / (Je - Te) * Ge
     }
     updateAllCursorOpacities() {
       let t = this.getCursorOpacityFromCenter();
@@ -4739,7 +4740,7 @@ var Tt = document.getElementById("plot"),
     setupMouseTracking() {
       document.addEventListener("mousemove", t => {
         let n = s.camera;
-        if (!n || (this.mouseWorldX = Math.round((n.x + t.clientX) / n.zoom), this.mouseWorldY = Math.round((n.y + t.clientY) / n.zoom), this.updateAllNickOpacities(), this.updateAllCursorOpacities(), this.updateAllCursorVisibility(), !s.ws.isConnected) || !this.currentNick || M.activeModal || kt?.classList.contains("active") || Date.now() - this.lastPositionSent < 25) return;
+        if (!n || (this.mouseWorldX = Math.round((n.x + t.clientX) / n.zoom), this.mouseWorldY = Math.round((n.y + t.clientY) / n.zoom), this.updateAllNickOpacities(), this.updateAllCursorOpacities(), this.updateAllCursorVisibility(), !s.ws.isConnected) || !this.currentNick || N.activeModal || kt?.classList.contains("active") || Date.now() - this.lastPositionSent < 25) return;
         let i = new Int16Array(3);
         i[0] = this.mouseWorldX, i[1] = this.mouseWorldY, i[2] = 0, s.ws.send(i.buffer), this.lastPositionSent = Date.now()
       })
@@ -4795,7 +4796,7 @@ var Tt = document.getElementById("plot"),
       return t ? t.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;").replace(/'/g, "&#039;") : ""
     }
   },
-  Se = xe;
+  xe = ke;
 if ("serviceWorker" in navigator) {
   let t = "sw_version",
     n = async () => {
@@ -4824,29 +4825,29 @@ if ("serviceWorker" in navigator) {
     })
   })
 }
-s.cursors = new Se;
+s.cursors = new xe;
 s.user?.admin && (window.WebTiles = {
   ...s,
   classes: {
     Tile: O,
-    Camera: ee,
-    Plot: Q,
-    Mouse: te,
-    Cursors: Se
+    Camera: te,
+    Plot: ee,
+    Mouse: ne,
+    Cursors: xe
   }
 });
-var Pe = Date.now();
+var Se = Date.now();
 async function Ke() {
   let t = await (await s.api.makeRequest("/s/dist/buildtime.txt")).text();
   return parseInt(t)
 }
 Ke().then(e => {
-  Pe = e
+  Se = e
 });
 var Mt = setInterval(async () => {
   let e = await Ke();
-  if (e !== Pe) {
-    clearInterval(Mt), Pe = e;
+  if (e !== Se) {
+    clearInterval(Mt), Se = e;
     let t = document.createElement("div");
     t.id = "update-toast", t.innerHTML = `
             <span>A new WebTiles version is available!</span>
