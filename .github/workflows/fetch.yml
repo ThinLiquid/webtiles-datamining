@@ -1,12 +1,12 @@
-name: Fetch files
+name: Fetch latest files
 on:
   schedule:
-    - cron: "*/10 * * * *"
+    - cron: "*/5 * * * *"
   workflow_dispatch:
 permissions:
   contents: write
 jobs:
-  fetch-and-push:
+  fetch:
     runs-on: self-hosted
     steps:
       - name: Checkout repository
