@@ -13,7 +13,8 @@ const FILE_URLS = [
 	b + t + 'index.html',
 	b + t + 'rules.html',
 	b + t + 'js.html',
-	b + t + 'html.html'
+	b + t + 'html.html',
+  b + 'e/webtiles.kicya.net'
 ];
 
 const GITHUB_OWNER = 'ThinLiquid';
