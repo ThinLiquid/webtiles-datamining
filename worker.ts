@@ -1,3 +1,4 @@
+import { Cron } from 'croner';
 import { css, html, js } from 'js-beautify';
 
 const b = 'https://webtiles.kicya.net/'
@@ -123,30 +124,30 @@ async function putRepoFile(env, path, content, sha) {
   console.log(`${path} updated (hash: ${newHash})`);
 }
 
-export default {
-  async scheduled(event, env, ctx) {
-    for (let url of FILE_URLS) {
-      let pathname = new URL(url).pathname.replace(/^\/+/, '');
-      // Treat paths ending with / as index.html
-      if (pathname.endsWith('/') || pathname.length === 0) pathname += 'index.html';
-      const path = pathname;
+new Cron('*/30 * * * * *', async () => {
+  for (let url of FILE_URLS) {
+    let pathname = new URL(url).pathname.replace(/^\/+/, '');
+    // Treat paths ending with / as index.html
+    if (pathname.endsWith('/') || pathname.length === 0) pathname += 'index.html';
+    const path = pathname;
 
-			console.log(path)
-      const fileRes = await fetch(url, { headers: {
-				Referer: 'https://webtiles.kicya.net/'
-			} });
-      if (!fileRes.ok) {
+    console.log(path)
+    const fileRes = await fetch(url, { headers: {
+      Referer: 'https://webtiles.kicya.net/'
+    } });
+    if (!fileRes.ok) {
 
-        console.error(`Failed to fetch ${url}`, fileRes.status, await fileRes.text());
-        continue;
-      }
-
-      const content = await fileRes.text();
-      const existing = await getRepoFile(env, path);
-      await putRepoFile(env, path, content, existing?.sha);
+      console.error(`Failed to fetch ${url}`, fileRes.status, await fileRes.text());
+      continue;
     }
-  },
 
+    const content = await fileRes.text();
+    const existing = await getRepoFile(process.env, path);
+    await putRepoFile(process.env, path, content, existing?.sha);
+  }
+})
+
+export default {
   async fetch() {
     return new Response('OK');
   },

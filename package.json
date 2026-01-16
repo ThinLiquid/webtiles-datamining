@@ -4,12 +4,15 @@
   "type": "module",
   "private": true,
   "devDependencies": {
-    "@types/bun": "latest"
+    "@types/bun": "latest",
+    "wrangler": "^4.59.2"
   },
   "peerDependencies": {
     "typescript": "^5"
   },
   "dependencies": {
+    "croner": "^9.1.0",
+    "js-beautify": "^1.15.4",
     "prettier": "^3.8.0"
   }
 }
