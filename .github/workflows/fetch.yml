@@ -28,8 +28,10 @@ jobs:
           FILE_URLS=(
             "https://webtiles.kicya.net/s/dist/game.js"
             "https://webtiles.kicya.net/s/dist/embed.js"
+            "https://webtiles.kicya.net/s/js/lib/interpreter.js"
+            "https://webtiles.kicya.net/s/css/main.css"
           )
-          DEST_DIR="ordered-js"
+          DEST_DIR="src"
           mkdir -p "$DEST_DIR"
       
           for ROUND in 1 2 3 4 5; do
