@@ -1,0 +1,7849 @@
+var tt = Object.defineProperty;
+var nt = (e, t, n) =>
+  t in e ? tt(e, t, { enumerable: !0, configurable: !0, writable: !0, value: n }) : (e[t] = n);
+var ge = (e, t, n) => nt(e, typeof t != "symbol" ? t + "" : t, n);
+var re = { user: null, settings: { logCalls: localStorage.logCalls === "true" } },
+  Ie = document.getElementById("user-data");
+if (Ie)
+  try {
+    let e = JSON.parse(Ie.textContent);
+    e && e.email_verified && ((re.user = e), re.user.admin || (re.settings.logCalls = !1));
+  } catch (e) {
+    console.error(e);
+  }
+var s = re;
+var R = class R {
+  static init() {
+    R.container ||
+      ((R.container = document.createElement("div")),
+      (R.container.id = "modal-container"),
+      (R.container.className = "modal-overlay"),
+      R.container.addEventListener("click", (t) => {
+        t.target === R.container && R.activeModal && R.activeModal.close();
+      }),
+      document.body.appendChild(R.container));
+  }
+  constructor(t = {}) {
+    ((this.title = t.title || ""),
+      (this.content = t.content || ""),
+      (this.warning = t.warning || null),
+      (this.buttons = t.buttons || []),
+      (this.onClose = t.onClose || null),
+      (this.element = null),
+      (this._buttonElements = new Map()));
+  }
+  _createButton(t) {
+    let n = document.createElement("button");
+    return (
+      (n.className = `modal-btn modal-btn-${t.type || "default"}`),
+      (n.textContent = t.text),
+      t.disabled && (n.disabled = !0),
+      n.addEventListener("click", async () => {
+        t.onClick && (await t.onClick(this, n));
+      }),
+      this._buttonElements.set(t.id || t.text, n),
+      n
+    );
+  }
+  _build() {
+    let t = document.createElement("div");
+    if (((t.className = "modal-content"), this.title)) {
+      let n = document.createElement("h3");
+      ((n.className = "modal-title"), (n.textContent = this.title), t.appendChild(n));
+    }
+    if (this.content) {
+      let n = document.createElement("div");
+      ((n.className = "modal-body"),
+        typeof this.content == "string"
+          ? (n.innerHTML = this.content)
+          : this.content instanceof HTMLElement && n.appendChild(this.content),
+        t.appendChild(n));
+    }
+    if (
+      ((this._warningEl = document.createElement("div")),
+      (this._warningEl.className = "modal-warning"),
+      this.warning
+        ? ((this._warningEl.innerHTML = this.warning), (this._warningEl.style.display = "block"))
+        : (this._warningEl.style.display = "none"),
+      t.appendChild(this._warningEl),
+      this.buttons.length > 0)
+    ) {
+      let n = document.createElement("div");
+      n.className = "modal-actions";
+      for (let i of this.buttons) n.appendChild(this._createButton(i));
+      t.appendChild(n);
+    }
+    return ((this.element = t), t);
+  }
+  open() {
+    return (
+      R.init(),
+      R.activeModal && R.activeModal.close(),
+      this._build(),
+      (R.container.innerHTML = ""),
+      R.container.appendChild(this.element),
+      R.container.classList.add("active"),
+      (R.activeModal = this),
+      s.camera && s.camera.setZoomEnabled(!1),
+      this
+    );
+  }
+  close() {
+    return (
+      R.container && R.container.classList.remove("active"),
+      (R.activeModal = null),
+      this._buttonElements.clear(),
+      s.camera && s.camera.setZoomEnabled(!0),
+      this.onClose && this.onClose(this),
+      this
+    );
+  }
+  setContent(t) {
+    let n = this.element?.querySelector(".modal-body");
+    return (
+      n &&
+        (typeof t == "string"
+          ? (n.innerHTML = t)
+          : t instanceof HTMLElement && ((n.innerHTML = ""), n.appendChild(t))),
+      (this.content = t),
+      this
+    );
+  }
+  setWarning(t) {
+    return (
+      this._warningEl &&
+        (t
+          ? ((this._warningEl.innerHTML = t), (this._warningEl.style.display = "block"))
+          : (this._warningEl.style.display = "none")),
+      (this.warning = t),
+      this
+    );
+  }
+  getButton(t) {
+    return this._buttonElements.get(t);
+  }
+  setButtonLoading(t, n, i) {
+    let o = this.getButton(t);
+    return o
+      ? (n
+          ? ((o._originalText = o._originalText || o.textContent),
+            (o.textContent = i || "Loading..."),
+            (o.disabled = !0))
+          : ((o.textContent = o._originalText || o.textContent), (o.disabled = !1)),
+        this)
+      : this;
+  }
+};
+(ge(R, "container", null), ge(R, "activeModal", null));
+var M = R;
+function de() {
+  return document.querySelector('meta[name="turnstile-sitekey"]')?.content || "";
+}
+var st = de(),
+  B = localStorage.getItem("captchaToken"),
+  ve = parseInt(localStorage.getItem("captchaExpiresAt") || "0"),
+  Y = null,
+  ie = [],
+  ce = !1,
+  Le = 0,
+  it = 5e3;
+ve < Date.now() &&
+  ((B = null),
+  localStorage.removeItem("captchaToken"),
+  localStorage.removeItem("captchaExpiresAt"));
+function Me() {
+  ((B = null),
+    localStorage.removeItem("captchaToken"),
+    localStorage.removeItem("captchaExpiresAt"));
+}
+function ot(e, t) {
+  ((B = e),
+    (ve = t),
+    localStorage.setItem("captchaToken", e),
+    localStorage.setItem("captchaExpiresAt", t));
+}
+function oe() {
+  return ce ? !0 : window.turnstile ? ((ce = !0), !0) : !1;
+}
+function le(e, t) {
+  if (!oe()) return (console.error("[Captcha] Turnstile not ready"), !1);
+  let n = de() || st || "";
+  if (!n) return !0;
+  let i = typeof e == "string" ? document.querySelector(e) : e;
+  if (!i) return (console.error("[Captcha] Container not found:", e), !1);
+  i.innerHTML = "";
+  let o = window.turnstile;
+  return (
+    o.render(i, {
+      sitekey: n,
+      callback: async function (r) {
+        let c = document.getElementById("loading-text");
+        c && (c.textContent = "Verifying...");
+        try {
+          let g = await (
+            await fetch("/api/captcha/verify", {
+              method: "POST",
+              headers: { "Content-Type": "application/json" },
+              body: JSON.stringify({ turnstileToken: r }),
+            })
+          ).json();
+          if (g.success) {
+            if ((ot(g.token, g.expiresAt), c && (c.textContent = "Loading..."), t && Y)) {
+              (Y.close(), (Y = null));
+              let m = [...ie];
+              ((ie = []), m.forEach((h) => h()));
+            }
+          } else (c && (c.textContent = "Verification failed. Please try again."), o.reset(i));
+        } catch (p) {
+          (console.error("[Captcha] Verification error:", p),
+            c && (c.textContent = "Verification failed. Please try again."),
+            o.reset(i));
+        }
+      },
+      "error-callback": function () {
+        let r = document.getElementById("loading-text");
+        r && (r.textContent = "Captcha failed. Please refresh.");
+      },
+      "expired-callback": function () {
+        o.reset(i);
+      },
+    }),
+    !0
+  );
+}
+function Ne() {
+  if (de())
+    return new Promise((e) => {
+      if (Date.now() - Le < it) {
+        e();
+        return;
+      }
+      if (M.activeModal) {
+        ie.push(e);
+        return;
+      }
+      ((Le = Date.now()), ie.push(e));
+      let n = document.createElement("div");
+      ((n.id = "captcha-modal-turnstile"),
+        (n.style.display = "flex"),
+        (n.style.justifyContent = "center"),
+        (n.style.padding = "20px"));
+      let i = document.createElement("div"),
+        o = document.createElement("p");
+      if (
+        ((o.textContent = "Please complete the captcha to continue."),
+        i.appendChild(o),
+        i.appendChild(n),
+        (Y = new M({
+          title: "Verification Required",
+          content: i,
+          buttons: [
+            {
+              text: "Cancel",
+              type: "cancel",
+              onClick: (r) => {
+                (r.close(), (Y = null), (ie = []));
+              },
+            },
+          ],
+          onClose: () => {
+            Y = null;
+          },
+        })),
+        Y.open(),
+        oe())
+      )
+        le(n, !0);
+      else {
+        let r = setInterval(() => {
+          oe() && (clearInterval(r), le(n, !0));
+        }, 100);
+        setTimeout(() => clearInterval(r), 1e4);
+      }
+    });
+}
+function ye() {
+  if (B) return;
+  let e = document.querySelector("#turnstile-container");
+  if (e)
+    if (oe()) le(e, !1);
+    else {
+      let t = setInterval(() => {
+        oe() && (clearInterval(t), B || le(e, !1));
+      }, 100);
+      setTimeout(() => clearInterval(t), 1e4);
+    }
+}
+window.onTurnstileLoad = function () {
+  ((ce = !0), B || ye());
+};
+window.turnstile && ((ce = !0), B || ye());
+s.api = {
+  getToken() {
+    return B;
+  },
+  getTokenExpiry() {
+    return ve;
+  },
+  clearToken: Me,
+  showCaptchaModal: Ne,
+  renderCaptchaOnLoadingScreen: ye,
+  getTurnstileSiteKey: de,
+  async makeRequest(e, t = {}) {
+    let n = (t.method || "GET").toUpperCase();
+    n !== "GET" && B && ((t.headers = t.headers || {}), (t.headers["X-Captcha-Token"] = B));
+    let i = await fetch(e, t);
+    if (i.status === 403) {
+      let o = i.clone();
+      try {
+        if ((await o.json()).code === "CAPTCHA_REQUIRED")
+          return (
+            Me(),
+            await Ne(),
+            n !== "GET" && B && ((t.headers = t.headers || {}), (t.headers["X-Captcha-Token"] = B)),
+            fetch(e, t)
+          );
+      } catch {}
+    }
+    return i;
+  },
+};
+var $t = s.api;
+var q = [0.25, 0.5, 0.75, 1, 1.5],
+  Re = 50;
+function Ae(e, t, n, i) {
+  let o = new WeakMap(),
+    r = 2048,
+    c = 1e4,
+    p = new WeakMap();
+  function g(l) {}
+  function m() {
+    p.clear = new WeakMap();
+  }
+  function h(l, v) {
+    if (!l) return null;
+    if (o.has(l)) return o.get(l);
+    let E = e.createObject(se);
+    return ((E.native = l), (E.canvas = v), o.set(l, E), E);
+  }
+  let d = e.createNativeFunction(function () {
+    throw TypeError("Illegal constructor");
+  }, !0);
+  e.setProperty(t, "CanvasGradient", d);
+  let b = e.getProperty(d, "prototype");
+  e.setProperty(
+    b,
+    "addColorStop",
+    e.createNativeFunction(function (l, v) {
+      this.native.addColorStop(l, v);
+    }),
+  );
+  function C(l) {
+    let v = e.createObject(d);
+    return ((v.native = l), v);
+  }
+  let u = e.createNativeFunction(function () {
+    throw TypeError("Illegal constructor");
+  }, !0);
+  e.setProperty(t, "CanvasPattern", u);
+  function w(l) {
+    let v = e.createObject(u);
+    return ((v.native = l), v);
+  }
+  let k = e.createNativeFunction(function (l, v) {
+    if (l > r || v > r) throw new Error(`ImageData size exceeds maximum (${r}x${r})`);
+    s.settings.logCalls && console.log("create ImageData", this, l, v);
+    let E = new ImageData(l, v);
+    ((this.native = E), (this.width = l), (this.height = v));
+  }, !0);
+  e.setProperty(t, "ImageData", k);
+  let S = e.getProperty(k, "prototype");
+  (e.setProperty(S, "width", Interpreter.VALUE_IN_DESCRIPTOR, {
+    get: e.createNativeFunction(function () {
+      return this.native.width;
+    }),
+  }),
+    e.setProperty(S, "height", Interpreter.VALUE_IN_DESCRIPTOR, {
+      get: e.createNativeFunction(function () {
+        return this.native.height;
+      }),
+    }),
+    e.setProperty(S, "data", Interpreter.VALUE_IN_DESCRIPTOR, {
+      get: e.createNativeFunction(function () {
+        let l = this.native.data,
+          v = e.createObjectProto(e.ARRAY_PROTO);
+        e.setProperty(v, "length", l.length);
+        let E = e.nativeToPseudo({});
+        (e.setProperty(E, "length", l.length),
+          e.setProperty(
+            E,
+            "get",
+            e.createNativeFunction(function (T) {
+              return l[T];
+            }),
+          ),
+          e.setProperty(
+            E,
+            "set",
+            e.createNativeFunction(function (T, P) {
+              (s.settings.logCalls && console.log("setImageData", this, T, P), (l[T] = P));
+            }),
+          ));
+        for (let T = 0; T < Math.min(l.length, 1e3); T++)
+          ((P) => {
+            e.setProperty(E, P, Interpreter.VALUE_IN_DESCRIPTOR, {
+              get: e.createNativeFunction(function () {
+                return l[P];
+              }),
+              set: e.createNativeFunction(function (L) {
+                (s.settings.logCalls && console.log("setImageData", this, P, L), (l[P] = L));
+              }),
+            });
+          })(T);
+        return E;
+      }),
+    }));
+  function A(l) {
+    let v = e.createObject(k);
+    return ((v.native = l), v);
+  }
+  let F = e.createNativeFunction(function () {
+    throw TypeError("Illegal constructor");
+  }, !0);
+  e.setProperty(t, "TextMetrics", F);
+  let ne = e.getProperty(F, "prototype"),
+    W = [
+      "width",
+      "actualBoundingBoxLeft",
+      "actualBoundingBoxRight",
+      "fontBoundingBoxAscent",
+      "fontBoundingBoxDescent",
+      "actualBoundingBoxAscent",
+      "actualBoundingBoxDescent",
+      "emHeightAscent",
+      "emHeightDescent",
+      "hangingBaseline",
+      "alphabeticBaseline",
+      "ideographicBaseline",
+    ];
+  for (let l of W)
+    e.setProperty(ne, l, Interpreter.VALUE_IN_DESCRIPTOR, {
+      get: e.createNativeFunction(function () {
+        return this.native[l];
+      }),
+    });
+  function fe(l) {
+    let v = e.createObject(F);
+    return ((v.native = l), v);
+  }
+  let Z = e.createNativeFunction(function (l) {
+    l && l.native
+      ? (this.native = new Path2D(l.native))
+      : typeof l == "string"
+        ? (this.native = new Path2D(l))
+        : (this.native = new Path2D());
+  }, !0);
+  e.setProperty(t, "Path2D", Z);
+  let _ = e.getProperty(Z, "prototype"),
+    J = {
+      addPath: function (l, v) {
+        l?.native && this.native.addPath(l.native, v);
+      },
+      closePath: function () {
+        this.native.closePath();
+      },
+      moveTo: function (l, v) {
+        this.native.moveTo(l, v);
+      },
+      lineTo: function (l, v) {
+        this.native.lineTo(l, v);
+      },
+      bezierCurveTo: function (l, v, E, T, P, L) {
+        this.native.bezierCurveTo(l, v, E, T, P, L);
+      },
+      quadraticCurveTo: function (l, v, E, T) {
+        this.native.quadraticCurveTo(l, v, E, T);
+      },
+      arc: function (l, v, E, T, P, L) {
+        this.native.arc(l, v, E, T, P, L);
+      },
+      arcTo: function (l, v, E, T, P) {
+        this.native.arcTo(l, v, E, T, P);
+      },
+      ellipse: function (l, v, E, T, P, L, H, j) {
+        this.native.ellipse(l, v, E, T, P, L, H, j);
+      },
+      rect: function (l, v, E, T) {
+        this.native.rect(l, v, E, T);
+      },
+      roundRect: function (l, v, E, T, P) {
+        this.native.roundRect(l, v, E, T, P);
+      },
+    };
+  for (let [l, v] of Object.entries(J)) e.setProperty(_, l, e.createNativeFunction(v));
+  let se = e.createNativeFunction(function () {
+    throw TypeError("Illegal constructor");
+  }, !0);
+  e.setProperty(t, "CanvasRenderingContext2D", se);
+  let V = e.getProperty(se, "prototype"),
+    me = [
+      "globalAlpha",
+      "globalCompositeOperation",
+      "lineWidth",
+      "lineCap",
+      "lineJoin",
+      "miterLimit",
+      "lineDashOffset",
+      "font",
+      "textAlign",
+      "textBaseline",
+      "direction",
+      "shadowBlur",
+      "shadowColor",
+      "shadowOffsetX",
+      "shadowOffsetY",
+      "imageSmoothingEnabled",
+      "imageSmoothingQuality",
+      "filter",
+    ];
+  for (let l of me)
+    e.setProperty(V, l, Interpreter.VALUE_IN_DESCRIPTOR, {
+      get: e.createNativeFunction(function () {
+        return this.native[l];
+      }),
+      set: e.createNativeFunction(function (v) {
+        (s.settings.logCalls && console.log("context set " + l, this, v), (this.native[l] = v));
+      }),
+    });
+  for (let l of ["fillStyle", "strokeStyle"])
+    e.setProperty(V, l, Interpreter.VALUE_IN_DESCRIPTOR, {
+      get: e.createNativeFunction(function () {
+        let v = this.native[l];
+        return v;
+      }),
+      set: e.createNativeFunction(function (v) {
+        v?.native ? (this.native[l] = v.native) : (this.native[l] = v);
+      }),
+    });
+  e.setProperty(V, "canvas", Interpreter.VALUE_IN_DESCRIPTOR, {
+    get: e.createNativeFunction(function () {
+      return this.canvas;
+    }),
+  });
+  let pe = {
+    clearRect: function (l, v, E, T) {
+      (this.native, this.native.clearRect(l, v, E, T));
+    },
+    fillRect: function (l, v, E, T) {
+      (this.native, this.native.fillRect(l, v, E, T));
+    },
+    strokeRect: function (l, v, E, T) {
+      (this.native, this.native.strokeRect(l, v, E, T));
+    },
+    fillText: function (l, v, E, T) {
+      (this.native,
+        T !== void 0
+          ? this.native.fillText(String(l).slice(0, 1e3), v, E, T)
+          : this.native.fillText(String(l).slice(0, 1e3), v, E));
+    },
+    strokeText: function (l, v, E, T) {
+      (this.native,
+        T !== void 0
+          ? this.native.strokeText(String(l).slice(0, 1e3), v, E, T)
+          : this.native.strokeText(String(l).slice(0, 1e3), v, E));
+    },
+    measureText: function (l) {
+      return fe(this.native.measureText(String(l).slice(0, 1e3)));
+    },
+    getLineDash: function () {
+      return e.nativeToPseudo(this.native.getLineDash());
+    },
+    setLineDash: function (l) {
+      let v = e.pseudoToNative(l);
+      this.native.setLineDash(v);
+    },
+    createLinearGradient: function (l, v, E, T) {
+      return C(this.native.createLinearGradient(l, v, E, T));
+    },
+    createRadialGradient: function (l, v, E, T, P, L) {
+      return C(this.native.createRadialGradient(l, v, E, T, P, L));
+    },
+    createConicGradient: function (l, v, E) {
+      return C(this.native.createConicGradient(l, v, E));
+    },
+    createPattern: function (l, v) {
+      let E = l?.native || l;
+      if (!E) return null;
+      let T = this.native.createPattern(E, v);
+      return T ? w(T) : null;
+    },
+    beginPath: function () {
+      this.native.beginPath();
+    },
+    closePath: function () {
+      this.native.closePath();
+    },
+    moveTo: function (l, v) {
+      this.native.moveTo(l, v);
+    },
+    lineTo: function (l, v) {
+      this.native.lineTo(l, v);
+    },
+    bezierCurveTo: function (l, v, E, T, P, L) {
+      this.native.bezierCurveTo(l, v, E, T, P, L);
+    },
+    quadraticCurveTo: function (l, v, E, T) {
+      this.native.quadraticCurveTo(l, v, E, T);
+    },
+    arc: function (l, v, E, T, P, L) {
+      this.native.arc(l, v, E, T, P, L);
+    },
+    arcTo: function (l, v, E, T, P) {
+      this.native.arcTo(l, v, E, T, P);
+    },
+    ellipse: function (l, v, E, T, P, L, H, j) {
+      this.native.ellipse(l, v, E, T, P, L, H, j);
+    },
+    rect: function (l, v, E, T) {
+      this.native.rect(l, v, E, T);
+    },
+    roundRect: function (l, v, E, T, P) {
+      let L = e.pseudoToNative(P);
+      this.native.roundRect(l, v, E, T, L);
+    },
+    fill: function (l, v) {
+      (this.native, l?.native ? this.native.fill(l.native, v) : this.native.fill(l));
+    },
+    stroke: function (l) {
+      (this.native, l?.native ? this.native.stroke(l.native) : this.native.stroke());
+    },
+    clip: function (l, v) {
+      l?.native ? this.native.clip(l.native, v) : this.native.clip(l);
+    },
+    isPointInPath: function (l, v, E, T) {
+      return l?.native
+        ? this.native.isPointInPath(l.native, v, E, T)
+        : this.native.isPointInPath(l, v, E);
+    },
+    isPointInStroke: function (l, v, E) {
+      return l?.native
+        ? this.native.isPointInStroke(l.native, v, E)
+        : this.native.isPointInStroke(l, v);
+    },
+    getTransform: function () {
+      let l = this.native.getTransform();
+      return e.nativeToPseudo({ a: l.a, b: l.b, c: l.c, d: l.d, e: l.e, f: l.f });
+    },
+    rotate: function (l) {
+      this.native.rotate(l);
+    },
+    scale: function (l, v) {
+      this.native.scale(l, v);
+    },
+    translate: function (l, v) {
+      this.native.translate(l, v);
+    },
+    transform: function (l, v, E, T, P, L) {
+      this.native.transform(l, v, E, T, P, L);
+    },
+    setTransform: function (l, v, E, T, P, L) {
+      if (typeof l == "object" && l !== null) {
+        let H = e.pseudoToNative(l);
+        this.native.setTransform(H);
+      } else this.native.setTransform(l, v, E, T, P, L);
+    },
+    resetTransform: function () {
+      this.native.resetTransform();
+    },
+    drawImage: function (l, v, E, T, P, L, H, j, a) {
+      this.native;
+      let f = l?.native || l;
+      f &&
+        (j !== void 0
+          ? this.native.drawImage(f, v, E, T, P, L, H, j, a)
+          : T !== void 0
+            ? this.native.drawImage(f, v, E, T, P)
+            : this.native.drawImage(f, v, E));
+    },
+    createImageData: function (l, v) {
+      if (l?.native) return A(this.native.createImageData(l.native));
+      if (l > r || v > r) throw new Error(`ImageData size exceeds maximum (${r}x${r})`);
+      return A(this.native.createImageData(l, v));
+    },
+    getImageData: function (l, v, E, T) {
+      if (E > r || T > r) throw new Error(`ImageData size exceeds maximum (${r}x${r})`);
+      return A(this.native.getImageData(l, v, E, T));
+    },
+    putImageData: function (l, v, E, T, P, L, H) {
+      (this.native,
+        l?.native &&
+          (T !== void 0
+            ? this.native.putImageData(l.native, v, E, T, P, L, H)
+            : this.native.putImageData(l.native, v, E)));
+    },
+    save: function () {
+      this.native.save();
+    },
+    restore: function () {
+      this.native.restore();
+    },
+    reset: function () {
+      this.native.reset();
+    },
+  };
+  for (let [l, v] of Object.entries(pe)) e.setProperty(V, l, e.createNativeFunction(v));
+  return {
+    extendElement: function (l, v) {
+      (e.setProperty(
+        l,
+        "getContext",
+        e.createNativeFunction(function (E, T) {
+          s.settings.logCalls && console.log("getContext", this, E, T);
+          let P = this.native;
+          if (P.tagName !== "CANVAS")
+            throw new Error("getContext is only available on canvas elements");
+          if ((P.width > r && (P.width = r), P.height > r && (P.height = r), E === "2d")) {
+            let L = P.getContext("2d", T ? e.pseudoToNative(T) : void 0);
+            return h(L, this);
+          }
+          throw new Error(`Context type "${E}" is not supported`);
+        }),
+      ),
+        e.setProperty(l, "width", Interpreter.VALUE_IN_DESCRIPTOR, {
+          get: e.createNativeFunction(function () {
+            return this.native.tagName === "CANVAS" ? this.native.width : this.native.width;
+          }),
+          set: e.createNativeFunction(function (E) {
+            (s.settings.logCalls && console.log("set width", this, E),
+              this.native.tagName === "CANVAS" && (this.native.width = Math.min(E, r)));
+          }),
+        }),
+        e.setProperty(l, "height", Interpreter.VALUE_IN_DESCRIPTOR, {
+          get: e.createNativeFunction(function () {
+            return this.native.tagName === "CANVAS" ? this.native.height : this.native.height;
+          }),
+          set: e.createNativeFunction(function (E) {
+            (s.settings.logCalls && console.log("set height", this, E),
+              this.native.tagName === "CANVAS" && (this.native.height = Math.min(E, r)));
+          }),
+        }),
+        e.setProperty(
+          l,
+          "toDataURL",
+          e.createNativeFunction(function (E, T) {
+            if (this.native.tagName !== "CANVAS")
+              throw new Error("toDataURL is only available on canvas elements");
+            return (
+              s.settings.logCalls && console.log("toDataURL", this, E, T),
+              this.native.toDataURL(E, T)
+            );
+          }),
+        ));
+    },
+    resetDrawCounts: m,
+    contextToPseudo: h,
+  };
+}
+function _e(e, t) {
+  let r = 0,
+    c = window.location.origin;
+  function p(u) {
+    if (
+      typeof u != "string" ||
+      u.startsWith("/") ||
+      u.startsWith("./") ||
+      u.startsWith("../") ||
+      (!u.startsWith("http://") && !u.startsWith("https://"))
+    )
+      return !1;
+    try {
+      let w = new URL(u);
+      if (
+        w.origin === c ||
+        w.hostname === "kicya.net" ||
+        w.hostname.endsWith(".kicya.net") ||
+        w.hostname === "nekoweb.org"
+      )
+        return !1;
+      let k = w.hostname.toLowerCase();
+      return !(
+        k === "localhost" ||
+        k === "127.0.0.1" ||
+        k === "0.0.0.0" ||
+        k.startsWith("192.168.") ||
+        k.startsWith("10.") ||
+        k.startsWith("172.16.") ||
+        k.startsWith("172.17.") ||
+        k.startsWith("172.18.") ||
+        k.startsWith("172.19.") ||
+        k.startsWith("172.2") ||
+        k.startsWith("172.30.") ||
+        k.startsWith("172.31.") ||
+        k === "[::1]"
+      );
+    } catch {
+      return !1;
+    }
+  }
+  let g = 0,
+    m = e.nativeToPseudo({});
+  e.setProperty(t, "__xhrCallbacks", m);
+  function h(u, ...w) {
+    if (!u || typeof u != "object") return;
+    let k = g++;
+    e.setProperty(m, "fn" + k, u);
+    let S = w.map((F, ne) => {
+        let W = "arg" + k + "_" + ne;
+        return (e.setProperty(m, W, F), W);
+      }),
+      A = S.map((F) => `__xhrCallbacks.${F}`).join(",");
+    e.appendCode(
+      `__xhrCallbacks.fn${k}(${A}); delete __xhrCallbacks.fn${k}; ${S.map((F) => `delete __xhrCallbacks.${F}`).join("; ")};`,
+    );
+  }
+  let d = e.createNativeFunction(function () {
+    (s.settings.logCalls && console.log("XMLHttpRequest", this),
+      (this.native = new window.XMLHttpRequest()),
+      (this._method = null),
+      (this._url = null),
+      (this._async = !0),
+      (this._headers = {}),
+      (this._eventHandlers = {}));
+    let w = this;
+    ((this.native.onreadystatechange = function () {
+      (e.setProperty(w, "readyState", w.native.readyState),
+        w.native.readyState === 4 &&
+          (e.setProperty(w, "status", w.native.status),
+          e.setProperty(w, "statusText", w.native.statusText),
+          e.setProperty(w, "responseText", w.native.responseText?.slice(0, 5242880) || ""),
+          e.setProperty(w, "responseURL", w.native.responseURL),
+          (r = Math.max(0, r - 1))),
+        w._eventHandlers.onreadystatechange && h(w._eventHandlers.onreadystatechange));
+    }),
+      (this.native.onload = function () {
+        w._eventHandlers.onload && h(w._eventHandlers.onload);
+      }),
+      (this.native.onerror = function () {
+        ((r = Math.max(0, r - 1)), w._eventHandlers.onerror && h(w._eventHandlers.onerror));
+      }),
+      (this.native.ontimeout = function () {
+        ((r = Math.max(0, r - 1)), w._eventHandlers.ontimeout && h(w._eventHandlers.ontimeout));
+      }),
+      (this.native.onabort = function () {
+        ((r = Math.max(0, r - 1)), w._eventHandlers.onabort && h(w._eventHandlers.onabort));
+      }),
+      (this.native.onprogress = function (k) {
+        if (w._eventHandlers.onprogress) {
+          let S = e.nativeToPseudo({
+            loaded: k.loaded,
+            total: k.total,
+            lengthComputable: k.lengthComputable,
+          });
+          h(w._eventHandlers.onprogress, S);
+        }
+      }),
+      (this.native.onloadstart = function () {
+        w._eventHandlers.onloadstart && h(w._eventHandlers.onloadstart);
+      }),
+      (this.native.onloadend = function () {
+        w._eventHandlers.onloadend && h(w._eventHandlers.onloadend);
+      }),
+      e.setProperty(this, "readyState", 0),
+      e.setProperty(this, "status", 0),
+      e.setProperty(this, "statusText", ""),
+      e.setProperty(this, "responseText", ""),
+      e.setProperty(this, "responseURL", ""));
+  }, !0);
+  e.setProperty(t, "XMLHttpRequest", d);
+  let b = e.getProperty(d, "prototype");
+  (e.setProperty(d, "UNSENT", 0),
+    e.setProperty(d, "OPENED", 1),
+    e.setProperty(d, "HEADERS_RECEIVED", 2),
+    e.setProperty(d, "LOADING", 3),
+    e.setProperty(d, "DONE", 4),
+    e.setProperty(b, "UNSENT", 0),
+    e.setProperty(b, "OPENED", 1),
+    e.setProperty(b, "HEADERS_RECEIVED", 2),
+    e.setProperty(b, "LOADING", 3),
+    e.setProperty(b, "DONE", 4));
+  let C = [
+    "onreadystatechange",
+    "onload",
+    "onerror",
+    "ontimeout",
+    "onabort",
+    "onprogress",
+    "onloadstart",
+    "onloadend",
+  ];
+  for (let u of C)
+    e.setProperty(b, u, Interpreter.VALUE_IN_DESCRIPTOR, {
+      get: e.createNativeFunction(function () {
+        return this._eventHandlers[u] || null;
+      }),
+      set: e.createNativeFunction(function (w) {
+        (s.settings.logCalls && console.log("XMLHttpRequest set " + u, this, w),
+          (this._eventHandlers[u] = w));
+      }),
+    });
+  (e.setProperty(b, "timeout", Interpreter.VALUE_IN_DESCRIPTOR, {
+    get: e.createNativeFunction(function () {
+      return this.native.timeout;
+    }),
+    set: e.createNativeFunction(function (u) {
+      this.native.timeout = Math.min(u, 3e4);
+    }),
+  }),
+    e.setProperty(b, "withCredentials", Interpreter.VALUE_IN_DESCRIPTOR, {
+      get: e.createNativeFunction(function () {
+        return this.native.withCredentials;
+      }),
+      set: e.createNativeFunction(function (u) {
+        this.native.withCredentials = !1;
+      }),
+    }),
+    e.setProperty(b, "responseType", Interpreter.VALUE_IN_DESCRIPTOR, {
+      get: e.createNativeFunction(function () {
+        return this.native.responseType;
+      }),
+      set: e.createNativeFunction(function (u) {
+        (u === "" || u === "text" || u === "json") && (this.native.responseType = u);
+      }),
+    }),
+    e.setProperty(b, "response", Interpreter.VALUE_IN_DESCRIPTOR, {
+      get: e.createNativeFunction(function () {
+        let u = this.native.response;
+        return this.native.responseType === "json"
+          ? e.nativeToPseudo(u)
+          : typeof u == "string"
+            ? u.slice(0, 5242880)
+            : u;
+      }),
+    }),
+    e.setProperty(
+      b,
+      "open",
+      e.createNativeFunction(function (u, w, k, S, A) {
+        if (!p(w))
+          throw new Error(
+            `XHR request blocked: URL "${w}" is not allowed. Only absolute URLs to external origins are permitted.`,
+          );
+        let F = ["GET", "POST", "PUT", "DELETE", "PATCH", "HEAD", "OPTIONS"];
+        if (((u = String(u).toUpperCase()), !F.includes(u)))
+          throw new Error(`HTTP method "${u}" is not allowed`);
+        (s.settings.logCalls && console.log("XMLHttpRequest open", this, u, w, k, S, A),
+          (this._method = u),
+          (this._url = w),
+          (this._async = k !== !1),
+          this.native.open(u, w, this._async),
+          (this.native.timeout = 3e4),
+          e.setProperty(this, "readyState", this.native.readyState));
+      }),
+    ),
+    e.setProperty(
+      b,
+      "setRequestHeader",
+      e.createNativeFunction(function (u, w) {
+        if (
+          ["cookie", "cookie2", "set-cookie", "set-cookie2", "host", "origin", "referer"].includes(
+            u.toLowerCase(),
+          )
+        )
+          throw new Error(`Setting header "${u}" is not allowed`);
+        (s.settings.logCalls && console.log("XMLHttpRequest setRequestHeader", this, u, w),
+          (this._headers[u] = w),
+          this.native.setRequestHeader(u, w));
+      }),
+    ),
+    e.setProperty(
+      b,
+      "send",
+      e.createNativeFunction(function (u) {
+        if (r >= 5) throw new Error("Maximum concurrent requests (5) exceeded");
+        (s.settings.logCalls && console.log("XMLHttpRequest send", this, u), r++);
+        let w = null;
+        (u != null &&
+          (typeof u == "string"
+            ? (w = u.slice(0, 5242880))
+            : typeof u == "object" && (w = JSON.stringify(e.pseudoToNative(u)))),
+          this.native.send(w));
+      }),
+    ),
+    e.setProperty(
+      b,
+      "abort",
+      e.createNativeFunction(function () {
+        (s.settings.logCalls && console.log("XMLHttpRequest abort", this),
+          this.native.abort(),
+          (r = Math.max(0, r - 1)));
+      }),
+    ),
+    e.setProperty(
+      b,
+      "getResponseHeader",
+      e.createNativeFunction(function (u) {
+        return this.native.getResponseHeader(u);
+      }),
+    ),
+    e.setProperty(
+      b,
+      "getAllResponseHeaders",
+      e.createNativeFunction(function () {
+        return this.native.getAllResponseHeaders();
+      }),
+    ),
+    e.setProperty(
+      b,
+      "overrideMimeType",
+      e.createNativeFunction(function (u) {
+        this.native.overrideMimeType(u);
+      }),
+    ));
+}
+var at = "webtiles_storage",
+  rt = 1,
+  $ = "localStorage",
+  Oe = 1024 * 1024,
+  De = 100,
+  U = null,
+  ue = null;
+function X() {
+  return (
+    ue ||
+    ((ue = new Promise((e, t) => {
+      let n = indexedDB.open(at, rt);
+      ((n.onerror = () => t(n.error)),
+        (n.onsuccess = () => {
+          ((U = n.result), e(U));
+        }),
+        (n.onupgradeneeded = (i) => {
+          let o = i.target.result;
+          o.objectStoreNames.contains($) ||
+            o
+              .createObjectStore($, { keyPath: ["site", "key"] })
+              .createIndex("site", "site", { unique: !1 });
+        }));
+    })),
+    ue)
+  );
+}
+async function Fe(e, t) {
+  return (
+    await X(),
+    new Promise((n, i) => {
+      let c = U.transaction($, "readonly").objectStore($).get([e, t]);
+      ((c.onsuccess = () => n(c.result?.value ?? null)), (c.onerror = () => i(c.error)));
+    })
+  );
+}
+async function ct(e, t, n) {
+  return (
+    await X(),
+    new Promise((i, o) => {
+      let p = U.transaction($, "readwrite").objectStore($).put({ site: e, key: t, value: n });
+      ((p.onsuccess = () => i()), (p.onerror = () => o(p.error)));
+    })
+  );
+}
+async function lt(e, t) {
+  return (
+    await X(),
+    new Promise((n, i) => {
+      let c = U.transaction($, "readwrite").objectStore($).delete([e, t]);
+      ((c.onsuccess = () => n()), (c.onerror = () => i(c.error)));
+    })
+  );
+}
+async function dt(e) {
+  return (
+    await X(),
+    new Promise((t, n) => {
+      let c = U.transaction($, "readonly").objectStore($).index("site").getAll(e);
+      ((c.onsuccess = () => {
+        let p = c.result.map((g) => g.key);
+        t(p);
+      }),
+        (c.onerror = () => n(c.error)));
+    })
+  );
+}
+async function $e(e) {
+  return (
+    await X(),
+    new Promise((t, n) => {
+      let c = U.transaction($, "readonly").objectStore($).index("site").getAll(e);
+      ((c.onsuccess = () => {
+        let p = 0;
+        for (let g of c.result) p += (g.key.length + g.value.length) * 2;
+        t({ size: p, count: c.result.length });
+      }),
+        (c.onerror = () => n(c.error)));
+    })
+  );
+}
+async function ut(e) {
+  return (
+    await X(),
+    new Promise((t, n) => {
+      let c = U.transaction($, "readwrite").objectStore($).index("site").openCursor(e);
+      ((c.onsuccess = (p) => {
+        let g = p.target.result;
+        g ? (g.delete(), g.continue()) : t();
+      }),
+        (c.onerror = () => n(c.error)));
+    })
+  );
+}
+function Be(e, t, n) {
+  let i = e.nativeToPseudo({});
+  (e.setProperty(
+    i,
+    "getItem",
+    e.createAsyncFunction(function (o, r) {
+      if ((s.settings.logCalls && console.log("localStorage.getItem", this, o), o == null)) {
+        r(null);
+        return;
+      }
+      ((o = String(o)),
+        Fe(n, o)
+          .then((c) => r(c))
+          .catch((c) => {
+            (console.error("localStorage.getItem error:", c), r(null));
+          }));
+    }),
+  ),
+    e.setProperty(
+      i,
+      "setItem",
+      e.createAsyncFunction(function (o, r, c) {
+        if ((s.settings.logCalls && console.log("localStorage.setItem", this, o, r), o == null)) {
+          c();
+          return;
+        }
+        ((o = String(o)),
+          (r = String(r)),
+          $e(n)
+            .then(({ size: p, count: g }) => {
+              Fe(n, o)
+                .then((m) => {
+                  if (m === null && g >= De)
+                    throw new Error(`localStorage item limit exceeded (max ${De} items)`);
+                  let d = m ? (o.length + m.length) * 2 : 0,
+                    b = (o.length + r.length) * 2;
+                  if (p - d + b > Oe)
+                    throw new Error(`localStorage size limit exceeded (max ${Oe / 1024}KB)`);
+                  return ct(n, o, r);
+                })
+                .then(() => c())
+                .catch((m) => {
+                  throw (console.error("localStorage.setItem error:", m), m);
+                });
+            })
+            .catch((p) => {
+              (console.error("localStorage.setItem error:", p), c());
+            }));
+      }),
+    ),
+    e.setProperty(
+      i,
+      "removeItem",
+      e.createAsyncFunction(function (o, r) {
+        if ((s.settings.logCalls && console.log("localStorage.removeItem", this, o), o == null)) {
+          r();
+          return;
+        }
+        ((o = String(o)),
+          lt(n, o)
+            .then(() => r())
+            .catch((c) => {
+              (console.error("localStorage.removeItem error:", c), r());
+            }));
+      }),
+    ),
+    e.setProperty(
+      i,
+      "clear",
+      e.createAsyncFunction(function (o) {
+        (s.settings.logCalls && console.log("localStorage.clear", this),
+          ut(n)
+            .then(() => o())
+            .catch((r) => {
+              (console.error("localStorage.clear error:", r), o());
+            }));
+      }),
+    ),
+    e.setProperty(
+      i,
+      "key",
+      e.createAsyncFunction(function (o, r) {
+        ((o = parseInt(o) || 0),
+          dt(n)
+            .then((c) => {
+              r(o >= 0 && o < c.length ? c[o] : null);
+            })
+            .catch((c) => {
+              (console.error("localStorage.key error:", c), r(null));
+            }));
+      }),
+    ),
+    e.setProperty(
+      i,
+      "getLength",
+      e.createAsyncFunction(function (o) {
+        $e(n)
+          .then(({ count: r }) => o(r))
+          .catch((r) => {
+            (console.error("localStorage.getLength error:", r), o(0));
+          });
+      }),
+    ),
+    e.setProperty(t, "localStorage", i),
+    e.setProperty(t, "sessionStorage", i));
+}
+X().catch((e) => {
+  console.error("Failed to initialize storage DB:", e);
+});
+function He(e, t, n) {
+  let i = e.createNativeFunction(function () {}, !0);
+  e.setProperty(t, "DOMParser", i);
+  let o = e.getProperty(i, "prototype");
+  e.setProperty(
+    o,
+    "parseFromString",
+    e.createNativeFunction(function (r, c) {
+      if (
+        (s.settings.logCalls && console.log("DOMParser parseFromString", this, r, c),
+        ![
+          "text/html",
+          "text/xml",
+          "application/xml",
+          "application/xhtml+xml",
+          "image/svg+xml",
+        ].includes(c))
+      )
+        throw new Error(`DOMParser: Unsupported MIME type "${c}"`);
+      if ((typeof r != "string" && (r = String(r)), r.length > 1e5))
+        throw new Error("DOMParser: Input string too large (max 100KB)");
+      let m = new DOMParser().parseFromString(r, c),
+        h = e.createObjectProto(e.OBJECT_PROTO);
+      function d(b) {
+        if (b == null) return null;
+        let C = e.createObjectProto(e.OBJECT_PROTO);
+        return (
+          (C.native = b),
+          (C.fromDOMParser = !0),
+          e.setProperty(C, "nodeName", Interpreter.VALUE_IN_DESCRIPTOR, {
+            get: e.createNativeFunction(function () {
+              return this.native.nodeName;
+            }),
+          }),
+          e.setProperty(C, "nodeType", Interpreter.VALUE_IN_DESCRIPTOR, {
+            get: e.createNativeFunction(function () {
+              return this.native.nodeType;
+            }),
+          }),
+          e.setProperty(C, "nodeValue", Interpreter.VALUE_IN_DESCRIPTOR, {
+            get: e.createNativeFunction(function () {
+              return this.native.nodeValue;
+            }),
+            set: e.createNativeFunction(function (u) {
+              (s.settings.logCalls && console.log("DOMParser set nodeValue", this, u),
+                (this.native.nodeValue = u));
+            }),
+          }),
+          e.setProperty(C, "textContent", Interpreter.VALUE_IN_DESCRIPTOR, {
+            get: e.createNativeFunction(function () {
+              return this.native.textContent;
+            }),
+            set: e.createNativeFunction(function (u) {
+              (s.settings.logCalls && console.log("DOMParser set textContent", this, u),
+                (this.native.textContent = String(u).slice(0, 5e4)));
+            }),
+          }),
+          e.setProperty(C, "tagName", Interpreter.VALUE_IN_DESCRIPTOR, {
+            get: e.createNativeFunction(function () {
+              return this.native.tagName;
+            }),
+          }),
+          e.setProperty(C, "id", Interpreter.VALUE_IN_DESCRIPTOR, {
+            get: e.createNativeFunction(function () {
+              return this.native.id;
+            }),
+            set: e.createNativeFunction(function (u) {
+              (s.settings.logCalls && console.log("DOMParser set id", this, u),
+                (this.native.id = String(u).slice(0, 100)));
+            }),
+          }),
+          e.setProperty(C, "className", Interpreter.VALUE_IN_DESCRIPTOR, {
+            get: e.createNativeFunction(function () {
+              return this.native.className;
+            }),
+            set: e.createNativeFunction(function (u) {
+              (s.settings.logCalls && console.log("DOMParser set className", this, u),
+                (this.native.className = String(u).slice(0, 1e3)));
+            }),
+          }),
+          e.setProperty(C, "innerHTML", Interpreter.VALUE_IN_DESCRIPTOR, {
+            get: e.createNativeFunction(function () {
+              return this.native.innerHTML;
+            }),
+            set: e.createNativeFunction(function (u) {
+              throw new Error(
+                "innerHTML is not allowed. Create elements using document.createElement and append them instead or use innerText instead.",
+              );
+            }),
+          }),
+          e.setProperty(C, "outerHTML", Interpreter.VALUE_IN_DESCRIPTOR, {
+            get: e.createNativeFunction(function () {
+              return this.native.outerHTML;
+            }),
+          }),
+          e.setProperty(C, "children", Interpreter.VALUE_IN_DESCRIPTOR, {
+            get: e.createNativeFunction(function () {
+              let u = Array.from(this.native.children),
+                w = e.createObjectProto(e.ARRAY_PROTO);
+              for (let k = 0; k < u.length; k++) e.setProperty(w, k, d(u[k]));
+              return (e.setProperty(w, "length", u.length), w);
+            }),
+          }),
+          e.setProperty(C, "childNodes", Interpreter.VALUE_IN_DESCRIPTOR, {
+            get: e.createNativeFunction(function () {
+              let u = Array.from(this.native.childNodes),
+                w = e.createObjectProto(e.ARRAY_PROTO);
+              for (let k = 0; k < u.length; k++) e.setProperty(w, k, d(u[k]));
+              return (e.setProperty(w, "length", u.length), w);
+            }),
+          }),
+          e.setProperty(C, "firstChild", Interpreter.VALUE_IN_DESCRIPTOR, {
+            get: e.createNativeFunction(function () {
+              return d(this.native.firstChild);
+            }),
+          }),
+          e.setProperty(C, "lastChild", Interpreter.VALUE_IN_DESCRIPTOR, {
+            get: e.createNativeFunction(function () {
+              return d(this.native.lastChild);
+            }),
+          }),
+          e.setProperty(C, "firstElementChild", Interpreter.VALUE_IN_DESCRIPTOR, {
+            get: e.createNativeFunction(function () {
+              return d(this.native.firstElementChild);
+            }),
+          }),
+          e.setProperty(C, "lastElementChild", Interpreter.VALUE_IN_DESCRIPTOR, {
+            get: e.createNativeFunction(function () {
+              return d(this.native.lastElementChild);
+            }),
+          }),
+          e.setProperty(C, "parentNode", Interpreter.VALUE_IN_DESCRIPTOR, {
+            get: e.createNativeFunction(function () {
+              if (!this.fromDOMParser) throw new Error("No access.");
+              return this.native.isSameNode(n)
+                ? null
+                : (s.settings.logCalls && console.log("DOMParser get parentNode", this),
+                  d(this.native.parentNode));
+            }),
+          }),
+          e.setProperty(C, "parentElement", Interpreter.VALUE_IN_DESCRIPTOR, {
+            get: e.createNativeFunction(function () {
+              if (!this.fromDOMParser) throw new Error("No access.");
+              return this.native.isSameNode(n)
+                ? null
+                : (s.settings.logCalls && console.log("DOMParser get parentElement", this),
+                  d(this.native.parentElement));
+            }),
+          }),
+          e.setProperty(C, "nextSibling", Interpreter.VALUE_IN_DESCRIPTOR, {
+            get: e.createNativeFunction(function () {
+              if (!this.fromDOMParser) throw new Error("No access.");
+              return this.native.isSameNode(n)
+                ? null
+                : (s.settings.logCalls && console.log("DOMParser get nextSibling", this),
+                  d(this.native.nextSibling));
+            }),
+          }),
+          e.setProperty(C, "previousSibling", Interpreter.VALUE_IN_DESCRIPTOR, {
+            get: e.createNativeFunction(function () {
+              if (!this.fromDOMParser) throw new Error("No access.");
+              return this.native.isSameNode(n)
+                ? null
+                : (s.settings.logCalls && console.log("DOMParser get previousSibling", this),
+                  d(this.native.previousSibling));
+            }),
+          }),
+          e.setProperty(
+            C,
+            "getAttributeNames",
+            e.createNativeFunction(function () {
+              if (!this.fromDOMParser) throw new Error("No access.");
+              let u = Array.from(this.native.getAttributeNames()),
+                w = e.createObjectProto(e.ARRAY_PROTO);
+              for (let k = 0; k < u.length; k++) e.setProperty(w, k, u[k]);
+              return (e.setProperty(w, "length", u.length), w);
+            }),
+          ),
+          e.setProperty(
+            C,
+            "getAttribute",
+            e.createNativeFunction(function (u) {
+              if (!this.fromDOMParser) throw new Error("No access.");
+              return this.native.getAttribute(u);
+            }),
+          ),
+          e.setProperty(
+            C,
+            "setAttribute",
+            e.createNativeFunction(function (u, w) {
+              if (!this.fromDOMParser) throw new Error("No access.");
+              if (((u = String(u).toLowerCase()), u.startsWith("on")))
+                throw new Error("Event handlers are not allowed");
+              (this.native.setAttribute(u, String(w)),
+                s.settings.logCalls && console.log("DOMParser set attribute", this, u, w));
+            }),
+          ),
+          e.setProperty(
+            C,
+            "hasAttribute",
+            e.createNativeFunction(function (u) {
+              if (!this.fromDOMParser) throw new Error("No access.");
+              return this.native.hasAttribute(u);
+            }),
+          ),
+          e.setProperty(
+            C,
+            "removeAttribute",
+            e.createNativeFunction(function (u) {
+              if (!this.fromDOMParser) throw new Error("No access.");
+              if (this.native.isSameNode(n)) throw new Error("No access.");
+              (this.native.removeAttribute(u),
+                s.settings.logCalls && console.log("DOMParser remove attribute", this, u));
+            }),
+          ),
+          e.setProperty(
+            C,
+            "querySelector",
+            e.createNativeFunction(function (u) {
+              if (!this.fromDOMParser) throw new Error("No access.");
+              return d(this.native.querySelector(u));
+            }),
+          ),
+          e.setProperty(
+            C,
+            "querySelectorAll",
+            e.createNativeFunction(function (u) {
+              if (!this.fromDOMParser) throw new Error("No access.");
+              let w = Array.from(this.native.querySelectorAll(u)),
+                k = e.createObjectProto(e.ARRAY_PROTO);
+              for (let S = 0; S < w.length; S++) e.setProperty(k, S, d(w[S]));
+              return (e.setProperty(k, "length", w.length), k);
+            }),
+          ),
+          e.setProperty(
+            C,
+            "getElementsByTagName",
+            e.createNativeFunction(function (u) {
+              if (!this.fromDOMParser) throw new Error("No access.");
+              let w = Array.from(this.native.getElementsByTagName(u)),
+                k = e.createObjectProto(e.ARRAY_PROTO);
+              for (let S = 0; S < w.length; S++) e.setProperty(k, S, d(w[S]));
+              return (e.setProperty(k, "length", w.length), k);
+            }),
+          ),
+          e.setProperty(
+            C,
+            "getElementsByClassName",
+            e.createNativeFunction(function (u) {
+              if (!this.fromDOMParser) throw new Error("No access.");
+              let w = Array.from(this.native.getElementsByClassName(u)),
+                k = e.createObjectProto(e.ARRAY_PROTO);
+              for (let S = 0; S < w.length; S++) e.setProperty(k, S, d(w[S]));
+              return (e.setProperty(k, "length", w.length), k);
+            }),
+          ),
+          e.setProperty(
+            C,
+            "getElementById",
+            e.createNativeFunction(function (u) {
+              if (!this.fromDOMParser) throw new Error("No access.");
+              return d(this.native.getElementById ? this.native.getElementById(u) : null);
+            }),
+          ),
+          C
+        );
+      }
+      return (
+        e.setProperty(h, "documentElement", Interpreter.VALUE_IN_DESCRIPTOR, {
+          get: e.createNativeFunction(function () {
+            return d(m.documentElement);
+          }),
+        }),
+        e.setProperty(h, "head", Interpreter.VALUE_IN_DESCRIPTOR, {
+          get: e.createNativeFunction(function () {
+            return (s.settings.logCalls && console.log("DOMParser get head", this), d(m.head));
+          }),
+        }),
+        e.setProperty(h, "body", Interpreter.VALUE_IN_DESCRIPTOR, {
+          get: e.createNativeFunction(function () {
+            return (s.settings.logCalls && console.log("DOMParser get body", this), d(m.body));
+          }),
+        }),
+        e.setProperty(h, "title", Interpreter.VALUE_IN_DESCRIPTOR, {
+          get: e.createNativeFunction(function () {
+            return m.title;
+          }),
+        }),
+        e.setProperty(
+          h,
+          "querySelector",
+          e.createNativeFunction(function (b) {
+            return d(m.querySelector(b));
+          }),
+        ),
+        e.setProperty(
+          h,
+          "querySelectorAll",
+          e.createNativeFunction(function (b) {
+            let C = Array.from(m.querySelectorAll(b)),
+              u = e.createObjectProto(e.ARRAY_PROTO);
+            for (let w = 0; w < C.length; w++) e.setProperty(u, w, d(C[w]));
+            return (e.setProperty(u, "length", C.length), u);
+          }),
+        ),
+        e.setProperty(
+          h,
+          "getElementById",
+          e.createNativeFunction(function (b) {
+            return d(m.getElementById(b));
+          }),
+        ),
+        e.setProperty(
+          h,
+          "getElementsByTagName",
+          e.createNativeFunction(function (b) {
+            let C = Array.from(m.getElementsByTagName(b)),
+              u = e.createObjectProto(e.ARRAY_PROTO);
+            for (let w = 0; w < C.length; w++) e.setProperty(u, w, d(C[w]));
+            return (e.setProperty(u, "length", C.length), u);
+          }),
+        ),
+        e.setProperty(
+          h,
+          "getElementsByClassName",
+          e.createNativeFunction(function (b) {
+            let C = Array.from(m.getElementsByClassName(b)),
+              u = e.createObjectProto(e.ARRAY_PROTO);
+            for (let w = 0; w < C.length; w++) e.setProperty(u, w, d(C[w]));
+            return (e.setProperty(u, "length", C.length), u);
+          }),
+        ),
+        h
+      );
+    }),
+  );
+}
+function je(e, t, n, i) {
+  let o = new WeakMap(),
+    r = 1e3,
+    c = 5,
+    p = new WeakMap(),
+    g = 0,
+    m = e.nativeToPseudo({});
+  e.setProperty(t, "__eventCallbacks", m);
+  function h(a, f) {
+    let y = g++;
+    (e.setProperty(m, "fn" + y, a),
+      e.setProperty(m, "ev" + y, f),
+      e.appendCode(
+        `__eventCallbacks.fn${y}(__eventCallbacks.ev${y}); delete __eventCallbacks.fn${y}; delete __eventCallbacks.ev${y};`,
+      ));
+  }
+  function d() {
+    return n.getElementsByTagName("*").length;
+  }
+  function b(a = 1) {
+    if (d() + a > r) throw new Error(`DOM element limit exceeded (max ${r})`);
+  }
+  function C(a) {
+    return a instanceof Element ? 1 + a.getElementsByTagName("*").length : 0;
+  }
+  function u(a, f = !1) {
+    if (a == null) return null;
+    if (o.has(a)) return o.get(a);
+    let y = a instanceof Element ? Z : A,
+      x = e.createObject(y);
+    return ((x.native = a), x.fromDOMParser || (x.fromDOMParser = f), o.set(a, x), x);
+  }
+  function w(a) {
+    return a && n.contains(a);
+  }
+  function k(a) {
+    return w(a) ? a : null;
+  }
+  function S(a) {
+    let f = e.createObjectProto(e.ARRAY_PROTO);
+    for (let y = 0; y < a.length; y++) e.setProperty(f, y, u(a[y]));
+    return (e.setProperty(f, "length", a.length), f);
+  }
+  let A = e.createNativeFunction(function () {
+    throw TypeError("Illegal constructor");
+  }, !0);
+  e.setProperty(t, "Node", A);
+  let F = e.getProperty(A, "prototype"),
+    ne = {
+      firstChild: function () {
+        return u(k(this.native.firstChild));
+      },
+      lastChild: function () {
+        return u(k(this.native.lastChild));
+      },
+      parentNode: function () {
+        return u(k(this.native.parentNode));
+      },
+      parentElement: function () {
+        return u(k(this.native.parentElement));
+      },
+      nextSibling: function () {
+        return u(k(this.native.nextSibling));
+      },
+      previousSibling: function () {
+        return u(k(this.native.previousSibling));
+      },
+      childNodes: function () {
+        let a = Array.from(this.native.childNodes).filter(w);
+        return S(a);
+      },
+      nodeName: function () {
+        return this.native.nodeName;
+      },
+      nodeType: function () {
+        return this.native.nodeType;
+      },
+      nodeValue: function () {
+        return this.native.nodeValue;
+      },
+      textContent: function () {
+        return this.native.textContent;
+      },
+    },
+    W = {
+      textContent: function (a) {
+        (s.settings.logCalls && console.log("set textContent", this, a),
+          (this.native.textContent = a));
+      },
+      nodeValue: function (a) {
+        (s.settings.logCalls && console.log("set nodeValue", this, a), (this.native.nodeValue = a));
+      },
+    };
+  for (let [a, f] of Object.entries(ne)) {
+    let y = { get: e.createNativeFunction(f) };
+    (W[a] && (y.set = e.createNativeFunction(W[a])),
+      e.setProperty(F, a, Interpreter.VALUE_IN_DESCRIPTOR, y));
+  }
+  let fe = {
+    hasChildNodes: function () {
+      return this.native.hasChildNodes();
+    },
+    appendChild: function (a) {
+      if (!a?.native) return null;
+      if (a.fromDOMParser) throw new Error("You cannot append DOMParser elements to the DOM.");
+      return (
+        b(C(a.native)),
+        this.native.appendChild(a.native),
+        s.settings.logCalls && console.log("appendChild", this, a),
+        a
+      );
+    },
+    append: function (a) {
+      for (let f of a)
+        if (f?.native) {
+          if (f.fromDOMParser) throw new Error("You cannot append DOMParser elements to the DOM.");
+          (b(C(f.native)), this.native.appendChild(f.native));
+        }
+      return (s.settings.logCalls && console.log("append", this, a), a);
+    },
+    removeChild: function (a) {
+      return !a?.native || !w(a.native)
+        ? null
+        : (s.settings.logCalls && console.log("removeChild", this, a),
+          u(this.native.removeChild(a.native)));
+    },
+    insertBefore: function (a, f) {
+      if (!a?.native) return null;
+      if (a.fromDOMParser) throw new Error("You cannot insert DOMParser elements into the DOM.");
+      if (this.native.isSameNode(n)) throw new Error("No access.");
+      b(C(a.native));
+      let y = f?.native || null;
+      return (
+        this.native.insertBefore(a.native, y),
+        s.settings.logCalls && console.log("insertBefore", this, a, y),
+        a
+      );
+    },
+    cloneNode: function (a) {
+      return (
+        s.settings.logCalls && console.log("cloneNode", this, a),
+        u(this.native.cloneNode(a), this.fromDOMParser)
+      );
+    },
+    contains: function (a) {
+      return a?.native ? this.native.contains(a.native) : !1;
+    },
+    remove: function () {
+      if (this.native.isSameNode(n)) throw new Error("No access.");
+      (this.native.remove(), s.settings.logCalls && console.log("remove", this));
+    },
+    after: function (a) {
+      if (!a?.native) return null;
+      if (a.fromDOMParser) throw new Error("You cannot insert DOMParser elements into the DOM.");
+      if (this.native.isSameNode(n)) throw new Error("No access.");
+      return (
+        b(C(a.native)),
+        this.native.after(a.native),
+        s.settings.logCalls && console.log("after", this, a),
+        a
+      );
+    },
+    before: function (a) {
+      if (!a?.native) return null;
+      if (a.fromDOMParser) throw new Error("You cannot insert DOMParser elements into the DOM.");
+      if (this.native.isSameNode(n)) throw new Error("No access.");
+      return (
+        b(C(a.native)),
+        this.native.before(a.native),
+        s.settings.logCalls && console.log("before", this, a),
+        a
+      );
+    },
+  };
+  for (let [a, f] of Object.entries(fe)) e.setProperty(F, a, e.createNativeFunction(f));
+  let Z = e.createNativeFunction(function () {
+    throw TypeError("Illegal constructor");
+  }, !0);
+  e.setProperty(t, "Element", Z);
+  let _ = e.createObject(A);
+  e.setProperty(Z, "prototype", _);
+  function J(a) {
+    if (!a) return "";
+    a = String(a);
+    let f = a.toLowerCase().trim();
+    if (f.startsWith("javascript:") || f.startsWith("vbscript:"))
+      throw new Error("javascript: URLs are not allowed");
+    if (f.startsWith("data:")) return a;
+    try {
+      let y = new URL(a, location.href);
+      if (y.hostname !== location.hostname) throw new Error("External URLs are not allowed");
+      let x = y.pathname + y.search + y.hash;
+      return (
+        x.startsWith(`/t/${i.domain}/`) || (x = `/t/${i.domain}/${x}`.replaceAll("//", "/")),
+        x
+      );
+    } catch (y) {
+      if (y.message.includes("not allowed")) throw y;
+      let x = a;
+      return (
+        !x.startsWith(`/t/${i.domain}/`) &&
+          !x.startsWith("#") &&
+          (x = `/t/${i.domain}/${x}`.replaceAll("//", "/")),
+        x
+      );
+    }
+  }
+  let se = {
+      innerText: function () {
+        return this.native.innerText;
+      },
+      innerHTML: function () {
+        return this.native.innerHTML;
+      },
+      outerHTML: function () {
+        return this.native.outerHTML;
+      },
+      id: function () {
+        return this.native.id;
+      },
+      className: function () {
+        return this.native.className;
+      },
+      tagName: function () {
+        return this.native.tagName;
+      },
+      children: function () {
+        let a = Array.from(this.native.children).filter(w);
+        return S(a);
+      },
+      firstElementChild: function () {
+        return u(k(this.native.firstElementChild));
+      },
+      lastElementChild: function () {
+        return u(k(this.native.lastElementChild));
+      },
+      nextElementSibling: function () {
+        return u(k(this.native.nextElementSibling));
+      },
+      previousElementSibling: function () {
+        return u(k(this.native.previousElementSibling));
+      },
+      childElementCount: function () {
+        return this.native.childElementCount;
+      },
+      src: function () {
+        return this.native.src;
+      },
+      href: function () {
+        return this.native.href;
+      },
+      hidden: function () {
+        return this.native.hidden;
+      },
+      disabled: function () {
+        return this.native.disabled;
+      },
+      checked: function () {
+        return this.native.checked;
+      },
+      selected: function () {
+        return this.native.selected;
+      },
+      readOnly: function () {
+        return this.native.readOnly;
+      },
+      required: function () {
+        return this.native.required;
+      },
+      draggable: function () {
+        return this.native.draggable;
+      },
+      title: function () {
+        return this.native.title;
+      },
+      alt: function () {
+        return this.native.alt;
+      },
+      name: function () {
+        return this.native.name;
+      },
+      type: function () {
+        return this.native.type;
+      },
+      value: function () {
+        return this.native.value;
+      },
+      placeholder: function () {
+        return this.native.placeholder;
+      },
+      tabIndex: function () {
+        return this.native.tabIndex;
+      },
+      offsetWidth: function () {
+        return this.native.offsetWidth;
+      },
+      offsetHeight: function () {
+        return this.native.offsetHeight;
+      },
+      offsetTop: function () {
+        return this.native.offsetTop;
+      },
+      offsetLeft: function () {
+        return this.native.offsetLeft;
+      },
+      clientWidth: function () {
+        return this.native.clientWidth;
+      },
+      clientHeight: function () {
+        return this.native.clientHeight;
+      },
+      scrollWidth: function () {
+        return this.native.scrollWidth;
+      },
+      scrollHeight: function () {
+        return this.native.scrollHeight;
+      },
+      scrollTop: function () {
+        return this.native.scrollTop;
+      },
+      scrollLeft: function () {
+        return this.native.scrollLeft;
+      },
+      currentTime: function () {
+        return this.native.currentTime || 0;
+      },
+      duration: function () {
+        return this.native.duration || 0;
+      },
+      paused: function () {
+        return this.native.paused !== void 0 ? this.native.paused : !0;
+      },
+      ended: function () {
+        return this.native.ended || !1;
+      },
+      muted: function () {
+        return this.native.muted || !1;
+      },
+      volume: function () {
+        return this.native.volume !== void 0 ? this.native.volume : 1;
+      },
+      loop: function () {
+        return this.native.loop || !1;
+      },
+      autoplay: function () {
+        return this.native.autoplay || !1;
+      },
+      controls: function () {
+        return this.native.controls || !1;
+      },
+      playbackRate: function () {
+        return this.native.playbackRate !== void 0 ? this.native.playbackRate : 1;
+      },
+      defaultPlaybackRate: function () {
+        return this.native.defaultPlaybackRate !== void 0 ? this.native.defaultPlaybackRate : 1;
+      },
+      currentSrc: function () {
+        return this.native.currentSrc || "";
+      },
+      readyState: function () {
+        return this.native.readyState || 0;
+      },
+      networkState: function () {
+        return this.native.networkState || 0;
+      },
+      seeking: function () {
+        return this.native.seeking || !1;
+      },
+      preload: function () {
+        return this.native.preload || "auto";
+      },
+      poster: function () {
+        return this.native.poster || "";
+      },
+      videoWidth: function () {
+        return this.native.videoWidth || 0;
+      },
+      videoHeight: function () {
+        return this.native.videoHeight || 0;
+      },
+    },
+    V = {
+      innerText: function (a) {
+        this.native.innerText = a.slice(0, 1e3);
+      },
+      innerHTML: function (a) {
+        throw new Error(
+          "innerHTML is not allowed. Create elements using document.createElement and append them instead or use innerText instead.",
+        );
+      },
+      id: function (a) {
+        if (this.native.className === "tile-body") throw new Error("No access.");
+        ((this.native.id = a), s.settings.logCalls && console.log("set id", this, a));
+      },
+      className: function (a) {
+        if (this.native.className === "tile-body") throw new Error("No access.");
+        ((this.native.className = a), s.settings.logCalls && console.log("set className", this, a));
+      },
+      src: function (a) {
+        ((this.native.src = J(a)), s.settings.logCalls && console.log("set src", this, a));
+      },
+      href: function (a) {
+        ((this.native.href = this.native.tagName === "A" ? a : J(a)),
+          s.settings.logCalls && console.log("set href", this, a));
+      },
+      hidden: function (a) {
+        if (this.native.className === "tile-body") throw new Error("No access.");
+        this.native.hidden = !!a;
+      },
+      disabled: function (a) {
+        if (this.native.className === "tile-body") throw new Error("No access.");
+        this.native.disabled = !!a;
+      },
+      checked: function (a) {
+        this.native.checked = !!a;
+      },
+      selected: function (a) {
+        this.native.selected = !!a;
+      },
+      readOnly: function (a) {
+        this.native.readOnly = !!a;
+      },
+      required: function (a) {
+        this.native.required = !!a;
+      },
+      draggable: function (a) {
+        this.native.draggable = !!a;
+      },
+      title: function (a) {
+        this.native.title = String(a).slice(0, 1e3);
+      },
+      alt: function (a) {
+        this.native.alt = String(a).slice(0, 1e3);
+      },
+      name: function (a) {
+        this.native.name = String(a).slice(0, 100);
+      },
+      type: function (a) {
+        this.native.type = String(a).slice(0, 50);
+      },
+      value: function (a) {
+        this.native.value = String(a).slice(0, 1e4);
+      },
+      placeholder: function (a) {
+        this.native.placeholder = String(a).slice(0, 500);
+      },
+      tabIndex: function (a) {
+        this.native.tabIndex = parseInt(a) || 0;
+      },
+      scrollTop: function (a) {
+        this.native.scrollTop = a;
+      },
+      scrollLeft: function (a) {
+        this.native.scrollLeft = a;
+      },
+      currentTime: function (a) {
+        this.native instanceof HTMLMediaElement &&
+          (this.native.currentTime = Math.max(0, Number(a) || 0));
+      },
+      muted: function (a) {
+        this.native instanceof HTMLMediaElement && (this.native.muted = !!a);
+      },
+      volume: function (a) {
+        this.native instanceof HTMLMediaElement &&
+          (this.native.volume = Math.max(0, Math.min(1, Number(a) || 0)));
+      },
+      loop: function (a) {
+        this.native instanceof HTMLMediaElement && (this.native.loop = !!a);
+      },
+      autoplay: function (a) {
+        this.native instanceof HTMLMediaElement && (this.native.autoplay = !!a);
+      },
+      controls: function (a) {
+        this.native instanceof HTMLMediaElement && (this.native.controls = !!a);
+      },
+      playbackRate: function (a) {
+        this.native instanceof HTMLMediaElement &&
+          (this.native.playbackRate = Math.max(0.25, Math.min(4, Number(a) || 1)));
+      },
+      defaultPlaybackRate: function (a) {
+        this.native instanceof HTMLMediaElement &&
+          (this.native.defaultPlaybackRate = Math.max(0.25, Math.min(4, Number(a) || 1)));
+      },
+      preload: function (a) {
+        if (this.native instanceof HTMLMediaElement) {
+          let f = ["none", "metadata", "auto"];
+          this.native.preload = f.includes(a) ? a : "auto";
+        }
+      },
+      poster: function (a) {
+        this.native instanceof HTMLVideoElement && (this.native.poster = J(a));
+      },
+    };
+  for (let [a, f] of Object.entries(se)) {
+    let y = { get: e.createNativeFunction(f) };
+    (V[a] && (y.set = e.createNativeFunction(V[a])),
+      e.setProperty(_, a, Interpreter.VALUE_IN_DESCRIPTOR, y));
+  }
+  let me = {
+    getAttributeNames: function () {
+      let a = Array.from(this.native.getAttributeNames()),
+        f = e.createObjectProto(e.ARRAY_PROTO);
+      for (let y = 0; y < a.length; y++) e.setProperty(f, y, a[y]);
+      return (e.setProperty(f, "length", a.length), f);
+    },
+    getAttribute: function (a) {
+      return this.native.getAttribute(a);
+    },
+    setAttribute: function (a, f) {
+      if (this.native.className === "tile-body") throw new Error("No access.");
+      if (
+        ((a = String(a).toLowerCase()),
+        (f = String(f)),
+        s.settings.logCalls && console.log("setAttribute", this, a, f),
+        a === "style" && f.includes("animation-play-state") && f.includes("!important"))
+      )
+        throw new Error("Cannot set animation-play-state to !important");
+      if (
+        a === "src" ||
+        a === "poster" ||
+        a === "data" ||
+        (this.native.tagName !== "A" && a === "href")
+      ) {
+        this.native.setAttribute(a, J(f));
+        return;
+      }
+      if (a === "autoplay") throw new Error("autoplay is not allowed");
+      if (a === "srcset") throw new Error("srcset is not allowed");
+      if (a === "action" || a === "formaction")
+        throw new Error("action and formaction are not allowed");
+      if (a.startsWith("on"))
+        throw new Error("Event handlers are not allowed. Use addEventListener instead.");
+      if (a === "width" || a === "height") {
+        let y = parseFloat(f);
+        if (isNaN(y) || y < 0 || y > 4096) throw new Error("Invalid width or height");
+      }
+      this.native.setAttribute(a, f);
+    },
+    focus: function () {
+      this.native.focus();
+    },
+    blur: function () {
+      this.native.blur();
+    },
+    click: function () {
+      this.native.click();
+    },
+    scrollIntoView: function (a) {
+      a && typeof a == "object"
+        ? this.native.scrollIntoView(e.pseudoToNative(a))
+        : this.native.scrollIntoView(a);
+    },
+    scrollTo: function (a, f) {
+      this.native.scrollTo(a, f);
+    },
+    scrollBy: function (a, f) {
+      this.native.scrollBy(a, f);
+    },
+    removeAttribute: function (a) {
+      if (this.native.className === "tile-body") throw new Error("No access.");
+      if (((a = String(a).toLowerCase()), a === "target"))
+        throw new Error("removing target is not allowed");
+      (s.settings.logCalls && console.log("removeAttribute", this, a),
+        this.native.removeAttribute(a));
+    },
+    hasAttribute: function (a) {
+      return this.native.hasAttribute(a);
+    },
+    querySelector: function (a) {
+      let f = this.native.querySelector(a);
+      return u(k(f));
+    },
+    querySelectorAll: function (a) {
+      let f = Array.from(this.native.querySelectorAll(a)).filter(w);
+      return S(f);
+    },
+    getElementsByClassName: function (a) {
+      let f = Array.from(this.native.getElementsByClassName(a)).filter(w);
+      return S(f);
+    },
+    getElementsByTagName: function (a) {
+      let f = Array.from(this.native.getElementsByTagName(a)).filter(w);
+      return S(f);
+    },
+    closest: function (a) {
+      let f = this.native.closest(a);
+      for (; f && !n.contains(f); ) f = null;
+      return u(f);
+    },
+    matches: function (a) {
+      return this.native.matches(a);
+    },
+    classList: function () {
+      if (this.native.className === "tile-body") throw new Error("No access.");
+      let a = this.native.classList;
+      return e.nativeToPseudo({
+        add: (...f) => a.add(...f),
+        remove: (...f) => a.remove(...f),
+        toggle: (f, y) => a.toggle(f, y),
+        contains: (f) => a.contains(f),
+        replace: (f, y) => a.replace(f, y),
+      });
+    },
+    getBoundingClientRect: function () {
+      let a = this.native.getBoundingClientRect();
+      return e.nativeToPseudo({
+        x: a.x,
+        y: a.y,
+        width: a.width,
+        height: a.height,
+        top: a.top,
+        right: a.right,
+        bottom: a.bottom,
+        left: a.left,
+      });
+    },
+    play: function () {
+      if (!(this.native instanceof HTMLMediaElement)) return e.createObjectProto(e.OBJECT_PROTO);
+      if (!this.native.isConnected)
+        throw new Error(
+          "Element is not connected to the DOM. Append it to the DOM before playing.",
+        );
+      let a = e.createObjectProto(e.OBJECT_PROTO),
+        f = this,
+        y = null,
+        x = null;
+      return (
+        s.settings.logCalls && console.log("play", this),
+        e.setProperty(
+          a,
+          "then",
+          e.createNativeFunction(function (I) {
+            return ((y = I), a);
+          }),
+        ),
+        e.setProperty(
+          a,
+          "catch",
+          e.createNativeFunction(function (I) {
+            return ((x = I), a);
+          }),
+        ),
+        f.native
+          .play()
+          .then(() => {
+            y && h(y, e.nativeToPseudo(void 0));
+          })
+          .catch((I) => {
+            x && h(x, e.nativeToPseudo({ message: I.message, name: I.name }));
+          }),
+        a
+      );
+    },
+    pause: function () {
+      this.native instanceof HTMLMediaElement && this.native.pause();
+    },
+    load: function () {
+      this.native instanceof HTMLMediaElement && this.native.load();
+    },
+    canPlayType: function (a) {
+      return this.native instanceof HTMLMediaElement
+        ? this.native.canPlayType(String(a || ""))
+        : "";
+    },
+    fastSeek: function (a) {
+      this.native instanceof HTMLMediaElement &&
+        typeof this.native.fastSeek == "function" &&
+        this.native.fastSeek(Math.max(0, Number(a) || 0));
+    },
+    getAnimations: function (a) {
+      if (!this.native.getAnimations) return S([]);
+      let f = a ? { subtree: !!e.pseudoToNative(a)?.subtree } : {},
+        y = this.native.getAnimations(f),
+        x = e.createObjectProto(e.ARRAY_PROTO);
+      for (let I = 0; I < y.length; I++) x.properties[I] = pe(y[I]);
+      return (e.setProperty(x, "length", y.length), x);
+    },
+  };
+  for (let [a, f] of Object.entries(me)) e.setProperty(_, a, e.createNativeFunction(f));
+  function pe(a) {
+    let f = e.createObjectProto(e.OBJECT_PROTO);
+    return (
+      e.setProperty(f, "id", Interpreter.VALUE_IN_DESCRIPTOR, {
+        get: e.createNativeFunction(function () {
+          return a.id;
+        }),
+      }),
+      e.setProperty(f, "playState", Interpreter.VALUE_IN_DESCRIPTOR, {
+        get: e.createNativeFunction(function () {
+          return a.playState;
+        }),
+      }),
+      e.setProperty(f, "pending", Interpreter.VALUE_IN_DESCRIPTOR, {
+        get: e.createNativeFunction(function () {
+          return a.pending;
+        }),
+      }),
+      e.setProperty(f, "replaceState", Interpreter.VALUE_IN_DESCRIPTOR, {
+        get: e.createNativeFunction(function () {
+          return a.replaceState;
+        }),
+      }),
+      e.setProperty(f, "currentTime", Interpreter.VALUE_IN_DESCRIPTOR, {
+        get: e.createNativeFunction(function () {
+          return a.currentTime;
+        }),
+        set: e.createNativeFunction(function (y) {
+          a.currentTime = y;
+        }),
+      }),
+      e.setProperty(f, "playbackRate", Interpreter.VALUE_IN_DESCRIPTOR, {
+        get: e.createNativeFunction(function () {
+          return a.playbackRate;
+        }),
+        set: e.createNativeFunction(function (y) {
+          a.playbackRate = Math.max(-10, Math.min(10, Number(y) || 1));
+        }),
+      }),
+      e.setProperty(f, "startTime", Interpreter.VALUE_IN_DESCRIPTOR, {
+        get: e.createNativeFunction(function () {
+          return a.startTime;
+        }),
+        set: e.createNativeFunction(function (y) {
+          a.startTime = y;
+        }),
+      }),
+      e.setProperty(
+        f,
+        "play",
+        e.createNativeFunction(function () {
+          a.play();
+        }),
+      ),
+      e.setProperty(
+        f,
+        "pause",
+        e.createNativeFunction(function () {
+          a.pause();
+        }),
+      ),
+      e.setProperty(
+        f,
+        "cancel",
+        e.createNativeFunction(function () {
+          a.cancel();
+        }),
+      ),
+      e.setProperty(
+        f,
+        "finish",
+        e.createNativeFunction(function () {
+          a.finish();
+        }),
+      ),
+      e.setProperty(
+        f,
+        "reverse",
+        e.createNativeFunction(function () {
+          a.reverse();
+        }),
+      ),
+      e.setProperty(
+        f,
+        "updatePlaybackRate",
+        e.createNativeFunction(function (y) {
+          a.updatePlaybackRate(Math.max(-10, Math.min(10, Number(y) || 1)));
+        }),
+      ),
+      f
+    );
+  }
+  function l(a) {
+    let f = e.createObjectProto(e.OBJECT_PROTO),
+      y = a ? a.length : 0;
+    return (
+      e.setProperty(f, "length", y),
+      e.setProperty(
+        f,
+        "start",
+        e.createNativeFunction(function (x) {
+          if (!a || x < 0 || x >= a.length) throw new Error("Index out of bounds");
+          return a.start(x);
+        }),
+      ),
+      e.setProperty(
+        f,
+        "end",
+        e.createNativeFunction(function (x) {
+          if (!a || x < 0 || x >= a.length) throw new Error("Index out of bounds");
+          return a.end(x);
+        }),
+      ),
+      f
+    );
+  }
+  (e.setProperty(_, "buffered", Interpreter.VALUE_IN_DESCRIPTOR, {
+    get: e.createNativeFunction(function () {
+      return this.native instanceof HTMLMediaElement ? l(this.native.buffered) : l(null);
+    }),
+  }),
+    e.setProperty(_, "played", Interpreter.VALUE_IN_DESCRIPTOR, {
+      get: e.createNativeFunction(function () {
+        return this.native instanceof HTMLMediaElement ? l(this.native.played) : l(null);
+      }),
+    }),
+    e.setProperty(_, "seekable", Interpreter.VALUE_IN_DESCRIPTOR, {
+      get: e.createNativeFunction(function () {
+        return this.native instanceof HTMLMediaElement ? l(this.native.seekable) : l(null);
+      }),
+    }),
+    e.setProperty(_, "classList", Interpreter.VALUE_IN_DESCRIPTOR, {
+      get: e.createNativeFunction(function () {
+        let a = this.native.classList,
+          f = e.nativeToPseudo({});
+        return (
+          e.setProperty(
+            f,
+            "add",
+            e.createNativeFunction(function (...y) {
+              if (this.native.className === "tile-body") throw new Error("No access.");
+              a.add(...y);
+            }),
+          ),
+          e.setProperty(
+            f,
+            "remove",
+            e.createNativeFunction(function (...y) {
+              if (this.native.className === "tile-body") throw new Error("No access.");
+              a.remove(...y);
+            }),
+          ),
+          e.setProperty(
+            f,
+            "toggle",
+            e.createNativeFunction(function (y, x) {
+              if (this.native.className === "tile-body") throw new Error("No access.");
+              return a.toggle(y, x);
+            }),
+          ),
+          e.setProperty(
+            f,
+            "contains",
+            e.createNativeFunction(function (y) {
+              return a.contains(y);
+            }),
+          ),
+          e.setProperty(
+            f,
+            "replace",
+            e.createNativeFunction(function (y, x) {
+              if (this.native.className === "tile-body") throw new Error("No access.");
+              return a.replace(y, x);
+            }),
+          ),
+          f
+        );
+      }),
+    }),
+    e.setProperty(_, "style", Interpreter.VALUE_IN_DESCRIPTOR, {
+      get: e.createNativeFunction(function () {
+        let a = this.native.style,
+          f = e.nativeToPseudo({}),
+          y = [
+            "color",
+            "backgroundColor",
+            "width",
+            "height",
+            "margin",
+            "padding",
+            "border",
+            "display",
+            "position",
+            "top",
+            "left",
+            "right",
+            "bottom",
+            "fontSize",
+            "fontFamily",
+            "fontWeight",
+            "textAlign",
+            "lineHeight",
+            "opacity",
+            "visibility",
+            "overflow",
+            "zIndex",
+            "transform",
+            "transition",
+            "animation",
+            "flexDirection",
+            "justifyContent",
+            "alignItems",
+            "gap",
+            "gridTemplateColumns",
+            "gridTemplateRows",
+          ];
+        for (let x of y)
+          e.setProperty(f, x, Interpreter.VALUE_IN_DESCRIPTOR, {
+            get: e.createNativeFunction(function () {
+              return a[x];
+            }),
+            set: e.createNativeFunction(function (I) {
+              ((a[x] = I), s.settings.logCalls && console.log("set style", this, x, I));
+            }),
+          });
+        return (
+          e.setProperty(f, "cssText", Interpreter.VALUE_IN_DESCRIPTOR, {
+            get: e.createNativeFunction(function () {
+              return a.cssText;
+            }),
+            set: e.createNativeFunction(function (x) {
+              ((a.cssText = x), s.settings.logCalls && console.log("set cssText", this, x));
+            }),
+          }),
+          e.setProperty(
+            f,
+            "setProperty",
+            e.createNativeFunction(function (x, I, D) {
+              if (this.native?.className === "tile-body") throw new Error("No access.");
+              (a.setProperty(x, I, D),
+                s.settings.logCalls && console.log("setProperty", this, x, I, D));
+            }),
+          ),
+          e.setProperty(
+            f,
+            "getPropertyValue",
+            e.createNativeFunction(function (x) {
+              return a.getPropertyValue(x);
+            }),
+          ),
+          e.setProperty(
+            f,
+            "removeProperty",
+            e.createNativeFunction(function (x) {
+              if (this.native?.className === "tile-body") throw new Error("No access.");
+              return (
+                s.settings.logCalls && console.log("removeProperty", this, x),
+                a.removeProperty(x)
+              );
+            }),
+          ),
+          f
+        );
+      }),
+    }),
+    e.setProperty(_, "dataset", Interpreter.VALUE_IN_DESCRIPTOR, {
+      get: e.createNativeFunction(function () {
+        let a = this.native.dataset,
+          f = e.nativeToPseudo({});
+        for (let y in a) e.setProperty(f, y, a[y]);
+        return (
+          e.setProperty(
+            f,
+            "get",
+            e.createNativeFunction(function (y) {
+              return a[y];
+            }),
+          ),
+          e.setProperty(
+            f,
+            "set",
+            e.createNativeFunction(function (y, x) {
+              ((a[y] = String(x).slice(0, 1e3)),
+                s.settings.logCalls && console.log("set dataset", this, y, x));
+            }),
+          ),
+          e.setProperty(
+            f,
+            "delete",
+            e.createNativeFunction(function (y) {
+              (delete a[y], s.settings.logCalls && console.log("delete dataset", this, y));
+            }),
+          ),
+          e.setProperty(
+            f,
+            "has",
+            e.createNativeFunction(function (y) {
+              return y in a;
+            }),
+          ),
+          f
+        );
+      }),
+    }),
+    e.setProperty(_, "offsetParent", Interpreter.VALUE_IN_DESCRIPTOR, {
+      get: e.createNativeFunction(function () {
+        return u(k(this.native.offsetParent));
+      }),
+    }));
+  let v = [
+    "click",
+    "dblclick",
+    "mousedown",
+    "mouseup",
+    "mousemove",
+    "mouseenter",
+    "mouseleave",
+    "mouseover",
+    "mouseout",
+    "keydown",
+    "keyup",
+    "keypress",
+    "focus",
+    "blur",
+    "focusin",
+    "focusout",
+    "input",
+    "change",
+    "submit",
+    "reset",
+    "touchstart",
+    "touchend",
+    "touchmove",
+    "touchcancel",
+    "wheel",
+    "scroll",
+    "resize",
+    "dragstart",
+    "drag",
+    "dragend",
+    "dragenter",
+    "dragleave",
+    "dragover",
+    "drop",
+    "animationstart",
+    "animationend",
+    "animationiteration",
+    "transitionstart",
+    "transitionend",
+    "transitioncancel",
+    "contextmenu",
+    "pointerdown",
+    "pointerup",
+    "pointermove",
+    "pointerenter",
+    "pointerleave",
+    "pointerover",
+    "pointerout",
+    "play",
+    "pause",
+    "playing",
+    "waiting",
+    "seeking",
+    "seeked",
+    "ended",
+    "loadstart",
+    "loadeddata",
+    "loadedmetadata",
+    "progress",
+    "canplay",
+    "canplaythrough",
+    "timeupdate",
+    "durationchange",
+    "volumechange",
+    "ratechange",
+    "stalled",
+    "suspend",
+    "emptied",
+    "abort",
+    "error",
+    "load",
+  ];
+  function E(a) {
+    let f = e.nativeToPseudo({}),
+      y = ["type", "bubbles", "cancelable", "defaultPrevented", "timeStamp"];
+    for (let x of y) e.setProperty(f, x, a[x]);
+    if (a instanceof MouseEvent || a instanceof PointerEvent) {
+      let x = [
+        "clientX",
+        "clientY",
+        "pageX",
+        "pageY",
+        "screenX",
+        "screenY",
+        "offsetX",
+        "offsetY",
+        "movementX",
+        "movementY",
+        "button",
+        "buttons",
+        "altKey",
+        "ctrlKey",
+        "shiftKey",
+        "metaKey",
+      ];
+      for (let I of x) e.setProperty(f, I, a[I]);
+    }
+    if (a instanceof KeyboardEvent) {
+      let x = [
+        "key",
+        "code",
+        "keyCode",
+        "charCode",
+        "altKey",
+        "ctrlKey",
+        "shiftKey",
+        "metaKey",
+        "repeat",
+      ];
+      for (let I of x) e.setProperty(f, I, a[I]);
+    }
+    return (
+      typeof TouchEvent == "function" &&
+        a instanceof TouchEvent &&
+        (e.setProperty(f, "touches", e.nativeToPseudo({ length: a.touches.length })),
+        e.setProperty(f, "changedTouches", e.nativeToPseudo({ length: a.changedTouches.length }))),
+      typeof WheelEvent == "function" &&
+        a instanceof WheelEvent &&
+        (e.setProperty(f, "deltaX", a.deltaX),
+        e.setProperty(f, "deltaY", a.deltaY),
+        e.setProperty(f, "deltaZ", a.deltaZ),
+        e.setProperty(f, "deltaMode", a.deltaMode)),
+      a.target && w(a.target) && e.setProperty(f, "target", u(a.target)),
+      a.currentTarget &&
+        w(a.currentTarget) &&
+        e.setProperty(f, "currentTarget", u(a.currentTarget)),
+      e.setProperty(
+        f,
+        "preventDefault",
+        e.createNativeFunction(function () {
+          a.preventDefault();
+        }),
+      ),
+      e.setProperty(
+        f,
+        "stopPropagation",
+        e.createNativeFunction(function () {
+          a.stopPropagation();
+        }),
+      ),
+      e.setProperty(
+        f,
+        "stopImmediatePropagation",
+        e.createNativeFunction(function () {
+          a.stopImmediatePropagation();
+        }),
+      ),
+      f
+    );
+  }
+  (e.setProperty(
+    _,
+    "addEventListener",
+    e.createNativeFunction(function (a, f) {
+      if (!a || typeof a != "string" || !f || typeof f != "object") return;
+      if (((a = a.toLowerCase()), !v.includes(a)))
+        throw new Error(`Event type "${a}" is not allowed`);
+      s.settings.logCalls && console.log("addEventListener", this, a, f);
+      let y = this.native;
+      p.has(y) || p.set(y, new Map());
+      let x = p.get(y);
+      x.has(a) || x.set(a, []);
+      let I = x.get(a);
+      if (I.length >= c) throw new Error(`Maximum listeners (${c}) reached for event "${a}"`);
+      if (I.some((z) => z.pseudo === f)) return;
+      let D = function (z) {
+        let ae = E(z);
+        h(f, ae);
+      };
+      (I.push({ pseudo: f, native: D }), y.addEventListener(a, D));
+    }),
+  ),
+    e.setProperty(
+      _,
+      "removeEventListener",
+      e.createNativeFunction(function (a, f) {
+        if (!a || typeof a != "string" || !f || typeof f != "object") return;
+        (s.settings.logCalls && console.log("removeEventListener", this, a, f),
+          (a = a.toLowerCase()));
+        let y = this.native;
+        if (!p.has(y)) return;
+        let x = p.get(y);
+        if (!x.has(a)) return;
+        let I = x.get(a),
+          D = I.findIndex((z) => z.pseudo === f);
+        D !== -1 && (y.removeEventListener(a, I[D].native), I.splice(D, 1));
+      }),
+    ));
+  let T = [
+    "click",
+    "dblclick",
+    "mousedown",
+    "mouseup",
+    "mousemove",
+    "mouseenter",
+    "mouseleave",
+    "mouseover",
+    "mouseout",
+    "keydown",
+    "keyup",
+    "keypress",
+    "focus",
+    "blur",
+    "input",
+    "change",
+    "submit",
+    "touchstart",
+    "touchend",
+    "touchmove",
+    "wheel",
+    "scroll",
+    "contextmenu",
+    "play",
+    "pause",
+    "playing",
+    "waiting",
+    "seeking",
+    "seeked",
+    "ended",
+    "loadstart",
+    "loadeddata",
+    "loadedmetadata",
+    "progress",
+    "canplay",
+    "canplaythrough",
+    "timeupdate",
+    "durationchange",
+    "volumechange",
+    "ratechange",
+    "stalled",
+    "suspend",
+    "emptied",
+    "abort",
+    "error",
+    "load",
+  ];
+  for (let a of T) {
+    let f = "on" + a;
+    e.setProperty(_, f, Interpreter.VALUE_IN_DESCRIPTOR, {
+      get: e.createNativeFunction(function () {
+        let y = this.native;
+        if (!p.has(y)) return null;
+        let x = p.get(y),
+          I = `__${f}`;
+        return x.get(I) || null;
+      }),
+      set: e.createNativeFunction(function (y) {
+        let x = this.native;
+        p.has(x) || p.set(x, new Map());
+        let I = p.get(x),
+          D = `__${f}`;
+        s.settings.logCalls && console.log("setOn" + a, this, y);
+        let z = I.get(D + "_native");
+        if (
+          (z && (x.removeEventListener(a, z), I.delete(D), I.delete(D + "_native")),
+          y && typeof y == "object")
+        ) {
+          let ae = function (Qe) {
+            let et = E(Qe);
+            h(y, et);
+          };
+          (x.addEventListener(a, ae), I.set(D, y), I.set(D + "_native", ae));
+        }
+      }),
+    });
+  }
+  (Ae(e, t, u, w).extendElement(_, u), _e(e, t), Be(e, t, i.domain), He(e, t, n));
+  let L = e.nativeToPseudo({});
+  e.setProperty(t, "document", L);
+  let H = {
+    getElementById: function (a) {
+      let f = n.querySelector(`#${CSS.escape(a)}`);
+      return u(f);
+    },
+    getElementsByClassName: function (a) {
+      let f = Array.from(n.getElementsByClassName(a));
+      return S(f);
+    },
+    getElementsByTagName: function (a) {
+      let f = Array.from(n.getElementsByTagName(a));
+      return S(f);
+    },
+    querySelector: function (a) {
+      return u(n.querySelector(a));
+    },
+    querySelectorAll: function (a) {
+      let f = Array.from(n.querySelectorAll(a));
+      return S(f);
+    },
+    createElement: function (a) {
+      if (typeof a != "string") throw new Error("Invalid tag");
+      if (
+        ((a = a.toLowerCase().trim()),
+        [
+          "script",
+          "style",
+          "iframe",
+          "embed",
+          "object",
+          "frame",
+          "frameset",
+          "layer",
+          "ilayer",
+          "applet",
+          "meta",
+          "base",
+          "link",
+          "title",
+          "source",
+          "geolocation",
+          "permission",
+        ].includes(a))
+      )
+        throw new Error("Creating " + a + " elements is not allowed");
+      return (
+        s.settings.logCalls && console.log("createElement", this, a),
+        u(document.createElement(a))
+      );
+    },
+    createTextNode: function (a) {
+      return (
+        s.settings.logCalls && console.log("createTextNode", this, a),
+        u(document.createTextNode(a))
+      );
+    },
+  };
+  for (let [a, f] of Object.entries(H)) e.setProperty(L, a, e.createNativeFunction(f));
+  (e.setProperty(L, "body", Interpreter.VALUE_IN_DESCRIPTOR, {
+    get: e.createNativeFunction(function () {
+      return (s.settings.logCalls && console.log("get body", this), u(n));
+    }),
+  }),
+    e.setProperty(L, "documentElement", Interpreter.VALUE_IN_DESCRIPTOR, {
+      get: e.createNativeFunction(function () {
+        return (s.settings.logCalls && console.log("get documentElement", this), u(n));
+      }),
+    }));
+  let j = e.nativeToPseudo({});
+  (e.setProperty(t, "location", j),
+    e.setProperty(j, "href", Interpreter.VALUE_IN_DESCRIPTOR, {
+      get: e.createNativeFunction(function () {
+        return `/t/${i.domain}${i.path}`;
+      }),
+      set: e.createNativeFunction(function (a) {
+        if (typeof a == "string") {
+          s.settings.logCalls && console.log("set href", this, a);
+          try {
+            let f = new URL(a, `http://${i.domain}`);
+            if (f.hostname && f.hostname !== location.hostname)
+              throw new Error("External URLs are not allowed");
+            let y = f.pathname + f.search + f.hash;
+            if (
+              (y.startsWith(`/t/${i.domain}/`)
+                ? (y = y.substring(`/t/${i.domain}`.length))
+                : y === `/t/${i.domain}` && (y = "/"),
+              y.startsWith("/") || (y = "/" + y),
+              y.endsWith(".html") || y === "/" || y === "")
+            )
+              (i.fetchContent(y || "/index.html"), i.setActive(!0));
+            else throw new Error("Only HTML files can be navigated to");
+          } catch (f) {
+            if (f.message.includes("not allowed") || f.message.includes("Only HTML")) throw f;
+            let y = a;
+            if ((y.startsWith("/") || (y = "/" + y), y.endsWith(".html") || y === "/" || y === ""))
+              i.fetchContent(y || "/index.html").then(() => i.setActive(!0));
+            else throw new Error("Only HTML files can be navigated to");
+          }
+        }
+      }),
+    }),
+    e.setProperty(
+      j,
+      "reload",
+      e.createNativeFunction(function () {
+        i.fetchContent(i.path, !0).then(() => i.setActive(!0));
+      }),
+    ));
+}
+var ht = {
+    console: {
+      log: function (...e) {
+        this.logCount++ > 1e3 || console.log(`[${this.tile.domain}]`, ...e);
+      },
+      error: function (...e) {
+        this.logCount++ > 1e3 || console.error(`[${this.tile.domain}]`, ...e);
+      },
+      warn: function (...e) {
+        this.logCount++ > 1e3 || console.warn(`[${this.tile.domain}]`, ...e);
+      },
+    },
+    alert(e) {
+      this.alertCount++ > 10 || alert(`[${this.tile.domain}] ${e}`);
+    },
+    prompt(e) {
+      if (!(this.alertCount++ > 10)) return prompt(`[${this.tile.domain}] ${e}`);
+    },
+    confirm(e) {
+      if (!(this.alertCount++ > 10)) return confirm(`[${this.tile.domain}] ${e}`);
+    },
+    atob(e) {
+      return atob(e);
+    },
+    btoa(e) {
+      return btoa(e);
+    },
+  },
+  we = class {
+    constructor(t) {
+      ((this.running = !1),
+        (this.logCount = 0),
+        (this.alertCount = 0),
+        (this.tile = t),
+        (this.waitUntil = null),
+        (this.index = 0),
+        (this.sizeLimitReached = !1),
+        (this.interpreter = new Interpreter("", (n, i) => {
+          let o = (r, c) => {
+            for (let [p, g] of Object.entries(r))
+              if (typeof g == "function") n.setProperty(c, p, n.createNativeFunction(g.bind(this)));
+              else if (typeof g == "object" && g !== null) {
+                let m = n.nativeToPseudo({});
+                (o(g, m), n.setProperty(c, p, m));
+              }
+          };
+          (o(ht, i),
+            je(n, i, this.tile.contentElement, this.tile),
+            n.setProperty(i, "embedded", n.nativeToPseudo(!!this.tile.embed)));
+        })),
+        (this.runInterval = null),
+        (this.running = !1));
+    }
+    roughValueMemorySize() {
+      let t = new Set(),
+        n = [this.interpreter.getStateStack()],
+        i = 0;
+      for (; n.length; ) {
+        let o = n.pop(),
+          r = typeof o;
+        if (((i += 8), r === "string" && !t.has(o))) (t.add(o), (i += o.length * 2));
+        else if (r === "object" && o !== null && !t.has(o)) {
+          t.add(o);
+          try {
+            n.push(...Object.keys(o), ...Object.values(o));
+          } catch {}
+        }
+      }
+      return i;
+    }
+    start() {
+      this.running ||
+        this.sizeLimitReached ||
+        ((this.running = !0),
+        (this.runInterval = setInterval(() => {
+          if (!(this.waitUntil && Date.now() < this.waitUntil) && this.running)
+            for (let t = 0; t < 5e3; t++)
+              try {
+                if (!this.interpreter.step()) {
+                  this.waitUntil = Date.now() + 50;
+                  break;
+                }
+                if (this.index++ % 500 === 0) {
+                  let n = this.roughValueMemorySize();
+                  if (n > 3e6) {
+                    ((this.sizeLimitReached = !0),
+                      this.stop(),
+                      console.log(`[${this.tile.domain}] Memory size limit reached: ${n} bytes`));
+                    break;
+                  }
+                }
+              } catch (n) {
+                (console.error(n), this.stop());
+                break;
+              }
+        }, 0)));
+    }
+    stop() {
+      this.running && (clearInterval(this.runInterval), (this.running = !1));
+    }
+    runCode(t) {
+      this.interpreter.appendCode(t);
+    }
+  },
+  ze = we;
+var ft = document.getElementById("plot");
+localStorage.getItem("lowend") || (localStorage.lowend = "true");
+var be = new CSSStyleSheet(),
+  qe = () => {
+    be.replaceSync(`
+        .tile-body:not(.active) * {
+            animation-play-state: paused !important;
+        }
+        ${
+          (localStorage.lowend,
+          `
+        .tile-body:not(.active) * {
+            text-shadow: none !important;
+            box-shadow: none !important;
+            filter: none !important;
+            backdrop-filter: none !important;
+        }
+        `)
+        }
+    `);
+  };
+qe();
+var Ue = new CSSStyleSheet();
+Ue.replaceSync(`
+    .free {
+        width: 100%;
+        height: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .free > p {
+        text-align: center;
+        color: #777;
+        user-select: none;
+    }    
+`);
+var O = class e {
+  constructor(t) {
+    ((this.x = t.x ?? 0),
+      (this.y = t.y ?? 0),
+      (this.domain = t.domain),
+      (this.free = !t.domain),
+      (this.locked = !1),
+      (this.id = `${this.x},${this.y}`),
+      (this.rendered = !1),
+      (this.active = !1),
+      (this.element = null),
+      (this.contentElement = null),
+      (this.path = t.path || "/index.html"),
+      (this.content = ""),
+      (this.lastRender = 0),
+      (this.preview = t.nocontrols || !1),
+      (this.embed = t.embed || !1),
+      (this.container = t.container || ft),
+      (this.interpreter = null),
+      this.render());
+  }
+  static toTilePosition(t, n) {
+    return { x: Math.floor(t / 250), y: Math.floor(n / 250) };
+  }
+  render() {
+    if (this.rendered || this.element) return;
+    ((this.lastRender = Date.now()), (this.rendered = !0));
+    let t = document.createElement("div");
+    (t.classList.add("tile"),
+      this.free && t.classList.add("f"),
+      this.preview
+        ? (t.style.cssText = "width: 100%; height: 100%; position: relative;")
+        : ((t.style.left = `${this.x * 250}px`),
+          (t.style.top = `${this.y * 250}px`),
+          this.x % 10 === 0 && t.classList.add("b-left"),
+          this.y % 10 === 0 && t.classList.add("b-top")),
+      (this.element = t));
+    let n = document.createElement("div");
+    (n.classList.add("tile-content"),
+      this.preview && (n.style.cssText = "width: 100%; height: 100%;"),
+      n.addEventListener("click", async (o) => {
+        let r = o.composedPath()?.filter((m) => m instanceof Element);
+        if (!r) return;
+        let c = r.findIndex((m) => m.isSameNode(n));
+        if (c === -1) return;
+        let g = r.slice(0, c).find((m) => m.tagName === "A");
+        if (g) {
+          o.preventDefault();
+          try {
+            let m = new URL(g.href);
+            if (m.hostname !== location.hostname) {
+              let d = document.createElement("a");
+              ((d.href = g.href), (d.target = "_blank"), d.click());
+              return;
+            }
+            let h = m.pathname;
+            if (
+              (h.startsWith(`/t/${this.domain}/`) ||
+                (h = `/t/${this.domain}/${h}`.replaceAll("//", "/")),
+              h.startsWith(`/t/${this.domain}`) &&
+                (h.endsWith(".html") || h === `/t/${this.domain}/` || h === `/t/${this.domain}`))
+            )
+              (await this.fetchContent(h.replace(`/t/${this.domain}`, "")), this.setActive(!0));
+            else {
+              let d = document.createElement("a");
+              ((d.href = g.href), (d.target = "_blank"), d.click());
+            }
+          } catch (m) {
+            console.error(m);
+          }
+        }
+      }),
+      (this.shadow = n.attachShadow({ mode: "open" })));
+    let i = document.createElement("div");
+    ((i.className = "tile-body"),
+      this.embed && i.classList.add("embedded"),
+      (i.style =
+        "width: 100%!important; height: 100%!important;position:absolute!important;top:0!important;left:0!important;"),
+      (this.contentElement = i),
+      (this.contentElement.innerHTML = this.preview
+        ? "Loading preview..."
+        : `Loading ${this.x}, ${this.y}...`),
+      this.shadow.appendChild(i),
+      t.appendChild(n),
+      (this.fonts = document.createElement("style")),
+      t.appendChild(this.fonts),
+      this.fetchContent(this.path),
+      this.container && this.container.appendChild(t),
+      s.plot?.lockCache[this.x + "," + this.y] && this.setLocked(!0));
+  }
+  unrender() {
+    !this.rendered ||
+      !this.element ||
+      (this.active && this.setActive(!1),
+      this.element.remove(),
+      (this.element = null),
+      (this.rendered = !1),
+      this.interpreter && (this.interpreter.stop(), (this.interpreter = null)));
+  }
+  async fetchContent(t, n = !1) {
+    t.startsWith("/") || (t = "/" + t);
+    let i = this.free
+      ? `<div class="free">
+                <p>${this.locked ? "Locked tile" : "Free tile"} ${this.x}, ${this.y}</p>
+            </div>`
+      : this.path === t && this.content && !n
+        ? this.content
+        : await fetch(`/t/${this.domain}${t}`)
+            .then((c) => c.text())
+            .catch((c) => "<p>Error loading tile</p>");
+    (this.free ? (this.shadow.adoptedStyleSheets = [Ue]) : (this.shadow.adoptedStyleSheets = [be]),
+      this.interpreter && (this.interpreter.stop(), (this.interpreter = null)),
+      (this.path = t),
+      (this.contentElement.innerHTML = i),
+      (this.content = i));
+    let o = this.contentElement.querySelectorAll("style");
+    this.fonts.textContent = "";
+    let r = 0;
+    for (let c of o) {
+      if (r >= 3) break;
+      let p = c.textContent.match(/@font-face\s*{([^}]*)}/g);
+      if (p)
+        for (let g of p) {
+          if (r >= 3) break;
+          ((this.fonts.textContent += g), r++);
+        }
+    }
+    this.preview && this.setActive(!0);
+  }
+  executeScripts() {
+    let t = this.contentElement.querySelectorAll('script[type="text/tilescript"]');
+    for (let n of t) this.interpreter.runCode(n.textContent);
+    this.preview && this.interpreter.start();
+  }
+  setActive(t) {
+    if (
+      this.element &&
+      (t &&
+        (this.interpreter || ((this.interpreter = new ze(this)), this.executeScripts()),
+        this.interpreter.start()),
+      t !== this.active)
+    ) {
+      if (((this.active = t), t)) {
+        if (
+          (this.element.classList.add("active"),
+          this.contentElement.classList.add("active"),
+          !this.preview && s.ui)
+        ) {
+          let i = s.ui.createVoteMenu(this);
+          i && this.element.appendChild(i);
+          let o = s.ui.createTileControl(this);
+          if ((this.element.appendChild(o), s.user?.admin || s.user?.moderator)) {
+            let r = s.ui.createAdminControl(this);
+            this.element.appendChild(r);
+          }
+          (s.plot?.activeTile && s.plot.activeTile.setActive(!1),
+            s.plot && (s.plot.activeTile = this),
+            this.fetchAndShowClanBorders());
+        }
+        let n = this.contentElement.querySelectorAll("audio, video");
+        for (let i of n)
+          i.dataset.webtilesPaused === "true" && ((i.dataset.webtilesPaused = !1), i.play());
+      } else if (!this.preview) {
+        (this.interpreter && this.interpreter.stop(),
+          (s.plot.activeTile = null),
+          this.element.classList.remove("active"),
+          this.contentElement.classList.remove("active"),
+          this.preview ||
+            (this.element.querySelector(".tile-vote-menu")?.remove(),
+            this.element.querySelector(".tile-info")?.remove(),
+            this.element.querySelector(".tile-admin-panel")?.remove(),
+            s.plot && (s.plot.activeTile = null)),
+          e.clearClanBorders());
+        let n = this.contentElement.querySelectorAll("audio, video");
+        for (let i of n) i.paused || ((i.dataset.webtilesPaused = !0), i.pause());
+      }
+    }
+  }
+  async fetchAndShowClanBorders() {
+    if (!(this.free || !this.domain))
+      try {
+        let n = await (
+          await s.api.makeRequest(`/api/clans/tile-clan?domain=${encodeURIComponent(this.domain)}`)
+        ).json();
+        if (!n.success || !n.clan) return;
+        let i = n.clan.members;
+        if (!i || i.length <= 1) return;
+        let o = new Set(i.map((r) => `${r.x},${r.y}`));
+        for (let r of i) {
+          let c = s.plot.tiles[`${r.x},${r.y}`];
+          if (!c?.element) continue;
+          c.element.classList.add("clan-highlight");
+          let p = o.has(`${r.x},${r.y - 1}`),
+            g = o.has(`${r.x},${r.y + 1}`),
+            m = o.has(`${r.x - 1},${r.y}`),
+            h = o.has(`${r.x + 1},${r.y}`);
+          if (!p) {
+            let d = document.createElement("div");
+            ((d.className = "clan-border clan-border-top"), c.element.appendChild(d));
+          }
+          if (!g) {
+            let d = document.createElement("div");
+            ((d.className = "clan-border clan-border-bottom"), c.element.appendChild(d));
+          }
+          if (!m) {
+            let d = document.createElement("div");
+            ((d.className = "clan-border clan-border-left"), c.element.appendChild(d));
+          }
+          if (!h) {
+            let d = document.createElement("div");
+            ((d.className = "clan-border clan-border-right"), c.element.appendChild(d));
+          }
+        }
+      } catch (t) {
+        console.error("Failed to fetch clan borders:", t);
+      }
+  }
+  static clearClanBorders() {
+    if (s.plot?.tiles)
+      for (let t of Object.values(s.plot.tiles))
+        t.element &&
+          (t.element.classList.remove("clan-highlight"),
+          t.element.querySelectorAll(".clan-border").forEach((i) => i.remove()));
+  }
+  setDomain(t) {
+    ((this.domain = t),
+      (this.free = !1),
+      (this.content = ""),
+      this.element && this.element.classList.remove("f"),
+      this.fetchContent("/index.html"));
+  }
+  setFree() {
+    (this.interpreter && this.interpreter.stop(),
+      (this.domain = null),
+      (this.free = !0),
+      (this.content = ""),
+      this.element && this.element.classList.add("f"),
+      this.fetchContent("/index.html"));
+  }
+  static updateLowendStyles() {
+    if ((qe(), s.plot && s.plot.tiles))
+      for (let t of Object.values(s.plot.tiles))
+        t.shadow && !t.free && (t.shadow.adoptedStyleSheets = [be]);
+  }
+  setLocked(t) {
+    ((this.locked = t),
+      this.element && this.element.classList.toggle("locked", t),
+      this.fetchContent("/index.html", !0));
+  }
+};
+s.ui = {
+  coords: document.querySelector("#coords"),
+  zoomSlider: document.querySelector("#zoom-slider > input"),
+  siteSelector: document.querySelector("#kicya-site-selector"),
+  siteSettingsButton: document.querySelector("#kicya-site-settings"),
+  siteJumpButton: document.querySelector("#kicya-site-jump"),
+  siteCenterButton: document.querySelector("#kicya-site-center"),
+  siteEditButton: document.querySelector("#kicya-site-edit"),
+  siteClanButton: document.querySelector("#kicya-site-clan"),
+  siteEmbedButton: document.querySelector("#kicya-site-embed"),
+  clanIndicator: document.querySelector("#kicya-clan-indicator"),
+  pendingClanInvites: [],
+  createElement: (e, t = {}) => {
+    let n = document.createElement(e);
+    for (let [i, o] of Object.entries(t))
+      i === "innerText"
+        ? (n.innerText = o)
+        : i === "innerHTML"
+          ? (n.innerHTML = o)
+          : i.startsWith("on")
+            ? n.addEventListener(i.slice(2).toLowerCase(), o)
+            : n.setAttribute(i, o);
+    return n;
+  },
+  escapeHTML: (e) =>
+    e
+      ? e
+          .replace(/&/g, "&amp;")
+          .replace(/</g, "&lt;")
+          .replace(/>/g, "&gt;")
+          .replace(/"/g, "&quot;")
+          .replace(/'/g, "&#039;")
+      : "",
+  showDashboard: (e) => {
+    ((Xe.src = `/dashboard?site=${encodeURIComponent(e)}&path=/`),
+      Ve && (Ve.textContent = `File Manager - ${e}`),
+      Ye.classList.add("active"),
+      he && (he.style.display = "none"),
+      s.camera && s.camera.setZoomEnabled(!1),
+      s.ws?.isConnected &&
+        setTimeout(() => {
+          let t = new Int16Array(3);
+          ((t[0] = 0), (t[1] = 0), (t[2] = 0), s.ws.send(t.buffer));
+        }, 100));
+  },
+  showClaimModal: (e) => {
+    if (!s.user) {
+      location.href =
+        "https://kicya.net/auth/login?redirect=" +
+        encodeURIComponent("https://webtiles.kicya.net/");
+      return;
+    }
+    let t = s.user.selectedSite;
+    if (!t) {
+      alert("Please select a site first");
+      return;
+    }
+    let n = t.domain,
+      i = t.tile
+        ? `<strong>Warning</strong>Your current tile at (${t.tile.x}, ${t.tile.y}) will be unclaimed and your site will be moved to this new tile.`
+        : null;
+    new M({
+      title: "Claim Tile",
+      content: `<p>Do you want to claim tile (${e.x}, ${e.y}) for <strong>${s.ui.escapeHTML(n)}</strong>?</p>`,
+      warning: i,
+      buttons: [
+        { text: "Cancel", type: "cancel", id: "cancel", onClick: (r) => r.close() },
+        {
+          text: "Claim",
+          type: "confirm",
+          id: "confirm",
+          onClick: async (r) => {
+            r.setButtonLoading("confirm", !0, "Claiming...");
+            try {
+              let p = await (
+                await s.api.makeRequest("/api/claim", {
+                  method: "POST",
+                  headers: { "Content-Type": "application/json" },
+                  body: JSON.stringify({ x: e.x, y: e.y }),
+                })
+              ).json();
+              if (p.success) {
+                if (s.user.selectedSite) {
+                  if (s.user.selectedSite.tile) {
+                    let g = s.plot.getTile(s.user.selectedSite.tile.x, s.user.selectedSite.tile.y);
+                    g && g.setFree();
+                  }
+                  s.user.selectedSite.tile = {
+                    x: e.x,
+                    y: e.y,
+                    code: p.code,
+                    domain: s.user.selectedSite.domain,
+                    created_at: Date.now(),
+                  };
+                }
+                (setTimeout(() => {
+                  (e.setDomain(s.user.selectedSite.domain),
+                    e.setActive(!1),
+                    e.element && e.element.classList.toggle("locked", !1));
+                }, 400),
+                  r.close(),
+                  K());
+              } else (alert(p.error || "Failed to claim tile"), r.setButtonLoading("confirm", !1));
+            } catch (c) {
+              (console.error(c),
+                alert("Failed to claim tile: " + c.message),
+                r.setButtonLoading("confirm", !1));
+            }
+          },
+        },
+      ],
+    }).open();
+  },
+  showUnlockModal: (e) => {
+    if (!s.user) {
+      location.href =
+        "https://kicya.net/auth/login?redirect=" +
+        encodeURIComponent("https://webtiles.kicya.net/");
+      return;
+    }
+    let t = s.user.selectedSite;
+    if (!t) {
+      alert("Please select a site first");
+      return;
+    }
+    let n = t.domain,
+      i = t.tile
+        ? `<strong>Warning</strong>Your current tile at (${t.tile.x}, ${t.tile.y}) will be unclaimed and your site will be moved to this new tile.`
+        : null,
+      o = new M({
+        title: "Unlock & Claim Tile",
+        content: `
+                <p>Enter the unlock code to claim the tile at (${e.x}, ${e.y}) for <strong>${s.ui.escapeHTML(n)}</strong>:</p>
+                <div class="code-input-container">
+                    <input type="text" id="unlock-code-input" class="modal-input" placeholder="Enter unlock code..." autocomplete="off" />
+                </div>
+            `,
+        warning: i,
+        buttons: [
+          { text: "Cancel", type: "cancel", id: "cancel", onClick: (r) => r.close() },
+          {
+            text: "Unlock & Claim",
+            type: "confirm",
+            id: "confirm",
+            onClick: async (r) => {
+              let p = o.element.querySelector("#unlock-code-input").value.trim();
+              if (!p) {
+                alert("Please enter a code");
+                return;
+              }
+              r.setButtonLoading("confirm", !0, "Unlocking...");
+              try {
+                let m = await (
+                  await s.api.makeRequest("/api/claim", {
+                    method: "POST",
+                    headers: { "Content-Type": "application/json" },
+                    body: JSON.stringify({ x: e.x, y: e.y, code: p }),
+                  })
+                ).json();
+                if (m.success) {
+                  if ((delete s.plot.lockCache[e.x + "," + e.y], s.user.selectedSite)) {
+                    if (s.user.selectedSite.tile) {
+                      let h = s.plot.getTile(
+                        s.user.selectedSite.tile.x,
+                        s.user.selectedSite.tile.y,
+                      );
+                      h && h.setFree();
+                    }
+                    s.user.selectedSite.tile = {
+                      x: e.x,
+                      y: e.y,
+                      code: m.code,
+                      domain: s.user.selectedSite.domain,
+                      created_at: Date.now(),
+                    };
+                  }
+                  (e.setDomain(s.user.selectedSite.domain), e.setActive(!1), r.close(), K());
+                } else
+                  (alert(m.error || "Failed to unlock tile"), r.setButtonLoading("confirm", !1));
+              } catch (g) {
+                (console.error(g),
+                  alert("Failed to unlock tile: " + g.message),
+                  r.setButtonLoading("confirm", !1));
+              }
+            },
+          },
+        ],
+      });
+    (o.open(),
+      setTimeout(() => {
+        let r = o.element.querySelector("#unlock-code-input");
+        r && r.focus();
+      }, 100));
+  },
+  showSettingsModal: () => {
+    let e = localStorage.lowend === "true",
+      t = document.createElement("div");
+    ((t.innerHTML = `
+            <div style="margin-bottom: 20px;">
+                <label style="display: flex; align-items: center; gap: 10px; cursor: pointer;">
+                    <input type="checkbox" id="lowend-setting" ${e ? "checked" : ""} style="width: 18px; height: 18px; cursor: pointer;">
+                    <div>
+                        <strong>Optimized rendering</strong>
+                        <div style="font-size: 0.9em; color: #666; margin-top: 4px;">
+                            Disables heavy visual effects (shadows, filters) for better performance
+                        </div>
+                    </div>
+                </label>
+            </div>
+        `),
+      new M({
+        title: "Settings",
+        content: t,
+        buttons: [{ text: "Close", type: "cancel", id: "close", onClick: (o) => o.close() }],
+      }).open(),
+      t.querySelector("#lowend-setting").addEventListener("change", (o) => {
+        (o.target.checked ? (localStorage.lowend = "true") : (localStorage.lowend = "false"),
+          O.updateLowendStyles());
+      }));
+  },
+  updateClanIndicator: () => {
+    s.ui.clanIndicator && (s.ui.clanIndicator.hidden = s.ui.pendingClanInvites.length === 0);
+  },
+  fetchClanInvites: async () => {
+    if (!(!s.user || !s.user.selectedSite))
+      try {
+        let t = await (await s.api.makeRequest("/api/clans/invites")).json();
+        t.success && ((s.ui.pendingClanInvites = t.invites || []), s.ui.updateClanIndicator());
+      } catch (e) {
+        console.error("Failed to fetch clan invites:", e);
+      }
+  },
+  showClanModal: async () => {
+    if (!s.user) {
+      location.href =
+        "https://kicya.net/auth/login?redirect=" +
+        encodeURIComponent("https://webtiles.kicya.net/");
+      return;
+    }
+    if (!s.user.selectedSite) {
+      alert("Please select a site first");
+      return;
+    }
+    let e = new M({
+      title: "Clan Management",
+      content: "<p>Loading...</p>",
+      buttons: [{ text: "Close", type: "cancel", id: "close", onClick: (t) => t.close() }],
+    });
+    e.open();
+    try {
+      let [t, n] = await Promise.all([
+          s.api.makeRequest("/api/clans/current"),
+          s.api.makeRequest("/api/clans/invites"),
+        ]),
+        i = await t.json(),
+        o = await n.json();
+      ((s.ui.pendingClanInvites = o.invites || []), s.ui.updateClanIndicator());
+      let r = s.user?.admin || s.user?.moderator;
+      i.success && i.clan
+        ? s.ui.renderClanInfo(e, i.clan, r)
+        : s.ui.renderNoClan(e, o.invites || [], r);
+    } catch (t) {
+      (console.error(t),
+        e.setContent("<p>Failed to load clan data: " + s.ui.escapeHTML(t.message) + "</p>"));
+    }
+  },
+  renderClanInfo: (e, t, n) => {
+    let i = `
+            <div class="clan-name-display">${s.ui.escapeHTML(t.name)}</div>
+            <div class="clan-stats">${t.members.length}/5 members. ${t.members.length < 3 ? "Unprotected! Reach 3 members to protect your tiles." : "Your tiles are protected."}</div>
+        `;
+    i += `<div class="clan-section">
+            <div class="clan-section-title">Members</div>
+            <div class="clan-members-list">`;
+    for (let h of t.members) {
+      let d = h.domain === s.user.sites.find((b) => b.tile?.x === h.x && b.tile?.y === h.y)?.domain;
+      ((i += `<div class="clan-member-item">
+                <span class="clan-member-domain">${s.ui.escapeHTML(h.domain)}</span>
+                <div>`),
+        t.isOwner &&
+          h.domain !== s.user.selectedSite?.domain &&
+          (i += `<button class="clan-member-kick" data-domain="${s.ui.escapeHTML(h.domain)}">Kick</button>`),
+        (i += `</div>
+            </div>`));
+    }
+    if (((i += "</div></div>"), t.isOwner && t.pendingInvites && t.pendingInvites.length > 0)) {
+      i += `<div class="clan-section">
+                <div class="clan-section-title">Pending Invites</div>
+                <div class="clan-pending-list">`;
+      for (let h of t.pendingInvites)
+        i += `<div class="clan-pending-item">
+                    <span>${s.ui.escapeHTML(h.domain)}</span>
+                    <button class="clan-pending-cancel" data-invite="${h.id}">Cancel</button>
+                </div>`;
+      i += "</div></div>";
+    }
+    (t.isOwner &&
+      t.members.length < 5 &&
+      (i += `<div class="clan-section">
+                <div class="clan-section-title">Invite Neighboring Tile</div>
+                <div class="code-input-container" style="margin: 5px 0;">
+                    <input type="text" id="clan-invite-domain" class="modal-input" placeholder="Enter domain..." autocomplete="off" style="font-family: inherit;" />
+                </div>
+                <button class="modal-btn modal-btn-confirm" id="clan-invite-btn" style="margin-top: 5px;">Send Invite</button>
+            </div>`),
+      n &&
+        (i += `<div class="clan-section">
+                <div class="clan-section-title">Admin Tools</div>
+                <button class="modal-btn modal-btn-cancel" id="clan-admin-invites-btn">View All Invites</button>
+                <button class="modal-btn modal-btn-cancel" id="clan-admin-clans-btn" style="margin-left: 5px;">View All Clans</button>
+            </div>`),
+      e.setContent(i));
+    let o = [{ text: "Close", type: "cancel", id: "close", onClick: (h) => h.close() }];
+    (t.isOwner
+      ? o.unshift({
+          text: "Disband Clan",
+          type: "cancel",
+          id: "disband",
+          onClick: async (h) => {
+            if (confirm("Are you sure you want to disband this clan?")) {
+              h.setButtonLoading("disband", !0, "Disbanding...");
+              try {
+                let b = await (
+                  await s.api.makeRequest("/api/clans/disband", {
+                    method: "POST",
+                    headers: { "Content-Type": "application/json" },
+                  })
+                ).json();
+                b.success
+                  ? (h.close(), s.ui.showClanModal())
+                  : (alert(b.error || "Failed to disband clan"), h.setButtonLoading("disband", !1));
+              } catch (d) {
+                (alert("Failed to disband clan: " + d.message), h.setButtonLoading("disband", !1));
+              }
+            }
+          },
+        })
+      : o.unshift({
+          text: "Leave Clan",
+          type: "cancel",
+          id: "leave",
+          onClick: async (h) => {
+            if (confirm("Are you sure you want to leave this clan?")) {
+              h.setButtonLoading("leave", !0, "Leaving...");
+              try {
+                let b = await (
+                  await s.api.makeRequest("/api/clans/leave", {
+                    method: "POST",
+                    headers: { "Content-Type": "application/json" },
+                  })
+                ).json();
+                b.success
+                  ? (h.close(), s.ui.showClanModal())
+                  : (alert(b.error || "Failed to leave clan"), h.setButtonLoading("leave", !1));
+              } catch (d) {
+                (alert("Failed to leave clan: " + d.message), h.setButtonLoading("leave", !1));
+              }
+            }
+          },
+        }),
+      (e.buttons = o));
+    let r = e.element.querySelector(".modal-actions");
+    ((r.innerHTML = ""), e._buttonElements.clear());
+    for (let h of e.buttons) r.appendChild(e._createButton(h));
+    (e.element.querySelectorAll(".clan-member-kick").forEach((h) => {
+      h.addEventListener("click", async () => {
+        let d = h.dataset.domain;
+        if (confirm(`Are you sure you want to kick ${d}?`)) {
+          ((h.disabled = !0), (h.textContent = "..."));
+          try {
+            let C = await (
+              await s.api.makeRequest("/api/clans/kick", {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({ domain: d }),
+              })
+            ).json();
+            C.success
+              ? (s.ui.showClanModal(), e.close())
+              : (alert(C.error || "Failed to kick member"),
+                (h.disabled = !1),
+                (h.textContent = "Kick"));
+          } catch (b) {
+            (alert("Failed to kick member: " + b.message),
+              (h.disabled = !1),
+              (h.textContent = "Kick"));
+          }
+        }
+      });
+    }),
+      e.element.querySelectorAll(".clan-pending-cancel").forEach((h) => {
+        h.addEventListener("click", async () => {
+          let d = h.dataset.invite;
+          ((h.disabled = !0), (h.textContent = "..."));
+          try {
+            let C = await (
+              await s.api.makeRequest("/api/clans/cancel-invite", {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({ invite: parseInt(d) }),
+              })
+            ).json();
+            C.success
+              ? h.closest(".clan-pending-item").remove()
+              : (alert(C.error || "Failed to cancel invite"),
+                (h.disabled = !1),
+                (h.textContent = "Cancel"));
+          } catch (b) {
+            (alert("Failed to cancel invite: " + b.message),
+              (h.disabled = !1),
+              (h.textContent = "Cancel"));
+          }
+        });
+      }));
+    let c = e.element.querySelector("#clan-invite-btn"),
+      p = e.element.querySelector("#clan-invite-domain");
+    c &&
+      p &&
+      c.addEventListener("click", async () => {
+        let h = p.value.trim();
+        if (!h) {
+          alert("Please enter a domain");
+          return;
+        }
+        ((c.disabled = !0), (c.textContent = "Sending..."));
+        try {
+          let b = await (
+            await s.api.makeRequest("/api/clans/invite", {
+              method: "POST",
+              headers: { "Content-Type": "application/json" },
+              body: JSON.stringify({ domain: h }),
+            })
+          ).json();
+          b.success
+            ? ((p.value = ""), s.ui.showClanModal(), e.close())
+            : (alert(b.error || "Failed to send invite"),
+              (c.disabled = !1),
+              (c.textContent = "Send Invite"));
+        } catch (d) {
+          (alert("Failed to send invite: " + d.message),
+            (c.disabled = !1),
+            (c.textContent = "Send Invite"));
+        }
+      });
+    let g = e.element.querySelector("#clan-admin-invites-btn");
+    g &&
+      g.addEventListener("click", () => {
+        (e.close(), setTimeout(() => s.ui.showAdminInvitesModal(), 50));
+      });
+    let m = e.element.querySelector("#clan-admin-clans-btn");
+    m &&
+      m.addEventListener("click", () => {
+        (e.close(), setTimeout(() => s.ui.showAdminClansModal(), 50));
+      });
+  },
+  renderNoClan: (e, t, n) => {
+    let i = "";
+    if (t.length > 0) {
+      i += `<div class="clan-section">
+                <div class="clan-section-title">Pending Invites</div>
+                <div class="clan-invites-list">`;
+      for (let g of t)
+        i += `<div class="clan-invite-item">
+                    <span class="clan-invite-info">
+                        Clan: <strong>${s.ui.escapeHTML(g.clan_name)}</strong>
+                        ${g.inviter_domain ? `<br><span style="font-size: 11px; color: #888;">Invited by: ${s.ui.escapeHTML(g.inviter_domain)}</span>` : ""}
+                    </span>
+                    <div class="clan-invite-actions">
+                        <button class="clan-invite-accept" data-invite="${g.id}">Accept</button>
+                        <button class="clan-invite-reject" data-invite="${g.id}">Reject</button>
+                    </div>
+                </div>`;
+      i += "</div></div>";
+    }
+    ((i += `<div class="clan-section">
+            <div class="clan-section-title">Create a New Clan</div>
+            <p style="font-size: 12px; color: #666; margin: 5px 0;">Create a clan to group neighboring tiles together (max 5 tiles).</p>
+            <div class="code-input-container" style="margin: 5px 0;">
+                <input type="text" id="clan-create-name" class="modal-input" placeholder="Clan name (3-20 chars, alphanumeric)" autocomplete="off" style="font-family: inherit;" maxlength="20" />
+            </div>
+            <button class="modal-btn modal-btn-confirm" id="clan-create-btn" style="margin-top: 5px;">Create Clan</button>
+        </div>`),
+      n &&
+        (i += `<div class="clan-section">
+                <div class="clan-section-title">Admin: Manage Invites</div>
+                <button class="modal-btn modal-btn-cancel" id="clan-admin-invites-btn">View All Invites</button>
+                <button class="modal-btn modal-btn-cancel" id="clan-admin-clans-btn" style="margin-left: 5px;">View All Clans</button>
+            </div>`),
+      e.setContent(i),
+      e.element.querySelectorAll(".clan-invite-accept").forEach((g) => {
+        g.addEventListener("click", async () => {
+          let m = g.dataset.invite;
+          ((g.disabled = !0), (g.textContent = "..."));
+          try {
+            let d = await (
+              await s.api.makeRequest("/api/clans/accept-invite", {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({ invite: parseInt(m) }),
+              })
+            ).json();
+            d.success
+              ? ((s.ui.pendingClanInvites = s.ui.pendingClanInvites.filter(
+                  (b) => b.id !== parseInt(m),
+                )),
+                s.ui.updateClanIndicator(),
+                s.ui.showClanModal(),
+                e.close())
+              : (alert(d.error || "Failed to accept invite"),
+                (g.disabled = !1),
+                (g.textContent = "Accept"));
+          } catch (h) {
+            (alert("Failed to accept invite: " + h.message),
+              (g.disabled = !1),
+              (g.textContent = "Accept"));
+          }
+        });
+      }),
+      e.element.querySelectorAll(".clan-invite-reject").forEach((g) => {
+        g.addEventListener("click", async () => {
+          let m = g.dataset.invite;
+          ((g.disabled = !0), (g.textContent = "..."));
+          try {
+            let d = await (
+              await s.api.makeRequest("/api/clans/reject-invite", {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({ invite: parseInt(m) }),
+              })
+            ).json();
+            d.success
+              ? ((s.ui.pendingClanInvites = s.ui.pendingClanInvites.filter(
+                  (b) => b.id !== parseInt(m),
+                )),
+                s.ui.updateClanIndicator(),
+                g.closest(".clan-invite-item").remove())
+              : (alert(d.error || "Failed to reject invite"),
+                (g.disabled = !1),
+                (g.textContent = "Reject"));
+          } catch (h) {
+            (alert("Failed to reject invite: " + h.message),
+              (g.disabled = !1),
+              (g.textContent = "Reject"));
+          }
+        });
+      }));
+    let o = e.element.querySelector("#clan-create-btn"),
+      r = e.element.querySelector("#clan-create-name");
+    o &&
+      r &&
+      o.addEventListener("click", async () => {
+        let g = r.value.trim();
+        if (!g) {
+          alert("Please enter a clan name");
+          return;
+        }
+        if (g.length < 3 || g.length > 20) {
+          alert("Clan name must be between 3 and 20 characters");
+          return;
+        }
+        if (!/^[a-zA-Z0-9\s]+$/.test(g)) {
+          alert("Clan name must only contain letters and numbers");
+          return;
+        }
+        ((o.disabled = !0), (o.textContent = "Creating..."));
+        try {
+          let h = await (
+            await s.api.makeRequest("/api/clans/create", {
+              method: "POST",
+              headers: { "Content-Type": "application/json" },
+              body: JSON.stringify({ name: g }),
+            })
+          ).json();
+          h.success
+            ? (s.ui.showClanModal(), e.close())
+            : (alert(h.error || "Failed to create clan"),
+              (o.disabled = !1),
+              (o.textContent = "Create Clan"));
+        } catch (m) {
+          (alert("Failed to create clan: " + m.message),
+            (o.disabled = !1),
+            (o.textContent = "Create Clan"));
+        }
+      });
+    let c = e.element.querySelector("#clan-admin-invites-btn");
+    c &&
+      c.addEventListener("click", () => {
+        (e.close(), setTimeout(() => s.ui.showAdminInvitesModal(), 50));
+      });
+    let p = e.element.querySelector("#clan-admin-clans-btn");
+    p &&
+      p.addEventListener("click", () => {
+        (e.close(), setTimeout(() => s.ui.showAdminClansModal(), 50));
+      });
+  },
+  showAdminInvitesModal: async () => {
+    let e = new M({
+      title: "Admin: All Clan Invites",
+      content: "<p>Loading...</p>",
+      buttons: [
+        {
+          text: "Back",
+          type: "cancel",
+          id: "back",
+          onClick: (t) => {
+            (t.close(), s.ui.showClanModal());
+          },
+        },
+        { text: "Close", type: "cancel", id: "close", onClick: (t) => t.close() },
+      ],
+    });
+    e.open();
+    try {
+      let n = await (await s.api.makeRequest("/api/clans/admin/invites")).json();
+      if (n.success)
+        if (n.invites.length === 0) e.setContent("<p>No pending invites.</p>");
+        else {
+          let i = '<div class="clan-invites-list" style="max-height: 300px;">';
+          for (let o of n.invites)
+            i += `<div class="clan-invite-item">
+                            <div>
+                                <div><strong>${s.ui.escapeHTML(o.domain)}</strong></div>
+                                <div style="font-size: 11px; color: #888;">Clan: ${s.ui.escapeHTML(o.clan_name)}</div>
+                            </div>
+                            <button class="clan-invite-reject" data-invite="${o.id}">Delete</button>
+                        </div>`;
+          ((i += "</div>"),
+            e.setContent(i),
+            e.element.querySelectorAll(".clan-invite-reject").forEach((o) => {
+              o.addEventListener("click", async () => {
+                let r = o.dataset.invite;
+                ((o.disabled = !0), (o.textContent = "..."));
+                try {
+                  let p = await (
+                    await s.api.makeRequest("/api/clans/admin/delete-invite", {
+                      method: "POST",
+                      headers: { "Content-Type": "application/json" },
+                      body: JSON.stringify({ invite: parseInt(r) }),
+                    })
+                  ).json();
+                  p.success
+                    ? o.closest(".clan-invite-item").remove()
+                    : (alert(p.error || "Failed to delete invite"),
+                      (o.disabled = !1),
+                      (o.textContent = "Delete"));
+                } catch (c) {
+                  (alert("Failed to delete invite: " + c.message),
+                    (o.disabled = !1),
+                    (o.textContent = "Delete"));
+                }
+              });
+            }));
+        }
+      else e.setContent("<p>Failed to load invites: " + s.ui.escapeHTML(n.error) + "</p>");
+    } catch (t) {
+      e.setContent("<p>Failed to load invites: " + s.ui.escapeHTML(t.message) + "</p>");
+    }
+  },
+  showAdminClansModal: async () => {
+    let e = new M({
+      title: "Admin: All Clans",
+      content: "<p>Loading...</p>",
+      buttons: [
+        {
+          text: "Back",
+          type: "cancel",
+          id: "back",
+          onClick: (t) => {
+            (t.close(), s.ui.showClanModal());
+          },
+        },
+        { text: "Close", type: "cancel", id: "close", onClick: (t) => t.close() },
+      ],
+    });
+    e.open();
+    try {
+      let n = await (await s.api.makeRequest("/api/clans/admin/clans")).json();
+      if (n.success)
+        if (n.clans.length === 0) e.setContent("<p>No clans.</p>");
+        else {
+          let i = '<div class="clan-members-list" style="max-height: 300px;">';
+          for (let o of n.clans)
+            i += `<div class="clan-member-item">
+                            <div>
+                                <div><strong>${s.ui.escapeHTML(o.name)}</strong></div>
+                                <div style="font-size: 11px; color: #888;">${o.member_count}/5 members</div>
+                            </div>
+                            <div style="display: flex; gap: 5px;">
+                                ${o.owner_x !== null && o.owner_y !== null ? `<button class="clan-jump-owner" data-x="${o.owner_x}" data-y="${o.owner_y}">Jump</button>` : ""}
+                                <button class="clan-member-kick" data-clan="${o.id}">Disband</button>
+                            </div>
+                        </div>`;
+          ((i += "</div>"),
+            e.setContent(i),
+            e.element.querySelectorAll(".clan-jump-owner").forEach((o) => {
+              o.addEventListener("click", () => {
+                let r = parseInt(o.dataset.x),
+                  c = parseInt(o.dataset.y);
+                s.camera &&
+                  !isNaN(r) &&
+                  !isNaN(c) &&
+                  (s.camera.centerOn(r * 250 + 250 / 2, c * 250 + 250 / 2), e.close());
+              });
+            }),
+            e.element.querySelectorAll(".clan-member-kick").forEach((o) => {
+              o.addEventListener("click", async () => {
+                let r = o.dataset.clan;
+                if (confirm("Are you sure you want to disband this clan?")) {
+                  ((o.disabled = !0), (o.textContent = "..."));
+                  try {
+                    let p = await (
+                      await s.api.makeRequest("/api/clans/admin/disband", {
+                        method: "POST",
+                        headers: { "Content-Type": "application/json" },
+                        body: JSON.stringify({ clan_id: parseInt(r) }),
+                      })
+                    ).json();
+                    p.success
+                      ? o.closest(".clan-member-item").remove()
+                      : (alert(p.error || "Failed to disband clan"),
+                        (o.disabled = !1),
+                        (o.textContent = "Disband"));
+                  } catch (c) {
+                    (alert("Failed to disband clan: " + c.message),
+                      (o.disabled = !1),
+                      (o.textContent = "Disband"));
+                  }
+                }
+              });
+            }));
+        }
+      else e.setContent("<p>Failed to load clans: " + s.ui.escapeHTML(n.error) + "</p>");
+    } catch (t) {
+      e.setContent("<p>Failed to load clans: " + s.ui.escapeHTML(t.message) + "</p>");
+    }
+  },
+  showFreeModal: (e) => {
+    if (!s.user) {
+      location.href =
+        "https://kicya.net/auth/login?redirect=" +
+        encodeURIComponent("https://webtiles.kicya.net/");
+      return;
+    }
+    let t = new M({
+      title: "Free Tile",
+      content: `
+                <p>What would you like to do with the tile at (${e.x}, ${e.y})?</p>
+                <div class="modal-options">
+                    <button class="modal-option" id="option-transfer">
+                        <strong>Transfer to Someone</strong>
+                        <span>Get a code to share with another person. They can use this code to take the tile.</span>
+                    </button>
+                    <button class="modal-option" id="option-free">
+                        <strong>Free Completely</strong>
+                        <span>Make this tile available for anyone to claim.</span>
+                    </button>
+                </div>
+            `,
+      buttons: [{ text: "Cancel", type: "cancel", id: "cancel", onClick: (o) => o.close() }],
+    });
+    t.open();
+    let n = t.element.querySelector("#option-transfer"),
+      i = t.element.querySelector("#option-free");
+    (n.addEventListener("click", async () => {
+      ((n.disabled = !0), (i.disabled = !0), (n.innerHTML = "<strong>Loading...</strong>"));
+      try {
+        let r = await (
+          await s.api.makeRequest("/api/getcode", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({ x: e.x, y: e.y }),
+          })
+        ).json();
+        if (r.success) {
+          t.setContent(`
+                        <p>Share this code with another person to let them take your tile at (${e.x}, ${e.y}):</p>
+                        <div class="code-display">
+                            <code id="tile-code">${s.ui.escapeHTML(r.code)}</code>
+                            <button class="btn" id="copy-code-btn">Copy</button>
+                        </div>
+                        <p class="modal-hint">The other person needs to select the tile and click "Take", then enter this code.</p>
+                    `);
+          let c = t.element.querySelector("#copy-code-btn");
+          c.addEventListener("click", () => {
+            (navigator.clipboard.writeText(r.code),
+              (c.textContent = "Copied!"),
+              setTimeout(() => {
+                c.textContent = "Copy";
+              }, 1500));
+          });
+        } else
+          (alert(r.error || "Failed to get tile code"),
+            (n.disabled = !1),
+            (i.disabled = !1),
+            (n.innerHTML =
+              "<strong>\u{1F511} Transfer to Someone</strong><span>Get a code to share with another person. They can use this code to take the tile.</span>"));
+      } catch (o) {
+        (console.error(o),
+          alert("Failed to get tile code: " + o.message),
+          (n.disabled = !1),
+          (i.disabled = !1),
+          (n.innerHTML =
+            "<strong>\u{1F511} Transfer to Someone</strong><span>Get a code to share with another person. They can use this code to take the tile.</span>"));
+      }
+    }),
+      i.addEventListener("click", () => {
+        (t.setContent(
+          `<p>Are you sure you want to free the tile at (${e.x}, ${e.y})?</p><p>The tile for <strong>${s.ui.escapeHTML(e.domain)}</strong> will become available for <strong>anyone</strong> to claim.</p>`,
+        ),
+          (t.buttons = [
+            {
+              text: "Back",
+              type: "cancel",
+              id: "back",
+              onClick: (r) => {
+                (r.close(), s.ui.showFreeModal(e));
+              },
+            },
+            {
+              text: "Free Tile",
+              type: "confirm",
+              id: "confirm",
+              onClick: async (r) => {
+                r.setButtonLoading("confirm", !0, "Freeing...");
+                try {
+                  let p = await (
+                    await s.api.makeRequest("/api/free", {
+                      method: "POST",
+                      headers: { "Content-Type": "application/json" },
+                      body: JSON.stringify({ x: e.x, y: e.y }),
+                    })
+                  ).json();
+                  if (p.success) {
+                    let g = s.user.sites.find((m) => m.domain === e.domain);
+                    (g && (g.tile = null), e.setFree(), e.setActive(!1), r.close(), K());
+                  } else
+                    (alert(p.error || "Failed to free tile"), r.setButtonLoading("confirm", !1));
+                } catch (c) {
+                  (console.error(c),
+                    alert("Failed to free tile: " + c.message),
+                    r.setButtonLoading("confirm", !1));
+                }
+              },
+            },
+          ]));
+        let o = t.element.querySelector(".modal-actions");
+        ((o.innerHTML = ""), t._buttonElements.clear());
+        for (let r of t.buttons) o.appendChild(t._createButton(r));
+      }));
+  },
+  showTakeModal: (e) => {
+    if (!s.user) {
+      location.href =
+        "https://kicya.net/auth/login?redirect=" +
+        encodeURIComponent("https://webtiles.kicya.net/");
+      return;
+    }
+    let t = s.user.selectedSite;
+    if (!t) {
+      alert("Please select a site first");
+      return;
+    }
+    let n = t.domain,
+      i = t.tile
+        ? `<strong>Warning</strong>Your current tile at (${t.tile.x}, ${t.tile.y}) will be freed and your site will be moved to this new tile.`
+        : null,
+      o = new M({
+        title: "Take Tile",
+        content: `
+                <p>Enter the code to take the tile at (${e.x}, ${e.y}) for <strong>${s.ui.escapeHTML(n)}</strong>:</p>
+                <div class="code-input-container">
+                    <input type="text" id="take-code-input" class="modal-input" placeholder="Enter tile code..." autocomplete="off" />
+                </div>
+            `,
+        warning: i,
+        buttons: [
+          { text: "Cancel", type: "cancel", id: "cancel", onClick: (r) => r.close() },
+          {
+            text: "Take Tile",
+            type: "confirm",
+            id: "confirm",
+            onClick: async (r) => {
+              let p = o.element.querySelector("#take-code-input").value.trim();
+              if (!p) {
+                alert("Please enter a code");
+                return;
+              }
+              r.setButtonLoading("confirm", !0, "Taking...");
+              try {
+                let m = await (
+                  await s.api.makeRequest("/api/take", {
+                    method: "POST",
+                    headers: { "Content-Type": "application/json" },
+                    body: JSON.stringify({ x: e.x, y: e.y, code: p }),
+                  })
+                ).json();
+                if (m.success) {
+                  if (s.user.selectedSite && s.user.selectedSite.tile) {
+                    let h = s.plot.getTile(s.user.selectedSite.tile.x, s.user.selectedSite.tile.y);
+                    h && h.setFree();
+                  }
+                  (s.user.selectedSite &&
+                    (s.user.selectedSite.tile = {
+                      x: e.x,
+                      y: e.y,
+                      domain: s.user.selectedSite.domain,
+                      created_at: Date.now(),
+                    }),
+                    e.setDomain(n),
+                    e.setActive(!1),
+                    r.close(),
+                    K());
+                } else (alert(m.error || "Failed to take tile"), r.setButtonLoading("confirm", !1));
+              } catch (g) {
+                (console.error(g),
+                  alert("Failed to take tile: " + g.message),
+                  r.setButtonLoading("confirm", !1));
+              }
+            },
+          },
+        ],
+      });
+    (o.open(),
+      setTimeout(() => {
+        let r = o.element.querySelector("#take-code-input");
+        r && r.focus();
+      }, 100));
+  },
+  showAdminFreeModal: (e) => {
+    new M({
+      title: "Admin: Free Tile",
+      content: `
+                <p>Are you sure you want to <strong>free</strong> the tile at (${e.x}, ${e.y})?</p>
+                <p>This will remove <strong>${s.ui.escapeHTML(e.domain)}</strong> from this tile.</p>
+            `,
+      buttons: [
+        { text: "Cancel", type: "cancel", id: "cancel", onClick: (n) => n.close() },
+        {
+          text: "Free Tile",
+          type: "confirm",
+          id: "confirm",
+          onClick: async (n) => {
+            n.setButtonLoading("confirm", !0, "Freeing...");
+            try {
+              let o = await (
+                await s.api.makeRequest("/api/admin/free", {
+                  method: "POST",
+                  headers: { "Content-Type": "application/json" },
+                  body: JSON.stringify({ x: e.x, y: e.y }),
+                })
+              ).json();
+              o.success
+                ? (e.setFree(), e.setActive(!1), n.close())
+                : (alert(o.error || "Failed to free tile"), n.setButtonLoading("confirm", !1));
+            } catch (i) {
+              (console.error(i),
+                alert("Failed to free tile: " + i.message),
+                n.setButtonLoading("confirm", !1));
+            }
+          },
+        },
+      ],
+    }).open();
+  },
+  showAdminBanModal: (e) => {
+    new M({
+      title: "Admin: Ban User",
+      content: `
+                <p>Are you sure you want to <strong>ban</strong> the owner of <strong>${s.ui.escapeHTML(e.domain)}</strong>?</p>
+                <p>This will:</p>
+                <ul style="margin: 10px 0; padding-left: 20px; color: #555;">
+                    <li>Ban the user from creating new tiles</li>
+                    <li>Remove <strong>all</strong> of their tiles</li>
+                </ul>
+            `,
+      warning: "<strong>Destructive Action</strong>This action cannot be undone easily!",
+      buttons: [
+        { text: "Cancel", type: "cancel", id: "cancel", onClick: (n) => n.close() },
+        {
+          text: "Ban User",
+          type: "confirm",
+          id: "confirm",
+          onClick: async (n) => {
+            n.setButtonLoading("confirm", !0, "Banning...");
+            try {
+              let o = await (
+                await s.api.makeRequest("/api/admin/ban", {
+                  method: "POST",
+                  headers: { "Content-Type": "application/json" },
+                  body: JSON.stringify({ x: e.x, y: e.y }),
+                })
+              ).json();
+              o.success
+                ? (e.setFree(), e.setActive(!1), n.close(), alert("User banned."))
+                : (alert(o.error || "Failed to ban user"), n.setButtonLoading("confirm", !1));
+            } catch (i) {
+              (console.error(i),
+                alert("Failed to ban user: " + i.message),
+                n.setButtonLoading("confirm", !1));
+            }
+          },
+        },
+      ],
+    }).open();
+  },
+  showAdminLockModal: (e, t) => {
+    let n = t ? "unlock" : "lock",
+      i = t ? "unlocked" : "locked";
+    new M({
+      title: `Admin: ${t ? "Unlock" : "Lock"} Tile`,
+      content: `
+                <p>Are you sure you want to <strong>${n}</strong> the tile at (${e.x}, ${e.y})?</p>
+                ${t ? "<p>This tile will become available for claiming again.</p>" : "<p>This tile will be reserved and cannot be claimed by regular users.</p>"}
+            `,
+      buttons: [
+        { text: "Cancel", type: "cancel", id: "cancel", onClick: (r) => r.close() },
+        {
+          text: t ? "Unlock Tile" : "Lock Tile",
+          type: "confirm",
+          id: "confirm",
+          onClick: async (r) => {
+            r.setButtonLoading("confirm", !0, t ? "Unlocking..." : "Locking...");
+            try {
+              let p = await (
+                await s.api.makeRequest("/api/admin/lock", {
+                  method: "POST",
+                  headers: { "Content-Type": "application/json" },
+                  body: JSON.stringify({ x: e.x, y: e.y, lock: !t }),
+                })
+              ).json();
+              p.success
+                ? (t
+                    ? delete s.plot.lockCache[e.x + "," + e.y]
+                    : (s.plot.lockCache[e.x + "," + e.y] = !0),
+                  r.close(),
+                  e.setActive(!1),
+                  e.setActive(!0))
+                : (alert(p.error || `Failed to ${n} tile`), r.setButtonLoading("confirm", !1));
+            } catch (c) {
+              (console.error(c),
+                alert(`Failed to ${n} tile: ` + c.message),
+                r.setButtonLoading("confirm", !1));
+            }
+          },
+        },
+      ],
+    }).open();
+  },
+  showAdminLockCodeModal: async (e) => {
+    try {
+      let n = await (await s.api.makeRequest(`/api/admin/lockcode?x=${e.x}&y=${e.y}`)).json();
+      if (n.success) {
+        let i = new M({
+          title: "Lock Code",
+          content: `
+                        <p>Lock code for tile at (${e.x}, ${e.y}):</p>
+                        <div class="code-display">
+                            <code id="lock-code">${s.ui.escapeHTML(n.code)}</code>
+                            <button class="btn" id="copy-lock-code-btn">Copy</button>
+                        </div>
+                        <p class="modal-hint">Share this code to allow someone to claim this locked tile.</p>
+                    `,
+          buttons: [{ text: "Close", type: "cancel", id: "close", onClick: (r) => r.close() }],
+        });
+        i.open();
+        let o = i.element.querySelector("#copy-lock-code-btn");
+        o.addEventListener("click", () => {
+          (navigator.clipboard.writeText(n.code),
+            (o.textContent = "Copied!"),
+            setTimeout(() => {
+              o.textContent = "Copy";
+            }, 1500));
+        });
+      } else alert(n.error || "Failed to get lock code");
+    } catch (t) {
+      (console.error(t), alert("Failed to get lock code: " + t.message));
+    }
+  },
+  showAdminTileCodeModal: async (e) => {
+    try {
+      let n = await (await s.api.makeRequest(`/api/admin/tilecode?x=${e.x}&y=${e.y}`)).json();
+      if (n.success) {
+        let i = new M({
+          title: "Tile Secret Code",
+          content: `
+                        <p>Secret code for tile at (${e.x}, ${e.y}):</p>
+                        <div class="code-display">
+                            <code id="tile-code">${s.ui.escapeHTML(n.code)}</code>
+                            <button class="btn" id="copy-tile-code-btn">Copy</button>
+                        </div>
+                        <p class="modal-hint">This is the secret code for this tile. Share it to allow someone to take this tile.</p>
+                    `,
+          buttons: [{ text: "Close", type: "cancel", id: "close", onClick: (r) => r.close() }],
+        });
+        i.open();
+        let o = i.element.querySelector("#copy-tile-code-btn");
+        o.addEventListener("click", () => {
+          (navigator.clipboard.writeText(n.code),
+            (o.textContent = "Copied!"),
+            setTimeout(() => {
+              o.textContent = "Copy";
+            }, 1500));
+        });
+      } else alert(n.error || "Failed to get tile code");
+    } catch (t) {
+      (console.error(t), alert("Failed to get tile code: " + t.message));
+    }
+  },
+  showAdminSwapModal: (e) => {
+    let t = new M({
+      title: "Admin: Swap Tiles",
+      content: `
+                <p>Enter the coordinates of the tile to swap with tile at (${e.x}, ${e.y}):</p>
+                <div class="code-input-container">
+                    <label style="display: block; margin-bottom: 5px; font-size: 12px; color: #555;">X coordinate:</label>
+                    <input type="number" id="swap-x-input" class="modal-input" placeholder="Enter X..." autocomplete="off" />
+                </div>
+                <div class="code-input-container">
+                    <label style="display: block; margin-bottom: 5px; font-size: 12px; color: #555;">Y coordinate:</label>
+                    <input type="number" id="swap-y-input" class="modal-input" placeholder="Enter Y..." autocomplete="off" />
+                </div>
+            `,
+      buttons: [
+        { text: "Cancel", type: "cancel", id: "cancel", onClick: (n) => n.close() },
+        {
+          text: "Swap",
+          type: "confirm",
+          id: "confirm",
+          onClick: async (n) => {
+            let i = t.element.querySelector("#swap-x-input"),
+              o = t.element.querySelector("#swap-y-input"),
+              r = parseInt(i.value.trim()),
+              c = parseInt(o.value.trim());
+            if (isNaN(r) || isNaN(c)) {
+              alert("Please enter valid X and Y coordinates");
+              return;
+            }
+            if (e.x === r && e.y === c) {
+              alert("Cannot swap a tile with itself");
+              return;
+            }
+            n.setButtonLoading("confirm", !0, "Swapping...");
+            try {
+              let g = await (
+                await s.api.makeRequest("/api/admin/swap", {
+                  method: "POST",
+                  headers: { "Content-Type": "application/json" },
+                  body: JSON.stringify({ x1: e.x, y1: e.y, x2: r, y2: c }),
+                })
+              ).json();
+              g.success
+                ? (n.close(),
+                  e.setActive(!1),
+                  setTimeout(() => {
+                    let m = s.plot.getTile(e.x, e.y),
+                      h = s.plot.getTile(r, c);
+                    (m && (m.setActive(!1), m.fetchContent("/index.html", !0)),
+                      h && (h.setActive(!1), h.fetchContent("/index.html", !0)));
+                  }, 100))
+                : (alert(g.error || "Failed to swap tiles"), n.setButtonLoading("confirm", !1));
+            } catch (p) {
+              (console.error(p),
+                alert("Failed to swap tiles: " + p.message),
+                n.setButtonLoading("confirm", !1));
+            }
+          },
+        },
+      ],
+    });
+    (t.open(),
+      setTimeout(() => {
+        let n = t.element.querySelector("#swap-x-input");
+        n && n.focus();
+      }, 100));
+  },
+  createAdminControl: (e) => {
+    let t = s.ui.createElement("div", { class: "tile-admin-panel" });
+    e.free ||
+      (t.appendChild(
+        s.ui.createElement("button", {
+          innerText: "Edit",
+          onclick: () => {
+            s.ui.showDashboard(e.domain);
+          },
+        }),
+      ),
+      t.appendChild(s.ui.createElement("span", { class: "separator" })),
+      t.appendChild(
+        s.ui.createElement("button", {
+          innerText: "Free",
+          onclick: () => {
+            s.ui.showAdminFreeModal(e);
+          },
+        }),
+      ),
+      t.appendChild(
+        s.ui.createElement("button", {
+          class: "danger",
+          innerText: "Ban",
+          onclick: () => {
+            s.ui.showAdminBanModal(e);
+          },
+        }),
+      ),
+      t.appendChild(
+        s.ui.createElement("button", {
+          innerText: "Swap",
+          onclick: () => {
+            s.ui.showAdminSwapModal(e);
+          },
+        }),
+      ));
+    let n = s.plot.lockCache[e.x + "," + e.y],
+      i = s.ui.createElement("button", {
+        innerText: n ? "Unlock" : "Lock",
+        onclick: async () => {
+          try {
+            let r = await (
+              await s.api.makeRequest(`/api/admin/lockstatus?x=${e.x}&y=${e.y}`)
+            ).json();
+            r.success
+              ? s.ui.showAdminLockModal(e, r.locked)
+              : alert(r.error || "Failed to check lock status");
+          } catch (o) {
+            (console.error(o), alert("Failed to check lock status: " + o.message));
+          }
+        },
+      });
+    if (
+      (e.free || t.appendChild(s.ui.createElement("span", { class: "separator" })),
+      t.appendChild(i),
+      n)
+    ) {
+      let o = s.ui.createElement("button", {
+        innerText: "Show",
+        onclick: () => {
+          s.ui.showAdminLockCodeModal(e);
+        },
+      });
+      t.appendChild(o);
+    }
+    if (!e.free) {
+      let o = s.ui.createElement("button", {
+        innerText: "Show",
+        onclick: () => {
+          s.ui.showAdminTileCodeModal(e);
+        },
+      });
+      t.appendChild(o);
+    }
+    return t;
+  },
+  createTileControl: (e) => {
+    let t = s.ui.createElement("div", {
+        class: "tile-info",
+        innerHTML: `
+                <div class="tile-domain">
+                    ${e.domain ? `<a href="https://${s.ui.escapeHTML(e.domain)}" target="_blank">${s.ui.escapeHTML(e.domain)}</a>` : `${e.locked ? "Locked tile" : "Free tile"} ${e.x}, ${e.y}`}
+                </div>
+                <div class="tile-controls">
+            `,
+      }),
+      n = t.querySelector(".tile-controls");
+    if (e.free)
+      s.plot.lockCache[e.x + "," + e.y]
+        ? n.appendChild(
+            s.ui.createElement("button", {
+              class: "btn",
+              innerText: "Unlock",
+              onclick: () => {
+                s.ui.showUnlockModal(e);
+              },
+            }),
+          )
+        : n.appendChild(
+            s.ui.createElement("button", {
+              class: "btn",
+              innerText: "Claim",
+              onclick: () => {
+                s.ui.showClaimModal(e);
+              },
+            }),
+          );
+    else {
+      let i = s?.user?.sites?.find((o) => o.domain === e.domain);
+      if (
+        (i &&
+          (n.appendChild(
+            s.ui.createElement("button", {
+              class: "btn",
+              innerText: "Edit",
+              onclick: () => {
+                s.ui.showDashboard(e.domain);
+              },
+            }),
+          ),
+          n.appendChild(
+            s.ui.createElement("button", {
+              class: "btn",
+              innerText: "Give",
+              onclick: () => {
+                s.ui.showFreeModal(e);
+              },
+            }),
+          )),
+        (!i || (s?.user?.selectedSite?.domain !== e.domain && s?.user?.sites?.length >= 2)) &&
+          n.appendChild(
+            s.ui.createElement("button", {
+              class: "btn",
+              innerText: "Take",
+              onclick: () => {
+                s.ui.showTakeModal(e);
+              },
+            }),
+          ),
+        !i && s?.user?.selectedSite?.tile)
+      ) {
+        let o = s.user.selectedSite.tile;
+        Math.abs(o.x - e.x) <= 1 && Math.abs(o.y - e.y) <= 1 && s.ui.checkAndShowAttackButton(e, n);
+      }
+    }
+    return (
+      n.appendChild(
+        s.ui.createElement("button", {
+          class: "btn",
+          innerHTML: "Link",
+          onclick: (i) => {
+            ((i.target.innerText = "Copied!"),
+              setTimeout(() => {
+                i.target.innerText = "Link";
+              }, 500));
+            let o = e.x * 250 + 250 / 2,
+              r = e.y * 250 + 250 / 2;
+            navigator.clipboard.writeText(`https://webtiles.kicya.net/#${o},${r}`);
+          },
+        }),
+      ),
+      n.appendChild(
+        s.ui.createElement("button", {
+          class: "btn",
+          innerHTML: "\u27F3",
+          onclick: () => {
+            (e.fetchContent(e.path, !0), e.setActive(!1));
+          },
+        }),
+      ),
+      n.appendChild(
+        s.ui.createElement("button", {
+          class: "btn",
+          innerHTML: "&times;",
+          onclick: () => {
+            e.setActive(!1);
+          },
+        }),
+      ),
+      t.appendChild(n),
+      t
+    );
+  },
+  createVoteMenu: (e) => {
+    if (e.free || !e.domain) return null;
+    let t = s.ui.createElement("div", { class: "tile-vote-menu" }),
+      n = s.ui.createElement("button", {
+        class: "vote-btn vote-up",
+        innerHTML: "\u25B2",
+        onclick: () => s.ui.handleVote(e, 1, n, o, i),
+      }),
+      i = s.ui.createElement("div", { class: "vote-score", innerText: "..." }),
+      o = s.ui.createElement("button", {
+        class: "vote-btn vote-down",
+        innerHTML: "\u25BC",
+        onclick: () => s.ui.handleVote(e, -1, n, o, i),
+      });
+    return (
+      t.appendChild(n),
+      t.appendChild(i),
+      t.appendChild(o),
+      s.ui.fetchVoteData(e, n, o, i),
+      t
+    );
+  },
+  fetchVoteData: async (e, t, n, i) => {
+    try {
+      let r = await (
+        await s.api.makeRequest(`/api/votes/score?domain=${encodeURIComponent(e.domain)}`)
+      ).json();
+      if (r.success) {
+        let c = r.score || 0;
+        i.textContent = c;
+        let p = r.myVote || 0;
+        (t.classList.remove("active"),
+          n.classList.remove("active"),
+          p === 1 ? t.classList.add("active") : p === -1 && n.classList.add("active"));
+      } else i.textContent = "0";
+    } catch (o) {
+      (console.error("Failed to fetch vote score:", o), (i.textContent = "0"));
+    }
+  },
+  handleVote: async (e, t, n, i, o) => {
+    if (!s.user) {
+      location.href =
+        "https://kicya.net/auth/login?redirect=" +
+        encodeURIComponent("https://webtiles.kicya.net/");
+      return;
+    }
+    let r = n.classList.contains("active"),
+      c = i.classList.contains("active"),
+      p = t;
+    (((t === 1 && r) || (t === -1 && c)) && (p = 0), (n.disabled = !0), (i.disabled = !0));
+    try {
+      let m = await (
+        await s.api.makeRequest("/api/votes/vote", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ domain: e.domain, vote: p }),
+        })
+      ).json();
+      if (m.success) {
+        let h = m.score || 0;
+        ((o.textContent = h),
+          n.classList.remove("active"),
+          i.classList.remove("active"),
+          p === 1 ? n.classList.add("active") : p === -1 && i.classList.add("active"));
+      } else alert(m.error || "Failed to vote");
+    } catch (g) {
+      (console.error("Failed to vote:", g), alert("Failed to vote: " + g.message));
+    } finally {
+      ((n.disabled = !1), (i.disabled = !1));
+    }
+  },
+  checkAndShowAttackButton: async (e, t) => {
+    try {
+      let i = await (
+        await s.api.makeRequest(`/api/clans/tile-clan?domain=${encodeURIComponent(e.domain)}`)
+      ).json();
+      if (i.success && i.clan && i.clan.members && i.clan.members.length >= 3) return;
+      t.prepend(
+        s.ui.createElement("button", {
+          class: "btn",
+          innerText: "Attack",
+          onclick: () => {
+            s.ui.showAttackModal(e);
+          },
+        }),
+      );
+    } catch (n) {
+      (console.error("Failed to check clan for attack button:", n),
+        t.prepend(
+          s.ui.createElement("button", {
+            class: "btn",
+            innerText: "Attack",
+            onclick: () => {
+              s.ui.showAttackModal(e);
+            },
+          }),
+        ));
+    }
+  },
+  showAttackModal: async (e) => {
+    if (!s.user) {
+      location.href =
+        "https://kicya.net/auth/login?redirect=" +
+        encodeURIComponent("https://webtiles.kicya.net/");
+      return;
+    }
+    if (!s.user.selectedSite) {
+      alert("Please select a site first");
+      return;
+    }
+    if (!s.user.selectedSite.tile) {
+      alert("You must have a tile to attack from");
+      return;
+    }
+    let n = s.user.selectedSite.domain,
+      i = e.domain,
+      o = 0,
+      r = null,
+      c = null;
+    try {
+      let h = await (
+        await s.api.makeRequest(
+          `/api/attack/success-chance?attacked_domain=${encodeURIComponent(i)}`,
+        )
+      ).json();
+      h.success
+        ? ((o = h.successChance), (r = h.cooldown))
+        : (c = h.error || "Failed to get attack success chance");
+    } catch (m) {
+      (console.error(m), (c = "Failed to get attack success chance: " + m.message));
+    }
+    if (c) {
+      alert(c);
+      return;
+    }
+    if (o < 1) {
+      alert(
+        "Attack chance is too low to attempt an attack. If you just attacked, wait a few hours before attacking again.",
+      );
+      return;
+    }
+    let p = "";
+    if (r && r.isOnCooldown) {
+      let m = r.hoursRemaining;
+      p = `
+                <p style="margin: 15px 0; padding: 10px; background-color: #fff3cd; border: 1px solid #ffc107; border-radius: 4px; color: #856404;">
+                    <strong>Warning:</strong> Your attack chance is penalized because less than 12 hours have passed since your last attack. 
+                    ${m > 1 ? `Approximately ${m} hours remaining until full chance.` : "Less than 1 hour remaining until full chance."}
+                </p>
+            `;
+    }
+    new M({
+      title: "Attack Tile",
+      content: `
+                <p>
+                    Attack the tile at (${e.x}, ${e.y}) owned by <strong>${s.ui.escapeHTML(i)}</strong>?<br>
+                    Attack success chance: ${o.toFixed(1)}%
+                </p>
+                ${p}
+                <p style="font-size: 12px; color: #666; margin-top: 10px;">
+                    If successful, your tile and the attacked tile will swap positions.
+                </p>
+            `,
+      buttons: [
+        { text: "Cancel", type: "cancel", id: "cancel", onClick: (m) => m.close() },
+        {
+          text: "Attack",
+          type: "confirm",
+          id: "confirm",
+          onClick: async (m) => {
+            m.setButtonLoading("confirm", !0, "Attacking...");
+            try {
+              let d = await (
+                await s.api.makeRequest("/api/attack/perform", {
+                  method: "POST",
+                  headers: { "Content-Type": "application/json" },
+                  body: JSON.stringify({ x: e.x, y: e.y }),
+                })
+              ).json();
+              if (d.success) {
+                (m.setContent(`
+                                    <p style="color: #4caf50; font-weight: bold; text-align: center; padding: 0px;">
+                                        \u2713 Attack Successful!
+                                    </p>
+                                    <p style="text-align: center;">
+                                        Your tile and the attacked tile have been swapped.
+                                    </p>
+                                `),
+                  setTimeout(() => {
+                    let C = s.plot.getTile(s.user.selectedSite.tile.x, s.user.selectedSite.tile.y);
+                    (C && (C.fetchContent("/index.html", !0), C.setActive(!1)),
+                      e.fetchContent("/index.html", !0),
+                      e.setActive(!1),
+                      s.user.selectedSite &&
+                        (s.user.selectedSite.tile = {
+                          x: e.x,
+                          y: e.y,
+                          domain: n,
+                          created_at: Date.now(),
+                        }));
+                  }, 500),
+                  (m.buttons = [
+                    { text: "Close", type: "cancel", id: "close", onClick: (C) => C.close() },
+                  ]));
+                let b = m.element.querySelector(".modal-actions");
+                ((b.innerHTML = ""), m._buttonElements.clear());
+                for (let C of m.buttons) b.appendChild(m._createButton(C));
+              } else {
+                (m.setContent(`
+                                    <p style="color: #f44336; font-weight: bold; text-align: center; padding: 0px;">
+                                        \u2717 Attack Failed
+                                    </p>
+                                    <p style="text-align: center;">
+                                        ${s.ui.escapeHTML(d.error || "The attack was unsuccessful.")}
+                                    </p>
+                                `),
+                  (m.buttons = [
+                    { text: "Close", type: "cancel", id: "close", onClick: (C) => C.close() },
+                  ]));
+                let b = m.element.querySelector(".modal-actions");
+                ((b.innerHTML = ""), m._buttonElements.clear());
+                for (let C of m.buttons) b.appendChild(m._createButton(C));
+              }
+            } catch (h) {
+              (console.error(h),
+                alert("Failed to attack tile: " + h.message),
+                m.setButtonLoading("confirm", !1));
+            }
+          },
+        },
+      ],
+    }).open();
+  },
+  showEmbedModal: () => {
+    if (!s.user) {
+      location.href =
+        "https://kicya.net/auth/login?redirect=" +
+        encodeURIComponent("https://webtiles.kicya.net/");
+      return;
+    }
+    if (!s.user.selectedSite) {
+      alert("Please select a site first");
+      return;
+    }
+    if (!s.user.selectedSite.tile) {
+      alert("Your site must have a tile to embed it");
+      return;
+    }
+    let e = s.user.selectedSite.domain,
+      t = !1,
+      n = (S) => {
+        let A = `/e/${e}`;
+        return S ? `${A}?dark=true` : A;
+      },
+      i = (S) =>
+        `<iframe src="https://webtiles.kicya.net${n(S)}" width="250" height="270" frameborder="0"></iframe>`,
+      o = document.createElement("div");
+    o.style.cssText = "display: flex; gap: 20px; align-items: flex-start; flex-wrap: wrap;";
+    let r = document.createElement("div");
+    r.style.cssText = "min-width: 250px; max-width: 100%;";
+    let c = document.createElement("h4");
+    ((c.textContent = "Preview"),
+      (c.style.cssText = "margin: 0 0 10px 0; font-size: 14px;"),
+      r.appendChild(c));
+    let p = document.createElement("iframe");
+    ((p.src = n(t)),
+      (p.width = "250"),
+      (p.height = "270"),
+      (p.style.cssText = "border: 1px solid #ddd; border-radius: 4px;"),
+      p.setAttribute("frameborder", "0"),
+      r.appendChild(p));
+    let g = document.createElement("div");
+    g.style.cssText = "flex: 1; min-width: 300px; max-width: 100%;";
+    let m = document.createElement("h4");
+    ((m.textContent = "Embed Code"),
+      (m.style.cssText = "margin: 0 0 10px 0; font-size: 14px;"),
+      g.appendChild(m));
+    let h = document.createElement("div");
+    h.style.cssText = "margin-bottom: 10px; display: flex; align-items: center; gap: 3px;";
+    let d = document.createElement("input");
+    ((d.type = "checkbox"), (d.id = "embed-dark-mode"), (d.style.cssText = "cursor: pointer;"));
+    let b = document.createElement("label");
+    (b.setAttribute("for", "embed-dark-mode"),
+      (b.textContent = "Dark mode"),
+      (b.style.cssText = "cursor: pointer; font-size: 13px; user-select: none;"),
+      h.appendChild(d),
+      h.appendChild(b),
+      r.appendChild(h));
+    let C = document.createElement("textarea");
+    ((C.value = i(t)),
+      (C.style.cssText =
+        "width: 100%; height: 80px; padding: 8px; font-family: monospace; font-size: 12px; border: 1px solid #ddd; border-radius: 4px; resize: vertical; box-sizing: border-box;"),
+      (C.readOnly = !0),
+      g.appendChild(C));
+    let u = document.createElement("button");
+    ((u.textContent = "Copy Code"),
+      (u.style.cssText =
+        "margin-top: 10px; padding: 6px 12px; background-color: var(--main-color, #d85252); color: white; border: none; border-radius: 4px; cursor: pointer; font-size: 12px;"),
+      u.addEventListener("click", async () => {
+        try {
+          (await navigator.clipboard.writeText(C.value),
+            (u.textContent = "Copied!"),
+            setTimeout(() => {
+              u.textContent = "Copy Code";
+            }, 2e3));
+        } catch {
+          (C.select(),
+            document.execCommand("copy"),
+            (u.textContent = "Copied!"),
+            setTimeout(() => {
+              u.textContent = "Copy Code";
+            }, 2e3));
+        }
+      }),
+      g.appendChild(u));
+    let w = document.createElement("div");
+    ((w.style.cssText = "font-size: 12px; color: #666; margin-top: 10px;"),
+      (w.innerHTML =
+        "You can detect if your tile is embedded in JS by checking the <b>embedded</b> variable. For CSS, body has an <b>embedded</b> class."),
+      g.appendChild(w),
+      d.addEventListener("change", (S) => {
+        ((t = S.target.checked), (p.src = n(t)), (C.value = i(t)));
+      }),
+      o.appendChild(r),
+      o.appendChild(g));
+    let k = new M({
+      title: "Embed Tile",
+      content: o,
+      buttons: [{ text: "Close", type: "cancel", id: "close", onClick: (S) => S.close() }],
+    });
+    (k.open(), k.element && (k.element.style.maxWidth = "700px"));
+  },
+};
+function K() {
+  if (!s.user) return;
+  let e = s.ui.siteSelector.value,
+    t = s.user.sites.find((i) => i.domain === e);
+  (e === "select" || e === "add" || !t
+    ? ((s.ui.siteJumpButton.hidden = !0),
+      (s.ui.siteEditButton.hidden = !0),
+      (s.ui.siteEmbedButton.hidden = !0),
+      (s.ui.siteClanButton.hidden = !0))
+    : ((s.ui.siteEditButton.hidden = !1),
+      (s.ui.siteJumpButton.hidden = !t.tile),
+      (s.ui.siteClanButton.hidden = !t.tile),
+      (s.ui.siteEmbedButton.hidden = !t.tile)),
+    (s.user.selectedSite = t));
+  let n = s?.plot?.activeTile;
+  n && (n.setActive(!1), n.setActive(!0));
+}
+s.ui.siteSelector &&
+  s.ui.siteSelector.addEventListener("change", () => {
+    if (!s.user) return;
+    let e = s.ui.siteSelector.value;
+    e === "add" &&
+      (location.href = s.user
+        ? "https://kicya.net/account/sites"
+        : "https://kicya.net/auth/register");
+    let t = s.user.sites.find((n) => n.domain === e);
+    if (t) {
+      document.cookie = `site=${t.domain}; path=/`;
+      let n = document.querySelector("#kicya-site-select-option");
+      (n && n.remove(), s.ui.fetchClanInvites());
+    }
+    K();
+  });
+K();
+var Ye = document.getElementById("dashboard-modal"),
+  Xe = document.getElementById("dashboard-iframe"),
+  We = document.getElementById("dashboard-modal-close"),
+  Ve = document.getElementById("dashboard-modal-title"),
+  he = document.getElementById("app");
+s.ui.siteSettingsButton &&
+  s.ui.siteSettingsButton.addEventListener("click", () => {
+    s.ui.showSettingsModal();
+  });
+s.ui.siteEditButton &&
+  s.ui.siteEditButton.addEventListener("click", () => {
+    !s.user || !s.user.selectedSite || s.ui.showDashboard(s.user.selectedSite.domain);
+  });
+s.ui.siteJumpButton &&
+  s.ui.siteJumpButton.addEventListener("click", () => {
+    if (!s.user || !s.user.selectedSite || !s.user.selectedSite.tile) return;
+    let e = s.user.selectedSite.tile,
+      t = e.x * 250 + 250 / 2,
+      n = e.y * 250 + 250 / 2;
+    s.camera.centerOn(t, n);
+  });
+s.ui.siteCenterButton &&
+  s.ui.siteCenterButton.addEventListener("click", () => {
+    s.camera && s.camera.centerOn(100, 100);
+  });
+s.ui.siteClanButton &&
+  s.ui.siteClanButton.addEventListener("click", () => {
+    s.ui.showClanModal();
+  });
+s.ui.siteEmbedButton &&
+  s.ui.siteEmbedButton.addEventListener("click", () => {
+    s.ui.showEmbedModal();
+  });
+function mt() {
+  (Ye.classList.remove("active"),
+    (Xe.src = ""),
+    he && (he.style.display = ""),
+    s.camera && s.camera.setZoomEnabled(!0));
+}
+We && We.addEventListener("click", mt);
+s.ui.zoomSlider.addEventListener("input", (e) => {
+  s.camera.zoomTo(s.camera.width / 2, s.camera.height / 2, +e.target.value);
+});
+var Ce = document.getElementById("kicya-menu-toggle"),
+  G = document.getElementById("kicya-links");
+Ce &&
+  G &&
+  (Ce.addEventListener("click", function (e) {
+    (e.stopPropagation(), G.classList.toggle("active"));
+  }),
+  document.addEventListener("click", function (e) {
+    !G.contains(e.target) && !Ce.contains(e.target) && G.classList.remove("active");
+  }),
+  G.querySelectorAll("a").forEach(function (e) {
+    e.addEventListener("click", function () {
+      G.classList.remove("active");
+    });
+  }));
+function pt() {
+  if (!s.user || localStorage.getItem("rules_accepted")) return;
+  new M({
+    title: "Rules",
+    content: `
+            <p>Please read and accept the following rules:</p>
+            <ul style="margin: 10px 0; padding-left: 20px; color: #555;">
+                <li><b>Absolutely no NSFW content allowed on tiles.</b></li>
+                <li>No illegal content or copyright infringement.</li>
+                <li>No harrassment, bullying, or trolling.</li>
+                <li>Do not try to hack, DDOS, or otherwise attack the website or any other users.</li>
+                <li>Do not create extremely eye-bleeding tiles that contain flashing lights, rapidly changing colors, or patterns that may trigger seizures in individuals with epilepsy.</li>
+                <li>Do not create multiple tiles unless you legitimately have multiple real sites.</li>
+            </ul>
+        `,
+    buttons: [
+      {
+        text: "OK",
+        type: "confirm",
+        id: "ok",
+        onClick: (t) => {
+          (localStorage.setItem("rules_accepted", "1"), t.close());
+        },
+      },
+    ],
+  }).open();
+}
+pt();
+s.user && s.user.selectedSite && s.ui.fetchClanInvites();
+var hn = s.ui;
+var Ee = class {
+  constructor() {
+    ((this.ws = null),
+      (this.reconnectTimeout = null),
+      (this.handlers = new Map()),
+      (this.binaryHandlers = []),
+      (this.connected = !1),
+      (this.messageQueue = []),
+      (this.connectionAttempted = !1),
+      (this.consecutiveFailures = 0),
+      (this.lastConnectionTime = 0),
+      this.waitForCaptchaAndConnect());
+  }
+  async waitForCaptchaAndConnect() {
+    let t = s.api.getToken(),
+      n = s.api.getTokenExpiry();
+    if (!s.api.getTurnstileSiteKey()) {
+      this.connect();
+      return;
+    }
+    (!t || n < Date.now()) && (await s.api.showCaptchaModal());
+    let i = 6e4,
+      o = Date.now();
+    for (; !s.api.getToken() || s.api.getTokenExpiry() < Date.now(); ) {
+      if (Date.now() - o > i) {
+        console.error("[WS] Captcha timeout");
+        let r = document.getElementById("loading-text");
+        r && (r.textContent = "Verification timeout. Please refresh.");
+        return;
+      }
+      await new Promise((r) => setTimeout(r, 100));
+    }
+    this.connect();
+  }
+  connect() {
+    let t = location.protocol === "https:" ? "wss:" : "ws:",
+      n = s.api.getToken() || "";
+    ((this.connectionAttempted = !0),
+      (this.lastConnectionTime = Date.now()),
+      (this.ws = new WebSocket(`${t}//${location.host}/ws?t=${encodeURIComponent(n)}`)),
+      (this.ws.binaryType = "arraybuffer"),
+      (this.ws.onopen = () => {
+        (console.log("[WS] Connected"),
+          (this.connected = !0),
+          (this.consecutiveFailures = 0),
+          this.emit("open"));
+        for (let i of this.messageQueue) this.ws.send(i);
+        this.messageQueue = [];
+      }),
+      (this.ws.onmessage = (i) => {
+        if (i.data instanceof ArrayBuffer) for (let o of this.binaryHandlers) o(i.data);
+        else
+          try {
+            let o = JSON.parse(i.data);
+            this.emit(o.type, o);
+          } catch (o) {
+            console.error("[WS] Failed to parse message:", o);
+          }
+      }),
+      (this.ws.onclose = (i) => {
+        console.log("[WS] Disconnected, reconnecting...", i.code, i.reason);
+        let o = this.connected;
+        ((this.connected = !1), this.emit("close"));
+        let r = Date.now() - this.lastConnectionTime;
+        (!o && r < 1e3 ? this.consecutiveFailures++ : (this.consecutiveFailures = 0),
+          this.scheduleReconnect());
+      }),
+      (this.ws.onerror = (i) => {
+        console.error("[WS] Error:", i);
+      }));
+  }
+  scheduleReconnect() {
+    if (this.reconnectTimeout) return;
+    let t = Math.min(3e3 * Math.pow(2, this.consecutiveFailures), 3e4);
+    this.reconnectTimeout = setTimeout(async () => {
+      this.reconnectTimeout = null;
+      let n = s.api.getToken(),
+        i = s.api.getTokenExpiry();
+      (!n || i < Date.now()) && (await s.api.showCaptchaModal());
+      let o = 3e4,
+        r = Date.now();
+      for (; !s.api.getToken() || s.api.getTokenExpiry() < Date.now(); ) {
+        if (Date.now() - r > o) {
+          console.error("[WS] Reconnect captcha timeout");
+          return;
+        }
+        await new Promise((c) => setTimeout(c, 100));
+      }
+      this.connect();
+    }, t);
+  }
+  on(t, n) {
+    (this.handlers.has(t) || this.handlers.set(t, []), this.handlers.get(t).push(n));
+  }
+  off(t, n) {
+    if (!this.handlers.has(t)) return;
+    let i = this.handlers.get(t),
+      o = i.indexOf(n);
+    o !== -1 && i.splice(o, 1);
+  }
+  onBinary(t) {
+    this.binaryHandlers.push(t);
+  }
+  emit(t, n) {
+    if (this.handlers.has(t)) for (let i of this.handlers.get(t)) i(n);
+  }
+  send(t) {
+    this.ws && this.ws.readyState === WebSocket.OPEN
+      ? this.ws.send(t)
+      : typeof t == "string" && this.messageQueue.push(t);
+  }
+  sendJSON(t) {
+    this.send(JSON.stringify(t));
+  }
+  get isConnected() {
+    return this.ws && this.ws.readyState === WebSocket.OPEN;
+  }
+};
+s.ws = new Ee();
+var pn = s.ws;
+var gt = new Set([
+    "aaa",
+    "aarp",
+    "abb",
+    "abbott",
+    "abbvie",
+    "abc",
+    "able",
+    "abogado",
+    "abudhabi",
+    "ac",
+    "academy",
+    "accenture",
+    "accountant",
+    "accountants",
+    "aco",
+    "actor",
+    "ad",
+    "ads",
+    "adult",
+    "ae",
+    "aeg",
+    "aero",
+    "aetna",
+    "af",
+    "afl",
+    "africa",
+    "ag",
+    "agakhan",
+    "agency",
+    "ai",
+    "aig",
+    "airbus",
+    "airforce",
+    "airtel",
+    "akdn",
+    "al",
+    "alibaba",
+    "alipay",
+    "allfinanz",
+    "allstate",
+    "ally",
+    "alsace",
+    "alstom",
+    "am",
+    "amazon",
+    "americanexpress",
+    "americanfamily",
+    "amex",
+    "amfam",
+    "amica",
+    "amsterdam",
+    "analytics",
+    "android",
+    "anquan",
+    "anz",
+    "ao",
+    "aol",
+    "apartments",
+    "app",
+    "apple",
+    "aq",
+    "aquarelle",
+    "ar",
+    "arab",
+    "aramco",
+    "archi",
+    "army",
+    "arpa",
+    "art",
+    "arte",
+    "as",
+    "asda",
+    "asia",
+    "associates",
+    "at",
+    "athleta",
+    "attorney",
+    "au",
+    "auction",
+    "audi",
+    "audible",
+    "audio",
+    "auspost",
+    "author",
+    "auto",
+    "autos",
+    "aw",
+    "aws",
+    "ax",
+    "axa",
+    "az",
+    "azure",
+    "ba",
+    "baby",
+    "baidu",
+    "banamex",
+    "band",
+    "bank",
+    "bar",
+    "barcelona",
+    "barclaycard",
+    "barclays",
+    "barefoot",
+    "bargains",
+    "baseball",
+    "basketball",
+    "bauhaus",
+    "bayern",
+    "bb",
+    "bbc",
+    "bbt",
+    "bbva",
+    "bcg",
+    "bcn",
+    "bd",
+    "be",
+    "beats",
+    "beauty",
+    "beer",
+    "berlin",
+    "best",
+    "bestbuy",
+    "bet",
+    "bf",
+    "bg",
+    "bh",
+    "bharti",
+    "bi",
+    "bible",
+    "bid",
+    "bike",
+    "bing",
+    "bingo",
+    "bio",
+    "biz",
+    "bj",
+    "black",
+    "blackfriday",
+    "blockbuster",
+    "blog",
+    "bloomberg",
+    "blue",
+    "bm",
+    "bms",
+    "bmw",
+    "bn",
+    "bnpparibas",
+    "bo",
+    "boats",
+    "boehringer",
+    "bofa",
+    "bom",
+    "bond",
+    "boo",
+    "book",
+    "booking",
+    "bosch",
+    "bostik",
+    "boston",
+    "bot",
+    "boutique",
+    "box",
+    "br",
+    "bradesco",
+    "bridgestone",
+    "broadway",
+    "broker",
+    "brother",
+    "brussels",
+    "bs",
+    "bt",
+    "build",
+    "builders",
+    "business",
+    "buy",
+    "buzz",
+    "bv",
+    "bw",
+    "by",
+    "bz",
+    "bzh",
+    "ca",
+    "cab",
+    "cafe",
+    "cal",
+    "call",
+    "calvinklein",
+    "cam",
+    "camera",
+    "camp",
+    "canon",
+    "capetown",
+    "capital",
+    "capitalone",
+    "car",
+    "caravan",
+    "cards",
+    "care",
+    "career",
+    "careers",
+    "cars",
+    "casa",
+    "case",
+    "cash",
+    "casino",
+    "cat",
+    "catering",
+    "catholic",
+    "cba",
+    "cbn",
+    "cbre",
+    "cc",
+    "cd",
+    "center",
+    "ceo",
+    "cern",
+    "cf",
+    "cfa",
+    "cfd",
+    "cg",
+    "ch",
+    "chanel",
+    "channel",
+    "charity",
+    "chase",
+    "chat",
+    "cheap",
+    "chintai",
+    "christmas",
+    "chrome",
+    "church",
+    "ci",
+    "cipriani",
+    "circle",
+    "cisco",
+    "citadel",
+    "citi",
+    "citic",
+    "city",
+    "ck",
+    "cl",
+    "claims",
+    "cleaning",
+    "click",
+    "clinic",
+    "clinique",
+    "clothing",
+    "cloud",
+    "club",
+    "clubmed",
+    "cm",
+    "cn",
+    "co",
+    "coach",
+    "codes",
+    "coffee",
+    "college",
+    "cologne",
+    "com",
+    "commbank",
+    "community",
+    "company",
+    "compare",
+    "computer",
+    "comsec",
+    "condos",
+    "construction",
+    "consulting",
+    "contact",
+    "contractors",
+    "cooking",
+    "cool",
+    "coop",
+    "corsica",
+    "country",
+    "coupon",
+    "coupons",
+    "courses",
+    "cpa",
+    "cr",
+    "credit",
+    "creditcard",
+    "creditunion",
+    "cricket",
+    "crown",
+    "crs",
+    "cruise",
+    "cruises",
+    "cu",
+    "cuisinella",
+    "cv",
+    "cw",
+    "cx",
+    "cy",
+    "cymru",
+    "cyou",
+    "cz",
+    "dad",
+    "dance",
+    "data",
+    "date",
+    "dating",
+    "datsun",
+    "day",
+    "dclk",
+    "dds",
+    "de",
+    "deal",
+    "dealer",
+    "deals",
+    "degree",
+    "delivery",
+    "dell",
+    "deloitte",
+    "delta",
+    "democrat",
+    "dental",
+    "dentist",
+    "desi",
+    "design",
+    "dev",
+    "dhl",
+    "diamonds",
+    "diet",
+    "digital",
+    "direct",
+    "directory",
+    "discount",
+    "discover",
+    "dish",
+    "diy",
+    "dj",
+    "dk",
+    "dm",
+    "dnp",
+    "do",
+    "docs",
+    "doctor",
+    "dog",
+    "domains",
+    "dot",
+    "download",
+    "drive",
+    "dtv",
+    "dubai",
+    "dupont",
+    "durban",
+    "dvag",
+    "dvr",
+    "dz",
+    "earth",
+    "eat",
+    "ec",
+    "eco",
+    "edeka",
+    "edu",
+    "education",
+    "ee",
+    "eg",
+    "email",
+    "emerck",
+    "energy",
+    "engineer",
+    "engineering",
+    "enterprises",
+    "epson",
+    "equipment",
+    "er",
+    "ericsson",
+    "erni",
+    "es",
+    "esq",
+    "estate",
+    "et",
+    "eu",
+    "eurovision",
+    "eus",
+    "events",
+    "exchange",
+    "expert",
+    "exposed",
+    "express",
+    "extraspace",
+    "fage",
+    "fail",
+    "fairwinds",
+    "faith",
+    "family",
+    "fan",
+    "fans",
+    "farm",
+    "farmers",
+    "fashion",
+    "fast",
+    "fedex",
+    "feedback",
+    "ferrari",
+    "ferrero",
+    "fi",
+    "fidelity",
+    "fido",
+    "film",
+    "final",
+    "finance",
+    "financial",
+    "fire",
+    "firestone",
+    "firmdale",
+    "fish",
+    "fishing",
+    "fit",
+    "fitness",
+    "fj",
+    "fk",
+    "flickr",
+    "flights",
+    "flir",
+    "florist",
+    "flowers",
+    "fly",
+    "fm",
+    "fo",
+    "foo",
+    "food",
+    "football",
+    "ford",
+    "forex",
+    "forsale",
+    "forum",
+    "foundation",
+    "fox",
+    "fr",
+    "free",
+    "fresenius",
+    "frl",
+    "frogans",
+    "frontier",
+    "ftr",
+    "fujitsu",
+    "fun",
+    "fund",
+    "furniture",
+    "futbol",
+    "fyi",
+    "ga",
+    "gal",
+    "gallery",
+    "gallo",
+    "gallup",
+    "game",
+    "games",
+    "gap",
+    "garden",
+    "gay",
+    "gb",
+    "gbiz",
+    "gd",
+    "gdn",
+    "ge",
+    "gea",
+    "gent",
+    "genting",
+    "george",
+    "gf",
+    "gg",
+    "ggee",
+    "gh",
+    "gi",
+    "gift",
+    "gifts",
+    "gives",
+    "giving",
+    "gl",
+    "glass",
+    "gle",
+    "global",
+    "globo",
+    "gm",
+    "gmail",
+    "gmbh",
+    "gmo",
+    "gmx",
+    "gn",
+    "godaddy",
+    "gold",
+    "goldpoint",
+    "golf",
+    "goo",
+    "goodyear",
+    "goog",
+    "google",
+    "gop",
+    "got",
+    "gov",
+    "gp",
+    "gq",
+    "gr",
+    "grainger",
+    "graphics",
+    "gratis",
+    "green",
+    "gripe",
+    "grocery",
+    "group",
+    "gs",
+    "gt",
+    "gu",
+    "gucci",
+    "guge",
+    "guide",
+    "guitars",
+    "guru",
+    "gw",
+    "gy",
+    "hair",
+    "hamburg",
+    "hangout",
+    "haus",
+    "hbo",
+    "hdfc",
+    "hdfcbank",
+    "health",
+    "healthcare",
+    "help",
+    "helsinki",
+    "here",
+    "hermes",
+    "hiphop",
+    "hisamitsu",
+    "hitachi",
+    "hiv",
+    "hk",
+    "hkt",
+    "hm",
+    "hn",
+    "hockey",
+    "holdings",
+    "holiday",
+    "homedepot",
+    "homegoods",
+    "homes",
+    "homesense",
+    "honda",
+    "horse",
+    "hospital",
+    "host",
+    "hosting",
+    "hot",
+    "hotels",
+    "hotmail",
+    "house",
+    "how",
+    "hr",
+    "hsbc",
+    "ht",
+    "hu",
+    "hughes",
+    "hyatt",
+    "hyundai",
+    "ibm",
+    "icbc",
+    "ice",
+    "icu",
+    "id",
+    "ie",
+    "ieee",
+    "ifm",
+    "ikano",
+    "il",
+    "im",
+    "imamat",
+    "imdb",
+    "immo",
+    "immobilien",
+    "in",
+    "inc",
+    "industries",
+    "infiniti",
+    "info",
+    "ing",
+    "ink",
+    "institute",
+    "insurance",
+    "insure",
+    "int",
+    "international",
+    "intuit",
+    "investments",
+    "io",
+    "ipiranga",
+    "iq",
+    "ir",
+    "irish",
+    "is",
+    "ismaili",
+    "ist",
+    "istanbul",
+    "it",
+    "itau",
+    "itv",
+    "jaguar",
+    "java",
+    "jcb",
+    "je",
+    "jeep",
+    "jetzt",
+    "jewelry",
+    "jio",
+    "jll",
+    "jm",
+    "jmp",
+    "jnj",
+    "jo",
+    "jobs",
+    "joburg",
+    "jot",
+    "joy",
+    "jp",
+    "jpmorgan",
+    "jprs",
+    "juegos",
+    "juniper",
+    "kaufen",
+    "kddi",
+    "ke",
+    "kerryhotels",
+    "kerryproperties",
+    "kfh",
+    "kg",
+    "kh",
+    "ki",
+    "kia",
+    "kids",
+    "kim",
+    "kindle",
+    "kitchen",
+    "kiwi",
+    "km",
+    "kn",
+    "koeln",
+    "komatsu",
+    "kosher",
+    "kp",
+    "kpmg",
+    "kpn",
+    "kr",
+    "krd",
+    "kred",
+    "kuokgroup",
+    "kw",
+    "ky",
+    "kyoto",
+    "kz",
+    "la",
+    "lacaixa",
+    "lamborghini",
+    "lamer",
+    "land",
+    "landrover",
+    "lanxess",
+    "lasalle",
+    "lat",
+    "latino",
+    "latrobe",
+    "law",
+    "lawyer",
+    "lb",
+    "lc",
+    "lds",
+    "lease",
+    "leclerc",
+    "lefrak",
+    "legal",
+    "lego",
+    "lexus",
+    "lgbt",
+    "li",
+    "lidl",
+    "life",
+    "lifeinsurance",
+    "lifestyle",
+    "lighting",
+    "like",
+    "lilly",
+    "limited",
+    "limo",
+    "lincoln",
+    "link",
+    "live",
+    "living",
+    "lk",
+    "llc",
+    "llp",
+    "loan",
+    "loans",
+    "locker",
+    "locus",
+    "lol",
+    "london",
+    "lotte",
+    "lotto",
+    "love",
+    "lpl",
+    "lplfinancial",
+    "lr",
+    "ls",
+    "lt",
+    "ltd",
+    "ltda",
+    "lu",
+    "lundbeck",
+    "luxe",
+    "luxury",
+    "lv",
+    "ly",
+    "ma",
+    "madrid",
+    "maif",
+    "maison",
+    "makeup",
+    "man",
+    "management",
+    "mango",
+    "map",
+    "market",
+    "marketing",
+    "markets",
+    "marriott",
+    "marshalls",
+    "mattel",
+    "mba",
+    "mc",
+    "mckinsey",
+    "md",
+    "me",
+    "med",
+    "media",
+    "meet",
+    "melbourne",
+    "meme",
+    "memorial",
+    "men",
+    "menu",
+    "merckmsd",
+    "mg",
+    "mh",
+    "miami",
+    "microsoft",
+    "mil",
+    "mini",
+    "mint",
+    "mit",
+    "mitsubishi",
+    "mk",
+    "ml",
+    "mlb",
+    "mls",
+    "mm",
+    "mma",
+    "mn",
+    "mo",
+    "mobi",
+    "mobile",
+    "moda",
+    "moe",
+    "moi",
+    "mom",
+    "monash",
+    "money",
+    "monster",
+    "mormon",
+    "mortgage",
+    "moscow",
+    "moto",
+    "motorcycles",
+    "mov",
+    "movie",
+    "mp",
+    "mq",
+    "mr",
+    "ms",
+    "msd",
+    "mt",
+    "mtn",
+    "mtr",
+    "mu",
+    "museum",
+    "music",
+    "mv",
+    "mw",
+    "mx",
+    "my",
+    "mz",
+    "na",
+    "nab",
+    "nagoya",
+    "name",
+    "navy",
+    "nba",
+    "nc",
+    "ne",
+    "nec",
+    "net",
+    "netbank",
+    "netflix",
+    "network",
+    "neustar",
+    "new",
+    "news",
+    "next",
+    "nextdirect",
+    "nexus",
+    "nf",
+    "nfl",
+    "ng",
+    "ngo",
+    "nhk",
+    "ni",
+    "nico",
+    "nike",
+    "nikon",
+    "ninja",
+    "nissan",
+    "nissay",
+    "nl",
+    "no",
+    "nokia",
+    "norton",
+    "now",
+    "nowruz",
+    "nowtv",
+    "np",
+    "nr",
+    "nra",
+    "nrw",
+    "ntt",
+    "nu",
+    "nyc",
+    "nz",
+    "obi",
+    "observer",
+    "office",
+    "okinawa",
+    "olayan",
+    "olayangroup",
+    "ollo",
+    "om",
+    "omega",
+    "one",
+    "ong",
+    "onl",
+    "online",
+    "ooo",
+    "open",
+    "oracle",
+    "orange",
+    "org",
+    "organic",
+    "origins",
+    "osaka",
+    "otsuka",
+    "ott",
+    "ovh",
+    "pa",
+    "page",
+    "panasonic",
+    "paris",
+    "pars",
+    "partners",
+    "parts",
+    "party",
+    "pay",
+    "pccw",
+    "pe",
+    "pet",
+    "pf",
+    "pfizer",
+    "pg",
+    "ph",
+    "pharmacy",
+    "phd",
+    "philips",
+    "phone",
+    "photo",
+    "photography",
+    "photos",
+    "physio",
+    "pics",
+    "pictet",
+    "pictures",
+    "pid",
+    "pin",
+    "ping",
+    "pink",
+    "pioneer",
+    "pizza",
+    "pk",
+    "pl",
+    "place",
+    "play",
+    "playstation",
+    "plumbing",
+    "plus",
+    "pm",
+    "pn",
+    "pnc",
+    "pohl",
+    "poker",
+    "politie",
+    "porn",
+    "post",
+    "pr",
+    "praxi",
+    "press",
+    "prime",
+    "pro",
+    "prod",
+    "productions",
+    "prof",
+    "progressive",
+    "promo",
+    "properties",
+    "property",
+    "protection",
+    "pru",
+    "prudential",
+    "ps",
+    "pt",
+    "pub",
+    "pw",
+    "pwc",
+    "py",
+    "qa",
+    "qpon",
+    "quebec",
+    "quest",
+    "racing",
+    "radio",
+    "re",
+    "read",
+    "realestate",
+    "realtor",
+    "realty",
+    "recipes",
+    "red",
+    "redumbrella",
+    "rehab",
+    "reise",
+    "reisen",
+    "reit",
+    "reliance",
+    "ren",
+    "rent",
+    "rentals",
+    "repair",
+    "report",
+    "republican",
+    "rest",
+    "restaurant",
+    "review",
+    "reviews",
+    "rexroth",
+    "rich",
+    "richardli",
+    "ricoh",
+    "ril",
+    "rio",
+    "rip",
+    "ro",
+    "rocks",
+    "rodeo",
+    "rogers",
+    "room",
+    "rs",
+    "rsvp",
+    "ru",
+    "rugby",
+    "ruhr",
+    "run",
+    "rw",
+    "rwe",
+    "ryukyu",
+    "sa",
+    "saarland",
+    "safe",
+    "safety",
+    "sakura",
+    "sale",
+    "salon",
+    "samsclub",
+    "samsung",
+    "sandvik",
+    "sandvikcoromant",
+    "sanofi",
+    "sap",
+    "sarl",
+    "sas",
+    "save",
+    "saxo",
+    "sb",
+    "sbi",
+    "sbs",
+    "sc",
+    "scb",
+    "schaeffler",
+    "schmidt",
+    "scholarships",
+    "school",
+    "schule",
+    "schwarz",
+    "science",
+    "scot",
+    "sd",
+    "se",
+    "search",
+    "seat",
+    "secure",
+    "security",
+    "seek",
+    "select",
+    "sener",
+    "services",
+    "seven",
+    "sew",
+    "sex",
+    "sexy",
+    "sfr",
+    "sg",
+    "sh",
+    "shangrila",
+    "sharp",
+    "shell",
+    "shia",
+    "shiksha",
+    "shoes",
+    "shop",
+    "shopping",
+    "shouji",
+    "show",
+    "si",
+    "silk",
+    "sina",
+    "singles",
+    "site",
+    "sj",
+    "sk",
+    "ski",
+    "skin",
+    "sky",
+    "skype",
+    "sl",
+    "sling",
+    "sm",
+    "smart",
+    "smile",
+    "sn",
+    "sncf",
+    "so",
+    "soccer",
+    "social",
+    "softbank",
+    "software",
+    "sohu",
+    "solar",
+    "solutions",
+    "song",
+    "sony",
+    "soy",
+    "spa",
+    "space",
+    "sport",
+    "spot",
+    "sr",
+    "srl",
+    "ss",
+    "st",
+    "stada",
+    "staples",
+    "star",
+    "statebank",
+    "statefarm",
+    "stc",
+    "stcgroup",
+    "stockholm",
+    "storage",
+    "store",
+    "stream",
+    "studio",
+    "study",
+    "style",
+    "su",
+    "sucks",
+    "supplies",
+    "supply",
+    "support",
+    "surf",
+    "surgery",
+    "suzuki",
+    "sv",
+    "swatch",
+    "swiss",
+    "sx",
+    "sy",
+    "sydney",
+    "systems",
+    "sz",
+    "tab",
+    "taipei",
+    "talk",
+    "taobao",
+    "target",
+    "tatamotors",
+    "tatar",
+    "tattoo",
+    "tax",
+    "taxi",
+    "tc",
+    "tci",
+    "td",
+    "tdk",
+    "team",
+    "tech",
+    "technology",
+    "tel",
+    "temasek",
+    "tennis",
+    "teva",
+    "tf",
+    "tg",
+    "th",
+    "thd",
+    "theater",
+    "theatre",
+    "tiaa",
+    "tickets",
+    "tienda",
+    "tips",
+    "tires",
+    "tirol",
+    "tj",
+    "tjmaxx",
+    "tjx",
+    "tk",
+    "tkmaxx",
+    "tl",
+    "tm",
+    "tmall",
+    "tn",
+    "to",
+    "today",
+    "tokyo",
+    "tools",
+    "top",
+    "toray",
+    "toshiba",
+    "total",
+    "tours",
+    "town",
+    "toyota",
+    "toys",
+    "tr",
+    "trade",
+    "trading",
+    "training",
+    "travel",
+    "travelers",
+    "travelersinsurance",
+    "trust",
+    "trv",
+    "tt",
+    "tube",
+    "tui",
+    "tunes",
+    "tushu",
+    "tv",
+    "tvs",
+    "tw",
+    "tz",
+    "ua",
+    "ubank",
+    "ubs",
+    "ug",
+    "uk",
+    "unicom",
+    "university",
+    "uno",
+    "uol",
+    "ups",
+    "us",
+    "uy",
+    "uz",
+    "va",
+    "vacations",
+    "vana",
+    "vanguard",
+    "vc",
+    "ve",
+    "vegas",
+    "ventures",
+    "verisign",
+    "versicherung",
+    "vet",
+    "vg",
+    "vi",
+    "viajes",
+    "video",
+    "vig",
+    "viking",
+    "villas",
+    "vin",
+    "vip",
+    "virgin",
+    "visa",
+    "vision",
+    "viva",
+    "vivo",
+    "vlaanderen",
+    "vn",
+    "vodka",
+    "volvo",
+    "vote",
+    "voting",
+    "voto",
+    "voyage",
+    "vu",
+    "wales",
+    "walmart",
+    "walter",
+    "wang",
+    "wanggou",
+    "watch",
+    "watches",
+    "weather",
+    "weatherchannel",
+    "webcam",
+    "weber",
+    "website",
+    "wed",
+    "wedding",
+    "weibo",
+    "weir",
+    "wf",
+    "whoswho",
+    "wien",
+    "wiki",
+    "williamhill",
+    "win",
+    "windows",
+    "wine",
+    "winners",
+    "wme",
+    "wolterskluwer",
+    "woodside",
+    "work",
+    "works",
+    "world",
+    "wow",
+    "ws",
+    "wtc",
+    "wtf",
+    "xbox",
+    "xerox",
+    "xihuan",
+    "xin",
+    "xxx",
+    "xyz",
+    "yachts",
+    "yahoo",
+    "yamaxun",
+    "yandex",
+    "ye",
+    "yodobashi",
+    "yoga",
+    "yokohama",
+    "you",
+    "youtube",
+    "yt",
+    "yun",
+    "za",
+    "zappos",
+    "zara",
+    "zero",
+    "zip",
+    "zm",
+    "zone",
+    "zuerich",
+    "zw",
+  ]),
+  Ze = 100,
+  vt = 3,
+  yt = 5e3,
+  Te = class {
+    constructor() {
+      ((this.messages = []),
+        (this.isOpen = !0),
+        (this.unreadCount = 0),
+        (this.container = document.getElementById("chat-container")),
+        (this.messageTimestamps = []),
+        (this.showedRules = !1),
+        this.container &&
+          (this.createUI(),
+          this.setupWsHandlers(),
+          this.setupInputHandlers(),
+          this.createUserMenu(),
+          this.createModMenu()));
+    }
+    createUI() {
+      ((this.header = this.container.querySelector("#chat-header")),
+        (this.body = this.container.querySelector("#chat-body")),
+        (this.messagesEl = this.container.querySelector("#chat-messages")),
+        (this.input = this.container.querySelector("#chat-input")),
+        (this.sendBtn = this.container.querySelector("#chat-send")),
+        (this.toggleBtn = this.container.querySelector("#chat-toggle")),
+        (this.unreadEl = this.container.querySelector("#chat-unread")),
+        this.header.addEventListener("click", () => this.toggle()),
+        this.container.addEventListener("wheel", (t) => {
+          t.stopPropagation();
+        }),
+        this.messagesEl.addEventListener("click", (t) => {
+          let n = t.target.closest(".chat-coord-link");
+          if (n) {
+            t.preventDefault();
+            let i = parseInt(n.dataset.x),
+              o = parseInt(n.dataset.y),
+              c = 50 / 2;
+            !isNaN(i) &&
+              !isNaN(o) &&
+              s.camera &&
+              i >= -c &&
+              i <= c &&
+              o >= -c &&
+              o <= c &&
+              s.camera.centerOn(i * 250 + 250 / 2, o * 250 + 250 / 2);
+          }
+        }),
+        this.setupResize(),
+        this.restoreSize());
+    }
+    setupResize() {
+      let t = document.createElement("div");
+      ((t.id = "chat-resize-left"),
+        (t.className = "chat-resize-handle"),
+        this.container.appendChild(t));
+      let n = document.createElement("div");
+      ((n.id = "chat-resize-top"),
+        (n.className = "chat-resize-handle"),
+        this.container.appendChild(n));
+      let i = document.createElement("div");
+      ((i.id = "chat-resize-corner"),
+        (i.className = "chat-resize-handle"),
+        this.container.appendChild(i));
+      let o = null,
+        r = 0,
+        c = 0,
+        p = 0,
+        g = 0,
+        m = (h, d) => {
+          this.isOpen &&
+            ((o = d),
+            (r = h.clientX),
+            (c = h.clientY),
+            (p = this.container.offsetWidth),
+            (g = this.container.offsetHeight),
+            (document.body.style.userSelect = "none"),
+            d === "left"
+              ? (document.body.style.cursor = "ew-resize")
+              : d === "top"
+                ? (document.body.style.cursor = "ns-resize")
+                : (document.body.style.cursor = "nwse-resize"),
+            h.preventDefault());
+        };
+      (t.addEventListener("mousedown", (h) => m(h, "left")),
+        n.addEventListener("mousedown", (h) => m(h, "top")),
+        i.addEventListener("mousedown", (h) => m(h, "corner")),
+        document.addEventListener("mousemove", (h) => {
+          if (o) {
+            if (o === "left" || o === "corner") {
+              let d = r - h.clientX,
+                b = Math.min(Math.max(p + d, 250), 800);
+              this.container.style.width = b + "px";
+            }
+            if (o === "top" || o === "corner") {
+              let d = c - h.clientY,
+                b = Math.min(Math.max(g + d, 100), 700);
+              this.container.style.height = b + "px";
+            }
+          }
+        }),
+        document.addEventListener("mouseup", () => {
+          o &&
+            ((o = null),
+            (document.body.style.cursor = ""),
+            (document.body.style.userSelect = ""),
+            this.saveSize());
+        }));
+    }
+    saveSize() {
+      (localStorage.setItem("chat-width", this.container.offsetWidth),
+        localStorage.setItem("chat-height", this.container.offsetHeight));
+    }
+    restoreSize() {
+      let t = localStorage.getItem("chat-width") ?? 525;
+      if (t) {
+        let i = parseInt(t, 10);
+        i >= 250 && i <= 800 && (this.container.style.width = i + "px");
+      }
+      let n = localStorage.getItem("chat-height") ?? 330;
+      if (n) {
+        let i = parseInt(n, 10);
+        i >= 100 && i <= 700 && (this.container.style.height = i + "px");
+      }
+    }
+    createModMenu() {
+      ((this.modMenu = document.createElement("div")),
+        (this.modMenu.id = "chat-mod-menu"),
+        (this.modMenu.hidden = !0),
+        (this.modMenu.innerHTML = `
+            <div class="mod-menu-info">
+                <div class="mod-menu-info-row"><span>User ID:</span> <span id="mod-menu-user-id">-</span></div>
+                <div class="mod-menu-info-row"><span>IP:</span> <span id="mod-menu-ip">-</span></div>
+            </div>
+            <button data-action="jump">Jump to tile</button>
+            <button data-action="tell">Tell...</button>
+            <button data-action="reply">Reply</button>
+            <button data-action="clear">Clear messages</button>
+            <button data-action="mute">Mute</button>
+            <button data-action="ban">Ban</button>
+        `),
+        document.body.appendChild(this.modMenu),
+        this.modMenu.addEventListener("click", (t) => {
+          let n = t.target.dataset.action;
+          if (!(!n || !this.modMenuTarget)) {
+            if (n === "jump") this.jumpToUserTile(this.modMenuTarget.nick);
+            else if (n === "tell") {
+              let i = `/tell ${this.modMenuTarget.nick} `;
+              ((this.input.value = i + this.input.value),
+                this.input.focus(),
+                this.input.setSelectionRange(this.input.value.length, this.input.value.length));
+            } else if (n === "reply") {
+              let i = `@${this.modMenuTarget.nick} `;
+              ((this.input.value = i + this.input.value),
+                this.input.focus(),
+                this.input.setSelectionRange(this.input.value.length, this.input.value.length));
+            } else if (n === "clear")
+              s.ws.sendJSON({
+                type: "mod_action",
+                action: "clear_messages",
+                target: this.modMenuTarget,
+              });
+            else if (n === "mute") {
+              let i = prompt("Mute duration (e.g. 10m, 1h, 1d):", "1d");
+              i &&
+                s.ws.sendJSON({
+                  type: "mod_action",
+                  action: "mute",
+                  target: this.modMenuTarget,
+                  duration: i,
+                });
+            } else
+              n === "ban" &&
+                confirm(`Ban ${this.modMenuTarget.nick}? This will also delete all their tiles.`) &&
+                s.ws.sendJSON({ type: "mod_action", action: "ban", target: this.modMenuTarget });
+            this.hideModMenu();
+          }
+        }),
+        document.addEventListener("click", (t) => {
+          !this.modMenu.contains(t.target) &&
+            !this.userMenu.contains(t.target) &&
+            !t.target.classList.contains("chat-nick") &&
+            (this.hideModMenu(), this.hideUserMenu());
+        }));
+    }
+    createUserMenu() {
+      ((this.userMenu = document.createElement("div")),
+        (this.userMenu.id = "chat-user-menu"),
+        (this.userMenu.hidden = !0),
+        (this.userMenu.innerHTML = `
+            <button data-action="jump">Jump to tile</button>
+            <button data-action="tell">Tell...</button>
+            <button data-action="reply">Reply</button>
+        `),
+        document.body.appendChild(this.userMenu),
+        this.userMenu.addEventListener("click", (t) => {
+          let n = t.target.dataset.action;
+          if (!(!n || !this.userMenuTarget)) {
+            if (n === "jump") this.jumpToUserTile(this.userMenuTarget);
+            else if (n === "tell") {
+              let i = `/tell ${this.userMenuTarget} `;
+              ((this.input.value = i + this.input.value),
+                this.input.focus(),
+                this.input.setSelectionRange(this.input.value.length, this.input.value.length));
+            } else if (n === "reply") {
+              let i = `@${this.userMenuTarget} `;
+              ((this.input.value = i + this.input.value),
+                this.input.focus(),
+                this.input.setSelectionRange(this.input.value.length, this.input.value.length));
+            }
+            this.hideUserMenu();
+          }
+        }));
+    }
+    showUserMenu(t, n, i) {
+      ((this.userMenuTarget = t), (this.userMenu.hidden = !1));
+      let o = this.userMenu.getBoundingClientRect(),
+        r = window.innerHeight,
+        c = window.innerWidth;
+      (i + o.height > r && (i = r - o.height - 5),
+        n + o.width > c && (n = c - o.width - 5),
+        (this.userMenu.style.left = n + "px"),
+        (this.userMenu.style.top = i + "px"));
+    }
+    hideUserMenu() {
+      ((this.userMenu.hidden = !0), (this.userMenuTarget = null));
+    }
+    findUserTile(t) {
+      if (!s.plot?.tileCache) return null;
+      for (let n in s.plot.tileCache)
+        for (let i in s.plot.tileCache[n]) {
+          let o = s.plot.tileCache[n][i];
+          if ((typeof o == "string" ? o : (o?.domain ?? null)) === t)
+            return { x: parseInt(n), y: parseInt(i) };
+        }
+      return null;
+    }
+    findTileByDomain(t) {
+      if (!s.plot?.tileCache) return null;
+      for (let n in s.plot.tileCache)
+        for (let i in s.plot.tileCache[n]) {
+          let o = s.plot.tileCache[n][i];
+          if ((typeof o == "string" ? o : (o?.domain ?? null)) === t)
+            return { x: parseInt(n), y: parseInt(i) };
+        }
+      return null;
+    }
+    jumpToUserTile(t) {
+      if (!s.camera) return;
+      let n = this.findUserTile(t);
+      n && s.camera.centerOn(n.x * 250 + 250 / 2, n.y * 250 + 250 / 2);
+    }
+    jumpToDomain(t) {
+      if (!s.camera) return !1;
+      let n = this.findTileByDomain(t);
+      return n ? (s.camera.centerOn(n.x * 250 + 250 / 2, n.y * 250 + 250 / 2), !0) : !1;
+    }
+    showModMenu(t, n, i) {
+      if (t.admin || t.discord) return;
+      ((this.modMenuTarget = t),
+        (this.modMenu.querySelector("#mod-menu-user-id").textContent = t.id || "-"),
+        (this.modMenu.querySelector("#mod-menu-ip").textContent = t.ip || "-"),
+        (this.modMenu.hidden = !1));
+      let o = this.modMenu.getBoundingClientRect(),
+        r = window.innerHeight,
+        c = window.innerWidth;
+      (i + o.height > r && (i = r - o.height - 5),
+        n + o.width > c && (n = c - o.width - 5),
+        (this.modMenu.style.left = n + "px"),
+        (this.modMenu.style.top = i + "px"));
+    }
+    hideModMenu() {
+      ((this.modMenu.hidden = !0), (this.modMenuTarget = null));
+    }
+    setupWsHandlers() {
+      let t = s.ws;
+      (t.on("chat_history", (n) => {
+        ((this.messages = n.messages || []),
+          this.renderMessages(),
+          this.showedRules ||
+            (this.showSystemMessage("Welcome to the chat! The rules are as follows:"),
+            this.showSystemMessage(
+              "1. There is zero tolerance for NSFW conversations. Do not discuss it in chat.",
+            ),
+            this.showSystemMessage("2. Do not spam the chat."),
+            this.showSystemMessage(
+              "3. Do not troll, be edgy, annoying, or disruptive. Be kind to others.",
+            ),
+            this.showSystemMessage("4. Keep conversations in English."),
+            this.showSystemMessage(
+              "Punishments vary between a temporary mute and in worst case a ban (your tiles will be deleted!). Type /help for commands.",
+            ),
+            (this.showedRules = !0)));
+      }),
+        t.on("message", (n) => {
+          this.addMessage(n);
+        }),
+        t.on("system_message", (n) => {
+          this.showSystemMessage(n.message);
+        }),
+        t.on("chat_cleared", () => {
+          ((this.messages = []),
+            (this.messagesEl.innerHTML = ""),
+            this.showSystemMessage("Chat has been cleared"));
+        }),
+        t.on("clear_user_messages", (n) => {
+          ((this.messages = this.messages.filter((i) => i.nick !== n.nick)),
+            this.renderMessages(),
+            (s.user?.admin || s.user?.moderator) &&
+              this.showSystemMessage(`Messages from ${n.nick} have been cleared`));
+        }),
+        t.on("user_muted", (n) => {
+          this.showSystemMessage(`${n.nick} has been muted`);
+        }));
+    }
+    setupInputHandlers() {
+      (this.input.addEventListener("keydown", (t) => {
+        (t.stopPropagation(),
+          t.key === "Enter" && !t.shiftKey && (t.preventDefault(), this.sendMessage()));
+      }),
+        this.input.addEventListener("keyup", (t) => {
+          t.stopPropagation();
+        }),
+        this.input.addEventListener("keypress", (t) => {
+          t.stopPropagation();
+        }),
+        this.sendBtn.addEventListener("click", () => this.sendMessage()));
+    }
+    toggle() {
+      ((this.isOpen = !this.isOpen),
+        (this.body.hidden = !this.isOpen),
+        (this.toggleBtn.textContent = this.isOpen ? "\u2212" : "+"),
+        this.isOpen
+          ? (this.restoreSize(),
+            (this.unreadCount = 0),
+            this.updateUnreadBadge(),
+            this.scrollToBottom())
+          : (this.container.style.height = "auto"));
+    }
+    addMessage(t) {
+      t.time = Date.now();
+      let n = s.cursors?.currentNick,
+        i = s.user?.sites?.map((o) => o.domain);
+      if (n && t.message) {
+        let o = /@([a-zA-Z0-9][-a-zA-Z0-9]*(?:\.[a-zA-Z0-9][-a-zA-Z0-9]*)*\.[a-zA-Z]{2,})/g,
+          r = t.message.matchAll(o);
+        for (let c of r)
+          if (i.includes(c[1])) {
+            t.isPinged = !0;
+            try {
+              let p = new Audio("/s/ping.mp3");
+              ((p.volume = 0.5), p.play().catch(() => {}));
+            } catch {}
+            break;
+          }
+      }
+      (this.messages.push(t),
+        this.messages.length > Ze && this.messages.shift(),
+        this.appendMessageEl(t),
+        this.isOpen ? this.scrollToBottom() : (this.unreadCount++, this.updateUnreadBadge()));
+    }
+    escapeHTML(t) {
+      return t
+        .replace(/&/g, "&amp;")
+        .replace(/</g, "&lt;")
+        .replace(/>/g, "&gt;")
+        .replace(/"/g, "&quot;")
+        .replace(/'/g, "&#039;");
+    }
+    escapeURL(t) {
+      return t.replaceAll('"', "%22").replaceAll("'", "%27").replaceAll("`", "%60");
+    }
+    escapeURLDisplay(t) {
+      return t.replace(/</g, "&lt;").replace(/>/g, "&gt;");
+    }
+    parseMessage(t) {
+      let n = /@([a-zA-Z0-9][-a-zA-Z0-9]*(?:\.[a-zA-Z0-9][-a-zA-Z0-9]*)*\.[a-zA-Z]{2,})/g,
+        i = [];
+      t = t.replace(
+        n,
+        (h, d) => (i.push(d), `<span class="chat-ping">@${this.escapeHTML(d)}</span>`),
+      );
+      let o =
+          /(?!\.)(https?:\/\/[^\s<>"']+)|(?<![/])(\b(?:[a-zA-Z0-9][-a-zA-Z0-9]*\.)+([a-zA-Z]{2,})(?:\/[^\s<>"']*)?)/g,
+        r = 250,
+        p = 50 / 2;
+      t = t.replace(o, (h, d, b, C) => {
+        if (d) {
+          let u = d.match(/^https?:\/\/(?:www\.)?webtiles\.kicya\.net\/?#(-?\d+),(-?\d+)$/);
+          if (u) {
+            let w = parseInt(u[1]),
+              k = parseInt(u[2]),
+              S = Math.floor(w / r),
+              A = Math.floor(k / r);
+            if (S >= -p && S <= p && A >= -p && A <= p)
+              return `<a href="#" class="chat-coord-link" data-x="${S}" data-y="${A}">${S}, ${A}</a>`;
+          }
+          return `<a href="${this.escapeURL(d)}" target="_blank" rel="noopener noreferrer">${this.escapeURLDisplay(this.escapeURL(d))}</a>`;
+        }
+        if (b && gt.has(C.toLowerCase()) && !i.includes(b)) {
+          let u = "https://" + b;
+          return `<a href="${this.escapeURL(u)}" target="_blank" rel="noopener noreferrer">${this.escapeURLDisplay(b)}</a>`;
+        }
+        return h;
+      });
+      let g = /(-?\d+),\s*(-?\d+)/g;
+      t = t.replace(g, (h, d, b) => {
+        let C = parseInt(d),
+          u = parseInt(b);
+        return C >= -p && C <= p && u >= -p && u <= p
+          ? `<a href="#" class="chat-coord-link" data-x="${d}" data-y="${b}">${h}</a>`
+          : h;
+      });
+      let m = (h, d, b, C) =>
+        `<img class="emoji" src="https://cdn.discordapp.com/emojis/${C}.${d ? "gif" : "png"}?v=1" alt=":${this.escapeHTML(b)}:" title=":${this.escapeHTML(b)}:" width="20">`;
+      return (
+        (t = t.replace(/&lt;(a?):([a-zA-Z0-9_~]+):(\d{1,20})&gt;/g, m)),
+        (t = t.replace(/<(a?):([a-zA-Z0-9_~]+):(\d{1,20})>/g, m)),
+        (t = t.replace(/\*\*([^*]+)\*\*/g, (h, d) => `<strong>${d}</strong>`)),
+        (t = t.replace(/\*([^*]+)\*/g, (h, d) => `<em>${d}</em>`)),
+        (t = t.replace(/~~([^~]+)~~/g, (h, d) => `<s>${d}</s>`)),
+        (t = t.replace(/__([^_]+)__/g, (h, d) => `<u>${d}</u>`)),
+        (t = t.replace(/\|\|([^|]+)\|\|/g, (h, d) => `<span class="chat-spoiler">${d}</span>`)),
+        t
+      );
+    }
+    appendMessageEl(t) {
+      let n = document.createElement("div");
+      ((n.className = "chat-message"),
+        t.admin && n.classList.add("chat-admin"),
+        t.mod && n.classList.add("chat-mod"),
+        t.discord && n.classList.add("chat-discord"),
+        t.isPinged && n.classList.add("chat-pinged"));
+      let i = document.createElement("span");
+      ((i.className = "chat-nick"), (i.dataset.nick = t.nick));
+      let o = s.user?.admin || s.user?.moderator;
+      (t.discord ||
+        (i.classList.add("chat-nick-clickable"),
+        i.addEventListener("click", (h) => {
+          (h.stopPropagation(),
+            o && !t.admin
+              ? this.showModMenu(t, h.clientX, h.clientY)
+              : this.findUserTile(t.nick) && this.showUserMenu(t.nick, h.clientX, h.clientY));
+        })),
+        t.admin
+          ? (i.innerHTML =
+              '<span class="chat-admin-icon">\u2605</span> ' + this.escapeHTML(t.nick) + ": ")
+          : t.mod
+            ? (i.innerHTML =
+                '<span class="chat-mod-icon">\u25C6</span> ' + this.escapeHTML(t.nick) + ": ")
+            : t.discord
+              ? (i.innerHTML =
+                  '<span class="chat-discord-icon">[D]</span> ' + this.escapeHTML(t.nick) + ": ")
+              : (i.textContent = t.nick + ": "));
+      let r = document.createElement("span");
+      ((r.className = "chat-text"),
+        t.admin || t.mod
+          ? (r.innerHTML = this.parseMessage(t.message).replace(/\n/g, "<br>"))
+          : (r.innerHTML = this.parseMessage(this.escapeHTML(t.message)).replace(/\n/g, "<br>")));
+      let c = r.querySelectorAll(".emoji");
+      for (let h of c)
+        h.addEventListener("error", (d) => {
+          d.target.remove();
+        });
+      let p = r.querySelectorAll(".chat-spoiler");
+      for (let h of p)
+        h.addEventListener("click", (d) => {
+          d.target.closest(".chat-spoiler").classList.toggle("chat-spoiler-revealed");
+        });
+      let g = document.createElement("span");
+      g.className = "chat-time";
+      let m = new Date(t.time || Date.now());
+      for (
+        g.textContent =
+          m.getHours().toString().padStart(2, "0") +
+          ":" +
+          m.getMinutes().toString().padStart(2, "0"),
+          n.appendChild(i),
+          n.appendChild(r),
+          n.appendChild(g),
+          this.messagesEl.appendChild(n);
+        this.messagesEl.children.length > Ze;
+      )
+        this.messagesEl.removeChild(this.messagesEl.firstChild);
+    }
+    renderMessages() {
+      this.messagesEl.innerHTML = "";
+      for (let t of this.messages) this.appendMessageEl(t);
+      setTimeout(() => {
+        this.scrollToBottom(!0);
+      }, 100);
+    }
+    scrollToBottom(t = !1) {
+      let n = this.messagesEl;
+      (n.scrollHeight - n.scrollTop - n.clientHeight <= 120 || t) && (n.scrollTop = n.scrollHeight);
+    }
+    updateUnreadBadge() {
+      this.unreadCount > 0
+        ? ((this.unreadEl.textContent = this.unreadCount > 99 ? "99+" : this.unreadCount),
+          (this.unreadEl.hidden = !1))
+        : (this.unreadEl.hidden = !0);
+    }
+    sendMessage() {
+      if (!s.user) {
+        this.showSystemMessage("Please login to chat");
+        return;
+      }
+      let t = this.input.value.trim();
+      if (!t || t.length > 500) return;
+      let n = t.split(`
+`);
+      if (
+        (n.length > 5 &&
+          (t = n.slice(0, 5).join(`
+`)),
+        t === "/help")
+      ) {
+        (this.showSystemMessage("Available commands:"),
+          this.showSystemMessage("/jump [domain] - Jump to a tile by domain"),
+          this.showSystemMessage("/jump X Y - Jump to coordinates X, Y"),
+          this.showSystemMessage("/tell [domain] [msg] - Send a message to a specific domain"),
+          (this.input.value = ""));
+        return;
+      }
+      if (t.startsWith("/jump ") || t.startsWith("/tp ")) {
+        let i = t.split(" ").slice(1).join(" ");
+        if (i) {
+          let o = i.match(/^(-?\d+)\s+(-?\d+)$/);
+          if (o) {
+            let r = parseInt(o[1]),
+              c = parseInt(o[2]),
+              g = 50 / 2;
+            !isNaN(r) && !isNaN(c) && s.camera && r >= -g && r <= g && c >= -g && c <= g
+              ? (s.camera.centerOn(r * 250 + 250 / 2, c * 250 + 250 / 2),
+                this.showSystemMessage(`Jumped to ${r}, ${c}`))
+              : this.showSystemMessage(`Invalid coordinates. Must be between -${g} and ${g}`);
+          } else {
+            let r = i;
+            this.jumpToDomain(r)
+              ? this.showSystemMessage(`Jumped to ${r}`)
+              : this.showSystemMessage(`Tile with domain "${r}" not found`);
+          }
+        } else this.showSystemMessage("Usage: /jump [domain] or /jump X Y");
+        this.input.value = "";
+        return;
+      }
+      if (!s.cursors?.currentNick) {
+        this.showSystemMessage("Select a site to chat");
+        return;
+      }
+      if (!t.startsWith("/")) {
+        let i = Date.now();
+        if (
+          ((this.messageTimestamps = this.messageTimestamps.filter((o) => i - o < yt)),
+          this.messageTimestamps.length >= vt)
+        )
+          return;
+        this.messageTimestamps.push(i);
+      }
+      (s.ws.sendJSON({ type: "message", value: t }), (this.input.value = ""));
+    }
+    showSystemMessage(t) {
+      let n = document.createElement("div");
+      ((n.className = "chat-message chat-system"),
+        (n.innerHTML = this.parseMessage(this.escapeHTML(t)).replace(/\n/g, "<br>")),
+        this.messagesEl.appendChild(n),
+        this.scrollToBottom());
+    }
+  };
+s.chat = new Te();
+var yn = s.chat;
+var wt = document.getElementById("loading-text"),
+  bt = 0,
+  Ct = setInterval(() => {
+    wt.innerText = `Loading${".".repeat(bt++ % 4)}`;
+  }, 200),
+  Q = class {
+    constructor() {
+      ((this.tiles = {}),
+        (this.container = document.getElementById("plot")),
+        (this.worldSize = Re),
+        (this.activeTile = null),
+        (this.tileCache = {}),
+        (this.lockCache = {}),
+        (this.loaded = !1),
+        setInterval(() => {
+          for (let t in this.tiles) {
+            let n = this.tiles[t];
+            !n.rendered && Date.now() - n.lastRender > 3e4 && delete this.tiles[t];
+          }
+        }, 1e4),
+        this.fetchTiles(),
+        this.fetchLocks(),
+        setInterval(() => this.fetchLocks(), 1e3 * 60),
+        setInterval(() => this.fetchTiles(), 1e3 * 60),
+        (this.editorChannel = new BroadcastChannel("editor")),
+        (this.editorChannel.onmessage = (t) => {
+          if (t.data.type === "saved") {
+            let { path: n, site: i } = t.data;
+            this.refreshTile(i, n);
+          }
+        }),
+        this.setupWsHandlers());
+    }
+    setupWsHandlers() {
+      s.ws &&
+        (s.ws.on("refresh", (t) => {
+          if ("serviceWorker" in navigator && navigator.serviceWorker.controller) {
+            let n = null;
+            for (let i in this.tileCache) {
+              for (let o in this.tileCache[i]) {
+                let r = this.tileCache[i][o];
+                if ((typeof r == "string" ? null : (r?.domain ?? null)) === t.domain) {
+                  n =
+                    typeof r == "object" && r.updated_at
+                      ? r.updated_at
+                      : Math.floor(Date.now() / 1e3);
+                  break;
+                }
+              }
+              if (n !== null) break;
+            }
+            navigator.serviceWorker.controller.postMessage({
+              type: "tile-refresh",
+              domain: t.domain,
+              lastUpdate: n || Math.floor(Date.now() / 1e3),
+            });
+          }
+          setTimeout(() => {
+            this.refreshTile(t.domain, t.path);
+          }, 500);
+        }),
+        s.ws.on("claim", (t) => {
+          ((this.tileCache[t.x] = this.tileCache[t.x] || {}),
+            (this.tileCache[t.x][t.y] =
+              typeof t.domain == "string"
+                ? { domain: t.domain, updated_at: Math.floor(Date.now() / 1e3) }
+                : t.domain));
+          let n = this.tiles[`${t.x},${t.y}`];
+          if (n) {
+            let i =
+              typeof this.tileCache[t.x][t.y] == "string"
+                ? this.tileCache[t.x][t.y]
+                : this.tileCache[t.x][t.y].domain;
+            n.setDomain(i);
+          }
+        }),
+        s.ws.on("free", (t) => {
+          this.tileCache[t.x] && delete this.tileCache[t.x][t.y];
+          let n = this.tiles[`${t.x},${t.y}`];
+          n && n.setFree();
+        }),
+        s.ws.on("lock", (t) => {
+          t.locked
+            ? (this.lockCache[t.x + "," + t.y] = !0)
+            : delete this.lockCache[t.x + "," + t.y];
+          let n = this.tiles[`${t.x},${t.y}`];
+          n && n.setLocked(t.locked);
+        }),
+        s.ws.on("user_count", (t) => {
+          let n = document.getElementById("user-count");
+          n && (n.textContent = `${t.count} online`);
+        }),
+        s.ws.on("clan_invite", (t) => {
+          t.invite &&
+            (s.ui.pendingClanInvites.find((i) => i.id === t.invite.id) ||
+              (s.ui.pendingClanInvites.push({
+                id: t.invite.id,
+                clan_id: t.invite.clan_id,
+                clan_name: t.invite.clan_name,
+              }),
+              s.ui.updateClanIndicator()));
+        }));
+    }
+    refreshTile(t, n) {
+      if ("serviceWorker" in navigator && navigator.serviceWorker.controller) {
+        let i = null;
+        for (let o in this.tileCache) {
+          for (let r in this.tileCache[o]) {
+            let c = this.tileCache[o][r];
+            if ((typeof c == "string" ? null : (c?.domain ?? null)) === t) {
+              i =
+                typeof c == "object" && c.updated_at ? c.updated_at : Math.floor(Date.now() / 1e3);
+              break;
+            }
+          }
+          if (i !== null) break;
+        }
+        navigator.serviceWorker.controller.postMessage({
+          type: "tile-refresh",
+          domain: t,
+          lastUpdate: i || Math.floor(Date.now() / 1e3),
+        });
+      }
+      for (let i in this.tiles) {
+        let o = this.tiles[i];
+        if (o.domain === t && o.path === n) {
+          if (o.active) break;
+          o.fetchContent(o.path, !0);
+          break;
+        }
+      }
+    }
+    addTile(t) {
+      this.tiles[`${t.x},${t.y}`] = t;
+    }
+    getTile(t, n) {
+      if (
+        t > this.worldSize / 2 ||
+        t < -this.worldSize / 2 ||
+        n > this.worldSize / 2 ||
+        n < -this.worldSize / 2
+      )
+        return null;
+      if (!this.tiles[`${t},${n}`]) {
+        let i = this.tileCache?.[t]?.[n],
+          o = typeof i == "string" ? i : (i?.domain ?? null);
+        this.tiles[`${t},${n}`] = new O({ x: t, y: n, domain: o ?? null });
+      }
+      return this.tiles[`${t},${n}`];
+    }
+    removeTile(t) {
+      (t.unrender(), delete this.tiles[`${t.x},${t.y}`]);
+    }
+    clear() {
+      (Object.values(this.tiles).forEach((t) => t.unrender()), (this.tiles = {}));
+    }
+    async fetchTiles() {
+      if (
+        ((this.tileCache = (await s.api.makeRequest("/api/tiles").then((t) => t.json())).tiles),
+        "serviceWorker" in navigator && navigator.serviceWorker.controller)
+      ) {
+        let t = {};
+        for (let n in this.tileCache)
+          for (let i in this.tileCache[n]) {
+            let o = this.tileCache[n][i];
+            typeof o == "object" &&
+              o.domain &&
+              o.updated_at &&
+              (t[o.domain] = o.updated_at.toString());
+          }
+        Object.keys(t).length > 0 &&
+          navigator.serviceWorker.controller.postMessage({ type: "tile-updates", updates: t });
+      }
+      for (let t in this.tileCache)
+        for (let n in this.tileCache[t]) {
+          let i = this.tileCache[t][n],
+            o = typeof i == "string" ? i : (i?.domain ?? null),
+            r = this.tiles[`${t},${n}`];
+          r && r.domain !== o && r.setDomain(o);
+        }
+      this.loaded ||
+        setTimeout(() => {
+          this.loaded = !0;
+          let t = document.getElementById("loading"),
+            n = document.getElementById("app");
+          ((t.hidden = !0), (n.hidden = !1), clearInterval(Ct));
+        }, 300);
+    }
+    async fetchLocks() {
+      this.lockCache = (await s.api.makeRequest("/api/locks").then((t) => t.json())).locks;
+      for (let t in this.lockCache) {
+        let n = this.tiles[t];
+        n && n.element && n.setLocked(!0);
+      }
+    }
+  };
+s.plot = new Q();
+var Et = document.getElementById("plot"),
+  ee = class {
+    constructor() {
+      if (
+        ((this.x = 0),
+        (this.y = 0),
+        (this.zoom = 1),
+        (this.width = window.innerWidth),
+        (this.height = window.innerHeight),
+        (this.renderedTiles = new Set()),
+        this.centerOn(100, 100),
+        location.hash.startsWith("#") && location.hash.includes(","))
+      )
+        try {
+          let [d, b] = location.hash.slice(1).split(",");
+          (this.centerOn(parseInt(d), parseInt(b)), (location.hash = ""));
+        } catch {}
+      let t = 0,
+        n = 0;
+      (setInterval(() => {
+        let d = this.x + this.width / 2,
+          b = this.y + this.height / 2;
+        (d != t || b != n) && ((t = d), (n = b));
+      }, 1e3),
+        window.addEventListener("resize", () => {
+          ((this.width = window.innerWidth),
+            (this.height = window.innerHeight),
+            this.renderTilesInView());
+        }));
+      let i = 0;
+      ((this.zoomEnabled = !0),
+        (this.wheelHandler = (d) => {
+          if (!this.zoomEnabled || d.target.closest(".tile.active")) return;
+          d.preventDefault();
+          let b = d.deltaY;
+          if (Math.abs(b) > 1 && Date.now() - i > 100) {
+            let u = q.indexOf(this.zoom) + (b > 0 ? -1 : 1);
+            if (u >= 1 && u < q.length) {
+              let w = s.mouse?.x || this.width / 2,
+                k = s.mouse?.y || this.height / 2;
+              (this.zoomTo(w, k, q[u]), (i = Date.now()));
+            }
+          }
+        }),
+        window.addEventListener("wheel", this.wheelHandler, { passive: !1 }));
+      let o = 0,
+        r = { x: 0, y: 0 },
+        c = (d) => {
+          let b = d[0].clientX - d[1].clientX,
+            C = d[0].clientY - d[1].clientY;
+          return Math.sqrt(b * b + C * C);
+        },
+        p = (d) => ({ x: (d[0].clientX + d[1].clientX) / 2, y: (d[0].clientY + d[1].clientY) / 2 });
+      (document.addEventListener(
+        "touchstart",
+        (d) => {
+          d.touches.length === 2 && ((o = c(d.touches)), (r = p(d.touches)));
+        },
+        { passive: !0 },
+      ),
+        document.addEventListener(
+          "touchmove",
+          (d) => {
+            if (this.zoomEnabled && d.touches.length === 2) {
+              if (d.target.closest(".tile.active")) return;
+              let b = c(d.touches),
+                C = p(d.touches);
+              if (o > 0) {
+                let u = b / o,
+                  w = q.indexOf(this.zoom);
+                u > 1.1 && w < q.length - 1
+                  ? (this.zoomTo(C.x, C.y, q[w + 1]), (o = b))
+                  : u < 0.9 && w > 1 && (this.zoomTo(C.x, C.y, q[w - 1]), (o = b));
+              }
+              ((r = C), d.preventDefault());
+            }
+          },
+          { passive: !1 },
+        ),
+        document.addEventListener("touchend", (d) => {
+          d.touches.length < 2 && (o = 0);
+        }),
+        (this.keysPressed = { ArrowUp: !1, ArrowDown: !1, ArrowLeft: !1, ArrowRight: !1 }),
+        (this.moveSpeed = 5));
+      let g = (d) => {
+          d.key in this.keysPressed && (d.preventDefault(), (this.keysPressed[d.key] = !0));
+        },
+        m = (d) => {
+          d.key in this.keysPressed && (d.preventDefault(), (this.keysPressed[d.key] = !1));
+        };
+      (window.addEventListener("keydown", g), window.addEventListener("keyup", m));
+      let h = () => {
+        if (!s.plot?.activeTile) {
+          let d = 0,
+            b = 0;
+          (this.keysPressed.ArrowLeft && (d -= this.moveSpeed),
+            this.keysPressed.ArrowRight && (d += this.moveSpeed),
+            this.keysPressed.ArrowUp && (b -= this.moveSpeed),
+            this.keysPressed.ArrowDown && (b += this.moveSpeed),
+            (d !== 0 || b !== 0) && this.move(this.x + d, this.y + b));
+        }
+        requestAnimationFrame(h);
+      };
+      h();
+    }
+    move(t, n) {
+      ((this.x = Math.round(t)),
+        (this.y = Math.round(n)),
+        this.updatePlotTransform(),
+        this.renderTilesInView());
+    }
+    updatePlotTransform() {
+      Et.style.transform = `translate3d(${-this.x}px, ${-this.y}px, 0) scale(${this.zoom})`;
+    }
+    zoomTo(t, n, i) {
+      let o = (this.x + t) / this.zoom,
+        r = (this.y + n) / this.zoom;
+      ((this.zoom = i),
+        (this.x = o * this.zoom - t),
+        (this.y = r * this.zoom - n),
+        (s.ui.zoomSlider.value = this.zoom),
+        this.move(this.x, this.y));
+    }
+    centerOn(t, n) {
+      let i = t * this.zoom - this.width / 2,
+        o = n * this.zoom - this.height / 2;
+      this.move(i, o);
+    }
+    *getTilesInView() {
+      let t = O.toTilePosition(
+          (this.x - 250 * this.zoom) / this.zoom,
+          (this.y - 250 * this.zoom) / this.zoom,
+        ),
+        n = O.toTilePosition(
+          (this.x + 250 * this.zoom + this.width) / this.zoom,
+          (this.y + 250 * this.zoom + this.height) / this.zoom,
+        );
+      for (let i = t.x; i < n.x; i++)
+        for (let o = t.y; o < n.y; o++) {
+          let r = s.plot.getTile(i, o);
+          r && (yield r);
+        }
+    }
+    *getTilesInViewWithBuffer(t = 500) {
+      let n = O.toTilePosition(
+          (this.x - 250 * this.zoom - t) / this.zoom,
+          (this.y - 250 * this.zoom - t) / this.zoom,
+        ),
+        i = O.toTilePosition(
+          (this.x + 250 * this.zoom + this.width + t) / this.zoom,
+          (this.y + 250 * this.zoom + this.height + t) / this.zoom,
+        );
+      for (let o = n.x; o < i.x; o++)
+        for (let r = n.y; r < i.y; r++) {
+          let c = s.plot.getTile(o, r);
+          c && (yield c);
+        }
+    }
+    isTileWithinBuffer(t, n = 500) {
+      let i = t.x * 250,
+        o = t.y * 250,
+        r = 250,
+        c = this.x / this.zoom,
+        p = (this.x + this.width) / this.zoom,
+        g = this.y / this.zoom,
+        m = (this.y + this.height) / this.zoom,
+        h = i + r,
+        d = o + r,
+        b = n / this.zoom,
+        C = 0;
+      h < c ? (C = c - h) : i > p && (C = i - p);
+      let u = 0;
+      return (d < g ? (u = g - d) : o > m && (u = o - m), Math.sqrt(C * C + u * u) <= b);
+    }
+    renderTilesInView() {
+      let t = new Set(),
+        n = 260;
+      for (let i of this.getTilesInViewWithBuffer(n)) (i.render(), t.add(i));
+      if (this.renderedTiles)
+        for (let i of this.renderedTiles)
+          t.has(i) || (this.isTileWithinBuffer(i, n) ? t.add(i) : i.unrender());
+      this.renderedTiles = t;
+    }
+    setZoomEnabled(t) {
+      this.zoomEnabled = t;
+    }
+  };
+s.camera = new ee();
+var te = class {
+  constructor() {
+    ((this.x = 0),
+      (this.y = 0),
+      (this.worldX = 0),
+      (this.worldY = 0),
+      (this.tileX = 0),
+      (this.tileY = 0),
+      (this.down = !1));
+    let t = 0,
+      n = 0,
+      i = 0,
+      o = 0,
+      r = 0,
+      c = (m, h, d) => {
+        if (!d.closest("#plot") || d.closest(".tile-info, .tile-admin-panel, .tile-vote-menu"))
+          return !1;
+        let b = s.plot.getTile(this.tileX, this.tileY);
+        return s.plot.activeTile && s.plot.activeTile.id === b.id
+          ? !1
+          : ((this.down = !0),
+            (i = m),
+            (o = h),
+            (t = s.camera.x),
+            (n = s.camera.y),
+            (r = Date.now()),
+            !0);
+      },
+      p = () => {
+        if (!this.down) return;
+        this.down = !1;
+        let m = Math.abs(this.x - i),
+          h = Math.abs(this.y - o);
+        Date.now() - r < 400 &&
+          m < 10 &&
+          h < 10 &&
+          s.plot.getTile(this.tileX, this.tileY).setActive(!0);
+      },
+      g = (m, h) => {
+        ((this.x = m), (this.y = h));
+        let d = s.camera;
+        ((this.worldX = (d.x + this.x) / d.zoom), (this.worldY = (d.y + this.y) / d.zoom));
+        let b = O.toTilePosition(this.worldX, this.worldY);
+        if (
+          ((this.tileX = b.x),
+          (this.tileY = b.y),
+          (s.ui.coords.textContent = `${this.tileX}, ${this.tileY}`),
+          document.documentElement.style.setProperty(
+            "--coords-width",
+            s.ui.coords.offsetWidth + "px",
+          ),
+          this.down)
+        ) {
+          let C = this.x - i,
+            u = this.y - o;
+          d.move(t - C, n - u);
+        }
+      };
+    (document.addEventListener("mousedown", (m) => {
+      c(m.clientX, m.clientY, m.target) && m.preventDefault();
+    }),
+      document.addEventListener("mouseup", (m) => {
+        p();
+      }),
+      document.addEventListener("mousemove", (m) => {
+        g(m.clientX, m.clientY);
+      }),
+      document.addEventListener(
+        "touchstart",
+        (m) => {
+          if (m.touches.length === 1) {
+            let h = m.touches[0];
+            c(h.clientX, h.clientY, h.target);
+          }
+        },
+        { passive: !0 },
+      ),
+      document.addEventListener("touchend", (m) => {
+        p();
+      }),
+      document.addEventListener("touchcancel", (m) => {
+        this.down = !1;
+      }),
+      document.addEventListener(
+        "touchmove",
+        (m) => {
+          if (m.touches.length === 1) {
+            let h = m.touches[0];
+            (g(h.clientX, h.clientY),
+              this.down &&
+                h.target.closest("#plot") &&
+                !h.target.closest(".tile.active") &&
+                m.preventDefault());
+          }
+        },
+        { passive: !1 },
+      ));
+  }
+};
+s.mouse = new te();
+var Tt = document.getElementById("plot"),
+  kt = document.getElementById("dashboard-modal"),
+  xt = "/s/img/cursor.png",
+  St = 150,
+  Pt = 50,
+  It = 100,
+  Lt = 100,
+  ke = 150,
+  Je = 500,
+  Ge = 0.6,
+  xe = class {
+    constructor() {
+      ((this.cursors = new Map()),
+        (this.lastPositionSent = 0),
+        (this.currentNick = null),
+        (this.mouseWorldX = 0),
+        (this.mouseWorldY = 0),
+        this.setupWsHandlers(),
+        this.setupMouseTracking(),
+        this.setupSiteChangeListener(),
+        this.setupMiddleClick(),
+        this.setupViewportChangeListener());
+    }
+    setupWsHandlers() {
+      let t = s.ws;
+      (t.on("open", () => {
+        this.sendNickIfSelected();
+      }),
+        t.on("close", () => {
+          this.clearAllCursors();
+        }),
+        t.on("cursors", (n) => {
+          for (let i of n.cursors) this.addCursor(i.id, i.nick, i.x, i.y);
+        }),
+        t.on("join", (n) => {
+          this.addCursor(n.id, n.nick, 0, 0);
+        }),
+        t.on("leave", (n) => {
+          this.removeCursor(n.id);
+        }),
+        t.onBinary((n) => {
+          let i = new Int32Array(n);
+          if (i.length >= 3) {
+            let o = i[0],
+              r = i[1],
+              c = i[2];
+            this.updateCursorPosition(o, r, c);
+          }
+        }));
+    }
+    addCursor(t, n, i, o) {
+      if (n === this.currentNick) return;
+      if (this.cursors.has(t)) {
+        this.updateCursorPosition(t, i, o);
+        return;
+      }
+      (this.cursors.set(t, { id: t, nick: n, x: i, y: o, element: null }),
+        this.updateElementPosition(t, i, o));
+      let r = this.cursors.get(t);
+      r.element && (r.element.style.opacity = this.getCursorOpacityFromCenter());
+    }
+    removeCursor(t) {
+      let n = this.cursors.get(t);
+      n && (n.element && n.element.parentNode && n.element.remove(), this.cursors.delete(t));
+    }
+    updateCursorPosition(t, n, i) {
+      let o = this.cursors.get(t);
+      o && ((o.x = n), (o.y = i), this.updateElementPosition(t, n, i));
+    }
+    isCursorOnScreen(t, n) {
+      let i = s.camera;
+      if (!i) return !0;
+      let o = i.x / i.zoom,
+        r = (i.x + i.width) / i.zoom,
+        c = i.y / i.zoom,
+        p = (i.y + i.height) / i.zoom;
+      return t >= o && t <= r && n >= c && n <= p;
+    }
+    updateElementPosition(t, n, i) {
+      let o = this.cursors.get(t);
+      if (!o) return;
+      let r = this.isCursorOnScreen(n, i);
+      if ((n === 0 && i === 0) || !r)
+        o.element && o.element.parentNode && (o.element.remove(), (o.element = null));
+      else {
+        if (!o.element || !o.element.parentNode) {
+          let c = document.createElement("div");
+          ((c.className = "cursor-container"),
+            (c.innerHTML = `
+                    <img class="cursor-image" src="${xt}" alt="cursor" />
+                    <div class="cursor-nick">${this.escapeHTML(o.nick)}</div>
+                `),
+            (c.style.opacity = this.getCursorOpacityFromCenter()),
+            (o.element = c),
+            Tt.appendChild(c));
+        }
+        ((o.element.style.transform = `translate(${n}px, ${i}px)`),
+          this.updateNickOpacity(o.element, n, i));
+      }
+    }
+    updateNickOpacity(t, n, i) {
+      let o = t.querySelector(".cursor-nick");
+      if (!o) return;
+      let r = this.mouseWorldX - n,
+        c = this.mouseWorldY - i,
+        p = Math.sqrt(r * r + c * c),
+        g = Math.max(0, 1 - p / St);
+      o.style.opacity = g;
+    }
+    updateAllNickOpacities() {
+      for (let t of this.cursors.values()) t.element && this.updateNickOpacity(t.element, t.x, t.y);
+    }
+    getCursorOpacityFromCenter() {
+      let t = this.mouseWorldX - It,
+        n = this.mouseWorldY - Lt,
+        i = Math.sqrt(t * t + n * n);
+      return i <= ke ? 0 : i >= Je ? Ge : ((i - ke) / (Je - ke)) * Ge;
+    }
+    updateAllCursorOpacities() {
+      let t = this.getCursorOpacityFromCenter();
+      for (let n of this.cursors.values()) n.element && (n.element.style.opacity = t);
+    }
+    clearAllCursors() {
+      for (let t of this.cursors.values()) t.element && t.element.parentNode && t.element.remove();
+      this.cursors.clear();
+    }
+    updateAllCursorVisibility() {
+      for (let t of this.cursors.values()) this.updateElementPosition(t.id, t.x, t.y);
+    }
+    setupMouseTracking() {
+      document.addEventListener("mousemove", (t) => {
+        let n = s.camera;
+        if (
+          !n ||
+          ((this.mouseWorldX = Math.round((n.x + t.clientX) / n.zoom)),
+          (this.mouseWorldY = Math.round((n.y + t.clientY) / n.zoom)),
+          this.updateAllNickOpacities(),
+          this.updateAllCursorOpacities(),
+          this.updateAllCursorVisibility(),
+          !s.ws.isConnected) ||
+          !this.currentNick ||
+          M.activeModal ||
+          kt?.classList.contains("active") ||
+          Date.now() - this.lastPositionSent < 25
+        )
+          return;
+        let i = new Int16Array(3);
+        ((i[0] = this.mouseWorldX),
+          (i[1] = this.mouseWorldY),
+          (i[2] = 0),
+          s.ws.send(i.buffer),
+          (this.lastPositionSent = Date.now()));
+      });
+    }
+    setupSiteChangeListener() {
+      let t = s.ui?.siteSelector;
+      t &&
+        t.addEventListener("change", () => {
+          this.sendNickIfSelected();
+        });
+    }
+    setupViewportChangeListener() {
+      window.addEventListener("resize", () => {
+        this.updateAllCursorVisibility();
+      });
+    }
+    setupMiddleClick() {
+      document.addEventListener("mousedown", (t) => {
+        if (t.button !== 1 || this.getCursorOpacityFromCenter() < 0.05) return;
+        let i = this.getClosestCursor();
+        i &&
+          i.distance <= Pt &&
+          (t.preventDefault(), window.open(`https://${i.cursor.nick}`, "_blank"));
+      });
+    }
+    getClosestCursor() {
+      let t = null,
+        n = 1 / 0;
+      for (let i of this.cursors.values()) {
+        let o = this.mouseWorldX - i.x,
+          r = this.mouseWorldY - i.y,
+          c = Math.sqrt(o * o + r * r);
+        c < n && ((n = c), (t = i));
+      }
+      return t ? { cursor: t, distance: n } : null;
+    }
+    sendNickIfSelected() {
+      if (!s.ws.isConnected) return;
+      let t = s.user?.selectedSite;
+      if (!t || !t.domain) {
+        this.currentNick = null;
+        return;
+      }
+      let n = t.domain;
+      this.currentNick = n;
+      for (let [i, o] of this.cursors.entries()) o.nick === n && this.removeCursor(i);
+      s.ws.sendJSON({ type: "nick", value: n });
+    }
+    escapeHTML(t) {
+      return t
+        ? t
+            .replace(/&/g, "&amp;")
+            .replace(/</g, "&lt;")
+            .replace(/>/g, "&gt;")
+            .replace(/"/g, "&quot;")
+            .replace(/'/g, "&#039;")
+        : "";
+    }
+  },
+  Se = xe;
+if ("serviceWorker" in navigator) {
+  let t = "sw_version",
+    n = async () => {
+      try {
+        let o = await navigator.serviceWorker.register("/sw.js");
+        return (console.log("[SW] Service Worker registered:", o.scope), o);
+      } catch (o) {
+        return (console.error("[SW] Service Worker registration failed:", o), null);
+      }
+    };
+  ((async () => {
+    let o = localStorage.getItem(t),
+      r = "12";
+    if (o !== r) {
+      console.log(`[SW] Version mismatch: stored=${o}, current=${r}`);
+      let c = await navigator.serviceWorker.getRegistrations();
+      for (let g of c) (await g.unregister(), console.log("[SW] Unregistered old service worker"));
+      let p = await caches.keys();
+      (await Promise.all(
+        p.map((g) => {
+          if (g.includes("webtiles"))
+            return (console.log(`[SW] Deleting cache: ${g}`), caches.delete(g));
+        }),
+      ),
+        localStorage.setItem(t, r),
+        await n());
+    } else (await navigator.serviceWorker.getRegistrations()).length === 0 && (await n());
+  })(),
+    navigator.serviceWorker.ready.then(() => {
+      navigator.serviceWorker.controller.postMessage({ type: "clear-cache" });
+    }));
+}
+s.cursors = new Se();
+s.user?.admin &&
+  (window.WebTiles = { ...s, classes: { Tile: O, Camera: ee, Plot: Q, Mouse: te, Cursors: Se } });
+var Pe = Date.now();
+async function Ke() {
+  let t = await (await s.api.makeRequest("/s/dist/buildtime.txt")).text();
+  return parseInt(t);
+}
+Ke().then((e) => {
+  Pe = e;
+});
+var Mt = setInterval(async () => {
+  let e = await Ke();
+  if (e !== Pe) {
+    (clearInterval(Mt), (Pe = e));
+    let t = document.createElement("div");
+    ((t.id = "update-toast"),
+      (t.innerHTML = `
+            <span>A new WebTiles version is available!</span>
+            <button id="refresh-btn">Refresh</button>
+        `),
+      document.body.appendChild(t),
+      document.getElementById("refresh-btn").addEventListener("click", () => {
+        location.reload();
+      }));
+  }
+}, 6e4);
