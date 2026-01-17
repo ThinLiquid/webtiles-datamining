@@ -1,4 +1,4 @@
-/* 399310aa4d2b6379c32f51da886f9112a333bb3df07ba59db1e86899dfa35cb4 */
+/* 64b491735511878c1f851d44e20215d7ae92f4051ba493ce8e7c93a1e5846c8f */
 :root {
   --main-color: #d85252;
   --tile-size: 250px;
@@ -11,7 +11,9 @@ body {
   font-family: Tahoma, sans-serif;
   font-size: 14px;
   background-color: #ffffff;
-  background-image: linear-gradient(#ffd1d1 1px, transparent 1px), linear-gradient(to right, #ffd1d1 1px, #ffffff 1px);
+  background-image:
+    linear-gradient(#ffd1d1 1px, transparent 1px),
+    linear-gradient(to right, #ffd1d1 1px, #ffffff 1px);
   background-size: 20px 20px;
   -webkit-font-smoothing: none;
   position: fixed;
@@ -35,40 +37,35 @@ body {
   top: 0;
   left: 0;
   z-index: 1000;
-  background-image: linear-gradient(#ffd1d1 1px, transparent 1px), linear-gradient(to right, #ffd1d1 1px, #ffffff 1px);
+  background-image:
+    linear-gradient(#ffd1d1 1px, transparent 1px),
+    linear-gradient(to right, #ffd1d1 1px, #ffffff 1px);
   background-size: 20px 20px;
 }
-
 #loading[hidden] {
   display: none;
 }
-
 @keyframes loading {
   0% {
     transform: scale(1);
   }
-
   50% {
     transform: scale(1.03);
   }
-
   100% {
     transform: scale(1);
   }
 }
-
 #loading img {
   animation: loading 0.9s ease-in-out infinite;
   width: 300px;
 }
-
 #loading p {
   font-size: 20px;
   font-weight: bold;
   color: #333;
   text-align: center;
 }
-
 #turnstile-container {
   margin-top: 10px;
   min-height: 65px;
@@ -118,7 +115,6 @@ body {
   justify-content: center;
   align-items: center;
 }
-
 #plot {
   cursor: crosshair;
   position: absolute;
@@ -138,7 +134,6 @@ body {
 .tile.f.b-left {
   border-left: 1px solid rgba(0, 0, 0, 0.1);
 }
-
 .tile.f.b-top {
   border-top: 1px solid rgba(0, 0, 0, 0.1);
 }
@@ -177,7 +172,7 @@ body {
   position: relative;
 }
 
-.tile.active>.tile-content {
+.tile.active > .tile-content {
   pointer-events: auto;
   touch-action: auto;
 }
@@ -221,7 +216,7 @@ body {
   touch-action: auto;
 }
 
-#zoom-slider>input {
+#zoom-slider > input {
   accent-color: var(--main-color);
 }
 
@@ -310,7 +305,6 @@ body {
   height: auto;
   line-height: 1.2;
 }
-
 .kicya-button {
   font-family: inherit;
   border: none;
@@ -325,7 +319,6 @@ body {
   color: inherit;
   display: inline-block;
 }
-
 .kicya-button[hidden] {
   display: none;
 }
@@ -356,12 +349,10 @@ body {
 }
 
 @keyframes pulse-indicator {
-
   0%,
   100% {
     opacity: 1;
   }
-
   50% {
     opacity: 0.5;
   }
@@ -532,7 +523,9 @@ body {
   left: 0;
   right: 0;
   height: 2px;
-  box-shadow: 0 -4px 8px 0 rgba(216, 82, 82, 0.9), 0 -2px 4px 0 rgba(216, 82, 82, 0.7);
+  box-shadow:
+    0 -4px 8px 0 rgba(216, 82, 82, 0.9),
+    0 -2px 4px 0 rgba(216, 82, 82, 0.7);
 }
 
 .clan-border-bottom {
@@ -540,7 +533,9 @@ body {
   left: 0;
   right: 0;
   height: 2px;
-  box-shadow: 0 4px 8px 0 rgba(216, 82, 82, 0.9), 0 2px 4px 0 rgba(216, 82, 82, 0.7);
+  box-shadow:
+    0 4px 8px 0 rgba(216, 82, 82, 0.9),
+    0 2px 4px 0 rgba(216, 82, 82, 0.7);
 }
 
 .clan-border-left {
@@ -548,7 +543,9 @@ body {
   bottom: 0;
   left: 0;
   width: 2px;
-  box-shadow: -4px 0 8px 0 rgba(216, 82, 82, 0.9), -2px 0 4px 0 rgba(216, 82, 82, 0.7);
+  box-shadow:
+    -4px 0 8px 0 rgba(216, 82, 82, 0.9),
+    -2px 0 4px 0 rgba(216, 82, 82, 0.7);
 }
 
 .clan-border-right {
@@ -556,7 +553,9 @@ body {
   bottom: 0;
   right: 0;
   width: 2px;
-  box-shadow: 4px 0 8px 0 rgba(216, 82, 82, 0.9), 2px 0 4px 0 rgba(216, 82, 82, 0.7);
+  box-shadow:
+    4px 0 8px 0 rgba(216, 82, 82, 0.9),
+    2px 0 4px 0 rgba(216, 82, 82, 0.7);
 }
 
 .tile-info {
@@ -594,9 +593,7 @@ body {
   cursor: pointer;
   padding: 0;
   font-family: inherit;
-
 }
-
 .tile-info button:hover {
   text-decoration: underline;
 }
@@ -606,12 +603,10 @@ body {
   overflow: hidden;
   text-overflow: ellipsis;
 }
-
 .tile-domain a {
   color: inherit;
   text-decoration: none;
 }
-
 .tile-domain a:hover {
   text-decoration: underline;
 }
@@ -633,7 +628,9 @@ body {
   padding: 2px 1px;
   z-index: 5;
   user-select: none;
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  font-family:
+    -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial,
+    sans-serif;
 }
 
 .vote-btn {
@@ -869,7 +866,7 @@ body {
 
 .code-display code {
   flex: 1;
-  font-family: 'Courier New', monospace;
+  font-family: "Courier New", monospace;
   font-size: 13px;
   color: #333;
   word-break: break-all;
@@ -908,7 +905,7 @@ body {
   padding: 10px 12px;
   border: 2px solid #e0e0e0;
   border-radius: 6px;
-  font-family: 'Courier New', monospace;
+  font-family: "Courier New", monospace;
   font-size: 14px;
   box-sizing: border-box;
   transition: border-color 0.15s;
@@ -951,7 +948,7 @@ body {
 }
 
 .tile-admin-panel::before {
-  content: '⚙';
+  content: "⚙";
   margin-right: 3px;
   font-size: 10px;
   opacity: 0.7;
@@ -965,7 +962,9 @@ body {
   cursor: pointer;
   padding: 2px 4px;
   font-family: inherit;
-  transition: color 0.1s, background-color 0.1s;
+  transition:
+    color 0.1s,
+    background-color 0.1s;
   border-radius: 3px;
 }
 
@@ -987,7 +986,10 @@ body {
   z-index: 5;
   transform-origin: top left;
   user-select: none;
-  transition: left 0.05s, top 0.05s, opacity 0.05s;
+  transition:
+    left 0.05s,
+    top 0.05s,
+    opacity 0.05s;
 }
 
 .cursor-image {
@@ -1165,12 +1167,14 @@ body {
   color: rgb(174 174 174);
   cursor: pointer;
   user-select: none;
-  transition: background-color 0.2s, color 0.2s;
+  transition:
+    background-color 0.2s,
+    color 0.2s;
 }
 
 .chat-text .chat-spoiler:hover {
   background-color: rgb(190 190 190);
-  color: rgb(190 190 190)
+  color: rgb(190 190 190);
 }
 
 .chat-text .chat-spoiler.chat-spoiler-revealed {
@@ -1400,7 +1404,6 @@ body {
     transform: translateX(-50%) translateY(100%);
     opacity: 0;
   }
-
   to {
     transform: translateX(-50%) translateY(0);
     opacity: 1;
