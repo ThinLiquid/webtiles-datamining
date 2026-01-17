@@ -1,116 +1,116 @@
-/* a2cc455d49924ac02805b08b6ce0f02d93aad70079eba8dfd0855d847344720c */
-var v0 = {
+/* aad2c518ac4ca175f61f9f64c404fa2698092aa36ee1b41314c35697ee89ad4a */
+var __var_0 = {
     user: null,
     settings: {
       logCalls: localStorage.logCalls === 'true',
       disableJS: localStorage.disableJS === 'true'
     }
   },
-  v1 = document.getElementById('user-data');
-if (v1)
+  __var_1 = document.getElementById('user-data');
+if (__var_1)
   try {
-    let v2 = JSON.parse(v1.textContent);
-    v2 && v2.email_verified && (v0.user = v2);
-  } catch (v2) {
-    console.error(v2);
+    let __var_2 = JSON.parse(__var_1.textContent);
+    __var_2 && __var_2.email_verified && (__var_0.user = __var_2);
+  } catch (__var_2) {
+    console.error(__var_2);
   }
-var v3 = v0;
+var __var_3 = __var_0;
 
-function v4(v2, u, l) {
-  let v5 = new WeakMap(),
-    v6 = 2048,
-    v7 = 10000,
-    v8 = new WeakMap();
+function __fn_4(__var_2, u, l) {
+  let __var_5 = new WeakMap(),
+    __var_6 = 2048,
+    __var_7 = 10000,
+    __var_8 = new WeakMap();
 
-  function v9(n) {}
+  function __fn_9(n) {}
 
-  function v10() {
-    v8.clear = new WeakMap();
+  function __fn_10() {
+    __var_8.clear = new WeakMap();
   }
 
-  function v11(n, s) {
+  function __fn_11(n, s) {
     if (!n)
       return null;
-    if (v5.has(n))
-      return v5.get(n);
-    let v12 = v2.createObject(U);
-    return v12.native = n, v12.canvas = s, v5.set(n, v12), v12;
+    if (__var_5.has(n))
+      return __var_5.get(n);
+    let __var_12 = __var_2.createObject(U);
+    return __var_12.native = n, __var_12.canvas = s, __var_5.set(n, __var_12), __var_12;
   }
-  let v13 = v2.createNativeFunction(function() {
+  let __var_13 = __var_2.createNativeFunction(function() {
     throw TypeError('Illegal constructor');
   }, !0);
-  v2.setProperty(u, 'CanvasGradient', v13);
-  let v14 = v2.getProperty(v13, 'prototype');
-  v2.setProperty(v14, 'addColorStop', v2.createNativeFunction(function(n, s) {
+  __var_2.setProperty(u, 'CanvasGradient', __var_13);
+  let __var_14 = __var_2.getProperty(__var_13, 'prototype');
+  __var_2.setProperty(__var_14, 'addColorStop', __var_2.createNativeFunction(function(n, s) {
     this.native.addColorStop(n, s);
   }));
 
-  function v15(n) {
-    let v16 = v2.createObject(v13);
-    return v16.native = n, v16;
+  function __fn_15(n) {
+    let __var_16 = __var_2.createObject(__var_13);
+    return __var_16.native = n, __var_16;
   }
-  let v17 = v2.createNativeFunction(function() {
+  let __var_17 = __var_2.createNativeFunction(function() {
     throw TypeError('Illegal constructor');
   }, !0);
-  v2.setProperty(u, 'CanvasPattern', v17);
+  __var_2.setProperty(u, 'CanvasPattern', __var_17);
 
-  function v18(n) {
-    let v16 = v2.createObject(v17);
-    return v16.native = n, v16;
+  function __fn_18(n) {
+    let __var_16 = __var_2.createObject(__var_17);
+    return __var_16.native = n, __var_16;
   }
-  let v19 = v2.createNativeFunction(function(n, v16) {
-    if (n > v6 || v16 > v6)
-      throw new Error(`ImageData size exceeds maximum (${ v6 }x${ v6 })`);
-    v3.settings.logCalls && console.log(l.domain, 'create ImageData', this, n, v16);
-    let v12 = new ImageData(n, v16);
-    this.native = v12, this.width = n, this.height = v16;
+  let __var_19 = __var_2.createNativeFunction(function(n, __var_16) {
+    if (n > __var_6 || __var_16 > __var_6)
+      throw new Error(`ImageData size exceeds maximum (${ __var_6 }x${ __var_6 })`);
+    __var_3.settings.logCalls && console.log(l.domain, 'create ImageData', this, n, __var_16);
+    let __var_12 = new ImageData(n, __var_16);
+    this.native = __var_12, this.width = n, this.height = __var_16;
   }, !0);
-  v2.setProperty(u, 'ImageData', v19);
-  let v20 = v2.getProperty(v19, 'prototype');
-  v2.setProperty(v20, 'width', Interpreter.VALUE_IN_DESCRIPTOR, {
-    get: v2.createNativeFunction(function() {
+  __var_2.setProperty(u, 'ImageData', __var_19);
+  let __var_20 = __var_2.getProperty(__var_19, 'prototype');
+  __var_2.setProperty(__var_20, 'width', Interpreter.VALUE_IN_DESCRIPTOR, {
+    get: __var_2.createNativeFunction(function() {
       return this.native.width;
     })
-  }), v2.setProperty(v20, 'height', Interpreter.VALUE_IN_DESCRIPTOR, {
-    get: v2.createNativeFunction(function() {
+  }), __var_2.setProperty(__var_20, 'height', Interpreter.VALUE_IN_DESCRIPTOR, {
+    get: __var_2.createNativeFunction(function() {
       return this.native.height;
     })
-  }), v2.setProperty(v20, 'data', Interpreter.VALUE_IN_DESCRIPTOR, {
-    get: v2.createNativeFunction(function() {
-      let v21 = this.native.data,
-        v16 = v2.createObjectProto(v2.ARRAY_PROTO);
-      v2.setProperty(v16, 'length', v21.length);
-      let v12 = v2.nativeToPseudo({});
-      v2.setProperty(v12, 'length', v21.length), v2.setProperty(v12, 'get', v2.createNativeFunction(function(v) {
-        return v21[v];
-      })), v2.setProperty(v12, 'set', v2.createNativeFunction(function(v, E) {
-        v3.settings.logCalls && console.log(l.domain, 'setImageData', this, v, E), v21[v] = E;
+  }), __var_2.setProperty(__var_20, 'data', Interpreter.VALUE_IN_DESCRIPTOR, {
+    get: __var_2.createNativeFunction(function() {
+      let __var_21 = this.native.data,
+        __var_16 = __var_2.createObjectProto(__var_2.ARRAY_PROTO);
+      __var_2.setProperty(__var_16, 'length', __var_21.length);
+      let __var_12 = __var_2.nativeToPseudo({});
+      __var_2.setProperty(__var_12, 'length', __var_21.length), __var_2.setProperty(__var_12, 'get', __var_2.createNativeFunction(function(v) {
+        return __var_21[v];
+      })), __var_2.setProperty(__var_12, 'set', __var_2.createNativeFunction(function(v, E) {
+        __var_3.settings.logCalls && console.log(l.domain, 'setImageData', this, v, E), __var_21[v] = E;
       }));
-      for (let v22 = 0; v22 < Math.min(v21.length, 1000); v22++)
+      for (let __var_22 = 0; __var_22 < Math.min(__var_21.length, 1000); __var_22++)
         (E => {
-          v2.setProperty(v12, E, Interpreter.VALUE_IN_DESCRIPTOR, {
-            get: v2.createNativeFunction(function() {
-              return v21[E];
+          __var_2.setProperty(__var_12, E, Interpreter.VALUE_IN_DESCRIPTOR, {
+            get: __var_2.createNativeFunction(function() {
+              return __var_21[E];
             }),
-            set: v2.createNativeFunction(function(A) {
-              v3.settings.logCalls && console.log(l.domain, 'setImageData', this, E, A), v21[E] = A;
+            set: __var_2.createNativeFunction(function(A) {
+              __var_3.settings.logCalls && console.log(l.domain, 'setImageData', this, E, A), __var_21[E] = A;
             })
           });
-        })(v22);
-      return v12;
+        })(__var_22);
+      return __var_12;
     })
   });
 
-  function v23(v21) {
-    let v16 = v2.createObject(v19);
-    return v16.native = v21, v16;
+  function __fn_23(__var_21) {
+    let __var_16 = __var_2.createObject(__var_19);
+    return __var_16.native = __var_21, __var_16;
   }
-  let v24 = v2.createNativeFunction(function() {
+  let __var_24 = __var_2.createNativeFunction(function() {
     throw TypeError('Illegal constructor');
   }, !0);
-  v2.setProperty(u, 'TextMetrics', v24);
-  let v25 = v2.getProperty(v24, 'prototype'),
-    v26 = [
+  __var_2.setProperty(u, 'TextMetrics', __var_24);
+  let __var_25 = __var_2.getProperty(__var_24, 'prototype'),
+    __var_26 = [
       'width',
       'actualBoundingBoxLeft',
       'actualBoundingBoxRight',
@@ -124,65 +124,65 @@ function v4(v2, u, l) {
       'alphabeticBaseline',
       'ideographicBaseline'
     ];
-  for (let v21 of v26)
-    v2.setProperty(v25, v21, Interpreter.VALUE_IN_DESCRIPTOR, {
-      get: v2.createNativeFunction(function() {
-        return this.native[v21];
+  for (let __var_21 of __var_26)
+    __var_2.setProperty(__var_25, __var_21, Interpreter.VALUE_IN_DESCRIPTOR, {
+      get: __var_2.createNativeFunction(function() {
+        return this.native[__var_21];
       })
     });
 
-  function v27(v21) {
-    let v16 = v2.createObject(v24);
-    return v16.native = v21, v16;
+  function __fn_27(__var_21) {
+    let __var_16 = __var_2.createObject(__var_24);
+    return __var_16.native = __var_21, __var_16;
   }
-  let v28 = v2.createNativeFunction(function(v21) {
-    v21 && v21.native ? this.native = new Path2D(v21.native) : typeof v21 == 'string' ? this.native = new Path2D(v21) : this.native = new Path2D();
+  let __var_28 = __var_2.createNativeFunction(function(__var_21) {
+    __var_21 && __var_21.native ? this.native = new Path2D(__var_21.native) : typeof __var_21 == 'string' ? this.native = new Path2D(__var_21) : this.native = new Path2D();
   }, !0);
-  v2.setProperty(u, 'Path2D', v28);
-  let v29 = v2.getProperty(v28, 'prototype'),
-    v30 = {
-      addPath: function(v21, v16) {
-        v21?.native && this.native.addPath(v21.native, v16);
+  __var_2.setProperty(u, 'Path2D', __var_28);
+  let __var_29 = __var_2.getProperty(__var_28, 'prototype'),
+    __var_30 = {
+      addPath: function(__var_21, __var_16) {
+        __var_21?.native && this.native.addPath(__var_21.native, __var_16);
       },
       closePath: function() {
         this.native.closePath();
       },
-      moveTo: function(v21, v16) {
-        this.native.moveTo(v21, v16);
+      moveTo: function(__var_21, __var_16) {
+        this.native.moveTo(__var_21, __var_16);
       },
-      lineTo: function(v21, v16) {
-        this.native.lineTo(v21, v16);
+      lineTo: function(__var_21, __var_16) {
+        this.native.lineTo(__var_21, __var_16);
       },
-      bezierCurveTo: function(v21, v16, v12, v22, E, A) {
-        this.native.bezierCurveTo(v21, v16, v12, v22, E, A);
+      bezierCurveTo: function(__var_21, __var_16, __var_12, __var_22, E, A) {
+        this.native.bezierCurveTo(__var_21, __var_16, __var_12, __var_22, E, A);
       },
-      quadraticCurveTo: function(v21, v16, v12, v22) {
-        this.native.quadraticCurveTo(v21, v16, v12, v22);
+      quadraticCurveTo: function(__var_21, __var_16, __var_12, __var_22) {
+        this.native.quadraticCurveTo(__var_21, __var_16, __var_12, __var_22);
       },
-      arc: function(v21, v16, v12, v22, E, A) {
-        this.native.arc(v21, v16, v12, v22, E, A);
+      arc: function(__var_21, __var_16, __var_12, __var_22, E, A) {
+        this.native.arc(__var_21, __var_16, __var_12, __var_22, E, A);
       },
-      arcTo: function(v21, v16, v12, v22, E) {
-        this.native.arcTo(v21, v16, v12, v22, E);
+      arcTo: function(__var_21, __var_16, __var_12, __var_22, E) {
+        this.native.arcTo(__var_21, __var_16, __var_12, __var_22, E);
       },
-      ellipse: function(v21, v16, v12, v22, E, A, D, k) {
-        this.native.ellipse(v21, v16, v12, v22, E, A, D, k);
+      ellipse: function(__var_21, __var_16, __var_12, __var_22, E, A, D, k) {
+        this.native.ellipse(__var_21, __var_16, __var_12, __var_22, E, A, D, k);
       },
-      rect: function(v21, v16, v12, v22) {
-        this.native.rect(v21, v16, v12, v22);
+      rect: function(__var_21, __var_16, __var_12, __var_22) {
+        this.native.rect(__var_21, __var_16, __var_12, __var_22);
       },
-      roundRect: function(v21, v16, v12, v22, E) {
-        this.native.roundRect(v21, v16, v12, v22, E);
+      roundRect: function(__var_21, __var_16, __var_12, __var_22, E) {
+        this.native.roundRect(__var_21, __var_16, __var_12, __var_22, E);
       }
     };
-  for (let [v21, v16] of Object.entries(v30))
-    v2.setProperty(v29, v21, v2.createNativeFunction(v16));
-  let v31 = v2.createNativeFunction(function() {
+  for (let [__var_21, __var_16] of Object.entries(__var_30))
+    __var_2.setProperty(__var_29, __var_21, __var_2.createNativeFunction(__var_16));
+  let __var_31 = __var_2.createNativeFunction(function() {
     throw TypeError('Illegal constructor');
   }, !0);
-  v2.setProperty(u, 'CanvasRenderingContext2D', v31);
-  let v32 = v2.getProperty(v31, 'prototype'),
-    v33 = [
+  __var_2.setProperty(u, 'CanvasRenderingContext2D', __var_31);
+  let __var_32 = __var_2.getProperty(__var_31, 'prototype'),
+    __var_33 = [
       'globalAlpha',
       'globalCompositeOperation',
       'lineWidth',
@@ -202,74 +202,74 @@ function v4(v2, u, l) {
       'imageSmoothingQuality',
       'filter'
     ];
-  for (let v21 of v33)
-    v2.setProperty(v32, v21, Interpreter.VALUE_IN_DESCRIPTOR, {
-      get: v2.createNativeFunction(function() {
-        return this.native[v21];
+  for (let __var_21 of __var_33)
+    __var_2.setProperty(__var_32, __var_21, Interpreter.VALUE_IN_DESCRIPTOR, {
+      get: __var_2.createNativeFunction(function() {
+        return this.native[__var_21];
       }),
-      set: v2.createNativeFunction(function(v16) {
-        v3.settings.logCalls && console.log(l.domain, 'context set ' + v21, this, v16), this.native[v21] = v16;
+      set: __var_2.createNativeFunction(function(__var_16) {
+        __var_3.settings.logCalls && console.log(l.domain, 'context set ' + __var_21, this, __var_16), this.native[__var_21] = __var_16;
       })
     });
-  for (let v21 of [
+  for (let __var_21 of [
       'fillStyle',
       'strokeStyle'
     ])
-    v2.setProperty(v32, v21, Interpreter.VALUE_IN_DESCRIPTOR, {
-      get: v2.createNativeFunction(function() {
-        let v16 = this.native[v21];
-        return v16;
+    __var_2.setProperty(__var_32, __var_21, Interpreter.VALUE_IN_DESCRIPTOR, {
+      get: __var_2.createNativeFunction(function() {
+        let __var_16 = this.native[__var_21];
+        return __var_16;
       }),
-      set: v2.createNativeFunction(function(v16) {
-        v16?.native ? this.native[v21] = v16.native : this.native[v21] = v16;
+      set: __var_2.createNativeFunction(function(__var_16) {
+        __var_16?.native ? this.native[__var_21] = __var_16.native : this.native[__var_21] = __var_16;
       })
     });
-  v2.setProperty(v32, 'canvas', Interpreter.VALUE_IN_DESCRIPTOR, {
-    get: v2.createNativeFunction(function() {
+  __var_2.setProperty(__var_32, 'canvas', Interpreter.VALUE_IN_DESCRIPTOR, {
+    get: __var_2.createNativeFunction(function() {
       return this.canvas;
     })
   });
-  let v34 = {
-    clearRect: function(v21, v16, v12, v22) {
-      this.native, this.native.clearRect(v21, v16, v12, v22);
+  let __var_34 = {
+    clearRect: function(__var_21, __var_16, __var_12, __var_22) {
+      this.native, this.native.clearRect(__var_21, __var_16, __var_12, __var_22);
     },
-    fillRect: function(v21, v16, v12, v22) {
-      this.native, this.native.fillRect(v21, v16, v12, v22);
+    fillRect: function(__var_21, __var_16, __var_12, __var_22) {
+      this.native, this.native.fillRect(__var_21, __var_16, __var_12, __var_22);
     },
-    strokeRect: function(v21, v16, v12, v22) {
-      this.native, this.native.strokeRect(v21, v16, v12, v22);
+    strokeRect: function(__var_21, __var_16, __var_12, __var_22) {
+      this.native, this.native.strokeRect(__var_21, __var_16, __var_12, __var_22);
     },
-    fillText: function(v21, v16, v12, v22) {
-      this.native, v22 !== void 0 ? this.native.fillText(String(v21).slice(0, 1000), v16, v12, v22) : this.native.fillText(String(v21).slice(0, 1000), v16, v12);
+    fillText: function(__var_21, __var_16, __var_12, __var_22) {
+      this.native, __var_22 !== void 0 ? this.native.fillText(String(__var_21).slice(0, 1000), __var_16, __var_12, __var_22) : this.native.fillText(String(__var_21).slice(0, 1000), __var_16, __var_12);
     },
-    strokeText: function(v21, v16, v12, v22) {
-      this.native, v22 !== void 0 ? this.native.strokeText(String(v21).slice(0, 1000), v16, v12, v22) : this.native.strokeText(String(v21).slice(0, 1000), v16, v12);
+    strokeText: function(__var_21, __var_16, __var_12, __var_22) {
+      this.native, __var_22 !== void 0 ? this.native.strokeText(String(__var_21).slice(0, 1000), __var_16, __var_12, __var_22) : this.native.strokeText(String(__var_21).slice(0, 1000), __var_16, __var_12);
     },
-    measureText: function(v21) {
-      return v27(this.native.measureText(String(v21).slice(0, 1000)));
+    measureText: function(__var_21) {
+      return __fn_27(this.native.measureText(String(__var_21).slice(0, 1000)));
     },
     getLineDash: function() {
-      return v2.nativeToPseudo(this.native.getLineDash());
+      return __var_2.nativeToPseudo(this.native.getLineDash());
     },
-    setLineDash: function(v21) {
-      let v16 = v2.pseudoToNative(v21);
-      this.native.setLineDash(v16);
+    setLineDash: function(__var_21) {
+      let __var_16 = __var_2.pseudoToNative(__var_21);
+      this.native.setLineDash(__var_16);
     },
-    createLinearGradient: function(v21, v16, v12, v22) {
-      return v15(this.native.createLinearGradient(v21, v16, v12, v22));
+    createLinearGradient: function(__var_21, __var_16, __var_12, __var_22) {
+      return __fn_15(this.native.createLinearGradient(__var_21, __var_16, __var_12, __var_22));
     },
-    createRadialGradient: function(v21, v16, v12, v22, E, A) {
-      return v15(this.native.createRadialGradient(v21, v16, v12, v22, E, A));
+    createRadialGradient: function(__var_21, __var_16, __var_12, __var_22, E, A) {
+      return __fn_15(this.native.createRadialGradient(__var_21, __var_16, __var_12, __var_22, E, A));
     },
-    createConicGradient: function(v21, v16, v12) {
-      return v15(this.native.createConicGradient(v21, v16, v12));
+    createConicGradient: function(__var_21, __var_16, __var_12) {
+      return __fn_15(this.native.createConicGradient(__var_21, __var_16, __var_12));
     },
-    createPattern: function(v21, v16) {
-      let v12 = v21?.native || v21;
-      if (!v12)
+    createPattern: function(__var_21, __var_16) {
+      let __var_12 = __var_21?.native || __var_21;
+      if (!__var_12)
         return null;
-      let v22 = this.native.createPattern(v12, v16);
-      return v22 ? v18(v22) : null;
+      let __var_22 = this.native.createPattern(__var_12, __var_16);
+      return __var_22 ? __fn_18(__var_22) : null;
     },
     beginPath: function() {
       this.native.beginPath();
@@ -277,101 +277,101 @@ function v4(v2, u, l) {
     closePath: function() {
       this.native.closePath();
     },
-    moveTo: function(v21, v16) {
-      this.native.moveTo(v21, v16);
+    moveTo: function(__var_21, __var_16) {
+      this.native.moveTo(__var_21, __var_16);
     },
-    lineTo: function(v21, v16) {
-      this.native.lineTo(v21, v16);
+    lineTo: function(__var_21, __var_16) {
+      this.native.lineTo(__var_21, __var_16);
     },
-    bezierCurveTo: function(v21, v16, v12, v22, E, A) {
-      this.native.bezierCurveTo(v21, v16, v12, v22, E, A);
+    bezierCurveTo: function(__var_21, __var_16, __var_12, __var_22, E, A) {
+      this.native.bezierCurveTo(__var_21, __var_16, __var_12, __var_22, E, A);
     },
-    quadraticCurveTo: function(v21, v16, v12, v22) {
-      this.native.quadraticCurveTo(v21, v16, v12, v22);
+    quadraticCurveTo: function(__var_21, __var_16, __var_12, __var_22) {
+      this.native.quadraticCurveTo(__var_21, __var_16, __var_12, __var_22);
     },
-    arc: function(v21, v16, v12, v22, E, A) {
-      this.native.arc(v21, v16, v12, v22, E, A);
+    arc: function(__var_21, __var_16, __var_12, __var_22, E, A) {
+      this.native.arc(__var_21, __var_16, __var_12, __var_22, E, A);
     },
-    arcTo: function(v21, v16, v12, v22, E) {
-      this.native.arcTo(v21, v16, v12, v22, E);
+    arcTo: function(__var_21, __var_16, __var_12, __var_22, E) {
+      this.native.arcTo(__var_21, __var_16, __var_12, __var_22, E);
     },
-    ellipse: function(v21, v16, v12, v22, E, A, D, k) {
-      this.native.ellipse(v21, v16, v12, v22, E, A, D, k);
+    ellipse: function(__var_21, __var_16, __var_12, __var_22, E, A, D, k) {
+      this.native.ellipse(__var_21, __var_16, __var_12, __var_22, E, A, D, k);
     },
-    rect: function(v21, v16, v12, v22) {
-      this.native.rect(v21, v16, v12, v22);
+    rect: function(__var_21, __var_16, __var_12, __var_22) {
+      this.native.rect(__var_21, __var_16, __var_12, __var_22);
     },
-    roundRect: function(v21, v16, v12, v22, E) {
-      let v35 = v2.pseudoToNative(E);
-      this.native.roundRect(v21, v16, v12, v22, v35);
+    roundRect: function(__var_21, __var_16, __var_12, __var_22, E) {
+      let __var_35 = __var_2.pseudoToNative(E);
+      this.native.roundRect(__var_21, __var_16, __var_12, __var_22, __var_35);
     },
-    fill: function(v21, v16) {
-      this.native, v21?.native ? this.native.fill(v21.native, v16) : this.native.fill(v21);
+    fill: function(__var_21, __var_16) {
+      this.native, __var_21?.native ? this.native.fill(__var_21.native, __var_16) : this.native.fill(__var_21);
     },
-    stroke: function(v21) {
-      this.native, v21?.native ? this.native.stroke(v21.native) : this.native.stroke();
+    stroke: function(__var_21) {
+      this.native, __var_21?.native ? this.native.stroke(__var_21.native) : this.native.stroke();
     },
-    clip: function(v21, v16) {
-      v21?.native ? this.native.clip(v21.native, v16) : this.native.clip(v21);
+    clip: function(__var_21, __var_16) {
+      __var_21?.native ? this.native.clip(__var_21.native, __var_16) : this.native.clip(__var_21);
     },
-    isPointInPath: function(v21, v16, v12, v22) {
-      return v21?.native ? this.native.isPointInPath(v21.native, v16, v12, v22) : this.native.isPointInPath(v21, v16, v12);
+    isPointInPath: function(__var_21, __var_16, __var_12, __var_22) {
+      return __var_21?.native ? this.native.isPointInPath(__var_21.native, __var_16, __var_12, __var_22) : this.native.isPointInPath(__var_21, __var_16, __var_12);
     },
-    isPointInStroke: function(v21, v16, v12) {
-      return v21?.native ? this.native.isPointInStroke(v21.native, v16, v12) : this.native.isPointInStroke(v21, v16);
+    isPointInStroke: function(__var_21, __var_16, __var_12) {
+      return __var_21?.native ? this.native.isPointInStroke(__var_21.native, __var_16, __var_12) : this.native.isPointInStroke(__var_21, __var_16);
     },
     getTransform: function() {
-      let v21 = this.native.getTransform();
-      return v2.nativeToPseudo({
-        a: v21.a,
-        v10: v21.v10,
-        v20: v21.v20,
-        v3: v21.v3,
-        e: v21.e,
-        v12: v21.v12
+      let __var_21 = this.native.getTransform();
+      return __var_2.nativeToPseudo({
+        a: __var_21.a,
+        __fn_10: __var_21.__fn_10,
+        __var_20: __var_21.__var_20,
+        __var_3: __var_21.__var_3,
+        e: __var_21.e,
+        __var_12: __var_21.__var_12
       });
     },
-    rotate: function(v21) {
-      this.native.rotate(v21);
+    rotate: function(__var_21) {
+      this.native.rotate(__var_21);
     },
-    scale: function(v21, v16) {
-      this.native.scale(v21, v16);
+    scale: function(__var_21, __var_16) {
+      this.native.scale(__var_21, __var_16);
     },
-    translate: function(v21, v16) {
-      this.native.translate(v21, v16);
+    translate: function(__var_21, __var_16) {
+      this.native.translate(__var_21, __var_16);
     },
-    transform: function(v21, v16, v12, v22, E, v35) {
-      this.native.transform(v21, v16, v12, v22, E, v35);
+    transform: function(__var_21, __var_16, __var_12, __var_22, E, __var_35) {
+      this.native.transform(__var_21, __var_16, __var_12, __var_22, E, __var_35);
     },
-    setTransform: function(v21, v16, v12, v22, E, v35) {
-      if (typeof v21 == 'object' && v21 !== null) {
-        let v36 = v2.pseudoToNative(v21);
-        this.native.setTransform(v36);
+    setTransform: function(__var_21, __var_16, __var_12, __var_22, E, __var_35) {
+      if (typeof __var_21 == 'object' && __var_21 !== null) {
+        let __var_36 = __var_2.pseudoToNative(__var_21);
+        this.native.setTransform(__var_36);
       } else
-        this.native.setTransform(v21, v16, v12, v22, E, v35);
+        this.native.setTransform(__var_21, __var_16, __var_12, __var_22, E, __var_35);
     },
     resetTransform: function() {
       this.native.resetTransform();
     },
-    drawImage: function(v21, v16, v12, v22, E, v35, v36, k, Y) {
+    drawImage: function(__var_21, __var_16, __var_12, __var_22, E, __var_35, __var_36, k, Y) {
       this.native;
-      let v37 = v21?.native || v21;
-      v37 && (k !== void 0 ? this.native.drawImage(v37, v16, v12, v22, E, v35, v36, k, Y) : v22 !== void 0 ? this.native.drawImage(v37, v16, v12, v22, E) : this.native.drawImage(v37, v16, v12));
+      let __var_37 = __var_21?.native || __var_21;
+      __var_37 && (k !== void 0 ? this.native.drawImage(__var_37, __var_16, __var_12, __var_22, E, __var_35, __var_36, k, Y) : __var_22 !== void 0 ? this.native.drawImage(__var_37, __var_16, __var_12, __var_22, E) : this.native.drawImage(__var_37, __var_16, __var_12));
     },
-    createImageData: function(v21, v16) {
-      if (v21?.native)
-        return v23(this.native.createImageData(v21.native));
-      if (v21 > v6 || v16 > v6)
-        throw new Error(`ImageData size exceeds maximum (${ v6 }x${ v6 })`);
-      return v23(this.native.createImageData(v21, v16));
+    createImageData: function(__var_21, __var_16) {
+      if (__var_21?.native)
+        return __fn_23(this.native.createImageData(__var_21.native));
+      if (__var_21 > __var_6 || __var_16 > __var_6)
+        throw new Error(`ImageData size exceeds maximum (${ __var_6 }x${ __var_6 })`);
+      return __fn_23(this.native.createImageData(__var_21, __var_16));
     },
-    getImageData: function(v21, v16, v12, v22) {
-      if (v12 > v6 || v22 > v6)
-        throw new Error(`ImageData size exceeds maximum (${ v6 }x${ v6 })`);
-      return v23(this.native.getImageData(v21, v16, v12, v22));
+    getImageData: function(__var_21, __var_16, __var_12, __var_22) {
+      if (__var_12 > __var_6 || __var_22 > __var_6)
+        throw new Error(`ImageData size exceeds maximum (${ __var_6 }x${ __var_6 })`);
+      return __fn_23(this.native.getImageData(__var_21, __var_16, __var_12, __var_22));
     },
-    putImageData: function(v21, v16, v12, v22, E, v35, v36) {
-      this.native, v21?.native && (v22 !== void 0 ? this.native.putImageData(v21.native, v16, v12, v22, E, v35, v36) : this.native.putImageData(v21.native, v16, v12));
+    putImageData: function(__var_21, __var_16, __var_12, __var_22, E, __var_35, __var_36) {
+      this.native, __var_21?.native && (__var_22 !== void 0 ? this.native.putImageData(__var_21.native, __var_16, __var_12, __var_22, E, __var_35, __var_36) : this.native.putImageData(__var_21.native, __var_16, __var_12));
     },
     save: function() {
       this.native.save();
@@ -383,110 +383,110 @@ function v4(v2, u, l) {
       this.native.reset();
     }
   };
-  for (let [v21, v16] of Object.entries(v34))
-    v2.setProperty(v32, v21, v2.createNativeFunction(v16));
+  for (let [__var_21, __var_16] of Object.entries(__var_34))
+    __var_2.setProperty(__var_32, __var_21, __var_2.createNativeFunction(__var_16));
   return {
-    extendElement: function(v21, v16) {
-      v2.setProperty(v21, 'getContext', v2.createNativeFunction(function(v12, v22) {
-        v3.settings.logCalls && console.log(l.domain, 'getContext', this, v12, v22);
-        let v38 = this.native;
-        if (v38.tagName !== 'CANVAS')
+    extendElement: function(__var_21, __var_16) {
+      __var_2.setProperty(__var_21, 'getContext', __var_2.createNativeFunction(function(__var_12, __var_22) {
+        __var_3.settings.logCalls && console.log(l.domain, 'getContext', this, __var_12, __var_22);
+        let __var_38 = this.native;
+        if (__var_38.tagName !== 'CANVAS')
           throw new Error('getContext is only available on canvas elements');
-        if (v38.width > v6 && (v38.width = v6), v38.height > v6 && (v38.height = v6), v12 === '2d') {
-          let v35 = v38.getContext('2d', v22 ? v2.pseudoToNative(v22) : void 0);
-          return v11(v35, this);
+        if (__var_38.width > __var_6 && (__var_38.width = __var_6), __var_38.height > __var_6 && (__var_38.height = __var_6), __var_12 === '2d') {
+          let __var_35 = __var_38.getContext('2d', __var_22 ? __var_2.pseudoToNative(__var_22) : void 0);
+          return __fn_11(__var_35, this);
         }
-        throw new Error(`Context type "${ v12 }" is not supported`);
-      })), v2.setProperty(v21, 'width', Interpreter.VALUE_IN_DESCRIPTOR, {
-        get: v2.createNativeFunction(function() {
+        throw new Error(`Context type "${ __var_12 }" is not supported`);
+      })), __var_2.setProperty(__var_21, 'width', Interpreter.VALUE_IN_DESCRIPTOR, {
+        get: __var_2.createNativeFunction(function() {
           return this.native.tagName === 'CANVAS' ? this.native.width : this.native.width;
         }),
-        set: v2.createNativeFunction(function(v12) {
-          v3.settings.logCalls && console.log(l.domain, 'set width', this, v12), this.native.tagName === 'CANVAS' && (this.native.width = Math.min(v12, v6));
+        set: __var_2.createNativeFunction(function(__var_12) {
+          __var_3.settings.logCalls && console.log(l.domain, 'set width', this, __var_12), this.native.tagName === 'CANVAS' && (this.native.width = Math.min(__var_12, __var_6));
         })
-      }), v2.setProperty(v21, 'height', Interpreter.VALUE_IN_DESCRIPTOR, {
-        get: v2.createNativeFunction(function() {
+      }), __var_2.setProperty(__var_21, 'height', Interpreter.VALUE_IN_DESCRIPTOR, {
+        get: __var_2.createNativeFunction(function() {
           return this.native.tagName === 'CANVAS' ? this.native.height : this.native.height;
         }),
-        set: v2.createNativeFunction(function(v12) {
-          v3.settings.logCalls && console.log(l.domain, 'set height', this, v12), this.native.tagName === 'CANVAS' && (this.native.height = Math.min(v12, v6));
+        set: __var_2.createNativeFunction(function(__var_12) {
+          __var_3.settings.logCalls && console.log(l.domain, 'set height', this, __var_12), this.native.tagName === 'CANVAS' && (this.native.height = Math.min(__var_12, __var_6));
         })
-      }), v2.setProperty(v21, 'toDataURL', v2.createNativeFunction(function(v12, v22) {
+      }), __var_2.setProperty(__var_21, 'toDataURL', __var_2.createNativeFunction(function(__var_12, __var_22) {
         if (this.native.tagName !== 'CANVAS')
           throw new Error('toDataURL is only available on canvas elements');
-        return v3.settings.logCalls && console.log(l.domain, 'toDataURL', this, v12, v22), this.native.toDataURL(v12, v22);
+        return __var_3.settings.logCalls && console.log(l.domain, 'toDataURL', this, __var_12, __var_22), this.native.toDataURL(__var_12, __var_22);
       }));
     },
-    resetDrawCounts: v10,
-    contextToPseudo: v11
+    resetDrawCounts: __fn_10,
+    contextToPseudo: __fn_11
   };
 }
 
-function v39(v2, u, l) {
-  let v8 = 0,
-    v9 = window.location.origin;
+function __fn_39(__var_2, u, l) {
+  let __var_8 = 0,
+    __fn_9 = window.location.origin;
 
-  function v10(v19) {
-    if (typeof v19 != 'string' || v19.startsWith('/') || v19.startsWith('./') || v19.startsWith('../') || !v19.startsWith('http://') && !v19.startsWith('https://'))
+  function __fn_10(__var_19) {
+    if (typeof __var_19 != 'string' || __var_19.startsWith('/') || __var_19.startsWith('./') || __var_19.startsWith('../') || !__var_19.startsWith('http://') && !__var_19.startsWith('https://'))
       return !1;
     try {
-      let v20 = new URL(v19);
-      if (v20.origin === v9 || v20.hostname === 'kicya.net' || v20.hostname.endsWith('.kicya.net') || v20.hostname === 'nekoweb.org')
+      let __var_20 = new URL(__var_19);
+      if (__var_20.origin === __fn_9 || __var_20.hostname === 'kicya.net' || __var_20.hostname.endsWith('.kicya.net') || __var_20.hostname === 'nekoweb.org')
         return !1;
-      let v23 = v20.hostname.toLowerCase();
-      return !(v23 === 'localhost' || v23 === '127.0.0.1' || v23 === '0.0.0.0' || v23.startsWith('192.168.') || v23.startsWith('10.') || v23.startsWith('172.16.') || v23.startsWith('172.17.') || v23.startsWith('172.18.') || v23.startsWith('172.19.') || v23.startsWith('172.2') || v23.startsWith('172.30.') || v23.startsWith('172.31.') || v23 === '[::1]');
+      let __fn_23 = __var_20.hostname.toLowerCase();
+      return !(__fn_23 === 'localhost' || __fn_23 === '127.0.0.1' || __fn_23 === '0.0.0.0' || __fn_23.startsWith('192.168.') || __fn_23.startsWith('10.') || __fn_23.startsWith('172.16.') || __fn_23.startsWith('172.17.') || __fn_23.startsWith('172.18.') || __fn_23.startsWith('172.19.') || __fn_23.startsWith('172.2') || __fn_23.startsWith('172.30.') || __fn_23.startsWith('172.31.') || __fn_23 === '[::1]');
     } catch {
       return !1;
     }
   }
-  let v11 = 0,
-    v13 = v2.nativeToPseudo({});
-  v2.setProperty(u, '__xhrCallbacks', v13);
+  let __fn_11 = 0,
+    __var_13 = __var_2.nativeToPseudo({});
+  __var_2.setProperty(u, '__xhrCallbacks', __var_13);
 
-  function v14(v19, ...v20) {
-    if (!v19 || typeof v19 != 'object')
+  function __var_14(__var_19, ...__var_20) {
+    if (!__var_19 || typeof __var_19 != 'object')
       return;
-    let v23 = v11++;
-    v2.setProperty(v13, 'fn' + v23, v19);
-    let v24 = v20.map((v26, v27) => {
-        let v28 = 'arg' + v23 + '_' + v27;
-        return v2.setProperty(v13, v28, v26), v28;
+    let __fn_23 = __fn_11++;
+    __var_2.setProperty(__var_13, 'fn' + __fn_23, __var_19);
+    let __var_24 = __var_20.map((__var_26, __fn_27) => {
+        let __var_28 = 'arg' + __fn_23 + '_' + __fn_27;
+        return __var_2.setProperty(__var_13, __var_28, __var_26), __var_28;
       }),
-      v25 = v24.map(v26 => `__xhrCallbacks.${ v26 }`).join(',');
-    v2.appendCode(`__xhrCallbacks.fn${ v23 }(${ v25 }); delete __xhrCallbacks.fn${ v23 }; ${ v24.map(v26 => `delete __xhrCallbacks.${ v26 }`).join('; ') };`);
+      __var_25 = __var_24.map(__var_26 => `__xhrCallbacks.${ __var_26 }`).join(',');
+    __var_2.appendCode(`__xhrCallbacks.fn${ __fn_23 }(${ __var_25 }); delete __xhrCallbacks.fn${ __fn_23 }; ${ __var_24.map(__var_26 => `delete __xhrCallbacks.${ __var_26 }`).join('; ') };`);
   }
-  let v15 = v2.createNativeFunction(function() {
-    v3.settings.logCalls && console.log(l.domain, 'XMLHttpRequest', this), this.native = new window.XMLHttpRequest(), this._method = null, this._url = null, this._async = !0, this._headers = {}, this._eventHandlers = {};
-    let v20 = this;
+  let __fn_15 = __var_2.createNativeFunction(function() {
+    __var_3.settings.logCalls && console.log(l.domain, 'XMLHttpRequest', this), this.native = new window.XMLHttpRequest(), this._method = null, this._url = null, this._async = !0, this._headers = {}, this._eventHandlers = {};
+    let __var_20 = this;
     this.native.onreadystatechange = function() {
-      v2.setProperty(v20, 'readyState', v20.native.readyState), v20.native.readyState === 4 && (v2.setProperty(v20, 'status', v20.native.status), v2.setProperty(v20, 'statusText', v20.native.statusText), v2.setProperty(v20, 'responseText', v20.native.responseText?.slice(0, 5242880) || ''), v2.setProperty(v20, 'responseURL', v20.native.responseURL), v8 = Math.max(0, v8 - 1)), v20._eventHandlers.onreadystatechange && v14(v20._eventHandlers.onreadystatechange);
+      __var_2.setProperty(__var_20, 'readyState', __var_20.native.readyState), __var_20.native.readyState === 4 && (__var_2.setProperty(__var_20, 'status', __var_20.native.status), __var_2.setProperty(__var_20, 'statusText', __var_20.native.statusText), __var_2.setProperty(__var_20, 'responseText', __var_20.native.responseText?.slice(0, 5242880) || ''), __var_2.setProperty(__var_20, 'responseURL', __var_20.native.responseURL), __var_8 = Math.max(0, __var_8 - 1)), __var_20._eventHandlers.onreadystatechange && __var_14(__var_20._eventHandlers.onreadystatechange);
     }, this.native.onload = function() {
-      v20._eventHandlers.onload && v14(v20._eventHandlers.onload);
+      __var_20._eventHandlers.onload && __var_14(__var_20._eventHandlers.onload);
     }, this.native.onerror = function() {
-      v8 = Math.max(0, v8 - 1), v20._eventHandlers.onerror && v14(v20._eventHandlers.onerror);
+      __var_8 = Math.max(0, __var_8 - 1), __var_20._eventHandlers.onerror && __var_14(__var_20._eventHandlers.onerror);
     }, this.native.ontimeout = function() {
-      v8 = Math.max(0, v8 - 1), v20._eventHandlers.ontimeout && v14(v20._eventHandlers.ontimeout);
+      __var_8 = Math.max(0, __var_8 - 1), __var_20._eventHandlers.ontimeout && __var_14(__var_20._eventHandlers.ontimeout);
     }, this.native.onabort = function() {
-      v8 = Math.max(0, v8 - 1), v20._eventHandlers.onabort && v14(v20._eventHandlers.onabort);
-    }, this.native.onprogress = function(v23) {
-      if (v20._eventHandlers.onprogress) {
-        let v24 = v2.nativeToPseudo({
-          loaded: v23.loaded,
-          total: v23.total,
-          lengthComputable: v23.lengthComputable
+      __var_8 = Math.max(0, __var_8 - 1), __var_20._eventHandlers.onabort && __var_14(__var_20._eventHandlers.onabort);
+    }, this.native.onprogress = function(__fn_23) {
+      if (__var_20._eventHandlers.onprogress) {
+        let __var_24 = __var_2.nativeToPseudo({
+          loaded: __fn_23.loaded,
+          total: __fn_23.total,
+          lengthComputable: __fn_23.lengthComputable
         });
-        v14(v20._eventHandlers.onprogress, v24);
+        __var_14(__var_20._eventHandlers.onprogress, __var_24);
       }
     }, this.native.onloadstart = function() {
-      v20._eventHandlers.onloadstart && v14(v20._eventHandlers.onloadstart);
+      __var_20._eventHandlers.onloadstart && __var_14(__var_20._eventHandlers.onloadstart);
     }, this.native.onloadend = function() {
-      v20._eventHandlers.onloadend && v14(v20._eventHandlers.onloadend);
-    }, v2.setProperty(this, 'readyState', 0), v2.setProperty(this, 'status', 0), v2.setProperty(this, 'statusText', ''), v2.setProperty(this, 'responseText', ''), v2.setProperty(this, 'responseURL', '');
+      __var_20._eventHandlers.onloadend && __var_14(__var_20._eventHandlers.onloadend);
+    }, __var_2.setProperty(this, 'readyState', 0), __var_2.setProperty(this, 'status', 0), __var_2.setProperty(this, 'statusText', ''), __var_2.setProperty(this, 'responseText', ''), __var_2.setProperty(this, 'responseURL', '');
   }, !0);
-  v2.setProperty(u, 'XMLHttpRequest', v15);
-  let v17 = v2.getProperty(v15, 'prototype');
-  v2.setProperty(v15, 'UNSENT', 0), v2.setProperty(v15, 'OPENED', 1), v2.setProperty(v15, 'HEADERS_RECEIVED', 2), v2.setProperty(v15, 'LOADING', 3), v2.setProperty(v15, 'DONE', 4), v2.setProperty(v17, 'UNSENT', 0), v2.setProperty(v17, 'OPENED', 1), v2.setProperty(v17, 'HEADERS_RECEIVED', 2), v2.setProperty(v17, 'LOADING', 3), v2.setProperty(v17, 'DONE', 4);
-  let v18 = [
+  __var_2.setProperty(u, 'XMLHttpRequest', __fn_15);
+  let __var_17 = __var_2.getProperty(__fn_15, 'prototype');
+  __var_2.setProperty(__fn_15, 'UNSENT', 0), __var_2.setProperty(__fn_15, 'OPENED', 1), __var_2.setProperty(__fn_15, 'HEADERS_RECEIVED', 2), __var_2.setProperty(__fn_15, 'LOADING', 3), __var_2.setProperty(__fn_15, 'DONE', 4), __var_2.setProperty(__var_17, 'UNSENT', 0), __var_2.setProperty(__var_17, 'OPENED', 1), __var_2.setProperty(__var_17, 'HEADERS_RECEIVED', 2), __var_2.setProperty(__var_17, 'LOADING', 3), __var_2.setProperty(__var_17, 'DONE', 4);
+  let __fn_18 = [
     'onreadystatechange',
     'onload',
     'onerror',
@@ -496,45 +496,45 @@ function v39(v2, u, l) {
     'onloadstart',
     'onloadend'
   ];
-  for (let v19 of v18)
-    v2.setProperty(v17, v19, Interpreter.VALUE_IN_DESCRIPTOR, {
-      get: v2.createNativeFunction(function() {
-        return this._eventHandlers[v19] || null;
+  for (let __var_19 of __fn_18)
+    __var_2.setProperty(__var_17, __var_19, Interpreter.VALUE_IN_DESCRIPTOR, {
+      get: __var_2.createNativeFunction(function() {
+        return this._eventHandlers[__var_19] || null;
       }),
-      set: v2.createNativeFunction(function(v20) {
-        v3.settings.logCalls && console.log(l.domain, 'XMLHttpRequest set ' + v19, this, v20), this._eventHandlers[v19] = v20;
+      set: __var_2.createNativeFunction(function(__var_20) {
+        __var_3.settings.logCalls && console.log(l.domain, 'XMLHttpRequest set ' + __var_19, this, __var_20), this._eventHandlers[__var_19] = __var_20;
       })
     });
-  v2.setProperty(v17, 'timeout', Interpreter.VALUE_IN_DESCRIPTOR, {
-    get: v2.createNativeFunction(function() {
+  __var_2.setProperty(__var_17, 'timeout', Interpreter.VALUE_IN_DESCRIPTOR, {
+    get: __var_2.createNativeFunction(function() {
       return this.native.timeout;
     }),
-    set: v2.createNativeFunction(function(v19) {
-      this.native.timeout = Math.min(v19, 30000);
+    set: __var_2.createNativeFunction(function(__var_19) {
+      this.native.timeout = Math.min(__var_19, 30000);
     })
-  }), v2.setProperty(v17, 'withCredentials', Interpreter.VALUE_IN_DESCRIPTOR, {
-    get: v2.createNativeFunction(function() {
+  }), __var_2.setProperty(__var_17, 'withCredentials', Interpreter.VALUE_IN_DESCRIPTOR, {
+    get: __var_2.createNativeFunction(function() {
       return this.native.withCredentials;
     }),
-    set: v2.createNativeFunction(function(v19) {
+    set: __var_2.createNativeFunction(function(__var_19) {
       this.native.withCredentials = !1;
     })
-  }), v2.setProperty(v17, 'responseType', Interpreter.VALUE_IN_DESCRIPTOR, {
-    get: v2.createNativeFunction(function() {
+  }), __var_2.setProperty(__var_17, 'responseType', Interpreter.VALUE_IN_DESCRIPTOR, {
+    get: __var_2.createNativeFunction(function() {
       return this.native.responseType;
     }),
-    set: v2.createNativeFunction(function(v19) {
-      (v19 === '' || v19 === 'text' || v19 === 'json') && (this.native.responseType = v19);
+    set: __var_2.createNativeFunction(function(__var_19) {
+      (__var_19 === '' || __var_19 === 'text' || __var_19 === 'json') && (this.native.responseType = __var_19);
     })
-  }), v2.setProperty(v17, 'response', Interpreter.VALUE_IN_DESCRIPTOR, {
-    get: v2.createNativeFunction(function() {
-      let v19 = this.native.response;
-      return this.native.responseType === 'json' ? v2.nativeToPseudo(v19) : typeof v19 == 'string' ? v19.slice(0, 5242880) : v19;
+  }), __var_2.setProperty(__var_17, 'response', Interpreter.VALUE_IN_DESCRIPTOR, {
+    get: __var_2.createNativeFunction(function() {
+      let __var_19 = this.native.response;
+      return this.native.responseType === 'json' ? __var_2.nativeToPseudo(__var_19) : typeof __var_19 == 'string' ? __var_19.slice(0, 5242880) : __var_19;
     })
-  }), v2.setProperty(v17, 'open', v2.createNativeFunction(function(v19, v20, v23, v24, v25) {
-    if (!v10(v20))
-      throw new Error(`XHR request blocked: URL "${ v20 }" is not allowed. Only absolute URLs to external origins are permitted.`);
-    let v26 = [
+  }), __var_2.setProperty(__var_17, 'open', __var_2.createNativeFunction(function(__var_19, __var_20, __fn_23, __var_24, __var_25) {
+    if (!__fn_10(__var_20))
+      throw new Error(`XHR request blocked: URL "${ __var_20 }" is not allowed. Only absolute URLs to external origins are permitted.`);
+    let __var_26 = [
       'GET',
       'POST',
       'PUT',
@@ -543,10 +543,10 @@ function v39(v2, u, l) {
       'HEAD',
       'OPTIONS'
     ];
-    if (v19 = String(v19).toUpperCase(), !v26.includes(v19))
-      throw new Error(`HTTP method "${ v19 }" is not allowed`);
-    v3.settings.logCalls && console.log(l.domain, 'XMLHttpRequest open', this, v19, v20, v23, v24, v25), this._method = v19, this._url = v20, this._async = v23 !== !1, this.native.open(v19, v20, this._async), this.native.timeout = 30000, v2.setProperty(this, 'readyState', this.native.readyState);
-  })), v2.setProperty(v17, 'setRequestHeader', v2.createNativeFunction(function(v19, v20) {
+    if (__var_19 = String(__var_19).toUpperCase(), !__var_26.includes(__var_19))
+      throw new Error(`HTTP method "${ __var_19 }" is not allowed`);
+    __var_3.settings.logCalls && console.log(l.domain, 'XMLHttpRequest open', this, __var_19, __var_20, __fn_23, __var_24, __var_25), this._method = __var_19, this._url = __var_20, this._async = __fn_23 !== !1, this.native.open(__var_19, __var_20, this._async), this.native.timeout = 30000, __var_2.setProperty(this, 'readyState', this.native.readyState);
+  })), __var_2.setProperty(__var_17, 'setRequestHeader', __var_2.createNativeFunction(function(__var_19, __var_20) {
     if ([
         'cookie',
         'cookie2',
@@ -555,41 +555,41 @@ function v39(v2, u, l) {
         'host',
         'origin',
         'referer'
-      ].includes(v19.toLowerCase()))
-      throw new Error(`Setting header "${ v19 }" is not allowed`);
-    v3.settings.logCalls && console.log(l.domain, 'XMLHttpRequest setRequestHeader', this, v19, v20), this._headers[v19] = v20, this.native.setRequestHeader(v19, v20);
-  })), v2.setProperty(v17, 'send', v2.createNativeFunction(function(v19) {
-    if (v8 >= 5)
+      ].includes(__var_19.toLowerCase()))
+      throw new Error(`Setting header "${ __var_19 }" is not allowed`);
+    __var_3.settings.logCalls && console.log(l.domain, 'XMLHttpRequest setRequestHeader', this, __var_19, __var_20), this._headers[__var_19] = __var_20, this.native.setRequestHeader(__var_19, __var_20);
+  })), __var_2.setProperty(__var_17, 'send', __var_2.createNativeFunction(function(__var_19) {
+    if (__var_8 >= 5)
       throw new Error('Maximum concurrent requests (5) exceeded');
-    v3.settings.logCalls && console.log(l.domain, 'XMLHttpRequest send', this, v19), v8++;
-    let v20 = null;
-    v19 != null && (typeof v19 == 'string' ? v20 = v19.slice(0, 5242880) : typeof v19 == 'object' && (v20 = JSON.stringify(v2.pseudoToNative(v19)))), this.native.send(v20);
-  })), v2.setProperty(v17, 'abort', v2.createNativeFunction(function() {
-    v3.settings.logCalls && console.log(l.domain, 'XMLHttpRequest abort', this), this.native.abort(), v8 = Math.max(0, v8 - 1);
-  })), v2.setProperty(v17, 'getResponseHeader', v2.createNativeFunction(function(v19) {
-    return this.native.getResponseHeader(v19);
-  })), v2.setProperty(v17, 'getAllResponseHeaders', v2.createNativeFunction(function() {
+    __var_3.settings.logCalls && console.log(l.domain, 'XMLHttpRequest send', this, __var_19), __var_8++;
+    let __var_20 = null;
+    __var_19 != null && (typeof __var_19 == 'string' ? __var_20 = __var_19.slice(0, 5242880) : typeof __var_19 == 'object' && (__var_20 = JSON.stringify(__var_2.pseudoToNative(__var_19)))), this.native.send(__var_20);
+  })), __var_2.setProperty(__var_17, 'abort', __var_2.createNativeFunction(function() {
+    __var_3.settings.logCalls && console.log(l.domain, 'XMLHttpRequest abort', this), this.native.abort(), __var_8 = Math.max(0, __var_8 - 1);
+  })), __var_2.setProperty(__var_17, 'getResponseHeader', __var_2.createNativeFunction(function(__var_19) {
+    return this.native.getResponseHeader(__var_19);
+  })), __var_2.setProperty(__var_17, 'getAllResponseHeaders', __var_2.createNativeFunction(function() {
     return this.native.getAllResponseHeaders();
-  })), v2.setProperty(v17, 'overrideMimeType', v2.createNativeFunction(function(v19) {
-    this.native.overrideMimeType(v19);
+  })), __var_2.setProperty(__var_17, 'overrideMimeType', __var_2.createNativeFunction(function(__var_19) {
+    this.native.overrideMimeType(__var_19);
   }));
 }
-var v40 = 'webtiles_storage',
-  v41 = 1,
-  v42 = 'localStorage',
-  v43 = 1024 * 1024,
-  v44 = 100,
-  v45 = null,
-  v46 = null;
+var __var_40 = 'webtiles_storage',
+  __var_41 = 1,
+  __var_42 = 'localStorage',
+  __var_43 = 1024 * 1024,
+  __var_44 = 100,
+  __var_45 = null,
+  __var_46 = null;
 
-function v47() {
-  return v46 || (v46 = new Promise((v2, u) => {
-    let v48 = indexedDB.open(v40, v41);
-    v48.onerror = () => u(v48.error), v48.onsuccess = () => {
-      v45 = v48.result, v2(v45);
-    }, v48.onupgradeneeded = v5 => {
-      let v6 = v5.target.result;
-      v6.objectStoreNames.contains(v42) || v6.createObjectStore(v42, {
+function __fn_47() {
+  return __var_46 || (__var_46 = new Promise((__var_2, u) => {
+    let __var_48 = indexedDB.open(__var_40, __var_41);
+    __var_48.onerror = () => u(__var_48.error), __var_48.onsuccess = () => {
+      __var_45 = __var_48.result, __var_2(__var_45);
+    }, __var_48.onupgradeneeded = __var_5 => {
+      let __var_6 = __var_5.target.result;
+      __var_6.objectStoreNames.contains(__var_42) || __var_6.createObjectStore(__var_42, {
         keyPath: [
           'site',
           'key'
@@ -598,443 +598,443 @@ function v47() {
         unique: !1
       });
     };
-  }), v46);
+  }), __var_46);
 }
-async function v49(v2, u) {
-  return await v47(), new Promise((v48, v5) => {
-    let v8 = v45.transaction(v42, 'readonly').objectStore(v42).get([
-      v2,
+async function __fn_49(__var_2, u) {
+  return await __fn_47(), new Promise((__var_48, __var_5) => {
+    let __var_8 = __var_45.transaction(__var_42, 'readonly').objectStore(__var_42).get([
+      __var_2,
       u
     ]);
-    v8.onsuccess = () => v48(v8.result?.value ?? null), v8.onerror = () => v5(v8.error);
+    __var_8.onsuccess = () => __var_48(__var_8.result?.value ?? null), __var_8.onerror = () => __var_5(__var_8.error);
   });
 }
-async function v50(v2, u, v48) {
-  return await v47(), new Promise((v5, v6) => {
-    let v9 = v45.transaction(v42, 'readwrite').objectStore(v42).put({
-      site: v2,
+async function __fn_50(__var_2, u, __var_48) {
+  return await __fn_47(), new Promise((__var_5, __var_6) => {
+    let __fn_9 = __var_45.transaction(__var_42, 'readwrite').objectStore(__var_42).put({
+      site: __var_2,
       key: u,
-      value: v48
+      value: __var_48
     });
-    v9.onsuccess = () => v5(), v9.onerror = () => v6(v9.error);
+    __fn_9.onsuccess = () => __var_5(), __fn_9.onerror = () => __var_6(__fn_9.error);
   });
 }
-async function v51(v2, u) {
-  return await v47(), new Promise((v48, v5) => {
-    let v8 = v45.transaction(v42, 'readwrite').objectStore(v42).delete([
-      v2,
+async function __fn_51(__var_2, u) {
+  return await __fn_47(), new Promise((__var_48, __var_5) => {
+    let __var_8 = __var_45.transaction(__var_42, 'readwrite').objectStore(__var_42).delete([
+      __var_2,
       u
     ]);
-    v8.onsuccess = () => v48(), v8.onerror = () => v5(v8.error);
+    __var_8.onsuccess = () => __var_48(), __var_8.onerror = () => __var_5(__var_8.error);
   });
 }
-async function v52(v2) {
-  return await v47(), new Promise((u, v48) => {
-    let v8 = v45.transaction(v42, 'readonly').objectStore(v42).index('site').getAll(v2);
-    v8.onsuccess = () => {
-      let v9 = v8.result.map(v10 => v10.key);
-      u(v9);
-    }, v8.onerror = () => v48(v8.error);
+async function __fn_52(__var_2) {
+  return await __fn_47(), new Promise((u, __var_48) => {
+    let __var_8 = __var_45.transaction(__var_42, 'readonly').objectStore(__var_42).index('site').getAll(__var_2);
+    __var_8.onsuccess = () => {
+      let __fn_9 = __var_8.result.map(__fn_10 => __fn_10.key);
+      u(__fn_9);
+    }, __var_8.onerror = () => __var_48(__var_8.error);
   });
 }
-async function v53(v2) {
-  return await v47(), new Promise((u, v48) => {
-    let v8 = v45.transaction(v42, 'readonly').objectStore(v42).index('site').getAll(v2);
-    v8.onsuccess = () => {
-      let v9 = 0;
-      for (let v10 of v8.result)
-        v9 += (v10.key.length + v10.value.length) * 2;
+async function __fn_53(__var_2) {
+  return await __fn_47(), new Promise((u, __var_48) => {
+    let __var_8 = __var_45.transaction(__var_42, 'readonly').objectStore(__var_42).index('site').getAll(__var_2);
+    __var_8.onsuccess = () => {
+      let __fn_9 = 0;
+      for (let __fn_10 of __var_8.result)
+        __fn_9 += (__fn_10.key.length + __fn_10.value.length) * 2;
       u({
-        size: v9,
-        count: v8.result.length
+        size: __fn_9,
+        count: __var_8.result.length
       });
-    }, v8.onerror = () => v48(v8.error);
+    }, __var_8.onerror = () => __var_48(__var_8.error);
   });
 }
-async function v54(v2) {
-  return await v47(), new Promise((u, v48) => {
-    let v8 = v45.transaction(v42, 'readwrite').objectStore(v42).index('site').openCursor(v2);
-    v8.onsuccess = v9 => {
-      let v10 = v9.target.result;
-      v10 ? (v10.delete(), v10.continue()) : u();
-    }, v8.onerror = () => v48(v8.error);
+async function __fn_54(__var_2) {
+  return await __fn_47(), new Promise((u, __var_48) => {
+    let __var_8 = __var_45.transaction(__var_42, 'readwrite').objectStore(__var_42).index('site').openCursor(__var_2);
+    __var_8.onsuccess = __fn_9 => {
+      let __fn_10 = __fn_9.target.result;
+      __fn_10 ? (__fn_10.delete(), __fn_10.continue()) : u();
+    }, __var_8.onerror = () => __var_48(__var_8.error);
   });
 }
 
-function v55(v2, u, v48) {
-  let v5 = v2.nativeToPseudo({});
-  v2.setProperty(v5, 'getItem', v2.createAsyncFunction(function(v6, v7) {
-    if (v3.settings.logCalls && console.log(v48, 'localStorage.getItem', this, v6), v6 == null) {
-      v7(null);
+function __fn_55(__var_2, u, __var_48) {
+  let __var_5 = __var_2.nativeToPseudo({});
+  __var_2.setProperty(__var_5, 'getItem', __var_2.createAsyncFunction(function(__var_6, __var_7) {
+    if (__var_3.settings.logCalls && console.log(__var_48, 'localStorage.getItem', this, __var_6), __var_6 == null) {
+      __var_7(null);
       return;
     }
-    v6 = String(v6), v49(v48, v6).then(v8 => v7(v8)).catch(v8 => {
-      console.error('localStorage.getItem error:', v8), v7(null);
+    __var_6 = String(__var_6), __fn_49(__var_48, __var_6).then(__var_8 => __var_7(__var_8)).catch(__var_8 => {
+      console.error('localStorage.getItem error:', __var_8), __var_7(null);
     });
-  })), v2.setProperty(v5, 'setItem', v2.createAsyncFunction(function(v6, v7, v8) {
-    if (v3.settings.logCalls && console.log(v48, 'localStorage.setItem', this, v6, v7), v6 == null) {
-      v8();
+  })), __var_2.setProperty(__var_5, 'setItem', __var_2.createAsyncFunction(function(__var_6, __var_7, __var_8) {
+    if (__var_3.settings.logCalls && console.log(__var_48, 'localStorage.setItem', this, __var_6, __var_7), __var_6 == null) {
+      __var_8();
       return;
     }
-    v6 = String(v6), v7 = String(v7), v53(v48).then(({
-      size: v9,
-      count: v10
+    __var_6 = String(__var_6), __var_7 = String(__var_7), __fn_53(__var_48).then(({
+      size: __fn_9,
+      count: __fn_10
     }) => {
-      v49(v48, v6).then(v11 => {
-        if (v11 === null && v10 >= v44)
-          throw new Error(`localStorage item limit exceeded (max ${ v44 } items)`);
-        let v14 = v11 ? (v6.length + v11.length) * 2 : 0,
-          v15 = (v6.length + v7.length) * 2;
-        if (v9 - v14 + v15 > v43)
-          throw new Error(`localStorage size limit exceeded (max ${ v43 / 1024 }KB)`);
-        return v50(v48, v6, v7);
-      }).then(() => v8()).catch(v11 => {
-        throw console.error('localStorage.setItem error:', v11), v11;
+      __fn_49(__var_48, __var_6).then(__fn_11 => {
+        if (__fn_11 === null && __fn_10 >= __var_44)
+          throw new Error(`localStorage item limit exceeded (max ${ __var_44 } items)`);
+        let __var_14 = __fn_11 ? (__var_6.length + __fn_11.length) * 2 : 0,
+          __fn_15 = (__var_6.length + __var_7.length) * 2;
+        if (__fn_9 - __var_14 + __fn_15 > __var_43)
+          throw new Error(`localStorage size limit exceeded (max ${ __var_43 / 1024 }KB)`);
+        return __fn_50(__var_48, __var_6, __var_7);
+      }).then(() => __var_8()).catch(__fn_11 => {
+        throw console.error('localStorage.setItem error:', __fn_11), __fn_11;
       });
-    }).catch(v9 => {
-      console.error('localStorage.setItem error:', v9), v8();
+    }).catch(__fn_9 => {
+      console.error('localStorage.setItem error:', __fn_9), __var_8();
     });
-  })), v2.setProperty(v5, 'removeItem', v2.createAsyncFunction(function(v6, v7) {
-    if (v3.settings.logCalls && console.log(v48, 'localStorage.removeItem', this, v6), v6 == null) {
-      v7();
+  })), __var_2.setProperty(__var_5, 'removeItem', __var_2.createAsyncFunction(function(__var_6, __var_7) {
+    if (__var_3.settings.logCalls && console.log(__var_48, 'localStorage.removeItem', this, __var_6), __var_6 == null) {
+      __var_7();
       return;
     }
-    v6 = String(v6), v51(v48, v6).then(() => v7()).catch(v8 => {
-      console.error('localStorage.removeItem error:', v8), v7();
+    __var_6 = String(__var_6), __fn_51(__var_48, __var_6).then(() => __var_7()).catch(__var_8 => {
+      console.error('localStorage.removeItem error:', __var_8), __var_7();
     });
-  })), v2.setProperty(v5, 'clear', v2.createAsyncFunction(function(v6) {
-    v3.settings.logCalls && console.log(v48, 'localStorage.clear', this), v54(v48).then(() => v6()).catch(v7 => {
-      console.error('localStorage.clear error:', v7), v6();
+  })), __var_2.setProperty(__var_5, 'clear', __var_2.createAsyncFunction(function(__var_6) {
+    __var_3.settings.logCalls && console.log(__var_48, 'localStorage.clear', this), __fn_54(__var_48).then(() => __var_6()).catch(__var_7 => {
+      console.error('localStorage.clear error:', __var_7), __var_6();
     });
-  })), v2.setProperty(v5, 'key', v2.createAsyncFunction(function(v6, v7) {
-    v6 = parseInt(v6) || 0, v52(v48).then(v8 => {
-      v7(v6 >= 0 && v6 < v8.length ? v8[v6] : null);
-    }).catch(v8 => {
-      console.error('localStorage.key error:', v8), v7(null);
+  })), __var_2.setProperty(__var_5, 'key', __var_2.createAsyncFunction(function(__var_6, __var_7) {
+    __var_6 = parseInt(__var_6) || 0, __fn_52(__var_48).then(__var_8 => {
+      __var_7(__var_6 >= 0 && __var_6 < __var_8.length ? __var_8[__var_6] : null);
+    }).catch(__var_8 => {
+      console.error('localStorage.key error:', __var_8), __var_7(null);
     });
-  })), v2.setProperty(v5, 'getLength', v2.createAsyncFunction(function(v6) {
-    v53(v48).then(({
-      count: v7
-    }) => v6(v7)).catch(v7 => {
-      console.error('localStorage.getLength error:', v7), v6(0);
+  })), __var_2.setProperty(__var_5, 'getLength', __var_2.createAsyncFunction(function(__var_6) {
+    __fn_53(__var_48).then(({
+      count: __var_7
+    }) => __var_6(__var_7)).catch(__var_7 => {
+      console.error('localStorage.getLength error:', __var_7), __var_6(0);
     });
-  })), v2.setProperty(u, 'localStorage', v5), v2.setProperty(u, 'sessionStorage', v5);
+  })), __var_2.setProperty(u, 'localStorage', __var_5), __var_2.setProperty(u, 'sessionStorage', __var_5);
 }
-v47().catch(v2 => {
-  console.error('Failed to initialize storage DB:', v2);
+__fn_47().catch(__var_2 => {
+  console.error('Failed to initialize storage DB:', __var_2);
 });
 
-function v56(v2, u, v48, v5) {
-  let v6 = v2.createNativeFunction(function() {}, !0);
-  v2.setProperty(u, 'DOMParser', v6);
-  let v7 = v2.getProperty(v6, 'prototype');
-  v2.setProperty(v7, 'parseFromString', v2.createNativeFunction(function(v8, v9) {
-    if (v3.settings.logCalls && console.log(v5.domain, 'DOMParser parseFromString', this, v8, v9), ![
+function __fn_56(__var_2, u, __var_48, __var_5) {
+  let __var_6 = __var_2.createNativeFunction(function() {}, !0);
+  __var_2.setProperty(u, 'DOMParser', __var_6);
+  let __var_7 = __var_2.getProperty(__var_6, 'prototype');
+  __var_2.setProperty(__var_7, 'parseFromString', __var_2.createNativeFunction(function(__var_8, __fn_9) {
+    if (__var_3.settings.logCalls && console.log(__var_5.domain, 'DOMParser parseFromString', this, __var_8, __fn_9), ![
         'text/html',
         'text/xml',
         'application/xml',
         'application/xhtml+xml',
         'image/svg+xml'
-      ].includes(v9))
-      throw new Error(`DOMParser: Unsupported MIME type "${ v9 }"`);
-    if (typeof v8 != 'string' && (v8 = String(v8)), v8.length > 100000)
+      ].includes(__fn_9))
+      throw new Error(`DOMParser: Unsupported MIME type "${ __fn_9 }"`);
+    if (typeof __var_8 != 'string' && (__var_8 = String(__var_8)), __var_8.length > 100000)
       throw new Error('DOMParser: Input string too large (max 100KB)');
-    let v13 = new DOMParser().parseFromString(v8, v9),
-      v14 = v2.createObjectProto(v2.OBJECT_PROTO);
+    let __var_13 = new DOMParser().parseFromString(__var_8, __fn_9),
+      __var_14 = __var_2.createObjectProto(__var_2.OBJECT_PROTO);
 
-    function v15(v17) {
-      if (v17 == null)
+    function __fn_15(__var_17) {
+      if (__var_17 == null)
         return null;
-      let v18 = v2.createObjectProto(v2.OBJECT_PROTO);
-      return v18.native = v17, v18.fromDOMParser = !0, v2.setProperty(v18, 'nodeName', Interpreter.VALUE_IN_DESCRIPTOR, {
-        get: v2.createNativeFunction(function() {
+      let __fn_18 = __var_2.createObjectProto(__var_2.OBJECT_PROTO);
+      return __fn_18.native = __var_17, __fn_18.fromDOMParser = !0, __var_2.setProperty(__fn_18, 'nodeName', Interpreter.VALUE_IN_DESCRIPTOR, {
+        get: __var_2.createNativeFunction(function() {
           return this.native.nodeName;
         })
-      }), v2.setProperty(v18, 'nodeType', Interpreter.VALUE_IN_DESCRIPTOR, {
-        get: v2.createNativeFunction(function() {
+      }), __var_2.setProperty(__fn_18, 'nodeType', Interpreter.VALUE_IN_DESCRIPTOR, {
+        get: __var_2.createNativeFunction(function() {
           return this.native.nodeType;
         })
-      }), v2.setProperty(v18, 'nodeValue', Interpreter.VALUE_IN_DESCRIPTOR, {
-        get: v2.createNativeFunction(function() {
+      }), __var_2.setProperty(__fn_18, 'nodeValue', Interpreter.VALUE_IN_DESCRIPTOR, {
+        get: __var_2.createNativeFunction(function() {
           return this.native.nodeValue;
         }),
-        set: v2.createNativeFunction(function(v19) {
-          v3.settings.logCalls && console.log(v5.domain, 'DOMParser set nodeValue', this, v19), this.native.nodeValue = v19;
+        set: __var_2.createNativeFunction(function(__var_19) {
+          __var_3.settings.logCalls && console.log(__var_5.domain, 'DOMParser set nodeValue', this, __var_19), this.native.nodeValue = __var_19;
         })
-      }), v2.setProperty(v18, 'textContent', Interpreter.VALUE_IN_DESCRIPTOR, {
-        get: v2.createNativeFunction(function() {
+      }), __var_2.setProperty(__fn_18, 'textContent', Interpreter.VALUE_IN_DESCRIPTOR, {
+        get: __var_2.createNativeFunction(function() {
           return this.native.textContent;
         }),
-        set: v2.createNativeFunction(function(v19) {
-          v3.settings.logCalls && console.log(v5.domain, 'DOMParser set textContent', this, v19), this.native.textContent = String(v19).slice(0, 50000);
+        set: __var_2.createNativeFunction(function(__var_19) {
+          __var_3.settings.logCalls && console.log(__var_5.domain, 'DOMParser set textContent', this, __var_19), this.native.textContent = String(__var_19).slice(0, 50000);
         })
-      }), v2.setProperty(v18, 'tagName', Interpreter.VALUE_IN_DESCRIPTOR, {
-        get: v2.createNativeFunction(function() {
+      }), __var_2.setProperty(__fn_18, 'tagName', Interpreter.VALUE_IN_DESCRIPTOR, {
+        get: __var_2.createNativeFunction(function() {
           return this.native.tagName;
         })
-      }), v2.setProperty(v18, 'id', Interpreter.VALUE_IN_DESCRIPTOR, {
-        get: v2.createNativeFunction(function() {
+      }), __var_2.setProperty(__fn_18, 'id', Interpreter.VALUE_IN_DESCRIPTOR, {
+        get: __var_2.createNativeFunction(function() {
           return this.native.id;
         }),
-        set: v2.createNativeFunction(function(v19) {
-          v3.settings.logCalls && console.log(v5.domain, 'DOMParser set id', this, v19), this.native.id = String(v19).slice(0, 100);
+        set: __var_2.createNativeFunction(function(__var_19) {
+          __var_3.settings.logCalls && console.log(__var_5.domain, 'DOMParser set id', this, __var_19), this.native.id = String(__var_19).slice(0, 100);
         })
-      }), v2.setProperty(v18, 'className', Interpreter.VALUE_IN_DESCRIPTOR, {
-        get: v2.createNativeFunction(function() {
+      }), __var_2.setProperty(__fn_18, 'className', Interpreter.VALUE_IN_DESCRIPTOR, {
+        get: __var_2.createNativeFunction(function() {
           return this.native.className;
         }),
-        set: v2.createNativeFunction(function(v19) {
-          v3.settings.logCalls && console.log(v5.domain, 'DOMParser set className', this, v19), this.native.className = String(v19).slice(0, 1000);
+        set: __var_2.createNativeFunction(function(__var_19) {
+          __var_3.settings.logCalls && console.log(__var_5.domain, 'DOMParser set className', this, __var_19), this.native.className = String(__var_19).slice(0, 1000);
         })
-      }), v2.setProperty(v18, 'innerHTML', Interpreter.VALUE_IN_DESCRIPTOR, {
-        get: v2.createNativeFunction(function() {
+      }), __var_2.setProperty(__fn_18, 'innerHTML', Interpreter.VALUE_IN_DESCRIPTOR, {
+        get: __var_2.createNativeFunction(function() {
           return this.native.innerHTML;
         }),
-        set: v2.createNativeFunction(function(v19) {
+        set: __var_2.createNativeFunction(function(__var_19) {
           throw new Error('innerHTML is not allowed. Create elements using document.createElement and append them instead or use innerText instead.');
         })
-      }), v2.setProperty(v18, 'outerHTML', Interpreter.VALUE_IN_DESCRIPTOR, {
-        get: v2.createNativeFunction(function() {
+      }), __var_2.setProperty(__fn_18, 'outerHTML', Interpreter.VALUE_IN_DESCRIPTOR, {
+        get: __var_2.createNativeFunction(function() {
           return this.native.outerHTML;
         })
-      }), v2.setProperty(v18, 'children', Interpreter.VALUE_IN_DESCRIPTOR, {
-        get: v2.createNativeFunction(function() {
-          let v19 = Array.from(this.native.children),
-            v20 = v2.createObjectProto(v2.ARRAY_PROTO);
-          for (let v23 = 0; v23 < v19.length; v23++)
-            v2.setProperty(v20, v23, v15(v19[v23]));
-          return v2.setProperty(v20, 'length', v19.length), v20;
+      }), __var_2.setProperty(__fn_18, 'children', Interpreter.VALUE_IN_DESCRIPTOR, {
+        get: __var_2.createNativeFunction(function() {
+          let __var_19 = Array.from(this.native.children),
+            __var_20 = __var_2.createObjectProto(__var_2.ARRAY_PROTO);
+          for (let __fn_23 = 0; __fn_23 < __var_19.length; __fn_23++)
+            __var_2.setProperty(__var_20, __fn_23, __fn_15(__var_19[__fn_23]));
+          return __var_2.setProperty(__var_20, 'length', __var_19.length), __var_20;
         })
-      }), v2.setProperty(v18, 'childNodes', Interpreter.VALUE_IN_DESCRIPTOR, {
-        get: v2.createNativeFunction(function() {
-          let v19 = Array.from(this.native.childNodes),
-            v20 = v2.createObjectProto(v2.ARRAY_PROTO);
-          for (let v23 = 0; v23 < v19.length; v23++)
-            v2.setProperty(v20, v23, v15(v19[v23]));
-          return v2.setProperty(v20, 'length', v19.length), v20;
+      }), __var_2.setProperty(__fn_18, 'childNodes', Interpreter.VALUE_IN_DESCRIPTOR, {
+        get: __var_2.createNativeFunction(function() {
+          let __var_19 = Array.from(this.native.childNodes),
+            __var_20 = __var_2.createObjectProto(__var_2.ARRAY_PROTO);
+          for (let __fn_23 = 0; __fn_23 < __var_19.length; __fn_23++)
+            __var_2.setProperty(__var_20, __fn_23, __fn_15(__var_19[__fn_23]));
+          return __var_2.setProperty(__var_20, 'length', __var_19.length), __var_20;
         })
-      }), v2.setProperty(v18, 'firstChild', Interpreter.VALUE_IN_DESCRIPTOR, {
-        get: v2.createNativeFunction(function() {
-          return v15(this.native.firstChild);
+      }), __var_2.setProperty(__fn_18, 'firstChild', Interpreter.VALUE_IN_DESCRIPTOR, {
+        get: __var_2.createNativeFunction(function() {
+          return __fn_15(this.native.firstChild);
         })
-      }), v2.setProperty(v18, 'lastChild', Interpreter.VALUE_IN_DESCRIPTOR, {
-        get: v2.createNativeFunction(function() {
-          return v15(this.native.lastChild);
+      }), __var_2.setProperty(__fn_18, 'lastChild', Interpreter.VALUE_IN_DESCRIPTOR, {
+        get: __var_2.createNativeFunction(function() {
+          return __fn_15(this.native.lastChild);
         })
-      }), v2.setProperty(v18, 'firstElementChild', Interpreter.VALUE_IN_DESCRIPTOR, {
-        get: v2.createNativeFunction(function() {
-          return v15(this.native.firstElementChild);
+      }), __var_2.setProperty(__fn_18, 'firstElementChild', Interpreter.VALUE_IN_DESCRIPTOR, {
+        get: __var_2.createNativeFunction(function() {
+          return __fn_15(this.native.firstElementChild);
         })
-      }), v2.setProperty(v18, 'lastElementChild', Interpreter.VALUE_IN_DESCRIPTOR, {
-        get: v2.createNativeFunction(function() {
-          return v15(this.native.lastElementChild);
+      }), __var_2.setProperty(__fn_18, 'lastElementChild', Interpreter.VALUE_IN_DESCRIPTOR, {
+        get: __var_2.createNativeFunction(function() {
+          return __fn_15(this.native.lastElementChild);
         })
-      }), v2.setProperty(v18, 'parentNode', Interpreter.VALUE_IN_DESCRIPTOR, {
-        get: v2.createNativeFunction(function() {
+      }), __var_2.setProperty(__fn_18, 'parentNode', Interpreter.VALUE_IN_DESCRIPTOR, {
+        get: __var_2.createNativeFunction(function() {
           if (!this.fromDOMParser)
             throw new Error('No access.');
-          return this.native.isSameNode(v48) ? null : (v3.settings.logCalls && console.log(v5.domain, 'DOMParser get parentNode', this), v15(this.native.parentNode));
+          return this.native.isSameNode(__var_48) ? null : (__var_3.settings.logCalls && console.log(__var_5.domain, 'DOMParser get parentNode', this), __fn_15(this.native.parentNode));
         })
-      }), v2.setProperty(v18, 'parentElement', Interpreter.VALUE_IN_DESCRIPTOR, {
-        get: v2.createNativeFunction(function() {
+      }), __var_2.setProperty(__fn_18, 'parentElement', Interpreter.VALUE_IN_DESCRIPTOR, {
+        get: __var_2.createNativeFunction(function() {
           if (!this.fromDOMParser)
             throw new Error('No access.');
-          return this.native.isSameNode(v48) ? null : (v3.settings.logCalls && console.log(v5.domain, 'DOMParser get parentElement', this), v15(this.native.parentElement));
+          return this.native.isSameNode(__var_48) ? null : (__var_3.settings.logCalls && console.log(__var_5.domain, 'DOMParser get parentElement', this), __fn_15(this.native.parentElement));
         })
-      }), v2.setProperty(v18, 'nextSibling', Interpreter.VALUE_IN_DESCRIPTOR, {
-        get: v2.createNativeFunction(function() {
+      }), __var_2.setProperty(__fn_18, 'nextSibling', Interpreter.VALUE_IN_DESCRIPTOR, {
+        get: __var_2.createNativeFunction(function() {
           if (!this.fromDOMParser)
             throw new Error('No access.');
-          return this.native.isSameNode(v48) ? null : (v3.settings.logCalls && console.log(v5.domain, 'DOMParser get nextSibling', this), v15(this.native.nextSibling));
+          return this.native.isSameNode(__var_48) ? null : (__var_3.settings.logCalls && console.log(__var_5.domain, 'DOMParser get nextSibling', this), __fn_15(this.native.nextSibling));
         })
-      }), v2.setProperty(v18, 'previousSibling', Interpreter.VALUE_IN_DESCRIPTOR, {
-        get: v2.createNativeFunction(function() {
+      }), __var_2.setProperty(__fn_18, 'previousSibling', Interpreter.VALUE_IN_DESCRIPTOR, {
+        get: __var_2.createNativeFunction(function() {
           if (!this.fromDOMParser)
             throw new Error('No access.');
-          return this.native.isSameNode(v48) ? null : (v3.settings.logCalls && console.log(v5.domain, 'DOMParser get previousSibling', this), v15(this.native.previousSibling));
+          return this.native.isSameNode(__var_48) ? null : (__var_3.settings.logCalls && console.log(__var_5.domain, 'DOMParser get previousSibling', this), __fn_15(this.native.previousSibling));
         })
-      }), v2.setProperty(v18, 'getAttributeNames', v2.createNativeFunction(function() {
+      }), __var_2.setProperty(__fn_18, 'getAttributeNames', __var_2.createNativeFunction(function() {
         if (!this.fromDOMParser)
           throw new Error('No access.');
-        let v19 = Array.from(this.native.getAttributeNames()),
-          v20 = v2.createObjectProto(v2.ARRAY_PROTO);
-        for (let v23 = 0; v23 < v19.length; v23++)
-          v2.setProperty(v20, v23, v19[v23]);
-        return v2.setProperty(v20, 'length', v19.length), v20;
-      })), v2.setProperty(v18, 'getAttribute', v2.createNativeFunction(function(v19) {
+        let __var_19 = Array.from(this.native.getAttributeNames()),
+          __var_20 = __var_2.createObjectProto(__var_2.ARRAY_PROTO);
+        for (let __fn_23 = 0; __fn_23 < __var_19.length; __fn_23++)
+          __var_2.setProperty(__var_20, __fn_23, __var_19[__fn_23]);
+        return __var_2.setProperty(__var_20, 'length', __var_19.length), __var_20;
+      })), __var_2.setProperty(__fn_18, 'getAttribute', __var_2.createNativeFunction(function(__var_19) {
         if (!this.fromDOMParser)
           throw new Error('No access.');
-        return this.native.getAttribute(v19);
-      })), v2.setProperty(v18, 'setAttribute', v2.createNativeFunction(function(v19, v20) {
+        return this.native.getAttribute(__var_19);
+      })), __var_2.setProperty(__fn_18, 'setAttribute', __var_2.createNativeFunction(function(__var_19, __var_20) {
         if (!this.fromDOMParser)
           throw new Error('No access.');
-        if (v19 = String(v19).toLowerCase(), v19.startsWith('on'))
+        if (__var_19 = String(__var_19).toLowerCase(), __var_19.startsWith('on'))
           throw new Error('Event handlers are not allowed');
-        this.native.setAttribute(v19, String(v20)), v3.settings.logCalls && console.log(v5.domain, 'DOMParser set attribute', this, v19, v20);
-      })), v2.setProperty(v18, 'hasAttribute', v2.createNativeFunction(function(v19) {
+        this.native.setAttribute(__var_19, String(__var_20)), __var_3.settings.logCalls && console.log(__var_5.domain, 'DOMParser set attribute', this, __var_19, __var_20);
+      })), __var_2.setProperty(__fn_18, 'hasAttribute', __var_2.createNativeFunction(function(__var_19) {
         if (!this.fromDOMParser)
           throw new Error('No access.');
-        return this.native.hasAttribute(v19);
-      })), v2.setProperty(v18, 'removeAttribute', v2.createNativeFunction(function(v19) {
+        return this.native.hasAttribute(__var_19);
+      })), __var_2.setProperty(__fn_18, 'removeAttribute', __var_2.createNativeFunction(function(__var_19) {
         if (!this.fromDOMParser)
           throw new Error('No access.');
-        if (this.native.isSameNode(v48))
+        if (this.native.isSameNode(__var_48))
           throw new Error('No access.');
-        this.native.removeAttribute(v19), v3.settings.logCalls && console.log(v5.domain, 'DOMParser remove attribute', this, v19);
-      })), v2.setProperty(v18, 'querySelector', v2.createNativeFunction(function(v19) {
+        this.native.removeAttribute(__var_19), __var_3.settings.logCalls && console.log(__var_5.domain, 'DOMParser remove attribute', this, __var_19);
+      })), __var_2.setProperty(__fn_18, 'querySelector', __var_2.createNativeFunction(function(__var_19) {
         if (!this.fromDOMParser)
           throw new Error('No access.');
-        return v15(this.native.querySelector(v19));
-      })), v2.setProperty(v18, 'querySelectorAll', v2.createNativeFunction(function(v19) {
+        return __fn_15(this.native.querySelector(__var_19));
+      })), __var_2.setProperty(__fn_18, 'querySelectorAll', __var_2.createNativeFunction(function(__var_19) {
         if (!this.fromDOMParser)
           throw new Error('No access.');
-        let v20 = Array.from(this.native.querySelectorAll(v19)),
-          v23 = v2.createObjectProto(v2.ARRAY_PROTO);
-        for (let v24 = 0; v24 < v20.length; v24++)
-          v2.setProperty(v23, v24, v15(v20[v24]));
-        return v2.setProperty(v23, 'length', v20.length), v23;
-      })), v2.setProperty(v18, 'getElementsByTagName', v2.createNativeFunction(function(v19) {
+        let __var_20 = Array.from(this.native.querySelectorAll(__var_19)),
+          __fn_23 = __var_2.createObjectProto(__var_2.ARRAY_PROTO);
+        for (let __var_24 = 0; __var_24 < __var_20.length; __var_24++)
+          __var_2.setProperty(__fn_23, __var_24, __fn_15(__var_20[__var_24]));
+        return __var_2.setProperty(__fn_23, 'length', __var_20.length), __fn_23;
+      })), __var_2.setProperty(__fn_18, 'getElementsByTagName', __var_2.createNativeFunction(function(__var_19) {
         if (!this.fromDOMParser)
           throw new Error('No access.');
-        let v20 = Array.from(this.native.getElementsByTagName(v19)),
-          v23 = v2.createObjectProto(v2.ARRAY_PROTO);
-        for (let v24 = 0; v24 < v20.length; v24++)
-          v2.setProperty(v23, v24, v15(v20[v24]));
-        return v2.setProperty(v23, 'length', v20.length), v23;
-      })), v2.setProperty(v18, 'getElementsByClassName', v2.createNativeFunction(function(v19) {
+        let __var_20 = Array.from(this.native.getElementsByTagName(__var_19)),
+          __fn_23 = __var_2.createObjectProto(__var_2.ARRAY_PROTO);
+        for (let __var_24 = 0; __var_24 < __var_20.length; __var_24++)
+          __var_2.setProperty(__fn_23, __var_24, __fn_15(__var_20[__var_24]));
+        return __var_2.setProperty(__fn_23, 'length', __var_20.length), __fn_23;
+      })), __var_2.setProperty(__fn_18, 'getElementsByClassName', __var_2.createNativeFunction(function(__var_19) {
         if (!this.fromDOMParser)
           throw new Error('No access.');
-        let v20 = Array.from(this.native.getElementsByClassName(v19)),
-          v23 = v2.createObjectProto(v2.ARRAY_PROTO);
-        for (let v24 = 0; v24 < v20.length; v24++)
-          v2.setProperty(v23, v24, v15(v20[v24]));
-        return v2.setProperty(v23, 'length', v20.length), v23;
-      })), v2.setProperty(v18, 'getElementById', v2.createNativeFunction(function(v19) {
+        let __var_20 = Array.from(this.native.getElementsByClassName(__var_19)),
+          __fn_23 = __var_2.createObjectProto(__var_2.ARRAY_PROTO);
+        for (let __var_24 = 0; __var_24 < __var_20.length; __var_24++)
+          __var_2.setProperty(__fn_23, __var_24, __fn_15(__var_20[__var_24]));
+        return __var_2.setProperty(__fn_23, 'length', __var_20.length), __fn_23;
+      })), __var_2.setProperty(__fn_18, 'getElementById', __var_2.createNativeFunction(function(__var_19) {
         if (!this.fromDOMParser)
           throw new Error('No access.');
-        return v15(this.native.getElementById ? this.native.getElementById(v19) : null);
-      })), v18;
+        return __fn_15(this.native.getElementById ? this.native.getElementById(__var_19) : null);
+      })), __fn_18;
     }
-    return v2.setProperty(v14, 'documentElement', Interpreter.VALUE_IN_DESCRIPTOR, {
-      get: v2.createNativeFunction(function() {
-        return v15(v13.documentElement);
+    return __var_2.setProperty(__var_14, 'documentElement', Interpreter.VALUE_IN_DESCRIPTOR, {
+      get: __var_2.createNativeFunction(function() {
+        return __fn_15(__var_13.documentElement);
       })
-    }), v2.setProperty(v14, 'head', Interpreter.VALUE_IN_DESCRIPTOR, {
-      get: v2.createNativeFunction(function() {
-        return v3.settings.logCalls && console.log(v5.domain, 'DOMParser get head', this), v15(v13.head);
+    }), __var_2.setProperty(__var_14, 'head', Interpreter.VALUE_IN_DESCRIPTOR, {
+      get: __var_2.createNativeFunction(function() {
+        return __var_3.settings.logCalls && console.log(__var_5.domain, 'DOMParser get head', this), __fn_15(__var_13.head);
       })
-    }), v2.setProperty(v14, 'body', Interpreter.VALUE_IN_DESCRIPTOR, {
-      get: v2.createNativeFunction(function() {
-        return v3.settings.logCalls && console.log(v5.domain, 'DOMParser get body', this), v15(v13.body);
+    }), __var_2.setProperty(__var_14, 'body', Interpreter.VALUE_IN_DESCRIPTOR, {
+      get: __var_2.createNativeFunction(function() {
+        return __var_3.settings.logCalls && console.log(__var_5.domain, 'DOMParser get body', this), __fn_15(__var_13.body);
       })
-    }), v2.setProperty(v14, 'title', Interpreter.VALUE_IN_DESCRIPTOR, {
-      get: v2.createNativeFunction(function() {
-        return v13.title;
+    }), __var_2.setProperty(__var_14, 'title', Interpreter.VALUE_IN_DESCRIPTOR, {
+      get: __var_2.createNativeFunction(function() {
+        return __var_13.title;
       })
-    }), v2.setProperty(v14, 'querySelector', v2.createNativeFunction(function(v17) {
-      return v15(v13.querySelector(v17));
-    })), v2.setProperty(v14, 'querySelectorAll', v2.createNativeFunction(function(v17) {
-      let v18 = Array.from(v13.querySelectorAll(v17)),
-        v19 = v2.createObjectProto(v2.ARRAY_PROTO);
-      for (let v20 = 0; v20 < v18.length; v20++)
-        v2.setProperty(v19, v20, v15(v18[v20]));
-      return v2.setProperty(v19, 'length', v18.length), v19;
-    })), v2.setProperty(v14, 'getElementById', v2.createNativeFunction(function(v17) {
-      return v15(v13.getElementById(v17));
-    })), v2.setProperty(v14, 'getElementsByTagName', v2.createNativeFunction(function(v17) {
-      let v18 = Array.from(v13.getElementsByTagName(v17)),
-        v19 = v2.createObjectProto(v2.ARRAY_PROTO);
-      for (let v20 = 0; v20 < v18.length; v20++)
-        v2.setProperty(v19, v20, v15(v18[v20]));
-      return v2.setProperty(v19, 'length', v18.length), v19;
-    })), v2.setProperty(v14, 'getElementsByClassName', v2.createNativeFunction(function(v17) {
-      let v18 = Array.from(v13.getElementsByClassName(v17)),
-        v19 = v2.createObjectProto(v2.ARRAY_PROTO);
-      for (let v20 = 0; v20 < v18.length; v20++)
-        v2.setProperty(v19, v20, v15(v18[v20]));
-      return v2.setProperty(v19, 'length', v18.length), v19;
-    })), v14;
+    }), __var_2.setProperty(__var_14, 'querySelector', __var_2.createNativeFunction(function(__var_17) {
+      return __fn_15(__var_13.querySelector(__var_17));
+    })), __var_2.setProperty(__var_14, 'querySelectorAll', __var_2.createNativeFunction(function(__var_17) {
+      let __fn_18 = Array.from(__var_13.querySelectorAll(__var_17)),
+        __var_19 = __var_2.createObjectProto(__var_2.ARRAY_PROTO);
+      for (let __var_20 = 0; __var_20 < __fn_18.length; __var_20++)
+        __var_2.setProperty(__var_19, __var_20, __fn_15(__fn_18[__var_20]));
+      return __var_2.setProperty(__var_19, 'length', __fn_18.length), __var_19;
+    })), __var_2.setProperty(__var_14, 'getElementById', __var_2.createNativeFunction(function(__var_17) {
+      return __fn_15(__var_13.getElementById(__var_17));
+    })), __var_2.setProperty(__var_14, 'getElementsByTagName', __var_2.createNativeFunction(function(__var_17) {
+      let __fn_18 = Array.from(__var_13.getElementsByTagName(__var_17)),
+        __var_19 = __var_2.createObjectProto(__var_2.ARRAY_PROTO);
+      for (let __var_20 = 0; __var_20 < __fn_18.length; __var_20++)
+        __var_2.setProperty(__var_19, __var_20, __fn_15(__fn_18[__var_20]));
+      return __var_2.setProperty(__var_19, 'length', __fn_18.length), __var_19;
+    })), __var_2.setProperty(__var_14, 'getElementsByClassName', __var_2.createNativeFunction(function(__var_17) {
+      let __fn_18 = Array.from(__var_13.getElementsByClassName(__var_17)),
+        __var_19 = __var_2.createObjectProto(__var_2.ARRAY_PROTO);
+      for (let __var_20 = 0; __var_20 < __fn_18.length; __var_20++)
+        __var_2.setProperty(__var_19, __var_20, __fn_15(__fn_18[__var_20]));
+      return __var_2.setProperty(__var_19, 'length', __fn_18.length), __var_19;
+    })), __var_14;
   }));
 }
 
-function v57(v2, u, v48, v5) {
-  let v6 = new WeakMap(),
-    v7 = 1000,
-    v8 = 5,
-    v9 = new WeakMap(),
-    v10 = 0,
-    v11 = v2.nativeToPseudo({});
-  v2.setProperty(u, '__eventCallbacks', v11);
+function __fn_57(__var_2, u, __var_48, __var_5) {
+  let __var_6 = new WeakMap(),
+    __var_7 = 1000,
+    __var_8 = 5,
+    __fn_9 = new WeakMap(),
+    __fn_10 = 0,
+    __fn_11 = __var_2.nativeToPseudo({});
+  __var_2.setProperty(u, '__eventCallbacks', __fn_11);
 
-  function v13(v37, o) {
-    let v58 = v10++;
-    v2.setProperty(v11, 'fn' + v58, v37), v2.setProperty(v11, 'ev' + v58, o), v2.appendCode(`__eventCallbacks.fn${ v58 }(__eventCallbacks.ev${ v58 }); delete __eventCallbacks.fn${ v58 }; delete __eventCallbacks.ev${ v58 };`);
+  function __var_13(__var_37, o) {
+    let __var_58 = __fn_10++;
+    __var_2.setProperty(__fn_11, 'fn' + __var_58, __var_37), __var_2.setProperty(__fn_11, 'ev' + __var_58, o), __var_2.appendCode(`__eventCallbacks.fn${ __var_58 }(__eventCallbacks.ev${ __var_58 }); delete __eventCallbacks.fn${ __var_58 }; delete __eventCallbacks.ev${ __var_58 };`);
   }
 
-  function v14() {
-    return v48.getElementsByTagName('*').length;
+  function __var_14() {
+    return __var_48.getElementsByTagName('*').length;
   }
 
-  function v15(v37 = 1) {
-    if (v14() + v37 > v7)
-      throw new Error(`DOM element limit exceeded (max ${ v7 })`);
+  function __fn_15(__var_37 = 1) {
+    if (__var_14() + __var_37 > __var_7)
+      throw new Error(`DOM element limit exceeded (max ${ __var_7 })`);
   }
 
-  function v17(v37) {
-    return v37 instanceof Element ? 1 + v37.getElementsByTagName('*').length : 0;
+  function __var_17(__var_37) {
+    return __var_37 instanceof Element ? 1 + __var_37.getElementsByTagName('*').length : 0;
   }
 
-  function v18(v37, o = !1) {
-    if (v37 == null)
+  function __fn_18(__var_37, o = !1) {
+    if (__var_37 == null)
       return null;
-    if (v6.has(v37))
-      return v6.get(v37);
-    let v58 = v37 instanceof Element ? v29 : v24,
-      v59 = v2.createObject(v58);
-    return v59.native = v37, v59.fromDOMParser || (v59.fromDOMParser = o), v6.set(v37, v59), v59;
+    if (__var_6.has(__var_37))
+      return __var_6.get(__var_37);
+    let __var_58 = __var_37 instanceof Element ? __var_29 : __var_24,
+      __var_59 = __var_2.createObject(__var_58);
+    return __var_59.native = __var_37, __var_59.fromDOMParser || (__var_59.fromDOMParser = o), __var_6.set(__var_37, __var_59), __var_59;
   }
 
-  function v19(v37) {
-    return v37 && v48.contains(v37);
+  function __var_19(__var_37) {
+    return __var_37 && __var_48.contains(__var_37);
   }
 
-  function v20(v37) {
-    return v19(v37) ? v37 : null;
+  function __var_20(__var_37) {
+    return __var_19(__var_37) ? __var_37 : null;
   }
 
-  function v23(v37) {
-    let v60 = v2.createObjectProto(v2.ARRAY_PROTO);
-    for (let v58 = 0; v58 < v37.length; v58++)
-      v2.setProperty(v60, v58, v18(v37[v58]));
-    return v2.setProperty(v60, 'length', v37.length), v60;
+  function __fn_23(__var_37) {
+    let __var_60 = __var_2.createObjectProto(__var_2.ARRAY_PROTO);
+    for (let __var_58 = 0; __var_58 < __var_37.length; __var_58++)
+      __var_2.setProperty(__var_60, __var_58, __fn_18(__var_37[__var_58]));
+    return __var_2.setProperty(__var_60, 'length', __var_37.length), __var_60;
   }
-  let v24 = v2.createNativeFunction(function() {
+  let __var_24 = __var_2.createNativeFunction(function() {
     throw TypeError('Illegal constructor');
   }, !0);
-  v2.setProperty(u, 'Node', v24);
-  let v25 = v2.getProperty(v24, 'prototype'),
-    v26 = {
+  __var_2.setProperty(u, 'Node', __var_24);
+  let __var_25 = __var_2.getProperty(__var_24, 'prototype'),
+    __var_26 = {
       firstChild: function() {
-        return v18(v20(this.native.firstChild));
+        return __fn_18(__var_20(this.native.firstChild));
       },
       lastChild: function() {
-        return v18(v20(this.native.lastChild));
+        return __fn_18(__var_20(this.native.lastChild));
       },
       parentNode: function() {
-        return v18(v20(this.native.parentNode));
+        return __fn_18(__var_20(this.native.parentNode));
       },
       parentElement: function() {
-        return v18(v20(this.native.parentElement));
+        return __fn_18(__var_20(this.native.parentElement));
       },
       nextSibling: function() {
-        return v18(v20(this.native.nextSibling));
+        return __fn_18(__var_20(this.native.nextSibling));
       },
       previousSibling: function() {
-        return v18(v20(this.native.previousSibling));
+        return __fn_18(__var_20(this.native.previousSibling));
       },
       childNodes: function() {
-        let v37 = Array.from(this.native.childNodes).filter(v19);
-        return v23(v37);
+        let __var_37 = Array.from(this.native.childNodes).filter(__var_19);
+        return __fn_23(__var_37);
       },
       nodeName: function() {
         return this.native.nodeName;
@@ -1049,116 +1049,116 @@ function v57(v2, u, v48, v5) {
         return this.native.textContent;
       }
     },
-    v27 = {
-      textContent: function(v37) {
-        v3.settings.logCalls && console.log(v5.domain, 'set textContent', this, v37), this.native.textContent = v37;
+    __fn_27 = {
+      textContent: function(__var_37) {
+        __var_3.settings.logCalls && console.log(__var_5.domain, 'set textContent', this, __var_37), this.native.textContent = __var_37;
       },
-      nodeValue: function(v37) {
-        v3.settings.logCalls && console.log(v5.domain, 'set nodeValue', this, v37), this.native.nodeValue = v37;
+      nodeValue: function(__var_37) {
+        __var_3.settings.logCalls && console.log(__var_5.domain, 'set nodeValue', this, __var_37), this.native.nodeValue = __var_37;
       }
     };
-  for (let [v37, v60] of Object.entries(v26)) {
-    let v58 = {
-      get: v2.createNativeFunction(v60)
+  for (let [__var_37, __var_60] of Object.entries(__var_26)) {
+    let __var_58 = {
+      get: __var_2.createNativeFunction(__var_60)
     };
-    v27[v37] && (v58.set = v2.createNativeFunction(v27[v37])), v2.setProperty(v25, v37, Interpreter.VALUE_IN_DESCRIPTOR, v58);
+    __fn_27[__var_37] && (__var_58.set = __var_2.createNativeFunction(__fn_27[__var_37])), __var_2.setProperty(__var_25, __var_37, Interpreter.VALUE_IN_DESCRIPTOR, __var_58);
   }
-  let v28 = {
+  let __var_28 = {
     hasChildNodes: function() {
       return this.native.hasChildNodes();
     },
-    appendChild: function(v37) {
-      if (!v37?.native)
+    appendChild: function(__var_37) {
+      if (!__var_37?.native)
         return null;
-      if (v37.fromDOMParser)
+      if (__var_37.fromDOMParser)
         throw new Error('You cannot append DOMParser elements to the DOM.');
-      return v15(v17(v37.native)), this.native.appendChild(v37.native), v3.settings.logCalls && console.log(v5.domain, 'appendChild', this, v37), v37;
+      return __fn_15(__var_17(__var_37.native)), this.native.appendChild(__var_37.native), __var_3.settings.logCalls && console.log(__var_5.domain, 'appendChild', this, __var_37), __var_37;
     },
-    append: function(v37) {
-      for (let v60 of v37)
-        if (v60?.native) {
-          if (v60.fromDOMParser)
+    append: function(__var_37) {
+      for (let __var_60 of __var_37)
+        if (__var_60?.native) {
+          if (__var_60.fromDOMParser)
             throw new Error('You cannot append DOMParser elements to the DOM.');
-          v15(v17(v60.native)), this.native.appendChild(v60.native);
+          __fn_15(__var_17(__var_60.native)), this.native.appendChild(__var_60.native);
         }
-      return v3.settings.logCalls && console.log(v5.domain, 'append', this, v37), v37;
+      return __var_3.settings.logCalls && console.log(__var_5.domain, 'append', this, __var_37), __var_37;
     },
-    removeChild: function(v37) {
-      return !v37?.native || !v19(v37.native) ? null : (v3.settings.logCalls && console.log(v5.domain, 'removeChild', this, v37), v18(this.native.removeChild(v37.native)));
+    removeChild: function(__var_37) {
+      return !__var_37?.native || !__var_19(__var_37.native) ? null : (__var_3.settings.logCalls && console.log(__var_5.domain, 'removeChild', this, __var_37), __fn_18(this.native.removeChild(__var_37.native)));
     },
-    insertBefore: function(v37, v60) {
-      if (!v37?.native)
+    insertBefore: function(__var_37, __var_60) {
+      if (!__var_37?.native)
         return null;
-      if (v37.fromDOMParser)
+      if (__var_37.fromDOMParser)
         throw new Error('You cannot insert DOMParser elements into the DOM.');
-      if (this.native.isSameNode(v48))
+      if (this.native.isSameNode(__var_48))
         throw new Error('No access.');
-      v15(v17(v37.native));
-      let v58 = v60?.native || null;
-      return this.native.insertBefore(v37.native, v58), v3.settings.logCalls && console.log(v5.domain, 'insertBefore', this, v37, v58), v37;
+      __fn_15(__var_17(__var_37.native));
+      let __var_58 = __var_60?.native || null;
+      return this.native.insertBefore(__var_37.native, __var_58), __var_3.settings.logCalls && console.log(__var_5.domain, 'insertBefore', this, __var_37, __var_58), __var_37;
     },
-    cloneNode: function(v37) {
-      return v3.settings.logCalls && console.log(v5.domain, 'cloneNode', this, v37), v18(this.native.cloneNode(v37), this.fromDOMParser);
+    cloneNode: function(__var_37) {
+      return __var_3.settings.logCalls && console.log(__var_5.domain, 'cloneNode', this, __var_37), __fn_18(this.native.cloneNode(__var_37), this.fromDOMParser);
     },
-    contains: function(v37) {
-      return v37?.native ? this.native.contains(v37.native) : !1;
+    contains: function(__var_37) {
+      return __var_37?.native ? this.native.contains(__var_37.native) : !1;
     },
     remove: function() {
-      if (this.native.isSameNode(v48))
+      if (this.native.isSameNode(__var_48))
         throw new Error('No access.');
-      this.native.remove(), v3.settings.logCalls && console.log(v5.domain, 'remove', this);
+      this.native.remove(), __var_3.settings.logCalls && console.log(__var_5.domain, 'remove', this);
     },
-    after: function(v37) {
-      if (!v37?.native)
+    after: function(__var_37) {
+      if (!__var_37?.native)
         return null;
-      if (v37.fromDOMParser)
+      if (__var_37.fromDOMParser)
         throw new Error('You cannot insert DOMParser elements into the DOM.');
-      if (this.native.isSameNode(v48))
+      if (this.native.isSameNode(__var_48))
         throw new Error('No access.');
-      return v15(v17(v37.native)), this.native.after(v37.native), v3.settings.logCalls && console.log(v5.domain, 'after', this, v37), v37;
+      return __fn_15(__var_17(__var_37.native)), this.native.after(__var_37.native), __var_3.settings.logCalls && console.log(__var_5.domain, 'after', this, __var_37), __var_37;
     },
-    before: function(v37) {
-      if (!v37?.native)
+    before: function(__var_37) {
+      if (!__var_37?.native)
         return null;
-      if (v37.fromDOMParser)
+      if (__var_37.fromDOMParser)
         throw new Error('You cannot insert DOMParser elements into the DOM.');
-      if (this.native.isSameNode(v48))
+      if (this.native.isSameNode(__var_48))
         throw new Error('No access.');
-      return v15(v17(v37.native)), this.native.before(v37.native), v3.settings.logCalls && console.log(v5.domain, 'before', this, v37), v37;
+      return __fn_15(__var_17(__var_37.native)), this.native.before(__var_37.native), __var_3.settings.logCalls && console.log(__var_5.domain, 'before', this, __var_37), __var_37;
     }
   };
-  for (let [v37, v60] of Object.entries(v28))
-    v2.setProperty(v25, v37, v2.createNativeFunction(v60));
-  let v29 = v2.createNativeFunction(function() {
+  for (let [__var_37, __var_60] of Object.entries(__var_28))
+    __var_2.setProperty(__var_25, __var_37, __var_2.createNativeFunction(__var_60));
+  let __var_29 = __var_2.createNativeFunction(function() {
     throw TypeError('Illegal constructor');
   }, !0);
-  v2.setProperty(u, 'Element', v29);
-  let v30 = v2.createObject(v24);
-  v2.setProperty(v29, 'prototype', v30);
+  __var_2.setProperty(u, 'Element', __var_29);
+  let __var_30 = __var_2.createObject(__var_24);
+  __var_2.setProperty(__var_29, 'prototype', __var_30);
 
-  function v31(v37) {
-    if (!v37)
+  function __var_31(__var_37) {
+    if (!__var_37)
       return '';
-    v37 = String(v37);
-    let v60 = v37.toLowerCase().trim();
-    if (v60.startsWith('javascript:') || v60.startsWith('vbscript:'))
+    __var_37 = String(__var_37);
+    let __var_60 = __var_37.toLowerCase().trim();
+    if (__var_60.startsWith('javascript:') || __var_60.startsWith('vbscript:'))
       throw new Error('javascript: URLs are not allowed');
-    if (v60.startsWith('data:'))
-      return v37;
+    if (__var_60.startsWith('data:'))
+      return __var_37;
     try {
-      let v58 = new URL(v37, location.href);
-      if (v58.hostname !== location.hostname)
+      let __var_58 = new URL(__var_37, location.href);
+      if (__var_58.hostname !== location.hostname)
         throw new Error('External URLs are not allowed');
-      let v59 = v58.pathname + v58.search + v58.hash;
-      return v59.startsWith(`/t/${ v5.domain }/`) || (v59 = `/t/${ v5.domain }/${ v59 }`.replaceAll('//', '/')), v59;
-    } catch (v58) {
-      if (v58.message.includes('not allowed'))
-        throw v58;
-      let v59 = v37;
-      return !v59.startsWith(`/t/${ v5.domain }/`) && !v59.startsWith('#') && (v59 = `/t/${ v5.domain }/${ v59 }`.replaceAll('//', '/')), v59;
+      let __var_59 = __var_58.pathname + __var_58.search + __var_58.hash;
+      return __var_59.startsWith(`/t/${ __var_5.domain }/`) || (__var_59 = `/t/${ __var_5.domain }/${ __var_59 }`.replaceAll('//', '/')), __var_59;
+    } catch (__var_58) {
+      if (__var_58.message.includes('not allowed'))
+        throw __var_58;
+      let __var_59 = __var_37;
+      return !__var_59.startsWith(`/t/${ __var_5.domain }/`) && !__var_59.startsWith('#') && (__var_59 = `/t/${ __var_5.domain }/${ __var_59 }`.replaceAll('//', '/')), __var_59;
     }
   }
-  let v32 = {
+  let __var_32 = {
       innerText: function() {
         return this.native.innerText;
       },
@@ -1178,20 +1178,20 @@ function v57(v2, u, v48, v5) {
         return this.native.tagName;
       },
       children: function() {
-        let v37 = Array.from(this.native.children).filter(v19);
-        return v23(v37);
+        let __var_37 = Array.from(this.native.children).filter(__var_19);
+        return __fn_23(__var_37);
       },
       firstElementChild: function() {
-        return v18(v20(this.native.firstElementChild));
+        return __fn_18(__var_20(this.native.firstElementChild));
       },
       lastElementChild: function() {
-        return v18(v20(this.native.lastElementChild));
+        return __fn_18(__var_20(this.native.lastElementChild));
       },
       nextElementSibling: function() {
-        return v18(v20(this.native.nextElementSibling));
+        return __fn_18(__var_20(this.native.nextElementSibling));
       },
       previousElementSibling: function() {
-        return v18(v20(this.native.previousElementSibling));
+        return __fn_18(__var_20(this.native.previousElementSibling));
       },
       childElementCount: function() {
         return this.native.childElementCount;
@@ -1332,159 +1332,159 @@ function v57(v2, u, v48, v5) {
         return this.native.videoHeight || 0;
       }
     },
-    v33 = {
-      innerText: function(v37) {
-        this.native.innerText = v37.slice(0, 1000);
+    __var_33 = {
+      innerText: function(__var_37) {
+        this.native.innerText = __var_37.slice(0, 1000);
       },
-      innerHTML: function(v37) {
+      innerHTML: function(__var_37) {
         throw new Error('innerHTML is not allowed. Create elements using document.createElement and append them instead or use innerText instead.');
       },
-      id: function(v37) {
+      id: function(__var_37) {
         if (this.native.className === 'tile-body')
           throw new Error('No access.');
-        this.native.id = v37, v3.settings.logCalls && console.log(v5.domain, 'set id', this, v37);
+        this.native.id = __var_37, __var_3.settings.logCalls && console.log(__var_5.domain, 'set id', this, __var_37);
       },
-      className: function(v37) {
+      className: function(__var_37) {
         if (this.native.className === 'tile-body')
           throw new Error('No access.');
-        this.native.className = v37, v3.settings.logCalls && console.log(v5.domain, 'set className', this, v37);
+        this.native.className = __var_37, __var_3.settings.logCalls && console.log(__var_5.domain, 'set className', this, __var_37);
       },
-      src: function(v37) {
-        this.native.src = v31(v37), v3.settings.logCalls && console.log(v5.domain, 'set src', this, v37);
+      src: function(__var_37) {
+        this.native.src = __var_31(__var_37), __var_3.settings.logCalls && console.log(__var_5.domain, 'set src', this, __var_37);
       },
-      href: function(v37) {
-        this.native.href = this.native.tagName === 'A' ? v37 : v31(v37), v3.settings.logCalls && console.log(v5.domain, 'set href', this, v37);
+      href: function(__var_37) {
+        this.native.href = this.native.tagName === 'A' ? __var_37 : __var_31(__var_37), __var_3.settings.logCalls && console.log(__var_5.domain, 'set href', this, __var_37);
       },
-      hidden: function(v37) {
+      hidden: function(__var_37) {
         if (this.native.className === 'tile-body')
           throw new Error('No access.');
-        this.native.hidden = !!v37;
+        this.native.hidden = !!__var_37;
       },
-      disabled: function(v37) {
+      disabled: function(__var_37) {
         if (this.native.className === 'tile-body')
           throw new Error('No access.');
-        this.native.disabled = !!v37;
+        this.native.disabled = !!__var_37;
       },
-      checked: function(v37) {
-        this.native.checked = !!v37;
+      checked: function(__var_37) {
+        this.native.checked = !!__var_37;
       },
-      selected: function(v37) {
-        this.native.selected = !!v37;
+      selected: function(__var_37) {
+        this.native.selected = !!__var_37;
       },
-      readOnly: function(v37) {
-        this.native.readOnly = !!v37;
+      readOnly: function(__var_37) {
+        this.native.readOnly = !!__var_37;
       },
-      required: function(v37) {
-        this.native.required = !!v37;
+      required: function(__var_37) {
+        this.native.required = !!__var_37;
       },
-      draggable: function(v37) {
-        this.native.draggable = !!v37;
+      draggable: function(__var_37) {
+        this.native.draggable = !!__var_37;
       },
-      title: function(v37) {
-        this.native.title = String(v37).slice(0, 1000);
+      title: function(__var_37) {
+        this.native.title = String(__var_37).slice(0, 1000);
       },
-      alt: function(v37) {
-        this.native.alt = String(v37).slice(0, 1000);
+      alt: function(__var_37) {
+        this.native.alt = String(__var_37).slice(0, 1000);
       },
-      name: function(v37) {
-        this.native.name = String(v37).slice(0, 100);
+      name: function(__var_37) {
+        this.native.name = String(__var_37).slice(0, 100);
       },
-      type: function(v37) {
-        this.native.type = String(v37).slice(0, 50);
+      type: function(__var_37) {
+        this.native.type = String(__var_37).slice(0, 50);
       },
-      value: function(v37) {
-        this.native.value = String(v37).slice(0, 10000);
+      value: function(__var_37) {
+        this.native.value = String(__var_37).slice(0, 10000);
       },
-      placeholder: function(v37) {
-        this.native.placeholder = String(v37).slice(0, 500);
+      placeholder: function(__var_37) {
+        this.native.placeholder = String(__var_37).slice(0, 500);
       },
-      tabIndex: function(v37) {
-        this.native.tabIndex = parseInt(v37) || 0;
+      tabIndex: function(__var_37) {
+        this.native.tabIndex = parseInt(__var_37) || 0;
       },
-      scrollTop: function(v37) {
-        this.native.scrollTop = v37;
+      scrollTop: function(__var_37) {
+        this.native.scrollTop = __var_37;
       },
-      scrollLeft: function(v37) {
-        this.native.scrollLeft = v37;
+      scrollLeft: function(__var_37) {
+        this.native.scrollLeft = __var_37;
       },
-      currentTime: function(v37) {
-        this.native instanceof HTMLMediaElement && (this.native.currentTime = Math.max(0, Number(v37) || 0));
+      currentTime: function(__var_37) {
+        this.native instanceof HTMLMediaElement && (this.native.currentTime = Math.max(0, Number(__var_37) || 0));
       },
-      muted: function(v37) {
-        this.native instanceof HTMLMediaElement && (this.native.muted = !!v37);
+      muted: function(__var_37) {
+        this.native instanceof HTMLMediaElement && (this.native.muted = !!__var_37);
       },
-      volume: function(v37) {
-        this.native instanceof HTMLMediaElement && (this.native.volume = Math.max(0, Math.min(1, Number(v37) || 0)));
+      volume: function(__var_37) {
+        this.native instanceof HTMLMediaElement && (this.native.volume = Math.max(0, Math.min(1, Number(__var_37) || 0)));
       },
-      loop: function(v37) {
-        this.native instanceof HTMLMediaElement && (this.native.loop = !!v37);
+      loop: function(__var_37) {
+        this.native instanceof HTMLMediaElement && (this.native.loop = !!__var_37);
       },
-      autoplay: function(v37) {
-        this.native instanceof HTMLMediaElement && (this.native.autoplay = !!v37);
+      autoplay: function(__var_37) {
+        this.native instanceof HTMLMediaElement && (this.native.autoplay = !!__var_37);
       },
-      controls: function(v37) {
-        this.native instanceof HTMLMediaElement && (this.native.controls = !!v37);
+      controls: function(__var_37) {
+        this.native instanceof HTMLMediaElement && (this.native.controls = !!__var_37);
       },
-      playbackRate: function(v37) {
-        this.native instanceof HTMLMediaElement && (this.native.playbackRate = Math.max(0.25, Math.min(4, Number(v37) || 1)));
+      playbackRate: function(__var_37) {
+        this.native instanceof HTMLMediaElement && (this.native.playbackRate = Math.max(0.25, Math.min(4, Number(__var_37) || 1)));
       },
-      defaultPlaybackRate: function(v37) {
-        this.native instanceof HTMLMediaElement && (this.native.defaultPlaybackRate = Math.max(0.25, Math.min(4, Number(v37) || 1)));
+      defaultPlaybackRate: function(__var_37) {
+        this.native instanceof HTMLMediaElement && (this.native.defaultPlaybackRate = Math.max(0.25, Math.min(4, Number(__var_37) || 1)));
       },
-      preload: function(v37) {
+      preload: function(__var_37) {
         if (this.native instanceof HTMLMediaElement) {
-          let v60 = [
+          let __var_60 = [
             'none',
             'metadata',
             'auto'
           ];
-          this.native.preload = v60.includes(v37) ? v37 : 'auto';
+          this.native.preload = __var_60.includes(__var_37) ? __var_37 : 'auto';
         }
       },
-      poster: function(v37) {
-        this.native instanceof HTMLVideoElement && (this.native.poster = v31(v37));
+      poster: function(__var_37) {
+        this.native instanceof HTMLVideoElement && (this.native.poster = __var_31(__var_37));
       }
     };
-  for (let [v37, v60] of Object.entries(v32)) {
-    let v58 = {
-      get: v2.createNativeFunction(v60)
+  for (let [__var_37, __var_60] of Object.entries(__var_32)) {
+    let __var_58 = {
+      get: __var_2.createNativeFunction(__var_60)
     };
-    v33[v37] && (v58.set = v2.createNativeFunction(v33[v37])), v2.setProperty(v30, v37, Interpreter.VALUE_IN_DESCRIPTOR, v58);
+    __var_33[__var_37] && (__var_58.set = __var_2.createNativeFunction(__var_33[__var_37])), __var_2.setProperty(__var_30, __var_37, Interpreter.VALUE_IN_DESCRIPTOR, __var_58);
   }
-  let v34 = {
+  let __var_34 = {
     getAttributeNames: function() {
-      let v37 = Array.from(this.native.getAttributeNames()),
-        v60 = v2.createObjectProto(v2.ARRAY_PROTO);
-      for (let v58 = 0; v58 < v37.length; v58++)
-        v2.setProperty(v60, v58, v37[v58]);
-      return v2.setProperty(v60, 'length', v37.length), v60;
+      let __var_37 = Array.from(this.native.getAttributeNames()),
+        __var_60 = __var_2.createObjectProto(__var_2.ARRAY_PROTO);
+      for (let __var_58 = 0; __var_58 < __var_37.length; __var_58++)
+        __var_2.setProperty(__var_60, __var_58, __var_37[__var_58]);
+      return __var_2.setProperty(__var_60, 'length', __var_37.length), __var_60;
     },
-    getAttribute: function(v37) {
-      return this.native.getAttribute(v37);
+    getAttribute: function(__var_37) {
+      return this.native.getAttribute(__var_37);
     },
-    setAttribute: function(v37, v60) {
+    setAttribute: function(__var_37, __var_60) {
       if (this.native.className === 'tile-body')
         throw new Error('No access.');
-      if (v37 = String(v37).toLowerCase(), v60 = String(v60), v3.settings.logCalls && console.log(v5.domain, 'setAttribute', this, v37, v60), v37 === 'style' && v60.includes('animation-play-state') && v60.includes('!important'))
+      if (__var_37 = String(__var_37).toLowerCase(), __var_60 = String(__var_60), __var_3.settings.logCalls && console.log(__var_5.domain, 'setAttribute', this, __var_37, __var_60), __var_37 === 'style' && __var_60.includes('animation-play-state') && __var_60.includes('!important'))
         throw new Error('Cannot set animation-play-state to !important');
-      if (v37 === 'src' || v37 === 'poster' || v37 === 'data' || this.native.tagName !== 'A' && v37 === 'href') {
-        this.native.setAttribute(v37, v31(v60));
+      if (__var_37 === 'src' || __var_37 === 'poster' || __var_37 === 'data' || this.native.tagName !== 'A' && __var_37 === 'href') {
+        this.native.setAttribute(__var_37, __var_31(__var_60));
         return;
       }
-      if (v37 === 'autoplay')
+      if (__var_37 === 'autoplay')
         throw new Error('autoplay is not allowed');
-      if (v37 === 'srcset')
+      if (__var_37 === 'srcset')
         throw new Error('srcset is not allowed');
-      if (v37 === 'action' || v37 === 'formaction')
+      if (__var_37 === 'action' || __var_37 === 'formaction')
         throw new Error('action and formaction are not allowed');
-      if (v37.startsWith('on'))
+      if (__var_37.startsWith('on'))
         throw new Error('Event handlers are not allowed. Use addEventListener instead.');
-      if (v37 === 'width' || v37 === 'height') {
-        let v58 = parseFloat(v60);
-        if (isNaN(v58) || v58 < 0 || v58 > 4096)
+      if (__var_37 === 'width' || __var_37 === 'height') {
+        let __var_58 = parseFloat(__var_60);
+        if (isNaN(__var_58) || __var_58 < 0 || __var_58 > 4096)
           throw new Error('Invalid width or height');
       }
-      this.native.setAttribute(v37, v60);
+      this.native.setAttribute(__var_37, __var_60);
     },
     focus: function() {
       this.native.focus();
@@ -1495,96 +1495,96 @@ function v57(v2, u, v48, v5) {
     click: function() {
       this.native.click();
     },
-    scrollIntoView: function(v37) {
-      v37 && typeof v37 == 'object' ? this.native.scrollIntoView(v2.pseudoToNative(v37)) : this.native.scrollIntoView(v37);
+    scrollIntoView: function(__var_37) {
+      __var_37 && typeof __var_37 == 'object' ? this.native.scrollIntoView(__var_2.pseudoToNative(__var_37)) : this.native.scrollIntoView(__var_37);
     },
-    scrollTo: function(v37, v60) {
-      this.native.scrollTo(v37, v60);
+    scrollTo: function(__var_37, __var_60) {
+      this.native.scrollTo(__var_37, __var_60);
     },
-    scrollBy: function(v37, v60) {
-      this.native.scrollBy(v37, v60);
+    scrollBy: function(__var_37, __var_60) {
+      this.native.scrollBy(__var_37, __var_60);
     },
-    removeAttribute: function(v37) {
+    removeAttribute: function(__var_37) {
       if (this.native.className === 'tile-body')
         throw new Error('No access.');
-      if (v37 = String(v37).toLowerCase(), v37 === 'target')
+      if (__var_37 = String(__var_37).toLowerCase(), __var_37 === 'target')
         throw new Error('removing target is not allowed');
-      v3.settings.logCalls && console.log(v5.domain, 'removeAttribute', this, v37), this.native.removeAttribute(v37);
+      __var_3.settings.logCalls && console.log(__var_5.domain, 'removeAttribute', this, __var_37), this.native.removeAttribute(__var_37);
     },
-    hasAttribute: function(v37) {
-      return this.native.hasAttribute(v37);
+    hasAttribute: function(__var_37) {
+      return this.native.hasAttribute(__var_37);
     },
-    querySelector: function(v37) {
-      let v60 = this.native.querySelector(v37);
-      return v18(v20(v60));
+    querySelector: function(__var_37) {
+      let __var_60 = this.native.querySelector(__var_37);
+      return __fn_18(__var_20(__var_60));
     },
-    querySelectorAll: function(v37) {
-      let v60 = Array.from(this.native.querySelectorAll(v37)).filter(v19);
-      return v23(v60);
+    querySelectorAll: function(__var_37) {
+      let __var_60 = Array.from(this.native.querySelectorAll(__var_37)).filter(__var_19);
+      return __fn_23(__var_60);
     },
-    getElementsByClassName: function(v37) {
-      let v60 = Array.from(this.native.getElementsByClassName(v37)).filter(v19);
-      return v23(v60);
+    getElementsByClassName: function(__var_37) {
+      let __var_60 = Array.from(this.native.getElementsByClassName(__var_37)).filter(__var_19);
+      return __fn_23(__var_60);
     },
-    getElementsByTagName: function(v37) {
-      let v60 = Array.from(this.native.getElementsByTagName(v37)).filter(v19);
-      return v23(v60);
+    getElementsByTagName: function(__var_37) {
+      let __var_60 = Array.from(this.native.getElementsByTagName(__var_37)).filter(__var_19);
+      return __fn_23(__var_60);
     },
-    closest: function(v37) {
-      let v60 = this.native.closest(v37);
-      for (; v60 && !v48.contains(v60);)
-        v60 = null;
-      return v18(v60);
+    closest: function(__var_37) {
+      let __var_60 = this.native.closest(__var_37);
+      for (; __var_60 && !__var_48.contains(__var_60);)
+        __var_60 = null;
+      return __fn_18(__var_60);
     },
-    matches: function(v37) {
-      return this.native.matches(v37);
+    matches: function(__var_37) {
+      return this.native.matches(__var_37);
     },
     classList: function() {
       if (this.native.className === 'tile-body')
         throw new Error('No access.');
-      let v37 = this.native.classList;
-      return v2.nativeToPseudo({
-        add: (...v60) => v37.add(...v60),
-        remove: (...v60) => v37.remove(...v60),
-        toggle: (v60, v58) => v37.toggle(v60, v58),
-        contains: v60 => v37.contains(v60),
-        replace: (v60, v58) => v37.replace(v60, v58)
+      let __var_37 = this.native.classList;
+      return __var_2.nativeToPseudo({
+        add: (...__var_60) => __var_37.add(...__var_60),
+        remove: (...__var_60) => __var_37.remove(...__var_60),
+        toggle: (__var_60, __var_58) => __var_37.toggle(__var_60, __var_58),
+        contains: __var_60 => __var_37.contains(__var_60),
+        replace: (__var_60, __var_58) => __var_37.replace(__var_60, __var_58)
       });
     },
     getBoundingClientRect: function() {
-      let v37 = this.native.getBoundingClientRect();
-      return v2.nativeToPseudo({
-        v26: v37.v26,
-        v18: v37.v18,
-        width: v37.width,
-        height: v37.height,
-        top: v37.top,
-        right: v37.right,
-        bottom: v37.bottom,
-        left: v37.left
+      let __var_37 = this.native.getBoundingClientRect();
+      return __var_2.nativeToPseudo({
+        __var_26: __var_37.__var_26,
+        __fn_18: __var_37.__fn_18,
+        width: __var_37.width,
+        height: __var_37.height,
+        top: __var_37.top,
+        right: __var_37.right,
+        bottom: __var_37.bottom,
+        left: __var_37.left
       });
     },
     play: function() {
       if (!(this.native instanceof HTMLMediaElement))
-        return v2.createObjectProto(v2.OBJECT_PROTO);
+        return __var_2.createObjectProto(__var_2.OBJECT_PROTO);
       if (!this.native.isConnected)
         throw new Error('Element is not connected to the DOM. Append it to the DOM before playing.');
-      let v37 = v2.createObjectProto(v2.OBJECT_PROTO),
-        v60 = this,
-        v58 = null,
-        v59 = null;
-      return v3.settings.logCalls && console.log(v5.domain, 'play', this), v2.setProperty(v37, 'then', v2.createNativeFunction(function(S) {
-        return v58 = S, v37;
-      })), v2.setProperty(v37, 'catch', v2.createNativeFunction(function(S) {
-        return v59 = S, v37;
-      })), v60.native.play().then(() => {
-        v58 && v13(v58, v2.nativeToPseudo(void 0));
+      let __var_37 = __var_2.createObjectProto(__var_2.OBJECT_PROTO),
+        __var_60 = this,
+        __var_58 = null,
+        __var_59 = null;
+      return __var_3.settings.logCalls && console.log(__var_5.domain, 'play', this), __var_2.setProperty(__var_37, 'then', __var_2.createNativeFunction(function(S) {
+        return __var_58 = S, __var_37;
+      })), __var_2.setProperty(__var_37, 'catch', __var_2.createNativeFunction(function(S) {
+        return __var_59 = S, __var_37;
+      })), __var_60.native.play().then(() => {
+        __var_58 && __var_13(__var_58, __var_2.nativeToPseudo(void 0));
       }).catch(S => {
-        v59 && v13(v59, v2.nativeToPseudo({
+        __var_59 && __var_13(__var_59, __var_2.nativeToPseudo({
           message: S.message,
           name: S.name
         }));
-      }), v37;
+      }), __var_37;
     },
     pause: function() {
       this.native instanceof HTMLMediaElement && this.native.pause();
@@ -1592,136 +1592,136 @@ function v57(v2, u, v48, v5) {
     load: function() {
       this.native instanceof HTMLMediaElement && this.native.load();
     },
-    canPlayType: function(v37) {
-      return this.native instanceof HTMLMediaElement ? this.native.canPlayType(String(v37 || '')) : '';
+    canPlayType: function(__var_37) {
+      return this.native instanceof HTMLMediaElement ? this.native.canPlayType(String(__var_37 || '')) : '';
     },
-    fastSeek: function(v37) {
-      this.native instanceof HTMLMediaElement && typeof this.native.fastSeek == 'function' && this.native.fastSeek(Math.max(0, Number(v37) || 0));
+    fastSeek: function(__var_37) {
+      this.native instanceof HTMLMediaElement && typeof this.native.fastSeek == 'function' && this.native.fastSeek(Math.max(0, Number(__var_37) || 0));
     },
-    getAnimations: function(v37) {
+    getAnimations: function(__var_37) {
       if (!this.native.getAnimations)
-        return v23([]);
-      let v60 = v37 ? {
-          subtree: !!v2.pseudoToNative(v37)?.subtree
+        return __fn_23([]);
+      let __var_60 = __var_37 ? {
+          subtree: !!__var_2.pseudoToNative(__var_37)?.subtree
         } : {},
-        v58 = this.native.getAnimations(v60),
-        v59 = v2.createObjectProto(v2.ARRAY_PROTO);
-      for (let v61 = 0; v61 < v58.length; v61++)
-        v59.properties[v61] = v21(v58[v61]);
-      return v2.setProperty(v59, 'length', v58.length), v59;
+        __var_58 = this.native.getAnimations(__var_60),
+        __var_59 = __var_2.createObjectProto(__var_2.ARRAY_PROTO);
+      for (let __var_61 = 0; __var_61 < __var_58.length; __var_61++)
+        __var_59.properties[__var_61] = __var_21(__var_58[__var_61]);
+      return __var_2.setProperty(__var_59, 'length', __var_58.length), __var_59;
     }
   };
-  for (let [v37, v60] of Object.entries(v34))
-    v2.setProperty(v30, v37, v2.createNativeFunction(v60));
+  for (let [__var_37, __var_60] of Object.entries(__var_34))
+    __var_2.setProperty(__var_30, __var_37, __var_2.createNativeFunction(__var_60));
 
-  function v21(v37) {
-    let v60 = v2.createObjectProto(v2.OBJECT_PROTO);
-    return v2.setProperty(v60, 'id', Interpreter.VALUE_IN_DESCRIPTOR, {
-      get: v2.createNativeFunction(function() {
-        return v37.id;
+  function __var_21(__var_37) {
+    let __var_60 = __var_2.createObjectProto(__var_2.OBJECT_PROTO);
+    return __var_2.setProperty(__var_60, 'id', Interpreter.VALUE_IN_DESCRIPTOR, {
+      get: __var_2.createNativeFunction(function() {
+        return __var_37.id;
       })
-    }), v2.setProperty(v60, 'playState', Interpreter.VALUE_IN_DESCRIPTOR, {
-      get: v2.createNativeFunction(function() {
-        return v37.playState;
+    }), __var_2.setProperty(__var_60, 'playState', Interpreter.VALUE_IN_DESCRIPTOR, {
+      get: __var_2.createNativeFunction(function() {
+        return __var_37.playState;
       })
-    }), v2.setProperty(v60, 'pending', Interpreter.VALUE_IN_DESCRIPTOR, {
-      get: v2.createNativeFunction(function() {
-        return v37.pending;
+    }), __var_2.setProperty(__var_60, 'pending', Interpreter.VALUE_IN_DESCRIPTOR, {
+      get: __var_2.createNativeFunction(function() {
+        return __var_37.pending;
       })
-    }), v2.setProperty(v60, 'replaceState', Interpreter.VALUE_IN_DESCRIPTOR, {
-      get: v2.createNativeFunction(function() {
-        return v37.replaceState;
+    }), __var_2.setProperty(__var_60, 'replaceState', Interpreter.VALUE_IN_DESCRIPTOR, {
+      get: __var_2.createNativeFunction(function() {
+        return __var_37.replaceState;
       })
-    }), v2.setProperty(v60, 'currentTime', Interpreter.VALUE_IN_DESCRIPTOR, {
-      get: v2.createNativeFunction(function() {
-        return v37.currentTime;
+    }), __var_2.setProperty(__var_60, 'currentTime', Interpreter.VALUE_IN_DESCRIPTOR, {
+      get: __var_2.createNativeFunction(function() {
+        return __var_37.currentTime;
       }),
-      set: v2.createNativeFunction(function(v58) {
-        v37.currentTime = v58;
+      set: __var_2.createNativeFunction(function(__var_58) {
+        __var_37.currentTime = __var_58;
       })
-    }), v2.setProperty(v60, 'playbackRate', Interpreter.VALUE_IN_DESCRIPTOR, {
-      get: v2.createNativeFunction(function() {
-        return v37.playbackRate;
+    }), __var_2.setProperty(__var_60, 'playbackRate', Interpreter.VALUE_IN_DESCRIPTOR, {
+      get: __var_2.createNativeFunction(function() {
+        return __var_37.playbackRate;
       }),
-      set: v2.createNativeFunction(function(v58) {
-        v37.playbackRate = Math.max(-10, Math.min(10, Number(v58) || 1));
+      set: __var_2.createNativeFunction(function(__var_58) {
+        __var_37.playbackRate = Math.max(-10, Math.min(10, Number(__var_58) || 1));
       })
-    }), v2.setProperty(v60, 'startTime', Interpreter.VALUE_IN_DESCRIPTOR, {
-      get: v2.createNativeFunction(function() {
-        return v37.startTime;
+    }), __var_2.setProperty(__var_60, 'startTime', Interpreter.VALUE_IN_DESCRIPTOR, {
+      get: __var_2.createNativeFunction(function() {
+        return __var_37.startTime;
       }),
-      set: v2.createNativeFunction(function(v58) {
-        v37.startTime = v58;
+      set: __var_2.createNativeFunction(function(__var_58) {
+        __var_37.startTime = __var_58;
       })
-    }), v2.setProperty(v60, 'play', v2.createNativeFunction(function() {
-      v37.play();
-    })), v2.setProperty(v60, 'pause', v2.createNativeFunction(function() {
-      v37.pause();
-    })), v2.setProperty(v60, 'cancel', v2.createNativeFunction(function() {
-      v37.cancel();
-    })), v2.setProperty(v60, 'finish', v2.createNativeFunction(function() {
-      v37.finish();
-    })), v2.setProperty(v60, 'reverse', v2.createNativeFunction(function() {
-      v37.reverse();
-    })), v2.setProperty(v60, 'updatePlaybackRate', v2.createNativeFunction(function(v58) {
-      v37.updatePlaybackRate(Math.max(-10, Math.min(10, Number(v58) || 1)));
-    })), v60;
+    }), __var_2.setProperty(__var_60, 'play', __var_2.createNativeFunction(function() {
+      __var_37.play();
+    })), __var_2.setProperty(__var_60, 'pause', __var_2.createNativeFunction(function() {
+      __var_37.pause();
+    })), __var_2.setProperty(__var_60, 'cancel', __var_2.createNativeFunction(function() {
+      __var_37.cancel();
+    })), __var_2.setProperty(__var_60, 'finish', __var_2.createNativeFunction(function() {
+      __var_37.finish();
+    })), __var_2.setProperty(__var_60, 'reverse', __var_2.createNativeFunction(function() {
+      __var_37.reverse();
+    })), __var_2.setProperty(__var_60, 'updatePlaybackRate', __var_2.createNativeFunction(function(__var_58) {
+      __var_37.updatePlaybackRate(Math.max(-10, Math.min(10, Number(__var_58) || 1)));
+    })), __var_60;
   }
 
-  function v16(v37) {
-    let v60 = v2.createObjectProto(v2.OBJECT_PROTO),
-      v58 = v37 ? v37.length : 0;
-    return v2.setProperty(v60, 'length', v58), v2.setProperty(v60, 'start', v2.createNativeFunction(function(v59) {
-      if (!v37 || v59 < 0 || v59 >= v37.length)
+  function __var_16(__var_37) {
+    let __var_60 = __var_2.createObjectProto(__var_2.OBJECT_PROTO),
+      __var_58 = __var_37 ? __var_37.length : 0;
+    return __var_2.setProperty(__var_60, 'length', __var_58), __var_2.setProperty(__var_60, 'start', __var_2.createNativeFunction(function(__var_59) {
+      if (!__var_37 || __var_59 < 0 || __var_59 >= __var_37.length)
         throw new Error('Index out of bounds');
-      return v37.start(v59);
-    })), v2.setProperty(v60, 'end', v2.createNativeFunction(function(v59) {
-      if (!v37 || v59 < 0 || v59 >= v37.length)
+      return __var_37.start(__var_59);
+    })), __var_2.setProperty(__var_60, 'end', __var_2.createNativeFunction(function(__var_59) {
+      if (!__var_37 || __var_59 < 0 || __var_59 >= __var_37.length)
         throw new Error('Index out of bounds');
-      return v37.end(v59);
-    })), v60;
+      return __var_37.end(__var_59);
+    })), __var_60;
   }
-  v2.setProperty(v30, 'buffered', Interpreter.VALUE_IN_DESCRIPTOR, {
-    get: v2.createNativeFunction(function() {
-      return this.native instanceof HTMLMediaElement ? v16(this.native.buffered) : v16(null);
+  __var_2.setProperty(__var_30, 'buffered', Interpreter.VALUE_IN_DESCRIPTOR, {
+    get: __var_2.createNativeFunction(function() {
+      return this.native instanceof HTMLMediaElement ? __var_16(this.native.buffered) : __var_16(null);
     })
-  }), v2.setProperty(v30, 'played', Interpreter.VALUE_IN_DESCRIPTOR, {
-    get: v2.createNativeFunction(function() {
-      return this.native instanceof HTMLMediaElement ? v16(this.native.played) : v16(null);
+  }), __var_2.setProperty(__var_30, 'played', Interpreter.VALUE_IN_DESCRIPTOR, {
+    get: __var_2.createNativeFunction(function() {
+      return this.native instanceof HTMLMediaElement ? __var_16(this.native.played) : __var_16(null);
     })
-  }), v2.setProperty(v30, 'seekable', Interpreter.VALUE_IN_DESCRIPTOR, {
-    get: v2.createNativeFunction(function() {
-      return this.native instanceof HTMLMediaElement ? v16(this.native.seekable) : v16(null);
+  }), __var_2.setProperty(__var_30, 'seekable', Interpreter.VALUE_IN_DESCRIPTOR, {
+    get: __var_2.createNativeFunction(function() {
+      return this.native instanceof HTMLMediaElement ? __var_16(this.native.seekable) : __var_16(null);
     })
-  }), v2.setProperty(v30, 'classList', Interpreter.VALUE_IN_DESCRIPTOR, {
-    get: v2.createNativeFunction(function() {
-      let v37 = this.native.classList,
-        v60 = v2.nativeToPseudo({});
-      return v2.setProperty(v60, 'add', v2.createNativeFunction(function(...v58) {
+  }), __var_2.setProperty(__var_30, 'classList', Interpreter.VALUE_IN_DESCRIPTOR, {
+    get: __var_2.createNativeFunction(function() {
+      let __var_37 = this.native.classList,
+        __var_60 = __var_2.nativeToPseudo({});
+      return __var_2.setProperty(__var_60, 'add', __var_2.createNativeFunction(function(...__var_58) {
         if (this.native.className === 'tile-body')
           throw new Error('No access.');
-        v37.add(...v58);
-      })), v2.setProperty(v60, 'remove', v2.createNativeFunction(function(...v58) {
+        __var_37.add(...__var_58);
+      })), __var_2.setProperty(__var_60, 'remove', __var_2.createNativeFunction(function(...__var_58) {
         if (this.native.className === 'tile-body')
           throw new Error('No access.');
-        v37.remove(...v58);
-      })), v2.setProperty(v60, 'toggle', v2.createNativeFunction(function(v58, v59) {
+        __var_37.remove(...__var_58);
+      })), __var_2.setProperty(__var_60, 'toggle', __var_2.createNativeFunction(function(__var_58, __var_59) {
         if (this.native.className === 'tile-body')
           throw new Error('No access.');
-        return v37.toggle(v58, v59);
-      })), v2.setProperty(v60, 'contains', v2.createNativeFunction(function(v58) {
-        return v37.contains(v58);
-      })), v2.setProperty(v60, 'replace', v2.createNativeFunction(function(v58, v59) {
+        return __var_37.toggle(__var_58, __var_59);
+      })), __var_2.setProperty(__var_60, 'contains', __var_2.createNativeFunction(function(__var_58) {
+        return __var_37.contains(__var_58);
+      })), __var_2.setProperty(__var_60, 'replace', __var_2.createNativeFunction(function(__var_58, __var_59) {
         if (this.native.className === 'tile-body')
           throw new Error('No access.');
-        return v37.replace(v58, v59);
-      })), v60;
+        return __var_37.replace(__var_58, __var_59);
+      })), __var_60;
     })
-  }), v2.setProperty(v30, 'style', Interpreter.VALUE_IN_DESCRIPTOR, {
-    get: v2.createNativeFunction(function() {
-      let v37 = this.native.style,
-        v60 = v2.nativeToPseudo({}),
-        v58 = [
+  }), __var_2.setProperty(__var_30, 'style', Interpreter.VALUE_IN_DESCRIPTOR, {
+    get: __var_2.createNativeFunction(function() {
+      let __var_37 = this.native.style,
+        __var_60 = __var_2.nativeToPseudo({}),
+        __var_58 = [
           'color',
           'backgroundColor',
           'width',
@@ -1754,56 +1754,56 @@ function v57(v2, u, v48, v5) {
           'gridTemplateColumns',
           'gridTemplateRows'
         ];
-      for (let v59 of v58)
-        v2.setProperty(v60, v59, Interpreter.VALUE_IN_DESCRIPTOR, {
-          get: v2.createNativeFunction(function() {
-            return v37[v59];
+      for (let __var_59 of __var_58)
+        __var_2.setProperty(__var_60, __var_59, Interpreter.VALUE_IN_DESCRIPTOR, {
+          get: __var_2.createNativeFunction(function() {
+            return __var_37[__var_59];
           }),
-          set: v2.createNativeFunction(function(v61) {
-            v37[v59] = v61, v3.settings.logCalls && console.log(v5.domain, 'set style', this, v59, v61);
+          set: __var_2.createNativeFunction(function(__var_61) {
+            __var_37[__var_59] = __var_61, __var_3.settings.logCalls && console.log(__var_5.domain, 'set style', this, __var_59, __var_61);
           })
         });
-      return v2.setProperty(v60, 'cssText', Interpreter.VALUE_IN_DESCRIPTOR, {
-        get: v2.createNativeFunction(function() {
-          return v37.cssText;
+      return __var_2.setProperty(__var_60, 'cssText', Interpreter.VALUE_IN_DESCRIPTOR, {
+        get: __var_2.createNativeFunction(function() {
+          return __var_37.cssText;
         }),
-        set: v2.createNativeFunction(function(v59) {
-          v37.cssText = v59, v3.settings.logCalls && console.log(v5.domain, 'set cssText', this, v59);
+        set: __var_2.createNativeFunction(function(__var_59) {
+          __var_37.cssText = __var_59, __var_3.settings.logCalls && console.log(__var_5.domain, 'set cssText', this, __var_59);
         })
-      }), v2.setProperty(v60, 'setProperty', v2.createNativeFunction(function(v59, v61, L) {
+      }), __var_2.setProperty(__var_60, 'setProperty', __var_2.createNativeFunction(function(__var_59, __var_61, L) {
         if (this.native?.className === 'tile-body')
           throw new Error('No access.');
-        v37.setProperty(v59, v61, L), v3.settings.logCalls && console.log(v5.domain, 'setProperty', this, v59, v61, L);
-      })), v2.setProperty(v60, 'getPropertyValue', v2.createNativeFunction(function(v59) {
-        return v37.getPropertyValue(v59);
-      })), v2.setProperty(v60, 'removeProperty', v2.createNativeFunction(function(v59) {
+        __var_37.setProperty(__var_59, __var_61, L), __var_3.settings.logCalls && console.log(__var_5.domain, 'setProperty', this, __var_59, __var_61, L);
+      })), __var_2.setProperty(__var_60, 'getPropertyValue', __var_2.createNativeFunction(function(__var_59) {
+        return __var_37.getPropertyValue(__var_59);
+      })), __var_2.setProperty(__var_60, 'removeProperty', __var_2.createNativeFunction(function(__var_59) {
         if (this.native?.className === 'tile-body')
           throw new Error('No access.');
-        return v3.settings.logCalls && console.log(v5.domain, 'removeProperty', this, v59), v37.removeProperty(v59);
-      })), v60;
+        return __var_3.settings.logCalls && console.log(__var_5.domain, 'removeProperty', this, __var_59), __var_37.removeProperty(__var_59);
+      })), __var_60;
     })
-  }), v2.setProperty(v30, 'dataset', Interpreter.VALUE_IN_DESCRIPTOR, {
-    get: v2.createNativeFunction(function() {
-      let v37 = this.native.dataset,
-        v60 = v2.nativeToPseudo({});
-      for (let v58 in v37)
-        v2.setProperty(v60, v58, v37[v58]);
-      return v2.setProperty(v60, 'get', v2.createNativeFunction(function(v58) {
-        return v37[v58];
-      })), v2.setProperty(v60, 'set', v2.createNativeFunction(function(v58, v59) {
-        v37[v58] = String(v59).slice(0, 1000), v3.settings.logCalls && console.log(v5.domain, 'set dataset', this, v58, v59);
-      })), v2.setProperty(v60, 'delete', v2.createNativeFunction(function(v58) {
-        delete v37[v58], v3.settings.logCalls && console.log(v5.domain, 'delete dataset', this, v58);
-      })), v2.setProperty(v60, 'has', v2.createNativeFunction(function(v58) {
-        return v58 in v37;
-      })), v60;
+  }), __var_2.setProperty(__var_30, 'dataset', Interpreter.VALUE_IN_DESCRIPTOR, {
+    get: __var_2.createNativeFunction(function() {
+      let __var_37 = this.native.dataset,
+        __var_60 = __var_2.nativeToPseudo({});
+      for (let __var_58 in __var_37)
+        __var_2.setProperty(__var_60, __var_58, __var_37[__var_58]);
+      return __var_2.setProperty(__var_60, 'get', __var_2.createNativeFunction(function(__var_58) {
+        return __var_37[__var_58];
+      })), __var_2.setProperty(__var_60, 'set', __var_2.createNativeFunction(function(__var_58, __var_59) {
+        __var_37[__var_58] = String(__var_59).slice(0, 1000), __var_3.settings.logCalls && console.log(__var_5.domain, 'set dataset', this, __var_58, __var_59);
+      })), __var_2.setProperty(__var_60, 'delete', __var_2.createNativeFunction(function(__var_58) {
+        delete __var_37[__var_58], __var_3.settings.logCalls && console.log(__var_5.domain, 'delete dataset', this, __var_58);
+      })), __var_2.setProperty(__var_60, 'has', __var_2.createNativeFunction(function(__var_58) {
+        return __var_58 in __var_37;
+      })), __var_60;
     })
-  }), v2.setProperty(v30, 'offsetParent', Interpreter.VALUE_IN_DESCRIPTOR, {
-    get: v2.createNativeFunction(function() {
-      return v18(v20(this.native.offsetParent));
+  }), __var_2.setProperty(__var_30, 'offsetParent', Interpreter.VALUE_IN_DESCRIPTOR, {
+    get: __var_2.createNativeFunction(function() {
+      return __fn_18(__var_20(this.native.offsetParent));
     })
   });
-  let v12 = [
+  let __var_12 = [
     'click',
     'dblclick',
     'mousedown',
@@ -1877,19 +1877,19 @@ function v57(v2, u, v48, v5) {
     'load'
   ];
 
-  function v22(v37) {
-    let v60 = v2.nativeToPseudo({}),
-      v58 = [
+  function __var_22(__var_37) {
+    let __var_60 = __var_2.nativeToPseudo({}),
+      __var_58 = [
         'type',
         'bubbles',
         'cancelable',
         'defaultPrevented',
         'timeStamp'
       ];
-    for (let v59 of v58)
-      v2.setProperty(v60, v59, v37[v59]);
-    if (v37 instanceof MouseEvent || v37 instanceof PointerEvent) {
-      let v59 = [
+    for (let __var_59 of __var_58)
+      __var_2.setProperty(__var_60, __var_59, __var_37[__var_59]);
+    if (__var_37 instanceof MouseEvent || __var_37 instanceof PointerEvent) {
+      let __var_59 = [
         'clientX',
         'clientY',
         'pageX',
@@ -1907,11 +1907,11 @@ function v57(v2, u, v48, v5) {
         'shiftKey',
         'metaKey'
       ];
-      for (let v61 of v59)
-        v2.setProperty(v60, v61, v37[v61]);
+      for (let __var_61 of __var_59)
+        __var_2.setProperty(__var_60, __var_61, __var_37[__var_61]);
     }
-    if (v37 instanceof KeyboardEvent) {
-      let v59 = [
+    if (__var_37 instanceof KeyboardEvent) {
+      let __var_59 = [
         'key',
         'code',
         'keyCode',
@@ -1922,59 +1922,59 @@ function v57(v2, u, v48, v5) {
         'metaKey',
         'repeat'
       ];
-      for (let v61 of v59)
-        v2.setProperty(v60, v61, v37[v61]);
+      for (let __var_61 of __var_59)
+        __var_2.setProperty(__var_60, __var_61, __var_37[__var_61]);
     }
-    return typeof TouchEvent == 'function' && v37 instanceof TouchEvent && (v2.setProperty(v60, 'touches', v2.nativeToPseudo({
-      length: v37.touches.length
-    })), v2.setProperty(v60, 'changedTouches', v2.nativeToPseudo({
-      length: v37.changedTouches.length
-    }))), typeof WheelEvent == 'function' && v37 instanceof WheelEvent && (v2.setProperty(v60, 'deltaX', v37.deltaX), v2.setProperty(v60, 'deltaY', v37.deltaY), v2.setProperty(v60, 'deltaZ', v37.deltaZ), v2.setProperty(v60, 'deltaMode', v37.deltaMode)), v37.target && v19(v37.target) && v2.setProperty(v60, 'target', v18(v37.target)), v37.currentTarget && v19(v37.currentTarget) && v2.setProperty(v60, 'currentTarget', v18(v37.currentTarget)), v2.setProperty(v60, 'preventDefault', v2.createNativeFunction(function() {
-      v37.preventDefault();
-    })), v2.setProperty(v60, 'stopPropagation', v2.createNativeFunction(function() {
-      v37.stopPropagation();
-    })), v2.setProperty(v60, 'stopImmediatePropagation', v2.createNativeFunction(function() {
-      v37.stopImmediatePropagation();
-    })), v60;
+    return typeof TouchEvent == 'function' && __var_37 instanceof TouchEvent && (__var_2.setProperty(__var_60, 'touches', __var_2.nativeToPseudo({
+      length: __var_37.touches.length
+    })), __var_2.setProperty(__var_60, 'changedTouches', __var_2.nativeToPseudo({
+      length: __var_37.changedTouches.length
+    }))), typeof WheelEvent == 'function' && __var_37 instanceof WheelEvent && (__var_2.setProperty(__var_60, 'deltaX', __var_37.deltaX), __var_2.setProperty(__var_60, 'deltaY', __var_37.deltaY), __var_2.setProperty(__var_60, 'deltaZ', __var_37.deltaZ), __var_2.setProperty(__var_60, 'deltaMode', __var_37.deltaMode)), __var_37.target && __var_19(__var_37.target) && __var_2.setProperty(__var_60, 'target', __fn_18(__var_37.target)), __var_37.currentTarget && __var_19(__var_37.currentTarget) && __var_2.setProperty(__var_60, 'currentTarget', __fn_18(__var_37.currentTarget)), __var_2.setProperty(__var_60, 'preventDefault', __var_2.createNativeFunction(function() {
+      __var_37.preventDefault();
+    })), __var_2.setProperty(__var_60, 'stopPropagation', __var_2.createNativeFunction(function() {
+      __var_37.stopPropagation();
+    })), __var_2.setProperty(__var_60, 'stopImmediatePropagation', __var_2.createNativeFunction(function() {
+      __var_37.stopImmediatePropagation();
+    })), __var_60;
   }
-  v2.setProperty(v30, 'addEventListener', v2.createNativeFunction(function(v37, v60) {
-    if (!v37 || typeof v37 != 'string' || !v60 || typeof v60 != 'object')
+  __var_2.setProperty(__var_30, 'addEventListener', __var_2.createNativeFunction(function(__var_37, __var_60) {
+    if (!__var_37 || typeof __var_37 != 'string' || !__var_60 || typeof __var_60 != 'object')
       return;
-    if (v37 = v37.toLowerCase(), !v12.includes(v37))
-      throw new Error(`Event type "${ v37 }" is not allowed`);
-    v3.settings.logCalls && console.log(v5.domain, 'addEventListener', this, v37, v60);
-    let v58 = this.native;
-    v9.has(v58) || v9.set(v58, new Map());
-    let v59 = v9.get(v58);
-    v59.has(v37) || v59.set(v37, []);
-    let v61 = v59.get(v37);
-    if (v61.length >= v8)
-      throw new Error(`Maximum listeners (${ v8 }) reached for event "${ v37 }"`);
-    if (v61.some(H => H.pseudo === v60))
+    if (__var_37 = __var_37.toLowerCase(), !__var_12.includes(__var_37))
+      throw new Error(`Event type "${ __var_37 }" is not allowed`);
+    __var_3.settings.logCalls && console.log(__var_5.domain, 'addEventListener', this, __var_37, __var_60);
+    let __var_58 = this.native;
+    __fn_9.has(__var_58) || __fn_9.set(__var_58, new Map());
+    let __var_59 = __fn_9.get(__var_58);
+    __var_59.has(__var_37) || __var_59.set(__var_37, []);
+    let __var_61 = __var_59.get(__var_37);
+    if (__var_61.length >= __var_8)
+      throw new Error(`Maximum listeners (${ __var_8 }) reached for event "${ __var_37 }"`);
+    if (__var_61.some(H => H.pseudo === __var_60))
       return;
-    let v62 = function(H) {
-      let v63 = v22(H);
-      v13(v60, v63);
+    let __var_62 = function(H) {
+      let __var_63 = __var_22(H);
+      __var_13(__var_60, __var_63);
     };
-    v61.push({
-      pseudo: v60,
-      native: v62
-    }), v58.addEventListener(v37, v62);
-  })), v2.setProperty(v30, 'removeEventListener', v2.createNativeFunction(function(v37, v60) {
-    if (!v37 || typeof v37 != 'string' || !v60 || typeof v60 != 'object')
+    __var_61.push({
+      pseudo: __var_60,
+      native: __var_62
+    }), __var_58.addEventListener(__var_37, __var_62);
+  })), __var_2.setProperty(__var_30, 'removeEventListener', __var_2.createNativeFunction(function(__var_37, __var_60) {
+    if (!__var_37 || typeof __var_37 != 'string' || !__var_60 || typeof __var_60 != 'object')
       return;
-    v3.settings.logCalls && console.log(v5.domain, 'removeEventListener', this, v37, v60), v37 = v37.toLowerCase();
-    let v58 = this.native;
-    if (!v9.has(v58))
+    __var_3.settings.logCalls && console.log(__var_5.domain, 'removeEventListener', this, __var_37, __var_60), __var_37 = __var_37.toLowerCase();
+    let __var_58 = this.native;
+    if (!__fn_9.has(__var_58))
       return;
-    let v59 = v9.get(v58);
-    if (!v59.has(v37))
+    let __var_59 = __fn_9.get(__var_58);
+    if (!__var_59.has(__var_37))
       return;
-    let v61 = v59.get(v37),
-      v62 = v61.findIndex(H => H.pseudo === v60);
-    v62 !== -1 && (v58.removeEventListener(v37, v61[v62].native), v61.splice(v62, 1));
+    let __var_61 = __var_59.get(__var_37),
+      __var_62 = __var_61.findIndex(H => H.pseudo === __var_60);
+    __var_62 !== -1 && (__var_58.removeEventListener(__var_37, __var_61[__var_62].native), __var_61.splice(__var_62, 1));
   }));
-  let v38 = [
+  let __var_38 = [
     'click',
     'dblclick',
     'mousedown',
@@ -2022,61 +2022,61 @@ function v57(v2, u, v48, v5) {
     'error',
     'load'
   ];
-  for (let v37 of v38) {
-    let v60 = 'on' + v37;
-    v2.setProperty(v30, v60, Interpreter.VALUE_IN_DESCRIPTOR, {
-      get: v2.createNativeFunction(function() {
-        let v58 = this.native;
-        if (!v9.has(v58))
+  for (let __var_37 of __var_38) {
+    let __var_60 = 'on' + __var_37;
+    __var_2.setProperty(__var_30, __var_60, Interpreter.VALUE_IN_DESCRIPTOR, {
+      get: __var_2.createNativeFunction(function() {
+        let __var_58 = this.native;
+        if (!__fn_9.has(__var_58))
           return null;
-        let v59 = v9.get(v58),
-          v61 = `__${ v60 }`;
-        return v59.get(v61) || null;
+        let __var_59 = __fn_9.get(__var_58),
+          __var_61 = `__${ __var_60 }`;
+        return __var_59.get(__var_61) || null;
       }),
-      set: v2.createNativeFunction(function(v58) {
-        let v59 = this.native;
-        v9.has(v59) || v9.set(v59, new Map());
-        let v61 = v9.get(v59),
-          v62 = `__${ v60 }`;
-        v3.settings.logCalls && console.log(v5.domain, 'setOn' + v37, this, v58);
-        let v64 = v61.get(v62 + '_native');
-        if (v64 && (v59.removeEventListener(v37, v64), v61.delete(v62), v61.delete(v62 + '_native')), v58 && typeof v58 == 'object') {
-          let v63 = function(gt) {
-            let v65 = v22(gt);
-            v13(v58, v65);
+      set: __var_2.createNativeFunction(function(__var_58) {
+        let __var_59 = this.native;
+        __fn_9.has(__var_59) || __fn_9.set(__var_59, new Map());
+        let __var_61 = __fn_9.get(__var_59),
+          __var_62 = `__${ __var_60 }`;
+        __var_3.settings.logCalls && console.log(__var_5.domain, 'setOn' + __var_37, this, __var_58);
+        let __var_64 = __var_61.get(__var_62 + '_native');
+        if (__var_64 && (__var_59.removeEventListener(__var_37, __var_64), __var_61.delete(__var_62), __var_61.delete(__var_62 + '_native')), __var_58 && typeof __var_58 == 'object') {
+          let __var_63 = function(gt) {
+            let __var_65 = __var_22(gt);
+            __var_13(__var_58, __var_65);
           };
-          v59.addEventListener(v37, v63), v61.set(v62, v58), v61.set(v62 + '_native', v63);
+          __var_59.addEventListener(__var_37, __var_63), __var_61.set(__var_62, __var_58), __var_61.set(__var_62 + '_native', __var_63);
         }
       })
     });
   }
-  v4(v2, u, v5).extendElement(v30, v18), v39(v2, u, v5), v55(v2, u, v5.domain), v56(v2, u, v48, v5);
-  let v36 = v2.nativeToPseudo({});
-  v2.setProperty(u, 'document', v36);
-  let v66 = {
-    getElementById: function(v37) {
-      let v60 = v48.querySelector(`#${ CSS.escape(v37) }`);
-      return v18(v60);
+  __fn_4(__var_2, u, __var_5).extendElement(__var_30, __fn_18), __fn_39(__var_2, u, __var_5), __fn_55(__var_2, u, __var_5.domain), __fn_56(__var_2, u, __var_48, __var_5);
+  let __var_36 = __var_2.nativeToPseudo({});
+  __var_2.setProperty(u, 'document', __var_36);
+  let __var_66 = {
+    getElementById: function(__var_37) {
+      let __var_60 = __var_48.querySelector(`#${ CSS.escape(__var_37) }`);
+      return __fn_18(__var_60);
     },
-    getElementsByClassName: function(v37) {
-      let v60 = Array.from(v48.getElementsByClassName(v37));
-      return v23(v60);
+    getElementsByClassName: function(__var_37) {
+      let __var_60 = Array.from(__var_48.getElementsByClassName(__var_37));
+      return __fn_23(__var_60);
     },
-    getElementsByTagName: function(v37) {
-      let v60 = Array.from(v48.getElementsByTagName(v37));
-      return v23(v60);
+    getElementsByTagName: function(__var_37) {
+      let __var_60 = Array.from(__var_48.getElementsByTagName(__var_37));
+      return __fn_23(__var_60);
     },
-    querySelector: function(v37) {
-      return v18(v48.querySelector(v37));
+    querySelector: function(__var_37) {
+      return __fn_18(__var_48.querySelector(__var_37));
     },
-    querySelectorAll: function(v37) {
-      let v60 = Array.from(v48.querySelectorAll(v37));
-      return v23(v60);
+    querySelectorAll: function(__var_37) {
+      let __var_60 = Array.from(__var_48.querySelectorAll(__var_37));
+      return __fn_23(__var_60);
     },
-    createElement: function(v37) {
-      if (typeof v37 != 'string')
+    createElement: function(__var_37) {
+      if (typeof __var_37 != 'string')
         throw new Error('Invalid tag');
-      if (v37 = v37.toLowerCase().trim(), [
+      if (__var_37 = __var_37.toLowerCase().trim(), [
           'script',
           'style',
           'iframe',
@@ -2094,138 +2094,138 @@ function v57(v2, u, v48, v5) {
           'source',
           'geolocation',
           'permission'
-        ].includes(v37))
-        throw new Error('Creating ' + v37 + ' elements is not allowed');
-      return v3.settings.logCalls && console.log(v5.domain, 'createElement', this, v37), v18(document.createElement(v37));
+        ].includes(__var_37))
+        throw new Error('Creating ' + __var_37 + ' elements is not allowed');
+      return __var_3.settings.logCalls && console.log(__var_5.domain, 'createElement', this, __var_37), __fn_18(document.createElement(__var_37));
     },
-    createTextNode: function(v37) {
-      return v3.settings.logCalls && console.log(v5.domain, 'createTextNode', this, v37), v18(document.createTextNode(v37));
+    createTextNode: function(__var_37) {
+      return __var_3.settings.logCalls && console.log(__var_5.domain, 'createTextNode', this, __var_37), __fn_18(document.createTextNode(__var_37));
     }
   };
-  for (let [v37, v60] of Object.entries(v66))
-    v2.setProperty(v36, v37, v2.createNativeFunction(v60));
-  v2.setProperty(v36, 'body', Interpreter.VALUE_IN_DESCRIPTOR, {
-    get: v2.createNativeFunction(function() {
-      return v3.settings.logCalls && console.log(v5.domain, 'get body', this), v18(v48);
+  for (let [__var_37, __var_60] of Object.entries(__var_66))
+    __var_2.setProperty(__var_36, __var_37, __var_2.createNativeFunction(__var_60));
+  __var_2.setProperty(__var_36, 'body', Interpreter.VALUE_IN_DESCRIPTOR, {
+    get: __var_2.createNativeFunction(function() {
+      return __var_3.settings.logCalls && console.log(__var_5.domain, 'get body', this), __fn_18(__var_48);
     })
-  }), v2.setProperty(v36, 'documentElement', Interpreter.VALUE_IN_DESCRIPTOR, {
-    get: v2.createNativeFunction(function() {
-      return v3.settings.logCalls && console.log(v5.domain, 'get documentElement', this), v18(v48);
+  }), __var_2.setProperty(__var_36, 'documentElement', Interpreter.VALUE_IN_DESCRIPTOR, {
+    get: __var_2.createNativeFunction(function() {
+      return __var_3.settings.logCalls && console.log(__var_5.domain, 'get documentElement', this), __fn_18(__var_48);
     })
   });
-  let v67 = v2.nativeToPseudo({});
-  v2.setProperty(u, 'location', v67), v2.setProperty(v67, 'href', Interpreter.VALUE_IN_DESCRIPTOR, {
-    get: v2.createNativeFunction(function() {
-      return `/t/${ v5.domain }${ v5.path }`;
+  let __var_67 = __var_2.nativeToPseudo({});
+  __var_2.setProperty(u, 'location', __var_67), __var_2.setProperty(__var_67, 'href', Interpreter.VALUE_IN_DESCRIPTOR, {
+    get: __var_2.createNativeFunction(function() {
+      return `/t/${ __var_5.domain }${ __var_5.path }`;
     }),
-    set: v2.createNativeFunction(function(v37) {
-      if (typeof v37 == 'string') {
-        v3.settings.logCalls && console.log(v5.domain, 'set href', this, v37);
+    set: __var_2.createNativeFunction(function(__var_37) {
+      if (typeof __var_37 == 'string') {
+        __var_3.settings.logCalls && console.log(__var_5.domain, 'set href', this, __var_37);
         try {
-          let v60 = new URL(v37, `http://${ v5.domain }`);
-          if (v60.hostname && v60.hostname !== location.hostname)
+          let __var_60 = new URL(__var_37, `http://${ __var_5.domain }`);
+          if (__var_60.hostname && __var_60.hostname !== location.hostname)
             throw new Error('External URLs are not allowed');
-          let v58 = v60.pathname + v60.search + v60.hash;
-          if (v58.startsWith(`/t/${ v5.domain }/`) ? v58 = v58.substring(`/t/${ v5.domain }`.length) : v58 === `/t/${ v5.domain }` && (v58 = '/'), v58.startsWith('/') || (v58 = '/' + v58), v58.endsWith('.html') || v58 === '/' || v58 === '')
-            v5.fetchContent(v58 || '/index.html'), v5.setActive(!0);
+          let __var_58 = __var_60.pathname + __var_60.search + __var_60.hash;
+          if (__var_58.startsWith(`/t/${ __var_5.domain }/`) ? __var_58 = __var_58.substring(`/t/${ __var_5.domain }`.length) : __var_58 === `/t/${ __var_5.domain }` && (__var_58 = '/'), __var_58.startsWith('/') || (__var_58 = '/' + __var_58), __var_58.endsWith('.html') || __var_58 === '/' || __var_58 === '')
+            __var_5.fetchContent(__var_58 || '/index.html'), __var_5.setActive(!0);
           else
             throw new Error('Only HTML files can be navigated to');
-        } catch (v60) {
-          if (v60.message.includes('not allowed') || v60.message.includes('Only HTML'))
-            throw v60;
-          let v58 = v37;
-          if (v58.startsWith('/') || (v58 = '/' + v58), v58.endsWith('.html') || v58 === '/' || v58 === '')
-            v5.fetchContent(v58 || '/index.html').then(() => v5.setActive(!0));
+        } catch (__var_60) {
+          if (__var_60.message.includes('not allowed') || __var_60.message.includes('Only HTML'))
+            throw __var_60;
+          let __var_58 = __var_37;
+          if (__var_58.startsWith('/') || (__var_58 = '/' + __var_58), __var_58.endsWith('.html') || __var_58 === '/' || __var_58 === '')
+            __var_5.fetchContent(__var_58 || '/index.html').then(() => __var_5.setActive(!0));
           else
             throw new Error('Only HTML files can be navigated to');
         }
       }
     })
-  }), v2.setProperty(v67, 'reload', v2.createNativeFunction(function() {
-    v5.fetchContent(v5.path, !0).then(() => v5.setActive(!0));
+  }), __var_2.setProperty(__var_67, 'reload', __var_2.createNativeFunction(function() {
+    __var_5.fetchContent(__var_5.path, !0).then(() => __var_5.setActive(!0));
   }));
 }
-var v68 = {
+var __var_68 = {
     console: {
-      log: function(...v2) {
-        this.logCount++ > 1000 || console.log(`[${ this.tile.domain }]`, ...v2);
+      log: function(...__var_2) {
+        this.logCount++ > 1000 || console.log(`[${ this.tile.domain }]`, ...__var_2);
       },
-      error: function(...v2) {
-        this.logCount++ > 1000 || console.error(`[${ this.tile.domain }]`, ...v2);
+      error: function(...__var_2) {
+        this.logCount++ > 1000 || console.error(`[${ this.tile.domain }]`, ...__var_2);
       },
-      warn: function(...v2) {
-        this.logCount++ > 1000 || console.warn(`[${ this.tile.domain }]`, ...v2);
+      warn: function(...__var_2) {
+        this.logCount++ > 1000 || console.warn(`[${ this.tile.domain }]`, ...__var_2);
       }
     },
-    alert(v2) {
-      this.alertCount++ > 10 || alert(`[${ this.tile.domain }] ${ v2 }`);
+    alert(__var_2) {
+      this.alertCount++ > 10 || alert(`[${ this.tile.domain }] ${ __var_2 }`);
     },
-    prompt(v2) {
+    prompt(__var_2) {
       if (!(this.alertCount++ > 10))
-        return prompt(`[${ this.tile.domain }] ${ v2 }`);
+        return prompt(`[${ this.tile.domain }] ${ __var_2 }`);
     },
-    confirm(v2) {
+    confirm(__var_2) {
       if (!(this.alertCount++ > 10))
-        return confirm(`[${ this.tile.domain }] ${ v2 }`);
+        return confirm(`[${ this.tile.domain }] ${ __var_2 }`);
     },
-    atob(v2) {
-      return atob(v2);
+    atob(__var_2) {
+      return atob(__var_2);
     },
-    btoa(v2) {
-      return btoa(v2);
+    btoa(__var_2) {
+      return btoa(__var_2);
     }
   },
-  v69 = class {
+  __var_69 = class {
     constructor(u) {
-      this.running = !1, this.logCount = 0, this.alertCount = 0, this.tile = u, this.waitUntil = null, this.index = 0, this.sizeLimitReached = !1, this.interpreter = new Interpreter('', (v48, v5) => {
-        let v6 = (v7, v8) => {
-          for (let [v9, v10] of Object.entries(v7))
-            if (typeof v10 == 'function')
-              v48.setProperty(v8, v9, v48.createNativeFunction(v10.bind(this)));
-            else if (typeof v10 == 'object' && v10 !== null) {
-            let v11 = v48.nativeToPseudo({});
-            v6(v10, v11), v48.setProperty(v8, v9, v11);
+      this.running = !1, this.logCount = 0, this.alertCount = 0, this.tile = u, this.waitUntil = null, this.index = 0, this.sizeLimitReached = !1, this.interpreter = new Interpreter('', (__var_48, __var_5) => {
+        let __var_6 = (__var_7, __var_8) => {
+          for (let [__fn_9, __fn_10] of Object.entries(__var_7))
+            if (typeof __fn_10 == 'function')
+              __var_48.setProperty(__var_8, __fn_9, __var_48.createNativeFunction(__fn_10.bind(this)));
+            else if (typeof __fn_10 == 'object' && __fn_10 !== null) {
+            let __fn_11 = __var_48.nativeToPseudo({});
+            __var_6(__fn_10, __fn_11), __var_48.setProperty(__var_8, __fn_9, __fn_11);
           }
         };
-        v6(v68, v5), v57(v48, v5, this.tile.contentElement, this.tile), v48.setProperty(v5, 'embedded', v48.nativeToPseudo(!!this.tile.embed));
+        __var_6(__var_68, __var_5), __fn_57(__var_48, __var_5, this.tile.contentElement, this.tile), __var_48.setProperty(__var_5, 'embedded', __var_48.nativeToPseudo(!!this.tile.embed));
       }), this.runInterval = null, this.running = !1;
     }
     roughValueMemorySize() {
-      let v70 = new Set(),
-        v48 = [this.interpreter.getStateStack()],
-        v5 = 0;
-      for (; v48.length;) {
-        let v6 = v48.pop(),
-          v7 = typeof v6;
-        if (v5 += 8, v7 === 'string' && !v70.has(v6))
-          v70.add(v6), v5 += v6.length * 2;
-        else if (v7 === 'object' && v6 !== null && !v70.has(v6)) {
-          v70.add(v6);
+      let __var_70 = new Set(),
+        __var_48 = [this.interpreter.getStateStack()],
+        __var_5 = 0;
+      for (; __var_48.length;) {
+        let __var_6 = __var_48.pop(),
+          __var_7 = typeof __var_6;
+        if (__var_5 += 8, __var_7 === 'string' && !__var_70.has(__var_6))
+          __var_70.add(__var_6), __var_5 += __var_6.length * 2;
+        else if (__var_7 === 'object' && __var_6 !== null && !__var_70.has(__var_6)) {
+          __var_70.add(__var_6);
           try {
-            v48.push(...Object.keys(v6), ...Object.values(v6));
+            __var_48.push(...Object.keys(__var_6), ...Object.values(__var_6));
           } catch {}
         }
       }
-      return v5;
+      return __var_5;
     }
     start() {
-      this.running || v3.settings.disableJS || this.sizeLimitReached || (this.running = !0, this.runInterval = setInterval(() => {
+      this.running || __var_3.settings.disableJS || this.sizeLimitReached || (this.running = !0, this.runInterval = setInterval(() => {
         if (!(this.waitUntil && Date.now() < this.waitUntil) && this.running)
-          for (let v70 = 0; v70 < 5000; v70++)
+          for (let __var_70 = 0; __var_70 < 5000; __var_70++)
             try {
               if (!this.interpreter.step()) {
                 this.waitUntil = Date.now() + 50;
                 break;
               }
               if (this.index++ % 500 === 0) {
-                let v48 = this.roughValueMemorySize();
-                if (v48 > 3000000) {
-                  this.sizeLimitReached = !0, this.stop(), console.log(`[${ this.tile.domain }] Memory size limit reached: ${ v48 } bytes`);
+                let __var_48 = this.roughValueMemorySize();
+                if (__var_48 > 3000000) {
+                  this.sizeLimitReached = !0, this.stop(), console.log(`[${ this.tile.domain }] Memory size limit reached: ${ __var_48 } bytes`);
                   break;
                 }
               }
-            } catch (v48) {
-              console.error(v48), this.stop();
+            } catch (__var_48) {
+              console.error(__var_48), this.stop();
               break;
             }
       }, 0));
@@ -2233,15 +2233,15 @@ var v68 = {
     stop() {
       this.running && (clearInterval(this.runInterval), this.running = !1);
     }
-    runCode(v70) {
-      v3.settings.disableJS || this.interpreter.appendCode(v70);
+    runCode(__var_70) {
+      __var_3.settings.disableJS || this.interpreter.appendCode(__var_70);
     }
   },
-  v71 = v69;
-var v72 = document.getElementById('plot'),
-  v73 = new CSSStyleSheet(),
-  v74 = () => {
-    v73.replaceSync(`
+  __var_71 = __var_69;
+var __var_72 = document.getElementById('plot'),
+  __var_73 = new CSSStyleSheet(),
+  __var_74 = () => {
+    __var_73.replaceSync(`
         .tile-body:not(.active) * {
             animation-play-state: paused !important;
         }
@@ -2253,9 +2253,9 @@ var v72 = document.getElementById('plot'),
         }
     `);
   };
-v74();
-var v75 = new CSSStyleSheet();
-v75.replaceSync(`
+__var_74();
+var __var_75 = new CSSStyleSheet();
+__var_75.replaceSync(`
     .free {
         width: 100%;
         height: 100%;
@@ -2270,186 +2270,186 @@ v75.replaceSync(`
         user-select: none;
     }    
 `);
-var v76 = class v2 {
-  constructor(v70) {
-    this.v26 = v70.v26 ?? 0, this.v18 = v70.v18 ?? 0, this.domain = v70.domain, this.free = !v70.domain, this.locked = !1, this.id = `${ this.v26 },${ this.v18 }`, this.rendered = !1, this.active = !1, this.element = null, this.contentElement = null, this.path = v70.path || '/index.html', this.content = '', this.lastRender = 0, this.preview = v70.nocontrols || !1, this.embed = v70.embed || !1, this.container = v70.container || v72, this.interpreter = null, this.render();
+var __var_76 = class __var_2 {
+  constructor(__var_70) {
+    this.__var_26 = __var_70.__var_26 ?? 0, this.__fn_18 = __var_70.__fn_18 ?? 0, this.domain = __var_70.domain, this.free = !__var_70.domain, this.locked = !1, this.id = `${ this.__var_26 },${ this.__fn_18 }`, this.rendered = !1, this.active = !1, this.element = null, this.contentElement = null, this.path = __var_70.path || '/index.html', this.content = '', this.lastRender = 0, this.preview = __var_70.nocontrols || !1, this.embed = __var_70.embed || !1, this.container = __var_70.container || __var_72, this.interpreter = null, this.render();
   }
-  static toTilePosition(v70, v48) {
+  static toTilePosition(__var_70, __var_48) {
     return {
-      v26: Math.floor(v70 / 250),
-      v18: Math.floor(v48 / 250)
+      __var_26: Math.floor(__var_70 / 250),
+      __fn_18: Math.floor(__var_48 / 250)
     };
   }
   render() {
     if (this.rendered || this.element)
       return;
     this.lastRender = Date.now(), this.rendered = !0;
-    let v70 = document.createElement('div');
-    v70.classList.add('tile'), this.free && v70.classList.add('f'), this.preview ? v70.style.cssText = 'width: 100%; height: 100%; position: relative;' : (v70.style.left = `${ this.v26 * 250 }px`, v70.style.top = `${ this.v18 * 250 }px`, this.v26 % 10 === 0 && v70.classList.add('b-left'), this.v18 % 10 === 0 && v70.classList.add('b-top')), this.element = v70;
-    let v48 = document.createElement('div');
-    v48.classList.add('tile-content'), this.preview && (v48.style.cssText = 'width: 100%; height: 100%;'), v48.addEventListener('click', async v6 => {
-      let v7 = v6.composedPath()?.filter(v11 => v11 instanceof Element);
-      if (!v7)
+    let __var_70 = document.createElement('div');
+    __var_70.classList.add('tile'), this.free && __var_70.classList.add('f'), this.preview ? __var_70.style.cssText = 'width: 100%; height: 100%; position: relative;' : (__var_70.style.left = `${ this.__var_26 * 250 }px`, __var_70.style.top = `${ this.__fn_18 * 250 }px`, this.__var_26 % 10 === 0 && __var_70.classList.add('b-left'), this.__fn_18 % 10 === 0 && __var_70.classList.add('b-top')), this.element = __var_70;
+    let __var_48 = document.createElement('div');
+    __var_48.classList.add('tile-content'), this.preview && (__var_48.style.cssText = 'width: 100%; height: 100%;'), __var_48.addEventListener('click', async __var_6 => {
+      let __var_7 = __var_6.composedPath()?.filter(__fn_11 => __fn_11 instanceof Element);
+      if (!__var_7)
         return;
-      let v8 = v7.findIndex(v11 => v11.isSameNode(v48));
-      if (v8 === -1)
+      let __var_8 = __var_7.findIndex(__fn_11 => __fn_11.isSameNode(__var_48));
+      if (__var_8 === -1)
         return;
-      let v10 = v7.slice(0, v8).find(v11 => v11.tagName === 'A');
-      if (v10) {
-        v6.preventDefault();
+      let __fn_10 = __var_7.slice(0, __var_8).find(__fn_11 => __fn_11.tagName === 'A');
+      if (__fn_10) {
+        __var_6.preventDefault();
         try {
-          let v11 = new URL(v10.href);
-          if (v11.hostname !== location.hostname) {
-            let v14 = document.createElement('a');
-            v14.href = v10.href, v14.target = '_blank', v14.click();
+          let __fn_11 = new URL(__fn_10.href);
+          if (__fn_11.hostname !== location.hostname) {
+            let __var_14 = document.createElement('a');
+            __var_14.href = __fn_10.href, __var_14.target = '_blank', __var_14.click();
             return;
           }
-          let v13 = v11.pathname;
-          if (v13.startsWith(`/t/${ this.domain }/`) || (v13 = `/t/${ this.domain }/${ v13 }`.replaceAll('//', '/')), v13.startsWith(`/t/${ this.domain }`) && (v13.endsWith('.html') || v13 === `/t/${ this.domain }/` || v13 === `/t/${ this.domain }`))
-            await this.fetchContent(v13.replace(`/t/${ this.domain }`, '')), this.setActive(!0);
+          let __var_13 = __fn_11.pathname;
+          if (__var_13.startsWith(`/t/${ this.domain }/`) || (__var_13 = `/t/${ this.domain }/${ __var_13 }`.replaceAll('//', '/')), __var_13.startsWith(`/t/${ this.domain }`) && (__var_13.endsWith('.html') || __var_13 === `/t/${ this.domain }/` || __var_13 === `/t/${ this.domain }`))
+            await this.fetchContent(__var_13.replace(`/t/${ this.domain }`, '')), this.setActive(!0);
           else {
-            let v14 = document.createElement('a');
-            v14.href = v10.href, v14.target = '_blank', v14.click();
+            let __var_14 = document.createElement('a');
+            __var_14.href = __fn_10.href, __var_14.target = '_blank', __var_14.click();
           }
-        } catch (v11) {
-          console.error(v11);
+        } catch (__fn_11) {
+          console.error(__fn_11);
         }
       }
-    }), this.shadow = v48.attachShadow({
+    }), this.shadow = __var_48.attachShadow({
       mode: 'open'
     });
-    let v5 = document.createElement('div');
-    v5.className = 'tile-body', this.embed && v5.classList.add('embedded'), v5.style = 'width: 100%!important; height: 100%!important;position:absolute!important;top:0!important;left:0!important;', this.contentElement = v5, this.contentElement.innerHTML = this.preview ? 'Loading preview...' : `Loading ${ this.v26 }, ${ this.v18 }...`, this.shadow.appendChild(v5), v70.appendChild(v48), this.fonts = document.createElement('style'), v70.appendChild(this.fonts), this.fetchContent(this.path), this.container && this.container.appendChild(v70), v3.plot?.lockCache[this.v26 + ',' + this.v18] && this.setLocked(!0);
+    let __var_5 = document.createElement('div');
+    __var_5.className = 'tile-body', this.embed && __var_5.classList.add('embedded'), __var_5.style = 'width: 100%!important; height: 100%!important;position:absolute!important;top:0!important;left:0!important;', this.contentElement = __var_5, this.contentElement.innerHTML = this.preview ? 'Loading preview...' : `Loading ${ this.__var_26 }, ${ this.__fn_18 }...`, this.shadow.appendChild(__var_5), __var_70.appendChild(__var_48), this.fonts = document.createElement('style'), __var_70.appendChild(this.fonts), this.fetchContent(this.path), this.container && this.container.appendChild(__var_70), __var_3.plot?.lockCache[this.__var_26 + ',' + this.__fn_18] && this.setLocked(!0);
   }
   unrender() {
     !this.rendered || !this.element || (this.active && this.setActive(!1), this.element.remove(), this.element = null, this.rendered = !1, this.interpreter && (this.interpreter.stop(), this.interpreter = null));
   }
-  async fetchContent(v70, v48 = !1) {
-    v70.startsWith('/') || (v70 = '/' + v70);
-    let v5 = this.free ? `<div class="free">
-                <p>${ this.locked ? 'Locked tile' : 'Free tile' } ${ this.v26 }, ${ this.v18 }</p>
-            </div>` : this.path === v70 && this.content && !v48 ? this.content : await fetch(`/t/${ this.domain }${ v70 }`).then(v8 => v8.text()).catch(v8 => '<p>Error loading tile</p>');
-    this.free ? this.shadow.adoptedStyleSheets = [v75] : this.shadow.adoptedStyleSheets = [v73], this.interpreter && (this.interpreter.stop(), this.interpreter = null), this.path = v70, this.contentElement.innerHTML = v5, this.content = v5;
-    let v6 = this.contentElement.querySelectorAll('style');
+  async fetchContent(__var_70, __var_48 = !1) {
+    __var_70.startsWith('/') || (__var_70 = '/' + __var_70);
+    let __var_5 = this.free ? `<div class="free">
+                <p>${ this.locked ? 'Locked tile' : 'Free tile' } ${ this.__var_26 }, ${ this.__fn_18 }</p>
+            </div>` : this.path === __var_70 && this.content && !__var_48 ? this.content : await fetch(`/t/${ this.domain }${ __var_70 }`).then(__var_8 => __var_8.text()).catch(__var_8 => '<p>Error loading tile</p>');
+    this.free ? this.shadow.adoptedStyleSheets = [__var_75] : this.shadow.adoptedStyleSheets = [__var_73], this.interpreter && (this.interpreter.stop(), this.interpreter = null), this.path = __var_70, this.contentElement.innerHTML = __var_5, this.content = __var_5;
+    let __var_6 = this.contentElement.querySelectorAll('style');
     this.fonts.textContent = '';
-    let v7 = 0;
-    for (let v8 of v6) {
-      if (v7 >= 3)
+    let __var_7 = 0;
+    for (let __var_8 of __var_6) {
+      if (__var_7 >= 3)
         break;
-      let v9 = v8.textContent.match(/@font-face\s*{([^}]*)}/g);
-      if (v9)
-        for (let v10 of v9) {
-          if (v7 >= 3)
+      let __fn_9 = __var_8.textContent.match(/@font-face\s*{([^}]*)}/g);
+      if (__fn_9)
+        for (let __fn_10 of __fn_9) {
+          if (__var_7 >= 3)
             break;
-          this.fonts.textContent += v10, v7++;
+          this.fonts.textContent += __fn_10, __var_7++;
         }
     }
     this.preview && this.setActive(!0);
   }
   executeScripts() {
-    let v70 = this.contentElement.querySelectorAll('script[type="text/tilescript"]');
-    for (let v48 of v70)
-      this.interpreter.runCode(v48.textContent);
+    let __var_70 = this.contentElement.querySelectorAll('script[type="text/tilescript"]');
+    for (let __var_48 of __var_70)
+      this.interpreter.runCode(__var_48.textContent);
     this.preview && this.interpreter.start();
   }
-  setActive(v70) {
-    if (this.element && (v70 && (this.interpreter || (this.interpreter = new v71(this), this.executeScripts()), this.interpreter.start()), v70 !== this.active)) {
-      if (this.active = v70, v70) {
-        if (this.element.classList.add('active'), this.contentElement.classList.add('active'), !this.preview && v3.ui) {
-          let v5 = v3.ui.createVoteMenu(this);
-          v5 && this.element.appendChild(v5);
-          let v6 = v3.ui.createTileControl(this);
-          if (this.element.appendChild(v6), v3.user?.admin || v3.user?.moderator) {
-            let v7 = v3.ui.createAdminControl(this);
-            this.element.appendChild(v7);
+  setActive(__var_70) {
+    if (this.element && (__var_70 && (this.interpreter || (this.interpreter = new __var_71(this), this.executeScripts()), this.interpreter.start()), __var_70 !== this.active)) {
+      if (this.active = __var_70, __var_70) {
+        if (this.element.classList.add('active'), this.contentElement.classList.add('active'), !this.preview && __var_3.ui) {
+          let __var_5 = __var_3.ui.createVoteMenu(this);
+          __var_5 && this.element.appendChild(__var_5);
+          let __var_6 = __var_3.ui.createTileControl(this);
+          if (this.element.appendChild(__var_6), __var_3.user?.admin || __var_3.user?.moderator) {
+            let __var_7 = __var_3.ui.createAdminControl(this);
+            this.element.appendChild(__var_7);
           }
-          v3.plot?.activeTile && v3.plot.activeTile.setActive(!1), v3.plot && (v3.plot.activeTile = this), this.fetchAndShowClanBorders();
+          __var_3.plot?.activeTile && __var_3.plot.activeTile.setActive(!1), __var_3.plot && (__var_3.plot.activeTile = this), this.fetchAndShowClanBorders();
         }
-        let v48 = this.contentElement.querySelectorAll('audio, video');
-        for (let v5 of v48)
-          v5.dataset.webtilesPaused === 'true' && (v5.dataset.webtilesPaused = !1, v5.play());
+        let __var_48 = this.contentElement.querySelectorAll('audio, video');
+        for (let __var_5 of __var_48)
+          __var_5.dataset.webtilesPaused === 'true' && (__var_5.dataset.webtilesPaused = !1, __var_5.play());
       } else if (!this.preview) {
-        this.interpreter && this.interpreter.stop(), v3.plot.activeTile = null, this.element.classList.remove('active'), this.contentElement.classList.remove('active'), this.preview || (this.element.querySelector('.tile-vote-menu')?.remove(), this.element.querySelector('.tile-info')?.remove(), this.element.querySelector('.tile-admin-panel')?.remove(), v3.plot && (v3.plot.activeTile = null)), v2.clearClanBorders();
-        let v48 = this.contentElement.querySelectorAll('audio, video');
-        for (let v5 of v48)
-          v5.paused || (v5.dataset.webtilesPaused = !0, v5.pause());
+        this.interpreter && this.interpreter.stop(), __var_3.plot.activeTile = null, this.element.classList.remove('active'), this.contentElement.classList.remove('active'), this.preview || (this.element.querySelector('.tile-vote-menu')?.remove(), this.element.querySelector('.tile-info')?.remove(), this.element.querySelector('.tile-admin-panel')?.remove(), __var_3.plot && (__var_3.plot.activeTile = null)), __var_2.clearClanBorders();
+        let __var_48 = this.contentElement.querySelectorAll('audio, video');
+        for (let __var_5 of __var_48)
+          __var_5.paused || (__var_5.dataset.webtilesPaused = !0, __var_5.pause());
       }
     }
   }
   async fetchAndShowClanBorders() {
     if (!(this.free || !this.domain))
       try {
-        let v48 = await (await v3.api.makeRequest(`/api/clans/tile-clan?domain=${ encodeURIComponent(this.domain) }`)).json();
-        if (!v48.success || !v48.clan)
+        let __var_48 = await (await __var_3.api.makeRequest(`/api/clans/tile-clan?domain=${ encodeURIComponent(this.domain) }`)).json();
+        if (!__var_48.success || !__var_48.clan)
           return;
-        let v5 = v48.clan.members;
-        if (!v5 || v5.length <= 1)
+        let __var_5 = __var_48.clan.members;
+        if (!__var_5 || __var_5.length <= 1)
           return;
-        let v6 = new Set(v5.map(v7 => `${ v7.v26 },${ v7.v18 }`));
-        for (let v7 of v5) {
-          let v8 = v3.plot.tiles[`${ v7.v26 },${ v7.v18 }`];
-          if (!v8?.element)
+        let __var_6 = new Set(__var_5.map(__var_7 => `${ __var_7.__var_26 },${ __var_7.__fn_18 }`));
+        for (let __var_7 of __var_5) {
+          let __var_8 = __var_3.plot.tiles[`${ __var_7.__var_26 },${ __var_7.__fn_18 }`];
+          if (!__var_8?.element)
             continue;
-          v8.element.classList.add('clan-highlight');
-          let v9 = v6.has(`${ v7.v26 },${ v7.v18 - 1 }`),
-            v10 = v6.has(`${ v7.v26 },${ v7.v18 + 1 }`),
-            v11 = v6.has(`${ v7.v26 - 1 },${ v7.v18 }`),
-            v13 = v6.has(`${ v7.v26 + 1 },${ v7.v18 }`);
-          if (!v9) {
-            let v14 = document.createElement('div');
-            v14.className = 'clan-border clan-border-top', v8.element.appendChild(v14);
+          __var_8.element.classList.add('clan-highlight');
+          let __fn_9 = __var_6.has(`${ __var_7.__var_26 },${ __var_7.__fn_18 - 1 }`),
+            __fn_10 = __var_6.has(`${ __var_7.__var_26 },${ __var_7.__fn_18 + 1 }`),
+            __fn_11 = __var_6.has(`${ __var_7.__var_26 - 1 },${ __var_7.__fn_18 }`),
+            __var_13 = __var_6.has(`${ __var_7.__var_26 + 1 },${ __var_7.__fn_18 }`);
+          if (!__fn_9) {
+            let __var_14 = document.createElement('div');
+            __var_14.className = 'clan-border clan-border-top', __var_8.element.appendChild(__var_14);
           }
-          if (!v10) {
-            let v14 = document.createElement('div');
-            v14.className = 'clan-border clan-border-bottom', v8.element.appendChild(v14);
+          if (!__fn_10) {
+            let __var_14 = document.createElement('div');
+            __var_14.className = 'clan-border clan-border-bottom', __var_8.element.appendChild(__var_14);
           }
-          if (!v11) {
-            let v14 = document.createElement('div');
-            v14.className = 'clan-border clan-border-left', v8.element.appendChild(v14);
+          if (!__fn_11) {
+            let __var_14 = document.createElement('div');
+            __var_14.className = 'clan-border clan-border-left', __var_8.element.appendChild(__var_14);
           }
-          if (!v13) {
-            let v14 = document.createElement('div');
-            v14.className = 'clan-border clan-border-right', v8.element.appendChild(v14);
+          if (!__var_13) {
+            let __var_14 = document.createElement('div');
+            __var_14.className = 'clan-border clan-border-right', __var_8.element.appendChild(__var_14);
           }
         }
-      } catch (v70) {
-        console.error('Failed to fetch clan borders:', v70);
+      } catch (__var_70) {
+        console.error('Failed to fetch clan borders:', __var_70);
       }
   }
   static clearClanBorders() {
-    if (v3.plot?.tiles)
-      for (let v70 of Object.values(v3.plot.tiles))
-        v70.element && (v70.element.classList.remove('clan-highlight'), v70.element.querySelectorAll('.clan-border').forEach(v5 => v5.remove()));
+    if (__var_3.plot?.tiles)
+      for (let __var_70 of Object.values(__var_3.plot.tiles))
+        __var_70.element && (__var_70.element.classList.remove('clan-highlight'), __var_70.element.querySelectorAll('.clan-border').forEach(__var_5 => __var_5.remove()));
   }
-  setDomain(v70) {
-    this.domain = v70, this.free = !1, this.content = '', this.element && this.element.classList.remove('f'), this.fetchContent('/index.html');
+  setDomain(__var_70) {
+    this.domain = __var_70, this.free = !1, this.content = '', this.element && this.element.classList.remove('f'), this.fetchContent('/index.html');
   }
   setFree() {
     this.interpreter && this.interpreter.stop(), this.domain = null, this.free = !0, this.content = '', this.element && this.element.classList.add('f'), this.fetchContent('/index.html');
   }
-  setLocked(v70) {
-    this.locked = v70, this.element && this.element.classList.toggle('locked', v70), this.fetchContent('/index.html', !0);
+  setLocked(__var_70) {
+    this.locked = __var_70, this.element && this.element.classList.toggle('locked', __var_70), this.fetchContent('/index.html', !0);
   }
 };
-var v77 = JSON.parse(document.getElementById('embed-data').textContent),
-  v78 = document.getElementById('tile');
-window.tile = new v76({
-  domain: v77.domain,
-  container: v78,
+var __var_77 = JSON.parse(document.getElementById('embed-data').textContent),
+  __var_78 = document.getElementById('tile');
+window.tile = new __var_76({
+  domain: __var_77.domain,
+  container: __var_78,
   nocontrols: !0,
   embed: !0,
   path: '/index.html',
-  v26: v77.v26,
-  v18: v77.v18
+  __var_26: __var_77.__var_26,
+  __fn_18: __var_77.__fn_18
 });
-window.onmessage = v2 => {
-  v2.data.type === 'update' && (window.tile.unrender(), v78.innerHTML = '', window.tile = new v76({
-    domain: v77.domain,
-    container: v78,
+window.onmessage = __var_2 => {
+  __var_2.data.type === 'update' && (window.tile.unrender(), __var_78.innerHTML = '', window.tile = new __var_76({
+    domain: __var_77.domain,
+    container: __var_78,
     nocontrols: !0,
     embed: !0,
-    path: v2.data.path,
-    v26: v77.v26,
-    v18: v77.v18
+    path: __var_2.data.path,
+    __var_26: __var_77.__var_26,
+    __fn_18: __var_77.__fn_18
   }));
 };
