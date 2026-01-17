@@ -1,347 +1,347 @@
-/* fa906080c32cba3cfdfff54e4ad49ebe51b079f754eafb6e9df390f45849a96b */
-var __0 = Object.defineProperty;
-var __1 = (__2, __3, __4) => __3 in __2 ? __0(__2, __3, {
+/* 860c375cbdab38ab8f9161dd0e3791c73f6316d880ea16090b00d457acfbe42a */
+var _0x0 = Object.defineProperty;
+var _0x1 = (_0x2, _0x3, _0x4) => _0x3 in _0x2 ? _0x0(_0x2, _0x3, {
   enumerable: !0,
   configurable: !0,
   writable: !0,
-  value: __4
-}) : __2[__3] = __4;
-var __5 = (__2, __3, __4) => __1(__2, typeof __3 != 'symbol' ? __3 + '' : __3, __4);
-var __6 = {
+  value: _0x4
+}) : _0x2[_0x3] = _0x4;
+var _0x5 = (_0x2, _0x3, _0x4) => _0x1(_0x2, typeof _0x3 != 'symbol' ? _0x3 + '' : _0x3, _0x4);
+var _0x6 = {
     user: null,
     settings: {
       logCalls: localStorage.logCalls === 'true',
       disableJS: localStorage.disableJS === 'true'
     }
   },
-  __7 = document.getElementById('user-data');
-if (__7)
+  _0x7 = document.getElementById('user-data');
+if (_0x7)
   try {
-    let __2 = JSON.parse(__7.textContent);
-    __2 && __2.email_verified && (__6.user = __2);
-  } catch (__2) {
-    console.error(__2);
+    let _0x2 = JSON.parse(_0x7.textContent);
+    _0x2 && _0x2.email_verified && (_0x6.user = _0x2);
+  } catch (_0x2) {
+    console.error(_0x2);
   }
-var __8 = __6;
-var __9 = class __9 {
+var _0x8 = _0x6;
+var _0x9 = class _0x9 {
   static init() {
-    __9.container || (__9.container = document.createElement('div'), __9.container.id = 'modal-container', __9.container.className = 'modal-overlay', __9.container.addEventListener('click', __3 => {
-      __3.target === __9.container && __9.activeModal && __9.activeModal.close();
-    }), document.body.appendChild(__9.container));
+    _0x9.container || (_0x9.container = document.createElement('div'), _0x9.container.id = 'modal-container', _0x9.container.className = 'modal-overlay', _0x9.container.addEventListener('click', _0x3 => {
+      _0x3.target === _0x9.container && _0x9.activeModal && _0x9.activeModal.close();
+    }), document.body.appendChild(_0x9.container));
   }
-  constructor(__3 = {}) {
-    this.title = __3.title || '', this.content = __3.content || '', this.warning = __3.warning || null, this.buttons = __3.buttons || [], this.onClose = __3.onClose || null, this.element = null, this._buttonElements = new Map();
+  constructor(_0x3 = {}) {
+    this.title = _0x3.title || '', this.content = _0x3.content || '', this.warning = _0x3.warning || null, this.buttons = _0x3.buttons || [], this.onClose = _0x3.onClose || null, this.element = null, this._buttonElements = new Map();
   }
-  _createButton(__3) {
-    let __4 = document.createElement('button');
-    return __4.className = `modal-btn modal-btn-${ __3.type || 'default' }`, __4.textContent = __3.text, __3.disabled && (__4.disabled = !0), __4.addEventListener('click', async () => {
-      __3.onClick && await __3.onClick(this, __4);
-    }), this._buttonElements.set(__3.id || __3.text, __4), __4;
+  _createButton(_0x3) {
+    let _0x4 = document.createElement('button');
+    return _0x4.className = `modal-btn modal-btn-${ _0x3.type || 'default' }`, _0x4.textContent = _0x3.text, _0x3.disabled && (_0x4.disabled = !0), _0x4.addEventListener('click', async () => {
+      _0x3.onClick && await _0x3.onClick(this, _0x4);
+    }), this._buttonElements.set(_0x3.id || _0x3.text, _0x4), _0x4;
   }
   _build() {
-    let __3 = document.createElement('div');
-    if (__3.className = 'modal-content', this.title) {
-      let __4 = document.createElement('h3');
-      __4.className = 'modal-title', __4.textContent = this.title, __3.appendChild(__4);
+    let _0x3 = document.createElement('div');
+    if (_0x3.className = 'modal-content', this.title) {
+      let _0x4 = document.createElement('h3');
+      _0x4.className = 'modal-title', _0x4.textContent = this.title, _0x3.appendChild(_0x4);
     }
     if (this.content) {
-      let __4 = document.createElement('div');
-      __4.className = 'modal-body', typeof this.content == 'string' ? __4.innerHTML = this.content : this.content instanceof HTMLElement && __4.appendChild(this.content), __3.appendChild(__4);
+      let _0x4 = document.createElement('div');
+      _0x4.className = 'modal-body', typeof this.content == 'string' ? _0x4.innerHTML = this.content : this.content instanceof HTMLElement && _0x4.appendChild(this.content), _0x3.appendChild(_0x4);
     }
-    if (this._warningEl = document.createElement('div'), this._warningEl.className = 'modal-warning', this.warning ? (this._warningEl.innerHTML = this.warning, this._warningEl.style.display = 'block') : this._warningEl.style.display = 'none', __3.appendChild(this._warningEl), this.buttons.length > 0) {
-      let __4 = document.createElement('div');
-      __4.className = 'modal-actions';
-      for (let __10 of this.buttons)
-        __4.appendChild(this._createButton(__10));
-      __3.appendChild(__4);
+    if (this._warningEl = document.createElement('div'), this._warningEl.className = 'modal-warning', this.warning ? (this._warningEl.innerHTML = this.warning, this._warningEl.style.display = 'block') : this._warningEl.style.display = 'none', _0x3.appendChild(this._warningEl), this.buttons.length > 0) {
+      let _0x4 = document.createElement('div');
+      _0x4.className = 'modal-actions';
+      for (let _0xa of this.buttons)
+        _0x4.appendChild(this._createButton(_0xa));
+      _0x3.appendChild(_0x4);
     }
-    return this.element = __3, __3;
+    return this.element = _0x3, _0x3;
   }
   open() {
-    return __9.init(), __9.activeModal && __9.activeModal.close(), this._build(), __9.container.innerHTML = '', __9.container.appendChild(this.element), __9.container.classList.add('active'), __9.activeModal = this, __8.camera && __8.camera.setZoomEnabled(!1), this;
+    return _0x9.init(), _0x9.activeModal && _0x9.activeModal.close(), this._build(), _0x9.container.innerHTML = '', _0x9.container.appendChild(this.element), _0x9.container.classList.add('active'), _0x9.activeModal = this, _0x8.camera && _0x8.camera.setZoomEnabled(!1), this;
   }
   close() {
-    return __9.container && __9.container.classList.remove('active'), __9.activeModal = null, this._buttonElements.clear(), __8.camera && __8.camera.setZoomEnabled(!0), this.onClose && this.onClose(this), this;
+    return _0x9.container && _0x9.container.classList.remove('active'), _0x9.activeModal = null, this._buttonElements.clear(), _0x8.camera && _0x8.camera.setZoomEnabled(!0), this.onClose && this.onClose(this), this;
   }
-  setContent(__3) {
-    let __4 = this.element?.querySelector('.modal-body');
-    return __4 && (typeof __3 == 'string' ? __4.innerHTML = __3 : __3 instanceof HTMLElement && (__4.innerHTML = '', __4.appendChild(__3))), this.content = __3, this;
+  setContent(_0x3) {
+    let _0x4 = this.element?.querySelector('.modal-body');
+    return _0x4 && (typeof _0x3 == 'string' ? _0x4.innerHTML = _0x3 : _0x3 instanceof HTMLElement && (_0x4.innerHTML = '', _0x4.appendChild(_0x3))), this.content = _0x3, this;
   }
-  setWarning(__3) {
-    return this._warningEl && (__3 ? (this._warningEl.innerHTML = __3, this._warningEl.style.display = 'block') : this._warningEl.style.display = 'none'), this.warning = __3, this;
+  setWarning(_0x3) {
+    return this._warningEl && (_0x3 ? (this._warningEl.innerHTML = _0x3, this._warningEl.style.display = 'block') : this._warningEl.style.display = 'none'), this.warning = _0x3, this;
   }
-  getButton(__3) {
-    return this._buttonElements.get(__3);
+  getButton(_0x3) {
+    return this._buttonElements.get(_0x3);
   }
-  setButtonLoading(__3, __4, __10) {
-    let __11 = this.getButton(__3);
-    return __11 ? (__4 ? (__11._originalText = __11._originalText || __11.textContent, __11.textContent = __10 || 'Loading...', __11.disabled = !0) : (__11.textContent = __11._originalText || __11.textContent, __11.disabled = !1), this) : this;
+  setButtonLoading(_0x3, _0x4, _0xa) {
+    let _0xb = this.getButton(_0x3);
+    return _0xb ? (_0x4 ? (_0xb._originalText = _0xb._originalText || _0xb.textContent, _0xb.textContent = _0xa || 'Loading...', _0xb.disabled = !0) : (_0xb.textContent = _0xb._originalText || _0xb.textContent, _0xb.disabled = !1), this) : this;
   }
 };
-__5(__9, 'container', null), __5(__9, 'activeModal', null);
-var __12 = __9;
+_0x5(_0x9, 'container', null), _0x5(_0x9, 'activeModal', null);
+var _0xc = _0x9;
 
-function __13() {
+function _0xd() {
   return document.querySelector('meta[name="turnstile-sitekey"]')?.content || '';
 }
-var __14 = __13(),
-  __15 = localStorage.getItem('captchaToken'),
-  __16 = parseInt(localStorage.getItem('captchaExpiresAt') || '0'),
-  __17 = null,
-  __18 = [],
-  __19 = !1,
-  __20 = 0,
-  __21 = 5000;
-__16 < Date.now() && (__15 = null, localStorage.removeItem('captchaToken'), localStorage.removeItem('captchaExpiresAt'));
+var _0xe = _0xd(),
+  _0xf = localStorage.getItem('captchaToken'),
+  _0x10 = parseInt(localStorage.getItem('captchaExpiresAt') || '0'),
+  _0x11 = null,
+  _0x12 = [],
+  _0x13 = !1,
+  _0x14 = 0,
+  _0x15 = 5000;
+_0x10 < Date.now() && (_0xf = null, localStorage.removeItem('captchaToken'), localStorage.removeItem('captchaExpiresAt'));
 
-function __22() {
-  __15 = null, localStorage.removeItem('captchaToken'), localStorage.removeItem('captchaExpiresAt');
+function _0x16() {
+  _0xf = null, localStorage.removeItem('captchaToken'), localStorage.removeItem('captchaExpiresAt');
 }
 
-function __23(__2, __3) {
-  __15 = __2, __16 = __3, localStorage.setItem('captchaToken', __2), localStorage.setItem('captchaExpiresAt', __3);
+function _0x17(_0x2, _0x3) {
+  _0xf = _0x2, _0x10 = _0x3, localStorage.setItem('captchaToken', _0x2), localStorage.setItem('captchaExpiresAt', _0x3);
 }
 
-function __24() {
-  return __19 ? !0 : window.turnstile ? (__19 = !0, !0) : !1;
+function _0x18() {
+  return _0x13 ? !0 : window.turnstile ? (_0x13 = !0, !0) : !1;
 }
 
-function __25(__2, __3) {
-  if (!__24())
+function _0x19(_0x2, _0x3) {
+  if (!_0x18())
     return console.error('[Captcha] Turnstile not ready'), !1;
-  let __4 = __13() || __14 || '';
-  if (!__4)
+  let _0x4 = _0xd() || _0xe || '';
+  if (!_0x4)
     return !0;
-  let __10 = typeof __2 == 'string' ? document.querySelector(__2) : __2;
-  if (!__10)
-    return console.error('[Captcha] Container not found:', __2), !1;
-  __10.innerHTML = '';
-  let __11 = window.turnstile;
-  return __11.render(__10, {
-    sitekey: __4,
-    callback: async function(__26) {
-      let __27 = document.getElementById('loading-text');
-      __27 && (__27.textContent = 'Verifying...');
+  let _0xa = typeof _0x2 == 'string' ? document.querySelector(_0x2) : _0x2;
+  if (!_0xa)
+    return console.error('[Captcha] Container not found:', _0x2), !1;
+  _0xa.innerHTML = '';
+  let _0xb = window.turnstile;
+  return _0xb.render(_0xa, {
+    sitekey: _0x4,
+    callback: async function(_0x1a) {
+      let _0x1b = document.getElementById('loading-text');
+      _0x1b && (_0x1b.textContent = 'Verifying...');
       try {
-        let __28 = await (await fetch('/api/captcha/verify', {
+        let _0x1c = await (await fetch('/api/captcha/verify', {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json'
           },
           body: JSON.stringify({
-            turnstileToken: __26
+            turnstileToken: _0x1a
           })
         })).json();
-        if (__28.success) {
-          if (__23(__28.token, __28.expiresAt), __27 && (__27.textContent = 'Loading...'), __3 && __17) {
-            __17.close(), __17 = null;
-            let __29 = [...__18];
-            __18 = [], __29.forEach(__30 => __30());
+        if (_0x1c.success) {
+          if (_0x17(_0x1c.token, _0x1c.expiresAt), _0x1b && (_0x1b.textContent = 'Loading...'), _0x3 && _0x11) {
+            _0x11.close(), _0x11 = null;
+            let _0x1d = [..._0x12];
+            _0x12 = [], _0x1d.forEach(_0x1e => _0x1e());
           }
         } else
-          __27 && (__27.textContent = 'Verification failed. Please try again.'), __11.reset(__10);
-      } catch (__31) {
-        console.error('[Captcha] Verification error:', __31), __27 && (__27.textContent = 'Verification failed. Please try again.'), __11.reset(__10);
+          _0x1b && (_0x1b.textContent = 'Verification failed. Please try again.'), _0xb.reset(_0xa);
+      } catch (_0x1f) {
+        console.error('[Captcha] Verification error:', _0x1f), _0x1b && (_0x1b.textContent = 'Verification failed. Please try again.'), _0xb.reset(_0xa);
       }
     },
     'error-callback': function() {
-      let __26 = document.getElementById('loading-text');
-      __26 && (__26.textContent = 'Captcha failed. Please refresh.');
+      let _0x1a = document.getElementById('loading-text');
+      _0x1a && (_0x1a.textContent = 'Captcha failed. Please refresh.');
     },
     'expired-callback': function() {
-      __11.reset(__10);
+      _0xb.reset(_0xa);
     }
   }), !0;
 }
 
-function __32() {
-  if (__13())
-    return new Promise(__2 => {
-      if (Date.now() - __20 < __21) {
-        __2();
+function _0x20() {
+  if (_0xd())
+    return new Promise(_0x2 => {
+      if (Date.now() - _0x14 < _0x15) {
+        _0x2();
         return;
       }
-      if (__12.activeModal) {
-        __18.push(__2);
+      if (_0xc.activeModal) {
+        _0x12.push(_0x2);
         return;
       }
-      __20 = Date.now(), __18.push(__2);
-      let __4 = document.createElement('div');
-      __4.id = 'captcha-modal-turnstile', __4.style.display = 'flex', __4.style.justifyContent = 'center', __4.style.padding = '20px';
-      let __10 = document.createElement('div'),
-        __11 = document.createElement('p');
-      if (__11.textContent = 'Please complete the captcha to continue.', __10.appendChild(__11), __10.appendChild(__4), __17 = new __12({
+      _0x14 = Date.now(), _0x12.push(_0x2);
+      let _0x4 = document.createElement('div');
+      _0x4.id = 'captcha-modal-turnstile', _0x4.style.display = 'flex', _0x4.style.justifyContent = 'center', _0x4.style.padding = '20px';
+      let _0xa = document.createElement('div'),
+        _0xb = document.createElement('p');
+      if (_0xb.textContent = 'Please complete the captcha to continue.', _0xa.appendChild(_0xb), _0xa.appendChild(_0x4), _0x11 = new _0xc({
           title: 'Verification Required',
-          content: __10,
+          content: _0xa,
           buttons: [{
             text: 'Cancel',
             type: 'cancel',
-            onClick: __26 => {
-              __26.close(), __17 = null, __18 = [];
+            onClick: _0x1a => {
+              _0x1a.close(), _0x11 = null, _0x12 = [];
             }
           }],
           onClose: () => {
-            __17 = null;
+            _0x11 = null;
           }
-        }), __17.open(), __24())
-        __25(__4, !0);
+        }), _0x11.open(), _0x18())
+        _0x19(_0x4, !0);
       else {
-        let __26 = setInterval(() => {
-          __24() && (clearInterval(__26), __25(__4, !0));
+        let _0x1a = setInterval(() => {
+          _0x18() && (clearInterval(_0x1a), _0x19(_0x4, !0));
         }, 100);
-        setTimeout(() => clearInterval(__26), 10000);
+        setTimeout(() => clearInterval(_0x1a), 10000);
       }
     });
 }
 
-function __33() {
-  if (__15)
+function _0x21() {
+  if (_0xf)
     return;
-  let __2 = document.querySelector('#turnstile-container');
-  if (__2)
-    if (__24())
-      __25(__2, !1);
+  let _0x2 = document.querySelector('#turnstile-container');
+  if (_0x2)
+    if (_0x18())
+      _0x19(_0x2, !1);
     else {
-      let __3 = setInterval(() => {
-        __24() && (clearInterval(__3), __15 || __25(__2, !1));
+      let _0x3 = setInterval(() => {
+        _0x18() && (clearInterval(_0x3), _0xf || _0x19(_0x2, !1));
       }, 100);
-      setTimeout(() => clearInterval(__3), 10000);
+      setTimeout(() => clearInterval(_0x3), 10000);
     }
 }
 window.onTurnstileLoad = function() {
-  __19 = !0, __15 || __33();
+  _0x13 = !0, _0xf || _0x21();
 };
-window.turnstile && (__19 = !0, __15 || __33());
-__8.api = {
+window.turnstile && (_0x13 = !0, _0xf || _0x21());
+_0x8.api = {
   getToken() {
-    return __15;
+    return _0xf;
   },
   getTokenExpiry() {
-    return __16;
+    return _0x10;
   },
-  clearToken: __22,
-  showCaptchaModal: __32,
-  renderCaptchaOnLoadingScreen: __33,
-  getTurnstileSiteKey: __13,
-  async makeRequest(__2, __3 = {}) {
-    let __4 = (__3.method || 'GET').toUpperCase();
-    __4 !== 'GET' && __15 && (__3.headers = __3.headers || {}, __3.headers['X-Captcha-Token'] = __15);
-    let __10 = await fetch(__2, __3);
-    if (__10.status === 403) {
-      let __11 = __10.clone();
+  clearToken: _0x16,
+  showCaptchaModal: _0x20,
+  renderCaptchaOnLoadingScreen: _0x21,
+  getTurnstileSiteKey: _0xd,
+  async makeRequest(_0x2, _0x3 = {}) {
+    let _0x4 = (_0x3.method || 'GET').toUpperCase();
+    _0x4 !== 'GET' && _0xf && (_0x3.headers = _0x3.headers || {}, _0x3.headers['X-Captcha-Token'] = _0xf);
+    let _0xa = await fetch(_0x2, _0x3);
+    if (_0xa.status === 403) {
+      let _0xb = _0xa.clone();
       try {
-        if ((await __11.json()).code === 'CAPTCHA_REQUIRED')
-          return __22(), await __32(), __4 !== 'GET' && __15 && (__3.headers = __3.headers || {}, __3.headers['X-Captcha-Token'] = __15), fetch(__2, __3);
+        if ((await _0xb.json()).code === 'CAPTCHA_REQUIRED')
+          return _0x16(), await _0x20(), _0x4 !== 'GET' && _0xf && (_0x3.headers = _0x3.headers || {}, _0x3.headers['X-Captcha-Token'] = _0xf), fetch(_0x2, _0x3);
       } catch {}
     }
-    return __10;
+    return _0xa;
   }
 };
-var __34 = __8.api;
-var __35 = [
+var _0x22 = _0x8.api;
+var _0x23 = [
     0.25,
     0.5,
     0.75,
     1,
     1.5
   ],
-  __36 = 50;
+  _0x24 = 50;
 
-function __37(__2, __3, __4) {
-  let __10 = new WeakMap(),
-    __11 = 2048,
-    __26 = 10000,
-    __27 = new WeakMap();
+function _0x25(_0x2, _0x3, _0x4) {
+  let _0xa = new WeakMap(),
+    _0xb = 2048,
+    _0x1a = 10000,
+    _0x1b = new WeakMap();
 
-  function __31(__38) {}
+  function _0x1f(_0x26) {}
 
-  function __28() {
-    __27.clear = new WeakMap();
+  function _0x1c() {
+    _0x1b.clear = new WeakMap();
   }
 
-  function __29(__38, __39) {
-    if (!__38)
+  function _0x1d(_0x26, _0x27) {
+    if (!_0x26)
       return null;
-    if (__10.has(__38))
-      return __10.get(__38);
-    let __40 = __2.createObject(z);
-    return __40.native = __38, __40.canvas = __39, __10.set(__38, __40), __40;
+    if (_0xa.has(_0x26))
+      return _0xa.get(_0x26);
+    let _0x28 = _0x2.createObject(z);
+    return _0x28.native = _0x26, _0x28.canvas = _0x27, _0xa.set(_0x26, _0x28), _0x28;
   }
-  let __30 = __2.createNativeFunction(function() {
+  let _0x1e = _0x2.createNativeFunction(function() {
     throw TypeError('Illegal constructor');
   }, !0);
-  __2.setProperty(__3, 'CanvasGradient', __30);
-  let __41 = __2.getProperty(__30, 'prototype');
-  __2.setProperty(__41, 'addColorStop', __2.createNativeFunction(function(__38, __39) {
-    this.native.addColorStop(__38, __39);
+  _0x2.setProperty(_0x3, 'CanvasGradient', _0x1e);
+  let _0x29 = _0x2.getProperty(_0x1e, 'prototype');
+  _0x2.setProperty(_0x29, 'addColorStop', _0x2.createNativeFunction(function(_0x26, _0x27) {
+    this.native.addColorStop(_0x26, _0x27);
   }));
 
-  function __42(__38) {
-    let __39 = __2.createObject(__30);
-    return __39.native = __38, __39;
+  function _0x2a(_0x26) {
+    let _0x27 = _0x2.createObject(_0x1e);
+    return _0x27.native = _0x26, _0x27;
   }
-  let __43 = __2.createNativeFunction(function() {
+  let _0x2b = _0x2.createNativeFunction(function() {
     throw TypeError('Illegal constructor');
   }, !0);
-  __2.setProperty(__3, 'CanvasPattern', __43);
+  _0x2.setProperty(_0x3, 'CanvasPattern', _0x2b);
 
-  function __44(__38) {
-    let __39 = __2.createObject(__43);
-    return __39.native = __38, __39;
+  function _0x2c(_0x26) {
+    let _0x27 = _0x2.createObject(_0x2b);
+    return _0x27.native = _0x26, _0x27;
   }
-  let __45 = __2.createNativeFunction(function(__38, __39) {
-    if (__38 > __11 || __39 > __11)
-      throw new Error(`ImageData size exceeds maximum (${ __11 }x${ __11 })`);
-    __8.settings.logCalls && console.log(__4.domain, 'create ImageData', this, __38, __39);
-    let __40 = new ImageData(__38, __39);
-    this.native = __40, this.width = __38, this.height = __39;
+  let _0x2d = _0x2.createNativeFunction(function(_0x26, _0x27) {
+    if (_0x26 > _0xb || _0x27 > _0xb)
+      throw new Error(`ImageData size exceeds maximum (${ _0xb }x${ _0xb })`);
+    _0x8.settings.logCalls && console.log(_0x4.domain, 'create ImageData', this, _0x26, _0x27);
+    let _0x28 = new ImageData(_0x26, _0x27);
+    this.native = _0x28, this.width = _0x26, this.height = _0x27;
   }, !0);
-  __2.setProperty(__3, 'ImageData', __45);
-  let __46 = __2.getProperty(__45, 'prototype');
-  __2.setProperty(__46, 'width', Interpreter.VALUE_IN_DESCRIPTOR, {
-    get: __2.createNativeFunction(function() {
+  _0x2.setProperty(_0x3, 'ImageData', _0x2d);
+  let _0x2e = _0x2.getProperty(_0x2d, 'prototype');
+  _0x2.setProperty(_0x2e, 'width', Interpreter.VALUE_IN_DESCRIPTOR, {
+    get: _0x2.createNativeFunction(function() {
       return this.native.width;
     })
-  }), __2.setProperty(__46, 'height', Interpreter.VALUE_IN_DESCRIPTOR, {
-    get: __2.createNativeFunction(function() {
+  }), _0x2.setProperty(_0x2e, 'height', Interpreter.VALUE_IN_DESCRIPTOR, {
+    get: _0x2.createNativeFunction(function() {
       return this.native.height;
     })
-  }), __2.setProperty(__46, 'data', Interpreter.VALUE_IN_DESCRIPTOR, {
-    get: __2.createNativeFunction(function() {
-      let __38 = this.native.data,
-        __39 = __2.createObjectProto(__2.ARRAY_PROTO);
-      __2.setProperty(__39, 'length', __38.length);
-      let __40 = __2.nativeToPseudo({});
-      __2.setProperty(__40, 'length', __38.length), __2.setProperty(__40, 'get', __2.createNativeFunction(function(__47) {
-        return __38[__47];
-      })), __2.setProperty(__40, 'set', __2.createNativeFunction(function(__47, __48) {
-        __8.settings.logCalls && console.log(__4.domain, 'setImageData', this, __47, __48), __38[__47] = __48;
+  }), _0x2.setProperty(_0x2e, 'data', Interpreter.VALUE_IN_DESCRIPTOR, {
+    get: _0x2.createNativeFunction(function() {
+      let _0x26 = this.native.data,
+        _0x27 = _0x2.createObjectProto(_0x2.ARRAY_PROTO);
+      _0x2.setProperty(_0x27, 'length', _0x26.length);
+      let _0x28 = _0x2.nativeToPseudo({});
+      _0x2.setProperty(_0x28, 'length', _0x26.length), _0x2.setProperty(_0x28, 'get', _0x2.createNativeFunction(function(_0x2f) {
+        return _0x26[_0x2f];
+      })), _0x2.setProperty(_0x28, 'set', _0x2.createNativeFunction(function(_0x2f, _0x30) {
+        _0x8.settings.logCalls && console.log(_0x4.domain, 'setImageData', this, _0x2f, _0x30), _0x26[_0x2f] = _0x30;
       }));
-      for (let __47 = 0; __47 < Math.min(__38.length, 1000); __47++)
-        (__48 => {
-          __2.setProperty(__40, __48, Interpreter.VALUE_IN_DESCRIPTOR, {
-            get: __2.createNativeFunction(function() {
-              return __38[__48];
+      for (let _0x2f = 0; _0x2f < Math.min(_0x26.length, 1000); _0x2f++)
+        (_0x30 => {
+          _0x2.setProperty(_0x28, _0x30, Interpreter.VALUE_IN_DESCRIPTOR, {
+            get: _0x2.createNativeFunction(function() {
+              return _0x26[_0x30];
             }),
-            set: __2.createNativeFunction(function(__49) {
-              __8.settings.logCalls && console.log(__4.domain, 'setImageData', this, __48, __49), __38[__48] = __49;
+            set: _0x2.createNativeFunction(function(_0x31) {
+              _0x8.settings.logCalls && console.log(_0x4.domain, 'setImageData', this, _0x30, _0x31), _0x26[_0x30] = _0x31;
             })
           });
-        })(__47);
-      return __40;
+        })(_0x2f);
+      return _0x28;
     })
   });
 
-  function __50(__38) {
-    let __39 = __2.createObject(__45);
-    return __39.native = __38, __39;
+  function _0x32(_0x26) {
+    let _0x27 = _0x2.createObject(_0x2d);
+    return _0x27.native = _0x26, _0x27;
   }
-  let __51 = __2.createNativeFunction(function() {
+  let _0x33 = _0x2.createNativeFunction(function() {
     throw TypeError('Illegal constructor');
   }, !0);
-  __2.setProperty(__3, 'TextMetrics', __51);
-  let __52 = __2.getProperty(__51, 'prototype'),
-    __53 = [
+  _0x2.setProperty(_0x3, 'TextMetrics', _0x33);
+  let _0x34 = _0x2.getProperty(_0x33, 'prototype'),
+    _0x35 = [
       'width',
       'actualBoundingBoxLeft',
       'actualBoundingBoxRight',
@@ -355,65 +355,65 @@ function __37(__2, __3, __4) {
       'alphabeticBaseline',
       'ideographicBaseline'
     ];
-  for (let __38 of __53)
-    __2.setProperty(__52, __38, Interpreter.VALUE_IN_DESCRIPTOR, {
-      get: __2.createNativeFunction(function() {
-        return this.native[__38];
+  for (let _0x26 of _0x35)
+    _0x2.setProperty(_0x34, _0x26, Interpreter.VALUE_IN_DESCRIPTOR, {
+      get: _0x2.createNativeFunction(function() {
+        return this.native[_0x26];
       })
     });
 
-  function __54(__38) {
-    let __39 = __2.createObject(__51);
-    return __39.native = __38, __39;
+  function _0x36(_0x26) {
+    let _0x27 = _0x2.createObject(_0x33);
+    return _0x27.native = _0x26, _0x27;
   }
-  let __55 = __2.createNativeFunction(function(__38) {
-    __38 && __38.native ? this.native = new Path2D(__38.native) : typeof __38 == 'string' ? this.native = new Path2D(__38) : this.native = new Path2D();
+  let _0x37 = _0x2.createNativeFunction(function(_0x26) {
+    _0x26 && _0x26.native ? this.native = new Path2D(_0x26.native) : typeof _0x26 == 'string' ? this.native = new Path2D(_0x26) : this.native = new Path2D();
   }, !0);
-  __2.setProperty(__3, 'Path2D', __55);
-  let __56 = __2.getProperty(__55, 'prototype'),
-    __57 = {
-      addPath: function(__38, __39) {
-        __38?.native && this.native.addPath(__38.native, __39);
+  _0x2.setProperty(_0x3, 'Path2D', _0x37);
+  let _0x38 = _0x2.getProperty(_0x37, 'prototype'),
+    _0x39 = {
+      addPath: function(_0x26, _0x27) {
+        _0x26?.native && this.native.addPath(_0x26.native, _0x27);
       },
       closePath: function() {
         this.native.closePath();
       },
-      moveTo: function(__38, __39) {
-        this.native.moveTo(__38, __39);
+      moveTo: function(_0x26, _0x27) {
+        this.native.moveTo(_0x26, _0x27);
       },
-      lineTo: function(__38, __39) {
-        this.native.lineTo(__38, __39);
+      lineTo: function(_0x26, _0x27) {
+        this.native.lineTo(_0x26, _0x27);
       },
-      bezierCurveTo: function(__38, __39, __40, __47, __48, __49) {
-        this.native.bezierCurveTo(__38, __39, __40, __47, __48, __49);
+      bezierCurveTo: function(_0x26, _0x27, _0x28, _0x2f, _0x30, _0x31) {
+        this.native.bezierCurveTo(_0x26, _0x27, _0x28, _0x2f, _0x30, _0x31);
       },
-      quadraticCurveTo: function(__38, __39, __40, __47) {
-        this.native.quadraticCurveTo(__38, __39, __40, __47);
+      quadraticCurveTo: function(_0x26, _0x27, _0x28, _0x2f) {
+        this.native.quadraticCurveTo(_0x26, _0x27, _0x28, _0x2f);
       },
-      arc: function(__38, __39, __40, __47, __48, __49) {
-        this.native.arc(__38, __39, __40, __47, __48, __49);
+      arc: function(_0x26, _0x27, _0x28, _0x2f, _0x30, _0x31) {
+        this.native.arc(_0x26, _0x27, _0x28, _0x2f, _0x30, _0x31);
       },
-      arcTo: function(__38, __39, __40, __47, __48) {
-        this.native.arcTo(__38, __39, __40, __47, __48);
+      arcTo: function(_0x26, _0x27, _0x28, _0x2f, _0x30) {
+        this.native.arcTo(_0x26, _0x27, _0x28, _0x2f, _0x30);
       },
-      ellipse: function(__38, __39, __40, __47, __48, __49, __58, __59) {
-        this.native.ellipse(__38, __39, __40, __47, __48, __49, __58, __59);
+      ellipse: function(_0x26, _0x27, _0x28, _0x2f, _0x30, _0x31, _0x3a, _0x3b) {
+        this.native.ellipse(_0x26, _0x27, _0x28, _0x2f, _0x30, _0x31, _0x3a, _0x3b);
       },
-      rect: function(__38, __39, __40, __47) {
-        this.native.rect(__38, __39, __40, __47);
+      rect: function(_0x26, _0x27, _0x28, _0x2f) {
+        this.native.rect(_0x26, _0x27, _0x28, _0x2f);
       },
-      roundRect: function(__38, __39, __40, __47, __48) {
-        this.native.roundRect(__38, __39, __40, __47, __48);
+      roundRect: function(_0x26, _0x27, _0x28, _0x2f, _0x30) {
+        this.native.roundRect(_0x26, _0x27, _0x28, _0x2f, _0x30);
       }
     };
-  for (let [__38, __39] of Object.entries(__57))
-    __2.setProperty(__56, __38, __2.createNativeFunction(__39));
-  let __60 = __2.createNativeFunction(function() {
+  for (let [_0x26, _0x27] of Object.entries(_0x39))
+    _0x2.setProperty(_0x38, _0x26, _0x2.createNativeFunction(_0x27));
+  let _0x3c = _0x2.createNativeFunction(function() {
     throw TypeError('Illegal constructor');
   }, !0);
-  __2.setProperty(__3, 'CanvasRenderingContext2D', __60);
-  let __61 = __2.getProperty(__60, 'prototype'),
-    __62 = [
+  _0x2.setProperty(_0x3, 'CanvasRenderingContext2D', _0x3c);
+  let _0x3d = _0x2.getProperty(_0x3c, 'prototype'),
+    _0x3e = [
       'globalAlpha',
       'globalCompositeOperation',
       'lineWidth',
@@ -433,74 +433,74 @@ function __37(__2, __3, __4) {
       'imageSmoothingQuality',
       'filter'
     ];
-  for (let __38 of __62)
-    __2.setProperty(__61, __38, Interpreter.VALUE_IN_DESCRIPTOR, {
-      get: __2.createNativeFunction(function() {
-        return this.native[__38];
+  for (let _0x26 of _0x3e)
+    _0x2.setProperty(_0x3d, _0x26, Interpreter.VALUE_IN_DESCRIPTOR, {
+      get: _0x2.createNativeFunction(function() {
+        return this.native[_0x26];
       }),
-      set: __2.createNativeFunction(function(__39) {
-        __8.settings.logCalls && console.log(__4.domain, 'context set ' + __38, this, __39), this.native[__38] = __39;
+      set: _0x2.createNativeFunction(function(_0x27) {
+        _0x8.settings.logCalls && console.log(_0x4.domain, 'context set ' + _0x26, this, _0x27), this.native[_0x26] = _0x27;
       })
     });
-  for (let __38 of [
+  for (let _0x26 of [
       'fillStyle',
       'strokeStyle'
     ])
-    __2.setProperty(__61, __38, Interpreter.VALUE_IN_DESCRIPTOR, {
-      get: __2.createNativeFunction(function() {
-        let __39 = this.native[__38];
-        return __39;
+    _0x2.setProperty(_0x3d, _0x26, Interpreter.VALUE_IN_DESCRIPTOR, {
+      get: _0x2.createNativeFunction(function() {
+        let _0x27 = this.native[_0x26];
+        return _0x27;
       }),
-      set: __2.createNativeFunction(function(__39) {
-        __39?.native ? this.native[__38] = __39.native : this.native[__38] = __39;
+      set: _0x2.createNativeFunction(function(_0x27) {
+        _0x27?.native ? this.native[_0x26] = _0x27.native : this.native[_0x26] = _0x27;
       })
     });
-  __2.setProperty(__61, 'canvas', Interpreter.VALUE_IN_DESCRIPTOR, {
-    get: __2.createNativeFunction(function() {
+  _0x2.setProperty(_0x3d, 'canvas', Interpreter.VALUE_IN_DESCRIPTOR, {
+    get: _0x2.createNativeFunction(function() {
       return this.canvas;
     })
   });
-  let __63 = {
-    clearRect: function(__38, __39, __40, __47) {
-      this.native, this.native.clearRect(__38, __39, __40, __47);
+  let _0x3f = {
+    clearRect: function(_0x26, _0x27, _0x28, _0x2f) {
+      this.native, this.native.clearRect(_0x26, _0x27, _0x28, _0x2f);
     },
-    fillRect: function(__38, __39, __40, __47) {
-      this.native, this.native.fillRect(__38, __39, __40, __47);
+    fillRect: function(_0x26, _0x27, _0x28, _0x2f) {
+      this.native, this.native.fillRect(_0x26, _0x27, _0x28, _0x2f);
     },
-    strokeRect: function(__38, __39, __40, __47) {
-      this.native, this.native.strokeRect(__38, __39, __40, __47);
+    strokeRect: function(_0x26, _0x27, _0x28, _0x2f) {
+      this.native, this.native.strokeRect(_0x26, _0x27, _0x28, _0x2f);
     },
-    fillText: function(__38, __39, __40, __47) {
-      this.native, __47 !== void 0 ? this.native.fillText(String(__38).slice(0, 1000), __39, __40, __47) : this.native.fillText(String(__38).slice(0, 1000), __39, __40);
+    fillText: function(_0x26, _0x27, _0x28, _0x2f) {
+      this.native, _0x2f !== void 0 ? this.native.fillText(String(_0x26).slice(0, 1000), _0x27, _0x28, _0x2f) : this.native.fillText(String(_0x26).slice(0, 1000), _0x27, _0x28);
     },
-    strokeText: function(__38, __39, __40, __47) {
-      this.native, __47 !== void 0 ? this.native.strokeText(String(__38).slice(0, 1000), __39, __40, __47) : this.native.strokeText(String(__38).slice(0, 1000), __39, __40);
+    strokeText: function(_0x26, _0x27, _0x28, _0x2f) {
+      this.native, _0x2f !== void 0 ? this.native.strokeText(String(_0x26).slice(0, 1000), _0x27, _0x28, _0x2f) : this.native.strokeText(String(_0x26).slice(0, 1000), _0x27, _0x28);
     },
-    measureText: function(__38) {
-      return __54(this.native.measureText(String(__38).slice(0, 1000)));
+    measureText: function(_0x26) {
+      return _0x36(this.native.measureText(String(_0x26).slice(0, 1000)));
     },
     getLineDash: function() {
-      return __2.nativeToPseudo(this.native.getLineDash());
+      return _0x2.nativeToPseudo(this.native.getLineDash());
     },
-    setLineDash: function(__38) {
-      let __39 = __2.pseudoToNative(__38);
-      this.native.setLineDash(__39);
+    setLineDash: function(_0x26) {
+      let _0x27 = _0x2.pseudoToNative(_0x26);
+      this.native.setLineDash(_0x27);
     },
-    createLinearGradient: function(__38, __39, __40, __47) {
-      return __42(this.native.createLinearGradient(__38, __39, __40, __47));
+    createLinearGradient: function(_0x26, _0x27, _0x28, _0x2f) {
+      return _0x2a(this.native.createLinearGradient(_0x26, _0x27, _0x28, _0x2f));
     },
-    createRadialGradient: function(__38, __39, __40, __47, __48, __49) {
-      return __42(this.native.createRadialGradient(__38, __39, __40, __47, __48, __49));
+    createRadialGradient: function(_0x26, _0x27, _0x28, _0x2f, _0x30, _0x31) {
+      return _0x2a(this.native.createRadialGradient(_0x26, _0x27, _0x28, _0x2f, _0x30, _0x31));
     },
-    createConicGradient: function(__38, __39, __40) {
-      return __42(this.native.createConicGradient(__38, __39, __40));
+    createConicGradient: function(_0x26, _0x27, _0x28) {
+      return _0x2a(this.native.createConicGradient(_0x26, _0x27, _0x28));
     },
-    createPattern: function(__38, __39) {
-      let __40 = __38?.native || __38;
-      if (!__40)
+    createPattern: function(_0x26, _0x27) {
+      let _0x28 = _0x26?.native || _0x26;
+      if (!_0x28)
         return null;
-      let __47 = this.native.createPattern(__40, __39);
-      return __47 ? __44(__47) : null;
+      let _0x2f = this.native.createPattern(_0x28, _0x27);
+      return _0x2f ? _0x2c(_0x2f) : null;
     },
     beginPath: function() {
       this.native.beginPath();
@@ -508,101 +508,101 @@ function __37(__2, __3, __4) {
     closePath: function() {
       this.native.closePath();
     },
-    moveTo: function(__38, __39) {
-      this.native.moveTo(__38, __39);
+    moveTo: function(_0x26, _0x27) {
+      this.native.moveTo(_0x26, _0x27);
     },
-    lineTo: function(__38, __39) {
-      this.native.lineTo(__38, __39);
+    lineTo: function(_0x26, _0x27) {
+      this.native.lineTo(_0x26, _0x27);
     },
-    bezierCurveTo: function(__38, __39, __40, __47, __48, __49) {
-      this.native.bezierCurveTo(__38, __39, __40, __47, __48, __49);
+    bezierCurveTo: function(_0x26, _0x27, _0x28, _0x2f, _0x30, _0x31) {
+      this.native.bezierCurveTo(_0x26, _0x27, _0x28, _0x2f, _0x30, _0x31);
     },
-    quadraticCurveTo: function(__38, __39, __40, __47) {
-      this.native.quadraticCurveTo(__38, __39, __40, __47);
+    quadraticCurveTo: function(_0x26, _0x27, _0x28, _0x2f) {
+      this.native.quadraticCurveTo(_0x26, _0x27, _0x28, _0x2f);
     },
-    arc: function(__38, __39, __40, __47, __48, __49) {
-      this.native.arc(__38, __39, __40, __47, __48, __49);
+    arc: function(_0x26, _0x27, _0x28, _0x2f, _0x30, _0x31) {
+      this.native.arc(_0x26, _0x27, _0x28, _0x2f, _0x30, _0x31);
     },
-    arcTo: function(__38, __39, __40, __47, __48) {
-      this.native.arcTo(__38, __39, __40, __47, __48);
+    arcTo: function(_0x26, _0x27, _0x28, _0x2f, _0x30) {
+      this.native.arcTo(_0x26, _0x27, _0x28, _0x2f, _0x30);
     },
-    ellipse: function(__38, __39, __40, __47, __48, __49, __58, __59) {
-      this.native.ellipse(__38, __39, __40, __47, __48, __49, __58, __59);
+    ellipse: function(_0x26, _0x27, _0x28, _0x2f, _0x30, _0x31, _0x3a, _0x3b) {
+      this.native.ellipse(_0x26, _0x27, _0x28, _0x2f, _0x30, _0x31, _0x3a, _0x3b);
     },
-    rect: function(__38, __39, __40, __47) {
-      this.native.rect(__38, __39, __40, __47);
+    rect: function(_0x26, _0x27, _0x28, _0x2f) {
+      this.native.rect(_0x26, _0x27, _0x28, _0x2f);
     },
-    roundRect: function(__38, __39, __40, __47, __48) {
-      let __49 = __2.pseudoToNative(__48);
-      this.native.roundRect(__38, __39, __40, __47, __49);
+    roundRect: function(_0x26, _0x27, _0x28, _0x2f, _0x30) {
+      let _0x31 = _0x2.pseudoToNative(_0x30);
+      this.native.roundRect(_0x26, _0x27, _0x28, _0x2f, _0x31);
     },
-    fill: function(__38, __39) {
-      this.native, __38?.native ? this.native.fill(__38.native, __39) : this.native.fill(__38);
+    fill: function(_0x26, _0x27) {
+      this.native, _0x26?.native ? this.native.fill(_0x26.native, _0x27) : this.native.fill(_0x26);
     },
-    stroke: function(__38) {
-      this.native, __38?.native ? this.native.stroke(__38.native) : this.native.stroke();
+    stroke: function(_0x26) {
+      this.native, _0x26?.native ? this.native.stroke(_0x26.native) : this.native.stroke();
     },
-    clip: function(__38, __39) {
-      __38?.native ? this.native.clip(__38.native, __39) : this.native.clip(__38);
+    clip: function(_0x26, _0x27) {
+      _0x26?.native ? this.native.clip(_0x26.native, _0x27) : this.native.clip(_0x26);
     },
-    isPointInPath: function(__38, __39, __40, __47) {
-      return __38?.native ? this.native.isPointInPath(__38.native, __39, __40, __47) : this.native.isPointInPath(__38, __39, __40);
+    isPointInPath: function(_0x26, _0x27, _0x28, _0x2f) {
+      return _0x26?.native ? this.native.isPointInPath(_0x26.native, _0x27, _0x28, _0x2f) : this.native.isPointInPath(_0x26, _0x27, _0x28);
     },
-    isPointInStroke: function(__38, __39, __40) {
-      return __38?.native ? this.native.isPointInStroke(__38.native, __39, __40) : this.native.isPointInStroke(__38, __39);
+    isPointInStroke: function(_0x26, _0x27, _0x28) {
+      return _0x26?.native ? this.native.isPointInStroke(_0x26.native, _0x27, _0x28) : this.native.isPointInStroke(_0x26, _0x27);
     },
     getTransform: function() {
-      let __38 = this.native.getTransform();
-      return __2.nativeToPseudo({
-        a: __38.a,
-        __42: __38.__42,
-        __27: __38.__27,
-        __30: __38.__30,
-        __2: __38.__2,
-        __45: __38.__45
+      let _0x26 = this.native.getTransform();
+      return _0x2.nativeToPseudo({
+        a: _0x26.a,
+        _0x2a: _0x26._0x2a,
+        _0x1b: _0x26._0x1b,
+        _0x1e: _0x26._0x1e,
+        _0x2: _0x26._0x2,
+        _0x2d: _0x26._0x2d
       });
     },
-    rotate: function(__38) {
-      this.native.rotate(__38);
+    rotate: function(_0x26) {
+      this.native.rotate(_0x26);
     },
-    scale: function(__38, __39) {
-      this.native.scale(__38, __39);
+    scale: function(_0x26, _0x27) {
+      this.native.scale(_0x26, _0x27);
     },
-    translate: function(__38, __39) {
-      this.native.translate(__38, __39);
+    translate: function(_0x26, _0x27) {
+      this.native.translate(_0x26, _0x27);
     },
-    transform: function(__38, __39, __40, __47, __48, __49) {
-      this.native.transform(__38, __39, __40, __47, __48, __49);
+    transform: function(_0x26, _0x27, _0x28, _0x2f, _0x30, _0x31) {
+      this.native.transform(_0x26, _0x27, _0x28, _0x2f, _0x30, _0x31);
     },
-    setTransform: function(__38, __39, __40, __47, __48, __49) {
-      if (typeof __38 == 'object' && __38 !== null) {
-        let __58 = __2.pseudoToNative(__38);
-        this.native.setTransform(__58);
+    setTransform: function(_0x26, _0x27, _0x28, _0x2f, _0x30, _0x31) {
+      if (typeof _0x26 == 'object' && _0x26 !== null) {
+        let _0x3a = _0x2.pseudoToNative(_0x26);
+        this.native.setTransform(_0x3a);
       } else
-        this.native.setTransform(__38, __39, __40, __47, __48, __49);
+        this.native.setTransform(_0x26, _0x27, _0x28, _0x2f, _0x30, _0x31);
     },
     resetTransform: function() {
       this.native.resetTransform();
     },
-    drawImage: function(__38, __39, __40, __47, __48, __49, __58, __59, __64) {
+    drawImage: function(_0x26, _0x27, _0x28, _0x2f, _0x30, _0x31, _0x3a, _0x3b, _0x40) {
       this.native;
-      let __65 = __38?.native || __38;
-      __65 && (__59 !== void 0 ? this.native.drawImage(__65, __39, __40, __47, __48, __49, __58, __59, __64) : __47 !== void 0 ? this.native.drawImage(__65, __39, __40, __47, __48) : this.native.drawImage(__65, __39, __40));
+      let _0x41 = _0x26?.native || _0x26;
+      _0x41 && (_0x3b !== void 0 ? this.native.drawImage(_0x41, _0x27, _0x28, _0x2f, _0x30, _0x31, _0x3a, _0x3b, _0x40) : _0x2f !== void 0 ? this.native.drawImage(_0x41, _0x27, _0x28, _0x2f, _0x30) : this.native.drawImage(_0x41, _0x27, _0x28));
     },
-    createImageData: function(__38, __39) {
-      if (__38?.native)
-        return __50(this.native.createImageData(__38.native));
-      if (__38 > __11 || __39 > __11)
-        throw new Error(`ImageData size exceeds maximum (${ __11 }x${ __11 })`);
-      return __50(this.native.createImageData(__38, __39));
+    createImageData: function(_0x26, _0x27) {
+      if (_0x26?.native)
+        return _0x32(this.native.createImageData(_0x26.native));
+      if (_0x26 > _0xb || _0x27 > _0xb)
+        throw new Error(`ImageData size exceeds maximum (${ _0xb }x${ _0xb })`);
+      return _0x32(this.native.createImageData(_0x26, _0x27));
     },
-    getImageData: function(__38, __39, __40, __47) {
-      if (__40 > __11 || __47 > __11)
-        throw new Error(`ImageData size exceeds maximum (${ __11 }x${ __11 })`);
-      return __50(this.native.getImageData(__38, __39, __40, __47));
+    getImageData: function(_0x26, _0x27, _0x28, _0x2f) {
+      if (_0x28 > _0xb || _0x2f > _0xb)
+        throw new Error(`ImageData size exceeds maximum (${ _0xb }x${ _0xb })`);
+      return _0x32(this.native.getImageData(_0x26, _0x27, _0x28, _0x2f));
     },
-    putImageData: function(__38, __39, __40, __47, __48, __49, __58) {
-      this.native, __38?.native && (__47 !== void 0 ? this.native.putImageData(__38.native, __39, __40, __47, __48, __49, __58) : this.native.putImageData(__38.native, __39, __40));
+    putImageData: function(_0x26, _0x27, _0x28, _0x2f, _0x30, _0x31, _0x3a) {
+      this.native, _0x26?.native && (_0x2f !== void 0 ? this.native.putImageData(_0x26.native, _0x27, _0x28, _0x2f, _0x30, _0x31, _0x3a) : this.native.putImageData(_0x26.native, _0x27, _0x28));
     },
     save: function() {
       this.native.save();
@@ -614,110 +614,110 @@ function __37(__2, __3, __4) {
       this.native.reset();
     }
   };
-  for (let [__38, __39] of Object.entries(__63))
-    __2.setProperty(__61, __38, __2.createNativeFunction(__39));
+  for (let [_0x26, _0x27] of Object.entries(_0x3f))
+    _0x2.setProperty(_0x3d, _0x26, _0x2.createNativeFunction(_0x27));
   return {
-    extendElement: function(__38, __39) {
-      __2.setProperty(__38, 'getContext', __2.createNativeFunction(function(__40, __47) {
-        __8.settings.logCalls && console.log(__4.domain, 'getContext', this, __40, __47);
-        let __48 = this.native;
-        if (__48.tagName !== 'CANVAS')
+    extendElement: function(_0x26, _0x27) {
+      _0x2.setProperty(_0x26, 'getContext', _0x2.createNativeFunction(function(_0x28, _0x2f) {
+        _0x8.settings.logCalls && console.log(_0x4.domain, 'getContext', this, _0x28, _0x2f);
+        let _0x30 = this.native;
+        if (_0x30.tagName !== 'CANVAS')
           throw new Error('getContext is only available on canvas elements');
-        if (__48.width > __11 && (__48.width = __11), __48.height > __11 && (__48.height = __11), __40 === '2d') {
-          let __49 = __48.getContext('2d', __47 ? __2.pseudoToNative(__47) : void 0);
-          return __29(__49, this);
+        if (_0x30.width > _0xb && (_0x30.width = _0xb), _0x30.height > _0xb && (_0x30.height = _0xb), _0x28 === '2d') {
+          let _0x31 = _0x30.getContext('2d', _0x2f ? _0x2.pseudoToNative(_0x2f) : void 0);
+          return _0x1d(_0x31, this);
         }
-        throw new Error(`Context type "${ __40 }" is not supported`);
-      })), __2.setProperty(__38, 'width', Interpreter.VALUE_IN_DESCRIPTOR, {
-        get: __2.createNativeFunction(function() {
+        throw new Error(`Context type "${ _0x28 }" is not supported`);
+      })), _0x2.setProperty(_0x26, 'width', Interpreter.VALUE_IN_DESCRIPTOR, {
+        get: _0x2.createNativeFunction(function() {
           return this.native.tagName === 'CANVAS' ? this.native.width : this.native.width;
         }),
-        set: __2.createNativeFunction(function(__40) {
-          __8.settings.logCalls && console.log(__4.domain, 'set width', this, __40), this.native.tagName === 'CANVAS' && (this.native.width = Math.min(__40, __11));
+        set: _0x2.createNativeFunction(function(_0x28) {
+          _0x8.settings.logCalls && console.log(_0x4.domain, 'set width', this, _0x28), this.native.tagName === 'CANVAS' && (this.native.width = Math.min(_0x28, _0xb));
         })
-      }), __2.setProperty(__38, 'height', Interpreter.VALUE_IN_DESCRIPTOR, {
-        get: __2.createNativeFunction(function() {
+      }), _0x2.setProperty(_0x26, 'height', Interpreter.VALUE_IN_DESCRIPTOR, {
+        get: _0x2.createNativeFunction(function() {
           return this.native.tagName === 'CANVAS' ? this.native.height : this.native.height;
         }),
-        set: __2.createNativeFunction(function(__40) {
-          __8.settings.logCalls && console.log(__4.domain, 'set height', this, __40), this.native.tagName === 'CANVAS' && (this.native.height = Math.min(__40, __11));
+        set: _0x2.createNativeFunction(function(_0x28) {
+          _0x8.settings.logCalls && console.log(_0x4.domain, 'set height', this, _0x28), this.native.tagName === 'CANVAS' && (this.native.height = Math.min(_0x28, _0xb));
         })
-      }), __2.setProperty(__38, 'toDataURL', __2.createNativeFunction(function(__40, __47) {
+      }), _0x2.setProperty(_0x26, 'toDataURL', _0x2.createNativeFunction(function(_0x28, _0x2f) {
         if (this.native.tagName !== 'CANVAS')
           throw new Error('toDataURL is only available on canvas elements');
-        return __8.settings.logCalls && console.log(__4.domain, 'toDataURL', this, __40, __47), this.native.toDataURL(__40, __47);
+        return _0x8.settings.logCalls && console.log(_0x4.domain, 'toDataURL', this, _0x28, _0x2f), this.native.toDataURL(_0x28, _0x2f);
       }));
     },
-    resetDrawCounts: __28,
-    contextToPseudo: __29
+    resetDrawCounts: _0x1c,
+    contextToPseudo: _0x1d
   };
 }
 
-function __66(__2, __3, __4) {
-  let __27 = 0,
-    __31 = window.location.origin;
+function _0x42(_0x2, _0x3, _0x4) {
+  let _0x1b = 0,
+    _0x1f = window.location.origin;
 
-  function __28(__45) {
-    if (typeof __45 != 'string' || __45.startsWith('/') || __45.startsWith('./') || __45.startsWith('../') || !__45.startsWith('http://') && !__45.startsWith('https://'))
+  function _0x1c(_0x2d) {
+    if (typeof _0x2d != 'string' || _0x2d.startsWith('/') || _0x2d.startsWith('./') || _0x2d.startsWith('../') || !_0x2d.startsWith('http://') && !_0x2d.startsWith('https://'))
       return !1;
     try {
-      let __46 = new URL(__45);
-      if (__46.origin === __31 || __46.hostname === 'kicya.net' || __46.hostname.endsWith('.kicya.net') || __46.hostname === 'nekoweb.org')
+      let _0x2e = new URL(_0x2d);
+      if (_0x2e.origin === _0x1f || _0x2e.hostname === 'kicya.net' || _0x2e.hostname.endsWith('.kicya.net') || _0x2e.hostname === 'nekoweb.org')
         return !1;
-      let __50 = __46.hostname.toLowerCase();
-      return !(__50 === 'localhost' || __50 === '127.0.0.1' || __50 === '0.0.0.0' || __50.startsWith('192.168.') || __50.startsWith('10.') || __50.startsWith('172.16.') || __50.startsWith('172.17.') || __50.startsWith('172.18.') || __50.startsWith('172.19.') || __50.startsWith('172.2') || __50.startsWith('172.30.') || __50.startsWith('172.31.') || __50 === '[::1]');
+      let _0x32 = _0x2e.hostname.toLowerCase();
+      return !(_0x32 === 'localhost' || _0x32 === '127.0.0.1' || _0x32 === '0.0.0.0' || _0x32.startsWith('192.168.') || _0x32.startsWith('10.') || _0x32.startsWith('172.16.') || _0x32.startsWith('172.17.') || _0x32.startsWith('172.18.') || _0x32.startsWith('172.19.') || _0x32.startsWith('172.2') || _0x32.startsWith('172.30.') || _0x32.startsWith('172.31.') || _0x32 === '[::1]');
     } catch {
       return !1;
     }
   }
-  let __29 = 0,
-    __30 = __2.nativeToPseudo({});
-  __2.setProperty(__3, '__xhrCallbacks', __30);
+  let _0x1d = 0,
+    _0x1e = _0x2.nativeToPseudo({});
+  _0x2.setProperty(_0x3, '__xhrCallbacks', _0x1e);
 
-  function __41(__45, ...__46) {
-    if (!__45 || typeof __45 != 'object')
+  function _0x29(_0x2d, ..._0x2e) {
+    if (!_0x2d || typeof _0x2d != 'object')
       return;
-    let __50 = __29++;
-    __2.setProperty(__30, 'fn' + __50, __45);
-    let __51 = __46.map((__53, __54) => {
-        let __55 = 'arg' + __50 + '_' + __54;
-        return __2.setProperty(__30, __55, __53), __55;
+    let _0x32 = _0x1d++;
+    _0x2.setProperty(_0x1e, 'fn' + _0x32, _0x2d);
+    let _0x33 = _0x2e.map((_0x35, _0x36) => {
+        let _0x37 = 'arg' + _0x32 + '_' + _0x36;
+        return _0x2.setProperty(_0x1e, _0x37, _0x35), _0x37;
       }),
-      __52 = __51.map(__53 => `__xhrCallbacks.${ __53 }`).join(',');
-    __2.appendCode(`__xhrCallbacks.fn${ __50 }(${ __52 }); delete __xhrCallbacks.fn${ __50 }; ${ __51.map(__53 => `delete __xhrCallbacks.${ __53 }`).join('; ') };`);
+      _0x34 = _0x33.map(_0x35 => `__xhrCallbacks.${ _0x35 }`).join(',');
+    _0x2.appendCode(`__xhrCallbacks.fn${ _0x32 }(${ _0x34 }); delete __xhrCallbacks.fn${ _0x32 }; ${ _0x33.map(_0x35 => `delete __xhrCallbacks.${ _0x35 }`).join('; ') };`);
   }
-  let __42 = __2.createNativeFunction(function() {
-    __8.settings.logCalls && console.log(__4.domain, 'XMLHttpRequest', this), this.native = new window.XMLHttpRequest(), this._method = null, this._url = null, this._async = !0, this._headers = {}, this._eventHandlers = {};
-    let __46 = this;
+  let _0x2a = _0x2.createNativeFunction(function() {
+    _0x8.settings.logCalls && console.log(_0x4.domain, 'XMLHttpRequest', this), this.native = new window.XMLHttpRequest(), this._method = null, this._url = null, this._async = !0, this._headers = {}, this._eventHandlers = {};
+    let _0x2e = this;
     this.native.onreadystatechange = function() {
-      __2.setProperty(__46, 'readyState', __46.native.readyState), __46.native.readyState === 4 && (__2.setProperty(__46, 'status', __46.native.status), __2.setProperty(__46, 'statusText', __46.native.statusText), __2.setProperty(__46, 'responseText', __46.native.responseText?.slice(0, 5242880) || ''), __2.setProperty(__46, 'responseURL', __46.native.responseURL), __27 = Math.max(0, __27 - 1)), __46._eventHandlers.onreadystatechange && __41(__46._eventHandlers.onreadystatechange);
+      _0x2.setProperty(_0x2e, 'readyState', _0x2e.native.readyState), _0x2e.native.readyState === 4 && (_0x2.setProperty(_0x2e, 'status', _0x2e.native.status), _0x2.setProperty(_0x2e, 'statusText', _0x2e.native.statusText), _0x2.setProperty(_0x2e, 'responseText', _0x2e.native.responseText?.slice(0, 5242880) || ''), _0x2.setProperty(_0x2e, 'responseURL', _0x2e.native.responseURL), _0x1b = Math.max(0, _0x1b - 1)), _0x2e._eventHandlers.onreadystatechange && _0x29(_0x2e._eventHandlers.onreadystatechange);
     }, this.native.onload = function() {
-      __46._eventHandlers.onload && __41(__46._eventHandlers.onload);
+      _0x2e._eventHandlers.onload && _0x29(_0x2e._eventHandlers.onload);
     }, this.native.onerror = function() {
-      __27 = Math.max(0, __27 - 1), __46._eventHandlers.onerror && __41(__46._eventHandlers.onerror);
+      _0x1b = Math.max(0, _0x1b - 1), _0x2e._eventHandlers.onerror && _0x29(_0x2e._eventHandlers.onerror);
     }, this.native.ontimeout = function() {
-      __27 = Math.max(0, __27 - 1), __46._eventHandlers.ontimeout && __41(__46._eventHandlers.ontimeout);
+      _0x1b = Math.max(0, _0x1b - 1), _0x2e._eventHandlers.ontimeout && _0x29(_0x2e._eventHandlers.ontimeout);
     }, this.native.onabort = function() {
-      __27 = Math.max(0, __27 - 1), __46._eventHandlers.onabort && __41(__46._eventHandlers.onabort);
-    }, this.native.onprogress = function(__50) {
-      if (__46._eventHandlers.onprogress) {
-        let __51 = __2.nativeToPseudo({
-          loaded: __50.loaded,
-          total: __50.total,
-          lengthComputable: __50.lengthComputable
+      _0x1b = Math.max(0, _0x1b - 1), _0x2e._eventHandlers.onabort && _0x29(_0x2e._eventHandlers.onabort);
+    }, this.native.onprogress = function(_0x32) {
+      if (_0x2e._eventHandlers.onprogress) {
+        let _0x33 = _0x2.nativeToPseudo({
+          loaded: _0x32.loaded,
+          total: _0x32.total,
+          lengthComputable: _0x32.lengthComputable
         });
-        __41(__46._eventHandlers.onprogress, __51);
+        _0x29(_0x2e._eventHandlers.onprogress, _0x33);
       }
     }, this.native.onloadstart = function() {
-      __46._eventHandlers.onloadstart && __41(__46._eventHandlers.onloadstart);
+      _0x2e._eventHandlers.onloadstart && _0x29(_0x2e._eventHandlers.onloadstart);
     }, this.native.onloadend = function() {
-      __46._eventHandlers.onloadend && __41(__46._eventHandlers.onloadend);
-    }, __2.setProperty(this, 'readyState', 0), __2.setProperty(this, 'status', 0), __2.setProperty(this, 'statusText', ''), __2.setProperty(this, 'responseText', ''), __2.setProperty(this, 'responseURL', '');
+      _0x2e._eventHandlers.onloadend && _0x29(_0x2e._eventHandlers.onloadend);
+    }, _0x2.setProperty(this, 'readyState', 0), _0x2.setProperty(this, 'status', 0), _0x2.setProperty(this, 'statusText', ''), _0x2.setProperty(this, 'responseText', ''), _0x2.setProperty(this, 'responseURL', '');
   }, !0);
-  __2.setProperty(__3, 'XMLHttpRequest', __42);
-  let __43 = __2.getProperty(__42, 'prototype');
-  __2.setProperty(__42, 'UNSENT', 0), __2.setProperty(__42, 'OPENED', 1), __2.setProperty(__42, 'HEADERS_RECEIVED', 2), __2.setProperty(__42, 'LOADING', 3), __2.setProperty(__42, 'DONE', 4), __2.setProperty(__43, 'UNSENT', 0), __2.setProperty(__43, 'OPENED', 1), __2.setProperty(__43, 'HEADERS_RECEIVED', 2), __2.setProperty(__43, 'LOADING', 3), __2.setProperty(__43, 'DONE', 4);
-  let __44 = [
+  _0x2.setProperty(_0x3, 'XMLHttpRequest', _0x2a);
+  let _0x2b = _0x2.getProperty(_0x2a, 'prototype');
+  _0x2.setProperty(_0x2a, 'UNSENT', 0), _0x2.setProperty(_0x2a, 'OPENED', 1), _0x2.setProperty(_0x2a, 'HEADERS_RECEIVED', 2), _0x2.setProperty(_0x2a, 'LOADING', 3), _0x2.setProperty(_0x2a, 'DONE', 4), _0x2.setProperty(_0x2b, 'UNSENT', 0), _0x2.setProperty(_0x2b, 'OPENED', 1), _0x2.setProperty(_0x2b, 'HEADERS_RECEIVED', 2), _0x2.setProperty(_0x2b, 'LOADING', 3), _0x2.setProperty(_0x2b, 'DONE', 4);
+  let _0x2c = [
     'onreadystatechange',
     'onload',
     'onerror',
@@ -727,45 +727,45 @@ function __66(__2, __3, __4) {
     'onloadstart',
     'onloadend'
   ];
-  for (let __45 of __44)
-    __2.setProperty(__43, __45, Interpreter.VALUE_IN_DESCRIPTOR, {
-      get: __2.createNativeFunction(function() {
-        return this._eventHandlers[__45] || null;
+  for (let _0x2d of _0x2c)
+    _0x2.setProperty(_0x2b, _0x2d, Interpreter.VALUE_IN_DESCRIPTOR, {
+      get: _0x2.createNativeFunction(function() {
+        return this._eventHandlers[_0x2d] || null;
       }),
-      set: __2.createNativeFunction(function(__46) {
-        __8.settings.logCalls && console.log(__4.domain, 'XMLHttpRequest set ' + __45, this, __46), this._eventHandlers[__45] = __46;
+      set: _0x2.createNativeFunction(function(_0x2e) {
+        _0x8.settings.logCalls && console.log(_0x4.domain, 'XMLHttpRequest set ' + _0x2d, this, _0x2e), this._eventHandlers[_0x2d] = _0x2e;
       })
     });
-  __2.setProperty(__43, 'timeout', Interpreter.VALUE_IN_DESCRIPTOR, {
-    get: __2.createNativeFunction(function() {
+  _0x2.setProperty(_0x2b, 'timeout', Interpreter.VALUE_IN_DESCRIPTOR, {
+    get: _0x2.createNativeFunction(function() {
       return this.native.timeout;
     }),
-    set: __2.createNativeFunction(function(__45) {
-      this.native.timeout = Math.min(__45, 30000);
+    set: _0x2.createNativeFunction(function(_0x2d) {
+      this.native.timeout = Math.min(_0x2d, 30000);
     })
-  }), __2.setProperty(__43, 'withCredentials', Interpreter.VALUE_IN_DESCRIPTOR, {
-    get: __2.createNativeFunction(function() {
+  }), _0x2.setProperty(_0x2b, 'withCredentials', Interpreter.VALUE_IN_DESCRIPTOR, {
+    get: _0x2.createNativeFunction(function() {
       return this.native.withCredentials;
     }),
-    set: __2.createNativeFunction(function(__45) {
+    set: _0x2.createNativeFunction(function(_0x2d) {
       this.native.withCredentials = !1;
     })
-  }), __2.setProperty(__43, 'responseType', Interpreter.VALUE_IN_DESCRIPTOR, {
-    get: __2.createNativeFunction(function() {
+  }), _0x2.setProperty(_0x2b, 'responseType', Interpreter.VALUE_IN_DESCRIPTOR, {
+    get: _0x2.createNativeFunction(function() {
       return this.native.responseType;
     }),
-    set: __2.createNativeFunction(function(__45) {
-      (__45 === '' || __45 === 'text' || __45 === 'json') && (this.native.responseType = __45);
+    set: _0x2.createNativeFunction(function(_0x2d) {
+      (_0x2d === '' || _0x2d === 'text' || _0x2d === 'json') && (this.native.responseType = _0x2d);
     })
-  }), __2.setProperty(__43, 'response', Interpreter.VALUE_IN_DESCRIPTOR, {
-    get: __2.createNativeFunction(function() {
-      let __45 = this.native.response;
-      return this.native.responseType === 'json' ? __2.nativeToPseudo(__45) : typeof __45 == 'string' ? __45.slice(0, 5242880) : __45;
+  }), _0x2.setProperty(_0x2b, 'response', Interpreter.VALUE_IN_DESCRIPTOR, {
+    get: _0x2.createNativeFunction(function() {
+      let _0x2d = this.native.response;
+      return this.native.responseType === 'json' ? _0x2.nativeToPseudo(_0x2d) : typeof _0x2d == 'string' ? _0x2d.slice(0, 5242880) : _0x2d;
     })
-  }), __2.setProperty(__43, 'open', __2.createNativeFunction(function(__45, __46, __50, __51, __52) {
-    if (!__28(__46))
-      throw new Error(`XHR request blocked: URL "${ __46 }" is not allowed. Only absolute URLs to external origins are permitted.`);
-    let __53 = [
+  }), _0x2.setProperty(_0x2b, 'open', _0x2.createNativeFunction(function(_0x2d, _0x2e, _0x32, _0x33, _0x34) {
+    if (!_0x1c(_0x2e))
+      throw new Error(`XHR request blocked: URL "${ _0x2e }" is not allowed. Only absolute URLs to external origins are permitted.`);
+    let _0x35 = [
       'GET',
       'POST',
       'PUT',
@@ -774,10 +774,10 @@ function __66(__2, __3, __4) {
       'HEAD',
       'OPTIONS'
     ];
-    if (__45 = String(__45).toUpperCase(), !__53.includes(__45))
-      throw new Error(`HTTP method "${ __45 }" is not allowed`);
-    __8.settings.logCalls && console.log(__4.domain, 'XMLHttpRequest open', this, __45, __46, __50, __51, __52), this._method = __45, this._url = __46, this._async = __50 !== !1, this.native.open(__45, __46, this._async), this.native.timeout = 30000, __2.setProperty(this, 'readyState', this.native.readyState);
-  })), __2.setProperty(__43, 'setRequestHeader', __2.createNativeFunction(function(__45, __46) {
+    if (_0x2d = String(_0x2d).toUpperCase(), !_0x35.includes(_0x2d))
+      throw new Error(`HTTP method "${ _0x2d }" is not allowed`);
+    _0x8.settings.logCalls && console.log(_0x4.domain, 'XMLHttpRequest open', this, _0x2d, _0x2e, _0x32, _0x33, _0x34), this._method = _0x2d, this._url = _0x2e, this._async = _0x32 !== !1, this.native.open(_0x2d, _0x2e, this._async), this.native.timeout = 30000, _0x2.setProperty(this, 'readyState', this.native.readyState);
+  })), _0x2.setProperty(_0x2b, 'setRequestHeader', _0x2.createNativeFunction(function(_0x2d, _0x2e) {
     if ([
         'cookie',
         'cookie2',
@@ -786,41 +786,41 @@ function __66(__2, __3, __4) {
         'host',
         'origin',
         'referer'
-      ].includes(__45.toLowerCase()))
-      throw new Error(`Setting header "${ __45 }" is not allowed`);
-    __8.settings.logCalls && console.log(__4.domain, 'XMLHttpRequest setRequestHeader', this, __45, __46), this._headers[__45] = __46, this.native.setRequestHeader(__45, __46);
-  })), __2.setProperty(__43, 'send', __2.createNativeFunction(function(__45) {
-    if (__27 >= 5)
+      ].includes(_0x2d.toLowerCase()))
+      throw new Error(`Setting header "${ _0x2d }" is not allowed`);
+    _0x8.settings.logCalls && console.log(_0x4.domain, 'XMLHttpRequest setRequestHeader', this, _0x2d, _0x2e), this._headers[_0x2d] = _0x2e, this.native.setRequestHeader(_0x2d, _0x2e);
+  })), _0x2.setProperty(_0x2b, 'send', _0x2.createNativeFunction(function(_0x2d) {
+    if (_0x1b >= 5)
       throw new Error('Maximum concurrent requests (5) exceeded');
-    __8.settings.logCalls && console.log(__4.domain, 'XMLHttpRequest send', this, __45), __27++;
-    let __46 = null;
-    __45 != null && (typeof __45 == 'string' ? __46 = __45.slice(0, 5242880) : typeof __45 == 'object' && (__46 = JSON.stringify(__2.pseudoToNative(__45)))), this.native.send(__46);
-  })), __2.setProperty(__43, 'abort', __2.createNativeFunction(function() {
-    __8.settings.logCalls && console.log(__4.domain, 'XMLHttpRequest abort', this), this.native.abort(), __27 = Math.max(0, __27 - 1);
-  })), __2.setProperty(__43, 'getResponseHeader', __2.createNativeFunction(function(__45) {
-    return this.native.getResponseHeader(__45);
-  })), __2.setProperty(__43, 'getAllResponseHeaders', __2.createNativeFunction(function() {
+    _0x8.settings.logCalls && console.log(_0x4.domain, 'XMLHttpRequest send', this, _0x2d), _0x1b++;
+    let _0x2e = null;
+    _0x2d != null && (typeof _0x2d == 'string' ? _0x2e = _0x2d.slice(0, 5242880) : typeof _0x2d == 'object' && (_0x2e = JSON.stringify(_0x2.pseudoToNative(_0x2d)))), this.native.send(_0x2e);
+  })), _0x2.setProperty(_0x2b, 'abort', _0x2.createNativeFunction(function() {
+    _0x8.settings.logCalls && console.log(_0x4.domain, 'XMLHttpRequest abort', this), this.native.abort(), _0x1b = Math.max(0, _0x1b - 1);
+  })), _0x2.setProperty(_0x2b, 'getResponseHeader', _0x2.createNativeFunction(function(_0x2d) {
+    return this.native.getResponseHeader(_0x2d);
+  })), _0x2.setProperty(_0x2b, 'getAllResponseHeaders', _0x2.createNativeFunction(function() {
     return this.native.getAllResponseHeaders();
-  })), __2.setProperty(__43, 'overrideMimeType', __2.createNativeFunction(function(__45) {
-    this.native.overrideMimeType(__45);
+  })), _0x2.setProperty(_0x2b, 'overrideMimeType', _0x2.createNativeFunction(function(_0x2d) {
+    this.native.overrideMimeType(_0x2d);
   }));
 }
-var __67 = 'webtiles_storage',
-  __68 = 1,
-  __69 = 'localStorage',
-  __70 = 1024 * 1024,
-  __71 = 100,
-  __72 = null,
-  __73 = null;
+var _0x43 = 'webtiles_storage',
+  _0x44 = 1,
+  _0x45 = 'localStorage',
+  _0x46 = 1024 * 1024,
+  _0x47 = 100,
+  _0x48 = null,
+  _0x49 = null;
 
-function __74() {
-  return __73 || (__73 = new Promise((__2, __3) => {
-    let __4 = indexedDB.open(__67, __68);
-    __4.onerror = () => __3(__4.error), __4.onsuccess = () => {
-      __72 = __4.result, __2(__72);
-    }, __4.onupgradeneeded = __10 => {
-      let __11 = __10.target.result;
-      __11.objectStoreNames.contains(__69) || __11.createObjectStore(__69, {
+function _0x4a() {
+  return _0x49 || (_0x49 = new Promise((_0x2, _0x3) => {
+    let _0x4 = indexedDB.open(_0x43, _0x44);
+    _0x4.onerror = () => _0x3(_0x4.error), _0x4.onsuccess = () => {
+      _0x48 = _0x4.result, _0x2(_0x48);
+    }, _0x4.onupgradeneeded = _0xa => {
+      let _0xb = _0xa.target.result;
+      _0xb.objectStoreNames.contains(_0x45) || _0xb.createObjectStore(_0x45, {
         keyPath: [
           'site',
           'key'
@@ -829,443 +829,443 @@ function __74() {
         unique: !1
       });
     };
-  }), __73);
+  }), _0x49);
 }
-async function __75(__2, __3) {
-  return await __74(), new Promise((__4, __10) => {
-    let __27 = __72.transaction(__69, 'readonly').objectStore(__69).get([
-      __2,
-      __3
+async function _0x4b(_0x2, _0x3) {
+  return await _0x4a(), new Promise((_0x4, _0xa) => {
+    let _0x1b = _0x48.transaction(_0x45, 'readonly').objectStore(_0x45).get([
+      _0x2,
+      _0x3
     ]);
-    __27.onsuccess = () => __4(__27.result?.value ?? null), __27.onerror = () => __10(__27.error);
+    _0x1b.onsuccess = () => _0x4(_0x1b.result?.value ?? null), _0x1b.onerror = () => _0xa(_0x1b.error);
   });
 }
-async function __76(__2, __3, __4) {
-  return await __74(), new Promise((__10, __11) => {
-    let __31 = __72.transaction(__69, 'readwrite').objectStore(__69).put({
-      site: __2,
-      key: __3,
-      value: __4
+async function _0x4c(_0x2, _0x3, _0x4) {
+  return await _0x4a(), new Promise((_0xa, _0xb) => {
+    let _0x1f = _0x48.transaction(_0x45, 'readwrite').objectStore(_0x45).put({
+      site: _0x2,
+      key: _0x3,
+      value: _0x4
     });
-    __31.onsuccess = () => __10(), __31.onerror = () => __11(__31.error);
+    _0x1f.onsuccess = () => _0xa(), _0x1f.onerror = () => _0xb(_0x1f.error);
   });
 }
-async function __77(__2, __3) {
-  return await __74(), new Promise((__4, __10) => {
-    let __27 = __72.transaction(__69, 'readwrite').objectStore(__69).delete([
-      __2,
-      __3
+async function _0x4d(_0x2, _0x3) {
+  return await _0x4a(), new Promise((_0x4, _0xa) => {
+    let _0x1b = _0x48.transaction(_0x45, 'readwrite').objectStore(_0x45).delete([
+      _0x2,
+      _0x3
     ]);
-    __27.onsuccess = () => __4(), __27.onerror = () => __10(__27.error);
+    _0x1b.onsuccess = () => _0x4(), _0x1b.onerror = () => _0xa(_0x1b.error);
   });
 }
-async function __78(__2) {
-  return await __74(), new Promise((__3, __4) => {
-    let __27 = __72.transaction(__69, 'readonly').objectStore(__69).index('site').getAll(__2);
-    __27.onsuccess = () => {
-      let __31 = __27.result.map(__28 => __28.key);
-      __3(__31);
-    }, __27.onerror = () => __4(__27.error);
+async function _0x4e(_0x2) {
+  return await _0x4a(), new Promise((_0x3, _0x4) => {
+    let _0x1b = _0x48.transaction(_0x45, 'readonly').objectStore(_0x45).index('site').getAll(_0x2);
+    _0x1b.onsuccess = () => {
+      let _0x1f = _0x1b.result.map(_0x1c => _0x1c.key);
+      _0x3(_0x1f);
+    }, _0x1b.onerror = () => _0x4(_0x1b.error);
   });
 }
-async function __79(__2) {
-  return await __74(), new Promise((__3, __4) => {
-    let __27 = __72.transaction(__69, 'readonly').objectStore(__69).index('site').getAll(__2);
-    __27.onsuccess = () => {
-      let __31 = 0;
-      for (let __28 of __27.result)
-        __31 += (__28.key.length + __28.value.length) * 2;
-      __3({
-        size: __31,
-        count: __27.result.length
+async function _0x4f(_0x2) {
+  return await _0x4a(), new Promise((_0x3, _0x4) => {
+    let _0x1b = _0x48.transaction(_0x45, 'readonly').objectStore(_0x45).index('site').getAll(_0x2);
+    _0x1b.onsuccess = () => {
+      let _0x1f = 0;
+      for (let _0x1c of _0x1b.result)
+        _0x1f += (_0x1c.key.length + _0x1c.value.length) * 2;
+      _0x3({
+        size: _0x1f,
+        count: _0x1b.result.length
       });
-    }, __27.onerror = () => __4(__27.error);
+    }, _0x1b.onerror = () => _0x4(_0x1b.error);
   });
 }
-async function __80(__2) {
-  return await __74(), new Promise((__3, __4) => {
-    let __27 = __72.transaction(__69, 'readwrite').objectStore(__69).index('site').openCursor(__2);
-    __27.onsuccess = __31 => {
-      let __28 = __31.target.result;
-      __28 ? (__28.delete(), __28.continue()) : __3();
-    }, __27.onerror = () => __4(__27.error);
+async function _0x50(_0x2) {
+  return await _0x4a(), new Promise((_0x3, _0x4) => {
+    let _0x1b = _0x48.transaction(_0x45, 'readwrite').objectStore(_0x45).index('site').openCursor(_0x2);
+    _0x1b.onsuccess = _0x1f => {
+      let _0x1c = _0x1f.target.result;
+      _0x1c ? (_0x1c.delete(), _0x1c.continue()) : _0x3();
+    }, _0x1b.onerror = () => _0x4(_0x1b.error);
   });
 }
 
-function __81(__2, __3, __4) {
-  let __10 = __2.nativeToPseudo({});
-  __2.setProperty(__10, 'getItem', __2.createAsyncFunction(function(__11, __26) {
-    if (__8.settings.logCalls && console.log(__4, 'localStorage.getItem', this, __11), __11 == null) {
-      __26(null);
+function _0x51(_0x2, _0x3, _0x4) {
+  let _0xa = _0x2.nativeToPseudo({});
+  _0x2.setProperty(_0xa, 'getItem', _0x2.createAsyncFunction(function(_0xb, _0x1a) {
+    if (_0x8.settings.logCalls && console.log(_0x4, 'localStorage.getItem', this, _0xb), _0xb == null) {
+      _0x1a(null);
       return;
     }
-    __11 = String(__11), __75(__4, __11).then(__27 => __26(__27)).catch(__27 => {
-      console.error('localStorage.getItem error:', __27), __26(null);
+    _0xb = String(_0xb), _0x4b(_0x4, _0xb).then(_0x1b => _0x1a(_0x1b)).catch(_0x1b => {
+      console.error('localStorage.getItem error:', _0x1b), _0x1a(null);
     });
-  })), __2.setProperty(__10, 'setItem', __2.createAsyncFunction(function(__11, __26, __27) {
-    if (__8.settings.logCalls && console.log(__4, 'localStorage.setItem', this, __11, __26), __11 == null) {
-      __27();
+  })), _0x2.setProperty(_0xa, 'setItem', _0x2.createAsyncFunction(function(_0xb, _0x1a, _0x1b) {
+    if (_0x8.settings.logCalls && console.log(_0x4, 'localStorage.setItem', this, _0xb, _0x1a), _0xb == null) {
+      _0x1b();
       return;
     }
-    __11 = String(__11), __26 = String(__26), __79(__4).then(({
-      size: __31,
-      count: __28
+    _0xb = String(_0xb), _0x1a = String(_0x1a), _0x4f(_0x4).then(({
+      size: _0x1f,
+      count: _0x1c
     }) => {
-      __75(__4, __11).then(__29 => {
-        if (__29 === null && __28 >= __71)
-          throw new Error(`localStorage item limit exceeded (max ${ __71 } items)`);
-        let __41 = __29 ? (__11.length + __29.length) * 2 : 0,
-          __42 = (__11.length + __26.length) * 2;
-        if (__31 - __41 + __42 > __70)
-          throw new Error(`localStorage size limit exceeded (max ${ __70 / 1024 }KB)`);
-        return __76(__4, __11, __26);
-      }).then(() => __27()).catch(__29 => {
-        throw console.error('localStorage.setItem error:', __29), __29;
+      _0x4b(_0x4, _0xb).then(_0x1d => {
+        if (_0x1d === null && _0x1c >= _0x47)
+          throw new Error(`localStorage item limit exceeded (max ${ _0x47 } items)`);
+        let _0x29 = _0x1d ? (_0xb.length + _0x1d.length) * 2 : 0,
+          _0x2a = (_0xb.length + _0x1a.length) * 2;
+        if (_0x1f - _0x29 + _0x2a > _0x46)
+          throw new Error(`localStorage size limit exceeded (max ${ _0x46 / 1024 }KB)`);
+        return _0x4c(_0x4, _0xb, _0x1a);
+      }).then(() => _0x1b()).catch(_0x1d => {
+        throw console.error('localStorage.setItem error:', _0x1d), _0x1d;
       });
-    }).catch(__31 => {
-      console.error('localStorage.setItem error:', __31), __27();
+    }).catch(_0x1f => {
+      console.error('localStorage.setItem error:', _0x1f), _0x1b();
     });
-  })), __2.setProperty(__10, 'removeItem', __2.createAsyncFunction(function(__11, __26) {
-    if (__8.settings.logCalls && console.log(__4, 'localStorage.removeItem', this, __11), __11 == null) {
-      __26();
+  })), _0x2.setProperty(_0xa, 'removeItem', _0x2.createAsyncFunction(function(_0xb, _0x1a) {
+    if (_0x8.settings.logCalls && console.log(_0x4, 'localStorage.removeItem', this, _0xb), _0xb == null) {
+      _0x1a();
       return;
     }
-    __11 = String(__11), __77(__4, __11).then(() => __26()).catch(__27 => {
-      console.error('localStorage.removeItem error:', __27), __26();
+    _0xb = String(_0xb), _0x4d(_0x4, _0xb).then(() => _0x1a()).catch(_0x1b => {
+      console.error('localStorage.removeItem error:', _0x1b), _0x1a();
     });
-  })), __2.setProperty(__10, 'clear', __2.createAsyncFunction(function(__11) {
-    __8.settings.logCalls && console.log(__4, 'localStorage.clear', this), __80(__4).then(() => __11()).catch(__26 => {
-      console.error('localStorage.clear error:', __26), __11();
+  })), _0x2.setProperty(_0xa, 'clear', _0x2.createAsyncFunction(function(_0xb) {
+    _0x8.settings.logCalls && console.log(_0x4, 'localStorage.clear', this), _0x50(_0x4).then(() => _0xb()).catch(_0x1a => {
+      console.error('localStorage.clear error:', _0x1a), _0xb();
     });
-  })), __2.setProperty(__10, 'key', __2.createAsyncFunction(function(__11, __26) {
-    __11 = parseInt(__11) || 0, __78(__4).then(__27 => {
-      __26(__11 >= 0 && __11 < __27.length ? __27[__11] : null);
-    }).catch(__27 => {
-      console.error('localStorage.key error:', __27), __26(null);
+  })), _0x2.setProperty(_0xa, 'key', _0x2.createAsyncFunction(function(_0xb, _0x1a) {
+    _0xb = parseInt(_0xb) || 0, _0x4e(_0x4).then(_0x1b => {
+      _0x1a(_0xb >= 0 && _0xb < _0x1b.length ? _0x1b[_0xb] : null);
+    }).catch(_0x1b => {
+      console.error('localStorage.key error:', _0x1b), _0x1a(null);
     });
-  })), __2.setProperty(__10, 'getLength', __2.createAsyncFunction(function(__11) {
-    __79(__4).then(({
-      count: __26
-    }) => __11(__26)).catch(__26 => {
-      console.error('localStorage.getLength error:', __26), __11(0);
+  })), _0x2.setProperty(_0xa, 'getLength', _0x2.createAsyncFunction(function(_0xb) {
+    _0x4f(_0x4).then(({
+      count: _0x1a
+    }) => _0xb(_0x1a)).catch(_0x1a => {
+      console.error('localStorage.getLength error:', _0x1a), _0xb(0);
     });
-  })), __2.setProperty(__3, 'localStorage', __10), __2.setProperty(__3, 'sessionStorage', __10);
+  })), _0x2.setProperty(_0x3, 'localStorage', _0xa), _0x2.setProperty(_0x3, 'sessionStorage', _0xa);
 }
-__74().catch(__2 => {
-  console.error('Failed to initialize storage DB:', __2);
+_0x4a().catch(_0x2 => {
+  console.error('Failed to initialize storage DB:', _0x2);
 });
 
-function __82(__2, __3, __4, __10) {
-  let __11 = __2.createNativeFunction(function() {}, !0);
-  __2.setProperty(__3, 'DOMParser', __11);
-  let __26 = __2.getProperty(__11, 'prototype');
-  __2.setProperty(__26, 'parseFromString', __2.createNativeFunction(function(__27, __31) {
-    if (__8.settings.logCalls && console.log(__10.domain, 'DOMParser parseFromString', this, __27, __31), ![
+function _0x52(_0x2, _0x3, _0x4, _0xa) {
+  let _0xb = _0x2.createNativeFunction(function() {}, !0);
+  _0x2.setProperty(_0x3, 'DOMParser', _0xb);
+  let _0x1a = _0x2.getProperty(_0xb, 'prototype');
+  _0x2.setProperty(_0x1a, 'parseFromString', _0x2.createNativeFunction(function(_0x1b, _0x1f) {
+    if (_0x8.settings.logCalls && console.log(_0xa.domain, 'DOMParser parseFromString', this, _0x1b, _0x1f), ![
         'text/html',
         'text/xml',
         'application/xml',
         'application/xhtml+xml',
         'image/svg+xml'
-      ].includes(__31))
-      throw new Error(`DOMParser: Unsupported MIME type "${ __31 }"`);
-    if (typeof __27 != 'string' && (__27 = String(__27)), __27.length > 100000)
+      ].includes(_0x1f))
+      throw new Error(`DOMParser: Unsupported MIME type "${ _0x1f }"`);
+    if (typeof _0x1b != 'string' && (_0x1b = String(_0x1b)), _0x1b.length > 100000)
       throw new Error('DOMParser: Input string too large (max 100KB)');
-    let __30 = new DOMParser().parseFromString(__27, __31),
-      __41 = __2.createObjectProto(__2.OBJECT_PROTO);
+    let _0x1e = new DOMParser().parseFromString(_0x1b, _0x1f),
+      _0x29 = _0x2.createObjectProto(_0x2.OBJECT_PROTO);
 
-    function __42(__43) {
-      if (__43 == null)
+    function _0x2a(_0x2b) {
+      if (_0x2b == null)
         return null;
-      let __44 = __2.createObjectProto(__2.OBJECT_PROTO);
-      return __44.native = __43, __44.fromDOMParser = !0, __2.setProperty(__44, 'nodeName', Interpreter.VALUE_IN_DESCRIPTOR, {
-        get: __2.createNativeFunction(function() {
+      let _0x2c = _0x2.createObjectProto(_0x2.OBJECT_PROTO);
+      return _0x2c.native = _0x2b, _0x2c.fromDOMParser = !0, _0x2.setProperty(_0x2c, 'nodeName', Interpreter.VALUE_IN_DESCRIPTOR, {
+        get: _0x2.createNativeFunction(function() {
           return this.native.nodeName;
         })
-      }), __2.setProperty(__44, 'nodeType', Interpreter.VALUE_IN_DESCRIPTOR, {
-        get: __2.createNativeFunction(function() {
+      }), _0x2.setProperty(_0x2c, 'nodeType', Interpreter.VALUE_IN_DESCRIPTOR, {
+        get: _0x2.createNativeFunction(function() {
           return this.native.nodeType;
         })
-      }), __2.setProperty(__44, 'nodeValue', Interpreter.VALUE_IN_DESCRIPTOR, {
-        get: __2.createNativeFunction(function() {
+      }), _0x2.setProperty(_0x2c, 'nodeValue', Interpreter.VALUE_IN_DESCRIPTOR, {
+        get: _0x2.createNativeFunction(function() {
           return this.native.nodeValue;
         }),
-        set: __2.createNativeFunction(function(__45) {
-          __8.settings.logCalls && console.log(__10.domain, 'DOMParser set nodeValue', this, __45), this.native.nodeValue = __45;
+        set: _0x2.createNativeFunction(function(_0x2d) {
+          _0x8.settings.logCalls && console.log(_0xa.domain, 'DOMParser set nodeValue', this, _0x2d), this.native.nodeValue = _0x2d;
         })
-      }), __2.setProperty(__44, 'textContent', Interpreter.VALUE_IN_DESCRIPTOR, {
-        get: __2.createNativeFunction(function() {
+      }), _0x2.setProperty(_0x2c, 'textContent', Interpreter.VALUE_IN_DESCRIPTOR, {
+        get: _0x2.createNativeFunction(function() {
           return this.native.textContent;
         }),
-        set: __2.createNativeFunction(function(__45) {
-          __8.settings.logCalls && console.log(__10.domain, 'DOMParser set textContent', this, __45), this.native.textContent = String(__45).slice(0, 50000);
+        set: _0x2.createNativeFunction(function(_0x2d) {
+          _0x8.settings.logCalls && console.log(_0xa.domain, 'DOMParser set textContent', this, _0x2d), this.native.textContent = String(_0x2d).slice(0, 50000);
         })
-      }), __2.setProperty(__44, 'tagName', Interpreter.VALUE_IN_DESCRIPTOR, {
-        get: __2.createNativeFunction(function() {
+      }), _0x2.setProperty(_0x2c, 'tagName', Interpreter.VALUE_IN_DESCRIPTOR, {
+        get: _0x2.createNativeFunction(function() {
           return this.native.tagName;
         })
-      }), __2.setProperty(__44, 'id', Interpreter.VALUE_IN_DESCRIPTOR, {
-        get: __2.createNativeFunction(function() {
+      }), _0x2.setProperty(_0x2c, 'id', Interpreter.VALUE_IN_DESCRIPTOR, {
+        get: _0x2.createNativeFunction(function() {
           return this.native.id;
         }),
-        set: __2.createNativeFunction(function(__45) {
-          __8.settings.logCalls && console.log(__10.domain, 'DOMParser set id', this, __45), this.native.id = String(__45).slice(0, 100);
+        set: _0x2.createNativeFunction(function(_0x2d) {
+          _0x8.settings.logCalls && console.log(_0xa.domain, 'DOMParser set id', this, _0x2d), this.native.id = String(_0x2d).slice(0, 100);
         })
-      }), __2.setProperty(__44, 'className', Interpreter.VALUE_IN_DESCRIPTOR, {
-        get: __2.createNativeFunction(function() {
+      }), _0x2.setProperty(_0x2c, 'className', Interpreter.VALUE_IN_DESCRIPTOR, {
+        get: _0x2.createNativeFunction(function() {
           return this.native.className;
         }),
-        set: __2.createNativeFunction(function(__45) {
-          __8.settings.logCalls && console.log(__10.domain, 'DOMParser set className', this, __45), this.native.className = String(__45).slice(0, 1000);
+        set: _0x2.createNativeFunction(function(_0x2d) {
+          _0x8.settings.logCalls && console.log(_0xa.domain, 'DOMParser set className', this, _0x2d), this.native.className = String(_0x2d).slice(0, 1000);
         })
-      }), __2.setProperty(__44, 'innerHTML', Interpreter.VALUE_IN_DESCRIPTOR, {
-        get: __2.createNativeFunction(function() {
+      }), _0x2.setProperty(_0x2c, 'innerHTML', Interpreter.VALUE_IN_DESCRIPTOR, {
+        get: _0x2.createNativeFunction(function() {
           return this.native.innerHTML;
         }),
-        set: __2.createNativeFunction(function(__45) {
+        set: _0x2.createNativeFunction(function(_0x2d) {
           throw new Error('innerHTML is not allowed. Create elements using document.createElement and append them instead or use innerText instead.');
         })
-      }), __2.setProperty(__44, 'outerHTML', Interpreter.VALUE_IN_DESCRIPTOR, {
-        get: __2.createNativeFunction(function() {
+      }), _0x2.setProperty(_0x2c, 'outerHTML', Interpreter.VALUE_IN_DESCRIPTOR, {
+        get: _0x2.createNativeFunction(function() {
           return this.native.outerHTML;
         })
-      }), __2.setProperty(__44, 'children', Interpreter.VALUE_IN_DESCRIPTOR, {
-        get: __2.createNativeFunction(function() {
-          let __45 = Array.from(this.native.children),
-            __46 = __2.createObjectProto(__2.ARRAY_PROTO);
-          for (let __50 = 0; __50 < __45.length; __50++)
-            __2.setProperty(__46, __50, __42(__45[__50]));
-          return __2.setProperty(__46, 'length', __45.length), __46;
+      }), _0x2.setProperty(_0x2c, 'children', Interpreter.VALUE_IN_DESCRIPTOR, {
+        get: _0x2.createNativeFunction(function() {
+          let _0x2d = Array.from(this.native.children),
+            _0x2e = _0x2.createObjectProto(_0x2.ARRAY_PROTO);
+          for (let _0x32 = 0; _0x32 < _0x2d.length; _0x32++)
+            _0x2.setProperty(_0x2e, _0x32, _0x2a(_0x2d[_0x32]));
+          return _0x2.setProperty(_0x2e, 'length', _0x2d.length), _0x2e;
         })
-      }), __2.setProperty(__44, 'childNodes', Interpreter.VALUE_IN_DESCRIPTOR, {
-        get: __2.createNativeFunction(function() {
-          let __45 = Array.from(this.native.childNodes),
-            __46 = __2.createObjectProto(__2.ARRAY_PROTO);
-          for (let __50 = 0; __50 < __45.length; __50++)
-            __2.setProperty(__46, __50, __42(__45[__50]));
-          return __2.setProperty(__46, 'length', __45.length), __46;
+      }), _0x2.setProperty(_0x2c, 'childNodes', Interpreter.VALUE_IN_DESCRIPTOR, {
+        get: _0x2.createNativeFunction(function() {
+          let _0x2d = Array.from(this.native.childNodes),
+            _0x2e = _0x2.createObjectProto(_0x2.ARRAY_PROTO);
+          for (let _0x32 = 0; _0x32 < _0x2d.length; _0x32++)
+            _0x2.setProperty(_0x2e, _0x32, _0x2a(_0x2d[_0x32]));
+          return _0x2.setProperty(_0x2e, 'length', _0x2d.length), _0x2e;
         })
-      }), __2.setProperty(__44, 'firstChild', Interpreter.VALUE_IN_DESCRIPTOR, {
-        get: __2.createNativeFunction(function() {
-          return __42(this.native.firstChild);
+      }), _0x2.setProperty(_0x2c, 'firstChild', Interpreter.VALUE_IN_DESCRIPTOR, {
+        get: _0x2.createNativeFunction(function() {
+          return _0x2a(this.native.firstChild);
         })
-      }), __2.setProperty(__44, 'lastChild', Interpreter.VALUE_IN_DESCRIPTOR, {
-        get: __2.createNativeFunction(function() {
-          return __42(this.native.lastChild);
+      }), _0x2.setProperty(_0x2c, 'lastChild', Interpreter.VALUE_IN_DESCRIPTOR, {
+        get: _0x2.createNativeFunction(function() {
+          return _0x2a(this.native.lastChild);
         })
-      }), __2.setProperty(__44, 'firstElementChild', Interpreter.VALUE_IN_DESCRIPTOR, {
-        get: __2.createNativeFunction(function() {
-          return __42(this.native.firstElementChild);
+      }), _0x2.setProperty(_0x2c, 'firstElementChild', Interpreter.VALUE_IN_DESCRIPTOR, {
+        get: _0x2.createNativeFunction(function() {
+          return _0x2a(this.native.firstElementChild);
         })
-      }), __2.setProperty(__44, 'lastElementChild', Interpreter.VALUE_IN_DESCRIPTOR, {
-        get: __2.createNativeFunction(function() {
-          return __42(this.native.lastElementChild);
+      }), _0x2.setProperty(_0x2c, 'lastElementChild', Interpreter.VALUE_IN_DESCRIPTOR, {
+        get: _0x2.createNativeFunction(function() {
+          return _0x2a(this.native.lastElementChild);
         })
-      }), __2.setProperty(__44, 'parentNode', Interpreter.VALUE_IN_DESCRIPTOR, {
-        get: __2.createNativeFunction(function() {
+      }), _0x2.setProperty(_0x2c, 'parentNode', Interpreter.VALUE_IN_DESCRIPTOR, {
+        get: _0x2.createNativeFunction(function() {
           if (!this.fromDOMParser)
             throw new Error('No access.');
-          return this.native.isSameNode(__4) ? null : (__8.settings.logCalls && console.log(__10.domain, 'DOMParser get parentNode', this), __42(this.native.parentNode));
+          return this.native.isSameNode(_0x4) ? null : (_0x8.settings.logCalls && console.log(_0xa.domain, 'DOMParser get parentNode', this), _0x2a(this.native.parentNode));
         })
-      }), __2.setProperty(__44, 'parentElement', Interpreter.VALUE_IN_DESCRIPTOR, {
-        get: __2.createNativeFunction(function() {
+      }), _0x2.setProperty(_0x2c, 'parentElement', Interpreter.VALUE_IN_DESCRIPTOR, {
+        get: _0x2.createNativeFunction(function() {
           if (!this.fromDOMParser)
             throw new Error('No access.');
-          return this.native.isSameNode(__4) ? null : (__8.settings.logCalls && console.log(__10.domain, 'DOMParser get parentElement', this), __42(this.native.parentElement));
+          return this.native.isSameNode(_0x4) ? null : (_0x8.settings.logCalls && console.log(_0xa.domain, 'DOMParser get parentElement', this), _0x2a(this.native.parentElement));
         })
-      }), __2.setProperty(__44, 'nextSibling', Interpreter.VALUE_IN_DESCRIPTOR, {
-        get: __2.createNativeFunction(function() {
+      }), _0x2.setProperty(_0x2c, 'nextSibling', Interpreter.VALUE_IN_DESCRIPTOR, {
+        get: _0x2.createNativeFunction(function() {
           if (!this.fromDOMParser)
             throw new Error('No access.');
-          return this.native.isSameNode(__4) ? null : (__8.settings.logCalls && console.log(__10.domain, 'DOMParser get nextSibling', this), __42(this.native.nextSibling));
+          return this.native.isSameNode(_0x4) ? null : (_0x8.settings.logCalls && console.log(_0xa.domain, 'DOMParser get nextSibling', this), _0x2a(this.native.nextSibling));
         })
-      }), __2.setProperty(__44, 'previousSibling', Interpreter.VALUE_IN_DESCRIPTOR, {
-        get: __2.createNativeFunction(function() {
+      }), _0x2.setProperty(_0x2c, 'previousSibling', Interpreter.VALUE_IN_DESCRIPTOR, {
+        get: _0x2.createNativeFunction(function() {
           if (!this.fromDOMParser)
             throw new Error('No access.');
-          return this.native.isSameNode(__4) ? null : (__8.settings.logCalls && console.log(__10.domain, 'DOMParser get previousSibling', this), __42(this.native.previousSibling));
+          return this.native.isSameNode(_0x4) ? null : (_0x8.settings.logCalls && console.log(_0xa.domain, 'DOMParser get previousSibling', this), _0x2a(this.native.previousSibling));
         })
-      }), __2.setProperty(__44, 'getAttributeNames', __2.createNativeFunction(function() {
+      }), _0x2.setProperty(_0x2c, 'getAttributeNames', _0x2.createNativeFunction(function() {
         if (!this.fromDOMParser)
           throw new Error('No access.');
-        let __45 = Array.from(this.native.getAttributeNames()),
-          __46 = __2.createObjectProto(__2.ARRAY_PROTO);
-        for (let __50 = 0; __50 < __45.length; __50++)
-          __2.setProperty(__46, __50, __45[__50]);
-        return __2.setProperty(__46, 'length', __45.length), __46;
-      })), __2.setProperty(__44, 'getAttribute', __2.createNativeFunction(function(__45) {
+        let _0x2d = Array.from(this.native.getAttributeNames()),
+          _0x2e = _0x2.createObjectProto(_0x2.ARRAY_PROTO);
+        for (let _0x32 = 0; _0x32 < _0x2d.length; _0x32++)
+          _0x2.setProperty(_0x2e, _0x32, _0x2d[_0x32]);
+        return _0x2.setProperty(_0x2e, 'length', _0x2d.length), _0x2e;
+      })), _0x2.setProperty(_0x2c, 'getAttribute', _0x2.createNativeFunction(function(_0x2d) {
         if (!this.fromDOMParser)
           throw new Error('No access.');
-        return this.native.getAttribute(__45);
-      })), __2.setProperty(__44, 'setAttribute', __2.createNativeFunction(function(__45, __46) {
+        return this.native.getAttribute(_0x2d);
+      })), _0x2.setProperty(_0x2c, 'setAttribute', _0x2.createNativeFunction(function(_0x2d, _0x2e) {
         if (!this.fromDOMParser)
           throw new Error('No access.');
-        if (__45 = String(__45).toLowerCase(), __45.startsWith('on'))
+        if (_0x2d = String(_0x2d).toLowerCase(), _0x2d.startsWith('on'))
           throw new Error('Event handlers are not allowed');
-        this.native.setAttribute(__45, String(__46)), __8.settings.logCalls && console.log(__10.domain, 'DOMParser set attribute', this, __45, __46);
-      })), __2.setProperty(__44, 'hasAttribute', __2.createNativeFunction(function(__45) {
+        this.native.setAttribute(_0x2d, String(_0x2e)), _0x8.settings.logCalls && console.log(_0xa.domain, 'DOMParser set attribute', this, _0x2d, _0x2e);
+      })), _0x2.setProperty(_0x2c, 'hasAttribute', _0x2.createNativeFunction(function(_0x2d) {
         if (!this.fromDOMParser)
           throw new Error('No access.');
-        return this.native.hasAttribute(__45);
-      })), __2.setProperty(__44, 'removeAttribute', __2.createNativeFunction(function(__45) {
+        return this.native.hasAttribute(_0x2d);
+      })), _0x2.setProperty(_0x2c, 'removeAttribute', _0x2.createNativeFunction(function(_0x2d) {
         if (!this.fromDOMParser)
           throw new Error('No access.');
-        if (this.native.isSameNode(__4))
+        if (this.native.isSameNode(_0x4))
           throw new Error('No access.');
-        this.native.removeAttribute(__45), __8.settings.logCalls && console.log(__10.domain, 'DOMParser remove attribute', this, __45);
-      })), __2.setProperty(__44, 'querySelector', __2.createNativeFunction(function(__45) {
+        this.native.removeAttribute(_0x2d), _0x8.settings.logCalls && console.log(_0xa.domain, 'DOMParser remove attribute', this, _0x2d);
+      })), _0x2.setProperty(_0x2c, 'querySelector', _0x2.createNativeFunction(function(_0x2d) {
         if (!this.fromDOMParser)
           throw new Error('No access.');
-        return __42(this.native.querySelector(__45));
-      })), __2.setProperty(__44, 'querySelectorAll', __2.createNativeFunction(function(__45) {
+        return _0x2a(this.native.querySelector(_0x2d));
+      })), _0x2.setProperty(_0x2c, 'querySelectorAll', _0x2.createNativeFunction(function(_0x2d) {
         if (!this.fromDOMParser)
           throw new Error('No access.');
-        let __46 = Array.from(this.native.querySelectorAll(__45)),
-          __50 = __2.createObjectProto(__2.ARRAY_PROTO);
-        for (let __51 = 0; __51 < __46.length; __51++)
-          __2.setProperty(__50, __51, __42(__46[__51]));
-        return __2.setProperty(__50, 'length', __46.length), __50;
-      })), __2.setProperty(__44, 'getElementsByTagName', __2.createNativeFunction(function(__45) {
+        let _0x2e = Array.from(this.native.querySelectorAll(_0x2d)),
+          _0x32 = _0x2.createObjectProto(_0x2.ARRAY_PROTO);
+        for (let _0x33 = 0; _0x33 < _0x2e.length; _0x33++)
+          _0x2.setProperty(_0x32, _0x33, _0x2a(_0x2e[_0x33]));
+        return _0x2.setProperty(_0x32, 'length', _0x2e.length), _0x32;
+      })), _0x2.setProperty(_0x2c, 'getElementsByTagName', _0x2.createNativeFunction(function(_0x2d) {
         if (!this.fromDOMParser)
           throw new Error('No access.');
-        let __46 = Array.from(this.native.getElementsByTagName(__45)),
-          __50 = __2.createObjectProto(__2.ARRAY_PROTO);
-        for (let __51 = 0; __51 < __46.length; __51++)
-          __2.setProperty(__50, __51, __42(__46[__51]));
-        return __2.setProperty(__50, 'length', __46.length), __50;
-      })), __2.setProperty(__44, 'getElementsByClassName', __2.createNativeFunction(function(__45) {
+        let _0x2e = Array.from(this.native.getElementsByTagName(_0x2d)),
+          _0x32 = _0x2.createObjectProto(_0x2.ARRAY_PROTO);
+        for (let _0x33 = 0; _0x33 < _0x2e.length; _0x33++)
+          _0x2.setProperty(_0x32, _0x33, _0x2a(_0x2e[_0x33]));
+        return _0x2.setProperty(_0x32, 'length', _0x2e.length), _0x32;
+      })), _0x2.setProperty(_0x2c, 'getElementsByClassName', _0x2.createNativeFunction(function(_0x2d) {
         if (!this.fromDOMParser)
           throw new Error('No access.');
-        let __46 = Array.from(this.native.getElementsByClassName(__45)),
-          __50 = __2.createObjectProto(__2.ARRAY_PROTO);
-        for (let __51 = 0; __51 < __46.length; __51++)
-          __2.setProperty(__50, __51, __42(__46[__51]));
-        return __2.setProperty(__50, 'length', __46.length), __50;
-      })), __2.setProperty(__44, 'getElementById', __2.createNativeFunction(function(__45) {
+        let _0x2e = Array.from(this.native.getElementsByClassName(_0x2d)),
+          _0x32 = _0x2.createObjectProto(_0x2.ARRAY_PROTO);
+        for (let _0x33 = 0; _0x33 < _0x2e.length; _0x33++)
+          _0x2.setProperty(_0x32, _0x33, _0x2a(_0x2e[_0x33]));
+        return _0x2.setProperty(_0x32, 'length', _0x2e.length), _0x32;
+      })), _0x2.setProperty(_0x2c, 'getElementById', _0x2.createNativeFunction(function(_0x2d) {
         if (!this.fromDOMParser)
           throw new Error('No access.');
-        return __42(this.native.getElementById ? this.native.getElementById(__45) : null);
-      })), __44;
+        return _0x2a(this.native.getElementById ? this.native.getElementById(_0x2d) : null);
+      })), _0x2c;
     }
-    return __2.setProperty(__41, 'documentElement', Interpreter.VALUE_IN_DESCRIPTOR, {
-      get: __2.createNativeFunction(function() {
-        return __42(__30.documentElement);
+    return _0x2.setProperty(_0x29, 'documentElement', Interpreter.VALUE_IN_DESCRIPTOR, {
+      get: _0x2.createNativeFunction(function() {
+        return _0x2a(_0x1e.documentElement);
       })
-    }), __2.setProperty(__41, 'head', Interpreter.VALUE_IN_DESCRIPTOR, {
-      get: __2.createNativeFunction(function() {
-        return __8.settings.logCalls && console.log(__10.domain, 'DOMParser get head', this), __42(__30.head);
+    }), _0x2.setProperty(_0x29, 'head', Interpreter.VALUE_IN_DESCRIPTOR, {
+      get: _0x2.createNativeFunction(function() {
+        return _0x8.settings.logCalls && console.log(_0xa.domain, 'DOMParser get head', this), _0x2a(_0x1e.head);
       })
-    }), __2.setProperty(__41, 'body', Interpreter.VALUE_IN_DESCRIPTOR, {
-      get: __2.createNativeFunction(function() {
-        return __8.settings.logCalls && console.log(__10.domain, 'DOMParser get body', this), __42(__30.body);
+    }), _0x2.setProperty(_0x29, 'body', Interpreter.VALUE_IN_DESCRIPTOR, {
+      get: _0x2.createNativeFunction(function() {
+        return _0x8.settings.logCalls && console.log(_0xa.domain, 'DOMParser get body', this), _0x2a(_0x1e.body);
       })
-    }), __2.setProperty(__41, 'title', Interpreter.VALUE_IN_DESCRIPTOR, {
-      get: __2.createNativeFunction(function() {
-        return __30.title;
+    }), _0x2.setProperty(_0x29, 'title', Interpreter.VALUE_IN_DESCRIPTOR, {
+      get: _0x2.createNativeFunction(function() {
+        return _0x1e.title;
       })
-    }), __2.setProperty(__41, 'querySelector', __2.createNativeFunction(function(__43) {
-      return __42(__30.querySelector(__43));
-    })), __2.setProperty(__41, 'querySelectorAll', __2.createNativeFunction(function(__43) {
-      let __44 = Array.from(__30.querySelectorAll(__43)),
-        __45 = __2.createObjectProto(__2.ARRAY_PROTO);
-      for (let __46 = 0; __46 < __44.length; __46++)
-        __2.setProperty(__45, __46, __42(__44[__46]));
-      return __2.setProperty(__45, 'length', __44.length), __45;
-    })), __2.setProperty(__41, 'getElementById', __2.createNativeFunction(function(__43) {
-      return __42(__30.getElementById(__43));
-    })), __2.setProperty(__41, 'getElementsByTagName', __2.createNativeFunction(function(__43) {
-      let __44 = Array.from(__30.getElementsByTagName(__43)),
-        __45 = __2.createObjectProto(__2.ARRAY_PROTO);
-      for (let __46 = 0; __46 < __44.length; __46++)
-        __2.setProperty(__45, __46, __42(__44[__46]));
-      return __2.setProperty(__45, 'length', __44.length), __45;
-    })), __2.setProperty(__41, 'getElementsByClassName', __2.createNativeFunction(function(__43) {
-      let __44 = Array.from(__30.getElementsByClassName(__43)),
-        __45 = __2.createObjectProto(__2.ARRAY_PROTO);
-      for (let __46 = 0; __46 < __44.length; __46++)
-        __2.setProperty(__45, __46, __42(__44[__46]));
-      return __2.setProperty(__45, 'length', __44.length), __45;
-    })), __41;
+    }), _0x2.setProperty(_0x29, 'querySelector', _0x2.createNativeFunction(function(_0x2b) {
+      return _0x2a(_0x1e.querySelector(_0x2b));
+    })), _0x2.setProperty(_0x29, 'querySelectorAll', _0x2.createNativeFunction(function(_0x2b) {
+      let _0x2c = Array.from(_0x1e.querySelectorAll(_0x2b)),
+        _0x2d = _0x2.createObjectProto(_0x2.ARRAY_PROTO);
+      for (let _0x2e = 0; _0x2e < _0x2c.length; _0x2e++)
+        _0x2.setProperty(_0x2d, _0x2e, _0x2a(_0x2c[_0x2e]));
+      return _0x2.setProperty(_0x2d, 'length', _0x2c.length), _0x2d;
+    })), _0x2.setProperty(_0x29, 'getElementById', _0x2.createNativeFunction(function(_0x2b) {
+      return _0x2a(_0x1e.getElementById(_0x2b));
+    })), _0x2.setProperty(_0x29, 'getElementsByTagName', _0x2.createNativeFunction(function(_0x2b) {
+      let _0x2c = Array.from(_0x1e.getElementsByTagName(_0x2b)),
+        _0x2d = _0x2.createObjectProto(_0x2.ARRAY_PROTO);
+      for (let _0x2e = 0; _0x2e < _0x2c.length; _0x2e++)
+        _0x2.setProperty(_0x2d, _0x2e, _0x2a(_0x2c[_0x2e]));
+      return _0x2.setProperty(_0x2d, 'length', _0x2c.length), _0x2d;
+    })), _0x2.setProperty(_0x29, 'getElementsByClassName', _0x2.createNativeFunction(function(_0x2b) {
+      let _0x2c = Array.from(_0x1e.getElementsByClassName(_0x2b)),
+        _0x2d = _0x2.createObjectProto(_0x2.ARRAY_PROTO);
+      for (let _0x2e = 0; _0x2e < _0x2c.length; _0x2e++)
+        _0x2.setProperty(_0x2d, _0x2e, _0x2a(_0x2c[_0x2e]));
+      return _0x2.setProperty(_0x2d, 'length', _0x2c.length), _0x2d;
+    })), _0x29;
   }));
 }
 
-function __83(__2, __3, __4, __10) {
-  let __11 = new WeakMap(),
-    __26 = 1000,
-    __27 = 5,
-    __31 = new WeakMap(),
-    __28 = 0,
-    __29 = __2.nativeToPseudo({});
-  __2.setProperty(__3, '__eventCallbacks', __29);
+function _0x53(_0x2, _0x3, _0x4, _0xa) {
+  let _0xb = new WeakMap(),
+    _0x1a = 1000,
+    _0x1b = 5,
+    _0x1f = new WeakMap(),
+    _0x1c = 0,
+    _0x1d = _0x2.nativeToPseudo({});
+  _0x2.setProperty(_0x3, '__eventCallbacks', _0x1d);
 
-  function __30(__65, __84) {
-    let __85 = __28++;
-    __2.setProperty(__29, 'fn' + __85, __65), __2.setProperty(__29, 'ev' + __85, __84), __2.appendCode(`__eventCallbacks.fn${ __85 }(__eventCallbacks.ev${ __85 }); delete __eventCallbacks.fn${ __85 }; delete __eventCallbacks.ev${ __85 };`);
+  function _0x1e(_0x41, _0x54) {
+    let _0x55 = _0x1c++;
+    _0x2.setProperty(_0x1d, 'fn' + _0x55, _0x41), _0x2.setProperty(_0x1d, 'ev' + _0x55, _0x54), _0x2.appendCode(`__eventCallbacks.fn${ _0x55 }(__eventCallbacks.ev${ _0x55 }); delete __eventCallbacks.fn${ _0x55 }; delete __eventCallbacks.ev${ _0x55 };`);
   }
 
-  function __41() {
-    return __4.getElementsByTagName('*').length;
+  function _0x29() {
+    return _0x4.getElementsByTagName('*').length;
   }
 
-  function __42(__65 = 1) {
-    if (__41() + __65 > __26)
-      throw new Error(`DOM element limit exceeded (max ${ __26 })`);
+  function _0x2a(_0x41 = 1) {
+    if (_0x29() + _0x41 > _0x1a)
+      throw new Error(`DOM element limit exceeded (max ${ _0x1a })`);
   }
 
-  function __43(__65) {
-    return __65 instanceof Element ? 1 + __65.getElementsByTagName('*').length : 0;
+  function _0x2b(_0x41) {
+    return _0x41 instanceof Element ? 1 + _0x41.getElementsByTagName('*').length : 0;
   }
 
-  function __44(__65, __84 = !1) {
-    if (__65 == null)
+  function _0x2c(_0x41, _0x54 = !1) {
+    if (_0x41 == null)
       return null;
-    if (__11.has(__65))
-      return __11.get(__65);
-    let __85 = __65 instanceof Element ? __56 : __51,
-      __86 = __2.createObject(__85);
-    return __86.native = __65, __86.fromDOMParser || (__86.fromDOMParser = __84), __11.set(__65, __86), __86;
+    if (_0xb.has(_0x41))
+      return _0xb.get(_0x41);
+    let _0x55 = _0x41 instanceof Element ? _0x38 : _0x33,
+      _0x56 = _0x2.createObject(_0x55);
+    return _0x56.native = _0x41, _0x56.fromDOMParser || (_0x56.fromDOMParser = _0x54), _0xb.set(_0x41, _0x56), _0x56;
   }
 
-  function __45(__65) {
-    return __65 && __4.contains(__65);
+  function _0x2d(_0x41) {
+    return _0x41 && _0x4.contains(_0x41);
   }
 
-  function __46(__65) {
-    return __45(__65) ? __65 : null;
+  function _0x2e(_0x41) {
+    return _0x2d(_0x41) ? _0x41 : null;
   }
 
-  function __50(__65) {
-    let __84 = __2.createObjectProto(__2.ARRAY_PROTO);
-    for (let __85 = 0; __85 < __65.length; __85++)
-      __2.setProperty(__84, __85, __44(__65[__85]));
-    return __2.setProperty(__84, 'length', __65.length), __84;
+  function _0x32(_0x41) {
+    let _0x54 = _0x2.createObjectProto(_0x2.ARRAY_PROTO);
+    for (let _0x55 = 0; _0x55 < _0x41.length; _0x55++)
+      _0x2.setProperty(_0x54, _0x55, _0x2c(_0x41[_0x55]));
+    return _0x2.setProperty(_0x54, 'length', _0x41.length), _0x54;
   }
-  let __51 = __2.createNativeFunction(function() {
+  let _0x33 = _0x2.createNativeFunction(function() {
     throw TypeError('Illegal constructor');
   }, !0);
-  __2.setProperty(__3, 'Node', __51);
-  let __52 = __2.getProperty(__51, 'prototype'),
-    __53 = {
+  _0x2.setProperty(_0x3, 'Node', _0x33);
+  let _0x34 = _0x2.getProperty(_0x33, 'prototype'),
+    _0x35 = {
       firstChild: function() {
-        return __44(__46(this.native.firstChild));
+        return _0x2c(_0x2e(this.native.firstChild));
       },
       lastChild: function() {
-        return __44(__46(this.native.lastChild));
+        return _0x2c(_0x2e(this.native.lastChild));
       },
       parentNode: function() {
-        return __44(__46(this.native.parentNode));
+        return _0x2c(_0x2e(this.native.parentNode));
       },
       parentElement: function() {
-        return __44(__46(this.native.parentElement));
+        return _0x2c(_0x2e(this.native.parentElement));
       },
       nextSibling: function() {
-        return __44(__46(this.native.nextSibling));
+        return _0x2c(_0x2e(this.native.nextSibling));
       },
       previousSibling: function() {
-        return __44(__46(this.native.previousSibling));
+        return _0x2c(_0x2e(this.native.previousSibling));
       },
       childNodes: function() {
-        let __65 = Array.from(this.native.childNodes).filter(__45);
-        return __50(__65);
+        let _0x41 = Array.from(this.native.childNodes).filter(_0x2d);
+        return _0x32(_0x41);
       },
       nodeName: function() {
         return this.native.nodeName;
@@ -1280,116 +1280,116 @@ function __83(__2, __3, __4, __10) {
         return this.native.textContent;
       }
     },
-    __54 = {
-      textContent: function(__65) {
-        __8.settings.logCalls && console.log(__10.domain, 'set textContent', this, __65), this.native.textContent = __65;
+    _0x36 = {
+      textContent: function(_0x41) {
+        _0x8.settings.logCalls && console.log(_0xa.domain, 'set textContent', this, _0x41), this.native.textContent = _0x41;
       },
-      nodeValue: function(__65) {
-        __8.settings.logCalls && console.log(__10.domain, 'set nodeValue', this, __65), this.native.nodeValue = __65;
+      nodeValue: function(_0x41) {
+        _0x8.settings.logCalls && console.log(_0xa.domain, 'set nodeValue', this, _0x41), this.native.nodeValue = _0x41;
       }
     };
-  for (let [__65, __84] of Object.entries(__53)) {
-    let __85 = {
-      get: __2.createNativeFunction(__84)
+  for (let [_0x41, _0x54] of Object.entries(_0x35)) {
+    let _0x55 = {
+      get: _0x2.createNativeFunction(_0x54)
     };
-    __54[__65] && (__85.set = __2.createNativeFunction(__54[__65])), __2.setProperty(__52, __65, Interpreter.VALUE_IN_DESCRIPTOR, __85);
+    _0x36[_0x41] && (_0x55.set = _0x2.createNativeFunction(_0x36[_0x41])), _0x2.setProperty(_0x34, _0x41, Interpreter.VALUE_IN_DESCRIPTOR, _0x55);
   }
-  let __55 = {
+  let _0x37 = {
     hasChildNodes: function() {
       return this.native.hasChildNodes();
     },
-    appendChild: function(__65) {
-      if (!__65?.native)
+    appendChild: function(_0x41) {
+      if (!_0x41?.native)
         return null;
-      if (__65.fromDOMParser)
+      if (_0x41.fromDOMParser)
         throw new Error('You cannot append DOMParser elements to the DOM.');
-      return __42(__43(__65.native)), this.native.appendChild(__65.native), __8.settings.logCalls && console.log(__10.domain, 'appendChild', this, __65), __65;
+      return _0x2a(_0x2b(_0x41.native)), this.native.appendChild(_0x41.native), _0x8.settings.logCalls && console.log(_0xa.domain, 'appendChild', this, _0x41), _0x41;
     },
-    append: function(__65) {
-      for (let __84 of __65)
-        if (__84?.native) {
-          if (__84.fromDOMParser)
+    append: function(_0x41) {
+      for (let _0x54 of _0x41)
+        if (_0x54?.native) {
+          if (_0x54.fromDOMParser)
             throw new Error('You cannot append DOMParser elements to the DOM.');
-          __42(__43(__84.native)), this.native.appendChild(__84.native);
+          _0x2a(_0x2b(_0x54.native)), this.native.appendChild(_0x54.native);
         }
-      return __8.settings.logCalls && console.log(__10.domain, 'append', this, __65), __65;
+      return _0x8.settings.logCalls && console.log(_0xa.domain, 'append', this, _0x41), _0x41;
     },
-    removeChild: function(__65) {
-      return !__65?.native || !__45(__65.native) ? null : (__8.settings.logCalls && console.log(__10.domain, 'removeChild', this, __65), __44(this.native.removeChild(__65.native)));
+    removeChild: function(_0x41) {
+      return !_0x41?.native || !_0x2d(_0x41.native) ? null : (_0x8.settings.logCalls && console.log(_0xa.domain, 'removeChild', this, _0x41), _0x2c(this.native.removeChild(_0x41.native)));
     },
-    insertBefore: function(__65, __84) {
-      if (!__65?.native)
+    insertBefore: function(_0x41, _0x54) {
+      if (!_0x41?.native)
         return null;
-      if (__65.fromDOMParser)
+      if (_0x41.fromDOMParser)
         throw new Error('You cannot insert DOMParser elements into the DOM.');
-      if (this.native.isSameNode(__4))
+      if (this.native.isSameNode(_0x4))
         throw new Error('No access.');
-      __42(__43(__65.native));
-      let __85 = __84?.native || null;
-      return this.native.insertBefore(__65.native, __85), __8.settings.logCalls && console.log(__10.domain, 'insertBefore', this, __65, __85), __65;
+      _0x2a(_0x2b(_0x41.native));
+      let _0x55 = _0x54?.native || null;
+      return this.native.insertBefore(_0x41.native, _0x55), _0x8.settings.logCalls && console.log(_0xa.domain, 'insertBefore', this, _0x41, _0x55), _0x41;
     },
-    cloneNode: function(__65) {
-      return __8.settings.logCalls && console.log(__10.domain, 'cloneNode', this, __65), __44(this.native.cloneNode(__65), this.fromDOMParser);
+    cloneNode: function(_0x41) {
+      return _0x8.settings.logCalls && console.log(_0xa.domain, 'cloneNode', this, _0x41), _0x2c(this.native.cloneNode(_0x41), this.fromDOMParser);
     },
-    contains: function(__65) {
-      return __65?.native ? this.native.contains(__65.native) : !1;
+    contains: function(_0x41) {
+      return _0x41?.native ? this.native.contains(_0x41.native) : !1;
     },
     remove: function() {
-      if (this.native.isSameNode(__4))
+      if (this.native.isSameNode(_0x4))
         throw new Error('No access.');
-      this.native.remove(), __8.settings.logCalls && console.log(__10.domain, 'remove', this);
+      this.native.remove(), _0x8.settings.logCalls && console.log(_0xa.domain, 'remove', this);
     },
-    after: function(__65) {
-      if (!__65?.native)
+    after: function(_0x41) {
+      if (!_0x41?.native)
         return null;
-      if (__65.fromDOMParser)
+      if (_0x41.fromDOMParser)
         throw new Error('You cannot insert DOMParser elements into the DOM.');
-      if (this.native.isSameNode(__4))
+      if (this.native.isSameNode(_0x4))
         throw new Error('No access.');
-      return __42(__43(__65.native)), this.native.after(__65.native), __8.settings.logCalls && console.log(__10.domain, 'after', this, __65), __65;
+      return _0x2a(_0x2b(_0x41.native)), this.native.after(_0x41.native), _0x8.settings.logCalls && console.log(_0xa.domain, 'after', this, _0x41), _0x41;
     },
-    before: function(__65) {
-      if (!__65?.native)
+    before: function(_0x41) {
+      if (!_0x41?.native)
         return null;
-      if (__65.fromDOMParser)
+      if (_0x41.fromDOMParser)
         throw new Error('You cannot insert DOMParser elements into the DOM.');
-      if (this.native.isSameNode(__4))
+      if (this.native.isSameNode(_0x4))
         throw new Error('No access.');
-      return __42(__43(__65.native)), this.native.before(__65.native), __8.settings.logCalls && console.log(__10.domain, 'before', this, __65), __65;
+      return _0x2a(_0x2b(_0x41.native)), this.native.before(_0x41.native), _0x8.settings.logCalls && console.log(_0xa.domain, 'before', this, _0x41), _0x41;
     }
   };
-  for (let [__65, __84] of Object.entries(__55))
-    __2.setProperty(__52, __65, __2.createNativeFunction(__84));
-  let __56 = __2.createNativeFunction(function() {
+  for (let [_0x41, _0x54] of Object.entries(_0x37))
+    _0x2.setProperty(_0x34, _0x41, _0x2.createNativeFunction(_0x54));
+  let _0x38 = _0x2.createNativeFunction(function() {
     throw TypeError('Illegal constructor');
   }, !0);
-  __2.setProperty(__3, 'Element', __56);
-  let __57 = __2.createObject(__51);
-  __2.setProperty(__56, 'prototype', __57);
+  _0x2.setProperty(_0x3, 'Element', _0x38);
+  let _0x39 = _0x2.createObject(_0x33);
+  _0x2.setProperty(_0x38, 'prototype', _0x39);
 
-  function __60(__65) {
-    if (!__65)
+  function _0x3c(_0x41) {
+    if (!_0x41)
       return '';
-    __65 = String(__65);
-    let __84 = __65.toLowerCase().trim();
-    if (__84.startsWith('javascript:') || __84.startsWith('vbscript:'))
+    _0x41 = String(_0x41);
+    let _0x54 = _0x41.toLowerCase().trim();
+    if (_0x54.startsWith('javascript:') || _0x54.startsWith('vbscript:'))
       throw new Error('javascript: URLs are not allowed');
-    if (__84.startsWith('data:'))
-      return __65;
+    if (_0x54.startsWith('data:'))
+      return _0x41;
     try {
-      let __85 = new URL(__65, location.href);
-      if (__85.hostname !== location.hostname)
+      let _0x55 = new URL(_0x41, location.href);
+      if (_0x55.hostname !== location.hostname)
         throw new Error('External URLs are not allowed');
-      let __86 = __85.pathname + __85.search + __85.hash;
-      return __86.startsWith(`/t/${ __10.domain }/`) || (__86 = `/t/${ __10.domain }/${ __86 }`.replaceAll('//', '/')), __86;
-    } catch (__85) {
-      if (__85.message.includes('not allowed'))
-        throw __85;
-      let __86 = __65;
-      return !__86.startsWith(`/t/${ __10.domain }/`) && !__86.startsWith('#') && (__86 = `/t/${ __10.domain }/${ __86 }`.replaceAll('//', '/')), __86;
+      let _0x56 = _0x55.pathname + _0x55.search + _0x55.hash;
+      return _0x56.startsWith(`/t/${ _0xa.domain }/`) || (_0x56 = `/t/${ _0xa.domain }/${ _0x56 }`.replaceAll('//', '/')), _0x56;
+    } catch (_0x55) {
+      if (_0x55.message.includes('not allowed'))
+        throw _0x55;
+      let _0x56 = _0x41;
+      return !_0x56.startsWith(`/t/${ _0xa.domain }/`) && !_0x56.startsWith('#') && (_0x56 = `/t/${ _0xa.domain }/${ _0x56 }`.replaceAll('//', '/')), _0x56;
     }
   }
-  let __61 = {
+  let _0x3d = {
       innerText: function() {
         return this.native.innerText;
       },
@@ -1409,20 +1409,20 @@ function __83(__2, __3, __4, __10) {
         return this.native.tagName;
       },
       children: function() {
-        let __65 = Array.from(this.native.children).filter(__45);
-        return __50(__65);
+        let _0x41 = Array.from(this.native.children).filter(_0x2d);
+        return _0x32(_0x41);
       },
       firstElementChild: function() {
-        return __44(__46(this.native.firstElementChild));
+        return _0x2c(_0x2e(this.native.firstElementChild));
       },
       lastElementChild: function() {
-        return __44(__46(this.native.lastElementChild));
+        return _0x2c(_0x2e(this.native.lastElementChild));
       },
       nextElementSibling: function() {
-        return __44(__46(this.native.nextElementSibling));
+        return _0x2c(_0x2e(this.native.nextElementSibling));
       },
       previousElementSibling: function() {
-        return __44(__46(this.native.previousElementSibling));
+        return _0x2c(_0x2e(this.native.previousElementSibling));
       },
       childElementCount: function() {
         return this.native.childElementCount;
@@ -1563,159 +1563,159 @@ function __83(__2, __3, __4, __10) {
         return this.native.videoHeight || 0;
       }
     },
-    __62 = {
-      innerText: function(__65) {
-        this.native.innerText = __65.slice(0, 1000);
+    _0x3e = {
+      innerText: function(_0x41) {
+        this.native.innerText = _0x41.slice(0, 1000);
       },
-      innerHTML: function(__65) {
+      innerHTML: function(_0x41) {
         throw new Error('innerHTML is not allowed. Create elements using document.createElement and append them instead or use innerText instead.');
       },
-      id: function(__65) {
+      id: function(_0x41) {
         if (this.native.className === 'tile-body')
           throw new Error('No access.');
-        this.native.id = __65, __8.settings.logCalls && console.log(__10.domain, 'set id', this, __65);
+        this.native.id = _0x41, _0x8.settings.logCalls && console.log(_0xa.domain, 'set id', this, _0x41);
       },
-      className: function(__65) {
+      className: function(_0x41) {
         if (this.native.className === 'tile-body')
           throw new Error('No access.');
-        this.native.className = __65, __8.settings.logCalls && console.log(__10.domain, 'set className', this, __65);
+        this.native.className = _0x41, _0x8.settings.logCalls && console.log(_0xa.domain, 'set className', this, _0x41);
       },
-      src: function(__65) {
-        this.native.src = __60(__65), __8.settings.logCalls && console.log(__10.domain, 'set src', this, __65);
+      src: function(_0x41) {
+        this.native.src = _0x3c(_0x41), _0x8.settings.logCalls && console.log(_0xa.domain, 'set src', this, _0x41);
       },
-      href: function(__65) {
-        this.native.href = this.native.tagName === 'A' ? __65 : __60(__65), __8.settings.logCalls && console.log(__10.domain, 'set href', this, __65);
+      href: function(_0x41) {
+        this.native.href = this.native.tagName === 'A' ? _0x41 : _0x3c(_0x41), _0x8.settings.logCalls && console.log(_0xa.domain, 'set href', this, _0x41);
       },
-      hidden: function(__65) {
+      hidden: function(_0x41) {
         if (this.native.className === 'tile-body')
           throw new Error('No access.');
-        this.native.hidden = !!__65;
+        this.native.hidden = !!_0x41;
       },
-      disabled: function(__65) {
+      disabled: function(_0x41) {
         if (this.native.className === 'tile-body')
           throw new Error('No access.');
-        this.native.disabled = !!__65;
+        this.native.disabled = !!_0x41;
       },
-      checked: function(__65) {
-        this.native.checked = !!__65;
+      checked: function(_0x41) {
+        this.native.checked = !!_0x41;
       },
-      selected: function(__65) {
-        this.native.selected = !!__65;
+      selected: function(_0x41) {
+        this.native.selected = !!_0x41;
       },
-      readOnly: function(__65) {
-        this.native.readOnly = !!__65;
+      readOnly: function(_0x41) {
+        this.native.readOnly = !!_0x41;
       },
-      required: function(__65) {
-        this.native.required = !!__65;
+      required: function(_0x41) {
+        this.native.required = !!_0x41;
       },
-      draggable: function(__65) {
-        this.native.draggable = !!__65;
+      draggable: function(_0x41) {
+        this.native.draggable = !!_0x41;
       },
-      title: function(__65) {
-        this.native.title = String(__65).slice(0, 1000);
+      title: function(_0x41) {
+        this.native.title = String(_0x41).slice(0, 1000);
       },
-      alt: function(__65) {
-        this.native.alt = String(__65).slice(0, 1000);
+      alt: function(_0x41) {
+        this.native.alt = String(_0x41).slice(0, 1000);
       },
-      name: function(__65) {
-        this.native.name = String(__65).slice(0, 100);
+      name: function(_0x41) {
+        this.native.name = String(_0x41).slice(0, 100);
       },
-      type: function(__65) {
-        this.native.type = String(__65).slice(0, 50);
+      type: function(_0x41) {
+        this.native.type = String(_0x41).slice(0, 50);
       },
-      value: function(__65) {
-        this.native.value = String(__65).slice(0, 10000);
+      value: function(_0x41) {
+        this.native.value = String(_0x41).slice(0, 10000);
       },
-      placeholder: function(__65) {
-        this.native.placeholder = String(__65).slice(0, 500);
+      placeholder: function(_0x41) {
+        this.native.placeholder = String(_0x41).slice(0, 500);
       },
-      tabIndex: function(__65) {
-        this.native.tabIndex = parseInt(__65) || 0;
+      tabIndex: function(_0x41) {
+        this.native.tabIndex = parseInt(_0x41) || 0;
       },
-      scrollTop: function(__65) {
-        this.native.scrollTop = __65;
+      scrollTop: function(_0x41) {
+        this.native.scrollTop = _0x41;
       },
-      scrollLeft: function(__65) {
-        this.native.scrollLeft = __65;
+      scrollLeft: function(_0x41) {
+        this.native.scrollLeft = _0x41;
       },
-      currentTime: function(__65) {
-        this.native instanceof HTMLMediaElement && (this.native.currentTime = Math.max(0, Number(__65) || 0));
+      currentTime: function(_0x41) {
+        this.native instanceof HTMLMediaElement && (this.native.currentTime = Math.max(0, Number(_0x41) || 0));
       },
-      muted: function(__65) {
-        this.native instanceof HTMLMediaElement && (this.native.muted = !!__65);
+      muted: function(_0x41) {
+        this.native instanceof HTMLMediaElement && (this.native.muted = !!_0x41);
       },
-      volume: function(__65) {
-        this.native instanceof HTMLMediaElement && (this.native.volume = Math.max(0, Math.min(1, Number(__65) || 0)));
+      volume: function(_0x41) {
+        this.native instanceof HTMLMediaElement && (this.native.volume = Math.max(0, Math.min(1, Number(_0x41) || 0)));
       },
-      loop: function(__65) {
-        this.native instanceof HTMLMediaElement && (this.native.loop = !!__65);
+      loop: function(_0x41) {
+        this.native instanceof HTMLMediaElement && (this.native.loop = !!_0x41);
       },
-      autoplay: function(__65) {
-        this.native instanceof HTMLMediaElement && (this.native.autoplay = !!__65);
+      autoplay: function(_0x41) {
+        this.native instanceof HTMLMediaElement && (this.native.autoplay = !!_0x41);
       },
-      controls: function(__65) {
-        this.native instanceof HTMLMediaElement && (this.native.controls = !!__65);
+      controls: function(_0x41) {
+        this.native instanceof HTMLMediaElement && (this.native.controls = !!_0x41);
       },
-      playbackRate: function(__65) {
-        this.native instanceof HTMLMediaElement && (this.native.playbackRate = Math.max(0.25, Math.min(4, Number(__65) || 1)));
+      playbackRate: function(_0x41) {
+        this.native instanceof HTMLMediaElement && (this.native.playbackRate = Math.max(0.25, Math.min(4, Number(_0x41) || 1)));
       },
-      defaultPlaybackRate: function(__65) {
-        this.native instanceof HTMLMediaElement && (this.native.defaultPlaybackRate = Math.max(0.25, Math.min(4, Number(__65) || 1)));
+      defaultPlaybackRate: function(_0x41) {
+        this.native instanceof HTMLMediaElement && (this.native.defaultPlaybackRate = Math.max(0.25, Math.min(4, Number(_0x41) || 1)));
       },
-      preload: function(__65) {
+      preload: function(_0x41) {
         if (this.native instanceof HTMLMediaElement) {
-          let __84 = [
+          let _0x54 = [
             'none',
             'metadata',
             'auto'
           ];
-          this.native.preload = __84.includes(__65) ? __65 : 'auto';
+          this.native.preload = _0x54.includes(_0x41) ? _0x41 : 'auto';
         }
       },
-      poster: function(__65) {
-        this.native instanceof HTMLVideoElement && (this.native.poster = __60(__65));
+      poster: function(_0x41) {
+        this.native instanceof HTMLVideoElement && (this.native.poster = _0x3c(_0x41));
       }
     };
-  for (let [__65, __84] of Object.entries(__61)) {
-    let __85 = {
-      get: __2.createNativeFunction(__84)
+  for (let [_0x41, _0x54] of Object.entries(_0x3d)) {
+    let _0x55 = {
+      get: _0x2.createNativeFunction(_0x54)
     };
-    __62[__65] && (__85.set = __2.createNativeFunction(__62[__65])), __2.setProperty(__57, __65, Interpreter.VALUE_IN_DESCRIPTOR, __85);
+    _0x3e[_0x41] && (_0x55.set = _0x2.createNativeFunction(_0x3e[_0x41])), _0x2.setProperty(_0x39, _0x41, Interpreter.VALUE_IN_DESCRIPTOR, _0x55);
   }
-  let __63 = {
+  let _0x3f = {
     getAttributeNames: function() {
-      let __65 = Array.from(this.native.getAttributeNames()),
-        __84 = __2.createObjectProto(__2.ARRAY_PROTO);
-      for (let __85 = 0; __85 < __65.length; __85++)
-        __2.setProperty(__84, __85, __65[__85]);
-      return __2.setProperty(__84, 'length', __65.length), __84;
+      let _0x41 = Array.from(this.native.getAttributeNames()),
+        _0x54 = _0x2.createObjectProto(_0x2.ARRAY_PROTO);
+      for (let _0x55 = 0; _0x55 < _0x41.length; _0x55++)
+        _0x2.setProperty(_0x54, _0x55, _0x41[_0x55]);
+      return _0x2.setProperty(_0x54, 'length', _0x41.length), _0x54;
     },
-    getAttribute: function(__65) {
-      return this.native.getAttribute(__65);
+    getAttribute: function(_0x41) {
+      return this.native.getAttribute(_0x41);
     },
-    setAttribute: function(__65, __84) {
+    setAttribute: function(_0x41, _0x54) {
       if (this.native.className === 'tile-body')
         throw new Error('No access.');
-      if (__65 = String(__65).toLowerCase(), __84 = String(__84), __8.settings.logCalls && console.log(__10.domain, 'setAttribute', this, __65, __84), __65 === 'style' && __84.includes('animation-play-state') && __84.includes('!important'))
+      if (_0x41 = String(_0x41).toLowerCase(), _0x54 = String(_0x54), _0x8.settings.logCalls && console.log(_0xa.domain, 'setAttribute', this, _0x41, _0x54), _0x41 === 'style' && _0x54.includes('animation-play-state') && _0x54.includes('!important'))
         throw new Error('Cannot set animation-play-state to !important');
-      if (__65 === 'src' || __65 === 'poster' || __65 === 'data' || this.native.tagName !== 'A' && __65 === 'href') {
-        this.native.setAttribute(__65, __60(__84));
+      if (_0x41 === 'src' || _0x41 === 'poster' || _0x41 === 'data' || this.native.tagName !== 'A' && _0x41 === 'href') {
+        this.native.setAttribute(_0x41, _0x3c(_0x54));
         return;
       }
-      if (__65 === 'autoplay')
+      if (_0x41 === 'autoplay')
         throw new Error('autoplay is not allowed');
-      if (__65 === 'srcset')
+      if (_0x41 === 'srcset')
         throw new Error('srcset is not allowed');
-      if (__65 === 'action' || __65 === 'formaction')
+      if (_0x41 === 'action' || _0x41 === 'formaction')
         throw new Error('action and formaction are not allowed');
-      if (__65.startsWith('on'))
+      if (_0x41.startsWith('on'))
         throw new Error('Event handlers are not allowed. Use addEventListener instead.');
-      if (__65 === 'width' || __65 === 'height') {
-        let __85 = parseFloat(__84);
-        if (isNaN(__85) || __85 < 0 || __85 > 4096)
+      if (_0x41 === 'width' || _0x41 === 'height') {
+        let _0x55 = parseFloat(_0x54);
+        if (isNaN(_0x55) || _0x55 < 0 || _0x55 > 4096)
           throw new Error('Invalid width or height');
       }
-      this.native.setAttribute(__65, __84);
+      this.native.setAttribute(_0x41, _0x54);
     },
     focus: function() {
       this.native.focus();
@@ -1726,96 +1726,96 @@ function __83(__2, __3, __4, __10) {
     click: function() {
       this.native.click();
     },
-    scrollIntoView: function(__65) {
-      __65 && typeof __65 == 'object' ? this.native.scrollIntoView(__2.pseudoToNative(__65)) : this.native.scrollIntoView(__65);
+    scrollIntoView: function(_0x41) {
+      _0x41 && typeof _0x41 == 'object' ? this.native.scrollIntoView(_0x2.pseudoToNative(_0x41)) : this.native.scrollIntoView(_0x41);
     },
-    scrollTo: function(__65, __84) {
-      this.native.scrollTo(__65, __84);
+    scrollTo: function(_0x41, _0x54) {
+      this.native.scrollTo(_0x41, _0x54);
     },
-    scrollBy: function(__65, __84) {
-      this.native.scrollBy(__65, __84);
+    scrollBy: function(_0x41, _0x54) {
+      this.native.scrollBy(_0x41, _0x54);
     },
-    removeAttribute: function(__65) {
+    removeAttribute: function(_0x41) {
       if (this.native.className === 'tile-body')
         throw new Error('No access.');
-      if (__65 = String(__65).toLowerCase(), __65 === 'target')
+      if (_0x41 = String(_0x41).toLowerCase(), _0x41 === 'target')
         throw new Error('removing target is not allowed');
-      __8.settings.logCalls && console.log(__10.domain, 'removeAttribute', this, __65), this.native.removeAttribute(__65);
+      _0x8.settings.logCalls && console.log(_0xa.domain, 'removeAttribute', this, _0x41), this.native.removeAttribute(_0x41);
     },
-    hasAttribute: function(__65) {
-      return this.native.hasAttribute(__65);
+    hasAttribute: function(_0x41) {
+      return this.native.hasAttribute(_0x41);
     },
-    querySelector: function(__65) {
-      let __84 = this.native.querySelector(__65);
-      return __44(__46(__84));
+    querySelector: function(_0x41) {
+      let _0x54 = this.native.querySelector(_0x41);
+      return _0x2c(_0x2e(_0x54));
     },
-    querySelectorAll: function(__65) {
-      let __84 = Array.from(this.native.querySelectorAll(__65)).filter(__45);
-      return __50(__84);
+    querySelectorAll: function(_0x41) {
+      let _0x54 = Array.from(this.native.querySelectorAll(_0x41)).filter(_0x2d);
+      return _0x32(_0x54);
     },
-    getElementsByClassName: function(__65) {
-      let __84 = Array.from(this.native.getElementsByClassName(__65)).filter(__45);
-      return __50(__84);
+    getElementsByClassName: function(_0x41) {
+      let _0x54 = Array.from(this.native.getElementsByClassName(_0x41)).filter(_0x2d);
+      return _0x32(_0x54);
     },
-    getElementsByTagName: function(__65) {
-      let __84 = Array.from(this.native.getElementsByTagName(__65)).filter(__45);
-      return __50(__84);
+    getElementsByTagName: function(_0x41) {
+      let _0x54 = Array.from(this.native.getElementsByTagName(_0x41)).filter(_0x2d);
+      return _0x32(_0x54);
     },
-    closest: function(__65) {
-      let __84 = this.native.closest(__65);
-      for (; __84 && !__4.contains(__84);)
-        __84 = null;
-      return __44(__84);
+    closest: function(_0x41) {
+      let _0x54 = this.native.closest(_0x41);
+      for (; _0x54 && !_0x4.contains(_0x54);)
+        _0x54 = null;
+      return _0x2c(_0x54);
     },
-    matches: function(__65) {
-      return this.native.matches(__65);
+    matches: function(_0x41) {
+      return this.native.matches(_0x41);
     },
     classList: function() {
       if (this.native.className === 'tile-body')
         throw new Error('No access.');
-      let __65 = this.native.classList;
-      return __2.nativeToPseudo({
-        add: (...__84) => __65.add(...__84),
-        remove: (...__84) => __65.remove(...__84),
-        toggle: (__84, __85) => __65.toggle(__84, __85),
-        contains: __84 => __65.contains(__84),
-        replace: (__84, __85) => __65.replace(__84, __85)
+      let _0x41 = this.native.classList;
+      return _0x2.nativeToPseudo({
+        add: (..._0x54) => _0x41.add(..._0x54),
+        remove: (..._0x54) => _0x41.remove(..._0x54),
+        toggle: (_0x54, _0x55) => _0x41.toggle(_0x54, _0x55),
+        contains: _0x54 => _0x41.contains(_0x54),
+        replace: (_0x54, _0x55) => _0x41.replace(_0x54, _0x55)
       });
     },
     getBoundingClientRect: function() {
-      let __65 = this.native.getBoundingClientRect();
-      return __2.nativeToPseudo({
-        __47: __65.__47,
-        __85: __65.__85,
-        width: __65.width,
-        height: __65.height,
-        top: __65.top,
-        right: __65.right,
-        bottom: __65.bottom,
-        left: __65.left
+      let _0x41 = this.native.getBoundingClientRect();
+      return _0x2.nativeToPseudo({
+        _0x2f: _0x41._0x2f,
+        _0x55: _0x41._0x55,
+        width: _0x41.width,
+        height: _0x41.height,
+        top: _0x41.top,
+        right: _0x41.right,
+        bottom: _0x41.bottom,
+        left: _0x41.left
       });
     },
     play: function() {
       if (!(this.native instanceof HTMLMediaElement))
-        return __2.createObjectProto(__2.OBJECT_PROTO);
+        return _0x2.createObjectProto(_0x2.OBJECT_PROTO);
       if (!this.native.isConnected)
         throw new Error('Element is not connected to the DOM. Append it to the DOM before playing.');
-      let __65 = __2.createObjectProto(__2.OBJECT_PROTO),
-        __84 = this,
-        __85 = null,
-        __86 = null;
-      return __8.settings.logCalls && console.log(__10.domain, 'play', this), __2.setProperty(__65, 'then', __2.createNativeFunction(function(__87) {
-        return __85 = __87, __65;
-      })), __2.setProperty(__65, 'catch', __2.createNativeFunction(function(__87) {
-        return __86 = __87, __65;
-      })), __84.native.play().then(() => {
-        __85 && __30(__85, __2.nativeToPseudo(void 0));
-      }).catch(__87 => {
-        __86 && __30(__86, __2.nativeToPseudo({
-          message: __87.message,
-          name: __87.name
+      let _0x41 = _0x2.createObjectProto(_0x2.OBJECT_PROTO),
+        _0x54 = this,
+        _0x55 = null,
+        _0x56 = null;
+      return _0x8.settings.logCalls && console.log(_0xa.domain, 'play', this), _0x2.setProperty(_0x41, 'then', _0x2.createNativeFunction(function(_0x57) {
+        return _0x55 = _0x57, _0x41;
+      })), _0x2.setProperty(_0x41, 'catch', _0x2.createNativeFunction(function(_0x57) {
+        return _0x56 = _0x57, _0x41;
+      })), _0x54.native.play().then(() => {
+        _0x55 && _0x1e(_0x55, _0x2.nativeToPseudo(void 0));
+      }).catch(_0x57 => {
+        _0x56 && _0x1e(_0x56, _0x2.nativeToPseudo({
+          message: _0x57.message,
+          name: _0x57.name
         }));
-      }), __65;
+      }), _0x41;
     },
     pause: function() {
       this.native instanceof HTMLMediaElement && this.native.pause();
@@ -1823,136 +1823,136 @@ function __83(__2, __3, __4, __10) {
     load: function() {
       this.native instanceof HTMLMediaElement && this.native.load();
     },
-    canPlayType: function(__65) {
-      return this.native instanceof HTMLMediaElement ? this.native.canPlayType(String(__65 || '')) : '';
+    canPlayType: function(_0x41) {
+      return this.native instanceof HTMLMediaElement ? this.native.canPlayType(String(_0x41 || '')) : '';
     },
-    fastSeek: function(__65) {
-      this.native instanceof HTMLMediaElement && typeof this.native.fastSeek == 'function' && this.native.fastSeek(Math.max(0, Number(__65) || 0));
+    fastSeek: function(_0x41) {
+      this.native instanceof HTMLMediaElement && typeof this.native.fastSeek == 'function' && this.native.fastSeek(Math.max(0, Number(_0x41) || 0));
     },
-    getAnimations: function(__65) {
+    getAnimations: function(_0x41) {
       if (!this.native.getAnimations)
-        return __50([]);
-      let __84 = __65 ? {
-          subtree: !!__2.pseudoToNative(__65)?.subtree
+        return _0x32([]);
+      let _0x54 = _0x41 ? {
+          subtree: !!_0x2.pseudoToNative(_0x41)?.subtree
         } : {},
-        __85 = this.native.getAnimations(__84),
-        __86 = __2.createObjectProto(__2.ARRAY_PROTO);
-      for (let __87 = 0; __87 < __85.length; __87++)
-        __86.properties[__87] = __38(__85[__87]);
-      return __2.setProperty(__86, 'length', __85.length), __86;
+        _0x55 = this.native.getAnimations(_0x54),
+        _0x56 = _0x2.createObjectProto(_0x2.ARRAY_PROTO);
+      for (let _0x57 = 0; _0x57 < _0x55.length; _0x57++)
+        _0x56.properties[_0x57] = _0x26(_0x55[_0x57]);
+      return _0x2.setProperty(_0x56, 'length', _0x55.length), _0x56;
     }
   };
-  for (let [__65, __84] of Object.entries(__63))
-    __2.setProperty(__57, __65, __2.createNativeFunction(__84));
+  for (let [_0x41, _0x54] of Object.entries(_0x3f))
+    _0x2.setProperty(_0x39, _0x41, _0x2.createNativeFunction(_0x54));
 
-  function __38(__65) {
-    let __84 = __2.createObjectProto(__2.OBJECT_PROTO);
-    return __2.setProperty(__84, 'id', Interpreter.VALUE_IN_DESCRIPTOR, {
-      get: __2.createNativeFunction(function() {
-        return __65.id;
+  function _0x26(_0x41) {
+    let _0x54 = _0x2.createObjectProto(_0x2.OBJECT_PROTO);
+    return _0x2.setProperty(_0x54, 'id', Interpreter.VALUE_IN_DESCRIPTOR, {
+      get: _0x2.createNativeFunction(function() {
+        return _0x41.id;
       })
-    }), __2.setProperty(__84, 'playState', Interpreter.VALUE_IN_DESCRIPTOR, {
-      get: __2.createNativeFunction(function() {
-        return __65.playState;
+    }), _0x2.setProperty(_0x54, 'playState', Interpreter.VALUE_IN_DESCRIPTOR, {
+      get: _0x2.createNativeFunction(function() {
+        return _0x41.playState;
       })
-    }), __2.setProperty(__84, 'pending', Interpreter.VALUE_IN_DESCRIPTOR, {
-      get: __2.createNativeFunction(function() {
-        return __65.pending;
+    }), _0x2.setProperty(_0x54, 'pending', Interpreter.VALUE_IN_DESCRIPTOR, {
+      get: _0x2.createNativeFunction(function() {
+        return _0x41.pending;
       })
-    }), __2.setProperty(__84, 'replaceState', Interpreter.VALUE_IN_DESCRIPTOR, {
-      get: __2.createNativeFunction(function() {
-        return __65.replaceState;
+    }), _0x2.setProperty(_0x54, 'replaceState', Interpreter.VALUE_IN_DESCRIPTOR, {
+      get: _0x2.createNativeFunction(function() {
+        return _0x41.replaceState;
       })
-    }), __2.setProperty(__84, 'currentTime', Interpreter.VALUE_IN_DESCRIPTOR, {
-      get: __2.createNativeFunction(function() {
-        return __65.currentTime;
+    }), _0x2.setProperty(_0x54, 'currentTime', Interpreter.VALUE_IN_DESCRIPTOR, {
+      get: _0x2.createNativeFunction(function() {
+        return _0x41.currentTime;
       }),
-      set: __2.createNativeFunction(function(__85) {
-        __65.currentTime = __85;
+      set: _0x2.createNativeFunction(function(_0x55) {
+        _0x41.currentTime = _0x55;
       })
-    }), __2.setProperty(__84, 'playbackRate', Interpreter.VALUE_IN_DESCRIPTOR, {
-      get: __2.createNativeFunction(function() {
-        return __65.playbackRate;
+    }), _0x2.setProperty(_0x54, 'playbackRate', Interpreter.VALUE_IN_DESCRIPTOR, {
+      get: _0x2.createNativeFunction(function() {
+        return _0x41.playbackRate;
       }),
-      set: __2.createNativeFunction(function(__85) {
-        __65.playbackRate = Math.max(-10, Math.min(10, Number(__85) || 1));
+      set: _0x2.createNativeFunction(function(_0x55) {
+        _0x41.playbackRate = Math.max(-10, Math.min(10, Number(_0x55) || 1));
       })
-    }), __2.setProperty(__84, 'startTime', Interpreter.VALUE_IN_DESCRIPTOR, {
-      get: __2.createNativeFunction(function() {
-        return __65.startTime;
+    }), _0x2.setProperty(_0x54, 'startTime', Interpreter.VALUE_IN_DESCRIPTOR, {
+      get: _0x2.createNativeFunction(function() {
+        return _0x41.startTime;
       }),
-      set: __2.createNativeFunction(function(__85) {
-        __65.startTime = __85;
+      set: _0x2.createNativeFunction(function(_0x55) {
+        _0x41.startTime = _0x55;
       })
-    }), __2.setProperty(__84, 'play', __2.createNativeFunction(function() {
-      __65.play();
-    })), __2.setProperty(__84, 'pause', __2.createNativeFunction(function() {
-      __65.pause();
-    })), __2.setProperty(__84, 'cancel', __2.createNativeFunction(function() {
-      __65.cancel();
-    })), __2.setProperty(__84, 'finish', __2.createNativeFunction(function() {
-      __65.finish();
-    })), __2.setProperty(__84, 'reverse', __2.createNativeFunction(function() {
-      __65.reverse();
-    })), __2.setProperty(__84, 'updatePlaybackRate', __2.createNativeFunction(function(__85) {
-      __65.updatePlaybackRate(Math.max(-10, Math.min(10, Number(__85) || 1)));
-    })), __84;
+    }), _0x2.setProperty(_0x54, 'play', _0x2.createNativeFunction(function() {
+      _0x41.play();
+    })), _0x2.setProperty(_0x54, 'pause', _0x2.createNativeFunction(function() {
+      _0x41.pause();
+    })), _0x2.setProperty(_0x54, 'cancel', _0x2.createNativeFunction(function() {
+      _0x41.cancel();
+    })), _0x2.setProperty(_0x54, 'finish', _0x2.createNativeFunction(function() {
+      _0x41.finish();
+    })), _0x2.setProperty(_0x54, 'reverse', _0x2.createNativeFunction(function() {
+      _0x41.reverse();
+    })), _0x2.setProperty(_0x54, 'updatePlaybackRate', _0x2.createNativeFunction(function(_0x55) {
+      _0x41.updatePlaybackRate(Math.max(-10, Math.min(10, Number(_0x55) || 1)));
+    })), _0x54;
   }
 
-  function __39(__65) {
-    let __84 = __2.createObjectProto(__2.OBJECT_PROTO),
-      __85 = __65 ? __65.length : 0;
-    return __2.setProperty(__84, 'length', __85), __2.setProperty(__84, 'start', __2.createNativeFunction(function(__86) {
-      if (!__65 || __86 < 0 || __86 >= __65.length)
+  function _0x27(_0x41) {
+    let _0x54 = _0x2.createObjectProto(_0x2.OBJECT_PROTO),
+      _0x55 = _0x41 ? _0x41.length : 0;
+    return _0x2.setProperty(_0x54, 'length', _0x55), _0x2.setProperty(_0x54, 'start', _0x2.createNativeFunction(function(_0x56) {
+      if (!_0x41 || _0x56 < 0 || _0x56 >= _0x41.length)
         throw new Error('Index out of bounds');
-      return __65.start(__86);
-    })), __2.setProperty(__84, 'end', __2.createNativeFunction(function(__86) {
-      if (!__65 || __86 < 0 || __86 >= __65.length)
+      return _0x41.start(_0x56);
+    })), _0x2.setProperty(_0x54, 'end', _0x2.createNativeFunction(function(_0x56) {
+      if (!_0x41 || _0x56 < 0 || _0x56 >= _0x41.length)
         throw new Error('Index out of bounds');
-      return __65.end(__86);
-    })), __84;
+      return _0x41.end(_0x56);
+    })), _0x54;
   }
-  __2.setProperty(__57, 'buffered', Interpreter.VALUE_IN_DESCRIPTOR, {
-    get: __2.createNativeFunction(function() {
-      return this.native instanceof HTMLMediaElement ? __39(this.native.buffered) : __39(null);
+  _0x2.setProperty(_0x39, 'buffered', Interpreter.VALUE_IN_DESCRIPTOR, {
+    get: _0x2.createNativeFunction(function() {
+      return this.native instanceof HTMLMediaElement ? _0x27(this.native.buffered) : _0x27(null);
     })
-  }), __2.setProperty(__57, 'played', Interpreter.VALUE_IN_DESCRIPTOR, {
-    get: __2.createNativeFunction(function() {
-      return this.native instanceof HTMLMediaElement ? __39(this.native.played) : __39(null);
+  }), _0x2.setProperty(_0x39, 'played', Interpreter.VALUE_IN_DESCRIPTOR, {
+    get: _0x2.createNativeFunction(function() {
+      return this.native instanceof HTMLMediaElement ? _0x27(this.native.played) : _0x27(null);
     })
-  }), __2.setProperty(__57, 'seekable', Interpreter.VALUE_IN_DESCRIPTOR, {
-    get: __2.createNativeFunction(function() {
-      return this.native instanceof HTMLMediaElement ? __39(this.native.seekable) : __39(null);
+  }), _0x2.setProperty(_0x39, 'seekable', Interpreter.VALUE_IN_DESCRIPTOR, {
+    get: _0x2.createNativeFunction(function() {
+      return this.native instanceof HTMLMediaElement ? _0x27(this.native.seekable) : _0x27(null);
     })
-  }), __2.setProperty(__57, 'classList', Interpreter.VALUE_IN_DESCRIPTOR, {
-    get: __2.createNativeFunction(function() {
-      let __65 = this.native.classList,
-        __84 = __2.nativeToPseudo({});
-      return __2.setProperty(__84, 'add', __2.createNativeFunction(function(...__85) {
+  }), _0x2.setProperty(_0x39, 'classList', Interpreter.VALUE_IN_DESCRIPTOR, {
+    get: _0x2.createNativeFunction(function() {
+      let _0x41 = this.native.classList,
+        _0x54 = _0x2.nativeToPseudo({});
+      return _0x2.setProperty(_0x54, 'add', _0x2.createNativeFunction(function(..._0x55) {
         if (this.native.className === 'tile-body')
           throw new Error('No access.');
-        __65.add(...__85);
-      })), __2.setProperty(__84, 'remove', __2.createNativeFunction(function(...__85) {
+        _0x41.add(..._0x55);
+      })), _0x2.setProperty(_0x54, 'remove', _0x2.createNativeFunction(function(..._0x55) {
         if (this.native.className === 'tile-body')
           throw new Error('No access.');
-        __65.remove(...__85);
-      })), __2.setProperty(__84, 'toggle', __2.createNativeFunction(function(__85, __86) {
+        _0x41.remove(..._0x55);
+      })), _0x2.setProperty(_0x54, 'toggle', _0x2.createNativeFunction(function(_0x55, _0x56) {
         if (this.native.className === 'tile-body')
           throw new Error('No access.');
-        return __65.toggle(__85, __86);
-      })), __2.setProperty(__84, 'contains', __2.createNativeFunction(function(__85) {
-        return __65.contains(__85);
-      })), __2.setProperty(__84, 'replace', __2.createNativeFunction(function(__85, __86) {
+        return _0x41.toggle(_0x55, _0x56);
+      })), _0x2.setProperty(_0x54, 'contains', _0x2.createNativeFunction(function(_0x55) {
+        return _0x41.contains(_0x55);
+      })), _0x2.setProperty(_0x54, 'replace', _0x2.createNativeFunction(function(_0x55, _0x56) {
         if (this.native.className === 'tile-body')
           throw new Error('No access.');
-        return __65.replace(__85, __86);
-      })), __84;
+        return _0x41.replace(_0x55, _0x56);
+      })), _0x54;
     })
-  }), __2.setProperty(__57, 'style', Interpreter.VALUE_IN_DESCRIPTOR, {
-    get: __2.createNativeFunction(function() {
-      let __65 = this.native.style,
-        __84 = __2.nativeToPseudo({}),
-        __85 = [
+  }), _0x2.setProperty(_0x39, 'style', Interpreter.VALUE_IN_DESCRIPTOR, {
+    get: _0x2.createNativeFunction(function() {
+      let _0x41 = this.native.style,
+        _0x54 = _0x2.nativeToPseudo({}),
+        _0x55 = [
           'color',
           'backgroundColor',
           'width',
@@ -1985,56 +1985,56 @@ function __83(__2, __3, __4, __10) {
           'gridTemplateColumns',
           'gridTemplateRows'
         ];
-      for (let __86 of __85)
-        __2.setProperty(__84, __86, Interpreter.VALUE_IN_DESCRIPTOR, {
-          get: __2.createNativeFunction(function() {
-            return __65[__86];
+      for (let _0x56 of _0x55)
+        _0x2.setProperty(_0x54, _0x56, Interpreter.VALUE_IN_DESCRIPTOR, {
+          get: _0x2.createNativeFunction(function() {
+            return _0x41[_0x56];
           }),
-          set: __2.createNativeFunction(function(__87) {
-            __65[__86] = __87, __8.settings.logCalls && console.log(__10.domain, 'set style', this, __86, __87);
+          set: _0x2.createNativeFunction(function(_0x57) {
+            _0x41[_0x56] = _0x57, _0x8.settings.logCalls && console.log(_0xa.domain, 'set style', this, _0x56, _0x57);
           })
         });
-      return __2.setProperty(__84, 'cssText', Interpreter.VALUE_IN_DESCRIPTOR, {
-        get: __2.createNativeFunction(function() {
-          return __65.cssText;
+      return _0x2.setProperty(_0x54, 'cssText', Interpreter.VALUE_IN_DESCRIPTOR, {
+        get: _0x2.createNativeFunction(function() {
+          return _0x41.cssText;
         }),
-        set: __2.createNativeFunction(function(__86) {
-          __65.cssText = __86, __8.settings.logCalls && console.log(__10.domain, 'set cssText', this, __86);
+        set: _0x2.createNativeFunction(function(_0x56) {
+          _0x41.cssText = _0x56, _0x8.settings.logCalls && console.log(_0xa.domain, 'set cssText', this, _0x56);
         })
-      }), __2.setProperty(__84, 'setProperty', __2.createNativeFunction(function(__86, __87, __88) {
+      }), _0x2.setProperty(_0x54, 'setProperty', _0x2.createNativeFunction(function(_0x56, _0x57, _0x58) {
         if (this.native?.className === 'tile-body')
           throw new Error('No access.');
-        __65.setProperty(__86, __87, __88), __8.settings.logCalls && console.log(__10.domain, 'setProperty', this, __86, __87, __88);
-      })), __2.setProperty(__84, 'getPropertyValue', __2.createNativeFunction(function(__86) {
-        return __65.getPropertyValue(__86);
-      })), __2.setProperty(__84, 'removeProperty', __2.createNativeFunction(function(__86) {
+        _0x41.setProperty(_0x56, _0x57, _0x58), _0x8.settings.logCalls && console.log(_0xa.domain, 'setProperty', this, _0x56, _0x57, _0x58);
+      })), _0x2.setProperty(_0x54, 'getPropertyValue', _0x2.createNativeFunction(function(_0x56) {
+        return _0x41.getPropertyValue(_0x56);
+      })), _0x2.setProperty(_0x54, 'removeProperty', _0x2.createNativeFunction(function(_0x56) {
         if (this.native?.className === 'tile-body')
           throw new Error('No access.');
-        return __8.settings.logCalls && console.log(__10.domain, 'removeProperty', this, __86), __65.removeProperty(__86);
-      })), __84;
+        return _0x8.settings.logCalls && console.log(_0xa.domain, 'removeProperty', this, _0x56), _0x41.removeProperty(_0x56);
+      })), _0x54;
     })
-  }), __2.setProperty(__57, 'dataset', Interpreter.VALUE_IN_DESCRIPTOR, {
-    get: __2.createNativeFunction(function() {
-      let __65 = this.native.dataset,
-        __84 = __2.nativeToPseudo({});
-      for (let __85 in __65)
-        __2.setProperty(__84, __85, __65[__85]);
-      return __2.setProperty(__84, 'get', __2.createNativeFunction(function(__85) {
-        return __65[__85];
-      })), __2.setProperty(__84, 'set', __2.createNativeFunction(function(__85, __86) {
-        __65[__85] = String(__86).slice(0, 1000), __8.settings.logCalls && console.log(__10.domain, 'set dataset', this, __85, __86);
-      })), __2.setProperty(__84, 'delete', __2.createNativeFunction(function(__85) {
-        delete __65[__85], __8.settings.logCalls && console.log(__10.domain, 'delete dataset', this, __85);
-      })), __2.setProperty(__84, 'has', __2.createNativeFunction(function(__85) {
-        return __85 in __65;
-      })), __84;
+  }), _0x2.setProperty(_0x39, 'dataset', Interpreter.VALUE_IN_DESCRIPTOR, {
+    get: _0x2.createNativeFunction(function() {
+      let _0x41 = this.native.dataset,
+        _0x54 = _0x2.nativeToPseudo({});
+      for (let _0x55 in _0x41)
+        _0x2.setProperty(_0x54, _0x55, _0x41[_0x55]);
+      return _0x2.setProperty(_0x54, 'get', _0x2.createNativeFunction(function(_0x55) {
+        return _0x41[_0x55];
+      })), _0x2.setProperty(_0x54, 'set', _0x2.createNativeFunction(function(_0x55, _0x56) {
+        _0x41[_0x55] = String(_0x56).slice(0, 1000), _0x8.settings.logCalls && console.log(_0xa.domain, 'set dataset', this, _0x55, _0x56);
+      })), _0x2.setProperty(_0x54, 'delete', _0x2.createNativeFunction(function(_0x55) {
+        delete _0x41[_0x55], _0x8.settings.logCalls && console.log(_0xa.domain, 'delete dataset', this, _0x55);
+      })), _0x2.setProperty(_0x54, 'has', _0x2.createNativeFunction(function(_0x55) {
+        return _0x55 in _0x41;
+      })), _0x54;
     })
-  }), __2.setProperty(__57, 'offsetParent', Interpreter.VALUE_IN_DESCRIPTOR, {
-    get: __2.createNativeFunction(function() {
-      return __44(__46(this.native.offsetParent));
+  }), _0x2.setProperty(_0x39, 'offsetParent', Interpreter.VALUE_IN_DESCRIPTOR, {
+    get: _0x2.createNativeFunction(function() {
+      return _0x2c(_0x2e(this.native.offsetParent));
     })
   });
-  let __40 = [
+  let _0x28 = [
     'click',
     'dblclick',
     'mousedown',
@@ -2108,19 +2108,19 @@ function __83(__2, __3, __4, __10) {
     'load'
   ];
 
-  function __47(__65) {
-    let __84 = __2.nativeToPseudo({}),
-      __85 = [
+  function _0x2f(_0x41) {
+    let _0x54 = _0x2.nativeToPseudo({}),
+      _0x55 = [
         'type',
         'bubbles',
         'cancelable',
         'defaultPrevented',
         'timeStamp'
       ];
-    for (let __86 of __85)
-      __2.setProperty(__84, __86, __65[__86]);
-    if (__65 instanceof MouseEvent || __65 instanceof PointerEvent) {
-      let __86 = [
+    for (let _0x56 of _0x55)
+      _0x2.setProperty(_0x54, _0x56, _0x41[_0x56]);
+    if (_0x41 instanceof MouseEvent || _0x41 instanceof PointerEvent) {
+      let _0x56 = [
         'clientX',
         'clientY',
         'pageX',
@@ -2138,11 +2138,11 @@ function __83(__2, __3, __4, __10) {
         'shiftKey',
         'metaKey'
       ];
-      for (let __87 of __86)
-        __2.setProperty(__84, __87, __65[__87]);
+      for (let _0x57 of _0x56)
+        _0x2.setProperty(_0x54, _0x57, _0x41[_0x57]);
     }
-    if (__65 instanceof KeyboardEvent) {
-      let __86 = [
+    if (_0x41 instanceof KeyboardEvent) {
+      let _0x56 = [
         'key',
         'code',
         'keyCode',
@@ -2153,59 +2153,59 @@ function __83(__2, __3, __4, __10) {
         'metaKey',
         'repeat'
       ];
-      for (let __87 of __86)
-        __2.setProperty(__84, __87, __65[__87]);
+      for (let _0x57 of _0x56)
+        _0x2.setProperty(_0x54, _0x57, _0x41[_0x57]);
     }
-    return typeof TouchEvent == 'function' && __65 instanceof TouchEvent && (__2.setProperty(__84, 'touches', __2.nativeToPseudo({
-      length: __65.touches.length
-    })), __2.setProperty(__84, 'changedTouches', __2.nativeToPseudo({
-      length: __65.changedTouches.length
-    }))), typeof WheelEvent == 'function' && __65 instanceof WheelEvent && (__2.setProperty(__84, 'deltaX', __65.deltaX), __2.setProperty(__84, 'deltaY', __65.deltaY), __2.setProperty(__84, 'deltaZ', __65.deltaZ), __2.setProperty(__84, 'deltaMode', __65.deltaMode)), __65.target && __45(__65.target) && __2.setProperty(__84, 'target', __44(__65.target)), __65.currentTarget && __45(__65.currentTarget) && __2.setProperty(__84, 'currentTarget', __44(__65.currentTarget)), __2.setProperty(__84, 'preventDefault', __2.createNativeFunction(function() {
-      __65.preventDefault();
-    })), __2.setProperty(__84, 'stopPropagation', __2.createNativeFunction(function() {
-      __65.stopPropagation();
-    })), __2.setProperty(__84, 'stopImmediatePropagation', __2.createNativeFunction(function() {
-      __65.stopImmediatePropagation();
-    })), __84;
+    return typeof TouchEvent == 'function' && _0x41 instanceof TouchEvent && (_0x2.setProperty(_0x54, 'touches', _0x2.nativeToPseudo({
+      length: _0x41.touches.length
+    })), _0x2.setProperty(_0x54, 'changedTouches', _0x2.nativeToPseudo({
+      length: _0x41.changedTouches.length
+    }))), typeof WheelEvent == 'function' && _0x41 instanceof WheelEvent && (_0x2.setProperty(_0x54, 'deltaX', _0x41.deltaX), _0x2.setProperty(_0x54, 'deltaY', _0x41.deltaY), _0x2.setProperty(_0x54, 'deltaZ', _0x41.deltaZ), _0x2.setProperty(_0x54, 'deltaMode', _0x41.deltaMode)), _0x41.target && _0x2d(_0x41.target) && _0x2.setProperty(_0x54, 'target', _0x2c(_0x41.target)), _0x41.currentTarget && _0x2d(_0x41.currentTarget) && _0x2.setProperty(_0x54, 'currentTarget', _0x2c(_0x41.currentTarget)), _0x2.setProperty(_0x54, 'preventDefault', _0x2.createNativeFunction(function() {
+      _0x41.preventDefault();
+    })), _0x2.setProperty(_0x54, 'stopPropagation', _0x2.createNativeFunction(function() {
+      _0x41.stopPropagation();
+    })), _0x2.setProperty(_0x54, 'stopImmediatePropagation', _0x2.createNativeFunction(function() {
+      _0x41.stopImmediatePropagation();
+    })), _0x54;
   }
-  __2.setProperty(__57, 'addEventListener', __2.createNativeFunction(function(__65, __84) {
-    if (!__65 || typeof __65 != 'string' || !__84 || typeof __84 != 'object')
+  _0x2.setProperty(_0x39, 'addEventListener', _0x2.createNativeFunction(function(_0x41, _0x54) {
+    if (!_0x41 || typeof _0x41 != 'string' || !_0x54 || typeof _0x54 != 'object')
       return;
-    if (__65 = __65.toLowerCase(), !__40.includes(__65))
-      throw new Error(`Event type "${ __65 }" is not allowed`);
-    __8.settings.logCalls && console.log(__10.domain, 'addEventListener', this, __65, __84);
-    let __85 = this.native;
-    __31.has(__85) || __31.set(__85, new Map());
-    let __86 = __31.get(__85);
-    __86.has(__65) || __86.set(__65, []);
-    let __87 = __86.get(__65);
-    if (__87.length >= __27)
-      throw new Error(`Maximum listeners (${ __27 }) reached for event "${ __65 }"`);
-    if (__87.some(__89 => __89.pseudo === __84))
+    if (_0x41 = _0x41.toLowerCase(), !_0x28.includes(_0x41))
+      throw new Error(`Event type "${ _0x41 }" is not allowed`);
+    _0x8.settings.logCalls && console.log(_0xa.domain, 'addEventListener', this, _0x41, _0x54);
+    let _0x55 = this.native;
+    _0x1f.has(_0x55) || _0x1f.set(_0x55, new Map());
+    let _0x56 = _0x1f.get(_0x55);
+    _0x56.has(_0x41) || _0x56.set(_0x41, []);
+    let _0x57 = _0x56.get(_0x41);
+    if (_0x57.length >= _0x1b)
+      throw new Error(`Maximum listeners (${ _0x1b }) reached for event "${ _0x41 }"`);
+    if (_0x57.some(_0x59 => _0x59.pseudo === _0x54))
       return;
-    let __88 = function(__89) {
-      let __90 = __47(__89);
-      __30(__84, __90);
+    let _0x58 = function(_0x59) {
+      let _0x5a = _0x2f(_0x59);
+      _0x1e(_0x54, _0x5a);
     };
-    __87.push({
-      pseudo: __84,
-      native: __88
-    }), __85.addEventListener(__65, __88);
-  })), __2.setProperty(__57, 'removeEventListener', __2.createNativeFunction(function(__65, __84) {
-    if (!__65 || typeof __65 != 'string' || !__84 || typeof __84 != 'object')
+    _0x57.push({
+      pseudo: _0x54,
+      native: _0x58
+    }), _0x55.addEventListener(_0x41, _0x58);
+  })), _0x2.setProperty(_0x39, 'removeEventListener', _0x2.createNativeFunction(function(_0x41, _0x54) {
+    if (!_0x41 || typeof _0x41 != 'string' || !_0x54 || typeof _0x54 != 'object')
       return;
-    __8.settings.logCalls && console.log(__10.domain, 'removeEventListener', this, __65, __84), __65 = __65.toLowerCase();
-    let __85 = this.native;
-    if (!__31.has(__85))
+    _0x8.settings.logCalls && console.log(_0xa.domain, 'removeEventListener', this, _0x41, _0x54), _0x41 = _0x41.toLowerCase();
+    let _0x55 = this.native;
+    if (!_0x1f.has(_0x55))
       return;
-    let __86 = __31.get(__85);
-    if (!__86.has(__65))
+    let _0x56 = _0x1f.get(_0x55);
+    if (!_0x56.has(_0x41))
       return;
-    let __87 = __86.get(__65),
-      __88 = __87.findIndex(__89 => __89.pseudo === __84);
-    __88 !== -1 && (__85.removeEventListener(__65, __87[__88].native), __87.splice(__88, 1));
+    let _0x57 = _0x56.get(_0x41),
+      _0x58 = _0x57.findIndex(_0x59 => _0x59.pseudo === _0x54);
+    _0x58 !== -1 && (_0x55.removeEventListener(_0x41, _0x57[_0x58].native), _0x57.splice(_0x58, 1));
   }));
-  let __48 = [
+  let _0x30 = [
     'click',
     'dblclick',
     'mousedown',
@@ -2253,61 +2253,61 @@ function __83(__2, __3, __4, __10) {
     'error',
     'load'
   ];
-  for (let __65 of __48) {
-    let __84 = 'on' + __65;
-    __2.setProperty(__57, __84, Interpreter.VALUE_IN_DESCRIPTOR, {
-      get: __2.createNativeFunction(function() {
-        let __85 = this.native;
-        if (!__31.has(__85))
+  for (let _0x41 of _0x30) {
+    let _0x54 = 'on' + _0x41;
+    _0x2.setProperty(_0x39, _0x54, Interpreter.VALUE_IN_DESCRIPTOR, {
+      get: _0x2.createNativeFunction(function() {
+        let _0x55 = this.native;
+        if (!_0x1f.has(_0x55))
           return null;
-        let __86 = __31.get(__85),
-          __87 = `__${ __84 }`;
-        return __86.get(__87) || null;
+        let _0x56 = _0x1f.get(_0x55),
+          _0x57 = `__${ _0x54 }`;
+        return _0x56.get(_0x57) || null;
       }),
-      set: __2.createNativeFunction(function(__85) {
-        let __86 = this.native;
-        __31.has(__86) || __31.set(__86, new Map());
-        let __87 = __31.get(__86),
-          __88 = `__${ __84 }`;
-        __8.settings.logCalls && console.log(__10.domain, 'setOn' + __65, this, __85);
-        let __89 = __87.get(__88 + '_native');
-        if (__89 && (__86.removeEventListener(__65, __89), __87.delete(__88), __87.delete(__88 + '_native')), __85 && typeof __85 == 'object') {
-          let __90 = function(__91) {
-            let __92 = __47(__91);
-            __30(__85, __92);
+      set: _0x2.createNativeFunction(function(_0x55) {
+        let _0x56 = this.native;
+        _0x1f.has(_0x56) || _0x1f.set(_0x56, new Map());
+        let _0x57 = _0x1f.get(_0x56),
+          _0x58 = `__${ _0x54 }`;
+        _0x8.settings.logCalls && console.log(_0xa.domain, 'setOn' + _0x41, this, _0x55);
+        let _0x59 = _0x57.get(_0x58 + '_native');
+        if (_0x59 && (_0x56.removeEventListener(_0x41, _0x59), _0x57.delete(_0x58), _0x57.delete(_0x58 + '_native')), _0x55 && typeof _0x55 == 'object') {
+          let _0x5a = function(_0x5b) {
+            let _0x5c = _0x2f(_0x5b);
+            _0x1e(_0x55, _0x5c);
           };
-          __86.addEventListener(__65, __90), __87.set(__88, __85), __87.set(__88 + '_native', __90);
+          _0x56.addEventListener(_0x41, _0x5a), _0x57.set(_0x58, _0x55), _0x57.set(_0x58 + '_native', _0x5a);
         }
       })
     });
   }
-  __37(__2, __3, __10).extendElement(__57, __44), __66(__2, __3, __10), __81(__2, __3, __10.domain), __82(__2, __3, __4, __10);
-  let __58 = __2.nativeToPseudo({});
-  __2.setProperty(__3, 'document', __58);
-  let __59 = {
-    getElementById: function(__65) {
-      let __84 = __4.querySelector(`#${ CSS.escape(__65) }`);
-      return __44(__84);
+  _0x25(_0x2, _0x3, _0xa).extendElement(_0x39, _0x2c), _0x42(_0x2, _0x3, _0xa), _0x51(_0x2, _0x3, _0xa.domain), _0x52(_0x2, _0x3, _0x4, _0xa);
+  let _0x3a = _0x2.nativeToPseudo({});
+  _0x2.setProperty(_0x3, 'document', _0x3a);
+  let _0x3b = {
+    getElementById: function(_0x41) {
+      let _0x54 = _0x4.querySelector(`#${ CSS.escape(_0x41) }`);
+      return _0x2c(_0x54);
     },
-    getElementsByClassName: function(__65) {
-      let __84 = Array.from(__4.getElementsByClassName(__65));
-      return __50(__84);
+    getElementsByClassName: function(_0x41) {
+      let _0x54 = Array.from(_0x4.getElementsByClassName(_0x41));
+      return _0x32(_0x54);
     },
-    getElementsByTagName: function(__65) {
-      let __84 = Array.from(__4.getElementsByTagName(__65));
-      return __50(__84);
+    getElementsByTagName: function(_0x41) {
+      let _0x54 = Array.from(_0x4.getElementsByTagName(_0x41));
+      return _0x32(_0x54);
     },
-    querySelector: function(__65) {
-      return __44(__4.querySelector(__65));
+    querySelector: function(_0x41) {
+      return _0x2c(_0x4.querySelector(_0x41));
     },
-    querySelectorAll: function(__65) {
-      let __84 = Array.from(__4.querySelectorAll(__65));
-      return __50(__84);
+    querySelectorAll: function(_0x41) {
+      let _0x54 = Array.from(_0x4.querySelectorAll(_0x41));
+      return _0x32(_0x54);
     },
-    createElement: function(__65) {
-      if (typeof __65 != 'string')
+    createElement: function(_0x41) {
+      if (typeof _0x41 != 'string')
         throw new Error('Invalid tag');
-      if (__65 = __65.toLowerCase().trim(), [
+      if (_0x41 = _0x41.toLowerCase().trim(), [
           'script',
           'style',
           'iframe',
@@ -2325,138 +2325,138 @@ function __83(__2, __3, __4, __10) {
           'source',
           'geolocation',
           'permission'
-        ].includes(__65))
-        throw new Error('Creating ' + __65 + ' elements is not allowed');
-      return __8.settings.logCalls && console.log(__10.domain, 'createElement', this, __65), __44(document.createElement(__65));
+        ].includes(_0x41))
+        throw new Error('Creating ' + _0x41 + ' elements is not allowed');
+      return _0x8.settings.logCalls && console.log(_0xa.domain, 'createElement', this, _0x41), _0x2c(document.createElement(_0x41));
     },
-    createTextNode: function(__65) {
-      return __8.settings.logCalls && console.log(__10.domain, 'createTextNode', this, __65), __44(document.createTextNode(__65));
+    createTextNode: function(_0x41) {
+      return _0x8.settings.logCalls && console.log(_0xa.domain, 'createTextNode', this, _0x41), _0x2c(document.createTextNode(_0x41));
     }
   };
-  for (let [__65, __84] of Object.entries(__59))
-    __2.setProperty(__58, __65, __2.createNativeFunction(__84));
-  __2.setProperty(__58, 'body', Interpreter.VALUE_IN_DESCRIPTOR, {
-    get: __2.createNativeFunction(function() {
-      return __8.settings.logCalls && console.log(__10.domain, 'get body', this), __44(__4);
+  for (let [_0x41, _0x54] of Object.entries(_0x3b))
+    _0x2.setProperty(_0x3a, _0x41, _0x2.createNativeFunction(_0x54));
+  _0x2.setProperty(_0x3a, 'body', Interpreter.VALUE_IN_DESCRIPTOR, {
+    get: _0x2.createNativeFunction(function() {
+      return _0x8.settings.logCalls && console.log(_0xa.domain, 'get body', this), _0x2c(_0x4);
     })
-  }), __2.setProperty(__58, 'documentElement', Interpreter.VALUE_IN_DESCRIPTOR, {
-    get: __2.createNativeFunction(function() {
-      return __8.settings.logCalls && console.log(__10.domain, 'get documentElement', this), __44(__4);
+  }), _0x2.setProperty(_0x3a, 'documentElement', Interpreter.VALUE_IN_DESCRIPTOR, {
+    get: _0x2.createNativeFunction(function() {
+      return _0x8.settings.logCalls && console.log(_0xa.domain, 'get documentElement', this), _0x2c(_0x4);
     })
   });
-  let __64 = __2.nativeToPseudo({});
-  __2.setProperty(__3, 'location', __64), __2.setProperty(__64, 'href', Interpreter.VALUE_IN_DESCRIPTOR, {
-    get: __2.createNativeFunction(function() {
-      return `/t/${ __10.domain }${ __10.path }`;
+  let _0x40 = _0x2.nativeToPseudo({});
+  _0x2.setProperty(_0x3, 'location', _0x40), _0x2.setProperty(_0x40, 'href', Interpreter.VALUE_IN_DESCRIPTOR, {
+    get: _0x2.createNativeFunction(function() {
+      return `/t/${ _0xa.domain }${ _0xa.path }`;
     }),
-    set: __2.createNativeFunction(function(__65) {
-      if (typeof __65 == 'string') {
-        __8.settings.logCalls && console.log(__10.domain, 'set href', this, __65);
+    set: _0x2.createNativeFunction(function(_0x41) {
+      if (typeof _0x41 == 'string') {
+        _0x8.settings.logCalls && console.log(_0xa.domain, 'set href', this, _0x41);
         try {
-          let __84 = new URL(__65, `http://${ __10.domain }`);
-          if (__84.hostname && __84.hostname !== location.hostname)
+          let _0x54 = new URL(_0x41, `http://${ _0xa.domain }`);
+          if (_0x54.hostname && _0x54.hostname !== location.hostname)
             throw new Error('External URLs are not allowed');
-          let __85 = __84.pathname + __84.search + __84.hash;
-          if (__85.startsWith(`/t/${ __10.domain }/`) ? __85 = __85.substring(`/t/${ __10.domain }`.length) : __85 === `/t/${ __10.domain }` && (__85 = '/'), __85.startsWith('/') || (__85 = '/' + __85), __85.endsWith('.html') || __85 === '/' || __85 === '')
-            __10.fetchContent(__85 || '/index.html'), __10.setActive(!0);
+          let _0x55 = _0x54.pathname + _0x54.search + _0x54.hash;
+          if (_0x55.startsWith(`/t/${ _0xa.domain }/`) ? _0x55 = _0x55.substring(`/t/${ _0xa.domain }`.length) : _0x55 === `/t/${ _0xa.domain }` && (_0x55 = '/'), _0x55.startsWith('/') || (_0x55 = '/' + _0x55), _0x55.endsWith('.html') || _0x55 === '/' || _0x55 === '')
+            _0xa.fetchContent(_0x55 || '/index.html'), _0xa.setActive(!0);
           else
             throw new Error('Only HTML files can be navigated to');
-        } catch (__84) {
-          if (__84.message.includes('not allowed') || __84.message.includes('Only HTML'))
-            throw __84;
-          let __85 = __65;
-          if (__85.startsWith('/') || (__85 = '/' + __85), __85.endsWith('.html') || __85 === '/' || __85 === '')
-            __10.fetchContent(__85 || '/index.html').then(() => __10.setActive(!0));
+        } catch (_0x54) {
+          if (_0x54.message.includes('not allowed') || _0x54.message.includes('Only HTML'))
+            throw _0x54;
+          let _0x55 = _0x41;
+          if (_0x55.startsWith('/') || (_0x55 = '/' + _0x55), _0x55.endsWith('.html') || _0x55 === '/' || _0x55 === '')
+            _0xa.fetchContent(_0x55 || '/index.html').then(() => _0xa.setActive(!0));
           else
             throw new Error('Only HTML files can be navigated to');
         }
       }
     })
-  }), __2.setProperty(__64, 'reload', __2.createNativeFunction(function() {
-    __10.fetchContent(__10.path, !0).then(() => __10.setActive(!0));
+  }), _0x2.setProperty(_0x40, 'reload', _0x2.createNativeFunction(function() {
+    _0xa.fetchContent(_0xa.path, !0).then(() => _0xa.setActive(!0));
   }));
 }
-var __93 = {
+var _0x5d = {
     console: {
-      log: function(...__2) {
-        this.logCount++ > 1000 || console.log(`[${ this.tile.domain }]`, ...__2);
+      log: function(..._0x2) {
+        this.logCount++ > 1000 || console.log(`[${ this.tile.domain }]`, ..._0x2);
       },
-      error: function(...__2) {
-        this.logCount++ > 1000 || console.error(`[${ this.tile.domain }]`, ...__2);
+      error: function(..._0x2) {
+        this.logCount++ > 1000 || console.error(`[${ this.tile.domain }]`, ..._0x2);
       },
-      warn: function(...__2) {
-        this.logCount++ > 1000 || console.warn(`[${ this.tile.domain }]`, ...__2);
+      warn: function(..._0x2) {
+        this.logCount++ > 1000 || console.warn(`[${ this.tile.domain }]`, ..._0x2);
       }
     },
-    alert(__2) {
-      this.alertCount++ > 10 || alert(`[${ this.tile.domain }] ${ __2 }`);
+    alert(_0x2) {
+      this.alertCount++ > 10 || alert(`[${ this.tile.domain }] ${ _0x2 }`);
     },
-    prompt(__2) {
+    prompt(_0x2) {
       if (!(this.alertCount++ > 10))
-        return prompt(`[${ this.tile.domain }] ${ __2 }`);
+        return prompt(`[${ this.tile.domain }] ${ _0x2 }`);
     },
-    confirm(__2) {
+    confirm(_0x2) {
       if (!(this.alertCount++ > 10))
-        return confirm(`[${ this.tile.domain }] ${ __2 }`);
+        return confirm(`[${ this.tile.domain }] ${ _0x2 }`);
     },
-    atob(__2) {
-      return atob(__2);
+    atob(_0x2) {
+      return atob(_0x2);
     },
-    btoa(__2) {
-      return btoa(__2);
+    btoa(_0x2) {
+      return btoa(_0x2);
     }
   },
-  __94 = class {
-    constructor(__3) {
-      this.running = !1, this.logCount = 0, this.alertCount = 0, this.tile = __3, this.waitUntil = null, this.index = 0, this.sizeLimitReached = !1, this.interpreter = new Interpreter('', (__4, __10) => {
-        let __11 = (__26, __27) => {
-          for (let [__31, __28] of Object.entries(__26))
-            if (typeof __28 == 'function')
-              __4.setProperty(__27, __31, __4.createNativeFunction(__28.bind(this)));
-            else if (typeof __28 == 'object' && __28 !== null) {
-            let __29 = __4.nativeToPseudo({});
-            __11(__28, __29), __4.setProperty(__27, __31, __29);
+  _0x5e = class {
+    constructor(_0x3) {
+      this.running = !1, this.logCount = 0, this.alertCount = 0, this.tile = _0x3, this.waitUntil = null, this.index = 0, this.sizeLimitReached = !1, this.interpreter = new Interpreter('', (_0x4, _0xa) => {
+        let _0xb = (_0x1a, _0x1b) => {
+          for (let [_0x1f, _0x1c] of Object.entries(_0x1a))
+            if (typeof _0x1c == 'function')
+              _0x4.setProperty(_0x1b, _0x1f, _0x4.createNativeFunction(_0x1c.bind(this)));
+            else if (typeof _0x1c == 'object' && _0x1c !== null) {
+            let _0x1d = _0x4.nativeToPseudo({});
+            _0xb(_0x1c, _0x1d), _0x4.setProperty(_0x1b, _0x1f, _0x1d);
           }
         };
-        __11(__93, __10), __83(__4, __10, this.tile.contentElement, this.tile), __4.setProperty(__10, 'embedded', __4.nativeToPseudo(!!this.tile.embed));
+        _0xb(_0x5d, _0xa), _0x53(_0x4, _0xa, this.tile.contentElement, this.tile), _0x4.setProperty(_0xa, 'embedded', _0x4.nativeToPseudo(!!this.tile.embed));
       }), this.runInterval = null, this.running = !1;
     }
     roughValueMemorySize() {
-      let __3 = new Set(),
-        __4 = [this.interpreter.getStateStack()],
-        __10 = 0;
-      for (; __4.length;) {
-        let __11 = __4.pop(),
-          __26 = typeof __11;
-        if (__10 += 8, __26 === 'string' && !__3.has(__11))
-          __3.add(__11), __10 += __11.length * 2;
-        else if (__26 === 'object' && __11 !== null && !__3.has(__11)) {
-          __3.add(__11);
+      let _0x3 = new Set(),
+        _0x4 = [this.interpreter.getStateStack()],
+        _0xa = 0;
+      for (; _0x4.length;) {
+        let _0xb = _0x4.pop(),
+          _0x1a = typeof _0xb;
+        if (_0xa += 8, _0x1a === 'string' && !_0x3.has(_0xb))
+          _0x3.add(_0xb), _0xa += _0xb.length * 2;
+        else if (_0x1a === 'object' && _0xb !== null && !_0x3.has(_0xb)) {
+          _0x3.add(_0xb);
           try {
-            __4.push(...Object.keys(__11), ...Object.values(__11));
+            _0x4.push(...Object.keys(_0xb), ...Object.values(_0xb));
           } catch {}
         }
       }
-      return __10;
+      return _0xa;
     }
     start() {
-      this.running || __8.settings.disableJS || this.sizeLimitReached || (this.running = !0, this.runInterval = setInterval(() => {
+      this.running || _0x8.settings.disableJS || this.sizeLimitReached || (this.running = !0, this.runInterval = setInterval(() => {
         if (!(this.waitUntil && Date.now() < this.waitUntil) && this.running)
-          for (let __3 = 0; __3 < 5000; __3++)
+          for (let _0x3 = 0; _0x3 < 5000; _0x3++)
             try {
               if (!this.interpreter.step()) {
                 this.waitUntil = Date.now() + 50;
                 break;
               }
               if (this.index++ % 500 === 0) {
-                let __4 = this.roughValueMemorySize();
-                if (__4 > 3000000) {
-                  this.sizeLimitReached = !0, this.stop(), console.log(`[${ this.tile.domain }] Memory size limit reached: ${ __4 } bytes`);
+                let _0x4 = this.roughValueMemorySize();
+                if (_0x4 > 3000000) {
+                  this.sizeLimitReached = !0, this.stop(), console.log(`[${ this.tile.domain }] Memory size limit reached: ${ _0x4 } bytes`);
                   break;
                 }
               }
-            } catch (__4) {
-              console.error(__4), this.stop();
+            } catch (_0x4) {
+              console.error(_0x4), this.stop();
               break;
             }
       }, 0));
@@ -2464,15 +2464,15 @@ var __93 = {
     stop() {
       this.running && (clearInterval(this.runInterval), this.running = !1);
     }
-    runCode(__3) {
-      __8.settings.disableJS || this.interpreter.appendCode(__3);
+    runCode(_0x3) {
+      _0x8.settings.disableJS || this.interpreter.appendCode(_0x3);
     }
   },
-  __95 = __94;
-var __96 = document.getElementById('plot'),
-  __97 = new CSSStyleSheet(),
-  __98 = () => {
-    __97.replaceSync(`
+  _0x5f = _0x5e;
+var _0x60 = document.getElementById('plot'),
+  _0x61 = new CSSStyleSheet(),
+  _0x62 = () => {
+    _0x61.replaceSync(`
         .tile-body:not(.active) * {
             animation-play-state: paused !important;
         }
@@ -2484,9 +2484,9 @@ var __96 = document.getElementById('plot'),
         }
     `);
   };
-__98();
-var __99 = new CSSStyleSheet();
-__99.replaceSync(`
+_0x62();
+var _0x63 = new CSSStyleSheet();
+_0x63.replaceSync(`
     .free {
         width: 100%;
         height: 100%;
@@ -2501,168 +2501,168 @@ __99.replaceSync(`
         user-select: none;
     }    
 `);
-var __100 = class __2 {
-  constructor(__3) {
-    this.__47 = __3.__47 ?? 0, this.__85 = __3.__85 ?? 0, this.domain = __3.domain, this.free = !__3.domain, this.locked = !1, this.id = `${ this.__47 },${ this.__85 }`, this.rendered = !1, this.active = !1, this.element = null, this.contentElement = null, this.path = __3.path || '/index.html', this.content = '', this.lastRender = 0, this.preview = __3.nocontrols || !1, this.embed = __3.embed || !1, this.container = __3.container || __96, this.interpreter = null, this.render();
+var _0x64 = class _0x2 {
+  constructor(_0x3) {
+    this._0x2f = _0x3._0x2f ?? 0, this._0x55 = _0x3._0x55 ?? 0, this.domain = _0x3.domain, this.free = !_0x3.domain, this.locked = !1, this.id = `${ this._0x2f },${ this._0x55 }`, this.rendered = !1, this.active = !1, this.element = null, this.contentElement = null, this.path = _0x3.path || '/index.html', this.content = '', this.lastRender = 0, this.preview = _0x3.nocontrols || !1, this.embed = _0x3.embed || !1, this.container = _0x3.container || _0x60, this.interpreter = null, this.render();
   }
-  static toTilePosition(__3, __4) {
+  static toTilePosition(_0x3, _0x4) {
     return {
-      __47: Math.floor(__3 / 250),
-      __85: Math.floor(__4 / 250)
+      _0x2f: Math.floor(_0x3 / 250),
+      _0x55: Math.floor(_0x4 / 250)
     };
   }
   render() {
     if (this.rendered || this.element)
       return;
     this.lastRender = Date.now(), this.rendered = !0;
-    let __3 = document.createElement('div');
-    __3.classList.add('tile'), this.free && __3.classList.add('f'), this.preview ? __3.style.cssText = 'width: 100%; height: 100%; position: relative;' : (__3.style.left = `${ this.__47 * 250 }px`, __3.style.top = `${ this.__85 * 250 }px`, this.__47 % 10 === 0 && __3.classList.add('b-left'), this.__85 % 10 === 0 && __3.classList.add('b-top')), this.element = __3;
-    let __4 = document.createElement('div');
-    __4.classList.add('tile-content'), this.preview && (__4.style.cssText = 'width: 100%; height: 100%;'), __4.addEventListener('click', async __11 => {
-      let __26 = __11.composedPath()?.filter(__29 => __29 instanceof Element);
-      if (!__26)
+    let _0x3 = document.createElement('div');
+    _0x3.classList.add('tile'), this.free && _0x3.classList.add('f'), this.preview ? _0x3.style.cssText = 'width: 100%; height: 100%; position: relative;' : (_0x3.style.left = `${ this._0x2f * 250 }px`, _0x3.style.top = `${ this._0x55 * 250 }px`, this._0x2f % 10 === 0 && _0x3.classList.add('b-left'), this._0x55 % 10 === 0 && _0x3.classList.add('b-top')), this.element = _0x3;
+    let _0x4 = document.createElement('div');
+    _0x4.classList.add('tile-content'), this.preview && (_0x4.style.cssText = 'width: 100%; height: 100%;'), _0x4.addEventListener('click', async _0xb => {
+      let _0x1a = _0xb.composedPath()?.filter(_0x1d => _0x1d instanceof Element);
+      if (!_0x1a)
         return;
-      let __27 = __26.findIndex(__29 => __29.isSameNode(__4));
-      if (__27 === -1)
+      let _0x1b = _0x1a.findIndex(_0x1d => _0x1d.isSameNode(_0x4));
+      if (_0x1b === -1)
         return;
-      let __28 = __26.slice(0, __27).find(__29 => __29.tagName === 'A');
-      if (__28) {
-        __11.preventDefault();
+      let _0x1c = _0x1a.slice(0, _0x1b).find(_0x1d => _0x1d.tagName === 'A');
+      if (_0x1c) {
+        _0xb.preventDefault();
         try {
-          let __29 = new URL(__28.href);
-          if (__29.hostname !== location.hostname) {
-            let __41 = document.createElement('a');
-            __41.href = __28.href, __41.target = '_blank', __41.click();
+          let _0x1d = new URL(_0x1c.href);
+          if (_0x1d.hostname !== location.hostname) {
+            let _0x29 = document.createElement('a');
+            _0x29.href = _0x1c.href, _0x29.target = '_blank', _0x29.click();
             return;
           }
-          let __30 = __29.pathname;
-          if (__30.startsWith(`/t/${ this.domain }/`) || (__30 = `/t/${ this.domain }/${ __30 }`.replaceAll('//', '/')), __30.startsWith(`/t/${ this.domain }`) && (__30.endsWith('.html') || __30 === `/t/${ this.domain }/` || __30 === `/t/${ this.domain }`))
-            await this.fetchContent(__30.replace(`/t/${ this.domain }`, '')), this.setActive(!0);
+          let _0x1e = _0x1d.pathname;
+          if (_0x1e.startsWith(`/t/${ this.domain }/`) || (_0x1e = `/t/${ this.domain }/${ _0x1e }`.replaceAll('//', '/')), _0x1e.startsWith(`/t/${ this.domain }`) && (_0x1e.endsWith('.html') || _0x1e === `/t/${ this.domain }/` || _0x1e === `/t/${ this.domain }`))
+            await this.fetchContent(_0x1e.replace(`/t/${ this.domain }`, '')), this.setActive(!0);
           else {
-            let __41 = document.createElement('a');
-            __41.href = __28.href, __41.target = '_blank', __41.click();
+            let _0x29 = document.createElement('a');
+            _0x29.href = _0x1c.href, _0x29.target = '_blank', _0x29.click();
           }
-        } catch (__29) {
-          console.error(__29);
+        } catch (_0x1d) {
+          console.error(_0x1d);
         }
       }
-    }), this.shadow = __4.attachShadow({
+    }), this.shadow = _0x4.attachShadow({
       mode: 'open'
     });
-    let __10 = document.createElement('div');
-    __10.className = 'tile-body', this.embed && __10.classList.add('embedded'), __10.style = 'width: 100%!important; height: 100%!important;position:absolute!important;top:0!important;left:0!important;', this.contentElement = __10, this.contentElement.innerHTML = this.preview ? 'Loading preview...' : `Loading ${ this.__47 }, ${ this.__85 }...`, this.shadow.appendChild(__10), __3.appendChild(__4), this.fonts = document.createElement('style'), __3.appendChild(this.fonts), this.fetchContent(this.path), this.container && this.container.appendChild(__3), __8.plot?.lockCache[this.__47 + ',' + this.__85] && this.setLocked(!0);
+    let _0xa = document.createElement('div');
+    _0xa.className = 'tile-body', this.embed && _0xa.classList.add('embedded'), _0xa.style = 'width: 100%!important; height: 100%!important;position:absolute!important;top:0!important;left:0!important;', this.contentElement = _0xa, this.contentElement.innerHTML = this.preview ? 'Loading preview...' : `Loading ${ this._0x2f }, ${ this._0x55 }...`, this.shadow.appendChild(_0xa), _0x3.appendChild(_0x4), this.fonts = document.createElement('style'), _0x3.appendChild(this.fonts), this.fetchContent(this.path), this.container && this.container.appendChild(_0x3), _0x8.plot?.lockCache[this._0x2f + ',' + this._0x55] && this.setLocked(!0);
   }
   unrender() {
     !this.rendered || !this.element || (this.active && this.setActive(!1), this.element.remove(), this.element = null, this.rendered = !1, this.interpreter && (this.interpreter.stop(), this.interpreter = null));
   }
-  async fetchContent(__3, __4 = !1) {
-    __3.startsWith('/') || (__3 = '/' + __3);
-    let __10 = this.free ? `<div class="free">
-                <p>${ this.locked ? 'Locked tile' : 'Free tile' } ${ this.__47 }, ${ this.__85 }</p>
-            </div>` : this.path === __3 && this.content && !__4 ? this.content : await fetch(`/t/${ this.domain }${ __3 }`).then(__27 => __27.text()).catch(__27 => '<p>Error loading tile</p>');
-    this.free ? this.shadow.adoptedStyleSheets = [__99] : this.shadow.adoptedStyleSheets = [__97], this.interpreter && (this.interpreter.stop(), this.interpreter = null), this.path = __3, this.contentElement.innerHTML = __10, this.content = __10;
-    let __11 = this.contentElement.querySelectorAll('style');
+  async fetchContent(_0x3, _0x4 = !1) {
+    _0x3.startsWith('/') || (_0x3 = '/' + _0x3);
+    let _0xa = this.free ? `<div class="free">
+                <p>${ this.locked ? 'Locked tile' : 'Free tile' } ${ this._0x2f }, ${ this._0x55 }</p>
+            </div>` : this.path === _0x3 && this.content && !_0x4 ? this.content : await fetch(`/t/${ this.domain }${ _0x3 }`).then(_0x1b => _0x1b.text()).catch(_0x1b => '<p>Error loading tile</p>');
+    this.free ? this.shadow.adoptedStyleSheets = [_0x63] : this.shadow.adoptedStyleSheets = [_0x61], this.interpreter && (this.interpreter.stop(), this.interpreter = null), this.path = _0x3, this.contentElement.innerHTML = _0xa, this.content = _0xa;
+    let _0xb = this.contentElement.querySelectorAll('style');
     this.fonts.textContent = '';
-    let __26 = 0;
-    for (let __27 of __11) {
-      if (__26 >= 3)
+    let _0x1a = 0;
+    for (let _0x1b of _0xb) {
+      if (_0x1a >= 3)
         break;
-      let __31 = __27.textContent.match(/@font-face\s*{([^}]*)}/g);
-      if (__31)
-        for (let __28 of __31) {
-          if (__26 >= 3)
+      let _0x1f = _0x1b.textContent.match(/@font-face\s*{([^}]*)}/g);
+      if (_0x1f)
+        for (let _0x1c of _0x1f) {
+          if (_0x1a >= 3)
             break;
-          this.fonts.textContent += __28, __26++;
+          this.fonts.textContent += _0x1c, _0x1a++;
         }
     }
     this.preview && this.setActive(!0);
   }
   executeScripts() {
-    let __3 = this.contentElement.querySelectorAll('script[type="text/tilescript"]');
-    for (let __4 of __3)
-      this.interpreter.runCode(__4.textContent);
+    let _0x3 = this.contentElement.querySelectorAll('script[type="text/tilescript"]');
+    for (let _0x4 of _0x3)
+      this.interpreter.runCode(_0x4.textContent);
     this.preview && this.interpreter.start();
   }
-  setActive(__3) {
-    if (this.element && (__3 && (this.interpreter || (this.interpreter = new __95(this), this.executeScripts()), this.interpreter.start()), __3 !== this.active)) {
-      if (this.active = __3, __3) {
-        if (this.element.classList.add('active'), this.contentElement.classList.add('active'), !this.preview && __8.ui) {
-          let __10 = __8.ui.createVoteMenu(this);
-          __10 && this.element.appendChild(__10);
-          let __11 = __8.ui.createTileControl(this);
-          if (this.element.appendChild(__11), __8.user?.admin || __8.user?.moderator) {
-            let __26 = __8.ui.createAdminControl(this);
-            this.element.appendChild(__26);
+  setActive(_0x3) {
+    if (this.element && (_0x3 && (this.interpreter || (this.interpreter = new _0x5f(this), this.executeScripts()), this.interpreter.start()), _0x3 !== this.active)) {
+      if (this.active = _0x3, _0x3) {
+        if (this.element.classList.add('active'), this.contentElement.classList.add('active'), !this.preview && _0x8.ui) {
+          let _0xa = _0x8.ui.createVoteMenu(this);
+          _0xa && this.element.appendChild(_0xa);
+          let _0xb = _0x8.ui.createTileControl(this);
+          if (this.element.appendChild(_0xb), _0x8.user?.admin || _0x8.user?.moderator) {
+            let _0x1a = _0x8.ui.createAdminControl(this);
+            this.element.appendChild(_0x1a);
           }
-          __8.plot?.activeTile && __8.plot.activeTile.setActive(!1), __8.plot && (__8.plot.activeTile = this), this.fetchAndShowClanBorders();
+          _0x8.plot?.activeTile && _0x8.plot.activeTile.setActive(!1), _0x8.plot && (_0x8.plot.activeTile = this), this.fetchAndShowClanBorders();
         }
-        let __4 = this.contentElement.querySelectorAll('audio, video');
-        for (let __10 of __4)
-          __10.dataset.webtilesPaused === 'true' && (__10.dataset.webtilesPaused = !1, __10.play());
+        let _0x4 = this.contentElement.querySelectorAll('audio, video');
+        for (let _0xa of _0x4)
+          _0xa.dataset.webtilesPaused === 'true' && (_0xa.dataset.webtilesPaused = !1, _0xa.play());
       } else if (!this.preview) {
-        this.interpreter && this.interpreter.stop(), __8.plot.activeTile = null, this.element.classList.remove('active'), this.contentElement.classList.remove('active'), this.preview || (this.element.querySelector('.tile-vote-menu')?.remove(), this.element.querySelector('.tile-info')?.remove(), this.element.querySelector('.tile-admin-panel')?.remove(), __8.plot && (__8.plot.activeTile = null)), __2.clearClanBorders();
-        let __4 = this.contentElement.querySelectorAll('audio, video');
-        for (let __10 of __4)
-          __10.paused || (__10.dataset.webtilesPaused = !0, __10.pause());
+        this.interpreter && this.interpreter.stop(), _0x8.plot.activeTile = null, this.element.classList.remove('active'), this.contentElement.classList.remove('active'), this.preview || (this.element.querySelector('.tile-vote-menu')?.remove(), this.element.querySelector('.tile-info')?.remove(), this.element.querySelector('.tile-admin-panel')?.remove(), _0x8.plot && (_0x8.plot.activeTile = null)), _0x2.clearClanBorders();
+        let _0x4 = this.contentElement.querySelectorAll('audio, video');
+        for (let _0xa of _0x4)
+          _0xa.paused || (_0xa.dataset.webtilesPaused = !0, _0xa.pause());
       }
     }
   }
   async fetchAndShowClanBorders() {
     if (!(this.free || !this.domain))
       try {
-        let __4 = await (await __8.api.makeRequest(`/api/clans/tile-clan?domain=${ encodeURIComponent(this.domain) }`)).json();
-        if (!__4.success || !__4.clan)
+        let _0x4 = await (await _0x8.api.makeRequest(`/api/clans/tile-clan?domain=${ encodeURIComponent(this.domain) }`)).json();
+        if (!_0x4.success || !_0x4.clan)
           return;
-        let __10 = __4.clan.members;
-        if (!__10 || __10.length <= 1)
+        let _0xa = _0x4.clan.members;
+        if (!_0xa || _0xa.length <= 1)
           return;
-        let __11 = new Set(__10.map(__26 => `${ __26.__47 },${ __26.__85 }`));
-        for (let __26 of __10) {
-          let __27 = __8.plot.tiles[`${ __26.__47 },${ __26.__85 }`];
-          if (!__27?.element)
+        let _0xb = new Set(_0xa.map(_0x1a => `${ _0x1a._0x2f },${ _0x1a._0x55 }`));
+        for (let _0x1a of _0xa) {
+          let _0x1b = _0x8.plot.tiles[`${ _0x1a._0x2f },${ _0x1a._0x55 }`];
+          if (!_0x1b?.element)
             continue;
-          __27.element.classList.add('clan-highlight');
-          let __31 = __11.has(`${ __26.__47 },${ __26.__85 - 1 }`),
-            __28 = __11.has(`${ __26.__47 },${ __26.__85 + 1 }`),
-            __29 = __11.has(`${ __26.__47 - 1 },${ __26.__85 }`),
-            __30 = __11.has(`${ __26.__47 + 1 },${ __26.__85 }`);
-          if (!__31) {
-            let __41 = document.createElement('div');
-            __41.className = 'clan-border clan-border-top', __27.element.appendChild(__41);
+          _0x1b.element.classList.add('clan-highlight');
+          let _0x1f = _0xb.has(`${ _0x1a._0x2f },${ _0x1a._0x55 - 1 }`),
+            _0x1c = _0xb.has(`${ _0x1a._0x2f },${ _0x1a._0x55 + 1 }`),
+            _0x1d = _0xb.has(`${ _0x1a._0x2f - 1 },${ _0x1a._0x55 }`),
+            _0x1e = _0xb.has(`${ _0x1a._0x2f + 1 },${ _0x1a._0x55 }`);
+          if (!_0x1f) {
+            let _0x29 = document.createElement('div');
+            _0x29.className = 'clan-border clan-border-top', _0x1b.element.appendChild(_0x29);
           }
-          if (!__28) {
-            let __41 = document.createElement('div');
-            __41.className = 'clan-border clan-border-bottom', __27.element.appendChild(__41);
+          if (!_0x1c) {
+            let _0x29 = document.createElement('div');
+            _0x29.className = 'clan-border clan-border-bottom', _0x1b.element.appendChild(_0x29);
           }
-          if (!__29) {
-            let __41 = document.createElement('div');
-            __41.className = 'clan-border clan-border-left', __27.element.appendChild(__41);
+          if (!_0x1d) {
+            let _0x29 = document.createElement('div');
+            _0x29.className = 'clan-border clan-border-left', _0x1b.element.appendChild(_0x29);
           }
-          if (!__30) {
-            let __41 = document.createElement('div');
-            __41.className = 'clan-border clan-border-right', __27.element.appendChild(__41);
+          if (!_0x1e) {
+            let _0x29 = document.createElement('div');
+            _0x29.className = 'clan-border clan-border-right', _0x1b.element.appendChild(_0x29);
           }
         }
-      } catch (__3) {
-        console.error('Failed to fetch clan borders:', __3);
+      } catch (_0x3) {
+        console.error('Failed to fetch clan borders:', _0x3);
       }
   }
   static clearClanBorders() {
-    if (__8.plot?.tiles)
-      for (let __3 of Object.values(__8.plot.tiles))
-        __3.element && (__3.element.classList.remove('clan-highlight'), __3.element.querySelectorAll('.clan-border').forEach(__10 => __10.remove()));
+    if (_0x8.plot?.tiles)
+      for (let _0x3 of Object.values(_0x8.plot.tiles))
+        _0x3.element && (_0x3.element.classList.remove('clan-highlight'), _0x3.element.querySelectorAll('.clan-border').forEach(_0xa => _0xa.remove()));
   }
-  setDomain(__3) {
-    this.domain = __3, this.free = !1, this.content = '', this.element && this.element.classList.remove('f'), this.fetchContent('/index.html');
+  setDomain(_0x3) {
+    this.domain = _0x3, this.free = !1, this.content = '', this.element && this.element.classList.remove('f'), this.fetchContent('/index.html');
   }
   setFree() {
     this.interpreter && this.interpreter.stop(), this.domain = null, this.free = !0, this.content = '', this.element && this.element.classList.add('f'), this.fetchContent('/index.html');
   }
-  setLocked(__3) {
-    this.locked = __3, this.element && this.element.classList.toggle('locked', __3), this.fetchContent('/index.html', !0);
+  setLocked(_0x3) {
+    this.locked = _0x3, this.element && this.element.classList.toggle('locked', _0x3), this.fetchContent('/index.html', !0);
   }
 };
-__8.ui = {
+_0x8.ui = {
   coords: document.querySelector('#coords'),
   zoomSlider: document.querySelector('#zoom-slider > input'),
   siteSelector: document.querySelector('#kicya-site-selector'),
@@ -2673,626 +2673,626 @@ __8.ui = {
   siteEmbedButton: document.querySelector('#kicya-site-embed'),
   clanIndicator: document.querySelector('#kicya-clan-indicator'),
   pendingClanInvites: [],
-  createElement: (__2, __3 = {}) => {
-    let __4 = document.createElement(__2);
-    for (let [__10, __11] of Object.entries(__3))
-      __10 === 'innerText' ? __4.innerText = __11 : __10 === 'innerHTML' ? __4.innerHTML = __11 : __10.startsWith('on') ? __4.addEventListener(__10.slice(2).toLowerCase(), __11) : __4.setAttribute(__10, __11);
-    return __4;
+  createElement: (_0x2, _0x3 = {}) => {
+    let _0x4 = document.createElement(_0x2);
+    for (let [_0xa, _0xb] of Object.entries(_0x3))
+      _0xa === 'innerText' ? _0x4.innerText = _0xb : _0xa === 'innerHTML' ? _0x4.innerHTML = _0xb : _0xa.startsWith('on') ? _0x4.addEventListener(_0xa.slice(2).toLowerCase(), _0xb) : _0x4.setAttribute(_0xa, _0xb);
+    return _0x4;
   },
-  escapeHTML: __2 => __2 ? __2.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;').replace(/'/g, '&#039;') : '',
-  showDashboard: __2 => {
-    Ye.src = `/dashboard?site=${ encodeURIComponent(__2) }&path=/`, We && (We.textContent = `File Manager - ${ __2 }`), Ve.classList.add('active'), fe && (fe.style.display = 'none'), __8.camera && __8.camera.setZoomEnabled(!1), __8.ws?.isConnected && setTimeout(() => {
-      let __3 = new Int16Array(3);
-      __3[0] = 0, __3[1] = 0, __3[2] = 0, __8.ws.send(__3.buffer);
+  escapeHTML: _0x2 => _0x2 ? _0x2.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;').replace(/'/g, '&#039;') : '',
+  showDashboard: _0x2 => {
+    Ye.src = `/dashboard?site=${ encodeURIComponent(_0x2) }&path=/`, We && (We.textContent = `File Manager - ${ _0x2 }`), Ve.classList.add('active'), fe && (fe.style.display = 'none'), _0x8.camera && _0x8.camera.setZoomEnabled(!1), _0x8.ws?.isConnected && setTimeout(() => {
+      let _0x3 = new Int16Array(3);
+      _0x3[0] = 0, _0x3[1] = 0, _0x3[2] = 0, _0x8.ws.send(_0x3.buffer);
     }, 100);
   },
-  showClaimModal: __2 => {
-    if (!__8.user) {
+  showClaimModal: _0x2 => {
+    if (!_0x8.user) {
       location.href = 'https://kicya.net/auth/login?redirect=' + encodeURIComponent('https://webtiles.kicya.net/');
       return;
     }
-    let __3 = __8.user.selectedSite;
-    if (!__3) {
+    let _0x3 = _0x8.user.selectedSite;
+    if (!_0x3) {
       alert('Please select a site first');
       return;
     }
-    let __4 = __3.domain,
-      __10 = __3.tile ? `<strong>Warning</strong>Your current tile at (${ __3.tile.__47 }, ${ __3.tile.__85 }) will be unclaimed and your site will be moved to this new tile.` : null;
-    new __12({
+    let _0x4 = _0x3.domain,
+      _0xa = _0x3.tile ? `<strong>Warning</strong>Your current tile at (${ _0x3.tile._0x2f }, ${ _0x3.tile._0x55 }) will be unclaimed and your site will be moved to this new tile.` : null;
+    new _0xc({
       title: 'Claim Tile',
-      content: `<p>Do you want to claim tile (${ __2.__47 }, ${ __2.__85 }) for <strong>${ __8.ui.escapeHTML(__4) }</strong>?</p>`,
-      warning: __10,
+      content: `<p>Do you want to claim tile (${ _0x2._0x2f }, ${ _0x2._0x55 }) for <strong>${ _0x8.ui.escapeHTML(_0x4) }</strong>?</p>`,
+      warning: _0xa,
       buttons: [{
           text: 'Cancel',
           type: 'cancel',
           id: 'cancel',
-          onClick: __26 => __26.close()
+          onClick: _0x1a => _0x1a.close()
         },
         {
           text: 'Claim',
           type: 'confirm',
           id: 'confirm',
-          onClick: async __26 => {
-            __26.setButtonLoading('confirm', !0, 'Claiming...');
+          onClick: async _0x1a => {
+            _0x1a.setButtonLoading('confirm', !0, 'Claiming...');
             try {
-              let __31 = await (await __8.api.makeRequest('/api/claim', {
+              let _0x1f = await (await _0x8.api.makeRequest('/api/claim', {
                 method: 'POST',
                 headers: {
                   'Content-Type': 'application/json'
                 },
                 body: JSON.stringify({
-                  __47: __2.__47,
-                  __85: __2.__85
+                  _0x2f: _0x2._0x2f,
+                  _0x55: _0x2._0x55
                 })
               })).json();
-              if (__31.success) {
-                if (__8.user.selectedSite) {
-                  if (__8.user.selectedSite.tile) {
-                    let __28 = __8.plot.getTile(__8.user.selectedSite.tile.__47, __8.user.selectedSite.tile.__85);
-                    __28 && __28.setFree();
+              if (_0x1f.success) {
+                if (_0x8.user.selectedSite) {
+                  if (_0x8.user.selectedSite.tile) {
+                    let _0x1c = _0x8.plot.getTile(_0x8.user.selectedSite.tile._0x2f, _0x8.user.selectedSite.tile._0x55);
+                    _0x1c && _0x1c.setFree();
                   }
-                  __8.user.selectedSite.tile = {
-                    __47: __2.__47,
-                    __85: __2.__85,
-                    code: __31.code,
-                    domain: __8.user.selectedSite.domain,
+                  _0x8.user.selectedSite.tile = {
+                    _0x2f: _0x2._0x2f,
+                    _0x55: _0x2._0x55,
+                    code: _0x1f.code,
+                    domain: _0x8.user.selectedSite.domain,
                     created_at: Date.now()
                   };
                 }
                 setTimeout(() => {
-                  __2.setDomain(__8.user.selectedSite.domain), __2.setActive(!1), __2.element && __2.element.classList.toggle('locked', !1);
-                }, 400), __26.close(), Q();
+                  _0x2.setDomain(_0x8.user.selectedSite.domain), _0x2.setActive(!1), _0x2.element && _0x2.element.classList.toggle('locked', !1);
+                }, 400), _0x1a.close(), Q();
               } else
-                alert(__31.error || 'Failed to claim tile'), __26.setButtonLoading('confirm', !1);
-            } catch (__27) {
-              console.error(__27), alert('Failed to claim tile: ' + __27.message), __26.setButtonLoading('confirm', !1);
+                alert(_0x1f.error || 'Failed to claim tile'), _0x1a.setButtonLoading('confirm', !1);
+            } catch (_0x1b) {
+              console.error(_0x1b), alert('Failed to claim tile: ' + _0x1b.message), _0x1a.setButtonLoading('confirm', !1);
             }
           }
         }
       ]
     }).open();
   },
-  showUnlockModal: __2 => {
-    if (!__8.user) {
+  showUnlockModal: _0x2 => {
+    if (!_0x8.user) {
       location.href = 'https://kicya.net/auth/login?redirect=' + encodeURIComponent('https://webtiles.kicya.net/');
       return;
     }
-    let __3 = __8.user.selectedSite;
-    if (!__3) {
+    let _0x3 = _0x8.user.selectedSite;
+    if (!_0x3) {
       alert('Please select a site first');
       return;
     }
-    let __4 = __3.domain,
-      __10 = __3.tile ? `<strong>Warning</strong>Your current tile at (${ __3.tile.__47 }, ${ __3.tile.__85 }) will be unclaimed and your site will be moved to this new tile.` : null,
-      __11 = new __12({
+    let _0x4 = _0x3.domain,
+      _0xa = _0x3.tile ? `<strong>Warning</strong>Your current tile at (${ _0x3.tile._0x2f }, ${ _0x3.tile._0x55 }) will be unclaimed and your site will be moved to this new tile.` : null,
+      _0xb = new _0xc({
         title: 'Unlock & Claim Tile',
         content: `
-                <p>Enter the unlock code to claim the tile at (${ __2.__47 }, ${ __2.__85 }) for <strong>${ __8.ui.escapeHTML(__4) }</strong>:</p>
+                <p>Enter the unlock code to claim the tile at (${ _0x2._0x2f }, ${ _0x2._0x55 }) for <strong>${ _0x8.ui.escapeHTML(_0x4) }</strong>:</p>
                 <div class="code-input-container">
                     <input type="text" id="unlock-code-input" class="modal-input" placeholder="Enter unlock code..." autocomplete="off" />
                 </div>
             `,
-        warning: __10,
+        warning: _0xa,
         buttons: [{
             text: 'Cancel',
             type: 'cancel',
             id: 'cancel',
-            onClick: __26 => __26.close()
+            onClick: _0x1a => _0x1a.close()
           },
           {
             text: 'Unlock & Claim',
             type: 'confirm',
             id: 'confirm',
-            onClick: async __26 => {
-              let __31 = __11.element.querySelector('#unlock-code-input').value.trim();
-              if (!__31) {
+            onClick: async _0x1a => {
+              let _0x1f = _0xb.element.querySelector('#unlock-code-input').value.trim();
+              if (!_0x1f) {
                 alert('Please enter a code');
                 return;
               }
-              __26.setButtonLoading('confirm', !0, 'Unlocking...');
+              _0x1a.setButtonLoading('confirm', !0, 'Unlocking...');
               try {
-                let __29 = await (await __8.api.makeRequest('/api/claim', {
+                let _0x1d = await (await _0x8.api.makeRequest('/api/claim', {
                   method: 'POST',
                   headers: {
                     'Content-Type': 'application/json'
                   },
                   body: JSON.stringify({
-                    __47: __2.__47,
-                    __85: __2.__85,
-                    code: __31
+                    _0x2f: _0x2._0x2f,
+                    _0x55: _0x2._0x55,
+                    code: _0x1f
                   })
                 })).json();
-                if (__29.success) {
-                  if (delete __8.plot.lockCache[__2.__47 + ',' + __2.__85], __8.user.selectedSite) {
-                    if (__8.user.selectedSite.tile) {
-                      let __30 = __8.plot.getTile(__8.user.selectedSite.tile.__47, __8.user.selectedSite.tile.__85);
-                      __30 && __30.setFree();
+                if (_0x1d.success) {
+                  if (delete _0x8.plot.lockCache[_0x2._0x2f + ',' + _0x2._0x55], _0x8.user.selectedSite) {
+                    if (_0x8.user.selectedSite.tile) {
+                      let _0x1e = _0x8.plot.getTile(_0x8.user.selectedSite.tile._0x2f, _0x8.user.selectedSite.tile._0x55);
+                      _0x1e && _0x1e.setFree();
                     }
-                    __8.user.selectedSite.tile = {
-                      __47: __2.__47,
-                      __85: __2.__85,
-                      code: __29.code,
-                      domain: __8.user.selectedSite.domain,
+                    _0x8.user.selectedSite.tile = {
+                      _0x2f: _0x2._0x2f,
+                      _0x55: _0x2._0x55,
+                      code: _0x1d.code,
+                      domain: _0x8.user.selectedSite.domain,
                       created_at: Date.now()
                     };
                   }
-                  __2.setDomain(__8.user.selectedSite.domain), __2.setActive(!1), __26.close(), Q();
+                  _0x2.setDomain(_0x8.user.selectedSite.domain), _0x2.setActive(!1), _0x1a.close(), Q();
                 } else
-                  alert(__29.error || 'Failed to unlock tile'), __26.setButtonLoading('confirm', !1);
-              } catch (__28) {
-                console.error(__28), alert('Failed to unlock tile: ' + __28.message), __26.setButtonLoading('confirm', !1);
+                  alert(_0x1d.error || 'Failed to unlock tile'), _0x1a.setButtonLoading('confirm', !1);
+              } catch (_0x1c) {
+                console.error(_0x1c), alert('Failed to unlock tile: ' + _0x1c.message), _0x1a.setButtonLoading('confirm', !1);
               }
             }
           }
         ]
       });
-    __11.open(), setTimeout(() => {
-      let __26 = __11.element.querySelector('#unlock-code-input');
-      __26 && __26.focus();
+    _0xb.open(), setTimeout(() => {
+      let _0x1a = _0xb.element.querySelector('#unlock-code-input');
+      _0x1a && _0x1a.focus();
     }, 100);
   },
   updateClanIndicator: () => {
-    __8.ui.clanIndicator && (__8.ui.clanIndicator.hidden = __8.ui.pendingClanInvites.length === 0);
+    _0x8.ui.clanIndicator && (_0x8.ui.clanIndicator.hidden = _0x8.ui.pendingClanInvites.length === 0);
   },
   fetchClanInvites: async () => {
-    if (!(!__8.user || !__8.user.selectedSite))
+    if (!(!_0x8.user || !_0x8.user.selectedSite))
       try {
-        let __3 = await (await __8.api.makeRequest('/api/clans/invites')).json();
-        __3.success && (__8.ui.pendingClanInvites = __3.invites || [], __8.ui.updateClanIndicator());
-      } catch (__2) {
-        console.error('Failed to fetch clan invites:', __2);
+        let _0x3 = await (await _0x8.api.makeRequest('/api/clans/invites')).json();
+        _0x3.success && (_0x8.ui.pendingClanInvites = _0x3.invites || [], _0x8.ui.updateClanIndicator());
+      } catch (_0x2) {
+        console.error('Failed to fetch clan invites:', _0x2);
       }
   },
   showClanModal: async () => {
-    if (!__8.user) {
+    if (!_0x8.user) {
       location.href = 'https://kicya.net/auth/login?redirect=' + encodeURIComponent('https://webtiles.kicya.net/');
       return;
     }
-    if (!__8.user.selectedSite) {
+    if (!_0x8.user.selectedSite) {
       alert('Please select a site first');
       return;
     }
-    let __2 = new __12({
+    let _0x2 = new _0xc({
       title: 'Clan Management',
       content: '<p>Loading...</p>',
       buttons: [{
         text: 'Close',
         type: 'cancel',
         id: 'close',
-        onClick: __3 => __3.close()
+        onClick: _0x3 => _0x3.close()
       }]
     });
-    __2.open();
+    _0x2.open();
     try {
-      let [__3, __4] = await Promise.all([
-        __8.api.makeRequest('/api/clans/current'),
-        __8.api.makeRequest('/api/clans/invites')
-      ]), __10 = await __3.json(), __11 = await __4.json();
-      __8.ui.pendingClanInvites = __11.invites || [], __8.ui.updateClanIndicator();
-      let __26 = __8.user?.admin || __8.user?.moderator;
-      __10.success && __10.clan ? __8.ui.renderClanInfo(__2, __10.clan, __26) : __8.ui.renderNoClan(__2, __11.invites || [], __26);
-    } catch (__3) {
-      console.error(__3), __2.setContent('<p>Failed to load clan data: ' + __8.ui.escapeHTML(__3.message) + '</p>');
+      let [_0x3, _0x4] = await Promise.all([
+        _0x8.api.makeRequest('/api/clans/current'),
+        _0x8.api.makeRequest('/api/clans/invites')
+      ]), _0xa = await _0x3.json(), _0xb = await _0x4.json();
+      _0x8.ui.pendingClanInvites = _0xb.invites || [], _0x8.ui.updateClanIndicator();
+      let _0x1a = _0x8.user?.admin || _0x8.user?.moderator;
+      _0xa.success && _0xa.clan ? _0x8.ui.renderClanInfo(_0x2, _0xa.clan, _0x1a) : _0x8.ui.renderNoClan(_0x2, _0xb.invites || [], _0x1a);
+    } catch (_0x3) {
+      console.error(_0x3), _0x2.setContent('<p>Failed to load clan data: ' + _0x8.ui.escapeHTML(_0x3.message) + '</p>');
     }
   },
-  renderClanInfo: (__2, __3, __4) => {
-    let __10 = `
-            <div class="clan-name-display">${ __8.ui.escapeHTML(__3.name) }</div>
-            <div class="clan-stats">${ __3.members.length }/5 members. ${ __3.members.length < 3 ? 'Unprotected! Reach 3 members to protect your tiles.' : 'Your tiles are protected.' }</div>
+  renderClanInfo: (_0x2, _0x3, _0x4) => {
+    let _0xa = `
+            <div class="clan-name-display">${ _0x8.ui.escapeHTML(_0x3.name) }</div>
+            <div class="clan-stats">${ _0x3.members.length }/5 members. ${ _0x3.members.length < 3 ? 'Unprotected! Reach 3 members to protect your tiles.' : 'Your tiles are protected.' }</div>
         `;
-    __10 += `<div class="clan-section">
+    _0xa += `<div class="clan-section">
             <div class="clan-section-title">Members</div>
             <div class="clan-members-list">`;
-    for (let __30 of __3.members) {
-      let __41 = __30.domain === __8.user.sites.find(__42 => __42.tile?.__47 === __30.__47 && __42.tile?.__85 === __30.__85)?.domain;
-      __10 += `<div class="clan-member-item">
-                <span class="clan-member-domain">${ __8.ui.escapeHTML(__30.domain) }</span>
-                <div>`, __3.isOwner && __30.domain !== __8.user.selectedSite?.domain && (__10 += `<button class="clan-member-kick" data-domain="${ __8.ui.escapeHTML(__30.domain) }">Kick</button>`), __10 += `</div>
+    for (let _0x1e of _0x3.members) {
+      let _0x29 = _0x1e.domain === _0x8.user.sites.find(_0x2a => _0x2a.tile?._0x2f === _0x1e._0x2f && _0x2a.tile?._0x55 === _0x1e._0x55)?.domain;
+      _0xa += `<div class="clan-member-item">
+                <span class="clan-member-domain">${ _0x8.ui.escapeHTML(_0x1e.domain) }</span>
+                <div>`, _0x3.isOwner && _0x1e.domain !== _0x8.user.selectedSite?.domain && (_0xa += `<button class="clan-member-kick" data-domain="${ _0x8.ui.escapeHTML(_0x1e.domain) }">Kick</button>`), _0xa += `</div>
             </div>`;
     }
-    if (__10 += '</div></div>', __3.isOwner && __3.pendingInvites && __3.pendingInvites.length > 0) {
-      __10 += `<div class="clan-section">
+    if (_0xa += '</div></div>', _0x3.isOwner && _0x3.pendingInvites && _0x3.pendingInvites.length > 0) {
+      _0xa += `<div class="clan-section">
                 <div class="clan-section-title">Pending Invites</div>
                 <div class="clan-pending-list">`;
-      for (let __30 of __3.pendingInvites)
-        __10 += `<div class="clan-pending-item">
-                    <span>${ __8.ui.escapeHTML(__30.domain) }</span>
-                    <button class="clan-pending-cancel" data-invite="${ __30.id }">Cancel</button>
+      for (let _0x1e of _0x3.pendingInvites)
+        _0xa += `<div class="clan-pending-item">
+                    <span>${ _0x8.ui.escapeHTML(_0x1e.domain) }</span>
+                    <button class="clan-pending-cancel" data-invite="${ _0x1e.id }">Cancel</button>
                 </div>`;
-      __10 += '</div></div>';
+      _0xa += '</div></div>';
     }
-    __3.isOwner && __3.members.length < 5 && (__10 += `<div class="clan-section">
+    _0x3.isOwner && _0x3.members.length < 5 && (_0xa += `<div class="clan-section">
                 <div class="clan-section-title">Invite Neighboring Tile</div>
                 <div class="code-input-container" style="margin: 5px 0;">
                     <input type="text" id="clan-invite-domain" class="modal-input" placeholder="Enter domain..." autocomplete="off" style="font-family: inherit;" />
                 </div>
                 <button class="modal-btn modal-btn-confirm" id="clan-invite-btn" style="margin-top: 5px;">Send Invite</button>
-            </div>`), __4 && (__10 += `<div class="clan-section">
+            </div>`), _0x4 && (_0xa += `<div class="clan-section">
                 <div class="clan-section-title">Admin Tools</div>
                 <button class="modal-btn modal-btn-cancel" id="clan-admin-invites-btn">View All Invites</button>
                 <button class="modal-btn modal-btn-cancel" id="clan-admin-clans-btn" style="margin-left: 5px;">View All Clans</button>
-            </div>`), __2.setContent(__10);
-    let __11 = [{
+            </div>`), _0x2.setContent(_0xa);
+    let _0xb = [{
       text: 'Close',
       type: 'cancel',
       id: 'close',
-      onClick: __30 => __30.close()
+      onClick: _0x1e => _0x1e.close()
     }];
-    __3.isOwner ? __11.unshift({
+    _0x3.isOwner ? _0xb.unshift({
       text: 'Disband Clan',
       type: 'cancel',
       id: 'disband',
-      onClick: async __30 => {
+      onClick: async _0x1e => {
         if (confirm('Are you sure you want to disband this clan?')) {
-          __30.setButtonLoading('disband', !0, 'Disbanding...');
+          _0x1e.setButtonLoading('disband', !0, 'Disbanding...');
           try {
-            let __42 = await (await __8.api.makeRequest('/api/clans/disband', {
+            let _0x2a = await (await _0x8.api.makeRequest('/api/clans/disband', {
               method: 'POST',
               headers: {
                 'Content-Type': 'application/json'
               }
             })).json();
-            __42.success ? (__30.close(), __8.ui.showClanModal()) : (alert(__42.error || 'Failed to disband clan'), __30.setButtonLoading('disband', !1));
-          } catch (__41) {
-            alert('Failed to disband clan: ' + __41.message), __30.setButtonLoading('disband', !1);
+            _0x2a.success ? (_0x1e.close(), _0x8.ui.showClanModal()) : (alert(_0x2a.error || 'Failed to disband clan'), _0x1e.setButtonLoading('disband', !1));
+          } catch (_0x29) {
+            alert('Failed to disband clan: ' + _0x29.message), _0x1e.setButtonLoading('disband', !1);
           }
         }
       }
-    }) : __11.unshift({
+    }) : _0xb.unshift({
       text: 'Leave Clan',
       type: 'cancel',
       id: 'leave',
-      onClick: async __30 => {
+      onClick: async _0x1e => {
         if (confirm('Are you sure you want to leave this clan?')) {
-          __30.setButtonLoading('leave', !0, 'Leaving...');
+          _0x1e.setButtonLoading('leave', !0, 'Leaving...');
           try {
-            let __42 = await (await __8.api.makeRequest('/api/clans/leave', {
+            let _0x2a = await (await _0x8.api.makeRequest('/api/clans/leave', {
               method: 'POST',
               headers: {
                 'Content-Type': 'application/json'
               }
             })).json();
-            __42.success ? (__30.close(), __8.ui.showClanModal()) : (alert(__42.error || 'Failed to leave clan'), __30.setButtonLoading('leave', !1));
-          } catch (__41) {
-            alert('Failed to leave clan: ' + __41.message), __30.setButtonLoading('leave', !1);
+            _0x2a.success ? (_0x1e.close(), _0x8.ui.showClanModal()) : (alert(_0x2a.error || 'Failed to leave clan'), _0x1e.setButtonLoading('leave', !1));
+          } catch (_0x29) {
+            alert('Failed to leave clan: ' + _0x29.message), _0x1e.setButtonLoading('leave', !1);
           }
         }
       }
-    }), __2.buttons = __11;
-    let __26 = __2.element.querySelector('.modal-actions');
-    __26.innerHTML = '', __2._buttonElements.clear();
-    for (let __30 of __2.buttons)
-      __26.appendChild(__2._createButton(__30));
-    __2.element.querySelectorAll('.clan-member-kick').forEach(__30 => {
-      __30.addEventListener('click', async () => {
-        let __41 = __30.dataset.domain;
-        if (confirm(`Are you sure you want to kick ${ __41 }?`)) {
-          __30.disabled = !0, __30.textContent = '...';
+    }), _0x2.buttons = _0xb;
+    let _0x1a = _0x2.element.querySelector('.modal-actions');
+    _0x1a.innerHTML = '', _0x2._buttonElements.clear();
+    for (let _0x1e of _0x2.buttons)
+      _0x1a.appendChild(_0x2._createButton(_0x1e));
+    _0x2.element.querySelectorAll('.clan-member-kick').forEach(_0x1e => {
+      _0x1e.addEventListener('click', async () => {
+        let _0x29 = _0x1e.dataset.domain;
+        if (confirm(`Are you sure you want to kick ${ _0x29 }?`)) {
+          _0x1e.disabled = !0, _0x1e.textContent = '...';
           try {
-            let __43 = await (await __8.api.makeRequest('/api/clans/kick', {
+            let _0x2b = await (await _0x8.api.makeRequest('/api/clans/kick', {
               method: 'POST',
               headers: {
                 'Content-Type': 'application/json'
               },
               body: JSON.stringify({
-                domain: __41
+                domain: _0x29
               })
             })).json();
-            __43.success ? (__8.ui.showClanModal(), __2.close()) : (alert(__43.error || 'Failed to kick member'), __30.disabled = !1, __30.textContent = 'Kick');
-          } catch (__42) {
-            alert('Failed to kick member: ' + __42.message), __30.disabled = !1, __30.textContent = 'Kick';
+            _0x2b.success ? (_0x8.ui.showClanModal(), _0x2.close()) : (alert(_0x2b.error || 'Failed to kick member'), _0x1e.disabled = !1, _0x1e.textContent = 'Kick');
+          } catch (_0x2a) {
+            alert('Failed to kick member: ' + _0x2a.message), _0x1e.disabled = !1, _0x1e.textContent = 'Kick';
           }
         }
       });
-    }), __2.element.querySelectorAll('.clan-pending-cancel').forEach(__30 => {
-      __30.addEventListener('click', async () => {
-        let __41 = __30.dataset.invite;
-        __30.disabled = !0, __30.textContent = '...';
+    }), _0x2.element.querySelectorAll('.clan-pending-cancel').forEach(_0x1e => {
+      _0x1e.addEventListener('click', async () => {
+        let _0x29 = _0x1e.dataset.invite;
+        _0x1e.disabled = !0, _0x1e.textContent = '...';
         try {
-          let __43 = await (await __8.api.makeRequest('/api/clans/cancel-invite', {
+          let _0x2b = await (await _0x8.api.makeRequest('/api/clans/cancel-invite', {
             method: 'POST',
             headers: {
               'Content-Type': 'application/json'
             },
             body: JSON.stringify({
-              invite: parseInt(__41)
+              invite: parseInt(_0x29)
             })
           })).json();
-          __43.success ? __30.closest('.clan-pending-item').remove() : (alert(__43.error || 'Failed to cancel invite'), __30.disabled = !1, __30.textContent = 'Cancel');
-        } catch (__42) {
-          alert('Failed to cancel invite: ' + __42.message), __30.disabled = !1, __30.textContent = 'Cancel';
+          _0x2b.success ? _0x1e.closest('.clan-pending-item').remove() : (alert(_0x2b.error || 'Failed to cancel invite'), _0x1e.disabled = !1, _0x1e.textContent = 'Cancel');
+        } catch (_0x2a) {
+          alert('Failed to cancel invite: ' + _0x2a.message), _0x1e.disabled = !1, _0x1e.textContent = 'Cancel';
         }
       });
     });
-    let __27 = __2.element.querySelector('#clan-invite-btn'),
-      __31 = __2.element.querySelector('#clan-invite-domain');
-    __27 && __31 && __27.addEventListener('click', async () => {
-      let __30 = __31.value.trim();
-      if (!__30) {
+    let _0x1b = _0x2.element.querySelector('#clan-invite-btn'),
+      _0x1f = _0x2.element.querySelector('#clan-invite-domain');
+    _0x1b && _0x1f && _0x1b.addEventListener('click', async () => {
+      let _0x1e = _0x1f.value.trim();
+      if (!_0x1e) {
         alert('Please enter a domain');
         return;
       }
-      __27.disabled = !0, __27.textContent = 'Sending...';
+      _0x1b.disabled = !0, _0x1b.textContent = 'Sending...';
       try {
-        let __42 = await (await __8.api.makeRequest('/api/clans/invite', {
+        let _0x2a = await (await _0x8.api.makeRequest('/api/clans/invite', {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json'
           },
           body: JSON.stringify({
-            domain: __30
+            domain: _0x1e
           })
         })).json();
-        __42.success ? (__31.value = '', __8.ui.showClanModal(), __2.close()) : (alert(__42.error || 'Failed to send invite'), __27.disabled = !1, __27.textContent = 'Send Invite');
-      } catch (__41) {
-        alert('Failed to send invite: ' + __41.message), __27.disabled = !1, __27.textContent = 'Send Invite';
+        _0x2a.success ? (_0x1f.value = '', _0x8.ui.showClanModal(), _0x2.close()) : (alert(_0x2a.error || 'Failed to send invite'), _0x1b.disabled = !1, _0x1b.textContent = 'Send Invite');
+      } catch (_0x29) {
+        alert('Failed to send invite: ' + _0x29.message), _0x1b.disabled = !1, _0x1b.textContent = 'Send Invite';
       }
     });
-    let __28 = __2.element.querySelector('#clan-admin-invites-btn');
-    __28 && __28.addEventListener('click', () => {
-      __2.close(), setTimeout(() => __8.ui.showAdminInvitesModal(), 50);
+    let _0x1c = _0x2.element.querySelector('#clan-admin-invites-btn');
+    _0x1c && _0x1c.addEventListener('click', () => {
+      _0x2.close(), setTimeout(() => _0x8.ui.showAdminInvitesModal(), 50);
     });
-    let __29 = __2.element.querySelector('#clan-admin-clans-btn');
-    __29 && __29.addEventListener('click', () => {
-      __2.close(), setTimeout(() => __8.ui.showAdminClansModal(), 50);
+    let _0x1d = _0x2.element.querySelector('#clan-admin-clans-btn');
+    _0x1d && _0x1d.addEventListener('click', () => {
+      _0x2.close(), setTimeout(() => _0x8.ui.showAdminClansModal(), 50);
     });
   },
-  renderNoClan: (__2, __3, __4) => {
-    let __10 = '';
-    if (__3.length > 0) {
-      __10 += `<div class="clan-section">
+  renderNoClan: (_0x2, _0x3, _0x4) => {
+    let _0xa = '';
+    if (_0x3.length > 0) {
+      _0xa += `<div class="clan-section">
                 <div class="clan-section-title">Pending Invites</div>
                 <div class="clan-invites-list">`;
-      for (let __28 of __3)
-        __10 += `<div class="clan-invite-item">
+      for (let _0x1c of _0x3)
+        _0xa += `<div class="clan-invite-item">
                     <span class="clan-invite-info">
-                        Clan: <strong>${ __8.ui.escapeHTML(__28.clan_name) }</strong>
-                        ${ __28.inviter_domain ? `<br><span style="font-size: 11px; color: #888;">Invited by: ${ __8.ui.escapeHTML(__28.inviter_domain) }</span>` : '' }
+                        Clan: <strong>${ _0x8.ui.escapeHTML(_0x1c.clan_name) }</strong>
+                        ${ _0x1c.inviter_domain ? `<br><span style="font-size: 11px; color: #888;">Invited by: ${ _0x8.ui.escapeHTML(_0x1c.inviter_domain) }</span>` : '' }
                     </span>
                     <div class="clan-invite-actions">
-                        <button class="clan-invite-accept" data-invite="${ __28.id }">Accept</button>
-                        <button class="clan-invite-reject" data-invite="${ __28.id }">Reject</button>
+                        <button class="clan-invite-accept" data-invite="${ _0x1c.id }">Accept</button>
+                        <button class="clan-invite-reject" data-invite="${ _0x1c.id }">Reject</button>
                     </div>
                 </div>`;
-      __10 += '</div></div>';
+      _0xa += '</div></div>';
     }
-    __10 += `<div class="clan-section">
+    _0xa += `<div class="clan-section">
             <div class="clan-section-title">Create a New Clan</div>
             <p style="font-size: 12px; color: #666; margin: 5px 0;">Create a clan to group neighboring tiles together (max 5 tiles).</p>
             <div class="code-input-container" style="margin: 5px 0;">
                 <input type="text" id="clan-create-name" class="modal-input" placeholder="Clan name (3-20 chars, alphanumeric)" autocomplete="off" style="font-family: inherit;" maxlength="20" />
             </div>
             <button class="modal-btn modal-btn-confirm" id="clan-create-btn" style="margin-top: 5px;">Create Clan</button>
-        </div>`, __4 && (__10 += `<div class="clan-section">
+        </div>`, _0x4 && (_0xa += `<div class="clan-section">
                 <div class="clan-section-title">Admin: Manage Invites</div>
                 <button class="modal-btn modal-btn-cancel" id="clan-admin-invites-btn">View All Invites</button>
                 <button class="modal-btn modal-btn-cancel" id="clan-admin-clans-btn" style="margin-left: 5px;">View All Clans</button>
-            </div>`), __2.setContent(__10), __2.element.querySelectorAll('.clan-invite-accept').forEach(__28 => {
-      __28.addEventListener('click', async () => {
-        let __29 = __28.dataset.invite;
-        __28.disabled = !0, __28.textContent = '...';
+            </div>`), _0x2.setContent(_0xa), _0x2.element.querySelectorAll('.clan-invite-accept').forEach(_0x1c => {
+      _0x1c.addEventListener('click', async () => {
+        let _0x1d = _0x1c.dataset.invite;
+        _0x1c.disabled = !0, _0x1c.textContent = '...';
         try {
-          let __41 = await (await __8.api.makeRequest('/api/clans/accept-invite', {
+          let _0x29 = await (await _0x8.api.makeRequest('/api/clans/accept-invite', {
             method: 'POST',
             headers: {
               'Content-Type': 'application/json'
             },
             body: JSON.stringify({
-              invite: parseInt(__29)
+              invite: parseInt(_0x1d)
             })
           })).json();
-          __41.success ? (__8.ui.pendingClanInvites = __8.ui.pendingClanInvites.filter(__42 => __42.id !== parseInt(__29)), __8.ui.updateClanIndicator(), __8.ui.showClanModal(), __2.close()) : (alert(__41.error || 'Failed to accept invite'), __28.disabled = !1, __28.textContent = 'Accept');
-        } catch (__30) {
-          alert('Failed to accept invite: ' + __30.message), __28.disabled = !1, __28.textContent = 'Accept';
+          _0x29.success ? (_0x8.ui.pendingClanInvites = _0x8.ui.pendingClanInvites.filter(_0x2a => _0x2a.id !== parseInt(_0x1d)), _0x8.ui.updateClanIndicator(), _0x8.ui.showClanModal(), _0x2.close()) : (alert(_0x29.error || 'Failed to accept invite'), _0x1c.disabled = !1, _0x1c.textContent = 'Accept');
+        } catch (_0x1e) {
+          alert('Failed to accept invite: ' + _0x1e.message), _0x1c.disabled = !1, _0x1c.textContent = 'Accept';
         }
       });
-    }), __2.element.querySelectorAll('.clan-invite-reject').forEach(__28 => {
-      __28.addEventListener('click', async () => {
-        let __29 = __28.dataset.invite;
-        __28.disabled = !0, __28.textContent = '...';
+    }), _0x2.element.querySelectorAll('.clan-invite-reject').forEach(_0x1c => {
+      _0x1c.addEventListener('click', async () => {
+        let _0x1d = _0x1c.dataset.invite;
+        _0x1c.disabled = !0, _0x1c.textContent = '...';
         try {
-          let __41 = await (await __8.api.makeRequest('/api/clans/reject-invite', {
+          let _0x29 = await (await _0x8.api.makeRequest('/api/clans/reject-invite', {
             method: 'POST',
             headers: {
               'Content-Type': 'application/json'
             },
             body: JSON.stringify({
-              invite: parseInt(__29)
+              invite: parseInt(_0x1d)
             })
           })).json();
-          __41.success ? (__8.ui.pendingClanInvites = __8.ui.pendingClanInvites.filter(__42 => __42.id !== parseInt(__29)), __8.ui.updateClanIndicator(), __28.closest('.clan-invite-item').remove()) : (alert(__41.error || 'Failed to reject invite'), __28.disabled = !1, __28.textContent = 'Reject');
-        } catch (__30) {
-          alert('Failed to reject invite: ' + __30.message), __28.disabled = !1, __28.textContent = 'Reject';
+          _0x29.success ? (_0x8.ui.pendingClanInvites = _0x8.ui.pendingClanInvites.filter(_0x2a => _0x2a.id !== parseInt(_0x1d)), _0x8.ui.updateClanIndicator(), _0x1c.closest('.clan-invite-item').remove()) : (alert(_0x29.error || 'Failed to reject invite'), _0x1c.disabled = !1, _0x1c.textContent = 'Reject');
+        } catch (_0x1e) {
+          alert('Failed to reject invite: ' + _0x1e.message), _0x1c.disabled = !1, _0x1c.textContent = 'Reject';
         }
       });
     });
-    let __11 = __2.element.querySelector('#clan-create-btn'),
-      __26 = __2.element.querySelector('#clan-create-name');
-    __11 && __26 && __11.addEventListener('click', async () => {
-      let __28 = __26.value.trim();
-      if (!__28) {
+    let _0xb = _0x2.element.querySelector('#clan-create-btn'),
+      _0x1a = _0x2.element.querySelector('#clan-create-name');
+    _0xb && _0x1a && _0xb.addEventListener('click', async () => {
+      let _0x1c = _0x1a.value.trim();
+      if (!_0x1c) {
         alert('Please enter a clan name');
         return;
       }
-      if (__28.length < 3 || __28.length > 20) {
+      if (_0x1c.length < 3 || _0x1c.length > 20) {
         alert('Clan name must be between 3 and 20 characters');
         return;
       }
-      if (!/^[a-zA-Z0-9\s]+$/.test(__28)) {
+      if (!/^[a-zA-Z0-9\s]+$/.test(_0x1c)) {
         alert('Clan name must only contain letters and numbers');
         return;
       }
-      __11.disabled = !0, __11.textContent = 'Creating...';
+      _0xb.disabled = !0, _0xb.textContent = 'Creating...';
       try {
-        let __30 = await (await __8.api.makeRequest('/api/clans/create', {
+        let _0x1e = await (await _0x8.api.makeRequest('/api/clans/create', {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json'
           },
           body: JSON.stringify({
-            name: __28
+            name: _0x1c
           })
         })).json();
-        __30.success ? (__8.ui.showClanModal(), __2.close()) : (alert(__30.error || 'Failed to create clan'), __11.disabled = !1, __11.textContent = 'Create Clan');
-      } catch (__29) {
-        alert('Failed to create clan: ' + __29.message), __11.disabled = !1, __11.textContent = 'Create Clan';
+        _0x1e.success ? (_0x8.ui.showClanModal(), _0x2.close()) : (alert(_0x1e.error || 'Failed to create clan'), _0xb.disabled = !1, _0xb.textContent = 'Create Clan');
+      } catch (_0x1d) {
+        alert('Failed to create clan: ' + _0x1d.message), _0xb.disabled = !1, _0xb.textContent = 'Create Clan';
       }
     });
-    let __27 = __2.element.querySelector('#clan-admin-invites-btn');
-    __27 && __27.addEventListener('click', () => {
-      __2.close(), setTimeout(() => __8.ui.showAdminInvitesModal(), 50);
+    let _0x1b = _0x2.element.querySelector('#clan-admin-invites-btn');
+    _0x1b && _0x1b.addEventListener('click', () => {
+      _0x2.close(), setTimeout(() => _0x8.ui.showAdminInvitesModal(), 50);
     });
-    let __31 = __2.element.querySelector('#clan-admin-clans-btn');
-    __31 && __31.addEventListener('click', () => {
-      __2.close(), setTimeout(() => __8.ui.showAdminClansModal(), 50);
+    let _0x1f = _0x2.element.querySelector('#clan-admin-clans-btn');
+    _0x1f && _0x1f.addEventListener('click', () => {
+      _0x2.close(), setTimeout(() => _0x8.ui.showAdminClansModal(), 50);
     });
   },
   showAdminInvitesModal: async () => {
-    let __2 = new __12({
+    let _0x2 = new _0xc({
       title: 'Admin: All Clan Invites',
       content: '<p>Loading...</p>',
       buttons: [{
           text: 'Back',
           type: 'cancel',
           id: 'back',
-          onClick: __3 => {
-            __3.close(), __8.ui.showClanModal();
+          onClick: _0x3 => {
+            _0x3.close(), _0x8.ui.showClanModal();
           }
         },
         {
           text: 'Close',
           type: 'cancel',
           id: 'close',
-          onClick: __3 => __3.close()
+          onClick: _0x3 => _0x3.close()
         }
       ]
     });
-    __2.open();
+    _0x2.open();
     try {
-      let __4 = await (await __8.api.makeRequest('/api/clans/admin/invites')).json();
-      if (__4.success)
-        if (__4.invites.length === 0)
-          __2.setContent('<p>No pending invites.</p>');
+      let _0x4 = await (await _0x8.api.makeRequest('/api/clans/admin/invites')).json();
+      if (_0x4.success)
+        if (_0x4.invites.length === 0)
+          _0x2.setContent('<p>No pending invites.</p>');
         else {
-          let __10 = '<div class="clan-invites-list" style="max-height: 300px;">';
-          for (let __11 of __4.invites)
-            __10 += `<div class="clan-invite-item">
+          let _0xa = '<div class="clan-invites-list" style="max-height: 300px;">';
+          for (let _0xb of _0x4.invites)
+            _0xa += `<div class="clan-invite-item">
                             <div>
-                                <div><strong>${ __8.ui.escapeHTML(__11.domain) }</strong></div>
-                                <div style="font-size: 11px; color: #888;">Clan: ${ __8.ui.escapeHTML(__11.clan_name) }</div>
+                                <div><strong>${ _0x8.ui.escapeHTML(_0xb.domain) }</strong></div>
+                                <div style="font-size: 11px; color: #888;">Clan: ${ _0x8.ui.escapeHTML(_0xb.clan_name) }</div>
                             </div>
-                            <button class="clan-invite-reject" data-invite="${ __11.id }">Delete</button>
+                            <button class="clan-invite-reject" data-invite="${ _0xb.id }">Delete</button>
                         </div>`;
-          __10 += '</div>', __2.setContent(__10), __2.element.querySelectorAll('.clan-invite-reject').forEach(__11 => {
-            __11.addEventListener('click', async () => {
-              let __26 = __11.dataset.invite;
-              __11.disabled = !0, __11.textContent = '...';
+          _0xa += '</div>', _0x2.setContent(_0xa), _0x2.element.querySelectorAll('.clan-invite-reject').forEach(_0xb => {
+            _0xb.addEventListener('click', async () => {
+              let _0x1a = _0xb.dataset.invite;
+              _0xb.disabled = !0, _0xb.textContent = '...';
               try {
-                let __31 = await (await __8.api.makeRequest('/api/clans/admin/delete-invite', {
+                let _0x1f = await (await _0x8.api.makeRequest('/api/clans/admin/delete-invite', {
                   method: 'POST',
                   headers: {
                     'Content-Type': 'application/json'
                   },
                   body: JSON.stringify({
-                    invite: parseInt(__26)
+                    invite: parseInt(_0x1a)
                   })
                 })).json();
-                __31.success ? __11.closest('.clan-invite-item').remove() : (alert(__31.error || 'Failed to delete invite'), __11.disabled = !1, __11.textContent = 'Delete');
-              } catch (__27) {
-                alert('Failed to delete invite: ' + __27.message), __11.disabled = !1, __11.textContent = 'Delete';
+                _0x1f.success ? _0xb.closest('.clan-invite-item').remove() : (alert(_0x1f.error || 'Failed to delete invite'), _0xb.disabled = !1, _0xb.textContent = 'Delete');
+              } catch (_0x1b) {
+                alert('Failed to delete invite: ' + _0x1b.message), _0xb.disabled = !1, _0xb.textContent = 'Delete';
               }
             });
           });
         }
       else
-        __2.setContent('<p>Failed to load invites: ' + __8.ui.escapeHTML(__4.error) + '</p>');
-    } catch (__3) {
-      __2.setContent('<p>Failed to load invites: ' + __8.ui.escapeHTML(__3.message) + '</p>');
+        _0x2.setContent('<p>Failed to load invites: ' + _0x8.ui.escapeHTML(_0x4.error) + '</p>');
+    } catch (_0x3) {
+      _0x2.setContent('<p>Failed to load invites: ' + _0x8.ui.escapeHTML(_0x3.message) + '</p>');
     }
   },
   showAdminClansModal: async () => {
-    let __2 = new __12({
+    let _0x2 = new _0xc({
       title: 'Admin: All Clans',
       content: '<p>Loading...</p>',
       buttons: [{
           text: 'Back',
           type: 'cancel',
           id: 'back',
-          onClick: __3 => {
-            __3.close(), __8.ui.showClanModal();
+          onClick: _0x3 => {
+            _0x3.close(), _0x8.ui.showClanModal();
           }
         },
         {
           text: 'Close',
           type: 'cancel',
           id: 'close',
-          onClick: __3 => __3.close()
+          onClick: _0x3 => _0x3.close()
         }
       ]
     });
-    __2.open();
+    _0x2.open();
     try {
-      let __4 = await (await __8.api.makeRequest('/api/clans/admin/clans')).json();
-      if (__4.success)
-        if (__4.clans.length === 0)
-          __2.setContent('<p>No clans.</p>');
+      let _0x4 = await (await _0x8.api.makeRequest('/api/clans/admin/clans')).json();
+      if (_0x4.success)
+        if (_0x4.clans.length === 0)
+          _0x2.setContent('<p>No clans.</p>');
         else {
-          let __10 = '<div class="clan-members-list" style="max-height: 300px;">';
-          for (let __11 of __4.clans)
-            __10 += `<div class="clan-member-item">
+          let _0xa = '<div class="clan-members-list" style="max-height: 300px;">';
+          for (let _0xb of _0x4.clans)
+            _0xa += `<div class="clan-member-item">
                             <div>
-                                <div><strong>${ __8.ui.escapeHTML(__11.name) }</strong></div>
-                                <div style="font-size: 11px; color: #888;">${ __11.member_count }/5 members</div>
+                                <div><strong>${ _0x8.ui.escapeHTML(_0xb.name) }</strong></div>
+                                <div style="font-size: 11px; color: #888;">${ _0xb.member_count }/5 members</div>
                             </div>
                             <div style="display: flex; gap: 5px;">
-                                ${ __11.owner_x !== null && __11.owner_y !== null ? `<button class="clan-jump-owner" data-x="${ __11.owner_x }" data-y="${ __11.owner_y }">Jump</button>` : '' }
-                                <button class="clan-member-kick" data-clan="${ __11.id }">Disband</button>
+                                ${ _0xb.owner_x !== null && _0xb.owner_y !== null ? `<button class="clan-jump-owner" data-x="${ _0xb.owner_x }" data-y="${ _0xb.owner_y }">Jump</button>` : '' }
+                                <button class="clan-member-kick" data-clan="${ _0xb.id }">Disband</button>
                             </div>
                         </div>`;
-          __10 += '</div>', __2.setContent(__10), __2.element.querySelectorAll('.clan-jump-owner').forEach(__11 => {
-            __11.addEventListener('click', () => {
-              let __26 = parseInt(__11.dataset.__47),
-                __27 = parseInt(__11.dataset.__85);
-              __8.camera && !isNaN(__26) && !isNaN(__27) && (__8.camera.centerOn(__26 * 250 + 250 / 2, __27 * 250 + 250 / 2), __2.close());
+          _0xa += '</div>', _0x2.setContent(_0xa), _0x2.element.querySelectorAll('.clan-jump-owner').forEach(_0xb => {
+            _0xb.addEventListener('click', () => {
+              let _0x1a = parseInt(_0xb.dataset._0x2f),
+                _0x1b = parseInt(_0xb.dataset._0x55);
+              _0x8.camera && !isNaN(_0x1a) && !isNaN(_0x1b) && (_0x8.camera.centerOn(_0x1a * 250 + 250 / 2, _0x1b * 250 + 250 / 2), _0x2.close());
             });
-          }), __2.element.querySelectorAll('.clan-member-kick').forEach(__11 => {
-            __11.addEventListener('click', async () => {
-              let __26 = __11.dataset.clan;
+          }), _0x2.element.querySelectorAll('.clan-member-kick').forEach(_0xb => {
+            _0xb.addEventListener('click', async () => {
+              let _0x1a = _0xb.dataset.clan;
               if (confirm('Are you sure you want to disband this clan?')) {
-                __11.disabled = !0, __11.textContent = '...';
+                _0xb.disabled = !0, _0xb.textContent = '...';
                 try {
-                  let __31 = await (await __8.api.makeRequest('/api/clans/admin/disband', {
+                  let _0x1f = await (await _0x8.api.makeRequest('/api/clans/admin/disband', {
                     method: 'POST',
                     headers: {
                       'Content-Type': 'application/json'
                     },
                     body: JSON.stringify({
-                      clan_id: parseInt(__26)
+                      clan_id: parseInt(_0x1a)
                     })
                   })).json();
-                  __31.success ? __11.closest('.clan-member-item').remove() : (alert(__31.error || 'Failed to disband clan'), __11.disabled = !1, __11.textContent = 'Disband');
-                } catch (__27) {
-                  alert('Failed to disband clan: ' + __27.message), __11.disabled = !1, __11.textContent = 'Disband';
+                  _0x1f.success ? _0xb.closest('.clan-member-item').remove() : (alert(_0x1f.error || 'Failed to disband clan'), _0xb.disabled = !1, _0xb.textContent = 'Disband');
+                } catch (_0x1b) {
+                  alert('Failed to disband clan: ' + _0x1b.message), _0xb.disabled = !1, _0xb.textContent = 'Disband';
                 }
               }
             });
           });
         }
       else
-        __2.setContent('<p>Failed to load clans: ' + __8.ui.escapeHTML(__4.error) + '</p>');
-    } catch (__3) {
-      __2.setContent('<p>Failed to load clans: ' + __8.ui.escapeHTML(__3.message) + '</p>');
+        _0x2.setContent('<p>Failed to load clans: ' + _0x8.ui.escapeHTML(_0x4.error) + '</p>');
+    } catch (_0x3) {
+      _0x2.setContent('<p>Failed to load clans: ' + _0x8.ui.escapeHTML(_0x3.message) + '</p>');
     }
   },
-  showFreeModal: __2 => {
-    if (!__8.user) {
+  showFreeModal: _0x2 => {
+    if (!_0x8.user) {
       location.href = 'https://kicya.net/auth/login?redirect=' + encodeURIComponent('https://webtiles.kicya.net/');
       return;
     }
-    let __3 = new __12({
+    let _0x3 = new _0xc({
       title: 'Free Tile',
       content: `
-                <p>What would you like to do with the tile at (${ __2.__47 }, ${ __2.__85 })?</p>
+                <p>What would you like to do with the tile at (${ _0x2._0x2f }, ${ _0x2._0x55 })?</p>
                 <div class="modal-options">
                     <button class="modal-option" id="option-transfer">
                         <strong>Transfer to Someone</strong>
@@ -3308,207 +3308,207 @@ __8.ui = {
         text: 'Cancel',
         type: 'cancel',
         id: 'cancel',
-        onClick: __11 => __11.close()
+        onClick: _0xb => _0xb.close()
       }]
     });
-    __3.open();
-    let __4 = __3.element.querySelector('#option-transfer'),
-      __10 = __3.element.querySelector('#option-free');
-    __4.addEventListener('click', async () => {
-      __4.disabled = !0, __10.disabled = !0, __4.innerHTML = '<strong>Loading...</strong>';
+    _0x3.open();
+    let _0x4 = _0x3.element.querySelector('#option-transfer'),
+      _0xa = _0x3.element.querySelector('#option-free');
+    _0x4.addEventListener('click', async () => {
+      _0x4.disabled = !0, _0xa.disabled = !0, _0x4.innerHTML = '<strong>Loading...</strong>';
       try {
-        let __26 = await (await __8.api.makeRequest('/api/getcode', {
+        let _0x1a = await (await _0x8.api.makeRequest('/api/getcode', {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json'
           },
           body: JSON.stringify({
-            __47: __2.__47,
-            __85: __2.__85
+            _0x2f: _0x2._0x2f,
+            _0x55: _0x2._0x55
           })
         })).json();
-        if (__26.success) {
-          __3.setContent(`
-                        <p>Share this code with another person to let them take your tile at (${ __2.__47 }, ${ __2.__85 }):</p>
+        if (_0x1a.success) {
+          _0x3.setContent(`
+                        <p>Share this code with another person to let them take your tile at (${ _0x2._0x2f }, ${ _0x2._0x55 }):</p>
                         <div class="code-display">
-                            <code id="tile-code">${ __8.ui.escapeHTML(__26.code) }</code>
+                            <code id="tile-code">${ _0x8.ui.escapeHTML(_0x1a.code) }</code>
                             <button class="btn" id="copy-code-btn">Copy</button>
                         </div>
                         <p class="modal-hint">The other person needs to select the tile and click "Take", then enter this code.</p>
                     `);
-          let __27 = __3.element.querySelector('#copy-code-btn');
-          __27.addEventListener('click', () => {
-            navigator.clipboard.writeText(__26.code), __27.textContent = 'Copied!', setTimeout(() => {
-              __27.textContent = 'Copy';
+          let _0x1b = _0x3.element.querySelector('#copy-code-btn');
+          _0x1b.addEventListener('click', () => {
+            navigator.clipboard.writeText(_0x1a.code), _0x1b.textContent = 'Copied!', setTimeout(() => {
+              _0x1b.textContent = 'Copy';
             }, 1500);
           });
         } else
-          alert(__26.error || 'Failed to get tile code'), __4.disabled = !1, __10.disabled = !1, __4.innerHTML = '<strong>\uD83D\uDD11 Transfer to Someone</strong><span>Get a code to share with another person. They can use this code to take the tile.</span>';
-      } catch (__11) {
-        console.error(__11), alert('Failed to get tile code: ' + __11.message), __4.disabled = !1, __10.disabled = !1, __4.innerHTML = '<strong>\uD83D\uDD11 Transfer to Someone</strong><span>Get a code to share with another person. They can use this code to take the tile.</span>';
+          alert(_0x1a.error || 'Failed to get tile code'), _0x4.disabled = !1, _0xa.disabled = !1, _0x4.innerHTML = '<strong>\uD83D\uDD11 Transfer to Someone</strong><span>Get a code to share with another person. They can use this code to take the tile.</span>';
+      } catch (_0xb) {
+        console.error(_0xb), alert('Failed to get tile code: ' + _0xb.message), _0x4.disabled = !1, _0xa.disabled = !1, _0x4.innerHTML = '<strong>\uD83D\uDD11 Transfer to Someone</strong><span>Get a code to share with another person. They can use this code to take the tile.</span>';
       }
-    }), __10.addEventListener('click', () => {
-      __3.setContent(`<p>Are you sure you want to free the tile at (${ __2.__47 }, ${ __2.__85 })?</p><p>The tile for <strong>${ __8.ui.escapeHTML(__2.domain) }</strong> will become available for <strong>anyone</strong> to claim.</p>`), __3.buttons = [{
+    }), _0xa.addEventListener('click', () => {
+      _0x3.setContent(`<p>Are you sure you want to free the tile at (${ _0x2._0x2f }, ${ _0x2._0x55 })?</p><p>The tile for <strong>${ _0x8.ui.escapeHTML(_0x2.domain) }</strong> will become available for <strong>anyone</strong> to claim.</p>`), _0x3.buttons = [{
           text: 'Back',
           type: 'cancel',
           id: 'back',
-          onClick: __26 => {
-            __26.close(), __8.ui.showFreeModal(__2);
+          onClick: _0x1a => {
+            _0x1a.close(), _0x8.ui.showFreeModal(_0x2);
           }
         },
         {
           text: 'Free Tile',
           type: 'confirm',
           id: 'confirm',
-          onClick: async __26 => {
-            __26.setButtonLoading('confirm', !0, 'Freeing...');
+          onClick: async _0x1a => {
+            _0x1a.setButtonLoading('confirm', !0, 'Freeing...');
             try {
-              let __31 = await (await __8.api.makeRequest('/api/free', {
+              let _0x1f = await (await _0x8.api.makeRequest('/api/free', {
                 method: 'POST',
                 headers: {
                   'Content-Type': 'application/json'
                 },
                 body: JSON.stringify({
-                  __47: __2.__47,
-                  __85: __2.__85
+                  _0x2f: _0x2._0x2f,
+                  _0x55: _0x2._0x55
                 })
               })).json();
-              if (__31.success) {
-                let __28 = __8.user.sites.find(__29 => __29.domain === __2.domain);
-                __28 && (__28.tile = null), __2.setFree(), __2.setActive(!1), __26.close(), Q();
+              if (_0x1f.success) {
+                let _0x1c = _0x8.user.sites.find(_0x1d => _0x1d.domain === _0x2.domain);
+                _0x1c && (_0x1c.tile = null), _0x2.setFree(), _0x2.setActive(!1), _0x1a.close(), Q();
               } else
-                alert(__31.error || 'Failed to free tile'), __26.setButtonLoading('confirm', !1);
-            } catch (__27) {
-              console.error(__27), alert('Failed to free tile: ' + __27.message), __26.setButtonLoading('confirm', !1);
+                alert(_0x1f.error || 'Failed to free tile'), _0x1a.setButtonLoading('confirm', !1);
+            } catch (_0x1b) {
+              console.error(_0x1b), alert('Failed to free tile: ' + _0x1b.message), _0x1a.setButtonLoading('confirm', !1);
             }
           }
         }
       ];
-      let __11 = __3.element.querySelector('.modal-actions');
-      __11.innerHTML = '', __3._buttonElements.clear();
-      for (let __26 of __3.buttons)
-        __11.appendChild(__3._createButton(__26));
+      let _0xb = _0x3.element.querySelector('.modal-actions');
+      _0xb.innerHTML = '', _0x3._buttonElements.clear();
+      for (let _0x1a of _0x3.buttons)
+        _0xb.appendChild(_0x3._createButton(_0x1a));
     });
   },
-  showTakeModal: __2 => {
-    if (!__8.user) {
+  showTakeModal: _0x2 => {
+    if (!_0x8.user) {
       location.href = 'https://kicya.net/auth/login?redirect=' + encodeURIComponent('https://webtiles.kicya.net/');
       return;
     }
-    let __3 = __8.user.selectedSite;
-    if (!__3) {
+    let _0x3 = _0x8.user.selectedSite;
+    if (!_0x3) {
       alert('Please select a site first');
       return;
     }
-    let __4 = __3.domain,
-      __10 = __3.tile ? `<strong>Warning</strong>Your current tile at (${ __3.tile.__47 }, ${ __3.tile.__85 }) will be freed and your site will be moved to this new tile.` : null,
-      __11 = new __12({
+    let _0x4 = _0x3.domain,
+      _0xa = _0x3.tile ? `<strong>Warning</strong>Your current tile at (${ _0x3.tile._0x2f }, ${ _0x3.tile._0x55 }) will be freed and your site will be moved to this new tile.` : null,
+      _0xb = new _0xc({
         title: 'Take Tile',
         content: `
-                <p>Enter the code to take the tile at (${ __2.__47 }, ${ __2.__85 }) for <strong>${ __8.ui.escapeHTML(__4) }</strong>:</p>
+                <p>Enter the code to take the tile at (${ _0x2._0x2f }, ${ _0x2._0x55 }) for <strong>${ _0x8.ui.escapeHTML(_0x4) }</strong>:</p>
                 <div class="code-input-container">
                     <input type="text" id="take-code-input" class="modal-input" placeholder="Enter tile code..." autocomplete="off" />
                 </div>
             `,
-        warning: __10,
+        warning: _0xa,
         buttons: [{
             text: 'Cancel',
             type: 'cancel',
             id: 'cancel',
-            onClick: __26 => __26.close()
+            onClick: _0x1a => _0x1a.close()
           },
           {
             text: 'Take Tile',
             type: 'confirm',
             id: 'confirm',
-            onClick: async __26 => {
-              let __31 = __11.element.querySelector('#take-code-input').value.trim();
-              if (!__31) {
+            onClick: async _0x1a => {
+              let _0x1f = _0xb.element.querySelector('#take-code-input').value.trim();
+              if (!_0x1f) {
                 alert('Please enter a code');
                 return;
               }
-              __26.setButtonLoading('confirm', !0, 'Taking...');
+              _0x1a.setButtonLoading('confirm', !0, 'Taking...');
               try {
-                let __29 = await (await __8.api.makeRequest('/api/take', {
+                let _0x1d = await (await _0x8.api.makeRequest('/api/take', {
                   method: 'POST',
                   headers: {
                     'Content-Type': 'application/json'
                   },
                   body: JSON.stringify({
-                    __47: __2.__47,
-                    __85: __2.__85,
-                    code: __31
+                    _0x2f: _0x2._0x2f,
+                    _0x55: _0x2._0x55,
+                    code: _0x1f
                   })
                 })).json();
-                if (__29.success) {
-                  if (__8.user.selectedSite && __8.user.selectedSite.tile) {
-                    let __30 = __8.plot.getTile(__8.user.selectedSite.tile.__47, __8.user.selectedSite.tile.__85);
-                    __30 && __30.setFree();
+                if (_0x1d.success) {
+                  if (_0x8.user.selectedSite && _0x8.user.selectedSite.tile) {
+                    let _0x1e = _0x8.plot.getTile(_0x8.user.selectedSite.tile._0x2f, _0x8.user.selectedSite.tile._0x55);
+                    _0x1e && _0x1e.setFree();
                   }
-                  __8.user.selectedSite && (__8.user.selectedSite.tile = {
-                    __47: __2.__47,
-                    __85: __2.__85,
-                    domain: __8.user.selectedSite.domain,
+                  _0x8.user.selectedSite && (_0x8.user.selectedSite.tile = {
+                    _0x2f: _0x2._0x2f,
+                    _0x55: _0x2._0x55,
+                    domain: _0x8.user.selectedSite.domain,
                     created_at: Date.now()
-                  }), __2.setDomain(__4), __2.setActive(!1), __26.close(), Q();
+                  }), _0x2.setDomain(_0x4), _0x2.setActive(!1), _0x1a.close(), Q();
                 } else
-                  alert(__29.error || 'Failed to take tile'), __26.setButtonLoading('confirm', !1);
-              } catch (__28) {
-                console.error(__28), alert('Failed to take tile: ' + __28.message), __26.setButtonLoading('confirm', !1);
+                  alert(_0x1d.error || 'Failed to take tile'), _0x1a.setButtonLoading('confirm', !1);
+              } catch (_0x1c) {
+                console.error(_0x1c), alert('Failed to take tile: ' + _0x1c.message), _0x1a.setButtonLoading('confirm', !1);
               }
             }
           }
         ]
       });
-    __11.open(), setTimeout(() => {
-      let __26 = __11.element.querySelector('#take-code-input');
-      __26 && __26.focus();
+    _0xb.open(), setTimeout(() => {
+      let _0x1a = _0xb.element.querySelector('#take-code-input');
+      _0x1a && _0x1a.focus();
     }, 100);
   },
-  showAdminFreeModal: __2 => {
-    new __12({
+  showAdminFreeModal: _0x2 => {
+    new _0xc({
       title: 'Admin: Free Tile',
       content: `
-                <p>Are you sure you want to <strong>free</strong> the tile at (${ __2.__47 }, ${ __2.__85 })?</p>
-                <p>This will remove <strong>${ __8.ui.escapeHTML(__2.domain) }</strong> from this tile.</p>
+                <p>Are you sure you want to <strong>free</strong> the tile at (${ _0x2._0x2f }, ${ _0x2._0x55 })?</p>
+                <p>This will remove <strong>${ _0x8.ui.escapeHTML(_0x2.domain) }</strong> from this tile.</p>
             `,
       buttons: [{
           text: 'Cancel',
           type: 'cancel',
           id: 'cancel',
-          onClick: __4 => __4.close()
+          onClick: _0x4 => _0x4.close()
         },
         {
           text: 'Free Tile',
           type: 'confirm',
           id: 'confirm',
-          onClick: async __4 => {
-            __4.setButtonLoading('confirm', !0, 'Freeing...');
+          onClick: async _0x4 => {
+            _0x4.setButtonLoading('confirm', !0, 'Freeing...');
             try {
-              let __11 = await (await __8.api.makeRequest('/api/admin/free', {
+              let _0xb = await (await _0x8.api.makeRequest('/api/admin/free', {
                 method: 'POST',
                 headers: {
                   'Content-Type': 'application/json'
                 },
                 body: JSON.stringify({
-                  __47: __2.__47,
-                  __85: __2.__85
+                  _0x2f: _0x2._0x2f,
+                  _0x55: _0x2._0x55
                 })
               })).json();
-              __11.success ? (__2.setFree(), __2.setActive(!1), __4.close()) : (alert(__11.error || 'Failed to free tile'), __4.setButtonLoading('confirm', !1));
-            } catch (__10) {
-              console.error(__10), alert('Failed to free tile: ' + __10.message), __4.setButtonLoading('confirm', !1);
+              _0xb.success ? (_0x2.setFree(), _0x2.setActive(!1), _0x4.close()) : (alert(_0xb.error || 'Failed to free tile'), _0x4.setButtonLoading('confirm', !1));
+            } catch (_0xa) {
+              console.error(_0xa), alert('Failed to free tile: ' + _0xa.message), _0x4.setButtonLoading('confirm', !1);
             }
           }
         }
       ]
     }).open();
   },
-  showAdminBanModal: __2 => {
-    new __12({
+  showAdminBanModal: _0x2 => {
+    new _0xc({
       title: 'Admin: Ban User',
       content: `
-                <p>Are you sure you want to <strong>ban</strong> the owner of <strong>${ __8.ui.escapeHTML(__2.domain) }</strong>?</p>
+                <p>Are you sure you want to <strong>ban</strong> the owner of <strong>${ _0x8.ui.escapeHTML(_0x2.domain) }</strong>?</p>
                 <p>This will:</p>
                 <ul style="margin: 10px 0; padding-left: 20px; color: #555;">
                     <li>Ban the user from creating new tiles</li>
@@ -3520,86 +3520,86 @@ __8.ui = {
           text: 'Cancel',
           type: 'cancel',
           id: 'cancel',
-          onClick: __4 => __4.close()
+          onClick: _0x4 => _0x4.close()
         },
         {
           text: 'Ban User',
           type: 'confirm',
           id: 'confirm',
-          onClick: async __4 => {
-            __4.setButtonLoading('confirm', !0, 'Banning...');
+          onClick: async _0x4 => {
+            _0x4.setButtonLoading('confirm', !0, 'Banning...');
             try {
-              let __11 = await (await __8.api.makeRequest('/api/admin/ban', {
+              let _0xb = await (await _0x8.api.makeRequest('/api/admin/ban', {
                 method: 'POST',
                 headers: {
                   'Content-Type': 'application/json'
                 },
                 body: JSON.stringify({
-                  __47: __2.__47,
-                  __85: __2.__85
+                  _0x2f: _0x2._0x2f,
+                  _0x55: _0x2._0x55
                 })
               })).json();
-              __11.success ? (__2.setFree(), __2.setActive(!1), __4.close(), alert('User banned.')) : (alert(__11.error || 'Failed to ban user'), __4.setButtonLoading('confirm', !1));
-            } catch (__10) {
-              console.error(__10), alert('Failed to ban user: ' + __10.message), __4.setButtonLoading('confirm', !1);
+              _0xb.success ? (_0x2.setFree(), _0x2.setActive(!1), _0x4.close(), alert('User banned.')) : (alert(_0xb.error || 'Failed to ban user'), _0x4.setButtonLoading('confirm', !1));
+            } catch (_0xa) {
+              console.error(_0xa), alert('Failed to ban user: ' + _0xa.message), _0x4.setButtonLoading('confirm', !1);
             }
           }
         }
       ]
     }).open();
   },
-  showAdminLockModal: (__2, __3) => {
-    let __4 = __3 ? 'unlock' : 'lock',
-      __10 = __3 ? 'unlocked' : 'locked';
-    new __12({
-      title: `Admin: ${ __3 ? 'Unlock' : 'Lock' } Tile`,
+  showAdminLockModal: (_0x2, _0x3) => {
+    let _0x4 = _0x3 ? 'unlock' : 'lock',
+      _0xa = _0x3 ? 'unlocked' : 'locked';
+    new _0xc({
+      title: `Admin: ${ _0x3 ? 'Unlock' : 'Lock' } Tile`,
       content: `
-                <p>Are you sure you want to <strong>${ __4 }</strong> the tile at (${ __2.__47 }, ${ __2.__85 })?</p>
-                ${ __3 ? '<p>This tile will become available for claiming again.</p>' : '<p>This tile will be reserved and cannot be claimed by regular users.</p>' }
+                <p>Are you sure you want to <strong>${ _0x4 }</strong> the tile at (${ _0x2._0x2f }, ${ _0x2._0x55 })?</p>
+                ${ _0x3 ? '<p>This tile will become available for claiming again.</p>' : '<p>This tile will be reserved and cannot be claimed by regular users.</p>' }
             `,
       buttons: [{
           text: 'Cancel',
           type: 'cancel',
           id: 'cancel',
-          onClick: __26 => __26.close()
+          onClick: _0x1a => _0x1a.close()
         },
         {
-          text: __3 ? 'Unlock Tile' : 'Lock Tile',
+          text: _0x3 ? 'Unlock Tile' : 'Lock Tile',
           type: 'confirm',
           id: 'confirm',
-          onClick: async __26 => {
-            __26.setButtonLoading('confirm', !0, __3 ? 'Unlocking...' : 'Locking...');
+          onClick: async _0x1a => {
+            _0x1a.setButtonLoading('confirm', !0, _0x3 ? 'Unlocking...' : 'Locking...');
             try {
-              let __31 = await (await __8.api.makeRequest('/api/admin/lock', {
+              let _0x1f = await (await _0x8.api.makeRequest('/api/admin/lock', {
                 method: 'POST',
                 headers: {
                   'Content-Type': 'application/json'
                 },
                 body: JSON.stringify({
-                  __47: __2.__47,
-                  __85: __2.__85,
-                  lock: !__3
+                  _0x2f: _0x2._0x2f,
+                  _0x55: _0x2._0x55,
+                  lock: !_0x3
                 })
               })).json();
-              __31.success ? (__3 ? delete __8.plot.lockCache[__2.__47 + ',' + __2.__85] : __8.plot.lockCache[__2.__47 + ',' + __2.__85] = !0, __26.close(), __2.setActive(!1), __2.setActive(!0)) : (alert(__31.error || `Failed to ${ __4 } tile`), __26.setButtonLoading('confirm', !1));
-            } catch (__27) {
-              console.error(__27), alert(`Failed to ${ __4 } tile: ` + __27.message), __26.setButtonLoading('confirm', !1);
+              _0x1f.success ? (_0x3 ? delete _0x8.plot.lockCache[_0x2._0x2f + ',' + _0x2._0x55] : _0x8.plot.lockCache[_0x2._0x2f + ',' + _0x2._0x55] = !0, _0x1a.close(), _0x2.setActive(!1), _0x2.setActive(!0)) : (alert(_0x1f.error || `Failed to ${ _0x4 } tile`), _0x1a.setButtonLoading('confirm', !1));
+            } catch (_0x1b) {
+              console.error(_0x1b), alert(`Failed to ${ _0x4 } tile: ` + _0x1b.message), _0x1a.setButtonLoading('confirm', !1);
             }
           }
         }
       ]
     }).open();
   },
-  showAdminLockCodeModal: async __2 => {
+  showAdminLockCodeModal: async _0x2 => {
     try {
-      let __4 = await (await __8.api.makeRequest(`/api/admin/lockcode?x=${ __2.__47 }&y=${ __2.__85 }`)).json();
-      if (__4.success) {
-        let __10 = new __12({
+      let _0x4 = await (await _0x8.api.makeRequest(`/api/admin/lockcode?x=${ _0x2._0x2f }&y=${ _0x2._0x55 }`)).json();
+      if (_0x4.success) {
+        let _0xa = new _0xc({
           title: 'Lock Code',
           content: `
-                        <p>Lock code for tile at (${ __2.__47 }, ${ __2.__85 }):</p>
+                        <p>Lock code for tile at (${ _0x2._0x2f }, ${ _0x2._0x55 }):</p>
                         <div class="code-display">
-                            <code id="lock-code">${ __8.ui.escapeHTML(__4.code) }</code>
+                            <code id="lock-code">${ _0x8.ui.escapeHTML(_0x4.code) }</code>
                             <button class="btn" id="copy-lock-code-btn">Copy</button>
                         </div>
                         <p class="modal-hint">Share this code to allow someone to claim this locked tile.</p>
@@ -3608,32 +3608,32 @@ __8.ui = {
             text: 'Close',
             type: 'cancel',
             id: 'close',
-            onClick: __26 => __26.close()
+            onClick: _0x1a => _0x1a.close()
           }]
         });
-        __10.open();
-        let __11 = __10.element.querySelector('#copy-lock-code-btn');
-        __11.addEventListener('click', () => {
-          navigator.clipboard.writeText(__4.code), __11.textContent = 'Copied!', setTimeout(() => {
-            __11.textContent = 'Copy';
+        _0xa.open();
+        let _0xb = _0xa.element.querySelector('#copy-lock-code-btn');
+        _0xb.addEventListener('click', () => {
+          navigator.clipboard.writeText(_0x4.code), _0xb.textContent = 'Copied!', setTimeout(() => {
+            _0xb.textContent = 'Copy';
           }, 1500);
         });
       } else
-        alert(__4.error || 'Failed to get lock code');
-    } catch (__3) {
-      console.error(__3), alert('Failed to get lock code: ' + __3.message);
+        alert(_0x4.error || 'Failed to get lock code');
+    } catch (_0x3) {
+      console.error(_0x3), alert('Failed to get lock code: ' + _0x3.message);
     }
   },
-  showAdminTileCodeModal: async __2 => {
+  showAdminTileCodeModal: async _0x2 => {
     try {
-      let __4 = await (await __8.api.makeRequest(`/api/admin/tilecode?x=${ __2.__47 }&y=${ __2.__85 }`)).json();
-      if (__4.success) {
-        let __10 = new __12({
+      let _0x4 = await (await _0x8.api.makeRequest(`/api/admin/tilecode?x=${ _0x2._0x2f }&y=${ _0x2._0x55 }`)).json();
+      if (_0x4.success) {
+        let _0xa = new _0xc({
           title: 'Tile Secret Code',
           content: `
-                        <p>Secret code for tile at (${ __2.__47 }, ${ __2.__85 }):</p>
+                        <p>Secret code for tile at (${ _0x2._0x2f }, ${ _0x2._0x55 }):</p>
                         <div class="code-display">
-                            <code id="tile-code">${ __8.ui.escapeHTML(__4.code) }</code>
+                            <code id="tile-code">${ _0x8.ui.escapeHTML(_0x4.code) }</code>
                             <button class="btn" id="copy-tile-code-btn">Copy</button>
                         </div>
                         <p class="modal-hint">This is the secret code for this tile. Share it to allow someone to take this tile.</p>
@@ -3642,27 +3642,27 @@ __8.ui = {
             text: 'Close',
             type: 'cancel',
             id: 'close',
-            onClick: __26 => __26.close()
+            onClick: _0x1a => _0x1a.close()
           }]
         });
-        __10.open();
-        let __11 = __10.element.querySelector('#copy-tile-code-btn');
-        __11.addEventListener('click', () => {
-          navigator.clipboard.writeText(__4.code), __11.textContent = 'Copied!', setTimeout(() => {
-            __11.textContent = 'Copy';
+        _0xa.open();
+        let _0xb = _0xa.element.querySelector('#copy-tile-code-btn');
+        _0xb.addEventListener('click', () => {
+          navigator.clipboard.writeText(_0x4.code), _0xb.textContent = 'Copied!', setTimeout(() => {
+            _0xb.textContent = 'Copy';
           }, 1500);
         });
       } else
-        alert(__4.error || 'Failed to get tile code');
-    } catch (__3) {
-      console.error(__3), alert('Failed to get tile code: ' + __3.message);
+        alert(_0x4.error || 'Failed to get tile code');
+    } catch (_0x3) {
+      console.error(_0x3), alert('Failed to get tile code: ' + _0x3.message);
     }
   },
-  showAdminSwapModal: __2 => {
-    let __3 = new __12({
+  showAdminSwapModal: _0x2 => {
+    let _0x3 = new _0xc({
       title: 'Admin: Swap Tiles',
       content: `
-                <p>Enter the coordinates of the tile to swap with tile at (${ __2.__47 }, ${ __2.__85 }):</p>
+                <p>Enter the coordinates of the tile to swap with tile at (${ _0x2._0x2f }, ${ _0x2._0x55 }):</p>
                 <div class="code-input-container">
                     <label style="display: block; margin-bottom: 5px; font-size: 12px; color: #555;">X coordinate:</label>
                     <input type="number" id="swap-x-input" class="modal-input" placeholder="Enter X..." autocomplete="off" />
@@ -3676,332 +3676,332 @@ __8.ui = {
           text: 'Cancel',
           type: 'cancel',
           id: 'cancel',
-          onClick: __4 => __4.close()
+          onClick: _0x4 => _0x4.close()
         },
         {
           text: 'Swap',
           type: 'confirm',
           id: 'confirm',
-          onClick: async __4 => {
-            let __10 = __3.element.querySelector('#swap-x-input'),
-              __11 = __3.element.querySelector('#swap-y-input'),
-              __26 = parseInt(__10.value.trim()),
-              __27 = parseInt(__11.value.trim());
-            if (isNaN(__26) || isNaN(__27)) {
+          onClick: async _0x4 => {
+            let _0xa = _0x3.element.querySelector('#swap-x-input'),
+              _0xb = _0x3.element.querySelector('#swap-y-input'),
+              _0x1a = parseInt(_0xa.value.trim()),
+              _0x1b = parseInt(_0xb.value.trim());
+            if (isNaN(_0x1a) || isNaN(_0x1b)) {
               alert('Please enter valid X and Y coordinates');
               return;
             }
-            if (__2.__47 === __26 && __2.__85 === __27) {
+            if (_0x2._0x2f === _0x1a && _0x2._0x55 === _0x1b) {
               alert('Cannot swap a tile with itself');
               return;
             }
-            __4.setButtonLoading('confirm', !0, 'Swapping...');
+            _0x4.setButtonLoading('confirm', !0, 'Swapping...');
             try {
-              let __28 = await (await __8.api.makeRequest('/api/admin/swap', {
+              let _0x1c = await (await _0x8.api.makeRequest('/api/admin/swap', {
                 method: 'POST',
                 headers: {
                   'Content-Type': 'application/json'
                 },
                 body: JSON.stringify({
-                  x1: __2.__47,
-                  y1: __2.__85,
-                  x2: __26,
-                  y2: __27
+                  x1: _0x2._0x2f,
+                  y1: _0x2._0x55,
+                  x2: _0x1a,
+                  y2: _0x1b
                 })
               })).json();
-              __28.success ? (__4.close(), __2.setActive(!1), setTimeout(() => {
-                let __29 = __8.plot.getTile(__2.__47, __2.__85),
-                  __30 = __8.plot.getTile(__26, __27);
-                __29 && (__29.setActive(!1), __29.fetchContent('/index.html', !0)), __30 && (__30.setActive(!1), __30.fetchContent('/index.html', !0));
-              }, 100)) : (alert(__28.error || 'Failed to swap tiles'), __4.setButtonLoading('confirm', !1));
-            } catch (__31) {
-              console.error(__31), alert('Failed to swap tiles: ' + __31.message), __4.setButtonLoading('confirm', !1);
+              _0x1c.success ? (_0x4.close(), _0x2.setActive(!1), setTimeout(() => {
+                let _0x1d = _0x8.plot.getTile(_0x2._0x2f, _0x2._0x55),
+                  _0x1e = _0x8.plot.getTile(_0x1a, _0x1b);
+                _0x1d && (_0x1d.setActive(!1), _0x1d.fetchContent('/index.html', !0)), _0x1e && (_0x1e.setActive(!1), _0x1e.fetchContent('/index.html', !0));
+              }, 100)) : (alert(_0x1c.error || 'Failed to swap tiles'), _0x4.setButtonLoading('confirm', !1));
+            } catch (_0x1f) {
+              console.error(_0x1f), alert('Failed to swap tiles: ' + _0x1f.message), _0x4.setButtonLoading('confirm', !1);
             }
           }
         }
       ]
     });
-    __3.open(), setTimeout(() => {
-      let __4 = __3.element.querySelector('#swap-x-input');
-      __4 && __4.focus();
+    _0x3.open(), setTimeout(() => {
+      let _0x4 = _0x3.element.querySelector('#swap-x-input');
+      _0x4 && _0x4.focus();
     }, 100);
   },
-  createAdminControl: __2 => {
-    let __3 = __8.ui.createElement('div', {
+  createAdminControl: _0x2 => {
+    let _0x3 = _0x8.ui.createElement('div', {
       class: 'tile-admin-panel'
     });
-    __2.free || (__3.appendChild(__8.ui.createElement('button', {
+    _0x2.free || (_0x3.appendChild(_0x8.ui.createElement('button', {
       innerText: 'Edit',
       onclick: () => {
-        __8.ui.showDashboard(__2.domain);
+        _0x8.ui.showDashboard(_0x2.domain);
       }
-    })), __3.appendChild(__8.ui.createElement('span', {
+    })), _0x3.appendChild(_0x8.ui.createElement('span', {
       class: 'separator'
-    })), __3.appendChild(__8.ui.createElement('button', {
+    })), _0x3.appendChild(_0x8.ui.createElement('button', {
       innerText: 'Free',
       onclick: () => {
-        __8.ui.showAdminFreeModal(__2);
+        _0x8.ui.showAdminFreeModal(_0x2);
       }
-    })), __3.appendChild(__8.ui.createElement('button', {
+    })), _0x3.appendChild(_0x8.ui.createElement('button', {
       class: 'danger',
       innerText: 'Ban',
       onclick: () => {
-        __8.ui.showAdminBanModal(__2);
+        _0x8.ui.showAdminBanModal(_0x2);
       }
-    })), __3.appendChild(__8.ui.createElement('button', {
+    })), _0x3.appendChild(_0x8.ui.createElement('button', {
       innerText: 'Swap',
       onclick: () => {
-        __8.ui.showAdminSwapModal(__2);
+        _0x8.ui.showAdminSwapModal(_0x2);
       }
     })));
-    let __4 = __8.plot.lockCache[__2.__47 + ',' + __2.__85],
-      __10 = __8.ui.createElement('button', {
-        innerText: __4 ? 'Unlock' : 'Lock',
+    let _0x4 = _0x8.plot.lockCache[_0x2._0x2f + ',' + _0x2._0x55],
+      _0xa = _0x8.ui.createElement('button', {
+        innerText: _0x4 ? 'Unlock' : 'Lock',
         onclick: async () => {
           try {
-            let __26 = await (await __8.api.makeRequest(`/api/admin/lockstatus?x=${ __2.__47 }&y=${ __2.__85 }`)).json();
-            __26.success ? __8.ui.showAdminLockModal(__2, __26.locked) : alert(__26.error || 'Failed to check lock status');
-          } catch (__11) {
-            console.error(__11), alert('Failed to check lock status: ' + __11.message);
+            let _0x1a = await (await _0x8.api.makeRequest(`/api/admin/lockstatus?x=${ _0x2._0x2f }&y=${ _0x2._0x55 }`)).json();
+            _0x1a.success ? _0x8.ui.showAdminLockModal(_0x2, _0x1a.locked) : alert(_0x1a.error || 'Failed to check lock status');
+          } catch (_0xb) {
+            console.error(_0xb), alert('Failed to check lock status: ' + _0xb.message);
           }
         }
       });
-    if (__2.free || __3.appendChild(__8.ui.createElement('span', {
+    if (_0x2.free || _0x3.appendChild(_0x8.ui.createElement('span', {
         class: 'separator'
-      })), __3.appendChild(__10), __4) {
-      let __11 = __8.ui.createElement('button', {
+      })), _0x3.appendChild(_0xa), _0x4) {
+      let _0xb = _0x8.ui.createElement('button', {
         innerText: 'Show',
         onclick: () => {
-          __8.ui.showAdminLockCodeModal(__2);
+          _0x8.ui.showAdminLockCodeModal(_0x2);
         }
       });
-      __3.appendChild(__11);
+      _0x3.appendChild(_0xb);
     }
-    if (!__2.free) {
-      let __11 = __8.ui.createElement('button', {
+    if (!_0x2.free) {
+      let _0xb = _0x8.ui.createElement('button', {
         innerText: 'Show',
         onclick: () => {
-          __8.ui.showAdminTileCodeModal(__2);
+          _0x8.ui.showAdminTileCodeModal(_0x2);
         }
       });
-      __3.appendChild(__11);
+      _0x3.appendChild(_0xb);
     }
-    return __3;
+    return _0x3;
   },
-  createTileControl: __2 => {
-    let __3 = __8.ui.createElement('div', {
+  createTileControl: _0x2 => {
+    let _0x3 = _0x8.ui.createElement('div', {
         class: 'tile-info',
         innerHTML: `
                 <div class="tile-domain">
-                    ${ __2.domain ? `<a href="https://${ __8.ui.escapeHTML(__2.domain) }" target="_blank">${ __8.ui.escapeHTML(__2.domain) }</a>` : `${ __2.locked ? 'Locked tile' : 'Free tile' } ${ __2.__47 }, ${ __2.__85 }` }
+                    ${ _0x2.domain ? `<a href="https://${ _0x8.ui.escapeHTML(_0x2.domain) }" target="_blank">${ _0x8.ui.escapeHTML(_0x2.domain) }</a>` : `${ _0x2.locked ? 'Locked tile' : 'Free tile' } ${ _0x2._0x2f }, ${ _0x2._0x55 }` }
                 </div>
                 <div class="tile-controls">
             `
       }),
-      __4 = __3.querySelector('.tile-controls');
-    if (__2.free)
-      __8.plot.lockCache[__2.__47 + ',' + __2.__85] ? __4.appendChild(__8.ui.createElement('button', {
+      _0x4 = _0x3.querySelector('.tile-controls');
+    if (_0x2.free)
+      _0x8.plot.lockCache[_0x2._0x2f + ',' + _0x2._0x55] ? _0x4.appendChild(_0x8.ui.createElement('button', {
         class: 'btn',
         innerText: 'Unlock',
         onclick: () => {
-          __8.ui.showUnlockModal(__2);
+          _0x8.ui.showUnlockModal(_0x2);
         }
-      })) : __4.appendChild(__8.ui.createElement('button', {
+      })) : _0x4.appendChild(_0x8.ui.createElement('button', {
         class: 'btn',
         innerText: 'Claim',
         onclick: () => {
-          __8.ui.showClaimModal(__2);
+          _0x8.ui.showClaimModal(_0x2);
         }
       }));
     else {
-      let __10 = __8?.user?.sites?.find(__11 => __11.domain === __2.domain);
-      if (__10 && (__4.appendChild(__8.ui.createElement('button', {
+      let _0xa = _0x8?.user?.sites?.find(_0xb => _0xb.domain === _0x2.domain);
+      if (_0xa && (_0x4.appendChild(_0x8.ui.createElement('button', {
           class: 'btn',
           innerText: 'Edit',
           onclick: () => {
-            __8.ui.showDashboard(__2.domain);
+            _0x8.ui.showDashboard(_0x2.domain);
           }
-        })), __4.appendChild(__8.ui.createElement('button', {
+        })), _0x4.appendChild(_0x8.ui.createElement('button', {
           class: 'btn',
           innerText: 'Give',
           onclick: () => {
-            __8.ui.showFreeModal(__2);
+            _0x8.ui.showFreeModal(_0x2);
           }
-        }))), (!__10 || __8?.user?.selectedSite?.domain !== __2.domain && __8?.user?.sites?.length >= 2) && __4.appendChild(__8.ui.createElement('button', {
+        }))), (!_0xa || _0x8?.user?.selectedSite?.domain !== _0x2.domain && _0x8?.user?.sites?.length >= 2) && _0x4.appendChild(_0x8.ui.createElement('button', {
           class: 'btn',
           innerText: 'Take',
           onclick: () => {
-            __8.ui.showTakeModal(__2);
+            _0x8.ui.showTakeModal(_0x2);
           }
-        })), !__10 && __8?.user?.selectedSite?.tile) {
-        let __11 = __8.user.selectedSite.tile;
-        Math.abs(__11.__47 - __2.__47) <= 1 && Math.abs(__11.__85 - __2.__85) <= 1 && __8.ui.checkAndShowAttackButton(__2, __4);
+        })), !_0xa && _0x8?.user?.selectedSite?.tile) {
+        let _0xb = _0x8.user.selectedSite.tile;
+        Math.abs(_0xb._0x2f - _0x2._0x2f) <= 1 && Math.abs(_0xb._0x55 - _0x2._0x55) <= 1 && _0x8.ui.checkAndShowAttackButton(_0x2, _0x4);
       }
     }
-    return __4.appendChild(__8.ui.createElement('button', {
+    return _0x4.appendChild(_0x8.ui.createElement('button', {
       class: 'btn',
       innerHTML: 'Link',
-      onclick: __10 => {
-        __10.target.innerText = 'Copied!', setTimeout(() => {
-          __10.target.innerText = 'Link';
+      onclick: _0xa => {
+        _0xa.target.innerText = 'Copied!', setTimeout(() => {
+          _0xa.target.innerText = 'Link';
         }, 500);
-        let __11 = __2.__47 * 250 + 250 / 2,
-          __26 = __2.__85 * 250 + 250 / 2;
-        navigator.clipboard.writeText(`https://webtiles.kicya.net/#${ __11 },${ __26 }`);
+        let _0xb = _0x2._0x2f * 250 + 250 / 2,
+          _0x1a = _0x2._0x55 * 250 + 250 / 2;
+        navigator.clipboard.writeText(`https://webtiles.kicya.net/#${ _0xb },${ _0x1a }`);
       }
-    })), __4.appendChild(__8.ui.createElement('button', {
+    })), _0x4.appendChild(_0x8.ui.createElement('button', {
       class: 'btn',
       innerHTML: '\u27F3',
       onclick: () => {
-        __2.fetchContent(__2.path, !0), __2.setActive(!1);
+        _0x2.fetchContent(_0x2.path, !0), _0x2.setActive(!1);
       }
-    })), __4.appendChild(__8.ui.createElement('button', {
+    })), _0x4.appendChild(_0x8.ui.createElement('button', {
       class: 'btn',
       innerHTML: '&times;',
       onclick: () => {
-        __2.setActive(!1);
+        _0x2.setActive(!1);
       }
-    })), __3.appendChild(__4), __3;
+    })), _0x3.appendChild(_0x4), _0x3;
   },
-  createVoteMenu: __2 => {
-    if (__2.free || !__2.domain)
+  createVoteMenu: _0x2 => {
+    if (_0x2.free || !_0x2.domain)
       return null;
-    let __3 = __8.ui.createElement('div', {
+    let _0x3 = _0x8.ui.createElement('div', {
         class: 'tile-vote-menu'
       }),
-      __4 = __8.ui.createElement('button', {
+      _0x4 = _0x8.ui.createElement('button', {
         class: 'vote-btn vote-up',
         innerHTML: '\u25B2',
-        onclick: () => __8.ui.handleVote(__2, 1, __4, __11, __10)
+        onclick: () => _0x8.ui.handleVote(_0x2, 1, _0x4, _0xb, _0xa)
       }),
-      __10 = __8.ui.createElement('div', {
+      _0xa = _0x8.ui.createElement('div', {
         class: 'vote-score',
         innerText: '...'
       }),
-      __11 = __8.ui.createElement('button', {
+      _0xb = _0x8.ui.createElement('button', {
         class: 'vote-btn vote-down',
         innerHTML: '\u25BC',
-        onclick: () => __8.ui.handleVote(__2, -1, __4, __11, __10)
+        onclick: () => _0x8.ui.handleVote(_0x2, -1, _0x4, _0xb, _0xa)
       });
-    return __3.appendChild(__4), __3.appendChild(__10), __3.appendChild(__11), __8.ui.fetchVoteData(__2, __4, __11, __10), __3;
+    return _0x3.appendChild(_0x4), _0x3.appendChild(_0xa), _0x3.appendChild(_0xb), _0x8.ui.fetchVoteData(_0x2, _0x4, _0xb, _0xa), _0x3;
   },
-  fetchVoteData: async (__2, __3, __4, __10) => {
+  fetchVoteData: async (_0x2, _0x3, _0x4, _0xa) => {
     try {
-      let __26 = await (await __8.api.makeRequest(`/api/votes/score?domain=${ encodeURIComponent(__2.domain) }`)).json();
-      if (__26.success) {
-        let __27 = __26.score || 0;
-        __10.textContent = __27;
-        let __31 = __26.myVote || 0;
-        __3.classList.remove('active'), __4.classList.remove('active'), __31 === 1 ? __3.classList.add('active') : __31 === -1 && __4.classList.add('active');
+      let _0x1a = await (await _0x8.api.makeRequest(`/api/votes/score?domain=${ encodeURIComponent(_0x2.domain) }`)).json();
+      if (_0x1a.success) {
+        let _0x1b = _0x1a.score || 0;
+        _0xa.textContent = _0x1b;
+        let _0x1f = _0x1a.myVote || 0;
+        _0x3.classList.remove('active'), _0x4.classList.remove('active'), _0x1f === 1 ? _0x3.classList.add('active') : _0x1f === -1 && _0x4.classList.add('active');
       } else
-        __10.textContent = '0';
-    } catch (__11) {
-      console.error('Failed to fetch vote score:', __11), __10.textContent = '0';
+        _0xa.textContent = '0';
+    } catch (_0xb) {
+      console.error('Failed to fetch vote score:', _0xb), _0xa.textContent = '0';
     }
   },
-  handleVote: async (__2, __3, __4, __10, __11) => {
-    if (!__8.user) {
+  handleVote: async (_0x2, _0x3, _0x4, _0xa, _0xb) => {
+    if (!_0x8.user) {
       location.href = 'https://kicya.net/auth/login?redirect=' + encodeURIComponent('https://webtiles.kicya.net/');
       return;
     }
-    let __26 = __4.classList.contains('active'),
-      __27 = __10.classList.contains('active'),
-      __31 = __3;
-    (__3 === 1 && __26 || __3 === -1 && __27) && (__31 = 0), __4.disabled = !0, __10.disabled = !0;
+    let _0x1a = _0x4.classList.contains('active'),
+      _0x1b = _0xa.classList.contains('active'),
+      _0x1f = _0x3;
+    (_0x3 === 1 && _0x1a || _0x3 === -1 && _0x1b) && (_0x1f = 0), _0x4.disabled = !0, _0xa.disabled = !0;
     try {
-      let __29 = await (await __8.api.makeRequest('/api/votes/vote', {
+      let _0x1d = await (await _0x8.api.makeRequest('/api/votes/vote', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json'
         },
         body: JSON.stringify({
-          domain: __2.domain,
-          vote: __31
+          domain: _0x2.domain,
+          vote: _0x1f
         })
       })).json();
-      if (__29.success) {
-        let __30 = __29.score || 0;
-        __11.textContent = __30, __4.classList.remove('active'), __10.classList.remove('active'), __31 === 1 ? __4.classList.add('active') : __31 === -1 && __10.classList.add('active');
+      if (_0x1d.success) {
+        let _0x1e = _0x1d.score || 0;
+        _0xb.textContent = _0x1e, _0x4.classList.remove('active'), _0xa.classList.remove('active'), _0x1f === 1 ? _0x4.classList.add('active') : _0x1f === -1 && _0xa.classList.add('active');
       } else
-        alert(__29.error || 'Failed to vote');
-    } catch (__28) {
-      console.error('Failed to vote:', __28), alert('Failed to vote: ' + __28.message);
+        alert(_0x1d.error || 'Failed to vote');
+    } catch (_0x1c) {
+      console.error('Failed to vote:', _0x1c), alert('Failed to vote: ' + _0x1c.message);
     } finally {
-      __4.disabled = !1, __10.disabled = !1;
+      _0x4.disabled = !1, _0xa.disabled = !1;
     }
   },
-  checkAndShowAttackButton: async (__2, __3) => {
+  checkAndShowAttackButton: async (_0x2, _0x3) => {
     try {
-      let __10 = await (await __8.api.makeRequest(`/api/clans/tile-clan?domain=${ encodeURIComponent(__2.domain) }`)).json();
-      if (__10.success && __10.clan && __10.clan.members && __10.clan.members.length >= 3)
+      let _0xa = await (await _0x8.api.makeRequest(`/api/clans/tile-clan?domain=${ encodeURIComponent(_0x2.domain) }`)).json();
+      if (_0xa.success && _0xa.clan && _0xa.clan.members && _0xa.clan.members.length >= 3)
         return;
-      __3.prepend(__8.ui.createElement('button', {
+      _0x3.prepend(_0x8.ui.createElement('button', {
         class: 'btn',
         innerText: 'Attack',
         onclick: () => {
-          __8.ui.showAttackModal(__2);
+          _0x8.ui.showAttackModal(_0x2);
         }
       }));
-    } catch (__4) {
-      console.error('Failed to check clan for attack button:', __4), __3.prepend(__8.ui.createElement('button', {
+    } catch (_0x4) {
+      console.error('Failed to check clan for attack button:', _0x4), _0x3.prepend(_0x8.ui.createElement('button', {
         class: 'btn',
         innerText: 'Attack',
         onclick: () => {
-          __8.ui.showAttackModal(__2);
+          _0x8.ui.showAttackModal(_0x2);
         }
       }));
     }
   },
-  showAttackModal: async __2 => {
-    if (!__8.user) {
+  showAttackModal: async _0x2 => {
+    if (!_0x8.user) {
       location.href = 'https://kicya.net/auth/login?redirect=' + encodeURIComponent('https://webtiles.kicya.net/');
       return;
     }
-    if (!__8.user.selectedSite) {
+    if (!_0x8.user.selectedSite) {
       alert('Please select a site first');
       return;
     }
-    if (!__8.user.selectedSite.tile) {
+    if (!_0x8.user.selectedSite.tile) {
       alert('You must have a tile to attack from');
       return;
     }
-    let __4 = __8.user.selectedSite.domain,
-      __10 = __2.domain,
-      __11 = 0,
-      __26 = null,
-      __27 = null;
+    let _0x4 = _0x8.user.selectedSite.domain,
+      _0xa = _0x2.domain,
+      _0xb = 0,
+      _0x1a = null,
+      _0x1b = null;
     try {
-      let __30 = await (await __8.api.makeRequest(`/api/attack/success-chance?attacked_domain=${ encodeURIComponent(__10) }`)).json();
-      __30.success ? (__11 = __30.successChance, __26 = __30.cooldown) : __27 = __30.error || 'Failed to get attack success chance';
-    } catch (__29) {
-      console.error(__29), __27 = 'Failed to get attack success chance: ' + __29.message;
+      let _0x1e = await (await _0x8.api.makeRequest(`/api/attack/success-chance?attacked_domain=${ encodeURIComponent(_0xa) }`)).json();
+      _0x1e.success ? (_0xb = _0x1e.successChance, _0x1a = _0x1e.cooldown) : _0x1b = _0x1e.error || 'Failed to get attack success chance';
+    } catch (_0x1d) {
+      console.error(_0x1d), _0x1b = 'Failed to get attack success chance: ' + _0x1d.message;
     }
-    if (__27) {
-      alert(__27);
+    if (_0x1b) {
+      alert(_0x1b);
       return;
     }
-    if (__11 < 1) {
+    if (_0xb < 1) {
       alert('Attack chance is too low to attempt an attack. If you just attacked, wait a few hours before attacking again.');
       return;
     }
-    let __31 = '';
-    if (__26 && __26.isOnCooldown) {
-      let __29 = __26.hoursRemaining;
-      __31 = `
+    let _0x1f = '';
+    if (_0x1a && _0x1a.isOnCooldown) {
+      let _0x1d = _0x1a.hoursRemaining;
+      _0x1f = `
                 <p style="margin: 15px 0; padding: 10px; background-color: #fff3cd; border: 1px solid #ffc107; border-radius: 4px; color: #856404;">
                     <strong>Warning:</strong> Your attack chance is penalized because less than 12 hours have passed since your last attack. 
-                    ${ __29 > 1 ? `Approximately ${ __29 } hours remaining until full chance.` : 'Less than 1 hour remaining until full chance.' }
+                    ${ _0x1d > 1 ? `Approximately ${ _0x1d } hours remaining until full chance.` : 'Less than 1 hour remaining until full chance.' }
                 </p>
             `;
     }
-    new __12({
+    new _0xc({
       title: 'Attack Tile',
       content: `
                 <p>
-                    Attack the tile at (${ __2.__47 }, ${ __2.__85 }) owned by <strong>${ __8.ui.escapeHTML(__10) }</strong>?<br>
-                    Attack success chance: ${ __11.toFixed(1) }%
+                    Attack the tile at (${ _0x2._0x2f }, ${ _0x2._0x55 }) owned by <strong>${ _0x8.ui.escapeHTML(_0xa) }</strong>?<br>
+                    Attack success chance: ${ _0xb.toFixed(1) }%
                 </p>
-                ${ __31 }
+                ${ _0x1f }
                 <p style="font-size: 12px; color: #666; margin-top: 10px;">
                     If successful, your tile and the attacked tile will swap positions.
                 </p>
@@ -4010,27 +4010,27 @@ __8.ui = {
           text: 'Cancel',
           type: 'cancel',
           id: 'cancel',
-          onClick: __29 => __29.close()
+          onClick: _0x1d => _0x1d.close()
         },
         {
           text: 'Attack',
           type: 'confirm',
           id: 'confirm',
-          onClick: async __29 => {
-            __29.setButtonLoading('confirm', !0, 'Attacking...');
+          onClick: async _0x1d => {
+            _0x1d.setButtonLoading('confirm', !0, 'Attacking...');
             try {
-              let __41 = await (await __8.api.makeRequest('/api/attack/perform', {
+              let _0x29 = await (await _0x8.api.makeRequest('/api/attack/perform', {
                 method: 'POST',
                 headers: {
                   'Content-Type': 'application/json'
                 },
                 body: JSON.stringify({
-                  __47: __2.__47,
-                  __85: __2.__85
+                  _0x2f: _0x2._0x2f,
+                  _0x55: _0x2._0x55
                 })
               })).json();
-              if (__41.success) {
-                __29.setContent(`
+              if (_0x29.success) {
+                _0x1d.setContent(`
                                     <p style="color: #4caf50; font-weight: bold; text-align: center; padding: 0px;">
                                         \u2713 Attack Successful!
                                     </p>
@@ -4038,44 +4038,44 @@ __8.ui = {
                                         Your tile and the attacked tile have been swapped.
                                     </p>
                                 `), setTimeout(() => {
-                  let __43 = __8.plot.getTile(__8.user.selectedSite.tile.__47, __8.user.selectedSite.tile.__85);
-                  __43 && (__43.fetchContent('/index.html', !0), __43.setActive(!1)), __2.fetchContent('/index.html', !0), __2.setActive(!1), __8.user.selectedSite && (__8.user.selectedSite.tile = {
-                    __47: __2.__47,
-                    __85: __2.__85,
-                    domain: __4,
+                  let _0x2b = _0x8.plot.getTile(_0x8.user.selectedSite.tile._0x2f, _0x8.user.selectedSite.tile._0x55);
+                  _0x2b && (_0x2b.fetchContent('/index.html', !0), _0x2b.setActive(!1)), _0x2.fetchContent('/index.html', !0), _0x2.setActive(!1), _0x8.user.selectedSite && (_0x8.user.selectedSite.tile = {
+                    _0x2f: _0x2._0x2f,
+                    _0x55: _0x2._0x55,
+                    domain: _0x4,
                     created_at: Date.now()
                   });
-                }, 500), __29.buttons = [{
+                }, 500), _0x1d.buttons = [{
                   text: 'Close',
                   type: 'cancel',
                   id: 'close',
-                  onClick: __43 => __43.close()
+                  onClick: _0x2b => _0x2b.close()
                 }];
-                let __42 = __29.element.querySelector('.modal-actions');
-                __42.innerHTML = '', __29._buttonElements.clear();
-                for (let __43 of __29.buttons)
-                  __42.appendChild(__29._createButton(__43));
+                let _0x2a = _0x1d.element.querySelector('.modal-actions');
+                _0x2a.innerHTML = '', _0x1d._buttonElements.clear();
+                for (let _0x2b of _0x1d.buttons)
+                  _0x2a.appendChild(_0x1d._createButton(_0x2b));
               } else {
-                __29.setContent(`
+                _0x1d.setContent(`
                                     <p style="color: #f44336; font-weight: bold; text-align: center; padding: 0px;">
                                         \u2717 Attack Failed
                                     </p>
                                     <p style="text-align: center;">
-                                        ${ __8.ui.escapeHTML(__41.error || 'The attack was unsuccessful.') }
+                                        ${ _0x8.ui.escapeHTML(_0x29.error || 'The attack was unsuccessful.') }
                                     </p>
-                                `), __29.buttons = [{
+                                `), _0x1d.buttons = [{
                   text: 'Close',
                   type: 'cancel',
                   id: 'close',
-                  onClick: __43 => __43.close()
+                  onClick: _0x2b => _0x2b.close()
                 }];
-                let __42 = __29.element.querySelector('.modal-actions');
-                __42.innerHTML = '', __29._buttonElements.clear();
-                for (let __43 of __29.buttons)
-                  __42.appendChild(__29._createButton(__43));
+                let _0x2a = _0x1d.element.querySelector('.modal-actions');
+                _0x2a.innerHTML = '', _0x1d._buttonElements.clear();
+                for (let _0x2b of _0x1d.buttons)
+                  _0x2a.appendChild(_0x1d._createButton(_0x2b));
               }
-            } catch (__30) {
-              console.error(__30), alert('Failed to attack tile: ' + __30.message), __29.setButtonLoading('confirm', !1);
+            } catch (_0x1e) {
+              console.error(_0x1e), alert('Failed to attack tile: ' + _0x1e.message), _0x1d.setButtonLoading('confirm', !1);
             }
           }
         }
@@ -4083,147 +4083,147 @@ __8.ui = {
     }).open();
   },
   showEmbedModal: () => {
-    if (!__8.user) {
+    if (!_0x8.user) {
       location.href = 'https://kicya.net/auth/login?redirect=' + encodeURIComponent('https://webtiles.kicya.net/');
       return;
     }
-    if (!__8.user.selectedSite) {
+    if (!_0x8.user.selectedSite) {
       alert('Please select a site first');
       return;
     }
-    if (!__8.user.selectedSite.tile) {
+    if (!_0x8.user.selectedSite.tile) {
       alert('Your site must have a tile to embed it');
       return;
     }
-    let __2 = __8.user.selectedSite.domain,
-      __3 = !1,
-      __4 = __50 => {
-        let __51 = `/e/${ __2 }`;
-        return __50 ? `${ __51 }?dark=true` : __51;
+    let _0x2 = _0x8.user.selectedSite.domain,
+      _0x3 = !1,
+      _0x4 = _0x32 => {
+        let _0x33 = `/e/${ _0x2 }`;
+        return _0x32 ? `${ _0x33 }?dark=true` : _0x33;
       },
-      __10 = __50 => `<iframe src="https://webtiles.kicya.net${ __4(__50) }" width="250" height="270" frameborder="0"></iframe>`,
-      __11 = document.createElement('div');
-    __11.style.cssText = 'display: flex; gap: 20px; align-items: flex-start; flex-wrap: wrap;';
-    let __26 = document.createElement('div');
-    __26.style.cssText = 'min-width: 250px; max-width: 100%;';
-    let __27 = document.createElement('h4');
-    __27.textContent = 'Preview', __27.style.cssText = 'margin: 0 0 10px 0; font-size: 14px;', __26.appendChild(__27);
-    let __31 = document.createElement('iframe');
-    __31.src = __4(__3), __31.width = '250', __31.height = '270', __31.style.cssText = 'border: 1px solid #ddd; border-radius: 4px;', __31.setAttribute('frameborder', '0'), __26.appendChild(__31);
-    let __28 = document.createElement('div');
-    __28.style.cssText = 'flex: 1; min-width: 300px; max-width: 100%;';
-    let __29 = document.createElement('h4');
-    __29.textContent = 'Embed Code', __29.style.cssText = 'margin: 0 0 10px 0; font-size: 14px;', __28.appendChild(__29);
-    let __30 = document.createElement('div');
-    __30.style.cssText = 'margin-bottom: 10px; display: flex; align-items: center; gap: 3px;';
-    let __41 = document.createElement('input');
-    __41.type = 'checkbox', __41.id = 'embed-dark-mode', __41.style.cssText = 'cursor: pointer;';
-    let __42 = document.createElement('label');
-    __42.setAttribute('for', 'embed-dark-mode'), __42.textContent = 'Dark mode', __42.style.cssText = 'cursor: pointer; font-size: 13px; user-select: none;', __30.appendChild(__41), __30.appendChild(__42), __26.appendChild(__30);
-    let __43 = document.createElement('textarea');
-    __43.value = __10(__3), __43.style.cssText = 'width: 100%; height: 80px; padding: 8px; font-family: monospace; font-size: 12px; border: 1px solid #ddd; border-radius: 4px; resize: vertical; box-sizing: border-box;', __43.readOnly = !0, __28.appendChild(__43);
-    let __44 = document.createElement('button');
-    __44.textContent = 'Copy Code', __44.style.cssText = 'margin-top: 10px; padding: 6px 12px; background-color: var(--main-color, #d85252); color: white; border: none; border-radius: 4px; cursor: pointer; font-size: 12px;', __44.addEventListener('click', async () => {
+      _0xa = _0x32 => `<iframe src="https://webtiles.kicya.net${ _0x4(_0x32) }" width="250" height="270" frameborder="0"></iframe>`,
+      _0xb = document.createElement('div');
+    _0xb.style.cssText = 'display: flex; gap: 20px; align-items: flex-start; flex-wrap: wrap;';
+    let _0x1a = document.createElement('div');
+    _0x1a.style.cssText = 'min-width: 250px; max-width: 100%;';
+    let _0x1b = document.createElement('h4');
+    _0x1b.textContent = 'Preview', _0x1b.style.cssText = 'margin: 0 0 10px 0; font-size: 14px;', _0x1a.appendChild(_0x1b);
+    let _0x1f = document.createElement('iframe');
+    _0x1f.src = _0x4(_0x3), _0x1f.width = '250', _0x1f.height = '270', _0x1f.style.cssText = 'border: 1px solid #ddd; border-radius: 4px;', _0x1f.setAttribute('frameborder', '0'), _0x1a.appendChild(_0x1f);
+    let _0x1c = document.createElement('div');
+    _0x1c.style.cssText = 'flex: 1; min-width: 300px; max-width: 100%;';
+    let _0x1d = document.createElement('h4');
+    _0x1d.textContent = 'Embed Code', _0x1d.style.cssText = 'margin: 0 0 10px 0; font-size: 14px;', _0x1c.appendChild(_0x1d);
+    let _0x1e = document.createElement('div');
+    _0x1e.style.cssText = 'margin-bottom: 10px; display: flex; align-items: center; gap: 3px;';
+    let _0x29 = document.createElement('input');
+    _0x29.type = 'checkbox', _0x29.id = 'embed-dark-mode', _0x29.style.cssText = 'cursor: pointer;';
+    let _0x2a = document.createElement('label');
+    _0x2a.setAttribute('for', 'embed-dark-mode'), _0x2a.textContent = 'Dark mode', _0x2a.style.cssText = 'cursor: pointer; font-size: 13px; user-select: none;', _0x1e.appendChild(_0x29), _0x1e.appendChild(_0x2a), _0x1a.appendChild(_0x1e);
+    let _0x2b = document.createElement('textarea');
+    _0x2b.value = _0xa(_0x3), _0x2b.style.cssText = 'width: 100%; height: 80px; padding: 8px; font-family: monospace; font-size: 12px; border: 1px solid #ddd; border-radius: 4px; resize: vertical; box-sizing: border-box;', _0x2b.readOnly = !0, _0x1c.appendChild(_0x2b);
+    let _0x2c = document.createElement('button');
+    _0x2c.textContent = 'Copy Code', _0x2c.style.cssText = 'margin-top: 10px; padding: 6px 12px; background-color: var(--main-color, #d85252); color: white; border: none; border-radius: 4px; cursor: pointer; font-size: 12px;', _0x2c.addEventListener('click', async () => {
       try {
-        await navigator.clipboard.writeText(__43.value), __44.textContent = 'Copied!', setTimeout(() => {
-          __44.textContent = 'Copy Code';
+        await navigator.clipboard.writeText(_0x2b.value), _0x2c.textContent = 'Copied!', setTimeout(() => {
+          _0x2c.textContent = 'Copy Code';
         }, 2000);
       } catch {
-        __43.select(), document.execCommand('copy'), __44.textContent = 'Copied!', setTimeout(() => {
-          __44.textContent = 'Copy Code';
+        _0x2b.select(), document.execCommand('copy'), _0x2c.textContent = 'Copied!', setTimeout(() => {
+          _0x2c.textContent = 'Copy Code';
         }, 2000);
       }
-    }), __28.appendChild(__44);
-    let __45 = document.createElement('div');
-    __45.style.cssText = 'font-size: 12px; color: #666; margin-top: 10px;', __45.innerHTML = 'You can detect if your tile is embedded in JS by checking the <b>embedded</b> variable. For CSS, body has an <b>embedded</b> class.', __28.appendChild(__45), __41.addEventListener('change', __50 => {
-      __3 = __50.target.checked, __31.src = __4(__3), __43.value = __10(__3);
-    }), __11.appendChild(__26), __11.appendChild(__28);
-    let __46 = new __12({
+    }), _0x1c.appendChild(_0x2c);
+    let _0x2d = document.createElement('div');
+    _0x2d.style.cssText = 'font-size: 12px; color: #666; margin-top: 10px;', _0x2d.innerHTML = 'You can detect if your tile is embedded in JS by checking the <b>embedded</b> variable. For CSS, body has an <b>embedded</b> class.', _0x1c.appendChild(_0x2d), _0x29.addEventListener('change', _0x32 => {
+      _0x3 = _0x32.target.checked, _0x1f.src = _0x4(_0x3), _0x2b.value = _0xa(_0x3);
+    }), _0xb.appendChild(_0x1a), _0xb.appendChild(_0x1c);
+    let _0x2e = new _0xc({
       title: 'Embed Tile',
-      content: __11,
+      content: _0xb,
       buttons: [{
         text: 'Close',
         type: 'cancel',
         id: 'close',
-        onClick: __50 => __50.close()
+        onClick: _0x32 => _0x32.close()
       }]
     });
-    __46.open(), __46.element && (__46.element.style.maxWidth = '700px');
+    _0x2e.open(), _0x2e.element && (_0x2e.element.style.maxWidth = '700px');
   }
 };
 
-function __101() {
-  if (!__8.user)
+function _0x65() {
+  if (!_0x8.user)
     return;
-  let __2 = __8.ui.siteSelector.value,
-    __3 = __8.user.sites.find(__10 => __10.domain === __2);
-  __2 === 'select' || __2 === 'add' || !__3 ? (__8.ui.siteJumpButton.hidden = !0, __8.ui.siteEditButton.hidden = !0, __8.ui.siteEmbedButton.hidden = !0, __8.ui.siteClanButton.hidden = !0) : (__8.ui.siteEditButton.hidden = !1, __8.ui.siteJumpButton.hidden = !__3.tile, __8.ui.siteClanButton.hidden = !__3.tile, __8.ui.siteEmbedButton.hidden = !__3.tile), __8.user.selectedSite = __3;
-  let __4 = __8?.plot?.activeTile;
-  __4 && (__4.setActive(!1), __4.setActive(!0));
+  let _0x2 = _0x8.ui.siteSelector.value,
+    _0x3 = _0x8.user.sites.find(_0xa => _0xa.domain === _0x2);
+  _0x2 === 'select' || _0x2 === 'add' || !_0x3 ? (_0x8.ui.siteJumpButton.hidden = !0, _0x8.ui.siteEditButton.hidden = !0, _0x8.ui.siteEmbedButton.hidden = !0, _0x8.ui.siteClanButton.hidden = !0) : (_0x8.ui.siteEditButton.hidden = !1, _0x8.ui.siteJumpButton.hidden = !_0x3.tile, _0x8.ui.siteClanButton.hidden = !_0x3.tile, _0x8.ui.siteEmbedButton.hidden = !_0x3.tile), _0x8.user.selectedSite = _0x3;
+  let _0x4 = _0x8?.plot?.activeTile;
+  _0x4 && (_0x4.setActive(!1), _0x4.setActive(!0));
 }
-__8.ui.siteSelector && __8.ui.siteSelector.addEventListener('change', () => {
-  if (!__8.user)
+_0x8.ui.siteSelector && _0x8.ui.siteSelector.addEventListener('change', () => {
+  if (!_0x8.user)
     return;
-  let __2 = __8.ui.siteSelector.value;
-  __2 === 'add' && (location.href = __8.user ? 'https://kicya.net/account/sites' : 'https://kicya.net/auth/register');
-  let __3 = __8.user.sites.find(__4 => __4.domain === __2);
-  if (__3) {
-    document.cookie = `site=${ __3.domain }; path=/`;
-    let __4 = document.querySelector('#kicya-site-select-option');
-    __4 && __4.remove(), __8.ui.fetchClanInvites();
+  let _0x2 = _0x8.ui.siteSelector.value;
+  _0x2 === 'add' && (location.href = _0x8.user ? 'https://kicya.net/account/sites' : 'https://kicya.net/auth/register');
+  let _0x3 = _0x8.user.sites.find(_0x4 => _0x4.domain === _0x2);
+  if (_0x3) {
+    document.cookie = `site=${ _0x3.domain }; path=/`;
+    let _0x4 = document.querySelector('#kicya-site-select-option');
+    _0x4 && _0x4.remove(), _0x8.ui.fetchClanInvites();
   }
-  __101();
+  _0x65();
 });
-__101();
-var __102 = document.getElementById('dashboard-modal'),
-  __103 = document.getElementById('dashboard-iframe'),
-  __104 = document.getElementById('dashboard-modal-close'),
-  __105 = document.getElementById('dashboard-modal-title'),
-  __106 = document.getElementById('app');
-__8.ui.siteEditButton && __8.ui.siteEditButton.addEventListener('click', () => {
-  !__8.user || !__8.user.selectedSite || __8.ui.showDashboard(__8.user.selectedSite.domain);
+_0x65();
+var _0x66 = document.getElementById('dashboard-modal'),
+  _0x67 = document.getElementById('dashboard-iframe'),
+  _0x68 = document.getElementById('dashboard-modal-close'),
+  _0x69 = document.getElementById('dashboard-modal-title'),
+  _0x6a = document.getElementById('app');
+_0x8.ui.siteEditButton && _0x8.ui.siteEditButton.addEventListener('click', () => {
+  !_0x8.user || !_0x8.user.selectedSite || _0x8.ui.showDashboard(_0x8.user.selectedSite.domain);
 });
-__8.ui.siteJumpButton && __8.ui.siteJumpButton.addEventListener('click', () => {
-  if (!__8.user || !__8.user.selectedSite || !__8.user.selectedSite.tile)
+_0x8.ui.siteJumpButton && _0x8.ui.siteJumpButton.addEventListener('click', () => {
+  if (!_0x8.user || !_0x8.user.selectedSite || !_0x8.user.selectedSite.tile)
     return;
-  let __2 = __8.user.selectedSite.tile,
-    __3 = __2.__47 * 250 + 250 / 2,
-    __4 = __2.__85 * 250 + 250 / 2;
-  __8.camera.centerOn(__3, __4);
+  let _0x2 = _0x8.user.selectedSite.tile,
+    _0x3 = _0x2._0x2f * 250 + 250 / 2,
+    _0x4 = _0x2._0x55 * 250 + 250 / 2;
+  _0x8.camera.centerOn(_0x3, _0x4);
 });
-__8.ui.siteCenterButton && __8.ui.siteCenterButton.addEventListener('click', () => {
-  __8.camera && __8.camera.centerOn(100, 100);
+_0x8.ui.siteCenterButton && _0x8.ui.siteCenterButton.addEventListener('click', () => {
+  _0x8.camera && _0x8.camera.centerOn(100, 100);
 });
-__8.ui.siteClanButton && __8.ui.siteClanButton.addEventListener('click', () => {
-  __8.ui.showClanModal();
+_0x8.ui.siteClanButton && _0x8.ui.siteClanButton.addEventListener('click', () => {
+  _0x8.ui.showClanModal();
 });
-__8.ui.siteEmbedButton && __8.ui.siteEmbedButton.addEventListener('click', () => {
-  __8.ui.showEmbedModal();
+_0x8.ui.siteEmbedButton && _0x8.ui.siteEmbedButton.addEventListener('click', () => {
+  _0x8.ui.showEmbedModal();
 });
 
-function __107() {
-  __102.classList.remove('active'), __103.src = '', __106 && (__106.style.display = ''), __8.camera && __8.camera.setZoomEnabled(!0);
+function _0x6b() {
+  _0x66.classList.remove('active'), _0x67.src = '', _0x6a && (_0x6a.style.display = ''), _0x8.camera && _0x8.camera.setZoomEnabled(!0);
 }
-__104 && __104.addEventListener('click', __107);
-__8.ui.zoomSlider.addEventListener('input', __2 => {
-  __8.camera.zoomTo(__8.camera.width / 2, __8.camera.height / 2, +__2.target.value);
+_0x68 && _0x68.addEventListener('click', _0x6b);
+_0x8.ui.zoomSlider.addEventListener('input', _0x2 => {
+  _0x8.camera.zoomTo(_0x8.camera.width / 2, _0x8.camera.height / 2, +_0x2.target.value);
 });
-var __108 = document.getElementById('kicya-menu-toggle'),
-  __109 = document.getElementById('kicya-links');
-__108 && __109 && (__108.addEventListener('click', function(__2) {
-  __2.stopPropagation(), __109.classList.toggle('active');
-}), document.addEventListener('click', function(__2) {
-  !__109.contains(__2.target) && !__108.contains(__2.target) && __109.classList.remove('active');
-}), __109.querySelectorAll('a').forEach(function(__2) {
-  __2.addEventListener('click', function() {
-    __109.classList.remove('active');
+var _0x6c = document.getElementById('kicya-menu-toggle'),
+  _0x6d = document.getElementById('kicya-links');
+_0x6c && _0x6d && (_0x6c.addEventListener('click', function(_0x2) {
+  _0x2.stopPropagation(), _0x6d.classList.toggle('active');
+}), document.addEventListener('click', function(_0x2) {
+  !_0x6d.contains(_0x2.target) && !_0x6c.contains(_0x2.target) && _0x6d.classList.remove('active');
+}), _0x6d.querySelectorAll('a').forEach(function(_0x2) {
+  _0x2.addEventListener('click', function() {
+    _0x6d.classList.remove('active');
   });
 }));
 
-function __110() {
-  if (!__8.user || localStorage.getItem('rules_accepted'))
+function _0x6e() {
+  if (!_0x8.user || localStorage.getItem('rules_accepted'))
     return;
-  new __12({
+  new _0xc({
     title: 'Rules',
     content: `
             <p>Please read and accept the following rules:</p>
@@ -4240,121 +4240,121 @@ function __110() {
       text: 'OK',
       type: 'confirm',
       id: 'ok',
-      onClick: __3 => {
-        localStorage.setItem('rules_accepted', '1'), __3.close();
+      onClick: _0x3 => {
+        localStorage.setItem('rules_accepted', '1'), _0x3.close();
       }
     }]
   }).open();
 }
-__110();
-__8.user && __8.user.selectedSite && __8.ui.fetchClanInvites();
-var __111 = __8.ui;
-var __112 = class {
+_0x6e();
+_0x8.user && _0x8.user.selectedSite && _0x8.ui.fetchClanInvites();
+var _0x6f = _0x8.ui;
+var _0x70 = class {
   constructor() {
     this.ws = null, this.reconnectTimeout = null, this.handlers = new Map(), this.binaryHandlers = [], this.connected = !1, this.messageQueue = [], this.connectionAttempted = !1, this.consecutiveFailures = 0, this.lastConnectionTime = 0, this.waitForCaptchaAndConnect();
   }
   async waitForCaptchaAndConnect() {
-    let __3 = __8.api.getToken(),
-      __4 = __8.api.getTokenExpiry();
-    if (!__8.api.getTurnstileSiteKey()) {
+    let _0x3 = _0x8.api.getToken(),
+      _0x4 = _0x8.api.getTokenExpiry();
+    if (!_0x8.api.getTurnstileSiteKey()) {
       this.connect();
       return;
     }
-    (!__3 || __4 < Date.now()) && await __8.api.showCaptchaModal();
-    let __10 = 60000,
-      __11 = Date.now();
-    for (; !__8.api.getToken() || __8.api.getTokenExpiry() < Date.now();) {
-      if (Date.now() - __11 > __10) {
+    (!_0x3 || _0x4 < Date.now()) && await _0x8.api.showCaptchaModal();
+    let _0xa = 60000,
+      _0xb = Date.now();
+    for (; !_0x8.api.getToken() || _0x8.api.getTokenExpiry() < Date.now();) {
+      if (Date.now() - _0xb > _0xa) {
         console.error('[WS] Captcha timeout');
-        let __26 = document.getElementById('loading-text');
-        __26 && (__26.textContent = 'Verification timeout. Please refresh.');
+        let _0x1a = document.getElementById('loading-text');
+        _0x1a && (_0x1a.textContent = 'Verification timeout. Please refresh.');
         return;
       }
-      await new Promise(__26 => setTimeout(__26, 100));
+      await new Promise(_0x1a => setTimeout(_0x1a, 100));
     }
     this.connect();
   }
   connect() {
-    let __3 = location.protocol === 'https:' ? 'wss:' : 'ws:',
-      __4 = __8.api.getToken() || '';
-    this.connectionAttempted = !0, this.lastConnectionTime = Date.now(), this.ws = new WebSocket(`${ __3 }//${ location.host }/ws?t=${ encodeURIComponent(__4) }`), this.ws.binaryType = 'arraybuffer', this.ws.onopen = () => {
+    let _0x3 = location.protocol === 'https:' ? 'wss:' : 'ws:',
+      _0x4 = _0x8.api.getToken() || '';
+    this.connectionAttempted = !0, this.lastConnectionTime = Date.now(), this.ws = new WebSocket(`${ _0x3 }//${ location.host }/ws?t=${ encodeURIComponent(_0x4) }`), this.ws.binaryType = 'arraybuffer', this.ws.onopen = () => {
       console.log('[WS] Connected'), this.connected = !0, this.consecutiveFailures = 0, this.emit('open');
-      for (let __10 of this.messageQueue)
-        this.ws.send(__10);
+      for (let _0xa of this.messageQueue)
+        this.ws.send(_0xa);
       this.messageQueue = [];
-    }, this.ws.onmessage = __10 => {
-      if (__10.data instanceof ArrayBuffer)
-        for (let __11 of this.binaryHandlers)
-          __11(__10.data);
+    }, this.ws.onmessage = _0xa => {
+      if (_0xa.data instanceof ArrayBuffer)
+        for (let _0xb of this.binaryHandlers)
+          _0xb(_0xa.data);
       else
         try {
-          let __11 = JSON.parse(__10.data);
-          this.emit(__11.type, __11);
-        } catch (__11) {
-          console.error('[WS] Failed to parse message:', __11);
+          let _0xb = JSON.parse(_0xa.data);
+          this.emit(_0xb.type, _0xb);
+        } catch (_0xb) {
+          console.error('[WS] Failed to parse message:', _0xb);
         }
-    }, this.ws.onclose = __10 => {
-      console.log('[WS] Disconnected, reconnecting...', __10.code, __10.reason);
-      let __11 = this.connected;
+    }, this.ws.onclose = _0xa => {
+      console.log('[WS] Disconnected, reconnecting...', _0xa.code, _0xa.reason);
+      let _0xb = this.connected;
       this.connected = !1, this.emit('close');
-      let __26 = Date.now() - this.lastConnectionTime;
-      !__11 && __26 < 1000 ? this.consecutiveFailures++ : this.consecutiveFailures = 0, this.scheduleReconnect();
-    }, this.ws.onerror = __10 => {
-      console.error('[WS] Error:', __10);
+      let _0x1a = Date.now() - this.lastConnectionTime;
+      !_0xb && _0x1a < 1000 ? this.consecutiveFailures++ : this.consecutiveFailures = 0, this.scheduleReconnect();
+    }, this.ws.onerror = _0xa => {
+      console.error('[WS] Error:', _0xa);
     };
   }
   scheduleReconnect() {
     if (this.reconnectTimeout)
       return;
-    let __3 = Math.min(3000 * Math.pow(2, this.consecutiveFailures), 30000);
+    let _0x3 = Math.min(3000 * Math.pow(2, this.consecutiveFailures), 30000);
     this.reconnectTimeout = setTimeout(async () => {
       this.reconnectTimeout = null;
-      let __4 = __8.api.getToken(),
-        __10 = __8.api.getTokenExpiry();
-      (!__4 || __10 < Date.now()) && await __8.api.showCaptchaModal();
-      let __11 = 30000,
-        __26 = Date.now();
-      for (; !__8.api.getToken() || __8.api.getTokenExpiry() < Date.now();) {
-        if (Date.now() - __26 > __11) {
+      let _0x4 = _0x8.api.getToken(),
+        _0xa = _0x8.api.getTokenExpiry();
+      (!_0x4 || _0xa < Date.now()) && await _0x8.api.showCaptchaModal();
+      let _0xb = 30000,
+        _0x1a = Date.now();
+      for (; !_0x8.api.getToken() || _0x8.api.getTokenExpiry() < Date.now();) {
+        if (Date.now() - _0x1a > _0xb) {
           console.error('[WS] Reconnect captcha timeout');
           return;
         }
-        await new Promise(__27 => setTimeout(__27, 100));
+        await new Promise(_0x1b => setTimeout(_0x1b, 100));
       }
       this.connect();
-    }, __3);
+    }, _0x3);
   }
-  on(__3, __4) {
-    this.handlers.has(__3) || this.handlers.set(__3, []), this.handlers.get(__3).push(__4);
+  on(_0x3, _0x4) {
+    this.handlers.has(_0x3) || this.handlers.set(_0x3, []), this.handlers.get(_0x3).push(_0x4);
   }
-  off(__3, __4) {
-    if (!this.handlers.has(__3))
+  off(_0x3, _0x4) {
+    if (!this.handlers.has(_0x3))
       return;
-    let __10 = this.handlers.get(__3),
-      __11 = __10.indexOf(__4);
-    __11 !== -1 && __10.splice(__11, 1);
+    let _0xa = this.handlers.get(_0x3),
+      _0xb = _0xa.indexOf(_0x4);
+    _0xb !== -1 && _0xa.splice(_0xb, 1);
   }
-  onBinary(__3) {
-    this.binaryHandlers.push(__3);
+  onBinary(_0x3) {
+    this.binaryHandlers.push(_0x3);
   }
-  emit(__3, __4) {
-    if (this.handlers.has(__3))
-      for (let __10 of this.handlers.get(__3))
-        __10(__4);
+  emit(_0x3, _0x4) {
+    if (this.handlers.has(_0x3))
+      for (let _0xa of this.handlers.get(_0x3))
+        _0xa(_0x4);
   }
-  send(__3) {
-    this.ws && this.ws.readyState === WebSocket.OPEN ? this.ws.send(__3) : typeof __3 == 'string' && this.messageQueue.push(__3);
+  send(_0x3) {
+    this.ws && this.ws.readyState === WebSocket.OPEN ? this.ws.send(_0x3) : typeof _0x3 == 'string' && this.messageQueue.push(_0x3);
   }
-  sendJSON(__3) {
-    this.send(JSON.stringify(__3));
+  sendJSON(_0x3) {
+    this.send(JSON.stringify(_0x3));
   }
   get isConnected() {
     return this.ws && this.ws.readyState === WebSocket.OPEN;
   }
 };
-__8.ws = new __112();
-var __113 = __8.ws;
-var __114 = new Set([
+_0x8.ws = new _0x70();
+var _0x71 = _0x8.ws;
+var _0x72 = new Set([
     'aaa',
     'aarp',
     'abb',
@@ -5643,72 +5643,72 @@ var __114 = new Set([
     'zuerich',
     'zw'
   ]),
-  __115 = 100,
-  __116 = 3,
-  __117 = 5000,
-  __118 = class {
+  _0x73 = 100,
+  _0x74 = 3,
+  _0x75 = 5000,
+  _0x76 = class {
     constructor() {
       this.messages = [], this.isOpen = !0, this.unreadCount = 0, this.container = document.getElementById('chat-container'), this.messageTimestamps = [], this.showedRules = !1, this.container && (this.createUI(), this.setupWsHandlers(), this.setupInputHandlers(), this.createUserMenu(), this.createModMenu());
     }
     createUI() {
-      this.header = this.container.querySelector('#chat-header'), this.body = this.container.querySelector('#chat-body'), this.messagesEl = this.container.querySelector('#chat-messages'), this.input = this.container.querySelector('#chat-input'), this.sendBtn = this.container.querySelector('#chat-send'), this.toggleBtn = this.container.querySelector('#chat-toggle'), this.unreadEl = this.container.querySelector('#chat-unread'), this.header.addEventListener('click', () => this.toggle()), this.container.addEventListener('wheel', __3 => {
-        __3.stopPropagation();
-      }), this.messagesEl.addEventListener('click', __3 => {
-        let __4 = __3.target.closest('.chat-coord-link');
-        if (__4) {
-          __3.preventDefault();
-          let __10 = parseInt(__4.dataset.__47),
-            __11 = parseInt(__4.dataset.__85),
-            __27 = 50 / 2;
-          !isNaN(__10) && !isNaN(__11) && __8.camera && __10 >= -__27 && __10 <= __27 && __11 >= -__27 && __11 <= __27 && __8.camera.centerOn(__10 * 250 + 250 / 2, __11 * 250 + 250 / 2);
+      this.header = this.container.querySelector('#chat-header'), this.body = this.container.querySelector('#chat-body'), this.messagesEl = this.container.querySelector('#chat-messages'), this.input = this.container.querySelector('#chat-input'), this.sendBtn = this.container.querySelector('#chat-send'), this.toggleBtn = this.container.querySelector('#chat-toggle'), this.unreadEl = this.container.querySelector('#chat-unread'), this.header.addEventListener('click', () => this.toggle()), this.container.addEventListener('wheel', _0x3 => {
+        _0x3.stopPropagation();
+      }), this.messagesEl.addEventListener('click', _0x3 => {
+        let _0x4 = _0x3.target.closest('.chat-coord-link');
+        if (_0x4) {
+          _0x3.preventDefault();
+          let _0xa = parseInt(_0x4.dataset._0x2f),
+            _0xb = parseInt(_0x4.dataset._0x55),
+            _0x1b = 50 / 2;
+          !isNaN(_0xa) && !isNaN(_0xb) && _0x8.camera && _0xa >= -_0x1b && _0xa <= _0x1b && _0xb >= -_0x1b && _0xb <= _0x1b && _0x8.camera.centerOn(_0xa * 250 + 250 / 2, _0xb * 250 + 250 / 2);
         }
       }), this.setupResize(), this.restoreSize();
     }
     setupResize() {
-      let __3 = document.createElement('div');
-      __3.id = 'chat-resize-left', __3.className = 'chat-resize-handle', this.container.appendChild(__3);
-      let __4 = document.createElement('div');
-      __4.id = 'chat-resize-top', __4.className = 'chat-resize-handle', this.container.appendChild(__4);
-      let __10 = document.createElement('div');
-      __10.id = 'chat-resize-corner', __10.className = 'chat-resize-handle', this.container.appendChild(__10);
-      let __11 = null,
-        __26 = 0,
-        __27 = 0,
-        __31 = 0,
-        __28 = 0,
-        __29 = (__30, __41) => {
-          this.isOpen && (__11 = __41, __26 = __30.clientX, __27 = __30.clientY, __31 = this.container.offsetWidth, __28 = this.container.offsetHeight, document.body.style.userSelect = 'none', __41 === 'left' ? document.body.style.cursor = 'ew-resize' : __41 === 'top' ? document.body.style.cursor = 'ns-resize' : document.body.style.cursor = 'nwse-resize', __30.preventDefault());
+      let _0x3 = document.createElement('div');
+      _0x3.id = 'chat-resize-left', _0x3.className = 'chat-resize-handle', this.container.appendChild(_0x3);
+      let _0x4 = document.createElement('div');
+      _0x4.id = 'chat-resize-top', _0x4.className = 'chat-resize-handle', this.container.appendChild(_0x4);
+      let _0xa = document.createElement('div');
+      _0xa.id = 'chat-resize-corner', _0xa.className = 'chat-resize-handle', this.container.appendChild(_0xa);
+      let _0xb = null,
+        _0x1a = 0,
+        _0x1b = 0,
+        _0x1f = 0,
+        _0x1c = 0,
+        _0x1d = (_0x1e, _0x29) => {
+          this.isOpen && (_0xb = _0x29, _0x1a = _0x1e.clientX, _0x1b = _0x1e.clientY, _0x1f = this.container.offsetWidth, _0x1c = this.container.offsetHeight, document.body.style.userSelect = 'none', _0x29 === 'left' ? document.body.style.cursor = 'ew-resize' : _0x29 === 'top' ? document.body.style.cursor = 'ns-resize' : document.body.style.cursor = 'nwse-resize', _0x1e.preventDefault());
         };
-      __3.addEventListener('mousedown', __30 => __29(__30, 'left')), __4.addEventListener('mousedown', __30 => __29(__30, 'top')), __10.addEventListener('mousedown', __30 => __29(__30, 'corner')), document.addEventListener('mousemove', __30 => {
-        if (__11) {
-          if (__11 === 'left' || __11 === 'corner') {
-            let __41 = __26 - __30.clientX,
-              __42 = Math.min(Math.max(__31 + __41, 250), 800);
-            this.container.style.width = __42 + 'px';
+      _0x3.addEventListener('mousedown', _0x1e => _0x1d(_0x1e, 'left')), _0x4.addEventListener('mousedown', _0x1e => _0x1d(_0x1e, 'top')), _0xa.addEventListener('mousedown', _0x1e => _0x1d(_0x1e, 'corner')), document.addEventListener('mousemove', _0x1e => {
+        if (_0xb) {
+          if (_0xb === 'left' || _0xb === 'corner') {
+            let _0x29 = _0x1a - _0x1e.clientX,
+              _0x2a = Math.min(Math.max(_0x1f + _0x29, 250), 800);
+            this.container.style.width = _0x2a + 'px';
           }
-          if (__11 === 'top' || __11 === 'corner') {
-            let __41 = __27 - __30.clientY,
-              __42 = Math.min(Math.max(__28 + __41, 100), 700);
-            this.container.style.height = __42 + 'px';
+          if (_0xb === 'top' || _0xb === 'corner') {
+            let _0x29 = _0x1b - _0x1e.clientY,
+              _0x2a = Math.min(Math.max(_0x1c + _0x29, 100), 700);
+            this.container.style.height = _0x2a + 'px';
           }
         }
       }), document.addEventListener('mouseup', () => {
-        __11 && (__11 = null, document.body.style.cursor = '', document.body.style.userSelect = '', this.saveSize());
+        _0xb && (_0xb = null, document.body.style.cursor = '', document.body.style.userSelect = '', this.saveSize());
       });
     }
     saveSize() {
       localStorage.setItem('chat-width', this.container.offsetWidth), localStorage.setItem('chat-height', this.container.offsetHeight);
     }
     restoreSize() {
-      let __3 = localStorage.getItem('chat-width') ?? 525;
-      if (__3) {
-        let __10 = parseInt(__3, 10);
-        __10 >= 250 && __10 <= 800 && (this.container.style.width = __10 + 'px');
+      let _0x3 = localStorage.getItem('chat-width') ?? 525;
+      if (_0x3) {
+        let _0xa = parseInt(_0x3, 10);
+        _0xa >= 250 && _0xa <= 800 && (this.container.style.width = _0xa + 'px');
       }
-      let __4 = localStorage.getItem('chat-height') ?? 330;
-      if (__4) {
-        let __10 = parseInt(__4, 10);
-        __10 >= 100 && __10 <= 700 && (this.container.style.height = __10 + 'px');
+      let _0x4 = localStorage.getItem('chat-height') ?? 330;
+      if (_0x4) {
+        let _0xa = parseInt(_0x4, 10);
+        _0xa >= 100 && _0xa <= 700 && (this.container.style.height = _0xa + 'px');
       }
     }
     createModMenu() {
@@ -5723,41 +5723,41 @@ var __114 = new Set([
             <button data-action="clear">Clear messages</button>
             <button data-action="mute">Mute</button>
             <button data-action="ban">Ban</button>
-        `, document.body.appendChild(this.modMenu), this.modMenu.addEventListener('click', __3 => {
-        let __4 = __3.target.dataset.action;
-        if (!(!__4 || !this.modMenuTarget)) {
-          if (__4 === 'jump')
+        `, document.body.appendChild(this.modMenu), this.modMenu.addEventListener('click', _0x3 => {
+        let _0x4 = _0x3.target.dataset.action;
+        if (!(!_0x4 || !this.modMenuTarget)) {
+          if (_0x4 === 'jump')
             this.jumpToUserTile(this.modMenuTarget.nick);
-          else if (__4 === 'tell') {
-            let __10 = `/tell ${ this.modMenuTarget.nick } `;
-            this.input.value = __10 + this.input.value, this.input.focus(), this.input.setSelectionRange(this.input.value.length, this.input.value.length);
-          } else if (__4 === 'reply') {
-            let __10 = `@${ this.modMenuTarget.nick } `;
-            this.input.value = __10 + this.input.value, this.input.focus(), this.input.setSelectionRange(this.input.value.length, this.input.value.length);
-          } else if (__4 === 'clear')
-            __8.ws.sendJSON({
+          else if (_0x4 === 'tell') {
+            let _0xa = `/tell ${ this.modMenuTarget.nick } `;
+            this.input.value = _0xa + this.input.value, this.input.focus(), this.input.setSelectionRange(this.input.value.length, this.input.value.length);
+          } else if (_0x4 === 'reply') {
+            let _0xa = `@${ this.modMenuTarget.nick } `;
+            this.input.value = _0xa + this.input.value, this.input.focus(), this.input.setSelectionRange(this.input.value.length, this.input.value.length);
+          } else if (_0x4 === 'clear')
+            _0x8.ws.sendJSON({
               type: 'mod_action',
               action: 'clear_messages',
               target: this.modMenuTarget
             });
-          else if (__4 === 'mute') {
-            let __10 = prompt('Mute duration (e.g. 10m, 1h, 1d):', '1d');
-            __10 && __8.ws.sendJSON({
+          else if (_0x4 === 'mute') {
+            let _0xa = prompt('Mute duration (e.g. 10m, 1h, 1d):', '1d');
+            _0xa && _0x8.ws.sendJSON({
               type: 'mod_action',
               action: 'mute',
               target: this.modMenuTarget,
-              duration: __10
+              duration: _0xa
             });
           } else
-            __4 === 'ban' && confirm(`Ban ${ this.modMenuTarget.nick }? This will also delete all their tiles.`) && __8.ws.sendJSON({
+            _0x4 === 'ban' && confirm(`Ban ${ this.modMenuTarget.nick }? This will also delete all their tiles.`) && _0x8.ws.sendJSON({
               type: 'mod_action',
               action: 'ban',
               target: this.modMenuTarget
             });
           this.hideModMenu();
         }
-      }), document.addEventListener('click', __3 => {
-        !this.modMenu.contains(__3.target) && !this.userMenu.contains(__3.target) && !__3.target.classList.contains('chat-nick') && (this.hideModMenu(), this.hideUserMenu());
+      }), document.addEventListener('click', _0x3 => {
+        !this.modMenu.contains(_0x3.target) && !this.userMenu.contains(_0x3.target) && !_0x3.target.classList.contains('chat-nick') && (this.hideModMenu(), this.hideUserMenu());
       });
     }
     createUserMenu() {
@@ -5765,790 +5765,790 @@ var __114 = new Set([
             <button data-action="jump">Jump to tile</button>
             <button data-action="tell">Tell...</button>
             <button data-action="reply">Reply</button>
-        `, document.body.appendChild(this.userMenu), this.userMenu.addEventListener('click', __3 => {
-        let __4 = __3.target.dataset.action;
-        if (!(!__4 || !this.userMenuTarget)) {
-          if (__4 === 'jump')
+        `, document.body.appendChild(this.userMenu), this.userMenu.addEventListener('click', _0x3 => {
+        let _0x4 = _0x3.target.dataset.action;
+        if (!(!_0x4 || !this.userMenuTarget)) {
+          if (_0x4 === 'jump')
             this.jumpToUserTile(this.userMenuTarget);
-          else if (__4 === 'tell') {
-            let __10 = `/tell ${ this.userMenuTarget } `;
-            this.input.value = __10 + this.input.value, this.input.focus(), this.input.setSelectionRange(this.input.value.length, this.input.value.length);
-          } else if (__4 === 'reply') {
-            let __10 = `@${ this.userMenuTarget } `;
-            this.input.value = __10 + this.input.value, this.input.focus(), this.input.setSelectionRange(this.input.value.length, this.input.value.length);
+          else if (_0x4 === 'tell') {
+            let _0xa = `/tell ${ this.userMenuTarget } `;
+            this.input.value = _0xa + this.input.value, this.input.focus(), this.input.setSelectionRange(this.input.value.length, this.input.value.length);
+          } else if (_0x4 === 'reply') {
+            let _0xa = `@${ this.userMenuTarget } `;
+            this.input.value = _0xa + this.input.value, this.input.focus(), this.input.setSelectionRange(this.input.value.length, this.input.value.length);
           }
           this.hideUserMenu();
         }
       });
     }
-    showUserMenu(__3, __4, __10) {
-      this.userMenuTarget = __3, this.userMenu.hidden = !1;
-      let __11 = this.userMenu.getBoundingClientRect(),
-        __26 = window.innerHeight,
-        __27 = window.innerWidth;
-      __10 + __11.height > __26 && (__10 = __26 - __11.height - 5), __4 + __11.width > __27 && (__4 = __27 - __11.width - 5), this.userMenu.style.left = __4 + 'px', this.userMenu.style.top = __10 + 'px';
+    showUserMenu(_0x3, _0x4, _0xa) {
+      this.userMenuTarget = _0x3, this.userMenu.hidden = !1;
+      let _0xb = this.userMenu.getBoundingClientRect(),
+        _0x1a = window.innerHeight,
+        _0x1b = window.innerWidth;
+      _0xa + _0xb.height > _0x1a && (_0xa = _0x1a - _0xb.height - 5), _0x4 + _0xb.width > _0x1b && (_0x4 = _0x1b - _0xb.width - 5), this.userMenu.style.left = _0x4 + 'px', this.userMenu.style.top = _0xa + 'px';
     }
     hideUserMenu() {
       this.userMenu.hidden = !0, this.userMenuTarget = null;
     }
-    findUserTile(__3) {
-      if (!__8.plot?.tileCache)
+    findUserTile(_0x3) {
+      if (!_0x8.plot?.tileCache)
         return null;
-      for (let __4 in __8.plot.tileCache)
-        for (let __10 in __8.plot.tileCache[__4]) {
-          let __11 = __8.plot.tileCache[__4][__10];
-          if ((typeof __11 == 'string' ? __11 : __11?.domain ?? null) === __3)
+      for (let _0x4 in _0x8.plot.tileCache)
+        for (let _0xa in _0x8.plot.tileCache[_0x4]) {
+          let _0xb = _0x8.plot.tileCache[_0x4][_0xa];
+          if ((typeof _0xb == 'string' ? _0xb : _0xb?.domain ?? null) === _0x3)
             return {
-              __47: parseInt(__4),
-              __85: parseInt(__10)
+              _0x2f: parseInt(_0x4),
+              _0x55: parseInt(_0xa)
             };
         }
       return null;
     }
-    findTileByDomain(__3) {
-      if (!__8.plot?.tileCache)
+    findTileByDomain(_0x3) {
+      if (!_0x8.plot?.tileCache)
         return null;
-      for (let __4 in __8.plot.tileCache)
-        for (let __10 in __8.plot.tileCache[__4]) {
-          let __11 = __8.plot.tileCache[__4][__10];
-          if ((typeof __11 == 'string' ? __11 : __11?.domain ?? null) === __3)
+      for (let _0x4 in _0x8.plot.tileCache)
+        for (let _0xa in _0x8.plot.tileCache[_0x4]) {
+          let _0xb = _0x8.plot.tileCache[_0x4][_0xa];
+          if ((typeof _0xb == 'string' ? _0xb : _0xb?.domain ?? null) === _0x3)
             return {
-              __47: parseInt(__4),
-              __85: parseInt(__10)
+              _0x2f: parseInt(_0x4),
+              _0x55: parseInt(_0xa)
             };
         }
       return null;
     }
-    jumpToUserTile(__3) {
-      if (!__8.camera)
+    jumpToUserTile(_0x3) {
+      if (!_0x8.camera)
         return;
-      let __4 = this.findUserTile(__3);
-      __4 && __8.camera.centerOn(__4.__47 * 250 + 250 / 2, __4.__85 * 250 + 250 / 2);
+      let _0x4 = this.findUserTile(_0x3);
+      _0x4 && _0x8.camera.centerOn(_0x4._0x2f * 250 + 250 / 2, _0x4._0x55 * 250 + 250 / 2);
     }
-    jumpToDomain(__3) {
-      if (!__8.camera)
+    jumpToDomain(_0x3) {
+      if (!_0x8.camera)
         return !1;
-      let __4 = this.findTileByDomain(__3);
-      return __4 ? (__8.camera.centerOn(__4.__47 * 250 + 250 / 2, __4.__85 * 250 + 250 / 2), !0) : !1;
+      let _0x4 = this.findTileByDomain(_0x3);
+      return _0x4 ? (_0x8.camera.centerOn(_0x4._0x2f * 250 + 250 / 2, _0x4._0x55 * 250 + 250 / 2), !0) : !1;
     }
-    showModMenu(__3, __4, __10) {
-      if (__3.admin || __3.discord)
+    showModMenu(_0x3, _0x4, _0xa) {
+      if (_0x3.admin || _0x3.discord)
         return;
-      this.modMenuTarget = __3, this.modMenu.querySelector('#mod-menu-user-id').textContent = __3.id || '-', this.modMenu.querySelector('#mod-menu-ip').textContent = __3.ip || '-', this.modMenu.hidden = !1;
-      let __11 = this.modMenu.getBoundingClientRect(),
-        __26 = window.innerHeight,
-        __27 = window.innerWidth;
-      __10 + __11.height > __26 && (__10 = __26 - __11.height - 5), __4 + __11.width > __27 && (__4 = __27 - __11.width - 5), this.modMenu.style.left = __4 + 'px', this.modMenu.style.top = __10 + 'px';
+      this.modMenuTarget = _0x3, this.modMenu.querySelector('#mod-menu-user-id').textContent = _0x3.id || '-', this.modMenu.querySelector('#mod-menu-ip').textContent = _0x3.ip || '-', this.modMenu.hidden = !1;
+      let _0xb = this.modMenu.getBoundingClientRect(),
+        _0x1a = window.innerHeight,
+        _0x1b = window.innerWidth;
+      _0xa + _0xb.height > _0x1a && (_0xa = _0x1a - _0xb.height - 5), _0x4 + _0xb.width > _0x1b && (_0x4 = _0x1b - _0xb.width - 5), this.modMenu.style.left = _0x4 + 'px', this.modMenu.style.top = _0xa + 'px';
     }
     hideModMenu() {
       this.modMenu.hidden = !0, this.modMenuTarget = null;
     }
     setupWsHandlers() {
-      let __3 = __8.ws;
-      __3.on('chat_history', __4 => {
-        this.messages = __4.messages || [], this.renderMessages(), this.showedRules || (this.showSystemMessage('Welcome to the chat! The rules are as follows:'), this.showSystemMessage('1. There is zero tolerance for NSFW conversations. Do not discuss it in chat.'), this.showSystemMessage('2. Do not spam the chat.'), this.showSystemMessage('3. Do not troll, be edgy, annoying, or disruptive. Be kind to others.'), this.showSystemMessage('4. Keep conversations in English.'), this.showSystemMessage('Punishments vary between a temporary mute and in worst case a ban (your tiles will be deleted!). Type /help for commands.'), this.showedRules = !0);
-      }), __3.on('message', __4 => {
-        this.addMessage(__4);
-      }), __3.on('system_message', __4 => {
-        this.showSystemMessage(__4.message);
-      }), __3.on('chat_cleared', () => {
+      let _0x3 = _0x8.ws;
+      _0x3.on('chat_history', _0x4 => {
+        this.messages = _0x4.messages || [], this.renderMessages(), this.showedRules || (this.showSystemMessage('Welcome to the chat! The rules are as follows:'), this.showSystemMessage('1. There is zero tolerance for NSFW conversations. Do not discuss it in chat.'), this.showSystemMessage('2. Do not spam the chat.'), this.showSystemMessage('3. Do not troll, be edgy, annoying, or disruptive. Be kind to others.'), this.showSystemMessage('4. Keep conversations in English.'), this.showSystemMessage('Punishments vary between a temporary mute and in worst case a ban (your tiles will be deleted!). Type /help for commands.'), this.showedRules = !0);
+      }), _0x3.on('message', _0x4 => {
+        this.addMessage(_0x4);
+      }), _0x3.on('system_message', _0x4 => {
+        this.showSystemMessage(_0x4.message);
+      }), _0x3.on('chat_cleared', () => {
         this.messages = [], this.messagesEl.innerHTML = '', this.showSystemMessage('Chat has been cleared');
-      }), __3.on('clear_user_messages', __4 => {
-        this.messages = this.messages.filter(__10 => __10.nick !== __4.nick), this.renderMessages(), (__8.user?.admin || __8.user?.moderator) && this.showSystemMessage(`Messages from ${ __4.nick } have been cleared`);
-      }), __3.on('user_muted', __4 => {
-        this.showSystemMessage(`${ __4.nick } has been muted`);
+      }), _0x3.on('clear_user_messages', _0x4 => {
+        this.messages = this.messages.filter(_0xa => _0xa.nick !== _0x4.nick), this.renderMessages(), (_0x8.user?.admin || _0x8.user?.moderator) && this.showSystemMessage(`Messages from ${ _0x4.nick } have been cleared`);
+      }), _0x3.on('user_muted', _0x4 => {
+        this.showSystemMessage(`${ _0x4.nick } has been muted`);
       });
     }
     setupInputHandlers() {
-      this.input.addEventListener('keydown', __3 => {
-        __3.stopPropagation(), __3.key === 'Enter' && !__3.shiftKey && (__3.preventDefault(), this.sendMessage());
-      }), this.input.addEventListener('keyup', __3 => {
-        __3.stopPropagation();
-      }), this.input.addEventListener('keypress', __3 => {
-        __3.stopPropagation();
+      this.input.addEventListener('keydown', _0x3 => {
+        _0x3.stopPropagation(), _0x3.key === 'Enter' && !_0x3.shiftKey && (_0x3.preventDefault(), this.sendMessage());
+      }), this.input.addEventListener('keyup', _0x3 => {
+        _0x3.stopPropagation();
+      }), this.input.addEventListener('keypress', _0x3 => {
+        _0x3.stopPropagation();
       }), this.sendBtn.addEventListener('click', () => this.sendMessage());
     }
     toggle() {
       this.isOpen = !this.isOpen, this.body.hidden = !this.isOpen, this.toggleBtn.textContent = this.isOpen ? '\u2212' : '+', this.isOpen ? (this.restoreSize(), this.unreadCount = 0, this.updateUnreadBadge(), this.scrollToBottom()) : this.container.style.height = 'auto';
     }
-    addMessage(__3) {
-      __3.time = Date.now();
-      let __4 = __8.cursors?.currentNick,
-        __10 = __8.user?.sites?.map(__11 => __11.domain);
-      if (__4 && __3.message) {
-        let __11 = /@([a-zA-Z0-9][-a-zA-Z0-9]*(?:\.[a-zA-Z0-9][-a-zA-Z0-9]*)*\.[a-zA-Z]{2,})/g,
-          __26 = __3.message.matchAll(__11);
-        for (let __27 of __26)
-          if (__10.includes(__27[1])) {
-            __3.isPinged = !0;
+    addMessage(_0x3) {
+      _0x3.time = Date.now();
+      let _0x4 = _0x8.cursors?.currentNick,
+        _0xa = _0x8.user?.sites?.map(_0xb => _0xb.domain);
+      if (_0x4 && _0x3.message) {
+        let _0xb = /@([a-zA-Z0-9][-a-zA-Z0-9]*(?:\.[a-zA-Z0-9][-a-zA-Z0-9]*)*\.[a-zA-Z]{2,})/g,
+          _0x1a = _0x3.message.matchAll(_0xb);
+        for (let _0x1b of _0x1a)
+          if (_0xa.includes(_0x1b[1])) {
+            _0x3.isPinged = !0;
             try {
-              let __31 = new Audio('/s/ping.mp3');
-              __31.volume = 0.5, __31.play().catch(() => {});
+              let _0x1f = new Audio('/s/ping.mp3');
+              _0x1f.volume = 0.5, _0x1f.play().catch(() => {});
             } catch {}
             break;
           }
       }
-      this.messages.push(__3), this.messages.length > __115 && this.messages.shift(), this.appendMessageEl(__3), this.isOpen ? this.scrollToBottom() : (this.unreadCount++, this.updateUnreadBadge());
+      this.messages.push(_0x3), this.messages.length > _0x73 && this.messages.shift(), this.appendMessageEl(_0x3), this.isOpen ? this.scrollToBottom() : (this.unreadCount++, this.updateUnreadBadge());
     }
-    escapeHTML(__3) {
-      return __3.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;').replace(/'/g, '&#039;');
+    escapeHTML(_0x3) {
+      return _0x3.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;').replace(/'/g, '&#039;');
     }
-    escapeURL(__3) {
-      return __3.replaceAll('"', '%22').replaceAll('\'', '%27').replaceAll('`', '%60');
+    escapeURL(_0x3) {
+      return _0x3.replaceAll('"', '%22').replaceAll('\'', '%27').replaceAll('`', '%60');
     }
-    escapeURLDisplay(__3) {
-      return __3.replace(/</g, '&lt;').replace(/>/g, '&gt;');
+    escapeURLDisplay(_0x3) {
+      return _0x3.replace(/</g, '&lt;').replace(/>/g, '&gt;');
     }
-    parseMessage(__3) {
-      let __4 = /@([a-zA-Z0-9][-a-zA-Z0-9]*(?:\.[a-zA-Z0-9][-a-zA-Z0-9]*)*\.[a-zA-Z]{2,})/g,
-        __10 = [];
-      __3 = __3.replace(__4, (__30, __41) => (__10.push(__41), `<span class="chat-ping">@${ this.escapeHTML(__41) }</span>`));
-      let __11 = /(?!\.)(https?:\/\/[^\s<>"']+)|(?<![/])(\b(?:[a-zA-Z0-9][-a-zA-Z0-9]*\.)+([a-zA-Z]{2,})(?:\/[^\s<>"']*)?)/g,
-        __26 = 250,
-        __31 = 50 / 2;
-      __3 = __3.replace(__11, (__30, __41, __42, __43) => {
-        if (__41) {
-          let __44 = __41.match(/^https?:\/\/(?:www\.)?webtiles\.kicya\.net\/?#(-?\d+),(-?\d+)$/);
-          if (__44) {
-            let __45 = parseInt(__44[1]),
-              __46 = parseInt(__44[2]),
-              __50 = Math.floor(__45 / __26),
-              __51 = Math.floor(__46 / __26);
-            if (__50 >= -__31 && __50 <= __31 && __51 >= -__31 && __51 <= __31)
-              return `<a href="#" class="chat-coord-link" data-x="${ __50 }" data-y="${ __51 }">${ __50 }, ${ __51 }</a>`;
+    parseMessage(_0x3) {
+      let _0x4 = /@([a-zA-Z0-9][-a-zA-Z0-9]*(?:\.[a-zA-Z0-9][-a-zA-Z0-9]*)*\.[a-zA-Z]{2,})/g,
+        _0xa = [];
+      _0x3 = _0x3.replace(_0x4, (_0x1e, _0x29) => (_0xa.push(_0x29), `<span class="chat-ping">@${ this.escapeHTML(_0x29) }</span>`));
+      let _0xb = /(?!\.)(https?:\/\/[^\s<>"']+)|(?<![/])(\b(?:[a-zA-Z0-9][-a-zA-Z0-9]*\.)+([a-zA-Z]{2,})(?:\/[^\s<>"']*)?)/g,
+        _0x1a = 250,
+        _0x1f = 50 / 2;
+      _0x3 = _0x3.replace(_0xb, (_0x1e, _0x29, _0x2a, _0x2b) => {
+        if (_0x29) {
+          let _0x2c = _0x29.match(/^https?:\/\/(?:www\.)?webtiles\.kicya\.net\/?#(-?\d+),(-?\d+)$/);
+          if (_0x2c) {
+            let _0x2d = parseInt(_0x2c[1]),
+              _0x2e = parseInt(_0x2c[2]),
+              _0x32 = Math.floor(_0x2d / _0x1a),
+              _0x33 = Math.floor(_0x2e / _0x1a);
+            if (_0x32 >= -_0x1f && _0x32 <= _0x1f && _0x33 >= -_0x1f && _0x33 <= _0x1f)
+              return `<a href="#" class="chat-coord-link" data-x="${ _0x32 }" data-y="${ _0x33 }">${ _0x32 }, ${ _0x33 }</a>`;
           }
-          return `<a href="${ this.escapeURL(__41) }" target="_blank" rel="noopener noreferrer">${ this.escapeURLDisplay(this.escapeURL(__41)) }</a>`;
+          return `<a href="${ this.escapeURL(_0x29) }" target="_blank" rel="noopener noreferrer">${ this.escapeURLDisplay(this.escapeURL(_0x29)) }</a>`;
         }
-        if (__42 && __114.has(__43.toLowerCase()) && !__10.includes(__42)) {
-          let __44 = 'https://' + __42;
-          return `<a href="${ this.escapeURL(__44) }" target="_blank" rel="noopener noreferrer">${ this.escapeURLDisplay(__42) }</a>`;
+        if (_0x2a && _0x72.has(_0x2b.toLowerCase()) && !_0xa.includes(_0x2a)) {
+          let _0x2c = 'https://' + _0x2a;
+          return `<a href="${ this.escapeURL(_0x2c) }" target="_blank" rel="noopener noreferrer">${ this.escapeURLDisplay(_0x2a) }</a>`;
         }
-        return __30;
+        return _0x1e;
       });
-      let __28 = /(-?\d+),\s*(-?\d+)/g;
-      __3 = __3.replace(__28, (__30, __41, __42) => {
-        let __43 = parseInt(__41),
-          __44 = parseInt(__42);
-        return __43 >= -__31 && __43 <= __31 && __44 >= -__31 && __44 <= __31 ? `<a href="#" class="chat-coord-link" data-x="${ __41 }" data-y="${ __42 }">${ __30 }</a>` : __30;
+      let _0x1c = /(-?\d+),\s*(-?\d+)/g;
+      _0x3 = _0x3.replace(_0x1c, (_0x1e, _0x29, _0x2a) => {
+        let _0x2b = parseInt(_0x29),
+          _0x2c = parseInt(_0x2a);
+        return _0x2b >= -_0x1f && _0x2b <= _0x1f && _0x2c >= -_0x1f && _0x2c <= _0x1f ? `<a href="#" class="chat-coord-link" data-x="${ _0x29 }" data-y="${ _0x2a }">${ _0x1e }</a>` : _0x1e;
       });
-      let __29 = (__30, __41, __42, __43) => `<img class="emoji" src="https://cdn.discordapp.com/emojis/${ __43 }.${ __41 ? 'gif' : 'png' }?v=1" alt=":${ this.escapeHTML(__42) }:" title=":${ this.escapeHTML(__42) }:" width="20">`;
-      return __3 = __3.replace(/&lt;(a?):([a-zA-Z0-9_~]+):(\d{1,20})&gt;/g, __29), __3 = __3.replace(/<(a?):([a-zA-Z0-9_~]+):(\d{1,20})>/g, __29), __3 = __3.replace(/\*\*([^*]+)\*\*/g, (__30, __41) => `<strong>${ __41 }</strong>`), __3 = __3.replace(/\*([^*]+)\*/g, (__30, __41) => `<em>${ __41 }</em>`), __3 = __3.replace(/~~([^~]+)~~/g, (__30, __41) => `<s>${ __41 }</s>`), __3 = __3.replace(/__([^_]+)__/g, (__30, __41) => `<u>${ __41 }</u>`), __3 = __3.replace(/\|\|([^|]+)\|\|/g, (__30, __41) => `<span class="chat-spoiler">${ __41 }</span>`), __3;
+      let _0x1d = (_0x1e, _0x29, _0x2a, _0x2b) => `<img class="emoji" src="https://cdn.discordapp.com/emojis/${ _0x2b }.${ _0x29 ? 'gif' : 'png' }?v=1" alt=":${ this.escapeHTML(_0x2a) }:" title=":${ this.escapeHTML(_0x2a) }:" width="20">`;
+      return _0x3 = _0x3.replace(/&lt;(a?):([a-zA-Z0-9_~]+):(\d{1,20})&gt;/g, _0x1d), _0x3 = _0x3.replace(/<(a?):([a-zA-Z0-9_~]+):(\d{1,20})>/g, _0x1d), _0x3 = _0x3.replace(/\*\*([^*]+)\*\*/g, (_0x1e, _0x29) => `<strong>${ _0x29 }</strong>`), _0x3 = _0x3.replace(/\*([^*]+)\*/g, (_0x1e, _0x29) => `<em>${ _0x29 }</em>`), _0x3 = _0x3.replace(/~~([^~]+)~~/g, (_0x1e, _0x29) => `<s>${ _0x29 }</s>`), _0x3 = _0x3.replace(/__([^_]+)__/g, (_0x1e, _0x29) => `<u>${ _0x29 }</u>`), _0x3 = _0x3.replace(/\|\|([^|]+)\|\|/g, (_0x1e, _0x29) => `<span class="chat-spoiler">${ _0x29 }</span>`), _0x3;
     }
-    appendMessageEl(__3) {
-      let __4 = document.createElement('div');
-      __4.className = 'chat-message', __3.admin && __4.classList.add('chat-admin'), __3.mod && __4.classList.add('chat-mod'), __3.discord && __4.classList.add('chat-discord'), __3.isPinged && __4.classList.add('chat-pinged');
-      let __10 = document.createElement('span');
-      __10.className = 'chat-nick', __10.dataset.nick = __3.nick;
-      let __11 = __8.user?.admin || __8.user?.moderator;
-      __3.discord || (__10.classList.add('chat-nick-clickable'), __10.addEventListener('click', __30 => {
-        __30.stopPropagation(), __11 && !__3.admin ? this.showModMenu(__3, __30.clientX, __30.clientY) : this.findUserTile(__3.nick) && this.showUserMenu(__3.nick, __30.clientX, __30.clientY);
-      })), __3.admin ? __10.innerHTML = '<span class="chat-admin-icon">\u2605</span> ' + this.escapeHTML(__3.nick) + ': ' : __3.mod ? __10.innerHTML = '<span class="chat-mod-icon">\u25C6</span> ' + this.escapeHTML(__3.nick) + ': ' : __3.discord ? __10.innerHTML = '<span class="chat-discord-icon">[D]</span> ' + this.escapeHTML(__3.nick) + ': ' : __10.textContent = __3.nick + ': ';
-      let __26 = document.createElement('span');
-      __26.className = 'chat-text', __3.admin || __3.mod ? __26.innerHTML = this.parseMessage(__3.message).replace(/\n/g, '<br>') : __26.innerHTML = this.parseMessage(this.escapeHTML(__3.message)).replace(/\n/g, '<br>');
-      let __27 = __26.querySelectorAll('.emoji');
-      for (let __30 of __27)
-        __30.addEventListener('error', __41 => {
-          __41.target.remove();
+    appendMessageEl(_0x3) {
+      let _0x4 = document.createElement('div');
+      _0x4.className = 'chat-message', _0x3.admin && _0x4.classList.add('chat-admin'), _0x3.mod && _0x4.classList.add('chat-mod'), _0x3.discord && _0x4.classList.add('chat-discord'), _0x3.isPinged && _0x4.classList.add('chat-pinged');
+      let _0xa = document.createElement('span');
+      _0xa.className = 'chat-nick', _0xa.dataset.nick = _0x3.nick;
+      let _0xb = _0x8.user?.admin || _0x8.user?.moderator;
+      _0x3.discord || (_0xa.classList.add('chat-nick-clickable'), _0xa.addEventListener('click', _0x1e => {
+        _0x1e.stopPropagation(), _0xb && !_0x3.admin ? this.showModMenu(_0x3, _0x1e.clientX, _0x1e.clientY) : this.findUserTile(_0x3.nick) && this.showUserMenu(_0x3.nick, _0x1e.clientX, _0x1e.clientY);
+      })), _0x3.admin ? _0xa.innerHTML = '<span class="chat-admin-icon">\u2605</span> ' + this.escapeHTML(_0x3.nick) + ': ' : _0x3.mod ? _0xa.innerHTML = '<span class="chat-mod-icon">\u25C6</span> ' + this.escapeHTML(_0x3.nick) + ': ' : _0x3.discord ? _0xa.innerHTML = '<span class="chat-discord-icon">[D]</span> ' + this.escapeHTML(_0x3.nick) + ': ' : _0xa.textContent = _0x3.nick + ': ';
+      let _0x1a = document.createElement('span');
+      _0x1a.className = 'chat-text', _0x3.admin || _0x3.mod ? _0x1a.innerHTML = this.parseMessage(_0x3.message).replace(/\n/g, '<br>') : _0x1a.innerHTML = this.parseMessage(this.escapeHTML(_0x3.message)).replace(/\n/g, '<br>');
+      let _0x1b = _0x1a.querySelectorAll('.emoji');
+      for (let _0x1e of _0x1b)
+        _0x1e.addEventListener('error', _0x29 => {
+          _0x29.target.remove();
         });
-      let __31 = __26.querySelectorAll('.chat-spoiler');
-      for (let __30 of __31)
-        __30.addEventListener('click', __41 => {
-          __41.target.closest('.chat-spoiler').classList.toggle('chat-spoiler-revealed');
+      let _0x1f = _0x1a.querySelectorAll('.chat-spoiler');
+      for (let _0x1e of _0x1f)
+        _0x1e.addEventListener('click', _0x29 => {
+          _0x29.target.closest('.chat-spoiler').classList.toggle('chat-spoiler-revealed');
         });
-      let __28 = document.createElement('span');
-      __28.className = 'chat-time';
-      let __29 = new Date(__3.time || Date.now());
-      for (__28.textContent = __29.getHours().toString().padStart(2, '0') + ':' + __29.getMinutes().toString().padStart(2, '0'), __4.appendChild(__10), __4.appendChild(__26), __4.appendChild(__28), this.messagesEl.appendChild(__4); this.messagesEl.children.length > __115;)
+      let _0x1c = document.createElement('span');
+      _0x1c.className = 'chat-time';
+      let _0x1d = new Date(_0x3.time || Date.now());
+      for (_0x1c.textContent = _0x1d.getHours().toString().padStart(2, '0') + ':' + _0x1d.getMinutes().toString().padStart(2, '0'), _0x4.appendChild(_0xa), _0x4.appendChild(_0x1a), _0x4.appendChild(_0x1c), this.messagesEl.appendChild(_0x4); this.messagesEl.children.length > _0x73;)
         this.messagesEl.removeChild(this.messagesEl.firstChild);
     }
     renderMessages() {
       this.messagesEl.innerHTML = '';
-      for (let __3 of this.messages)
-        this.appendMessageEl(__3);
+      for (let _0x3 of this.messages)
+        this.appendMessageEl(_0x3);
       setTimeout(() => {
         this.scrollToBottom(!0);
       }, 100);
     }
-    scrollToBottom(__3 = !1) {
-      let __4 = this.messagesEl;
-      (__4.scrollHeight - __4.scrollTop - __4.clientHeight <= 120 || __3) && (__4.scrollTop = __4.scrollHeight);
+    scrollToBottom(_0x3 = !1) {
+      let _0x4 = this.messagesEl;
+      (_0x4.scrollHeight - _0x4.scrollTop - _0x4.clientHeight <= 120 || _0x3) && (_0x4.scrollTop = _0x4.scrollHeight);
     }
     updateUnreadBadge() {
       this.unreadCount > 0 ? (this.unreadEl.textContent = this.unreadCount > 99 ? '99+' : this.unreadCount, this.unreadEl.hidden = !1) : this.unreadEl.hidden = !0;
     }
     sendMessage() {
-      if (!__8.user) {
+      if (!_0x8.user) {
         this.showSystemMessage('Please login to chat');
         return;
       }
-      let __3 = this.input.value.trim();
-      if (!__3 || __3.length > 500)
+      let _0x3 = this.input.value.trim();
+      if (!_0x3 || _0x3.length > 500)
         return;
-      let __4 = __3.split(`
+      let _0x4 = _0x3.split(`
 `);
-      if (__4.length > 5 && (__3 = __4.slice(0, 5).join(`
-`)), __3 === '/help') {
+      if (_0x4.length > 5 && (_0x3 = _0x4.slice(0, 5).join(`
+`)), _0x3 === '/help') {
         this.showSystemMessage('Available commands:'), this.showSystemMessage('/jump [domain] - Jump to a tile by domain'), this.showSystemMessage('/jump X Y - Jump to coordinates X, Y'), this.showSystemMessage('/tell [domain] [msg] - Send a message to a specific domain'), this.input.value = '';
         return;
       }
-      if (__3.startsWith('/jump ') || __3.startsWith('/tp ')) {
-        let __10 = __3.split(' ').slice(1).join(' ');
-        if (__10) {
-          let __11 = __10.match(/^(-?\d+)\s+(-?\d+)$/);
-          if (__11) {
-            let __26 = parseInt(__11[1]),
-              __27 = parseInt(__11[2]),
-              __28 = 50 / 2;
-            !isNaN(__26) && !isNaN(__27) && __8.camera && __26 >= -__28 && __26 <= __28 && __27 >= -__28 && __27 <= __28 ? (__8.camera.centerOn(__26 * 250 + 250 / 2, __27 * 250 + 250 / 2), this.showSystemMessage(`Jumped to ${ __26 }, ${ __27 }`)) : this.showSystemMessage(`Invalid coordinates. Must be between -${ __28 } and ${ __28 }`);
+      if (_0x3.startsWith('/jump ') || _0x3.startsWith('/tp ')) {
+        let _0xa = _0x3.split(' ').slice(1).join(' ');
+        if (_0xa) {
+          let _0xb = _0xa.match(/^(-?\d+)\s+(-?\d+)$/);
+          if (_0xb) {
+            let _0x1a = parseInt(_0xb[1]),
+              _0x1b = parseInt(_0xb[2]),
+              _0x1c = 50 / 2;
+            !isNaN(_0x1a) && !isNaN(_0x1b) && _0x8.camera && _0x1a >= -_0x1c && _0x1a <= _0x1c && _0x1b >= -_0x1c && _0x1b <= _0x1c ? (_0x8.camera.centerOn(_0x1a * 250 + 250 / 2, _0x1b * 250 + 250 / 2), this.showSystemMessage(`Jumped to ${ _0x1a }, ${ _0x1b }`)) : this.showSystemMessage(`Invalid coordinates. Must be between -${ _0x1c } and ${ _0x1c }`);
           } else {
-            let __26 = __10;
-            this.jumpToDomain(__26) ? this.showSystemMessage(`Jumped to ${ __26 }`) : this.showSystemMessage(`Tile with domain "${ __26 }" not found`);
+            let _0x1a = _0xa;
+            this.jumpToDomain(_0x1a) ? this.showSystemMessage(`Jumped to ${ _0x1a }`) : this.showSystemMessage(`Tile with domain "${ _0x1a }" not found`);
           }
         } else
           this.showSystemMessage('Usage: /jump [domain] or /jump X Y');
         this.input.value = '';
         return;
       }
-      if (!__8.cursors?.currentNick) {
+      if (!_0x8.cursors?.currentNick) {
         this.showSystemMessage('Select a site to chat');
         return;
       }
-      if (!__3.startsWith('/')) {
-        let __10 = Date.now();
-        if (this.messageTimestamps = this.messageTimestamps.filter(__11 => __10 - __11 < __117), this.messageTimestamps.length >= __116)
+      if (!_0x3.startsWith('/')) {
+        let _0xa = Date.now();
+        if (this.messageTimestamps = this.messageTimestamps.filter(_0xb => _0xa - _0xb < _0x75), this.messageTimestamps.length >= _0x74)
           return;
-        this.messageTimestamps.push(__10);
+        this.messageTimestamps.push(_0xa);
       }
-      __8.ws.sendJSON({
+      _0x8.ws.sendJSON({
         type: 'message',
-        value: __3
+        value: _0x3
       }), this.input.value = '';
     }
-    showSystemMessage(__3) {
-      let __4 = document.createElement('div');
-      __4.className = 'chat-message chat-system', __4.innerHTML = this.parseMessage(this.escapeHTML(__3)).replace(/\n/g, '<br>'), this.messagesEl.appendChild(__4), this.scrollToBottom();
+    showSystemMessage(_0x3) {
+      let _0x4 = document.createElement('div');
+      _0x4.className = 'chat-message chat-system', _0x4.innerHTML = this.parseMessage(this.escapeHTML(_0x3)).replace(/\n/g, '<br>'), this.messagesEl.appendChild(_0x4), this.scrollToBottom();
     }
   };
-__8.chat = new __118();
-var __119 = __8.chat;
-var __120 = document.getElementById('loading-text'),
-  __121 = 0,
-  __122 = setInterval(() => {
-    __120.innerText = `Loading${ '.'.repeat(__121++ % 4) }`;
+_0x8.chat = new _0x76();
+var _0x77 = _0x8.chat;
+var _0x78 = document.getElementById('loading-text'),
+  _0x79 = 0,
+  _0x7a = setInterval(() => {
+    _0x78.innerText = `Loading${ '.'.repeat(_0x79++ % 4) }`;
   }, 200),
-  __123 = class {
+  _0x7b = class {
     constructor() {
-      this.tiles = {}, this.container = document.getElementById('plot'), this.worldSize = __36, this.activeTile = null, this.tileCache = {}, this.lockCache = {}, this.loaded = !1, setInterval(() => {
-        for (let __3 in this.tiles) {
-          let __4 = this.tiles[__3];
-          !__4.rendered && Date.now() - __4.lastRender > 30000 && delete this.tiles[__3];
+      this.tiles = {}, this.container = document.getElementById('plot'), this.worldSize = _0x24, this.activeTile = null, this.tileCache = {}, this.lockCache = {}, this.loaded = !1, setInterval(() => {
+        for (let _0x3 in this.tiles) {
+          let _0x4 = this.tiles[_0x3];
+          !_0x4.rendered && Date.now() - _0x4.lastRender > 30000 && delete this.tiles[_0x3];
         }
-      }, 10000), this.fetchTiles(), this.fetchLocks(), setInterval(() => this.fetchLocks(), 1000 * 60), setInterval(() => this.fetchTiles(), 1000 * 60), this.editorChannel = new BroadcastChannel('editor'), this.editorChannel.onmessage = __3 => {
-        if (__3.data.type === 'saved') {
+      }, 10000), this.fetchTiles(), this.fetchLocks(), setInterval(() => this.fetchLocks(), 1000 * 60), setInterval(() => this.fetchTiles(), 1000 * 60), this.editorChannel = new BroadcastChannel('editor'), this.editorChannel.onmessage = _0x3 => {
+        if (_0x3.data.type === 'saved') {
           let {
-            path: __4,
-            site: __10
-          } = __3.data;
-          this.refreshTile(__10, __4);
+            path: _0x4,
+            site: _0xa
+          } = _0x3.data;
+          this.refreshTile(_0xa, _0x4);
         }
       }, this.setupWsHandlers();
     }
     setupWsHandlers() {
-      __8.ws && (__8.ws.on('refresh', __3 => {
+      _0x8.ws && (_0x8.ws.on('refresh', _0x3 => {
         if ('serviceWorker' in navigator && navigator.serviceWorker.controller) {
-          let __4 = null;
-          for (let __10 in this.tileCache) {
-            for (let __11 in this.tileCache[__10]) {
-              let __26 = this.tileCache[__10][__11];
-              if ((typeof __26 == 'string' ? null : __26?.domain ?? null) === __3.domain) {
-                __4 = typeof __26 == 'object' && __26.updated_at ? __26.updated_at : Math.floor(Date.now() / 1000);
+          let _0x4 = null;
+          for (let _0xa in this.tileCache) {
+            for (let _0xb in this.tileCache[_0xa]) {
+              let _0x1a = this.tileCache[_0xa][_0xb];
+              if ((typeof _0x1a == 'string' ? null : _0x1a?.domain ?? null) === _0x3.domain) {
+                _0x4 = typeof _0x1a == 'object' && _0x1a.updated_at ? _0x1a.updated_at : Math.floor(Date.now() / 1000);
                 break;
               }
             }
-            if (__4 !== null)
+            if (_0x4 !== null)
               break;
           }
           navigator.serviceWorker.controller.postMessage({
             type: 'tile-refresh',
-            domain: __3.domain,
-            lastUpdate: __4 || Math.floor(Date.now() / 1000)
+            domain: _0x3.domain,
+            lastUpdate: _0x4 || Math.floor(Date.now() / 1000)
           });
         }
         setTimeout(() => {
-          this.refreshTile(__3.domain, __3.path);
+          this.refreshTile(_0x3.domain, _0x3.path);
         }, 500);
-      }), __8.ws.on('claim', __3 => {
-        this.tileCache[__3.__47] = this.tileCache[__3.__47] || {}, this.tileCache[__3.__47][__3.__85] = typeof __3.domain == 'string' ? {
-          domain: __3.domain,
+      }), _0x8.ws.on('claim', _0x3 => {
+        this.tileCache[_0x3._0x2f] = this.tileCache[_0x3._0x2f] || {}, this.tileCache[_0x3._0x2f][_0x3._0x55] = typeof _0x3.domain == 'string' ? {
+          domain: _0x3.domain,
           updated_at: Math.floor(Date.now() / 1000)
-        } : __3.domain;
-        let __4 = this.tiles[`${ __3.__47 },${ __3.__85 }`];
-        if (__4) {
-          let __10 = typeof this.tileCache[__3.__47][__3.__85] == 'string' ? this.tileCache[__3.__47][__3.__85] : this.tileCache[__3.__47][__3.__85].domain;
-          __4.setDomain(__10);
+        } : _0x3.domain;
+        let _0x4 = this.tiles[`${ _0x3._0x2f },${ _0x3._0x55 }`];
+        if (_0x4) {
+          let _0xa = typeof this.tileCache[_0x3._0x2f][_0x3._0x55] == 'string' ? this.tileCache[_0x3._0x2f][_0x3._0x55] : this.tileCache[_0x3._0x2f][_0x3._0x55].domain;
+          _0x4.setDomain(_0xa);
         }
-      }), __8.ws.on('free', __3 => {
-        this.tileCache[__3.__47] && delete this.tileCache[__3.__47][__3.__85];
-        let __4 = this.tiles[`${ __3.__47 },${ __3.__85 }`];
-        __4 && __4.setFree();
-      }), __8.ws.on('lock', __3 => {
-        __3.locked ? this.lockCache[__3.__47 + ',' + __3.__85] = !0 : delete this.lockCache[__3.__47 + ',' + __3.__85];
-        let __4 = this.tiles[`${ __3.__47 },${ __3.__85 }`];
-        __4 && __4.setLocked(__3.locked);
-      }), __8.ws.on('user_count', __3 => {
-        let __4 = document.getElementById('user-count');
-        __4 && (__4.textContent = `${ __3.count } online`);
-      }), __8.ws.on('clan_invite', __3 => {
-        __3.invite && (__8.ui.pendingClanInvites.find(__10 => __10.id === __3.invite.id) || (__8.ui.pendingClanInvites.push({
-          id: __3.invite.id,
-          clan_id: __3.invite.clan_id,
-          clan_name: __3.invite.clan_name
-        }), __8.ui.updateClanIndicator()));
+      }), _0x8.ws.on('free', _0x3 => {
+        this.tileCache[_0x3._0x2f] && delete this.tileCache[_0x3._0x2f][_0x3._0x55];
+        let _0x4 = this.tiles[`${ _0x3._0x2f },${ _0x3._0x55 }`];
+        _0x4 && _0x4.setFree();
+      }), _0x8.ws.on('lock', _0x3 => {
+        _0x3.locked ? this.lockCache[_0x3._0x2f + ',' + _0x3._0x55] = !0 : delete this.lockCache[_0x3._0x2f + ',' + _0x3._0x55];
+        let _0x4 = this.tiles[`${ _0x3._0x2f },${ _0x3._0x55 }`];
+        _0x4 && _0x4.setLocked(_0x3.locked);
+      }), _0x8.ws.on('user_count', _0x3 => {
+        let _0x4 = document.getElementById('user-count');
+        _0x4 && (_0x4.textContent = `${ _0x3.count } online`);
+      }), _0x8.ws.on('clan_invite', _0x3 => {
+        _0x3.invite && (_0x8.ui.pendingClanInvites.find(_0xa => _0xa.id === _0x3.invite.id) || (_0x8.ui.pendingClanInvites.push({
+          id: _0x3.invite.id,
+          clan_id: _0x3.invite.clan_id,
+          clan_name: _0x3.invite.clan_name
+        }), _0x8.ui.updateClanIndicator()));
       }));
     }
-    refreshTile(__3, __4) {
+    refreshTile(_0x3, _0x4) {
       if ('serviceWorker' in navigator && navigator.serviceWorker.controller) {
-        let __10 = null;
-        for (let __11 in this.tileCache) {
-          for (let __26 in this.tileCache[__11]) {
-            let __27 = this.tileCache[__11][__26];
-            if ((typeof __27 == 'string' ? null : __27?.domain ?? null) === __3) {
-              __10 = typeof __27 == 'object' && __27.updated_at ? __27.updated_at : Math.floor(Date.now() / 1000);
+        let _0xa = null;
+        for (let _0xb in this.tileCache) {
+          for (let _0x1a in this.tileCache[_0xb]) {
+            let _0x1b = this.tileCache[_0xb][_0x1a];
+            if ((typeof _0x1b == 'string' ? null : _0x1b?.domain ?? null) === _0x3) {
+              _0xa = typeof _0x1b == 'object' && _0x1b.updated_at ? _0x1b.updated_at : Math.floor(Date.now() / 1000);
               break;
             }
           }
-          if (__10 !== null)
+          if (_0xa !== null)
             break;
         }
         navigator.serviceWorker.controller.postMessage({
           type: 'tile-refresh',
-          domain: __3,
-          lastUpdate: __10 || Math.floor(Date.now() / 1000)
+          domain: _0x3,
+          lastUpdate: _0xa || Math.floor(Date.now() / 1000)
         });
       }
-      for (let __10 in this.tiles) {
-        let __11 = this.tiles[__10];
-        if (__11.domain === __3 && __11.path === __4) {
-          if (__11.active)
+      for (let _0xa in this.tiles) {
+        let _0xb = this.tiles[_0xa];
+        if (_0xb.domain === _0x3 && _0xb.path === _0x4) {
+          if (_0xb.active)
             break;
-          __11.fetchContent(__11.path, !0);
+          _0xb.fetchContent(_0xb.path, !0);
           break;
         }
       }
     }
-    addTile(__3) {
-      this.tiles[`${ __3.__47 },${ __3.__85 }`] = __3;
+    addTile(_0x3) {
+      this.tiles[`${ _0x3._0x2f },${ _0x3._0x55 }`] = _0x3;
     }
-    getTile(__3, __4) {
-      if (__3 > this.worldSize / 2 || __3 < -this.worldSize / 2 || __4 > this.worldSize / 2 || __4 < -this.worldSize / 2)
+    getTile(_0x3, _0x4) {
+      if (_0x3 > this.worldSize / 2 || _0x3 < -this.worldSize / 2 || _0x4 > this.worldSize / 2 || _0x4 < -this.worldSize / 2)
         return null;
-      if (!this.tiles[`${ __3 },${ __4 }`]) {
-        let __10 = this.tileCache?.[__3]?.[__4],
-          __11 = typeof __10 == 'string' ? __10 : __10?.domain ?? null;
-        this.tiles[`${ __3 },${ __4 }`] = new __100({
-          __47: __3,
-          __85: __4,
-          domain: __11 ?? null
+      if (!this.tiles[`${ _0x3 },${ _0x4 }`]) {
+        let _0xa = this.tileCache?.[_0x3]?.[_0x4],
+          _0xb = typeof _0xa == 'string' ? _0xa : _0xa?.domain ?? null;
+        this.tiles[`${ _0x3 },${ _0x4 }`] = new _0x64({
+          _0x2f: _0x3,
+          _0x55: _0x4,
+          domain: _0xb ?? null
         });
       }
-      return this.tiles[`${ __3 },${ __4 }`];
+      return this.tiles[`${ _0x3 },${ _0x4 }`];
     }
-    removeTile(__3) {
-      __3.unrender(), delete this.tiles[`${ __3.__47 },${ __3.__85 }`];
+    removeTile(_0x3) {
+      _0x3.unrender(), delete this.tiles[`${ _0x3._0x2f },${ _0x3._0x55 }`];
     }
     clear() {
-      Object.values(this.tiles).forEach(__3 => __3.unrender()), this.tiles = {};
+      Object.values(this.tiles).forEach(_0x3 => _0x3.unrender()), this.tiles = {};
     }
     async fetchTiles() {
-      if (this.tileCache = (await __8.api.makeRequest('/api/tiles').then(__3 => __3.json())).tiles, 'serviceWorker' in navigator && navigator.serviceWorker.controller) {
-        let __3 = {};
-        for (let __4 in this.tileCache)
-          for (let __10 in this.tileCache[__4]) {
-            let __11 = this.tileCache[__4][__10];
-            typeof __11 == 'object' && __11.domain && __11.updated_at && (__3[__11.domain] = __11.updated_at.toString());
+      if (this.tileCache = (await _0x8.api.makeRequest('/api/tiles').then(_0x3 => _0x3.json())).tiles, 'serviceWorker' in navigator && navigator.serviceWorker.controller) {
+        let _0x3 = {};
+        for (let _0x4 in this.tileCache)
+          for (let _0xa in this.tileCache[_0x4]) {
+            let _0xb = this.tileCache[_0x4][_0xa];
+            typeof _0xb == 'object' && _0xb.domain && _0xb.updated_at && (_0x3[_0xb.domain] = _0xb.updated_at.toString());
           }
-        Object.keys(__3).length > 0 && navigator.serviceWorker.controller.postMessage({
+        Object.keys(_0x3).length > 0 && navigator.serviceWorker.controller.postMessage({
           type: 'tile-updates',
-          updates: __3
+          updates: _0x3
         });
       }
-      for (let __3 in this.tileCache)
-        for (let __4 in this.tileCache[__3]) {
-          let __10 = this.tileCache[__3][__4],
-            __11 = typeof __10 == 'string' ? __10 : __10?.domain ?? null,
-            __26 = this.tiles[`${ __3 },${ __4 }`];
-          __26 && __26.domain !== __11 && __26.setDomain(__11);
+      for (let _0x3 in this.tileCache)
+        for (let _0x4 in this.tileCache[_0x3]) {
+          let _0xa = this.tileCache[_0x3][_0x4],
+            _0xb = typeof _0xa == 'string' ? _0xa : _0xa?.domain ?? null,
+            _0x1a = this.tiles[`${ _0x3 },${ _0x4 }`];
+          _0x1a && _0x1a.domain !== _0xb && _0x1a.setDomain(_0xb);
         }
       this.loaded || setTimeout(() => {
         this.loaded = !0;
-        let __3 = document.getElementById('loading'),
-          __4 = document.getElementById('app');
-        __3.hidden = !0, __4.hidden = !1, clearInterval(__122);
+        let _0x3 = document.getElementById('loading'),
+          _0x4 = document.getElementById('app');
+        _0x3.hidden = !0, _0x4.hidden = !1, clearInterval(_0x7a);
       }, 300);
     }
     async fetchLocks() {
-      this.lockCache = (await __8.api.makeRequest('/api/locks').then(__3 => __3.json())).locks;
-      for (let __3 in this.lockCache) {
-        let __4 = this.tiles[__3];
-        __4 && __4.element && __4.setLocked(!0);
+      this.lockCache = (await _0x8.api.makeRequest('/api/locks').then(_0x3 => _0x3.json())).locks;
+      for (let _0x3 in this.lockCache) {
+        let _0x4 = this.tiles[_0x3];
+        _0x4 && _0x4.element && _0x4.setLocked(!0);
       }
     }
   };
-__8.plot = new __123();
-var __124 = document.getElementById('plot'),
-  __125 = class {
+_0x8.plot = new _0x7b();
+var _0x7c = document.getElementById('plot'),
+  _0x7d = class {
     constructor() {
-      if (this.__47 = 0, this.__85 = 0, this.zoom = 1, this.width = window.innerWidth, this.height = window.innerHeight, this.renderedTiles = new Set(), this.centerOn(100, 100), location.hash.startsWith('#') && location.hash.includes(','))
+      if (this._0x2f = 0, this._0x55 = 0, this.zoom = 1, this.width = window.innerWidth, this.height = window.innerHeight, this.renderedTiles = new Set(), this.centerOn(100, 100), location.hash.startsWith('#') && location.hash.includes(','))
         try {
-          let [__41, __42] = location.hash.slice(1).split(',');
-          this.centerOn(parseInt(__41), parseInt(__42)), location.hash = '';
+          let [_0x29, _0x2a] = location.hash.slice(1).split(',');
+          this.centerOn(parseInt(_0x29), parseInt(_0x2a)), location.hash = '';
         } catch {}
-      let __3 = 0,
-        __4 = 0;
+      let _0x3 = 0,
+        _0x4 = 0;
       setInterval(() => {
-        let __41 = this.__47 + this.width / 2,
-          __42 = this.__85 + this.height / 2;
-        (__41 != __3 || __42 != __4) && (__3 = __41, __4 = __42);
+        let _0x29 = this._0x2f + this.width / 2,
+          _0x2a = this._0x55 + this.height / 2;
+        (_0x29 != _0x3 || _0x2a != _0x4) && (_0x3 = _0x29, _0x4 = _0x2a);
       }, 1000), window.addEventListener('resize', () => {
         this.width = window.innerWidth, this.height = window.innerHeight, this.renderTilesInView();
       });
-      let __10 = 0;
-      this.zoomEnabled = !0, this.wheelHandler = __41 => {
-        if (!this.zoomEnabled || __41.target.closest('.tile.active'))
+      let _0xa = 0;
+      this.zoomEnabled = !0, this.wheelHandler = _0x29 => {
+        if (!this.zoomEnabled || _0x29.target.closest('.tile.active'))
           return;
-        __41.preventDefault();
-        let __42 = __41.deltaY;
-        if (Math.abs(__42) > 1 && Date.now() - __10 > 100) {
-          let __44 = __35.indexOf(this.zoom) + (__42 > 0 ? -1 : 1);
-          if (__44 >= 1 && __44 < __35.length) {
-            let __45 = __8.mouse?.__47 || this.width / 2,
-              __46 = __8.mouse?.__85 || this.height / 2;
-            this.zoomTo(__45, __46, __35[__44]), __10 = Date.now();
+        _0x29.preventDefault();
+        let _0x2a = _0x29.deltaY;
+        if (Math.abs(_0x2a) > 1 && Date.now() - _0xa > 100) {
+          let _0x2c = _0x23.indexOf(this.zoom) + (_0x2a > 0 ? -1 : 1);
+          if (_0x2c >= 1 && _0x2c < _0x23.length) {
+            let _0x2d = _0x8.mouse?._0x2f || this.width / 2,
+              _0x2e = _0x8.mouse?._0x55 || this.height / 2;
+            this.zoomTo(_0x2d, _0x2e, _0x23[_0x2c]), _0xa = Date.now();
           }
         }
       }, window.addEventListener('wheel', this.wheelHandler, {
         passive: !1
       });
-      let __11 = 0,
-        __26 = {
-          __47: 0,
-          __85: 0
+      let _0xb = 0,
+        _0x1a = {
+          _0x2f: 0,
+          _0x55: 0
         },
-        __27 = __41 => {
-          let __42 = __41[0].clientX - __41[1].clientX,
-            __43 = __41[0].clientY - __41[1].clientY;
-          return Math.sqrt(__42 * __42 + __43 * __43);
+        _0x1b = _0x29 => {
+          let _0x2a = _0x29[0].clientX - _0x29[1].clientX,
+            _0x2b = _0x29[0].clientY - _0x29[1].clientY;
+          return Math.sqrt(_0x2a * _0x2a + _0x2b * _0x2b);
         },
-        __31 = __41 => ({
-          __47: (__41[0].clientX + __41[1].clientX) / 2,
-          __85: (__41[0].clientY + __41[1].clientY) / 2
+        _0x1f = _0x29 => ({
+          _0x2f: (_0x29[0].clientX + _0x29[1].clientX) / 2,
+          _0x55: (_0x29[0].clientY + _0x29[1].clientY) / 2
         });
-      document.addEventListener('touchstart', __41 => {
-        __41.touches.length === 2 && (__11 = __27(__41.touches), __26 = __31(__41.touches));
+      document.addEventListener('touchstart', _0x29 => {
+        _0x29.touches.length === 2 && (_0xb = _0x1b(_0x29.touches), _0x1a = _0x1f(_0x29.touches));
       }, {
         passive: !0
-      }), document.addEventListener('touchmove', __41 => {
-        if (this.zoomEnabled && __41.touches.length === 2) {
-          if (__41.target.closest('.tile.active'))
+      }), document.addEventListener('touchmove', _0x29 => {
+        if (this.zoomEnabled && _0x29.touches.length === 2) {
+          if (_0x29.target.closest('.tile.active'))
             return;
-          let __42 = __27(__41.touches),
-            __43 = __31(__41.touches);
-          if (__11 > 0) {
-            let __44 = __42 / __11,
-              __45 = __35.indexOf(this.zoom);
-            __44 > 1.1 && __45 < __35.length - 1 ? (this.zoomTo(__43.__47, __43.__85, __35[__45 + 1]), __11 = __42) : __44 < 0.9 && __45 > 1 && (this.zoomTo(__43.__47, __43.__85, __35[__45 - 1]), __11 = __42);
+          let _0x2a = _0x1b(_0x29.touches),
+            _0x2b = _0x1f(_0x29.touches);
+          if (_0xb > 0) {
+            let _0x2c = _0x2a / _0xb,
+              _0x2d = _0x23.indexOf(this.zoom);
+            _0x2c > 1.1 && _0x2d < _0x23.length - 1 ? (this.zoomTo(_0x2b._0x2f, _0x2b._0x55, _0x23[_0x2d + 1]), _0xb = _0x2a) : _0x2c < 0.9 && _0x2d > 1 && (this.zoomTo(_0x2b._0x2f, _0x2b._0x55, _0x23[_0x2d - 1]), _0xb = _0x2a);
           }
-          __26 = __43, __41.preventDefault();
+          _0x1a = _0x2b, _0x29.preventDefault();
         }
       }, {
         passive: !1
-      }), document.addEventListener('touchend', __41 => {
-        __41.touches.length < 2 && (__11 = 0);
+      }), document.addEventListener('touchend', _0x29 => {
+        _0x29.touches.length < 2 && (_0xb = 0);
       }), this.keysPressed = {
         ArrowUp: !1,
         ArrowDown: !1,
         ArrowLeft: !1,
         ArrowRight: !1
       }, this.moveSpeed = 5;
-      let __28 = __41 => {
-          __41.key in this.keysPressed && (__41.preventDefault(), this.keysPressed[__41.key] = !0);
+      let _0x1c = _0x29 => {
+          _0x29.key in this.keysPressed && (_0x29.preventDefault(), this.keysPressed[_0x29.key] = !0);
         },
-        __29 = __41 => {
-          __41.key in this.keysPressed && (__41.preventDefault(), this.keysPressed[__41.key] = !1);
+        _0x1d = _0x29 => {
+          _0x29.key in this.keysPressed && (_0x29.preventDefault(), this.keysPressed[_0x29.key] = !1);
         };
-      window.addEventListener('keydown', __28), window.addEventListener('keyup', __29);
-      let __30 = () => {
-        if (!__8.plot?.activeTile) {
-          let __41 = 0,
-            __42 = 0;
-          this.keysPressed.ArrowLeft && (__41 -= this.moveSpeed), this.keysPressed.ArrowRight && (__41 += this.moveSpeed), this.keysPressed.ArrowUp && (__42 -= this.moveSpeed), this.keysPressed.ArrowDown && (__42 += this.moveSpeed), (__41 !== 0 || __42 !== 0) && this.move(this.__47 + __41, this.__85 + __42);
+      window.addEventListener('keydown', _0x1c), window.addEventListener('keyup', _0x1d);
+      let _0x1e = () => {
+        if (!_0x8.plot?.activeTile) {
+          let _0x29 = 0,
+            _0x2a = 0;
+          this.keysPressed.ArrowLeft && (_0x29 -= this.moveSpeed), this.keysPressed.ArrowRight && (_0x29 += this.moveSpeed), this.keysPressed.ArrowUp && (_0x2a -= this.moveSpeed), this.keysPressed.ArrowDown && (_0x2a += this.moveSpeed), (_0x29 !== 0 || _0x2a !== 0) && this.move(this._0x2f + _0x29, this._0x55 + _0x2a);
         }
-        requestAnimationFrame(__30);
+        requestAnimationFrame(_0x1e);
       };
-      __30();
+      _0x1e();
     }
-    move(__3, __4) {
-      this.__47 = Math.round(__3), this.__85 = Math.round(__4), this.updatePlotTransform(), this.renderTilesInView();
+    move(_0x3, _0x4) {
+      this._0x2f = Math.round(_0x3), this._0x55 = Math.round(_0x4), this.updatePlotTransform(), this.renderTilesInView();
     }
     updatePlotTransform() {
-      __124.style.transform = `translate3d(${ -this.__47 }px, ${ -this.__85 }px, 0) scale(${ this.zoom })`;
+      _0x7c.style.transform = `translate3d(${ -this._0x2f }px, ${ -this._0x55 }px, 0) scale(${ this.zoom })`;
     }
-    zoomTo(__3, __4, __10) {
-      let __11 = (this.__47 + __3) / this.zoom,
-        __26 = (this.__85 + __4) / this.zoom;
-      this.zoom = __10, this.__47 = __11 * this.zoom - __3, this.__85 = __26 * this.zoom - __4, __8.ui.zoomSlider.value = this.zoom, this.move(this.__47, this.__85);
+    zoomTo(_0x3, _0x4, _0xa) {
+      let _0xb = (this._0x2f + _0x3) / this.zoom,
+        _0x1a = (this._0x55 + _0x4) / this.zoom;
+      this.zoom = _0xa, this._0x2f = _0xb * this.zoom - _0x3, this._0x55 = _0x1a * this.zoom - _0x4, _0x8.ui.zoomSlider.value = this.zoom, this.move(this._0x2f, this._0x55);
     }
-    centerOn(__3, __4) {
-        let __10 = __3 * this.zoom - this.width / 2,
-          __11 = __4 * this.zoom - this.height / 2;
-        this.move(__10, __11);
+    centerOn(_0x3, _0x4) {
+        let _0xa = _0x3 * this.zoom - this.width / 2,
+          _0xb = _0x4 * this.zoom - this.height / 2;
+        this.move(_0xa, _0xb);
       }
       * getTilesInView() {
-        let __3 = __100.toTilePosition((this.__47 - 250 * this.zoom) / this.zoom, (this.__85 - 250 * this.zoom) / this.zoom),
-          __4 = __100.toTilePosition((this.__47 + 250 * this.zoom + this.width) / this.zoom, (this.__85 + 250 * this.zoom + this.height) / this.zoom);
-        for (let __10 = __3.__47; __10 < __4.__47; __10++)
-          for (let __11 = __3.__85; __11 < __4.__85; __11++) {
-            let __26 = __8.plot.getTile(__10, __11);
-            __26 && (yield __26);
+        let _0x3 = _0x64.toTilePosition((this._0x2f - 250 * this.zoom) / this.zoom, (this._0x55 - 250 * this.zoom) / this.zoom),
+          _0x4 = _0x64.toTilePosition((this._0x2f + 250 * this.zoom + this.width) / this.zoom, (this._0x55 + 250 * this.zoom + this.height) / this.zoom);
+        for (let _0xa = _0x3._0x2f; _0xa < _0x4._0x2f; _0xa++)
+          for (let _0xb = _0x3._0x55; _0xb < _0x4._0x55; _0xb++) {
+            let _0x1a = _0x8.plot.getTile(_0xa, _0xb);
+            _0x1a && (yield _0x1a);
           }
       }
-      * getTilesInViewWithBuffer(__3 = 500) {
-        let __4 = __100.toTilePosition((this.__47 - 250 * this.zoom - __3) / this.zoom, (this.__85 - 250 * this.zoom - __3) / this.zoom),
-          __10 = __100.toTilePosition((this.__47 + 250 * this.zoom + this.width + __3) / this.zoom, (this.__85 + 250 * this.zoom + this.height + __3) / this.zoom);
-        for (let __11 = __4.__47; __11 < __10.__47; __11++)
-          for (let __26 = __4.__85; __26 < __10.__85; __26++) {
-            let __27 = __8.plot.getTile(__11, __26);
-            __27 && (yield __27);
+      * getTilesInViewWithBuffer(_0x3 = 500) {
+        let _0x4 = _0x64.toTilePosition((this._0x2f - 250 * this.zoom - _0x3) / this.zoom, (this._0x55 - 250 * this.zoom - _0x3) / this.zoom),
+          _0xa = _0x64.toTilePosition((this._0x2f + 250 * this.zoom + this.width + _0x3) / this.zoom, (this._0x55 + 250 * this.zoom + this.height + _0x3) / this.zoom);
+        for (let _0xb = _0x4._0x2f; _0xb < _0xa._0x2f; _0xb++)
+          for (let _0x1a = _0x4._0x55; _0x1a < _0xa._0x55; _0x1a++) {
+            let _0x1b = _0x8.plot.getTile(_0xb, _0x1a);
+            _0x1b && (yield _0x1b);
           }
       }
-    isTileWithinBuffer(__3, __4 = 500) {
-      let __10 = __3.__47 * 250,
-        __11 = __3.__85 * 250,
-        __26 = 250,
-        __27 = this.__47 / this.zoom,
-        __31 = (this.__47 + this.width) / this.zoom,
-        __28 = this.__85 / this.zoom,
-        __29 = (this.__85 + this.height) / this.zoom,
-        __30 = __10 + __26,
-        __41 = __11 + __26,
-        __42 = __4 / this.zoom,
-        __43 = 0;
-      __30 < __27 ? __43 = __27 - __30 : __10 > __31 && (__43 = __10 - __31);
-      let __44 = 0;
-      return __41 < __28 ? __44 = __28 - __41 : __11 > __29 && (__44 = __11 - __29), Math.sqrt(__43 * __43 + __44 * __44) <= __42;
+    isTileWithinBuffer(_0x3, _0x4 = 500) {
+      let _0xa = _0x3._0x2f * 250,
+        _0xb = _0x3._0x55 * 250,
+        _0x1a = 250,
+        _0x1b = this._0x2f / this.zoom,
+        _0x1f = (this._0x2f + this.width) / this.zoom,
+        _0x1c = this._0x55 / this.zoom,
+        _0x1d = (this._0x55 + this.height) / this.zoom,
+        _0x1e = _0xa + _0x1a,
+        _0x29 = _0xb + _0x1a,
+        _0x2a = _0x4 / this.zoom,
+        _0x2b = 0;
+      _0x1e < _0x1b ? _0x2b = _0x1b - _0x1e : _0xa > _0x1f && (_0x2b = _0xa - _0x1f);
+      let _0x2c = 0;
+      return _0x29 < _0x1c ? _0x2c = _0x1c - _0x29 : _0xb > _0x1d && (_0x2c = _0xb - _0x1d), Math.sqrt(_0x2b * _0x2b + _0x2c * _0x2c) <= _0x2a;
     }
     renderTilesInView() {
-      let __3 = new Set(),
-        __4 = 260;
-      for (let __10 of this.getTilesInViewWithBuffer(__4))
-        __10.render(), __3.add(__10);
+      let _0x3 = new Set(),
+        _0x4 = 260;
+      for (let _0xa of this.getTilesInViewWithBuffer(_0x4))
+        _0xa.render(), _0x3.add(_0xa);
       if (this.renderedTiles)
-        for (let __10 of this.renderedTiles)
-          __3.has(__10) || (this.isTileWithinBuffer(__10, __4) ? __3.add(__10) : __10.unrender());
-      this.renderedTiles = __3;
+        for (let _0xa of this.renderedTiles)
+          _0x3.has(_0xa) || (this.isTileWithinBuffer(_0xa, _0x4) ? _0x3.add(_0xa) : _0xa.unrender());
+      this.renderedTiles = _0x3;
     }
-    setZoomEnabled(__3) {
-      this.zoomEnabled = __3;
+    setZoomEnabled(_0x3) {
+      this.zoomEnabled = _0x3;
     }
   };
-__8.camera = new __125();
-var __126 = class {
+_0x8.camera = new _0x7d();
+var _0x7e = class {
   constructor() {
-    this.__47 = 0, this.__85 = 0, this.worldX = 0, this.worldY = 0, this.tileX = 0, this.tileY = 0, this.down = !1;
-    let __3 = 0,
-      __4 = 0,
-      __10 = 0,
-      __11 = 0,
-      __26 = 0,
-      __27 = (__29, __30, __41) => {
-        if (!__41.closest('#plot') || __41.closest('.tile-info, .tile-admin-panel, .tile-vote-menu'))
+    this._0x2f = 0, this._0x55 = 0, this.worldX = 0, this.worldY = 0, this.tileX = 0, this.tileY = 0, this.down = !1;
+    let _0x3 = 0,
+      _0x4 = 0,
+      _0xa = 0,
+      _0xb = 0,
+      _0x1a = 0,
+      _0x1b = (_0x1d, _0x1e, _0x29) => {
+        if (!_0x29.closest('#plot') || _0x29.closest('.tile-info, .tile-admin-panel, .tile-vote-menu'))
           return !1;
-        let __42 = __8.plot.getTile(this.tileX, this.tileY);
-        return __8.plot.activeTile && __8.plot.activeTile.id === __42.id ? !1 : (this.down = !0, __10 = __29, __11 = __30, __3 = __8.camera.__47, __4 = __8.camera.__85, __26 = Date.now(), !0);
+        let _0x2a = _0x8.plot.getTile(this.tileX, this.tileY);
+        return _0x8.plot.activeTile && _0x8.plot.activeTile.id === _0x2a.id ? !1 : (this.down = !0, _0xa = _0x1d, _0xb = _0x1e, _0x3 = _0x8.camera._0x2f, _0x4 = _0x8.camera._0x55, _0x1a = Date.now(), !0);
       },
-      __31 = () => {
+      _0x1f = () => {
         if (!this.down)
           return;
         this.down = !1;
-        let __29 = Math.abs(this.__47 - __10),
-          __30 = Math.abs(this.__85 - __11);
-        Date.now() - __26 < 400 && __29 < 10 && __30 < 10 && __8.plot.getTile(this.tileX, this.tileY).setActive(!0);
+        let _0x1d = Math.abs(this._0x2f - _0xa),
+          _0x1e = Math.abs(this._0x55 - _0xb);
+        Date.now() - _0x1a < 400 && _0x1d < 10 && _0x1e < 10 && _0x8.plot.getTile(this.tileX, this.tileY).setActive(!0);
       },
-      __28 = (__29, __30) => {
-        this.__47 = __29, this.__85 = __30;
-        let __41 = __8.camera;
-        this.worldX = (__41.__47 + this.__47) / __41.zoom, this.worldY = (__41.__85 + this.__85) / __41.zoom;
-        let __42 = __100.toTilePosition(this.worldX, this.worldY);
-        if (this.tileX = __42.__47, this.tileY = __42.__85, __8.ui.coords.textContent = `${ this.tileX }, ${ this.tileY }`, document.documentElement.style.setProperty('--coords-width', __8.ui.coords.offsetWidth + 'px'), this.down) {
-          let __43 = this.__47 - __10,
-            __44 = this.__85 - __11;
-          __41.move(__3 - __43, __4 - __44);
+      _0x1c = (_0x1d, _0x1e) => {
+        this._0x2f = _0x1d, this._0x55 = _0x1e;
+        let _0x29 = _0x8.camera;
+        this.worldX = (_0x29._0x2f + this._0x2f) / _0x29.zoom, this.worldY = (_0x29._0x55 + this._0x55) / _0x29.zoom;
+        let _0x2a = _0x64.toTilePosition(this.worldX, this.worldY);
+        if (this.tileX = _0x2a._0x2f, this.tileY = _0x2a._0x55, _0x8.ui.coords.textContent = `${ this.tileX }, ${ this.tileY }`, document.documentElement.style.setProperty('--coords-width', _0x8.ui.coords.offsetWidth + 'px'), this.down) {
+          let _0x2b = this._0x2f - _0xa,
+            _0x2c = this._0x55 - _0xb;
+          _0x29.move(_0x3 - _0x2b, _0x4 - _0x2c);
         }
       };
-    document.addEventListener('mousedown', __29 => {
-      __27(__29.clientX, __29.clientY, __29.target) && __29.preventDefault();
-    }), document.addEventListener('mouseup', __29 => {
-      __31();
-    }), document.addEventListener('mousemove', __29 => {
-      __28(__29.clientX, __29.clientY);
-    }), document.addEventListener('touchstart', __29 => {
-      if (__29.touches.length === 1) {
-        let __30 = __29.touches[0];
-        __27(__30.clientX, __30.clientY, __30.target);
+    document.addEventListener('mousedown', _0x1d => {
+      _0x1b(_0x1d.clientX, _0x1d.clientY, _0x1d.target) && _0x1d.preventDefault();
+    }), document.addEventListener('mouseup', _0x1d => {
+      _0x1f();
+    }), document.addEventListener('mousemove', _0x1d => {
+      _0x1c(_0x1d.clientX, _0x1d.clientY);
+    }), document.addEventListener('touchstart', _0x1d => {
+      if (_0x1d.touches.length === 1) {
+        let _0x1e = _0x1d.touches[0];
+        _0x1b(_0x1e.clientX, _0x1e.clientY, _0x1e.target);
       }
     }, {
       passive: !0
-    }), document.addEventListener('touchend', __29 => {
-      __31();
-    }), document.addEventListener('touchcancel', __29 => {
+    }), document.addEventListener('touchend', _0x1d => {
+      _0x1f();
+    }), document.addEventListener('touchcancel', _0x1d => {
       this.down = !1;
-    }), document.addEventListener('touchmove', __29 => {
-      if (__29.touches.length === 1) {
-        let __30 = __29.touches[0];
-        __28(__30.clientX, __30.clientY), this.down && __30.target.closest('#plot') && !__30.target.closest('.tile.active') && __29.preventDefault();
+    }), document.addEventListener('touchmove', _0x1d => {
+      if (_0x1d.touches.length === 1) {
+        let _0x1e = _0x1d.touches[0];
+        _0x1c(_0x1e.clientX, _0x1e.clientY), this.down && _0x1e.target.closest('#plot') && !_0x1e.target.closest('.tile.active') && _0x1d.preventDefault();
       }
     }, {
       passive: !1
     });
   }
 };
-__8.mouse = new __126();
-var __127 = document.getElementById('plot'),
-  __128 = document.getElementById('dashboard-modal'),
-  __129 = '/s/img/cursor.png',
-  __130 = 150,
-  __131 = 50,
-  __132 = 100,
-  __133 = 100,
-  __134 = 150,
-  __135 = 500,
-  __136 = 0.6,
-  __137 = class {
+_0x8.mouse = new _0x7e();
+var _0x7f = document.getElementById('plot'),
+  _0x80 = document.getElementById('dashboard-modal'),
+  _0x81 = '/s/img/cursor.png',
+  _0x82 = 150,
+  _0x83 = 50,
+  _0x84 = 100,
+  _0x85 = 100,
+  _0x86 = 150,
+  _0x87 = 500,
+  _0x88 = 0.6,
+  _0x89 = class {
     constructor() {
       this.cursors = new Map(), this.lastPositionSent = 0, this.currentNick = null, this.mouseWorldX = 0, this.mouseWorldY = 0, this.setupWsHandlers(), this.setupMouseTracking(), this.setupSiteChangeListener(), this.setupMiddleClick(), this.setupViewportChangeListener();
     }
     setupWsHandlers() {
-      let __3 = __8.ws;
-      __3.on('open', () => {
+      let _0x3 = _0x8.ws;
+      _0x3.on('open', () => {
         this.sendNickIfSelected();
-      }), __3.on('close', () => {
+      }), _0x3.on('close', () => {
         this.clearAllCursors();
-      }), __3.on('cursors', __4 => {
-        for (let __10 of __4.cursors)
-          this.addCursor(__10.id, __10.nick, __10.__47, __10.__85);
-      }), __3.on('join', __4 => {
-        this.addCursor(__4.id, __4.nick, 0, 0);
-      }), __3.on('leave', __4 => {
-        this.removeCursor(__4.id);
-      }), __3.onBinary(__4 => {
-        let __10 = new Int32Array(__4);
-        if (__10.length >= 3) {
-          let __11 = __10[0],
-            __26 = __10[1],
-            __27 = __10[2];
-          this.updateCursorPosition(__11, __26, __27);
+      }), _0x3.on('cursors', _0x4 => {
+        for (let _0xa of _0x4.cursors)
+          this.addCursor(_0xa.id, _0xa.nick, _0xa._0x2f, _0xa._0x55);
+      }), _0x3.on('join', _0x4 => {
+        this.addCursor(_0x4.id, _0x4.nick, 0, 0);
+      }), _0x3.on('leave', _0x4 => {
+        this.removeCursor(_0x4.id);
+      }), _0x3.onBinary(_0x4 => {
+        let _0xa = new Int32Array(_0x4);
+        if (_0xa.length >= 3) {
+          let _0xb = _0xa[0],
+            _0x1a = _0xa[1],
+            _0x1b = _0xa[2];
+          this.updateCursorPosition(_0xb, _0x1a, _0x1b);
         }
       });
     }
-    addCursor(__3, __4, __10, __11) {
-      if (__4 === this.currentNick)
+    addCursor(_0x3, _0x4, _0xa, _0xb) {
+      if (_0x4 === this.currentNick)
         return;
-      if (this.cursors.has(__3)) {
-        this.updateCursorPosition(__3, __10, __11);
+      if (this.cursors.has(_0x3)) {
+        this.updateCursorPosition(_0x3, _0xa, _0xb);
         return;
       }
-      this.cursors.set(__3, {
-        id: __3,
-        nick: __4,
-        __47: __10,
-        __85: __11,
+      this.cursors.set(_0x3, {
+        id: _0x3,
+        nick: _0x4,
+        _0x2f: _0xa,
+        _0x55: _0xb,
         element: null
-      }), this.updateElementPosition(__3, __10, __11);
-      let __26 = this.cursors.get(__3);
-      __26.element && (__26.element.style.opacity = this.getCursorOpacityFromCenter());
+      }), this.updateElementPosition(_0x3, _0xa, _0xb);
+      let _0x1a = this.cursors.get(_0x3);
+      _0x1a.element && (_0x1a.element.style.opacity = this.getCursorOpacityFromCenter());
     }
-    removeCursor(__3) {
-      let __4 = this.cursors.get(__3);
-      __4 && (__4.element && __4.element.parentNode && __4.element.remove(), this.cursors.delete(__3));
+    removeCursor(_0x3) {
+      let _0x4 = this.cursors.get(_0x3);
+      _0x4 && (_0x4.element && _0x4.element.parentNode && _0x4.element.remove(), this.cursors.delete(_0x3));
     }
-    updateCursorPosition(__3, __4, __10) {
-      let __11 = this.cursors.get(__3);
-      __11 && (__11.__47 = __4, __11.__85 = __10, this.updateElementPosition(__3, __4, __10));
+    updateCursorPosition(_0x3, _0x4, _0xa) {
+      let _0xb = this.cursors.get(_0x3);
+      _0xb && (_0xb._0x2f = _0x4, _0xb._0x55 = _0xa, this.updateElementPosition(_0x3, _0x4, _0xa));
     }
-    isCursorOnScreen(__3, __4) {
-      let __10 = __8.camera;
-      if (!__10)
+    isCursorOnScreen(_0x3, _0x4) {
+      let _0xa = _0x8.camera;
+      if (!_0xa)
         return !0;
-      let __11 = __10.__47 / __10.zoom,
-        __26 = (__10.__47 + __10.width) / __10.zoom,
-        __27 = __10.__85 / __10.zoom,
-        __31 = (__10.__85 + __10.height) / __10.zoom;
-      return __3 >= __11 && __3 <= __26 && __4 >= __27 && __4 <= __31;
+      let _0xb = _0xa._0x2f / _0xa.zoom,
+        _0x1a = (_0xa._0x2f + _0xa.width) / _0xa.zoom,
+        _0x1b = _0xa._0x55 / _0xa.zoom,
+        _0x1f = (_0xa._0x55 + _0xa.height) / _0xa.zoom;
+      return _0x3 >= _0xb && _0x3 <= _0x1a && _0x4 >= _0x1b && _0x4 <= _0x1f;
     }
-    updateElementPosition(__3, __4, __10) {
-      let __11 = this.cursors.get(__3);
-      if (!__11)
+    updateElementPosition(_0x3, _0x4, _0xa) {
+      let _0xb = this.cursors.get(_0x3);
+      if (!_0xb)
         return;
-      let __26 = this.isCursorOnScreen(__4, __10);
-      if (__4 === 0 && __10 === 0 || !__26)
-        __11.element && __11.element.parentNode && (__11.element.remove(), __11.element = null);
+      let _0x1a = this.isCursorOnScreen(_0x4, _0xa);
+      if (_0x4 === 0 && _0xa === 0 || !_0x1a)
+        _0xb.element && _0xb.element.parentNode && (_0xb.element.remove(), _0xb.element = null);
       else {
-        if (!__11.element || !__11.element.parentNode) {
-          let __27 = document.createElement('div');
-          __27.className = 'cursor-container', __27.innerHTML = `
-                    <img class="cursor-image" src="${ __129 }" alt="cursor" />
-                    <div class="cursor-nick">${ this.escapeHTML(__11.nick) }</div>
-                `, __27.style.opacity = this.getCursorOpacityFromCenter(), __11.element = __27, __127.appendChild(__27);
+        if (!_0xb.element || !_0xb.element.parentNode) {
+          let _0x1b = document.createElement('div');
+          _0x1b.className = 'cursor-container', _0x1b.innerHTML = `
+                    <img class="cursor-image" src="${ _0x81 }" alt="cursor" />
+                    <div class="cursor-nick">${ this.escapeHTML(_0xb.nick) }</div>
+                `, _0x1b.style.opacity = this.getCursorOpacityFromCenter(), _0xb.element = _0x1b, _0x7f.appendChild(_0x1b);
         }
-        __11.element.style.transform = `translate(${ __4 }px, ${ __10 }px)`, this.updateNickOpacity(__11.element, __4, __10);
+        _0xb.element.style.transform = `translate(${ _0x4 }px, ${ _0xa }px)`, this.updateNickOpacity(_0xb.element, _0x4, _0xa);
       }
     }
-    updateNickOpacity(__3, __4, __10) {
-      let __11 = __3.querySelector('.cursor-nick');
-      if (!__11)
+    updateNickOpacity(_0x3, _0x4, _0xa) {
+      let _0xb = _0x3.querySelector('.cursor-nick');
+      if (!_0xb)
         return;
-      let __26 = this.mouseWorldX - __4,
-        __27 = this.mouseWorldY - __10,
-        __31 = Math.sqrt(__26 * __26 + __27 * __27),
-        __28 = Math.max(0, 1 - __31 / __130);
-      __11.style.opacity = __28;
+      let _0x1a = this.mouseWorldX - _0x4,
+        _0x1b = this.mouseWorldY - _0xa,
+        _0x1f = Math.sqrt(_0x1a * _0x1a + _0x1b * _0x1b),
+        _0x1c = Math.max(0, 1 - _0x1f / _0x82);
+      _0xb.style.opacity = _0x1c;
     }
     updateAllNickOpacities() {
-      for (let __3 of this.cursors.values())
-        __3.element && this.updateNickOpacity(__3.element, __3.__47, __3.__85);
+      for (let _0x3 of this.cursors.values())
+        _0x3.element && this.updateNickOpacity(_0x3.element, _0x3._0x2f, _0x3._0x55);
     }
     getCursorOpacityFromCenter() {
-      let __3 = this.mouseWorldX - __132,
-        __4 = this.mouseWorldY - __133,
-        __10 = Math.sqrt(__3 * __3 + __4 * __4);
-      return __10 <= __134 ? 0 : __10 >= __135 ? __136 : (__10 - __134) / (__135 - __134) * __136;
+      let _0x3 = this.mouseWorldX - _0x84,
+        _0x4 = this.mouseWorldY - _0x85,
+        _0xa = Math.sqrt(_0x3 * _0x3 + _0x4 * _0x4);
+      return _0xa <= _0x86 ? 0 : _0xa >= _0x87 ? _0x88 : (_0xa - _0x86) / (_0x87 - _0x86) * _0x88;
     }
     updateAllCursorOpacities() {
-      let __3 = this.getCursorOpacityFromCenter();
-      for (let __4 of this.cursors.values())
-        __4.element && (__4.element.style.opacity = __3);
+      let _0x3 = this.getCursorOpacityFromCenter();
+      for (let _0x4 of this.cursors.values())
+        _0x4.element && (_0x4.element.style.opacity = _0x3);
     }
     clearAllCursors() {
-      for (let __3 of this.cursors.values())
-        __3.element && __3.element.parentNode && __3.element.remove();
+      for (let _0x3 of this.cursors.values())
+        _0x3.element && _0x3.element.parentNode && _0x3.element.remove();
       this.cursors.clear();
     }
     updateAllCursorVisibility() {
-      for (let __3 of this.cursors.values())
-        this.updateElementPosition(__3.id, __3.__47, __3.__85);
+      for (let _0x3 of this.cursors.values())
+        this.updateElementPosition(_0x3.id, _0x3._0x2f, _0x3._0x55);
     }
     setupMouseTracking() {
-      document.addEventListener('mousemove', __3 => {
-        let __4 = __8.camera;
-        if (!__4 || (this.mouseWorldX = Math.round((__4.__47 + __3.clientX) / __4.zoom), this.mouseWorldY = Math.round((__4.__85 + __3.clientY) / __4.zoom), this.updateAllNickOpacities(), this.updateAllCursorOpacities(), this.updateAllCursorVisibility(), !__8.ws.isConnected) || !this.currentNick || __12.activeModal || __128?.classList.contains('active') || Date.now() - this.lastPositionSent < 25)
+      document.addEventListener('mousemove', _0x3 => {
+        let _0x4 = _0x8.camera;
+        if (!_0x4 || (this.mouseWorldX = Math.round((_0x4._0x2f + _0x3.clientX) / _0x4.zoom), this.mouseWorldY = Math.round((_0x4._0x55 + _0x3.clientY) / _0x4.zoom), this.updateAllNickOpacities(), this.updateAllCursorOpacities(), this.updateAllCursorVisibility(), !_0x8.ws.isConnected) || !this.currentNick || _0xc.activeModal || _0x80?.classList.contains('active') || Date.now() - this.lastPositionSent < 25)
           return;
-        let __10 = new Int16Array(3);
-        __10[0] = this.mouseWorldX, __10[1] = this.mouseWorldY, __10[2] = 0, __8.ws.send(__10.buffer), this.lastPositionSent = Date.now();
+        let _0xa = new Int16Array(3);
+        _0xa[0] = this.mouseWorldX, _0xa[1] = this.mouseWorldY, _0xa[2] = 0, _0x8.ws.send(_0xa.buffer), this.lastPositionSent = Date.now();
       });
     }
     setupSiteChangeListener() {
-      let __3 = __8.ui?.siteSelector;
-      __3 && __3.addEventListener('change', () => {
+      let _0x3 = _0x8.ui?.siteSelector;
+      _0x3 && _0x3.addEventListener('change', () => {
         this.sendNickIfSelected();
       });
     }
@@ -6558,108 +6558,108 @@ var __127 = document.getElementById('plot'),
       });
     }
     setupMiddleClick() {
-      document.addEventListener('mousedown', __3 => {
-        if (__3.button !== 1 || this.getCursorOpacityFromCenter() < 0.05)
+      document.addEventListener('mousedown', _0x3 => {
+        if (_0x3.button !== 1 || this.getCursorOpacityFromCenter() < 0.05)
           return;
-        let __10 = this.getClosestCursor();
-        __10 && __10.distance <= __131 && (__3.preventDefault(), window.open(`https://${ __10.cursor.nick }`, '_blank'));
+        let _0xa = this.getClosestCursor();
+        _0xa && _0xa.distance <= _0x83 && (_0x3.preventDefault(), window.open(`https://${ _0xa.cursor.nick }`, '_blank'));
       });
     }
     getClosestCursor() {
-      let __3 = null,
-        __4 = 1 / 0;
-      for (let __10 of this.cursors.values()) {
-        let __11 = this.mouseWorldX - __10.__47,
-          __26 = this.mouseWorldY - __10.__85,
-          __27 = Math.sqrt(__11 * __11 + __26 * __26);
-        __27 < __4 && (__4 = __27, __3 = __10);
+      let _0x3 = null,
+        _0x4 = 1 / 0;
+      for (let _0xa of this.cursors.values()) {
+        let _0xb = this.mouseWorldX - _0xa._0x2f,
+          _0x1a = this.mouseWorldY - _0xa._0x55,
+          _0x1b = Math.sqrt(_0xb * _0xb + _0x1a * _0x1a);
+        _0x1b < _0x4 && (_0x4 = _0x1b, _0x3 = _0xa);
       }
-      return __3 ? {
-        cursor: __3,
-        distance: __4
+      return _0x3 ? {
+        cursor: _0x3,
+        distance: _0x4
       } : null;
     }
     sendNickIfSelected() {
-      if (!__8.ws.isConnected)
+      if (!_0x8.ws.isConnected)
         return;
-      let __3 = __8.user?.selectedSite;
-      if (!__3 || !__3.domain) {
+      let _0x3 = _0x8.user?.selectedSite;
+      if (!_0x3 || !_0x3.domain) {
         this.currentNick = null;
         return;
       }
-      let __4 = __3.domain;
-      this.currentNick = __4;
-      for (let [__10, __11] of this.cursors.entries())
-        __11.nick === __4 && this.removeCursor(__10);
-      __8.ws.sendJSON({
+      let _0x4 = _0x3.domain;
+      this.currentNick = _0x4;
+      for (let [_0xa, _0xb] of this.cursors.entries())
+        _0xb.nick === _0x4 && this.removeCursor(_0xa);
+      _0x8.ws.sendJSON({
         type: 'nick',
-        value: __4
+        value: _0x4
       });
     }
-    escapeHTML(__3) {
-      return __3 ? __3.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;').replace(/'/g, '&#039;') : '';
+    escapeHTML(_0x3) {
+      return _0x3 ? _0x3.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;').replace(/'/g, '&#039;') : '';
     }
   },
-  __138 = __137;
+  _0x8a = _0x89;
 if ('serviceWorker' in navigator) {
-  let __3 = 'sw_version',
-    __4 = async () => {
+  let _0x3 = 'sw_version',
+    _0x4 = async () => {
       try {
-        let __11 = await navigator.serviceWorker.register('/sw.js');
-        return console.log('[SW] Service Worker registered:', __11.scope), __11;
-      } catch (__11) {
-        return console.error('[SW] Service Worker registration failed:', __11), null;
+        let _0xb = await navigator.serviceWorker.register('/sw.js');
+        return console.log('[SW] Service Worker registered:', _0xb.scope), _0xb;
+      } catch (_0xb) {
+        return console.error('[SW] Service Worker registration failed:', _0xb), null;
       }
     };
   (async () => {
-    let __11 = localStorage.getItem(__3),
-      __26 = '12';
-    if (__11 !== __26) {
-      console.log(`[SW] Version mismatch: stored=${ __11 }, current=${ __26 }`);
-      let __27 = await navigator.serviceWorker.getRegistrations();
-      for (let __28 of __27)
-        await __28.unregister(), console.log('[SW] Unregistered old service worker');
-      let __31 = await caches.keys();
-      await Promise.all(__31.map(__28 => {
-        if (__28.includes('webtiles'))
-          return console.log(`[SW] Deleting cache: ${ __28 }`), caches.delete(__28);
-      })), localStorage.setItem(__3, __26), await __4();
+    let _0xb = localStorage.getItem(_0x3),
+      _0x1a = '12';
+    if (_0xb !== _0x1a) {
+      console.log(`[SW] Version mismatch: stored=${ _0xb }, current=${ _0x1a }`);
+      let _0x1b = await navigator.serviceWorker.getRegistrations();
+      for (let _0x1c of _0x1b)
+        await _0x1c.unregister(), console.log('[SW] Unregistered old service worker');
+      let _0x1f = await caches.keys();
+      await Promise.all(_0x1f.map(_0x1c => {
+        if (_0x1c.includes('webtiles'))
+          return console.log(`[SW] Deleting cache: ${ _0x1c }`), caches.delete(_0x1c);
+      })), localStorage.setItem(_0x3, _0x1a), await _0x4();
     } else
-      (await navigator.serviceWorker.getRegistrations()).length === 0 && await __4();
+      (await navigator.serviceWorker.getRegistrations()).length === 0 && await _0x4();
   })(), navigator.serviceWorker.ready.then(() => {
     navigator.serviceWorker.controller.postMessage({
       type: 'clear-cache'
     });
   });
 }
-__8.cursors = new __138();
-__8.user?.admin && (window.WebTiles = {
-  ...__8,
+_0x8.cursors = new _0x8a();
+_0x8.user?.admin && (window.WebTiles = {
+  ..._0x8,
   classes: {
-    Tile: __100,
-    Camera: __125,
-    Plot: __123,
-    Mouse: __126,
-    Cursors: __138
+    Tile: _0x64,
+    Camera: _0x7d,
+    Plot: _0x7b,
+    Mouse: _0x7e,
+    Cursors: _0x8a
   }
 });
-var __139 = Date.now();
-async function __140() {
-  let __3 = await (await __8.api.makeRequest('/s/dist/buildtime.txt')).text();
-  return parseInt(__3);
+var _0x8b = Date.now();
+async function _0x8c() {
+  let _0x3 = await (await _0x8.api.makeRequest('/s/dist/buildtime.txt')).text();
+  return parseInt(_0x3);
 }
-__140().then(__2 => {
-  __139 = __2;
+_0x8c().then(_0x2 => {
+  _0x8b = _0x2;
 });
-var __141 = setInterval(async () => {
-  let __2 = await __140();
-  if (__2 !== __139) {
-    clearInterval(__141), __139 = __2;
-    let __3 = document.createElement('div');
-    __3.id = 'update-toast', __3.innerHTML = `
+var _0x8d = setInterval(async () => {
+  let _0x2 = await _0x8c();
+  if (_0x2 !== _0x8b) {
+    clearInterval(_0x8d), _0x8b = _0x2;
+    let _0x3 = document.createElement('div');
+    _0x3.id = 'update-toast', _0x3.innerHTML = `
             <span>A new WebTiles version is available!</span>
             <button id="refresh-btn">Refresh</button>
-        `, document.body.appendChild(__3), document.getElementById('refresh-btn').addEventListener('click', () => {
+        `, document.body.appendChild(_0x3), document.getElementById('refresh-btn').addEventListener('click', () => {
       location.reload();
     });
   }
