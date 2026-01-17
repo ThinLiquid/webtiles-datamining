@@ -1,4 +1,4 @@
-/* b645a56418edef339c6decb3080b4c824cd4d829014f66141f72369e753b61ec */
+/* a420e3046f52eb9728c1962af276dfc4563262b4eb903dfe6ec52abe161d7fa5 */
 var _0x0 = Object.defineProperty;
 var _0x1 = (_0x2, _0x3, _0x4) => _0x3 in _0x2 ? _0x0(_0x2, _0x3, {
   enumerable: !0,
@@ -13,7 +13,8 @@ var _0x6 = {
       logCalls: localStorage.logCalls === 'true',
       disableJS: localStorage.disableJS === 'true'
     }
-  }, _0x7 = document.getElementById('user-data');
+  },
+  _0x7 = document.getElementById('user-data');
 if (_0x7)
   try {
     let _0x2 = JSON.parse(_0x7.textContent);
@@ -79,20 +80,32 @@ var _0x9 = class _0x9 {
 };
 _0x5(_0x9, 'container', null), _0x5(_0x9, 'activeModal', null);
 var _0xc = _0x9;
+
 function _0xd() {
   return document.querySelector('meta[name="turnstile-sitekey"]')?.content || '';
 }
-var _0xe = _0xd(), _0xf = localStorage.getItem('captchaToken'), _0x10 = parseInt(localStorage.getItem('captchaExpiresAt') || '0'), _0x11 = null, _0x12 = [], _0x13 = !1, _0x14 = 0, _0x15 = 5000;
+var _0xe = _0xd(),
+  _0xf = localStorage.getItem('captchaToken'),
+  _0x10 = parseInt(localStorage.getItem('captchaExpiresAt') || '0'),
+  _0x11 = null,
+  _0x12 = [],
+  _0x13 = !1,
+  _0x14 = 0,
+  _0x15 = 5000;
 _0x10 < Date.now() && (_0xf = null, localStorage.removeItem('captchaToken'), localStorage.removeItem('captchaExpiresAt'));
+
 function _0x16() {
   _0xf = null, localStorage.removeItem('captchaToken'), localStorage.removeItem('captchaExpiresAt');
 }
+
 function _0x17(_0x2, _0x3) {
   _0xf = _0x2, _0x10 = _0x3, localStorage.setItem('captchaToken', _0x2), localStorage.setItem('captchaExpiresAt', _0x3);
 }
+
 function _0x18() {
   return _0x13 ? !0 : window.turnstile ? (_0x13 = !0, !0) : !1;
 }
+
 function _0x19(_0x2, _0x3) {
   if (!_0x18())
     return console.error('[Captcha] Turnstile not ready'), !1;
@@ -106,14 +119,18 @@ function _0x19(_0x2, _0x3) {
   let _0xb = window.turnstile;
   return _0xb.render(_0xa, {
     sitekey: _0x4,
-    callback: async function (_0x1a) {
+    callback: async function(_0x1a) {
       let _0x1b = document.getElementById('loading-text');
       _0x1b && (_0x1b.textContent = 'Verifying...');
       try {
         let _0x1c = await (await fetch('/api/captcha/verify', {
           method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({ turnstileToken: _0x1a })
+          headers: {
+            'Content-Type': 'application/json'
+          },
+          body: JSON.stringify({
+            turnstileToken: _0x1a
+          })
         })).json();
         if (_0x1c.success) {
           if (_0x17(_0x1c.token, _0x1c.expiresAt), _0x1b && (_0x1b.textContent = 'Loading...'), _0x3 && _0x11) {
@@ -127,15 +144,16 @@ function _0x19(_0x2, _0x3) {
         console.error('[Captcha] Verification error:', _0x1f), _0x1b && (_0x1b.textContent = 'Verification failed. Please try again.'), _0xb.reset(_0xa);
       }
     },
-    'error-callback': function () {
+    'error-callback': function() {
       let _0x1a = document.getElementById('loading-text');
       _0x1a && (_0x1a.textContent = 'Captcha failed. Please refresh.');
     },
-    'expired-callback': function () {
+    'expired-callback': function() {
       _0xb.reset(_0xa);
     }
   }), !0;
 }
+
 function _0x20() {
   if (_0xd())
     return new Promise(_0x2 => {
@@ -150,17 +168,18 @@ function _0x20() {
       _0x14 = Date.now(), _0x12.push(_0x2);
       let _0x4 = document.createElement('div');
       _0x4.id = 'captcha-modal-turnstile', _0x4.style.display = 'flex', _0x4.style.justifyContent = 'center', _0x4.style.padding = '20px';
-      let _0xa = document.createElement('div'), _0xb = document.createElement('p');
+      let _0xa = document.createElement('div'),
+        _0xb = document.createElement('p');
       if (_0xb.textContent = 'Please complete the captcha to continue.', _0xa.appendChild(_0xb), _0xa.appendChild(_0x4), _0x11 = new _0xc({
           title: 'Verification Required',
           content: _0xa,
           buttons: [{
-              text: 'Cancel',
-              type: 'cancel',
-              onClick: _0x1a => {
-                _0x1a.close(), _0x11 = null, _0x12 = [];
-              }
-            }],
+            text: 'Cancel',
+            type: 'cancel',
+            onClick: _0x1a => {
+              _0x1a.close(), _0x11 = null, _0x12 = [];
+            }
+          }],
           onClose: () => {
             _0x11 = null;
           }
@@ -174,6 +193,7 @@ function _0x20() {
       }
     });
 }
+
 function _0x21() {
   if (_0xf)
     return;
@@ -188,7 +208,7 @@ function _0x21() {
       setTimeout(() => clearInterval(_0x3), 10000);
     }
 }
-window.onTurnstileLoad = function () {
+window.onTurnstileLoad = function() {
   _0x13 = !0, _0xf || _0x21();
 };
 window.turnstile && (_0x13 = !0, _0xf || _0x21());
@@ -212,8 +232,7 @@ _0x8.api = {
       try {
         if ((await _0xb.json()).code === 'CAPTCHA_REQUIRED')
           return _0x16(), await _0x20(), _0x4 !== 'GET' && _0xf && (_0x3.headers = _0x3.headers || {}, _0x3.headers['X-Captcha-Token'] = _0xf), fetch(_0x2, _0x3);
-      } catch {
-      }
+      } catch {}
     }
     return _0xa;
   }
@@ -225,14 +244,21 @@ var _0x23 = [
     0.75,
     1,
     1.5
-  ], _0x24 = 50;
+  ],
+  _0x24 = 50;
+
 function _0x25(_0x2, _0x3, _0x4) {
-  let _0xa = new WeakMap(), _0xb = 2048, _0x1a = 10000, _0x1b = new WeakMap();
-  function _0x1f(_0x26) {
-  }
+  let _0xa = new WeakMap(),
+    _0xb = 2048,
+    _0x1a = 10000,
+    _0x1b = new WeakMap();
+
+  function _0x1f(_0x26) {}
+
   function _0x1c() {
     _0x1b.clear = new WeakMap();
   }
+
   function _0x1d(_0x26, _0x27) {
     if (!_0x26)
       return null;
@@ -241,27 +267,29 @@ function _0x25(_0x2, _0x3, _0x4) {
     let _0x28 = _0x2.createObject(_0x29);
     return _0x28.native = _0x26, _0x28.canvas = _0x27, _0xa.set(_0x26, _0x28), _0x28;
   }
-  let _0x1e = _0x2.createNativeFunction(function () {
+  let _0x1e = _0x2.createNativeFunction(function() {
     throw TypeError('Illegal constructor');
   }, !0);
   _0x2.setProperty(_0x3, 'CanvasGradient', _0x1e);
   let _0x2a = _0x2.getProperty(_0x1e, 'prototype');
-  _0x2.setProperty(_0x2a, 'addColorStop', _0x2.createNativeFunction(function (_0x26, _0x27) {
+  _0x2.setProperty(_0x2a, 'addColorStop', _0x2.createNativeFunction(function(_0x26, _0x27) {
     this.native.addColorStop(_0x26, _0x27);
   }));
+
   function _0x2b(_0x26) {
     let _0x27 = _0x2.createObject(_0x1e);
     return _0x27.native = _0x26, _0x27;
   }
-  let _0x2c = _0x2.createNativeFunction(function () {
+  let _0x2c = _0x2.createNativeFunction(function() {
     throw TypeError('Illegal constructor');
   }, !0);
   _0x2.setProperty(_0x3, 'CanvasPattern', _0x2c);
+
   function _0x2d(_0x26) {
     let _0x27 = _0x2.createObject(_0x2c);
     return _0x27.native = _0x26, _0x27;
   }
-  let _0x2e = _0x2.createNativeFunction(function (_0x26, _0x27) {
+  let _0x2e = _0x2.createNativeFunction(function(_0x26, _0x27) {
     if (_0x26 > _0xb || _0x27 > _0xb)
       throw new Error(`ImageData size exceeds maximum (${ _0xb }x${ _0xb })`);
     _0x8.settings.logCalls && console.log(_0x4.domain, 'create ImageData', this, _0x26, _0x27);
@@ -271,30 +299,31 @@ function _0x25(_0x2, _0x3, _0x4) {
   _0x2.setProperty(_0x3, 'ImageData', _0x2e);
   let _0x2f = _0x2.getProperty(_0x2e, 'prototype');
   _0x2.setProperty(_0x2f, 'width', Interpreter.VALUE_IN_DESCRIPTOR, {
-    get: _0x2.createNativeFunction(function () {
+    get: _0x2.createNativeFunction(function() {
       return this.native.width;
     })
   }), _0x2.setProperty(_0x2f, 'height', Interpreter.VALUE_IN_DESCRIPTOR, {
-    get: _0x2.createNativeFunction(function () {
+    get: _0x2.createNativeFunction(function() {
       return this.native.height;
     })
   }), _0x2.setProperty(_0x2f, 'data', Interpreter.VALUE_IN_DESCRIPTOR, {
-    get: _0x2.createNativeFunction(function () {
-      let _0x26 = this.native.data, _0x27 = _0x2.createObjectProto(_0x2.ARRAY_PROTO);
+    get: _0x2.createNativeFunction(function() {
+      let _0x26 = this.native.data,
+        _0x27 = _0x2.createObjectProto(_0x2.ARRAY_PROTO);
       _0x2.setProperty(_0x27, 'length', _0x26.length);
       let _0x28 = _0x2.nativeToPseudo({});
-      _0x2.setProperty(_0x28, 'length', _0x26.length), _0x2.setProperty(_0x28, 'get', _0x2.createNativeFunction(function (_0x30) {
+      _0x2.setProperty(_0x28, 'length', _0x26.length), _0x2.setProperty(_0x28, 'get', _0x2.createNativeFunction(function(_0x30) {
         return _0x26[_0x30];
-      })), _0x2.setProperty(_0x28, 'set', _0x2.createNativeFunction(function (_0x30, _0x31) {
+      })), _0x2.setProperty(_0x28, 'set', _0x2.createNativeFunction(function(_0x30, _0x31) {
         _0x8.settings.logCalls && console.log(_0x4.domain, 'setImageData', this, _0x30, _0x31), _0x26[_0x30] = _0x31;
       }));
       for (let _0x30 = 0; _0x30 < Math.min(_0x26.length, 1000); _0x30++)
         (_0x31 => {
           _0x2.setProperty(_0x28, _0x31, Interpreter.VALUE_IN_DESCRIPTOR, {
-            get: _0x2.createNativeFunction(function () {
+            get: _0x2.createNativeFunction(function() {
               return _0x26[_0x31];
             }),
-            set: _0x2.createNativeFunction(function (_0x32) {
+            set: _0x2.createNativeFunction(function(_0x32) {
               _0x8.settings.logCalls && console.log(_0x4.domain, 'setImageData', this, _0x31, _0x32), _0x26[_0x31] = _0x32;
             })
           });
@@ -302,15 +331,17 @@ function _0x25(_0x2, _0x3, _0x4) {
       return _0x28;
     })
   });
+
   function _0x33(_0x26) {
     let _0x27 = _0x2.createObject(_0x2e);
     return _0x27.native = _0x26, _0x27;
   }
-  let _0x34 = _0x2.createNativeFunction(function () {
+  let _0x34 = _0x2.createNativeFunction(function() {
     throw TypeError('Illegal constructor');
   }, !0);
   _0x2.setProperty(_0x3, 'TextMetrics', _0x34);
-  let _0x35 = _0x2.getProperty(_0x34, 'prototype'), _0x36 = [
+  let _0x35 = _0x2.getProperty(_0x34, 'prototype'),
+    _0x36 = [
       'width',
       'actualBoundingBoxLeft',
       'actualBoundingBoxRight',
@@ -326,60 +357,63 @@ function _0x25(_0x2, _0x3, _0x4) {
     ];
   for (let _0x26 of _0x36)
     _0x2.setProperty(_0x35, _0x26, Interpreter.VALUE_IN_DESCRIPTOR, {
-      get: _0x2.createNativeFunction(function () {
+      get: _0x2.createNativeFunction(function() {
         return this.native[_0x26];
       })
     });
+
   function _0x37(_0x26) {
     let _0x27 = _0x2.createObject(_0x34);
     return _0x27.native = _0x26, _0x27;
   }
-  let _0x38 = _0x2.createNativeFunction(function (_0x26) {
+  let _0x38 = _0x2.createNativeFunction(function(_0x26) {
     _0x26 && _0x26.native ? this.native = new Path2D(_0x26.native) : typeof _0x26 == 'string' ? this.native = new Path2D(_0x26) : this.native = new Path2D();
   }, !0);
   _0x2.setProperty(_0x3, 'Path2D', _0x38);
-  let _0x39 = _0x2.getProperty(_0x38, 'prototype'), _0x3a = {
-      addPath: function (_0x26, _0x27) {
+  let _0x39 = _0x2.getProperty(_0x38, 'prototype'),
+    _0x3a = {
+      addPath: function(_0x26, _0x27) {
         _0x26?.native && this.native.addPath(_0x26.native, _0x27);
       },
-      closePath: function () {
+      closePath: function() {
         this.native.closePath();
       },
-      moveTo: function (_0x26, _0x27) {
+      moveTo: function(_0x26, _0x27) {
         this.native.moveTo(_0x26, _0x27);
       },
-      lineTo: function (_0x26, _0x27) {
+      lineTo: function(_0x26, _0x27) {
         this.native.lineTo(_0x26, _0x27);
       },
-      bezierCurveTo: function (_0x26, _0x27, _0x28, _0x30, _0x31, _0x32) {
+      bezierCurveTo: function(_0x26, _0x27, _0x28, _0x30, _0x31, _0x32) {
         this.native.bezierCurveTo(_0x26, _0x27, _0x28, _0x30, _0x31, _0x32);
       },
-      quadraticCurveTo: function (_0x26, _0x27, _0x28, _0x30) {
+      quadraticCurveTo: function(_0x26, _0x27, _0x28, _0x30) {
         this.native.quadraticCurveTo(_0x26, _0x27, _0x28, _0x30);
       },
-      arc: function (_0x26, _0x27, _0x28, _0x30, _0x31, _0x32) {
+      arc: function(_0x26, _0x27, _0x28, _0x30, _0x31, _0x32) {
         this.native.arc(_0x26, _0x27, _0x28, _0x30, _0x31, _0x32);
       },
-      arcTo: function (_0x26, _0x27, _0x28, _0x30, _0x31) {
+      arcTo: function(_0x26, _0x27, _0x28, _0x30, _0x31) {
         this.native.arcTo(_0x26, _0x27, _0x28, _0x30, _0x31);
       },
-      ellipse: function (_0x26, _0x27, _0x28, _0x30, _0x31, _0x32, _0x3b, _0x3c) {
+      ellipse: function(_0x26, _0x27, _0x28, _0x30, _0x31, _0x32, _0x3b, _0x3c) {
         this.native.ellipse(_0x26, _0x27, _0x28, _0x30, _0x31, _0x32, _0x3b, _0x3c);
       },
-      rect: function (_0x26, _0x27, _0x28, _0x30) {
+      rect: function(_0x26, _0x27, _0x28, _0x30) {
         this.native.rect(_0x26, _0x27, _0x28, _0x30);
       },
-      roundRect: function (_0x26, _0x27, _0x28, _0x30, _0x31) {
+      roundRect: function(_0x26, _0x27, _0x28, _0x30, _0x31) {
         this.native.roundRect(_0x26, _0x27, _0x28, _0x30, _0x31);
       }
     };
   for (let [_0x26, _0x27] of Object.entries(_0x3a))
     _0x2.setProperty(_0x39, _0x26, _0x2.createNativeFunction(_0x27));
-  let _0x29 = _0x2.createNativeFunction(function () {
+  let _0x29 = _0x2.createNativeFunction(function() {
     throw TypeError('Illegal constructor');
   }, !0);
   _0x2.setProperty(_0x3, 'CanvasRenderingContext2D', _0x29);
-  let _0x3d = _0x2.getProperty(_0x29, 'prototype'), _0x3e = [
+  let _0x3d = _0x2.getProperty(_0x29, 'prototype'),
+    _0x3e = [
       'globalAlpha',
       'globalCompositeOperation',
       'lineWidth',
@@ -401,10 +435,10 @@ function _0x25(_0x2, _0x3, _0x4) {
     ];
   for (let _0x26 of _0x3e)
     _0x2.setProperty(_0x3d, _0x26, Interpreter.VALUE_IN_DESCRIPTOR, {
-      get: _0x2.createNativeFunction(function () {
+      get: _0x2.createNativeFunction(function() {
         return this.native[_0x26];
       }),
-      set: _0x2.createNativeFunction(function (_0x27) {
+      set: _0x2.createNativeFunction(function(_0x27) {
         _0x8.settings.logCalls && console.log(_0x4.domain, 'context set ' + _0x26, this, _0x27), this.native[_0x26] = _0x27;
       })
     });
@@ -413,111 +447,111 @@ function _0x25(_0x2, _0x3, _0x4) {
       'strokeStyle'
     ])
     _0x2.setProperty(_0x3d, _0x26, Interpreter.VALUE_IN_DESCRIPTOR, {
-      get: _0x2.createNativeFunction(function () {
+      get: _0x2.createNativeFunction(function() {
         let _0x27 = this.native[_0x26];
         return _0x27;
       }),
-      set: _0x2.createNativeFunction(function (_0x27) {
+      set: _0x2.createNativeFunction(function(_0x27) {
         _0x27?.native ? this.native[_0x26] = _0x27.native : this.native[_0x26] = _0x27;
       })
     });
   _0x2.setProperty(_0x3d, 'canvas', Interpreter.VALUE_IN_DESCRIPTOR, {
-    get: _0x2.createNativeFunction(function () {
+    get: _0x2.createNativeFunction(function() {
       return this.canvas;
     })
   });
   let _0x3f = {
-    clearRect: function (_0x26, _0x27, _0x28, _0x30) {
+    clearRect: function(_0x26, _0x27, _0x28, _0x30) {
       this.native, this.native.clearRect(_0x26, _0x27, _0x28, _0x30);
     },
-    fillRect: function (_0x26, _0x27, _0x28, _0x30) {
+    fillRect: function(_0x26, _0x27, _0x28, _0x30) {
       this.native, this.native.fillRect(_0x26, _0x27, _0x28, _0x30);
     },
-    strokeRect: function (_0x26, _0x27, _0x28, _0x30) {
+    strokeRect: function(_0x26, _0x27, _0x28, _0x30) {
       this.native, this.native.strokeRect(_0x26, _0x27, _0x28, _0x30);
     },
-    fillText: function (_0x26, _0x27, _0x28, _0x30) {
+    fillText: function(_0x26, _0x27, _0x28, _0x30) {
       this.native, _0x30 !== void 0 ? this.native.fillText(String(_0x26).slice(0, 1000), _0x27, _0x28, _0x30) : this.native.fillText(String(_0x26).slice(0, 1000), _0x27, _0x28);
     },
-    strokeText: function (_0x26, _0x27, _0x28, _0x30) {
+    strokeText: function(_0x26, _0x27, _0x28, _0x30) {
       this.native, _0x30 !== void 0 ? this.native.strokeText(String(_0x26).slice(0, 1000), _0x27, _0x28, _0x30) : this.native.strokeText(String(_0x26).slice(0, 1000), _0x27, _0x28);
     },
-    measureText: function (_0x26) {
+    measureText: function(_0x26) {
       return _0x37(this.native.measureText(String(_0x26).slice(0, 1000)));
     },
-    getLineDash: function () {
+    getLineDash: function() {
       return _0x2.nativeToPseudo(this.native.getLineDash());
     },
-    setLineDash: function (_0x26) {
+    setLineDash: function(_0x26) {
       let _0x27 = _0x2.pseudoToNative(_0x26);
       this.native.setLineDash(_0x27);
     },
-    createLinearGradient: function (_0x26, _0x27, _0x28, _0x30) {
+    createLinearGradient: function(_0x26, _0x27, _0x28, _0x30) {
       return _0x2b(this.native.createLinearGradient(_0x26, _0x27, _0x28, _0x30));
     },
-    createRadialGradient: function (_0x26, _0x27, _0x28, _0x30, _0x31, _0x32) {
+    createRadialGradient: function(_0x26, _0x27, _0x28, _0x30, _0x31, _0x32) {
       return _0x2b(this.native.createRadialGradient(_0x26, _0x27, _0x28, _0x30, _0x31, _0x32));
     },
-    createConicGradient: function (_0x26, _0x27, _0x28) {
+    createConicGradient: function(_0x26, _0x27, _0x28) {
       return _0x2b(this.native.createConicGradient(_0x26, _0x27, _0x28));
     },
-    createPattern: function (_0x26, _0x27) {
+    createPattern: function(_0x26, _0x27) {
       let _0x28 = _0x26?.native || _0x26;
       if (!_0x28)
         return null;
       let _0x30 = this.native.createPattern(_0x28, _0x27);
       return _0x30 ? _0x2d(_0x30) : null;
     },
-    beginPath: function () {
+    beginPath: function() {
       this.native.beginPath();
     },
-    closePath: function () {
+    closePath: function() {
       this.native.closePath();
     },
-    moveTo: function (_0x26, _0x27) {
+    moveTo: function(_0x26, _0x27) {
       this.native.moveTo(_0x26, _0x27);
     },
-    lineTo: function (_0x26, _0x27) {
+    lineTo: function(_0x26, _0x27) {
       this.native.lineTo(_0x26, _0x27);
     },
-    bezierCurveTo: function (_0x26, _0x27, _0x28, _0x30, _0x31, _0x32) {
+    bezierCurveTo: function(_0x26, _0x27, _0x28, _0x30, _0x31, _0x32) {
       this.native.bezierCurveTo(_0x26, _0x27, _0x28, _0x30, _0x31, _0x32);
     },
-    quadraticCurveTo: function (_0x26, _0x27, _0x28, _0x30) {
+    quadraticCurveTo: function(_0x26, _0x27, _0x28, _0x30) {
       this.native.quadraticCurveTo(_0x26, _0x27, _0x28, _0x30);
     },
-    arc: function (_0x26, _0x27, _0x28, _0x30, _0x31, _0x32) {
+    arc: function(_0x26, _0x27, _0x28, _0x30, _0x31, _0x32) {
       this.native.arc(_0x26, _0x27, _0x28, _0x30, _0x31, _0x32);
     },
-    arcTo: function (_0x26, _0x27, _0x28, _0x30, _0x31) {
+    arcTo: function(_0x26, _0x27, _0x28, _0x30, _0x31) {
       this.native.arcTo(_0x26, _0x27, _0x28, _0x30, _0x31);
     },
-    ellipse: function (_0x26, _0x27, _0x28, _0x30, _0x31, _0x32, _0x3b, _0x3c) {
+    ellipse: function(_0x26, _0x27, _0x28, _0x30, _0x31, _0x32, _0x3b, _0x3c) {
       this.native.ellipse(_0x26, _0x27, _0x28, _0x30, _0x31, _0x32, _0x3b, _0x3c);
     },
-    rect: function (_0x26, _0x27, _0x28, _0x30) {
+    rect: function(_0x26, _0x27, _0x28, _0x30) {
       this.native.rect(_0x26, _0x27, _0x28, _0x30);
     },
-    roundRect: function (_0x26, _0x27, _0x28, _0x30, _0x31) {
+    roundRect: function(_0x26, _0x27, _0x28, _0x30, _0x31) {
       let _0x32 = _0x2.pseudoToNative(_0x31);
       this.native.roundRect(_0x26, _0x27, _0x28, _0x30, _0x32);
     },
-    fill: function (_0x26, _0x27) {
+    fill: function(_0x26, _0x27) {
       this.native, _0x26?.native ? this.native.fill(_0x26.native, _0x27) : this.native.fill(_0x26);
     },
-    stroke: function (_0x26) {
+    stroke: function(_0x26) {
       this.native, _0x26?.native ? this.native.stroke(_0x26.native) : this.native.stroke();
     },
-    clip: function (_0x26, _0x27) {
+    clip: function(_0x26, _0x27) {
       _0x26?.native ? this.native.clip(_0x26.native, _0x27) : this.native.clip(_0x26);
     },
-    isPointInPath: function (_0x26, _0x27, _0x28, _0x30) {
+    isPointInPath: function(_0x26, _0x27, _0x28, _0x30) {
       return _0x26?.native ? this.native.isPointInPath(_0x26.native, _0x27, _0x28, _0x30) : this.native.isPointInPath(_0x26, _0x27, _0x28);
     },
-    isPointInStroke: function (_0x26, _0x27, _0x28) {
+    isPointInStroke: function(_0x26, _0x27, _0x28) {
       return _0x26?.native ? this.native.isPointInStroke(_0x26.native, _0x27, _0x28) : this.native.isPointInStroke(_0x26, _0x27);
     },
-    getTransform: function () {
+    getTransform: function() {
       let _0x26 = this.native.getTransform();
       return _0x2.nativeToPseudo({
         a: _0x26.a,
@@ -528,63 +562,63 @@ function _0x25(_0x2, _0x3, _0x4) {
         f: _0x26.f
       });
     },
-    rotate: function (_0x26) {
+    rotate: function(_0x26) {
       this.native.rotate(_0x26);
     },
-    scale: function (_0x26, _0x27) {
+    scale: function(_0x26, _0x27) {
       this.native.scale(_0x26, _0x27);
     },
-    translate: function (_0x26, _0x27) {
+    translate: function(_0x26, _0x27) {
       this.native.translate(_0x26, _0x27);
     },
-    transform: function (_0x26, _0x27, _0x28, _0x30, _0x31, _0x32) {
+    transform: function(_0x26, _0x27, _0x28, _0x30, _0x31, _0x32) {
       this.native.transform(_0x26, _0x27, _0x28, _0x30, _0x31, _0x32);
     },
-    setTransform: function (_0x26, _0x27, _0x28, _0x30, _0x31, _0x32) {
+    setTransform: function(_0x26, _0x27, _0x28, _0x30, _0x31, _0x32) {
       if (typeof _0x26 == 'object' && _0x26 !== null) {
         let _0x3b = _0x2.pseudoToNative(_0x26);
         this.native.setTransform(_0x3b);
       } else
         this.native.setTransform(_0x26, _0x27, _0x28, _0x30, _0x31, _0x32);
     },
-    resetTransform: function () {
+    resetTransform: function() {
       this.native.resetTransform();
     },
-    drawImage: function (_0x26, _0x27, _0x28, _0x30, _0x31, _0x32, _0x3b, _0x3c, _0x40) {
+    drawImage: function(_0x26, _0x27, _0x28, _0x30, _0x31, _0x32, _0x3b, _0x3c, _0x40) {
       this.native;
       let _0x41 = _0x26?.native || _0x26;
       _0x41 && (_0x3c !== void 0 ? this.native.drawImage(_0x41, _0x27, _0x28, _0x30, _0x31, _0x32, _0x3b, _0x3c, _0x40) : _0x30 !== void 0 ? this.native.drawImage(_0x41, _0x27, _0x28, _0x30, _0x31) : this.native.drawImage(_0x41, _0x27, _0x28));
     },
-    createImageData: function (_0x26, _0x27) {
+    createImageData: function(_0x26, _0x27) {
       if (_0x26?.native)
         return _0x33(this.native.createImageData(_0x26.native));
       if (_0x26 > _0xb || _0x27 > _0xb)
         throw new Error(`ImageData size exceeds maximum (${ _0xb }x${ _0xb })`);
       return _0x33(this.native.createImageData(_0x26, _0x27));
     },
-    getImageData: function (_0x26, _0x27, _0x28, _0x30) {
+    getImageData: function(_0x26, _0x27, _0x28, _0x30) {
       if (_0x28 > _0xb || _0x30 > _0xb)
         throw new Error(`ImageData size exceeds maximum (${ _0xb }x${ _0xb })`);
       return _0x33(this.native.getImageData(_0x26, _0x27, _0x28, _0x30));
     },
-    putImageData: function (_0x26, _0x27, _0x28, _0x30, _0x31, _0x32, _0x3b) {
+    putImageData: function(_0x26, _0x27, _0x28, _0x30, _0x31, _0x32, _0x3b) {
       this.native, _0x26?.native && (_0x30 !== void 0 ? this.native.putImageData(_0x26.native, _0x27, _0x28, _0x30, _0x31, _0x32, _0x3b) : this.native.putImageData(_0x26.native, _0x27, _0x28));
     },
-    save: function () {
+    save: function() {
       this.native.save();
     },
-    restore: function () {
+    restore: function() {
       this.native.restore();
     },
-    reset: function () {
+    reset: function() {
       this.native.reset();
     }
   };
   for (let [_0x26, _0x27] of Object.entries(_0x3f))
     _0x2.setProperty(_0x3d, _0x26, _0x2.createNativeFunction(_0x27));
   return {
-    extendElement: function (_0x26, _0x27) {
-      _0x2.setProperty(_0x26, 'getContext', _0x2.createNativeFunction(function (_0x28, _0x30) {
+    extendElement: function(_0x26, _0x27) {
+      _0x2.setProperty(_0x26, 'getContext', _0x2.createNativeFunction(function(_0x28, _0x30) {
         _0x8.settings.logCalls && console.log(_0x4.domain, 'getContext', this, _0x28, _0x30);
         let _0x31 = this.native;
         if (_0x31.tagName !== 'CANVAS')
@@ -595,20 +629,20 @@ function _0x25(_0x2, _0x3, _0x4) {
         }
         throw new Error(`Context type "${ _0x28 }" is not supported`);
       })), _0x2.setProperty(_0x26, 'width', Interpreter.VALUE_IN_DESCRIPTOR, {
-        get: _0x2.createNativeFunction(function () {
+        get: _0x2.createNativeFunction(function() {
           return this.native.tagName === 'CANVAS' ? this.native.width : this.native.width;
         }),
-        set: _0x2.createNativeFunction(function (_0x28) {
+        set: _0x2.createNativeFunction(function(_0x28) {
           _0x8.settings.logCalls && console.log(_0x4.domain, 'set width', this, _0x28), this.native.tagName === 'CANVAS' && (this.native.width = Math.min(_0x28, _0xb));
         })
       }), _0x2.setProperty(_0x26, 'height', Interpreter.VALUE_IN_DESCRIPTOR, {
-        get: _0x2.createNativeFunction(function () {
+        get: _0x2.createNativeFunction(function() {
           return this.native.tagName === 'CANVAS' ? this.native.height : this.native.height;
         }),
-        set: _0x2.createNativeFunction(function (_0x28) {
+        set: _0x2.createNativeFunction(function(_0x28) {
           _0x8.settings.logCalls && console.log(_0x4.domain, 'set height', this, _0x28), this.native.tagName === 'CANVAS' && (this.native.height = Math.min(_0x28, _0xb));
         })
-      }), _0x2.setProperty(_0x26, 'toDataURL', _0x2.createNativeFunction(function (_0x28, _0x30) {
+      }), _0x2.setProperty(_0x26, 'toDataURL', _0x2.createNativeFunction(function(_0x28, _0x30) {
         if (this.native.tagName !== 'CANVAS')
           throw new Error('toDataURL is only available on canvas elements');
         return _0x8.settings.logCalls && console.log(_0x4.domain, 'toDataURL', this, _0x28, _0x30), this.native.toDataURL(_0x28, _0x30);
@@ -618,8 +652,11 @@ function _0x25(_0x2, _0x3, _0x4) {
     contextToPseudo: _0x1d
   };
 }
+
 function _0x42(_0x2, _0x3, _0x4) {
-  let _0x1b = 0, _0x1f = window.location.origin;
+  let _0x1b = 0,
+    _0x1f = window.location.origin;
+
   function _0x1c(_0x2e) {
     if (typeof _0x2e != 'string' || _0x2e.startsWith('/') || _0x2e.startsWith('./') || _0x2e.startsWith('../') || !_0x2e.startsWith('http://') && !_0x2e.startsWith('https://'))
       return !1;
@@ -633,8 +670,10 @@ function _0x42(_0x2, _0x3, _0x4) {
       return !1;
     }
   }
-  let _0x1d = 0, _0x1e = _0x2.nativeToPseudo({});
+  let _0x1d = 0,
+    _0x1e = _0x2.nativeToPseudo({});
   _0x2.setProperty(_0x3, '__xhrCallbacks', _0x1e);
+
   function _0x2a(_0x2e, ..._0x2f) {
     if (!_0x2e || typeof _0x2e != 'object')
       return;
@@ -643,23 +682,24 @@ function _0x42(_0x2, _0x3, _0x4) {
     let _0x34 = _0x2f.map((_0x36, _0x37) => {
         let _0x38 = 'arg' + _0x33 + '_' + _0x37;
         return _0x2.setProperty(_0x1e, _0x38, _0x36), _0x38;
-      }), _0x35 = _0x34.map(_0x36 => `__xhrCallbacks.${ _0x36 }`).join(',');
+      }),
+      _0x35 = _0x34.map(_0x36 => `__xhrCallbacks.${ _0x36 }`).join(',');
     _0x2.appendCode(`__xhrCallbacks.fn${ _0x33 }(${ _0x35 }); delete __xhrCallbacks.fn${ _0x33 }; ${ _0x34.map(_0x36 => `delete __xhrCallbacks.${ _0x36 }`).join('; ') };`);
   }
-  let _0x2b = _0x2.createNativeFunction(function () {
+  let _0x2b = _0x2.createNativeFunction(function() {
     _0x8.settings.logCalls && console.log(_0x4.domain, 'XMLHttpRequest', this), this.native = new window.XMLHttpRequest(), this._method = null, this._url = null, this._async = !0, this._headers = {}, this._eventHandlers = {};
     let _0x2f = this;
-    this.native.onreadystatechange = function () {
+    this.native.onreadystatechange = function() {
       _0x2.setProperty(_0x2f, 'readyState', _0x2f.native.readyState), _0x2f.native.readyState === 4 && (_0x2.setProperty(_0x2f, 'status', _0x2f.native.status), _0x2.setProperty(_0x2f, 'statusText', _0x2f.native.statusText), _0x2.setProperty(_0x2f, 'responseText', _0x2f.native.responseText?.slice(0, 5242880) || ''), _0x2.setProperty(_0x2f, 'responseURL', _0x2f.native.responseURL), _0x1b = Math.max(0, _0x1b - 1)), _0x2f._eventHandlers.onreadystatechange && _0x2a(_0x2f._eventHandlers.onreadystatechange);
-    }, this.native.onload = function () {
+    }, this.native.onload = function() {
       _0x2f._eventHandlers.onload && _0x2a(_0x2f._eventHandlers.onload);
-    }, this.native.onerror = function () {
+    }, this.native.onerror = function() {
       _0x1b = Math.max(0, _0x1b - 1), _0x2f._eventHandlers.onerror && _0x2a(_0x2f._eventHandlers.onerror);
-    }, this.native.ontimeout = function () {
+    }, this.native.ontimeout = function() {
       _0x1b = Math.max(0, _0x1b - 1), _0x2f._eventHandlers.ontimeout && _0x2a(_0x2f._eventHandlers.ontimeout);
-    }, this.native.onabort = function () {
+    }, this.native.onabort = function() {
       _0x1b = Math.max(0, _0x1b - 1), _0x2f._eventHandlers.onabort && _0x2a(_0x2f._eventHandlers.onabort);
-    }, this.native.onprogress = function (_0x33) {
+    }, this.native.onprogress = function(_0x33) {
       if (_0x2f._eventHandlers.onprogress) {
         let _0x34 = _0x2.nativeToPseudo({
           loaded: _0x33.loaded,
@@ -668,9 +708,9 @@ function _0x42(_0x2, _0x3, _0x4) {
         });
         _0x2a(_0x2f._eventHandlers.onprogress, _0x34);
       }
-    }, this.native.onloadstart = function () {
+    }, this.native.onloadstart = function() {
       _0x2f._eventHandlers.onloadstart && _0x2a(_0x2f._eventHandlers.onloadstart);
-    }, this.native.onloadend = function () {
+    }, this.native.onloadend = function() {
       _0x2f._eventHandlers.onloadend && _0x2a(_0x2f._eventHandlers.onloadend);
     }, _0x2.setProperty(this, 'readyState', 0), _0x2.setProperty(this, 'status', 0), _0x2.setProperty(this, 'statusText', ''), _0x2.setProperty(this, 'responseText', ''), _0x2.setProperty(this, 'responseURL', '');
   }, !0);
@@ -689,40 +729,40 @@ function _0x42(_0x2, _0x3, _0x4) {
   ];
   for (let _0x2e of _0x2d)
     _0x2.setProperty(_0x2c, _0x2e, Interpreter.VALUE_IN_DESCRIPTOR, {
-      get: _0x2.createNativeFunction(function () {
+      get: _0x2.createNativeFunction(function() {
         return this._eventHandlers[_0x2e] || null;
       }),
-      set: _0x2.createNativeFunction(function (_0x2f) {
+      set: _0x2.createNativeFunction(function(_0x2f) {
         _0x8.settings.logCalls && console.log(_0x4.domain, 'XMLHttpRequest set ' + _0x2e, this, _0x2f), this._eventHandlers[_0x2e] = _0x2f;
       })
     });
   _0x2.setProperty(_0x2c, 'timeout', Interpreter.VALUE_IN_DESCRIPTOR, {
-    get: _0x2.createNativeFunction(function () {
+    get: _0x2.createNativeFunction(function() {
       return this.native.timeout;
     }),
-    set: _0x2.createNativeFunction(function (_0x2e) {
+    set: _0x2.createNativeFunction(function(_0x2e) {
       this.native.timeout = Math.min(_0x2e, 30000);
     })
   }), _0x2.setProperty(_0x2c, 'withCredentials', Interpreter.VALUE_IN_DESCRIPTOR, {
-    get: _0x2.createNativeFunction(function () {
+    get: _0x2.createNativeFunction(function() {
       return this.native.withCredentials;
     }),
-    set: _0x2.createNativeFunction(function (_0x2e) {
+    set: _0x2.createNativeFunction(function(_0x2e) {
       this.native.withCredentials = !1;
     })
   }), _0x2.setProperty(_0x2c, 'responseType', Interpreter.VALUE_IN_DESCRIPTOR, {
-    get: _0x2.createNativeFunction(function () {
+    get: _0x2.createNativeFunction(function() {
       return this.native.responseType;
     }),
-    set: _0x2.createNativeFunction(function (_0x2e) {
+    set: _0x2.createNativeFunction(function(_0x2e) {
       (_0x2e === '' || _0x2e === 'text' || _0x2e === 'json') && (this.native.responseType = _0x2e);
     })
   }), _0x2.setProperty(_0x2c, 'response', Interpreter.VALUE_IN_DESCRIPTOR, {
-    get: _0x2.createNativeFunction(function () {
+    get: _0x2.createNativeFunction(function() {
       let _0x2e = this.native.response;
       return this.native.responseType === 'json' ? _0x2.nativeToPseudo(_0x2e) : typeof _0x2e == 'string' ? _0x2e.slice(0, 5242880) : _0x2e;
     })
-  }), _0x2.setProperty(_0x2c, 'open', _0x2.createNativeFunction(function (_0x2e, _0x2f, _0x33, _0x34, _0x35) {
+  }), _0x2.setProperty(_0x2c, 'open', _0x2.createNativeFunction(function(_0x2e, _0x2f, _0x33, _0x34, _0x35) {
     if (!_0x1c(_0x2f))
       throw new Error(`XHR request blocked: URL "${ _0x2f }" is not allowed. Only absolute URLs to external origins are permitted.`);
     let _0x36 = [
@@ -737,7 +777,7 @@ function _0x42(_0x2, _0x3, _0x4) {
     if (_0x2e = String(_0x2e).toUpperCase(), !_0x36.includes(_0x2e))
       throw new Error(`HTTP method "${ _0x2e }" is not allowed`);
     _0x8.settings.logCalls && console.log(_0x4.domain, 'XMLHttpRequest open', this, _0x2e, _0x2f, _0x33, _0x34, _0x35), this._method = _0x2e, this._url = _0x2f, this._async = _0x33 !== !1, this.native.open(_0x2e, _0x2f, this._async), this.native.timeout = 30000, _0x2.setProperty(this, 'readyState', this.native.readyState);
-  })), _0x2.setProperty(_0x2c, 'setRequestHeader', _0x2.createNativeFunction(function (_0x2e, _0x2f) {
+  })), _0x2.setProperty(_0x2c, 'setRequestHeader', _0x2.createNativeFunction(function(_0x2e, _0x2f) {
     if ([
         'cookie',
         'cookie2',
@@ -749,23 +789,30 @@ function _0x42(_0x2, _0x3, _0x4) {
       ].includes(_0x2e.toLowerCase()))
       throw new Error(`Setting header "${ _0x2e }" is not allowed`);
     _0x8.settings.logCalls && console.log(_0x4.domain, 'XMLHttpRequest setRequestHeader', this, _0x2e, _0x2f), this._headers[_0x2e] = _0x2f, this.native.setRequestHeader(_0x2e, _0x2f);
-  })), _0x2.setProperty(_0x2c, 'send', _0x2.createNativeFunction(function (_0x2e) {
+  })), _0x2.setProperty(_0x2c, 'send', _0x2.createNativeFunction(function(_0x2e) {
     if (_0x1b >= 5)
       throw new Error('Maximum concurrent requests (5) exceeded');
     _0x8.settings.logCalls && console.log(_0x4.domain, 'XMLHttpRequest send', this, _0x2e), _0x1b++;
     let _0x2f = null;
     _0x2e != null && (typeof _0x2e == 'string' ? _0x2f = _0x2e.slice(0, 5242880) : typeof _0x2e == 'object' && (_0x2f = JSON.stringify(_0x2.pseudoToNative(_0x2e)))), this.native.send(_0x2f);
-  })), _0x2.setProperty(_0x2c, 'abort', _0x2.createNativeFunction(function () {
+  })), _0x2.setProperty(_0x2c, 'abort', _0x2.createNativeFunction(function() {
     _0x8.settings.logCalls && console.log(_0x4.domain, 'XMLHttpRequest abort', this), this.native.abort(), _0x1b = Math.max(0, _0x1b - 1);
-  })), _0x2.setProperty(_0x2c, 'getResponseHeader', _0x2.createNativeFunction(function (_0x2e) {
+  })), _0x2.setProperty(_0x2c, 'getResponseHeader', _0x2.createNativeFunction(function(_0x2e) {
     return this.native.getResponseHeader(_0x2e);
-  })), _0x2.setProperty(_0x2c, 'getAllResponseHeaders', _0x2.createNativeFunction(function () {
+  })), _0x2.setProperty(_0x2c, 'getAllResponseHeaders', _0x2.createNativeFunction(function() {
     return this.native.getAllResponseHeaders();
-  })), _0x2.setProperty(_0x2c, 'overrideMimeType', _0x2.createNativeFunction(function (_0x2e) {
+  })), _0x2.setProperty(_0x2c, 'overrideMimeType', _0x2.createNativeFunction(function(_0x2e) {
     this.native.overrideMimeType(_0x2e);
   }));
 }
-var _0x43 = 'webtiles_storage', _0x44 = 1, _0x45 = 'localStorage', _0x46 = 1024 * 1024, _0x47 = 100, _0x48 = null, _0x49 = null;
+var _0x43 = 'webtiles_storage',
+  _0x44 = 1,
+  _0x45 = 'localStorage',
+  _0x46 = 1024 * 1024,
+  _0x47 = 100,
+  _0x48 = null,
+  _0x49 = null;
+
 function _0x4a() {
   return _0x49 || (_0x49 = new Promise((_0x2, _0x3) => {
     let _0x4 = indexedDB.open(_0x43, _0x44);
@@ -778,7 +825,9 @@ function _0x4a() {
           'site',
           'key'
         ]
-      }).createIndex('site', 'site', { unique: !1 });
+      }).createIndex('site', 'site', {
+        unique: !1
+      });
     };
   }), _0x49);
 }
@@ -842,9 +891,10 @@ async function _0x50(_0x2) {
     }, _0x1b.onerror = () => _0x4(_0x1b.error);
   });
 }
+
 function _0x51(_0x2, _0x3, _0x4) {
   let _0xa = _0x2.nativeToPseudo({});
-  _0x2.setProperty(_0xa, 'getItem', _0x2.createAsyncFunction(function (_0xb, _0x1a) {
+  _0x2.setProperty(_0xa, 'getItem', _0x2.createAsyncFunction(function(_0xb, _0x1a) {
     if (_0x8.settings.logCalls && console.log(_0x4, 'localStorage.getItem', this, _0xb), _0xb == null) {
       _0x1a(null);
       return;
@@ -852,7 +902,7 @@ function _0x51(_0x2, _0x3, _0x4) {
     _0xb = String(_0xb), _0x4b(_0x4, _0xb).then(_0x1b => _0x1a(_0x1b)).catch(_0x1b => {
       console.error('localStorage.getItem error:', _0x1b), _0x1a(null);
     });
-  })), _0x2.setProperty(_0xa, 'setItem', _0x2.createAsyncFunction(function (_0xb, _0x1a, _0x1b) {
+  })), _0x2.setProperty(_0xa, 'setItem', _0x2.createAsyncFunction(function(_0xb, _0x1a, _0x1b) {
     if (_0x8.settings.logCalls && console.log(_0x4, 'localStorage.setItem', this, _0xb, _0x1a), _0xb == null) {
       _0x1b();
       return;
@@ -864,7 +914,8 @@ function _0x51(_0x2, _0x3, _0x4) {
       _0x4b(_0x4, _0xb).then(_0x1d => {
         if (_0x1d === null && _0x1c >= _0x47)
           throw new Error(`localStorage item limit exceeded (max ${ _0x47 } items)`);
-        let _0x2a = _0x1d ? (_0xb.length + _0x1d.length) * 2 : 0, _0x2b = (_0xb.length + _0x1a.length) * 2;
+        let _0x2a = _0x1d ? (_0xb.length + _0x1d.length) * 2 : 0,
+          _0x2b = (_0xb.length + _0x1a.length) * 2;
         if (_0x1f - _0x2a + _0x2b > _0x46)
           throw new Error(`localStorage size limit exceeded (max ${ _0x46 / 1024 }KB)`);
         return _0x4c(_0x4, _0xb, _0x1a);
@@ -874,7 +925,7 @@ function _0x51(_0x2, _0x3, _0x4) {
     }).catch(_0x1f => {
       console.error('localStorage.setItem error:', _0x1f), _0x1b();
     });
-  })), _0x2.setProperty(_0xa, 'removeItem', _0x2.createAsyncFunction(function (_0xb, _0x1a) {
+  })), _0x2.setProperty(_0xa, 'removeItem', _0x2.createAsyncFunction(function(_0xb, _0x1a) {
     if (_0x8.settings.logCalls && console.log(_0x4, 'localStorage.removeItem', this, _0xb), _0xb == null) {
       _0x1a();
       return;
@@ -882,18 +933,20 @@ function _0x51(_0x2, _0x3, _0x4) {
     _0xb = String(_0xb), _0x4d(_0x4, _0xb).then(() => _0x1a()).catch(_0x1b => {
       console.error('localStorage.removeItem error:', _0x1b), _0x1a();
     });
-  })), _0x2.setProperty(_0xa, 'clear', _0x2.createAsyncFunction(function (_0xb) {
+  })), _0x2.setProperty(_0xa, 'clear', _0x2.createAsyncFunction(function(_0xb) {
     _0x8.settings.logCalls && console.log(_0x4, 'localStorage.clear', this), _0x50(_0x4).then(() => _0xb()).catch(_0x1a => {
       console.error('localStorage.clear error:', _0x1a), _0xb();
     });
-  })), _0x2.setProperty(_0xa, 'key', _0x2.createAsyncFunction(function (_0xb, _0x1a) {
+  })), _0x2.setProperty(_0xa, 'key', _0x2.createAsyncFunction(function(_0xb, _0x1a) {
     _0xb = parseInt(_0xb) || 0, _0x4e(_0x4).then(_0x1b => {
       _0x1a(_0xb >= 0 && _0xb < _0x1b.length ? _0x1b[_0xb] : null);
     }).catch(_0x1b => {
       console.error('localStorage.key error:', _0x1b), _0x1a(null);
     });
-  })), _0x2.setProperty(_0xa, 'getLength', _0x2.createAsyncFunction(function (_0xb) {
-    _0x4f(_0x4).then(({count: _0x1a}) => _0xb(_0x1a)).catch(_0x1a => {
+  })), _0x2.setProperty(_0xa, 'getLength', _0x2.createAsyncFunction(function(_0xb) {
+    _0x4f(_0x4).then(({
+      count: _0x1a
+    }) => _0xb(_0x1a)).catch(_0x1a => {
       console.error('localStorage.getLength error:', _0x1a), _0xb(0);
     });
   })), _0x2.setProperty(_0x3, 'localStorage', _0xa), _0x2.setProperty(_0x3, 'sessionStorage', _0xa);
@@ -901,12 +954,12 @@ function _0x51(_0x2, _0x3, _0x4) {
 _0x4a().catch(_0x2 => {
   console.error('Failed to initialize storage DB:', _0x2);
 });
+
 function _0x52(_0x2, _0x3, _0x4, _0xa) {
-  let _0xb = _0x2.createNativeFunction(function () {
-  }, !0);
+  let _0xb = _0x2.createNativeFunction(function() {}, !0);
   _0x2.setProperty(_0x3, 'DOMParser', _0xb);
   let _0x1a = _0x2.getProperty(_0xb, 'prototype');
-  _0x2.setProperty(_0x1a, 'parseFromString', _0x2.createNativeFunction(function (_0x1b, _0x1f) {
+  _0x2.setProperty(_0x1a, 'parseFromString', _0x2.createNativeFunction(function(_0x1b, _0x1f) {
     if (_0x8.settings.logCalls && console.log(_0xa.domain, 'DOMParser parseFromString', this, _0x1b, _0x1f), ![
         'text/html',
         'text/xml',
@@ -917,312 +970,342 @@ function _0x52(_0x2, _0x3, _0x4, _0xa) {
       throw new Error(`DOMParser: Unsupported MIME type "${ _0x1f }"`);
     if (typeof _0x1b != 'string' && (_0x1b = String(_0x1b)), _0x1b.length > 100000)
       throw new Error('DOMParser: Input string too large (max 100KB)');
-    let _0x1e = new DOMParser().parseFromString(_0x1b, _0x1f), _0x2a = _0x2.createObjectProto(_0x2.OBJECT_PROTO);
+    let _0x1e = new DOMParser().parseFromString(_0x1b, _0x1f),
+      _0x2a = _0x2.createObjectProto(_0x2.OBJECT_PROTO);
+
     function _0x2b(_0x2c) {
       if (_0x2c == null)
         return null;
       let _0x2d = _0x2.createObjectProto(_0x2.OBJECT_PROTO);
       return _0x2d.native = _0x2c, _0x2d.fromDOMParser = !0, _0x2.setProperty(_0x2d, 'nodeName', Interpreter.VALUE_IN_DESCRIPTOR, {
-        get: _0x2.createNativeFunction(function () {
+        get: _0x2.createNativeFunction(function() {
           return this.native.nodeName;
         })
       }), _0x2.setProperty(_0x2d, 'nodeType', Interpreter.VALUE_IN_DESCRIPTOR, {
-        get: _0x2.createNativeFunction(function () {
+        get: _0x2.createNativeFunction(function() {
           return this.native.nodeType;
         })
       }), _0x2.setProperty(_0x2d, 'nodeValue', Interpreter.VALUE_IN_DESCRIPTOR, {
-        get: _0x2.createNativeFunction(function () {
+        get: _0x2.createNativeFunction(function() {
           return this.native.nodeValue;
         }),
-        set: _0x2.createNativeFunction(function (_0x2e) {
+        set: _0x2.createNativeFunction(function(_0x2e) {
           _0x8.settings.logCalls && console.log(_0xa.domain, 'DOMParser set nodeValue', this, _0x2e), this.native.nodeValue = _0x2e;
         })
       }), _0x2.setProperty(_0x2d, 'textContent', Interpreter.VALUE_IN_DESCRIPTOR, {
-        get: _0x2.createNativeFunction(function () {
+        get: _0x2.createNativeFunction(function() {
           return this.native.textContent;
         }),
-        set: _0x2.createNativeFunction(function (_0x2e) {
+        set: _0x2.createNativeFunction(function(_0x2e) {
           _0x8.settings.logCalls && console.log(_0xa.domain, 'DOMParser set textContent', this, _0x2e), this.native.textContent = String(_0x2e).slice(0, 50000);
         })
       }), _0x2.setProperty(_0x2d, 'tagName', Interpreter.VALUE_IN_DESCRIPTOR, {
-        get: _0x2.createNativeFunction(function () {
+        get: _0x2.createNativeFunction(function() {
           return this.native.tagName;
         })
       }), _0x2.setProperty(_0x2d, 'id', Interpreter.VALUE_IN_DESCRIPTOR, {
-        get: _0x2.createNativeFunction(function () {
+        get: _0x2.createNativeFunction(function() {
           return this.native.id;
         }),
-        set: _0x2.createNativeFunction(function (_0x2e) {
+        set: _0x2.createNativeFunction(function(_0x2e) {
           _0x8.settings.logCalls && console.log(_0xa.domain, 'DOMParser set id', this, _0x2e), this.native.id = String(_0x2e).slice(0, 100);
         })
       }), _0x2.setProperty(_0x2d, 'className', Interpreter.VALUE_IN_DESCRIPTOR, {
-        get: _0x2.createNativeFunction(function () {
+        get: _0x2.createNativeFunction(function() {
           return this.native.className;
         }),
-        set: _0x2.createNativeFunction(function (_0x2e) {
+        set: _0x2.createNativeFunction(function(_0x2e) {
           _0x8.settings.logCalls && console.log(_0xa.domain, 'DOMParser set className', this, _0x2e), this.native.className = String(_0x2e).slice(0, 1000);
         })
       }), _0x2.setProperty(_0x2d, 'innerHTML', Interpreter.VALUE_IN_DESCRIPTOR, {
-        get: _0x2.createNativeFunction(function () {
+        get: _0x2.createNativeFunction(function() {
           return this.native.innerHTML;
         }),
-        set: _0x2.createNativeFunction(function (_0x2e) {
+        set: _0x2.createNativeFunction(function(_0x2e) {
           throw new Error('innerHTML is not allowed. Create elements using document.createElement and append them instead or use innerText instead.');
         })
       }), _0x2.setProperty(_0x2d, 'outerHTML', Interpreter.VALUE_IN_DESCRIPTOR, {
-        get: _0x2.createNativeFunction(function () {
+        get: _0x2.createNativeFunction(function() {
           return this.native.outerHTML;
         })
       }), _0x2.setProperty(_0x2d, 'children', Interpreter.VALUE_IN_DESCRIPTOR, {
-        get: _0x2.createNativeFunction(function () {
-          let _0x2e = Array.from(this.native.children), _0x2f = _0x2.createObjectProto(_0x2.ARRAY_PROTO);
+        get: _0x2.createNativeFunction(function() {
+          let _0x2e = Array.from(this.native.children),
+            _0x2f = _0x2.createObjectProto(_0x2.ARRAY_PROTO);
           for (let _0x33 = 0; _0x33 < _0x2e.length; _0x33++)
             _0x2.setProperty(_0x2f, _0x33, _0x2b(_0x2e[_0x33]));
           return _0x2.setProperty(_0x2f, 'length', _0x2e.length), _0x2f;
         })
       }), _0x2.setProperty(_0x2d, 'childNodes', Interpreter.VALUE_IN_DESCRIPTOR, {
-        get: _0x2.createNativeFunction(function () {
-          let _0x2e = Array.from(this.native.childNodes), _0x2f = _0x2.createObjectProto(_0x2.ARRAY_PROTO);
+        get: _0x2.createNativeFunction(function() {
+          let _0x2e = Array.from(this.native.childNodes),
+            _0x2f = _0x2.createObjectProto(_0x2.ARRAY_PROTO);
           for (let _0x33 = 0; _0x33 < _0x2e.length; _0x33++)
             _0x2.setProperty(_0x2f, _0x33, _0x2b(_0x2e[_0x33]));
           return _0x2.setProperty(_0x2f, 'length', _0x2e.length), _0x2f;
         })
       }), _0x2.setProperty(_0x2d, 'firstChild', Interpreter.VALUE_IN_DESCRIPTOR, {
-        get: _0x2.createNativeFunction(function () {
+        get: _0x2.createNativeFunction(function() {
           return _0x2b(this.native.firstChild);
         })
       }), _0x2.setProperty(_0x2d, 'lastChild', Interpreter.VALUE_IN_DESCRIPTOR, {
-        get: _0x2.createNativeFunction(function () {
+        get: _0x2.createNativeFunction(function() {
           return _0x2b(this.native.lastChild);
         })
       }), _0x2.setProperty(_0x2d, 'firstElementChild', Interpreter.VALUE_IN_DESCRIPTOR, {
-        get: _0x2.createNativeFunction(function () {
+        get: _0x2.createNativeFunction(function() {
           return _0x2b(this.native.firstElementChild);
         })
       }), _0x2.setProperty(_0x2d, 'lastElementChild', Interpreter.VALUE_IN_DESCRIPTOR, {
-        get: _0x2.createNativeFunction(function () {
+        get: _0x2.createNativeFunction(function() {
           return _0x2b(this.native.lastElementChild);
         })
       }), _0x2.setProperty(_0x2d, 'parentNode', Interpreter.VALUE_IN_DESCRIPTOR, {
-        get: _0x2.createNativeFunction(function () {
+        get: _0x2.createNativeFunction(function() {
           if (!this.fromDOMParser)
             throw new Error('No access.');
           return this.native.isSameNode(_0x4) ? null : (_0x8.settings.logCalls && console.log(_0xa.domain, 'DOMParser get parentNode', this), _0x2b(this.native.parentNode));
         })
       }), _0x2.setProperty(_0x2d, 'parentElement', Interpreter.VALUE_IN_DESCRIPTOR, {
-        get: _0x2.createNativeFunction(function () {
+        get: _0x2.createNativeFunction(function() {
           if (!this.fromDOMParser)
             throw new Error('No access.');
           return this.native.isSameNode(_0x4) ? null : (_0x8.settings.logCalls && console.log(_0xa.domain, 'DOMParser get parentElement', this), _0x2b(this.native.parentElement));
         })
       }), _0x2.setProperty(_0x2d, 'nextSibling', Interpreter.VALUE_IN_DESCRIPTOR, {
-        get: _0x2.createNativeFunction(function () {
+        get: _0x2.createNativeFunction(function() {
           if (!this.fromDOMParser)
             throw new Error('No access.');
           return this.native.isSameNode(_0x4) ? null : (_0x8.settings.logCalls && console.log(_0xa.domain, 'DOMParser get nextSibling', this), _0x2b(this.native.nextSibling));
         })
       }), _0x2.setProperty(_0x2d, 'previousSibling', Interpreter.VALUE_IN_DESCRIPTOR, {
-        get: _0x2.createNativeFunction(function () {
+        get: _0x2.createNativeFunction(function() {
           if (!this.fromDOMParser)
             throw new Error('No access.');
           return this.native.isSameNode(_0x4) ? null : (_0x8.settings.logCalls && console.log(_0xa.domain, 'DOMParser get previousSibling', this), _0x2b(this.native.previousSibling));
         })
-      }), _0x2.setProperty(_0x2d, 'getAttributeNames', _0x2.createNativeFunction(function () {
+      }), _0x2.setProperty(_0x2d, 'getAttributeNames', _0x2.createNativeFunction(function() {
         if (!this.fromDOMParser)
           throw new Error('No access.');
-        let _0x2e = Array.from(this.native.getAttributeNames()), _0x2f = _0x2.createObjectProto(_0x2.ARRAY_PROTO);
+        let _0x2e = Array.from(this.native.getAttributeNames()),
+          _0x2f = _0x2.createObjectProto(_0x2.ARRAY_PROTO);
         for (let _0x33 = 0; _0x33 < _0x2e.length; _0x33++)
           _0x2.setProperty(_0x2f, _0x33, _0x2e[_0x33]);
         return _0x2.setProperty(_0x2f, 'length', _0x2e.length), _0x2f;
-      })), _0x2.setProperty(_0x2d, 'getAttribute', _0x2.createNativeFunction(function (_0x2e) {
+      })), _0x2.setProperty(_0x2d, 'getAttribute', _0x2.createNativeFunction(function(_0x2e) {
         if (!this.fromDOMParser)
           throw new Error('No access.');
         return this.native.getAttribute(_0x2e);
-      })), _0x2.setProperty(_0x2d, 'setAttribute', _0x2.createNativeFunction(function (_0x2e, _0x2f) {
+      })), _0x2.setProperty(_0x2d, 'setAttribute', _0x2.createNativeFunction(function(_0x2e, _0x2f) {
         if (!this.fromDOMParser)
           throw new Error('No access.');
         if (_0x2e = String(_0x2e).toLowerCase(), _0x2e.startsWith('on'))
           throw new Error('Event handlers are not allowed');
         this.native.setAttribute(_0x2e, String(_0x2f)), _0x8.settings.logCalls && console.log(_0xa.domain, 'DOMParser set attribute', this, _0x2e, _0x2f);
-      })), _0x2.setProperty(_0x2d, 'hasAttribute', _0x2.createNativeFunction(function (_0x2e) {
+      })), _0x2.setProperty(_0x2d, 'hasAttribute', _0x2.createNativeFunction(function(_0x2e) {
         if (!this.fromDOMParser)
           throw new Error('No access.');
         return this.native.hasAttribute(_0x2e);
-      })), _0x2.setProperty(_0x2d, 'removeAttribute', _0x2.createNativeFunction(function (_0x2e) {
+      })), _0x2.setProperty(_0x2d, 'removeAttribute', _0x2.createNativeFunction(function(_0x2e) {
         if (!this.fromDOMParser)
           throw new Error('No access.');
         if (this.native.isSameNode(_0x4))
           throw new Error('No access.');
         this.native.removeAttribute(_0x2e), _0x8.settings.logCalls && console.log(_0xa.domain, 'DOMParser remove attribute', this, _0x2e);
-      })), _0x2.setProperty(_0x2d, 'querySelector', _0x2.createNativeFunction(function (_0x2e) {
+      })), _0x2.setProperty(_0x2d, 'querySelector', _0x2.createNativeFunction(function(_0x2e) {
         if (!this.fromDOMParser)
           throw new Error('No access.');
         return _0x2b(this.native.querySelector(_0x2e));
-      })), _0x2.setProperty(_0x2d, 'querySelectorAll', _0x2.createNativeFunction(function (_0x2e) {
+      })), _0x2.setProperty(_0x2d, 'querySelectorAll', _0x2.createNativeFunction(function(_0x2e) {
         if (!this.fromDOMParser)
           throw new Error('No access.');
-        let _0x2f = Array.from(this.native.querySelectorAll(_0x2e)), _0x33 = _0x2.createObjectProto(_0x2.ARRAY_PROTO);
+        let _0x2f = Array.from(this.native.querySelectorAll(_0x2e)),
+          _0x33 = _0x2.createObjectProto(_0x2.ARRAY_PROTO);
         for (let _0x34 = 0; _0x34 < _0x2f.length; _0x34++)
           _0x2.setProperty(_0x33, _0x34, _0x2b(_0x2f[_0x34]));
         return _0x2.setProperty(_0x33, 'length', _0x2f.length), _0x33;
-      })), _0x2.setProperty(_0x2d, 'getElementsByTagName', _0x2.createNativeFunction(function (_0x2e) {
+      })), _0x2.setProperty(_0x2d, 'getElementsByTagName', _0x2.createNativeFunction(function(_0x2e) {
         if (!this.fromDOMParser)
           throw new Error('No access.');
-        let _0x2f = Array.from(this.native.getElementsByTagName(_0x2e)), _0x33 = _0x2.createObjectProto(_0x2.ARRAY_PROTO);
+        let _0x2f = Array.from(this.native.getElementsByTagName(_0x2e)),
+          _0x33 = _0x2.createObjectProto(_0x2.ARRAY_PROTO);
         for (let _0x34 = 0; _0x34 < _0x2f.length; _0x34++)
           _0x2.setProperty(_0x33, _0x34, _0x2b(_0x2f[_0x34]));
         return _0x2.setProperty(_0x33, 'length', _0x2f.length), _0x33;
-      })), _0x2.setProperty(_0x2d, 'getElementsByClassName', _0x2.createNativeFunction(function (_0x2e) {
+      })), _0x2.setProperty(_0x2d, 'getElementsByClassName', _0x2.createNativeFunction(function(_0x2e) {
         if (!this.fromDOMParser)
           throw new Error('No access.');
-        let _0x2f = Array.from(this.native.getElementsByClassName(_0x2e)), _0x33 = _0x2.createObjectProto(_0x2.ARRAY_PROTO);
+        let _0x2f = Array.from(this.native.getElementsByClassName(_0x2e)),
+          _0x33 = _0x2.createObjectProto(_0x2.ARRAY_PROTO);
         for (let _0x34 = 0; _0x34 < _0x2f.length; _0x34++)
           _0x2.setProperty(_0x33, _0x34, _0x2b(_0x2f[_0x34]));
         return _0x2.setProperty(_0x33, 'length', _0x2f.length), _0x33;
-      })), _0x2.setProperty(_0x2d, 'getElementById', _0x2.createNativeFunction(function (_0x2e) {
+      })), _0x2.setProperty(_0x2d, 'getElementById', _0x2.createNativeFunction(function(_0x2e) {
         if (!this.fromDOMParser)
           throw new Error('No access.');
         return _0x2b(this.native.getElementById ? this.native.getElementById(_0x2e) : null);
       })), _0x2d;
     }
     return _0x2.setProperty(_0x2a, 'documentElement', Interpreter.VALUE_IN_DESCRIPTOR, {
-      get: _0x2.createNativeFunction(function () {
+      get: _0x2.createNativeFunction(function() {
         return _0x2b(_0x1e.documentElement);
       })
     }), _0x2.setProperty(_0x2a, 'head', Interpreter.VALUE_IN_DESCRIPTOR, {
-      get: _0x2.createNativeFunction(function () {
+      get: _0x2.createNativeFunction(function() {
         return _0x8.settings.logCalls && console.log(_0xa.domain, 'DOMParser get head', this), _0x2b(_0x1e.head);
       })
     }), _0x2.setProperty(_0x2a, 'body', Interpreter.VALUE_IN_DESCRIPTOR, {
-      get: _0x2.createNativeFunction(function () {
+      get: _0x2.createNativeFunction(function() {
         return _0x8.settings.logCalls && console.log(_0xa.domain, 'DOMParser get body', this), _0x2b(_0x1e.body);
       })
     }), _0x2.setProperty(_0x2a, 'title', Interpreter.VALUE_IN_DESCRIPTOR, {
-      get: _0x2.createNativeFunction(function () {
+      get: _0x2.createNativeFunction(function() {
         return _0x1e.title;
       })
-    }), _0x2.setProperty(_0x2a, 'querySelector', _0x2.createNativeFunction(function (_0x2c) {
+    }), _0x2.setProperty(_0x2a, 'querySelector', _0x2.createNativeFunction(function(_0x2c) {
       return _0x2b(_0x1e.querySelector(_0x2c));
-    })), _0x2.setProperty(_0x2a, 'querySelectorAll', _0x2.createNativeFunction(function (_0x2c) {
-      let _0x2d = Array.from(_0x1e.querySelectorAll(_0x2c)), _0x2e = _0x2.createObjectProto(_0x2.ARRAY_PROTO);
+    })), _0x2.setProperty(_0x2a, 'querySelectorAll', _0x2.createNativeFunction(function(_0x2c) {
+      let _0x2d = Array.from(_0x1e.querySelectorAll(_0x2c)),
+        _0x2e = _0x2.createObjectProto(_0x2.ARRAY_PROTO);
       for (let _0x2f = 0; _0x2f < _0x2d.length; _0x2f++)
         _0x2.setProperty(_0x2e, _0x2f, _0x2b(_0x2d[_0x2f]));
       return _0x2.setProperty(_0x2e, 'length', _0x2d.length), _0x2e;
-    })), _0x2.setProperty(_0x2a, 'getElementById', _0x2.createNativeFunction(function (_0x2c) {
+    })), _0x2.setProperty(_0x2a, 'getElementById', _0x2.createNativeFunction(function(_0x2c) {
       return _0x2b(_0x1e.getElementById(_0x2c));
-    })), _0x2.setProperty(_0x2a, 'getElementsByTagName', _0x2.createNativeFunction(function (_0x2c) {
-      let _0x2d = Array.from(_0x1e.getElementsByTagName(_0x2c)), _0x2e = _0x2.createObjectProto(_0x2.ARRAY_PROTO);
+    })), _0x2.setProperty(_0x2a, 'getElementsByTagName', _0x2.createNativeFunction(function(_0x2c) {
+      let _0x2d = Array.from(_0x1e.getElementsByTagName(_0x2c)),
+        _0x2e = _0x2.createObjectProto(_0x2.ARRAY_PROTO);
       for (let _0x2f = 0; _0x2f < _0x2d.length; _0x2f++)
         _0x2.setProperty(_0x2e, _0x2f, _0x2b(_0x2d[_0x2f]));
       return _0x2.setProperty(_0x2e, 'length', _0x2d.length), _0x2e;
-    })), _0x2.setProperty(_0x2a, 'getElementsByClassName', _0x2.createNativeFunction(function (_0x2c) {
-      let _0x2d = Array.from(_0x1e.getElementsByClassName(_0x2c)), _0x2e = _0x2.createObjectProto(_0x2.ARRAY_PROTO);
+    })), _0x2.setProperty(_0x2a, 'getElementsByClassName', _0x2.createNativeFunction(function(_0x2c) {
+      let _0x2d = Array.from(_0x1e.getElementsByClassName(_0x2c)),
+        _0x2e = _0x2.createObjectProto(_0x2.ARRAY_PROTO);
       for (let _0x2f = 0; _0x2f < _0x2d.length; _0x2f++)
         _0x2.setProperty(_0x2e, _0x2f, _0x2b(_0x2d[_0x2f]));
       return _0x2.setProperty(_0x2e, 'length', _0x2d.length), _0x2e;
     })), _0x2a;
   }));
 }
+
 function _0x53(_0x2, _0x3, _0x4, _0xa) {
-  let _0xb = new WeakMap(), _0x1a = 1000, _0x1b = 5, _0x1f = new WeakMap(), _0x1c = 0, _0x1d = _0x2.nativeToPseudo({});
+  let _0xb = new WeakMap(),
+    _0x1a = 1000,
+    _0x1b = 5,
+    _0x1f = new WeakMap(),
+    _0x1c = 0,
+    _0x1d = _0x2.nativeToPseudo({});
   _0x2.setProperty(_0x3, '__eventCallbacks', _0x1d);
+
   function _0x1e(_0x41, _0x54) {
     let _0x55 = _0x1c++;
     _0x2.setProperty(_0x1d, 'fn' + _0x55, _0x41), _0x2.setProperty(_0x1d, 'ev' + _0x55, _0x54), _0x2.appendCode(`__eventCallbacks.fn${ _0x55 }(__eventCallbacks.ev${ _0x55 }); delete __eventCallbacks.fn${ _0x55 }; delete __eventCallbacks.ev${ _0x55 };`);
   }
+
   function _0x2a() {
     return _0x4.getElementsByTagName('*').length;
   }
+
   function _0x2b(_0x41 = 1) {
     if (_0x2a() + _0x41 > _0x1a)
       throw new Error(`DOM element limit exceeded (max ${ _0x1a })`);
   }
+
   function _0x2c(_0x41) {
     return _0x41 instanceof Element ? 1 + _0x41.getElementsByTagName('*').length : 0;
   }
+
   function _0x2d(_0x41, _0x54 = !1) {
     if (_0x41 == null)
       return null;
     if (_0xb.has(_0x41))
       return _0xb.get(_0x41);
-    let _0x55 = _0x41 instanceof Element ? _0x39 : _0x34, _0x56 = _0x2.createObject(_0x55);
+    let _0x55 = _0x41 instanceof Element ? _0x39 : _0x34,
+      _0x56 = _0x2.createObject(_0x55);
     return _0x56.native = _0x41, _0x56.fromDOMParser || (_0x56.fromDOMParser = _0x54), _0xb.set(_0x41, _0x56), _0x56;
   }
+
   function _0x2e(_0x41) {
     return _0x41 && _0x4.contains(_0x41);
   }
+
   function _0x2f(_0x41) {
     return _0x2e(_0x41) ? _0x41 : null;
   }
+
   function _0x33(_0x41) {
     let _0x54 = _0x2.createObjectProto(_0x2.ARRAY_PROTO);
     for (let _0x55 = 0; _0x55 < _0x41.length; _0x55++)
       _0x2.setProperty(_0x54, _0x55, _0x2d(_0x41[_0x55]));
     return _0x2.setProperty(_0x54, 'length', _0x41.length), _0x54;
   }
-  let _0x34 = _0x2.createNativeFunction(function () {
+  let _0x34 = _0x2.createNativeFunction(function() {
     throw TypeError('Illegal constructor');
   }, !0);
   _0x2.setProperty(_0x3, 'Node', _0x34);
-  let _0x35 = _0x2.getProperty(_0x34, 'prototype'), _0x36 = {
-      firstChild: function () {
+  let _0x35 = _0x2.getProperty(_0x34, 'prototype'),
+    _0x36 = {
+      firstChild: function() {
         return _0x2d(_0x2f(this.native.firstChild));
       },
-      lastChild: function () {
+      lastChild: function() {
         return _0x2d(_0x2f(this.native.lastChild));
       },
-      parentNode: function () {
+      parentNode: function() {
         return _0x2d(_0x2f(this.native.parentNode));
       },
-      parentElement: function () {
+      parentElement: function() {
         return _0x2d(_0x2f(this.native.parentElement));
       },
-      nextSibling: function () {
+      nextSibling: function() {
         return _0x2d(_0x2f(this.native.nextSibling));
       },
-      previousSibling: function () {
+      previousSibling: function() {
         return _0x2d(_0x2f(this.native.previousSibling));
       },
-      childNodes: function () {
+      childNodes: function() {
         let _0x41 = Array.from(this.native.childNodes).filter(_0x2e);
         return _0x33(_0x41);
       },
-      nodeName: function () {
+      nodeName: function() {
         return this.native.nodeName;
       },
-      nodeType: function () {
+      nodeType: function() {
         return this.native.nodeType;
       },
-      nodeValue: function () {
+      nodeValue: function() {
         return this.native.nodeValue;
       },
-      textContent: function () {
+      textContent: function() {
         return this.native.textContent;
       }
-    }, _0x37 = {
-      textContent: function (_0x41) {
+    },
+    _0x37 = {
+      textContent: function(_0x41) {
         _0x8.settings.logCalls && console.log(_0xa.domain, 'set textContent', this, _0x41), this.native.textContent = _0x41;
       },
-      nodeValue: function (_0x41) {
+      nodeValue: function(_0x41) {
         _0x8.settings.logCalls && console.log(_0xa.domain, 'set nodeValue', this, _0x41), this.native.nodeValue = _0x41;
       }
     };
   for (let [_0x41, _0x54] of Object.entries(_0x36)) {
-    let _0x55 = { get: _0x2.createNativeFunction(_0x54) };
+    let _0x55 = {
+      get: _0x2.createNativeFunction(_0x54)
+    };
     _0x37[_0x41] && (_0x55.set = _0x2.createNativeFunction(_0x37[_0x41])), _0x2.setProperty(_0x35, _0x41, Interpreter.VALUE_IN_DESCRIPTOR, _0x55);
   }
   let _0x38 = {
-    hasChildNodes: function () {
+    hasChildNodes: function() {
       return this.native.hasChildNodes();
     },
-    appendChild: function (_0x41) {
+    appendChild: function(_0x41) {
       if (!_0x41?.native)
         return null;
       if (_0x41.fromDOMParser)
         throw new Error('You cannot append DOMParser elements to the DOM.');
       return _0x2b(_0x2c(_0x41.native)), this.native.appendChild(_0x41.native), _0x8.settings.logCalls && console.log(_0xa.domain, 'appendChild', this, _0x41), _0x41;
     },
-    append: function (_0x41) {
+    append: function(_0x41) {
       for (let _0x54 of _0x41)
         if (_0x54?.native) {
           if (_0x54.fromDOMParser)
@@ -1231,10 +1314,10 @@ function _0x53(_0x2, _0x3, _0x4, _0xa) {
         }
       return _0x8.settings.logCalls && console.log(_0xa.domain, 'append', this, _0x41), _0x41;
     },
-    removeChild: function (_0x41) {
+    removeChild: function(_0x41) {
       return !_0x41?.native || !_0x2e(_0x41.native) ? null : (_0x8.settings.logCalls && console.log(_0xa.domain, 'removeChild', this, _0x41), _0x2d(this.native.removeChild(_0x41.native)));
     },
-    insertBefore: function (_0x41, _0x54) {
+    insertBefore: function(_0x41, _0x54) {
       if (!_0x41?.native)
         return null;
       if (_0x41.fromDOMParser)
@@ -1245,18 +1328,18 @@ function _0x53(_0x2, _0x3, _0x4, _0xa) {
       let _0x55 = _0x54?.native || null;
       return this.native.insertBefore(_0x41.native, _0x55), _0x8.settings.logCalls && console.log(_0xa.domain, 'insertBefore', this, _0x41, _0x55), _0x41;
     },
-    cloneNode: function (_0x41) {
+    cloneNode: function(_0x41) {
       return _0x8.settings.logCalls && console.log(_0xa.domain, 'cloneNode', this, _0x41), _0x2d(this.native.cloneNode(_0x41), this.fromDOMParser);
     },
-    contains: function (_0x41) {
+    contains: function(_0x41) {
       return _0x41?.native ? this.native.contains(_0x41.native) : !1;
     },
-    remove: function () {
+    remove: function() {
       if (this.native.isSameNode(_0x4))
         throw new Error('No access.');
       this.native.remove(), _0x8.settings.logCalls && console.log(_0xa.domain, 'remove', this);
     },
-    after: function (_0x41) {
+    after: function(_0x41) {
       if (!_0x41?.native)
         return null;
       if (_0x41.fromDOMParser)
@@ -1265,7 +1348,7 @@ function _0x53(_0x2, _0x3, _0x4, _0xa) {
         throw new Error('No access.');
       return _0x2b(_0x2c(_0x41.native)), this.native.after(_0x41.native), _0x8.settings.logCalls && console.log(_0xa.domain, 'after', this, _0x41), _0x41;
     },
-    before: function (_0x41) {
+    before: function(_0x41) {
       if (!_0x41?.native)
         return null;
       if (_0x41.fromDOMParser)
@@ -1277,12 +1360,13 @@ function _0x53(_0x2, _0x3, _0x4, _0xa) {
   };
   for (let [_0x41, _0x54] of Object.entries(_0x38))
     _0x2.setProperty(_0x35, _0x41, _0x2.createNativeFunction(_0x54));
-  let _0x39 = _0x2.createNativeFunction(function () {
+  let _0x39 = _0x2.createNativeFunction(function() {
     throw TypeError('Illegal constructor');
   }, !0);
   _0x2.setProperty(_0x3, 'Element', _0x39);
   let _0x3a = _0x2.createObject(_0x34);
   _0x2.setProperty(_0x39, 'prototype', _0x3a);
+
   function _0x29(_0x41) {
     if (!_0x41)
       return '';
@@ -1306,278 +1390,279 @@ function _0x53(_0x2, _0x3, _0x4, _0xa) {
     }
   }
   let _0x3d = {
-      innerText: function () {
+      innerText: function() {
         return this.native.innerText;
       },
-      innerHTML: function () {
+      innerHTML: function() {
         return this.native.innerHTML;
       },
-      outerHTML: function () {
+      outerHTML: function() {
         return this.native.outerHTML;
       },
-      id: function () {
+      id: function() {
         return this.native.id;
       },
-      className: function () {
+      className: function() {
         return this.native.className;
       },
-      tagName: function () {
+      tagName: function() {
         return this.native.tagName;
       },
-      children: function () {
+      children: function() {
         let _0x41 = Array.from(this.native.children).filter(_0x2e);
         return _0x33(_0x41);
       },
-      firstElementChild: function () {
+      firstElementChild: function() {
         return _0x2d(_0x2f(this.native.firstElementChild));
       },
-      lastElementChild: function () {
+      lastElementChild: function() {
         return _0x2d(_0x2f(this.native.lastElementChild));
       },
-      nextElementSibling: function () {
+      nextElementSibling: function() {
         return _0x2d(_0x2f(this.native.nextElementSibling));
       },
-      previousElementSibling: function () {
+      previousElementSibling: function() {
         return _0x2d(_0x2f(this.native.previousElementSibling));
       },
-      childElementCount: function () {
+      childElementCount: function() {
         return this.native.childElementCount;
       },
-      src: function () {
+      src: function() {
         return this.native.src;
       },
-      href: function () {
+      href: function() {
         return this.native.href;
       },
-      hidden: function () {
+      hidden: function() {
         return this.native.hidden;
       },
-      disabled: function () {
+      disabled: function() {
         return this.native.disabled;
       },
-      checked: function () {
+      checked: function() {
         return this.native.checked;
       },
-      selected: function () {
+      selected: function() {
         return this.native.selected;
       },
-      readOnly: function () {
+      readOnly: function() {
         return this.native.readOnly;
       },
-      required: function () {
+      required: function() {
         return this.native.required;
       },
-      draggable: function () {
+      draggable: function() {
         return this.native.draggable;
       },
-      title: function () {
+      title: function() {
         return this.native.title;
       },
-      alt: function () {
+      alt: function() {
         return this.native.alt;
       },
-      name: function () {
+      name: function() {
         return this.native.name;
       },
-      type: function () {
+      type: function() {
         return this.native.type;
       },
-      value: function () {
+      value: function() {
         return this.native.value;
       },
-      placeholder: function () {
+      placeholder: function() {
         return this.native.placeholder;
       },
-      tabIndex: function () {
+      tabIndex: function() {
         return this.native.tabIndex;
       },
-      offsetWidth: function () {
+      offsetWidth: function() {
         return this.native.offsetWidth;
       },
-      offsetHeight: function () {
+      offsetHeight: function() {
         return this.native.offsetHeight;
       },
-      offsetTop: function () {
+      offsetTop: function() {
         return this.native.offsetTop;
       },
-      offsetLeft: function () {
+      offsetLeft: function() {
         return this.native.offsetLeft;
       },
-      clientWidth: function () {
+      clientWidth: function() {
         return this.native.clientWidth;
       },
-      clientHeight: function () {
+      clientHeight: function() {
         return this.native.clientHeight;
       },
-      scrollWidth: function () {
+      scrollWidth: function() {
         return this.native.scrollWidth;
       },
-      scrollHeight: function () {
+      scrollHeight: function() {
         return this.native.scrollHeight;
       },
-      scrollTop: function () {
+      scrollTop: function() {
         return this.native.scrollTop;
       },
-      scrollLeft: function () {
+      scrollLeft: function() {
         return this.native.scrollLeft;
       },
-      currentTime: function () {
+      currentTime: function() {
         return this.native.currentTime || 0;
       },
-      duration: function () {
+      duration: function() {
         return this.native.duration || 0;
       },
-      paused: function () {
+      paused: function() {
         return this.native.paused !== void 0 ? this.native.paused : !0;
       },
-      ended: function () {
+      ended: function() {
         return this.native.ended || !1;
       },
-      muted: function () {
+      muted: function() {
         return this.native.muted || !1;
       },
-      volume: function () {
+      volume: function() {
         return this.native.volume !== void 0 ? this.native.volume : 1;
       },
-      loop: function () {
+      loop: function() {
         return this.native.loop || !1;
       },
-      autoplay: function () {
+      autoplay: function() {
         return this.native.autoplay || !1;
       },
-      controls: function () {
+      controls: function() {
         return this.native.controls || !1;
       },
-      playbackRate: function () {
+      playbackRate: function() {
         return this.native.playbackRate !== void 0 ? this.native.playbackRate : 1;
       },
-      defaultPlaybackRate: function () {
+      defaultPlaybackRate: function() {
         return this.native.defaultPlaybackRate !== void 0 ? this.native.defaultPlaybackRate : 1;
       },
-      currentSrc: function () {
+      currentSrc: function() {
         return this.native.currentSrc || '';
       },
-      readyState: function () {
+      readyState: function() {
         return this.native.readyState || 0;
       },
-      networkState: function () {
+      networkState: function() {
         return this.native.networkState || 0;
       },
-      seeking: function () {
+      seeking: function() {
         return this.native.seeking || !1;
       },
-      preload: function () {
+      preload: function() {
         return this.native.preload || 'auto';
       },
-      poster: function () {
+      poster: function() {
         return this.native.poster || '';
       },
-      videoWidth: function () {
+      videoWidth: function() {
         return this.native.videoWidth || 0;
       },
-      videoHeight: function () {
+      videoHeight: function() {
         return this.native.videoHeight || 0;
       }
-    }, _0x3e = {
-      innerText: function (_0x41) {
+    },
+    _0x3e = {
+      innerText: function(_0x41) {
         this.native.innerText = _0x41.slice(0, 1000);
       },
-      innerHTML: function (_0x41) {
+      innerHTML: function(_0x41) {
         throw new Error('innerHTML is not allowed. Create elements using document.createElement and append them instead or use innerText instead.');
       },
-      id: function (_0x41) {
+      id: function(_0x41) {
         if (this.native.className === 'tile-body')
           throw new Error('No access.');
         this.native.id = _0x41, _0x8.settings.logCalls && console.log(_0xa.domain, 'set id', this, _0x41);
       },
-      className: function (_0x41) {
+      className: function(_0x41) {
         if (this.native.className === 'tile-body')
           throw new Error('No access.');
         this.native.className = _0x41, _0x8.settings.logCalls && console.log(_0xa.domain, 'set className', this, _0x41);
       },
-      src: function (_0x41) {
+      src: function(_0x41) {
         this.native.src = _0x29(_0x41), _0x8.settings.logCalls && console.log(_0xa.domain, 'set src', this, _0x41);
       },
-      href: function (_0x41) {
+      href: function(_0x41) {
         this.native.href = this.native.tagName === 'A' ? _0x41 : _0x29(_0x41), _0x8.settings.logCalls && console.log(_0xa.domain, 'set href', this, _0x41);
       },
-      hidden: function (_0x41) {
+      hidden: function(_0x41) {
         if (this.native.className === 'tile-body')
           throw new Error('No access.');
         this.native.hidden = !!_0x41;
       },
-      disabled: function (_0x41) {
+      disabled: function(_0x41) {
         if (this.native.className === 'tile-body')
           throw new Error('No access.');
         this.native.disabled = !!_0x41;
       },
-      checked: function (_0x41) {
+      checked: function(_0x41) {
         this.native.checked = !!_0x41;
       },
-      selected: function (_0x41) {
+      selected: function(_0x41) {
         this.native.selected = !!_0x41;
       },
-      readOnly: function (_0x41) {
+      readOnly: function(_0x41) {
         this.native.readOnly = !!_0x41;
       },
-      required: function (_0x41) {
+      required: function(_0x41) {
         this.native.required = !!_0x41;
       },
-      draggable: function (_0x41) {
+      draggable: function(_0x41) {
         this.native.draggable = !!_0x41;
       },
-      title: function (_0x41) {
+      title: function(_0x41) {
         this.native.title = String(_0x41).slice(0, 1000);
       },
-      alt: function (_0x41) {
+      alt: function(_0x41) {
         this.native.alt = String(_0x41).slice(0, 1000);
       },
-      name: function (_0x41) {
+      name: function(_0x41) {
         this.native.name = String(_0x41).slice(0, 100);
       },
-      type: function (_0x41) {
+      type: function(_0x41) {
         this.native.type = String(_0x41).slice(0, 50);
       },
-      value: function (_0x41) {
+      value: function(_0x41) {
         this.native.value = String(_0x41).slice(0, 10000);
       },
-      placeholder: function (_0x41) {
+      placeholder: function(_0x41) {
         this.native.placeholder = String(_0x41).slice(0, 500);
       },
-      tabIndex: function (_0x41) {
+      tabIndex: function(_0x41) {
         this.native.tabIndex = parseInt(_0x41) || 0;
       },
-      scrollTop: function (_0x41) {
+      scrollTop: function(_0x41) {
         this.native.scrollTop = _0x41;
       },
-      scrollLeft: function (_0x41) {
+      scrollLeft: function(_0x41) {
         this.native.scrollLeft = _0x41;
       },
-      currentTime: function (_0x41) {
+      currentTime: function(_0x41) {
         this.native instanceof HTMLMediaElement && (this.native.currentTime = Math.max(0, Number(_0x41) || 0));
       },
-      muted: function (_0x41) {
+      muted: function(_0x41) {
         this.native instanceof HTMLMediaElement && (this.native.muted = !!_0x41);
       },
-      volume: function (_0x41) {
+      volume: function(_0x41) {
         this.native instanceof HTMLMediaElement && (this.native.volume = Math.max(0, Math.min(1, Number(_0x41) || 0)));
       },
-      loop: function (_0x41) {
+      loop: function(_0x41) {
         this.native instanceof HTMLMediaElement && (this.native.loop = !!_0x41);
       },
-      autoplay: function (_0x41) {
+      autoplay: function(_0x41) {
         this.native instanceof HTMLMediaElement && (this.native.autoplay = !!_0x41);
       },
-      controls: function (_0x41) {
+      controls: function(_0x41) {
         this.native instanceof HTMLMediaElement && (this.native.controls = !!_0x41);
       },
-      playbackRate: function (_0x41) {
+      playbackRate: function(_0x41) {
         this.native instanceof HTMLMediaElement && (this.native.playbackRate = Math.max(0.25, Math.min(4, Number(_0x41) || 1)));
       },
-      defaultPlaybackRate: function (_0x41) {
+      defaultPlaybackRate: function(_0x41) {
         this.native instanceof HTMLMediaElement && (this.native.defaultPlaybackRate = Math.max(0.25, Math.min(4, Number(_0x41) || 1)));
       },
-      preload: function (_0x41) {
+      preload: function(_0x41) {
         if (this.native instanceof HTMLMediaElement) {
           let _0x54 = [
             'none',
@@ -1587,25 +1672,28 @@ function _0x53(_0x2, _0x3, _0x4, _0xa) {
           this.native.preload = _0x54.includes(_0x41) ? _0x41 : 'auto';
         }
       },
-      poster: function (_0x41) {
+      poster: function(_0x41) {
         this.native instanceof HTMLVideoElement && (this.native.poster = _0x29(_0x41));
       }
     };
   for (let [_0x41, _0x54] of Object.entries(_0x3d)) {
-    let _0x55 = { get: _0x2.createNativeFunction(_0x54) };
+    let _0x55 = {
+      get: _0x2.createNativeFunction(_0x54)
+    };
     _0x3e[_0x41] && (_0x55.set = _0x2.createNativeFunction(_0x3e[_0x41])), _0x2.setProperty(_0x3a, _0x41, Interpreter.VALUE_IN_DESCRIPTOR, _0x55);
   }
   let _0x3f = {
-    getAttributeNames: function () {
-      let _0x41 = Array.from(this.native.getAttributeNames()), _0x54 = _0x2.createObjectProto(_0x2.ARRAY_PROTO);
+    getAttributeNames: function() {
+      let _0x41 = Array.from(this.native.getAttributeNames()),
+        _0x54 = _0x2.createObjectProto(_0x2.ARRAY_PROTO);
       for (let _0x55 = 0; _0x55 < _0x41.length; _0x55++)
         _0x2.setProperty(_0x54, _0x55, _0x41[_0x55]);
       return _0x2.setProperty(_0x54, 'length', _0x41.length), _0x54;
     },
-    getAttribute: function (_0x41) {
+    getAttribute: function(_0x41) {
       return this.native.getAttribute(_0x41);
     },
-    setAttribute: function (_0x41, _0x54) {
+    setAttribute: function(_0x41, _0x54) {
       if (this.native.className === 'tile-body')
         throw new Error('No access.');
       if (_0x41 = String(_0x41).toLowerCase(), _0x54 = String(_0x54), _0x8.settings.logCalls && console.log(_0xa.domain, 'setAttribute', this, _0x41, _0x54), _0x41 === 'style' && _0x54.includes('animation-play-state') && _0x54.includes('!important'))
@@ -1629,60 +1717,60 @@ function _0x53(_0x2, _0x3, _0x4, _0xa) {
       }
       this.native.setAttribute(_0x41, _0x54);
     },
-    focus: function () {
+    focus: function() {
       this.native.focus();
     },
-    blur: function () {
+    blur: function() {
       this.native.blur();
     },
-    click: function () {
+    click: function() {
       this.native.click();
     },
-    scrollIntoView: function (_0x41) {
+    scrollIntoView: function(_0x41) {
       _0x41 && typeof _0x41 == 'object' ? this.native.scrollIntoView(_0x2.pseudoToNative(_0x41)) : this.native.scrollIntoView(_0x41);
     },
-    scrollTo: function (_0x41, _0x54) {
+    scrollTo: function(_0x41, _0x54) {
       this.native.scrollTo(_0x41, _0x54);
     },
-    scrollBy: function (_0x41, _0x54) {
+    scrollBy: function(_0x41, _0x54) {
       this.native.scrollBy(_0x41, _0x54);
     },
-    removeAttribute: function (_0x41) {
+    removeAttribute: function(_0x41) {
       if (this.native.className === 'tile-body')
         throw new Error('No access.');
       if (_0x41 = String(_0x41).toLowerCase(), _0x41 === 'target')
         throw new Error('removing target is not allowed');
       _0x8.settings.logCalls && console.log(_0xa.domain, 'removeAttribute', this, _0x41), this.native.removeAttribute(_0x41);
     },
-    hasAttribute: function (_0x41) {
+    hasAttribute: function(_0x41) {
       return this.native.hasAttribute(_0x41);
     },
-    querySelector: function (_0x41) {
+    querySelector: function(_0x41) {
       let _0x54 = this.native.querySelector(_0x41);
       return _0x2d(_0x2f(_0x54));
     },
-    querySelectorAll: function (_0x41) {
+    querySelectorAll: function(_0x41) {
       let _0x54 = Array.from(this.native.querySelectorAll(_0x41)).filter(_0x2e);
       return _0x33(_0x54);
     },
-    getElementsByClassName: function (_0x41) {
+    getElementsByClassName: function(_0x41) {
       let _0x54 = Array.from(this.native.getElementsByClassName(_0x41)).filter(_0x2e);
       return _0x33(_0x54);
     },
-    getElementsByTagName: function (_0x41) {
+    getElementsByTagName: function(_0x41) {
       let _0x54 = Array.from(this.native.getElementsByTagName(_0x41)).filter(_0x2e);
       return _0x33(_0x54);
     },
-    closest: function (_0x41) {
+    closest: function(_0x41) {
       let _0x54 = this.native.closest(_0x41);
       for (; _0x54 && !_0x4.contains(_0x54);)
         _0x54 = null;
       return _0x2d(_0x54);
     },
-    matches: function (_0x41) {
+    matches: function(_0x41) {
       return this.native.matches(_0x41);
     },
-    classList: function () {
+    classList: function() {
       if (this.native.className === 'tile-body')
         throw new Error('No access.');
       let _0x41 = this.native.classList;
@@ -1694,7 +1782,7 @@ function _0x53(_0x2, _0x3, _0x4, _0xa) {
         replace: (_0x54, _0x55) => _0x41.replace(_0x54, _0x55)
       });
     },
-    getBoundingClientRect: function () {
+    getBoundingClientRect: function() {
       let _0x41 = this.native.getBoundingClientRect();
       return _0x2.nativeToPseudo({
         x: _0x41.x,
@@ -1707,15 +1795,18 @@ function _0x53(_0x2, _0x3, _0x4, _0xa) {
         left: _0x41.left
       });
     },
-    play: function () {
+    play: function() {
       if (!(this.native instanceof HTMLMediaElement))
         return _0x2.createObjectProto(_0x2.OBJECT_PROTO);
       if (!this.native.isConnected)
         throw new Error('Element is not connected to the DOM. Append it to the DOM before playing.');
-      let _0x41 = _0x2.createObjectProto(_0x2.OBJECT_PROTO), _0x54 = this, _0x55 = null, _0x56 = null;
-      return _0x8.settings.logCalls && console.log(_0xa.domain, 'play', this), _0x2.setProperty(_0x41, 'then', _0x2.createNativeFunction(function (_0x57) {
+      let _0x41 = _0x2.createObjectProto(_0x2.OBJECT_PROTO),
+        _0x54 = this,
+        _0x55 = null,
+        _0x56 = null;
+      return _0x8.settings.logCalls && console.log(_0xa.domain, 'play', this), _0x2.setProperty(_0x41, 'then', _0x2.createNativeFunction(function(_0x57) {
         return _0x55 = _0x57, _0x41;
-      })), _0x2.setProperty(_0x41, 'catch', _0x2.createNativeFunction(function (_0x57) {
+      })), _0x2.setProperty(_0x41, 'catch', _0x2.createNativeFunction(function(_0x57) {
         return _0x56 = _0x57, _0x41;
       })), _0x54.native.play().then(() => {
         _0x55 && _0x1e(_0x55, _0x2.nativeToPseudo(void 0));
@@ -1726,22 +1817,26 @@ function _0x53(_0x2, _0x3, _0x4, _0xa) {
         }));
       }), _0x41;
     },
-    pause: function () {
+    pause: function() {
       this.native instanceof HTMLMediaElement && this.native.pause();
     },
-    load: function () {
+    load: function() {
       this.native instanceof HTMLMediaElement && this.native.load();
     },
-    canPlayType: function (_0x41) {
+    canPlayType: function(_0x41) {
       return this.native instanceof HTMLMediaElement ? this.native.canPlayType(String(_0x41 || '')) : '';
     },
-    fastSeek: function (_0x41) {
+    fastSeek: function(_0x41) {
       this.native instanceof HTMLMediaElement && typeof this.native.fastSeek == 'function' && this.native.fastSeek(Math.max(0, Number(_0x41) || 0));
     },
-    getAnimations: function (_0x41) {
+    getAnimations: function(_0x41) {
       if (!this.native.getAnimations)
         return _0x33([]);
-      let _0x54 = _0x41 ? { subtree: !!_0x2.pseudoToNative(_0x41)?.subtree } : {}, _0x55 = this.native.getAnimations(_0x54), _0x56 = _0x2.createObjectProto(_0x2.ARRAY_PROTO);
+      let _0x54 = _0x41 ? {
+          subtree: !!_0x2.pseudoToNative(_0x41)?.subtree
+        } : {},
+        _0x55 = this.native.getAnimations(_0x54),
+        _0x56 = _0x2.createObjectProto(_0x2.ARRAY_PROTO);
       for (let _0x57 = 0; _0x57 < _0x55.length; _0x57++)
         _0x56.properties[_0x57] = _0x26(_0x55[_0x57]);
       return _0x2.setProperty(_0x56, 'length', _0x55.length), _0x56;
@@ -1749,109 +1844,115 @@ function _0x53(_0x2, _0x3, _0x4, _0xa) {
   };
   for (let [_0x41, _0x54] of Object.entries(_0x3f))
     _0x2.setProperty(_0x3a, _0x41, _0x2.createNativeFunction(_0x54));
+
   function _0x26(_0x41) {
     let _0x54 = _0x2.createObjectProto(_0x2.OBJECT_PROTO);
     return _0x2.setProperty(_0x54, 'id', Interpreter.VALUE_IN_DESCRIPTOR, {
-      get: _0x2.createNativeFunction(function () {
+      get: _0x2.createNativeFunction(function() {
         return _0x41.id;
       })
     }), _0x2.setProperty(_0x54, 'playState', Interpreter.VALUE_IN_DESCRIPTOR, {
-      get: _0x2.createNativeFunction(function () {
+      get: _0x2.createNativeFunction(function() {
         return _0x41.playState;
       })
     }), _0x2.setProperty(_0x54, 'pending', Interpreter.VALUE_IN_DESCRIPTOR, {
-      get: _0x2.createNativeFunction(function () {
+      get: _0x2.createNativeFunction(function() {
         return _0x41.pending;
       })
     }), _0x2.setProperty(_0x54, 'replaceState', Interpreter.VALUE_IN_DESCRIPTOR, {
-      get: _0x2.createNativeFunction(function () {
+      get: _0x2.createNativeFunction(function() {
         return _0x41.replaceState;
       })
     }), _0x2.setProperty(_0x54, 'currentTime', Interpreter.VALUE_IN_DESCRIPTOR, {
-      get: _0x2.createNativeFunction(function () {
+      get: _0x2.createNativeFunction(function() {
         return _0x41.currentTime;
       }),
-      set: _0x2.createNativeFunction(function (_0x55) {
+      set: _0x2.createNativeFunction(function(_0x55) {
         _0x41.currentTime = _0x55;
       })
     }), _0x2.setProperty(_0x54, 'playbackRate', Interpreter.VALUE_IN_DESCRIPTOR, {
-      get: _0x2.createNativeFunction(function () {
+      get: _0x2.createNativeFunction(function() {
         return _0x41.playbackRate;
       }),
-      set: _0x2.createNativeFunction(function (_0x55) {
+      set: _0x2.createNativeFunction(function(_0x55) {
         _0x41.playbackRate = Math.max(-10, Math.min(10, Number(_0x55) || 1));
       })
     }), _0x2.setProperty(_0x54, 'startTime', Interpreter.VALUE_IN_DESCRIPTOR, {
-      get: _0x2.createNativeFunction(function () {
+      get: _0x2.createNativeFunction(function() {
         return _0x41.startTime;
       }),
-      set: _0x2.createNativeFunction(function (_0x55) {
+      set: _0x2.createNativeFunction(function(_0x55) {
         _0x41.startTime = _0x55;
       })
-    }), _0x2.setProperty(_0x54, 'play', _0x2.createNativeFunction(function () {
+    }), _0x2.setProperty(_0x54, 'play', _0x2.createNativeFunction(function() {
       _0x41.play();
-    })), _0x2.setProperty(_0x54, 'pause', _0x2.createNativeFunction(function () {
+    })), _0x2.setProperty(_0x54, 'pause', _0x2.createNativeFunction(function() {
       _0x41.pause();
-    })), _0x2.setProperty(_0x54, 'cancel', _0x2.createNativeFunction(function () {
+    })), _0x2.setProperty(_0x54, 'cancel', _0x2.createNativeFunction(function() {
       _0x41.cancel();
-    })), _0x2.setProperty(_0x54, 'finish', _0x2.createNativeFunction(function () {
+    })), _0x2.setProperty(_0x54, 'finish', _0x2.createNativeFunction(function() {
       _0x41.finish();
-    })), _0x2.setProperty(_0x54, 'reverse', _0x2.createNativeFunction(function () {
+    })), _0x2.setProperty(_0x54, 'reverse', _0x2.createNativeFunction(function() {
       _0x41.reverse();
-    })), _0x2.setProperty(_0x54, 'updatePlaybackRate', _0x2.createNativeFunction(function (_0x55) {
+    })), _0x2.setProperty(_0x54, 'updatePlaybackRate', _0x2.createNativeFunction(function(_0x55) {
       _0x41.updatePlaybackRate(Math.max(-10, Math.min(10, Number(_0x55) || 1)));
     })), _0x54;
   }
+
   function _0x27(_0x41) {
-    let _0x54 = _0x2.createObjectProto(_0x2.OBJECT_PROTO), _0x55 = _0x41 ? _0x41.length : 0;
-    return _0x2.setProperty(_0x54, 'length', _0x55), _0x2.setProperty(_0x54, 'start', _0x2.createNativeFunction(function (_0x56) {
+    let _0x54 = _0x2.createObjectProto(_0x2.OBJECT_PROTO),
+      _0x55 = _0x41 ? _0x41.length : 0;
+    return _0x2.setProperty(_0x54, 'length', _0x55), _0x2.setProperty(_0x54, 'start', _0x2.createNativeFunction(function(_0x56) {
       if (!_0x41 || _0x56 < 0 || _0x56 >= _0x41.length)
         throw new Error('Index out of bounds');
       return _0x41.start(_0x56);
-    })), _0x2.setProperty(_0x54, 'end', _0x2.createNativeFunction(function (_0x56) {
+    })), _0x2.setProperty(_0x54, 'end', _0x2.createNativeFunction(function(_0x56) {
       if (!_0x41 || _0x56 < 0 || _0x56 >= _0x41.length)
         throw new Error('Index out of bounds');
       return _0x41.end(_0x56);
     })), _0x54;
   }
   _0x2.setProperty(_0x3a, 'buffered', Interpreter.VALUE_IN_DESCRIPTOR, {
-    get: _0x2.createNativeFunction(function () {
+    get: _0x2.createNativeFunction(function() {
       return this.native instanceof HTMLMediaElement ? _0x27(this.native.buffered) : _0x27(null);
     })
   }), _0x2.setProperty(_0x3a, 'played', Interpreter.VALUE_IN_DESCRIPTOR, {
-    get: _0x2.createNativeFunction(function () {
+    get: _0x2.createNativeFunction(function() {
       return this.native instanceof HTMLMediaElement ? _0x27(this.native.played) : _0x27(null);
     })
   }), _0x2.setProperty(_0x3a, 'seekable', Interpreter.VALUE_IN_DESCRIPTOR, {
-    get: _0x2.createNativeFunction(function () {
+    get: _0x2.createNativeFunction(function() {
       return this.native instanceof HTMLMediaElement ? _0x27(this.native.seekable) : _0x27(null);
     })
   }), _0x2.setProperty(_0x3a, 'classList', Interpreter.VALUE_IN_DESCRIPTOR, {
-    get: _0x2.createNativeFunction(function () {
-      let _0x41 = this.native.classList, _0x54 = _0x2.nativeToPseudo({});
-      return _0x2.setProperty(_0x54, 'add', _0x2.createNativeFunction(function (..._0x55) {
+    get: _0x2.createNativeFunction(function() {
+      let _0x41 = this.native.classList,
+        _0x54 = _0x2.nativeToPseudo({});
+      return _0x2.setProperty(_0x54, 'add', _0x2.createNativeFunction(function(..._0x55) {
         if (this.native.className === 'tile-body')
           throw new Error('No access.');
         _0x41.add(..._0x55);
-      })), _0x2.setProperty(_0x54, 'remove', _0x2.createNativeFunction(function (..._0x55) {
+      })), _0x2.setProperty(_0x54, 'remove', _0x2.createNativeFunction(function(..._0x55) {
         if (this.native.className === 'tile-body')
           throw new Error('No access.');
         _0x41.remove(..._0x55);
-      })), _0x2.setProperty(_0x54, 'toggle', _0x2.createNativeFunction(function (_0x55, _0x56) {
+      })), _0x2.setProperty(_0x54, 'toggle', _0x2.createNativeFunction(function(_0x55, _0x56) {
         if (this.native.className === 'tile-body')
           throw new Error('No access.');
         return _0x41.toggle(_0x55, _0x56);
-      })), _0x2.setProperty(_0x54, 'contains', _0x2.createNativeFunction(function (_0x55) {
+      })), _0x2.setProperty(_0x54, 'contains', _0x2.createNativeFunction(function(_0x55) {
         return _0x41.contains(_0x55);
-      })), _0x2.setProperty(_0x54, 'replace', _0x2.createNativeFunction(function (_0x55, _0x56) {
+      })), _0x2.setProperty(_0x54, 'replace', _0x2.createNativeFunction(function(_0x55, _0x56) {
         if (this.native.className === 'tile-body')
           throw new Error('No access.');
         return _0x41.replace(_0x55, _0x56);
       })), _0x54;
     })
   }), _0x2.setProperty(_0x3a, 'style', Interpreter.VALUE_IN_DESCRIPTOR, {
-    get: _0x2.createNativeFunction(function () {
-      let _0x41 = this.native.style, _0x54 = _0x2.nativeToPseudo({}), _0x55 = [
+    get: _0x2.createNativeFunction(function() {
+      let _0x41 = this.native.style,
+        _0x54 = _0x2.nativeToPseudo({}),
+        _0x55 = [
           'color',
           'backgroundColor',
           'width',
@@ -1886,49 +1987,50 @@ function _0x53(_0x2, _0x3, _0x4, _0xa) {
         ];
       for (let _0x56 of _0x55)
         _0x2.setProperty(_0x54, _0x56, Interpreter.VALUE_IN_DESCRIPTOR, {
-          get: _0x2.createNativeFunction(function () {
+          get: _0x2.createNativeFunction(function() {
             return _0x41[_0x56];
           }),
-          set: _0x2.createNativeFunction(function (_0x57) {
+          set: _0x2.createNativeFunction(function(_0x57) {
             _0x41[_0x56] = _0x57, _0x8.settings.logCalls && console.log(_0xa.domain, 'set style', this, _0x56, _0x57);
           })
         });
       return _0x2.setProperty(_0x54, 'cssText', Interpreter.VALUE_IN_DESCRIPTOR, {
-        get: _0x2.createNativeFunction(function () {
+        get: _0x2.createNativeFunction(function() {
           return _0x41.cssText;
         }),
-        set: _0x2.createNativeFunction(function (_0x56) {
+        set: _0x2.createNativeFunction(function(_0x56) {
           _0x41.cssText = _0x56, _0x8.settings.logCalls && console.log(_0xa.domain, 'set cssText', this, _0x56);
         })
-      }), _0x2.setProperty(_0x54, 'setProperty', _0x2.createNativeFunction(function (_0x56, _0x57, _0x58) {
+      }), _0x2.setProperty(_0x54, 'setProperty', _0x2.createNativeFunction(function(_0x56, _0x57, _0x58) {
         if (this.native?.className === 'tile-body')
           throw new Error('No access.');
         _0x41.setProperty(_0x56, _0x57, _0x58), _0x8.settings.logCalls && console.log(_0xa.domain, 'setProperty', this, _0x56, _0x57, _0x58);
-      })), _0x2.setProperty(_0x54, 'getPropertyValue', _0x2.createNativeFunction(function (_0x56) {
+      })), _0x2.setProperty(_0x54, 'getPropertyValue', _0x2.createNativeFunction(function(_0x56) {
         return _0x41.getPropertyValue(_0x56);
-      })), _0x2.setProperty(_0x54, 'removeProperty', _0x2.createNativeFunction(function (_0x56) {
+      })), _0x2.setProperty(_0x54, 'removeProperty', _0x2.createNativeFunction(function(_0x56) {
         if (this.native?.className === 'tile-body')
           throw new Error('No access.');
         return _0x8.settings.logCalls && console.log(_0xa.domain, 'removeProperty', this, _0x56), _0x41.removeProperty(_0x56);
       })), _0x54;
     })
   }), _0x2.setProperty(_0x3a, 'dataset', Interpreter.VALUE_IN_DESCRIPTOR, {
-    get: _0x2.createNativeFunction(function () {
-      let _0x41 = this.native.dataset, _0x54 = _0x2.nativeToPseudo({});
+    get: _0x2.createNativeFunction(function() {
+      let _0x41 = this.native.dataset,
+        _0x54 = _0x2.nativeToPseudo({});
       for (let _0x55 in _0x41)
         _0x2.setProperty(_0x54, _0x55, _0x41[_0x55]);
-      return _0x2.setProperty(_0x54, 'get', _0x2.createNativeFunction(function (_0x55) {
+      return _0x2.setProperty(_0x54, 'get', _0x2.createNativeFunction(function(_0x55) {
         return _0x41[_0x55];
-      })), _0x2.setProperty(_0x54, 'set', _0x2.createNativeFunction(function (_0x55, _0x56) {
+      })), _0x2.setProperty(_0x54, 'set', _0x2.createNativeFunction(function(_0x55, _0x56) {
         _0x41[_0x55] = String(_0x56).slice(0, 1000), _0x8.settings.logCalls && console.log(_0xa.domain, 'set dataset', this, _0x55, _0x56);
-      })), _0x2.setProperty(_0x54, 'delete', _0x2.createNativeFunction(function (_0x55) {
+      })), _0x2.setProperty(_0x54, 'delete', _0x2.createNativeFunction(function(_0x55) {
         delete _0x41[_0x55], _0x8.settings.logCalls && console.log(_0xa.domain, 'delete dataset', this, _0x55);
-      })), _0x2.setProperty(_0x54, 'has', _0x2.createNativeFunction(function (_0x55) {
+      })), _0x2.setProperty(_0x54, 'has', _0x2.createNativeFunction(function(_0x55) {
         return _0x55 in _0x41;
       })), _0x54;
     })
   }), _0x2.setProperty(_0x3a, 'offsetParent', Interpreter.VALUE_IN_DESCRIPTOR, {
-    get: _0x2.createNativeFunction(function () {
+    get: _0x2.createNativeFunction(function() {
       return _0x2d(_0x2f(this.native.offsetParent));
     })
   });
@@ -2005,8 +2107,10 @@ function _0x53(_0x2, _0x3, _0x4, _0xa) {
     'error',
     'load'
   ];
+
   function _0x30(_0x41) {
-    let _0x54 = _0x2.nativeToPseudo({}), _0x55 = [
+    let _0x54 = _0x2.nativeToPseudo({}),
+      _0x55 = [
         'type',
         'bubbles',
         'cancelable',
@@ -2052,15 +2156,19 @@ function _0x53(_0x2, _0x3, _0x4, _0xa) {
       for (let _0x57 of _0x56)
         _0x2.setProperty(_0x54, _0x57, _0x41[_0x57]);
     }
-    return typeof TouchEvent == 'function' && _0x41 instanceof TouchEvent && (_0x2.setProperty(_0x54, 'touches', _0x2.nativeToPseudo({ length: _0x41.touches.length })), _0x2.setProperty(_0x54, 'changedTouches', _0x2.nativeToPseudo({ length: _0x41.changedTouches.length }))), typeof WheelEvent == 'function' && _0x41 instanceof WheelEvent && (_0x2.setProperty(_0x54, 'deltaX', _0x41.deltaX), _0x2.setProperty(_0x54, 'deltaY', _0x41.deltaY), _0x2.setProperty(_0x54, 'deltaZ', _0x41.deltaZ), _0x2.setProperty(_0x54, 'deltaMode', _0x41.deltaMode)), _0x41.target && _0x2e(_0x41.target) && _0x2.setProperty(_0x54, 'target', _0x2d(_0x41.target)), _0x41.currentTarget && _0x2e(_0x41.currentTarget) && _0x2.setProperty(_0x54, 'currentTarget', _0x2d(_0x41.currentTarget)), _0x2.setProperty(_0x54, 'preventDefault', _0x2.createNativeFunction(function () {
+    return typeof TouchEvent == 'function' && _0x41 instanceof TouchEvent && (_0x2.setProperty(_0x54, 'touches', _0x2.nativeToPseudo({
+      length: _0x41.touches.length
+    })), _0x2.setProperty(_0x54, 'changedTouches', _0x2.nativeToPseudo({
+      length: _0x41.changedTouches.length
+    }))), typeof WheelEvent == 'function' && _0x41 instanceof WheelEvent && (_0x2.setProperty(_0x54, 'deltaX', _0x41.deltaX), _0x2.setProperty(_0x54, 'deltaY', _0x41.deltaY), _0x2.setProperty(_0x54, 'deltaZ', _0x41.deltaZ), _0x2.setProperty(_0x54, 'deltaMode', _0x41.deltaMode)), _0x41.target && _0x2e(_0x41.target) && _0x2.setProperty(_0x54, 'target', _0x2d(_0x41.target)), _0x41.currentTarget && _0x2e(_0x41.currentTarget) && _0x2.setProperty(_0x54, 'currentTarget', _0x2d(_0x41.currentTarget)), _0x2.setProperty(_0x54, 'preventDefault', _0x2.createNativeFunction(function() {
       _0x41.preventDefault();
-    })), _0x2.setProperty(_0x54, 'stopPropagation', _0x2.createNativeFunction(function () {
+    })), _0x2.setProperty(_0x54, 'stopPropagation', _0x2.createNativeFunction(function() {
       _0x41.stopPropagation();
-    })), _0x2.setProperty(_0x54, 'stopImmediatePropagation', _0x2.createNativeFunction(function () {
+    })), _0x2.setProperty(_0x54, 'stopImmediatePropagation', _0x2.createNativeFunction(function() {
       _0x41.stopImmediatePropagation();
     })), _0x54;
   }
-  _0x2.setProperty(_0x3a, 'addEventListener', _0x2.createNativeFunction(function (_0x41, _0x54) {
+  _0x2.setProperty(_0x3a, 'addEventListener', _0x2.createNativeFunction(function(_0x41, _0x54) {
     if (!_0x41 || typeof _0x41 != 'string' || !_0x54 || typeof _0x54 != 'object')
       return;
     if (_0x41 = _0x41.toLowerCase(), !_0x28.includes(_0x41))
@@ -2075,7 +2183,7 @@ function _0x53(_0x2, _0x3, _0x4, _0xa) {
       throw new Error(`Maximum listeners (${ _0x1b }) reached for event "${ _0x41 }"`);
     if (_0x57.some(_0x59 => _0x59.pseudo === _0x54))
       return;
-    let _0x58 = function (_0x59) {
+    let _0x58 = function(_0x59) {
       let _0x5a = _0x30(_0x59);
       _0x1e(_0x54, _0x5a);
     };
@@ -2083,7 +2191,7 @@ function _0x53(_0x2, _0x3, _0x4, _0xa) {
       pseudo: _0x54,
       native: _0x58
     }), _0x55.addEventListener(_0x41, _0x58);
-  })), _0x2.setProperty(_0x3a, 'removeEventListener', _0x2.createNativeFunction(function (_0x41, _0x54) {
+  })), _0x2.setProperty(_0x3a, 'removeEventListener', _0x2.createNativeFunction(function(_0x41, _0x54) {
     if (!_0x41 || typeof _0x41 != 'string' || !_0x54 || typeof _0x54 != 'object')
       return;
     _0x8.settings.logCalls && console.log(_0xa.domain, 'removeEventListener', this, _0x41, _0x54), _0x41 = _0x41.toLowerCase();
@@ -2093,7 +2201,8 @@ function _0x53(_0x2, _0x3, _0x4, _0xa) {
     let _0x56 = _0x1f.get(_0x55);
     if (!_0x56.has(_0x41))
       return;
-    let _0x57 = _0x56.get(_0x41), _0x58 = _0x57.findIndex(_0x59 => _0x59.pseudo === _0x54);
+    let _0x57 = _0x56.get(_0x41),
+      _0x58 = _0x57.findIndex(_0x59 => _0x59.pseudo === _0x54);
     _0x58 !== -1 && (_0x55.removeEventListener(_0x41, _0x57[_0x58].native), _0x57.splice(_0x58, 1));
   }));
   let _0x31 = [
@@ -2147,21 +2256,23 @@ function _0x53(_0x2, _0x3, _0x4, _0xa) {
   for (let _0x41 of _0x31) {
     let _0x54 = 'on' + _0x41;
     _0x2.setProperty(_0x3a, _0x54, Interpreter.VALUE_IN_DESCRIPTOR, {
-      get: _0x2.createNativeFunction(function () {
+      get: _0x2.createNativeFunction(function() {
         let _0x55 = this.native;
         if (!_0x1f.has(_0x55))
           return null;
-        let _0x56 = _0x1f.get(_0x55), _0x57 = `__${ _0x54 }`;
+        let _0x56 = _0x1f.get(_0x55),
+          _0x57 = `__${ _0x54 }`;
         return _0x56.get(_0x57) || null;
       }),
-      set: _0x2.createNativeFunction(function (_0x55) {
+      set: _0x2.createNativeFunction(function(_0x55) {
         let _0x56 = this.native;
         _0x1f.has(_0x56) || _0x1f.set(_0x56, new Map());
-        let _0x57 = _0x1f.get(_0x56), _0x58 = `__${ _0x54 }`;
+        let _0x57 = _0x1f.get(_0x56),
+          _0x58 = `__${ _0x54 }`;
         _0x8.settings.logCalls && console.log(_0xa.domain, 'setOn' + _0x41, this, _0x55);
         let _0x59 = _0x57.get(_0x58 + '_native');
         if (_0x59 && (_0x56.removeEventListener(_0x41, _0x59), _0x57.delete(_0x58), _0x57.delete(_0x58 + '_native')), _0x55 && typeof _0x55 == 'object') {
-          let _0x5a = function (_0x5b) {
+          let _0x5a = function(_0x5b) {
             let _0x5c = _0x30(_0x5b);
             _0x1e(_0x55, _0x5c);
           };
@@ -2174,26 +2285,26 @@ function _0x53(_0x2, _0x3, _0x4, _0xa) {
   let _0x3b = _0x2.nativeToPseudo({});
   _0x2.setProperty(_0x3, 'document', _0x3b);
   let _0x3c = {
-    getElementById: function (_0x41) {
+    getElementById: function(_0x41) {
       let _0x54 = _0x4.querySelector(`#${ CSS.escape(_0x41) }`);
       return _0x2d(_0x54);
     },
-    getElementsByClassName: function (_0x41) {
+    getElementsByClassName: function(_0x41) {
       let _0x54 = Array.from(_0x4.getElementsByClassName(_0x41));
       return _0x33(_0x54);
     },
-    getElementsByTagName: function (_0x41) {
+    getElementsByTagName: function(_0x41) {
       let _0x54 = Array.from(_0x4.getElementsByTagName(_0x41));
       return _0x33(_0x54);
     },
-    querySelector: function (_0x41) {
+    querySelector: function(_0x41) {
       return _0x2d(_0x4.querySelector(_0x41));
     },
-    querySelectorAll: function (_0x41) {
+    querySelectorAll: function(_0x41) {
       let _0x54 = Array.from(_0x4.querySelectorAll(_0x41));
       return _0x33(_0x54);
     },
-    createElement: function (_0x41) {
+    createElement: function(_0x41) {
       if (typeof _0x41 != 'string')
         throw new Error('Invalid tag');
       if (_0x41 = _0x41.toLowerCase().trim(), [
@@ -2218,27 +2329,27 @@ function _0x53(_0x2, _0x3, _0x4, _0xa) {
         throw new Error('Creating ' + _0x41 + ' elements is not allowed');
       return _0x8.settings.logCalls && console.log(_0xa.domain, 'createElement', this, _0x41), _0x2d(document.createElement(_0x41));
     },
-    createTextNode: function (_0x41) {
+    createTextNode: function(_0x41) {
       return _0x8.settings.logCalls && console.log(_0xa.domain, 'createTextNode', this, _0x41), _0x2d(document.createTextNode(_0x41));
     }
   };
   for (let [_0x41, _0x54] of Object.entries(_0x3c))
     _0x2.setProperty(_0x3b, _0x41, _0x2.createNativeFunction(_0x54));
   _0x2.setProperty(_0x3b, 'body', Interpreter.VALUE_IN_DESCRIPTOR, {
-    get: _0x2.createNativeFunction(function () {
+    get: _0x2.createNativeFunction(function() {
       return _0x8.settings.logCalls && console.log(_0xa.domain, 'get body', this), _0x2d(_0x4);
     })
   }), _0x2.setProperty(_0x3b, 'documentElement', Interpreter.VALUE_IN_DESCRIPTOR, {
-    get: _0x2.createNativeFunction(function () {
+    get: _0x2.createNativeFunction(function() {
       return _0x8.settings.logCalls && console.log(_0xa.domain, 'get documentElement', this), _0x2d(_0x4);
     })
   });
   let _0x40 = _0x2.nativeToPseudo({});
   _0x2.setProperty(_0x3, 'location', _0x40), _0x2.setProperty(_0x40, 'href', Interpreter.VALUE_IN_DESCRIPTOR, {
-    get: _0x2.createNativeFunction(function () {
+    get: _0x2.createNativeFunction(function() {
       return `/t/${ _0xa.domain }${ _0xa.path }`;
     }),
-    set: _0x2.createNativeFunction(function (_0x41) {
+    set: _0x2.createNativeFunction(function(_0x41) {
       if (typeof _0x41 == 'string') {
         _0x8.settings.logCalls && console.log(_0xa.domain, 'set href', this, _0x41);
         try {
@@ -2261,19 +2372,19 @@ function _0x53(_0x2, _0x3, _0x4, _0xa) {
         }
       }
     })
-  }), _0x2.setProperty(_0x40, 'reload', _0x2.createNativeFunction(function () {
+  }), _0x2.setProperty(_0x40, 'reload', _0x2.createNativeFunction(function() {
     _0xa.fetchContent(_0xa.path, !0).then(() => _0xa.setActive(!0));
   }));
 }
 var _0x5d = {
     console: {
-      log: function (..._0x2) {
+      log: function(..._0x2) {
         this.logCount++ > 1000 || console.log(`[${ this.tile.domain }]`, ..._0x2);
       },
-      error: function (..._0x2) {
+      error: function(..._0x2) {
         this.logCount++ > 1000 || console.error(`[${ this.tile.domain }]`, ..._0x2);
       },
-      warn: function (..._0x2) {
+      warn: function(..._0x2) {
         this.logCount++ > 1000 || console.warn(`[${ this.tile.domain }]`, ..._0x2);
       }
     },
@@ -2294,7 +2405,8 @@ var _0x5d = {
     btoa(_0x2) {
       return btoa(_0x2);
     }
-  }, _0x5e = class {
+  },
+  _0x5e = class {
     constructor(_0x3) {
       this.running = !1, this.logCount = 0, this.alertCount = 0, this.tile = _0x3, this.waitUntil = null, this.index = 0, this.sizeLimitReached = !1, this.interpreter = new Interpreter('', (_0x4, _0xa) => {
         let _0xb = (_0x1a, _0x1b) => {
@@ -2302,25 +2414,27 @@ var _0x5d = {
             if (typeof _0x1c == 'function')
               _0x4.setProperty(_0x1b, _0x1f, _0x4.createNativeFunction(_0x1c.bind(this)));
             else if (typeof _0x1c == 'object' && _0x1c !== null) {
-              let _0x1d = _0x4.nativeToPseudo({});
-              _0xb(_0x1c, _0x1d), _0x4.setProperty(_0x1b, _0x1f, _0x1d);
-            }
+            let _0x1d = _0x4.nativeToPseudo({});
+            _0xb(_0x1c, _0x1d), _0x4.setProperty(_0x1b, _0x1f, _0x1d);
+          }
         };
         _0xb(_0x5d, _0xa), _0x53(_0x4, _0xa, this.tile.contentElement, this.tile), _0x4.setProperty(_0xa, 'embedded', _0x4.nativeToPseudo(!!this.tile.embed));
       }), this.runInterval = null, this.running = !1;
     }
     roughValueMemorySize() {
-      let _0x3 = new Set(), _0x4 = [this.interpreter.getStateStack()], _0xa = 0;
+      let _0x3 = new Set(),
+        _0x4 = [this.interpreter.getStateStack()],
+        _0xa = 0;
       for (; _0x4.length;) {
-        let _0xb = _0x4.pop(), _0x1a = typeof _0xb;
+        let _0xb = _0x4.pop(),
+          _0x1a = typeof _0xb;
         if (_0xa += 8, _0x1a === 'string' && !_0x3.has(_0xb))
           _0x3.add(_0xb), _0xa += _0xb.length * 2;
         else if (_0x1a === 'object' && _0xb !== null && !_0x3.has(_0xb)) {
           _0x3.add(_0xb);
           try {
             _0x4.push(...Object.keys(_0xb), ...Object.values(_0xb));
-          } catch {
-          }
+          } catch {}
         }
       }
       return _0xa;
@@ -2353,8 +2467,11 @@ var _0x5d = {
     runCode(_0x3) {
       _0x8.settings.disableJS || this.interpreter.appendCode(_0x3);
     }
-  }, _0x5f = _0x5e;
-var _0x60 = document.getElementById('plot'), _0x61 = new CSSStyleSheet(), _0x62 = () => {
+  },
+  _0x5f = _0x5e;
+var _0x60 = document.getElementById('plot'),
+  _0x61 = new CSSStyleSheet(),
+  _0x62 = () => {
     _0x61.replaceSync(`
         .tile-body:not(.active) * {
             animation-play-state: paused !important;
@@ -2429,7 +2546,9 @@ var _0x64 = class _0x2 {
           console.error(_0x1d);
         }
       }
-    }), this.shadow = _0x4.attachShadow({ mode: 'open' });
+    }), this.shadow = _0x4.attachShadow({
+      mode: 'open'
+    });
     let _0xa = document.createElement('div');
     _0xa.className = 'tile-body', this.embed && _0xa.classList.add('embedded'), _0xa.style = 'width: 100%!important; height: 100%!important;position:absolute!important;top:0!important;left:0!important;', this.contentElement = _0xa, this.contentElement.innerHTML = this.preview ? 'Loading preview...' : `Loading ${ this.x }, ${ this.y }...`, this.shadow.appendChild(_0xa), _0x3.appendChild(_0x4), this.fonts = document.createElement('style'), _0x3.appendChild(this.fonts), this.fetchContent(this.path), this.container && this.container.appendChild(_0x3), _0x8.plot?.lockCache[this.x + ',' + this.y] && this.setLocked(!0);
   }
@@ -2503,7 +2622,10 @@ var _0x64 = class _0x2 {
           if (!_0x1b?.element)
             continue;
           _0x1b.element.classList.add('clan-highlight');
-          let _0x1f = _0xb.has(`${ _0x1a.x },${ _0x1a.y - 1 }`), _0x1c = _0xb.has(`${ _0x1a.x },${ _0x1a.y + 1 }`), _0x1d = _0xb.has(`${ _0x1a.x - 1 },${ _0x1a.y }`), _0x1e = _0xb.has(`${ _0x1a.x + 1 },${ _0x1a.y }`);
+          let _0x1f = _0xb.has(`${ _0x1a.x },${ _0x1a.y - 1 }`),
+            _0x1c = _0xb.has(`${ _0x1a.x },${ _0x1a.y + 1 }`),
+            _0x1d = _0xb.has(`${ _0x1a.x - 1 },${ _0x1a.y }`),
+            _0x1e = _0xb.has(`${ _0x1a.x + 1 },${ _0x1a.y }`);
           if (!_0x1f) {
             let _0x2a = document.createElement('div');
             _0x2a.className = 'clan-border clan-border-top', _0x1b.element.appendChild(_0x2a);
@@ -2574,13 +2696,13 @@ _0x8.ui = {
       alert('Please select a site first');
       return;
     }
-    let _0x4 = _0x3.domain, _0xa = _0x3.tile ? `<strong>Warning</strong>Your current tile at (${ _0x3.tile.x }, ${ _0x3.tile.y }) will be unclaimed and your site will be moved to this new tile.` : null;
+    let _0x4 = _0x3.domain,
+      _0xa = _0x3.tile ? `<strong>Warning</strong>Your current tile at (${ _0x3.tile.x }, ${ _0x3.tile.y }) will be unclaimed and your site will be moved to this new tile.` : null;
     new _0xc({
       title: 'Claim Tile',
       content: `<p>Do you want to claim tile (${ _0x2.x }, ${ _0x2.y }) for <strong>${ _0x8.ui.escapeHTML(_0x4) }</strong>?</p>`,
       warning: _0xa,
-      buttons: [
-        {
+      buttons: [{
           text: 'Cancel',
           type: 'cancel',
           id: 'cancel',
@@ -2595,7 +2717,9 @@ _0x8.ui = {
             try {
               let _0x1f = await (await _0x8.api.makeRequest('/api/claim', {
                 method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
+                headers: {
+                  'Content-Type': 'application/json'
+                },
                 body: JSON.stringify({
                   x: _0x2.x,
                   y: _0x2.y
@@ -2638,7 +2762,9 @@ _0x8.ui = {
       alert('Please select a site first');
       return;
     }
-    let _0x4 = _0x3.domain, _0xa = _0x3.tile ? `<strong>Warning</strong>Your current tile at (${ _0x3.tile.x }, ${ _0x3.tile.y }) will be unclaimed and your site will be moved to this new tile.` : null, _0xb = new _0xc({
+    let _0x4 = _0x3.domain,
+      _0xa = _0x3.tile ? `<strong>Warning</strong>Your current tile at (${ _0x3.tile.x }, ${ _0x3.tile.y }) will be unclaimed and your site will be moved to this new tile.` : null,
+      _0xb = new _0xc({
         title: 'Unlock & Claim Tile',
         content: `
                 <p>Enter the unlock code to claim the tile at (${ _0x2.x }, ${ _0x2.y }) for <strong>${ _0x8.ui.escapeHTML(_0x4) }</strong>:</p>
@@ -2647,8 +2773,7 @@ _0x8.ui = {
                 </div>
             `,
         warning: _0xa,
-        buttons: [
-          {
+        buttons: [{
             text: 'Cancel',
             type: 'cancel',
             id: 'cancel',
@@ -2668,7 +2793,9 @@ _0x8.ui = {
               try {
                 let _0x1d = await (await _0x8.api.makeRequest('/api/claim', {
                   method: 'POST',
-                  headers: { 'Content-Type': 'application/json' },
+                  headers: {
+                    'Content-Type': 'application/json'
+                  },
                   body: JSON.stringify({
                     x: _0x2.x,
                     y: _0x2.y,
@@ -2729,18 +2856,18 @@ _0x8.ui = {
       title: 'Clan Management',
       content: '<p>Loading...</p>',
       buttons: [{
-          text: 'Close',
-          type: 'cancel',
-          id: 'close',
-          onClick: _0x3 => _0x3.close()
-        }]
+        text: 'Close',
+        type: 'cancel',
+        id: 'close',
+        onClick: _0x3 => _0x3.close()
+      }]
     });
     _0x2.open();
     try {
       let [_0x3, _0x4] = await Promise.all([
-          _0x8.api.makeRequest('/api/clans/current'),
-          _0x8.api.makeRequest('/api/clans/invites')
-        ]), _0xa = await _0x3.json(), _0xb = await _0x4.json();
+        _0x8.api.makeRequest('/api/clans/current'),
+        _0x8.api.makeRequest('/api/clans/invites')
+      ]), _0xa = await _0x3.json(), _0xb = await _0x4.json();
       _0x8.ui.pendingClanInvites = _0xb.invites || [], _0x8.ui.updateClanIndicator();
       let _0x1a = _0x8.user?.admin || _0x8.user?.moderator;
       _0xa.success && _0xa.clan ? _0x8.ui.renderClanInfo(_0x2, _0xa.clan, _0x1a) : _0x8.ui.renderNoClan(_0x2, _0xb.invites || [], _0x1a);
@@ -2786,11 +2913,11 @@ _0x8.ui = {
                 <button class="modal-btn modal-btn-cancel" id="clan-admin-clans-btn" style="margin-left: 5px;">View All Clans</button>
             </div>`), _0x2.setContent(_0xa);
     let _0xb = [{
-        text: 'Close',
-        type: 'cancel',
-        id: 'close',
-        onClick: _0x1e => _0x1e.close()
-      }];
+      text: 'Close',
+      type: 'cancel',
+      id: 'close',
+      onClick: _0x1e => _0x1e.close()
+    }];
     _0x3.isOwner ? _0xb.unshift({
       text: 'Disband Clan',
       type: 'cancel',
@@ -2801,7 +2928,9 @@ _0x8.ui = {
           try {
             let _0x2b = await (await _0x8.api.makeRequest('/api/clans/disband', {
               method: 'POST',
-              headers: { 'Content-Type': 'application/json' }
+              headers: {
+                'Content-Type': 'application/json'
+              }
             })).json();
             _0x2b.success ? (_0x1e.close(), _0x8.ui.showClanModal()) : (alert(_0x2b.error || 'Failed to disband clan'), _0x1e.setButtonLoading('disband', !1));
           } catch (_0x2a) {
@@ -2819,7 +2948,9 @@ _0x8.ui = {
           try {
             let _0x2b = await (await _0x8.api.makeRequest('/api/clans/leave', {
               method: 'POST',
-              headers: { 'Content-Type': 'application/json' }
+              headers: {
+                'Content-Type': 'application/json'
+              }
             })).json();
             _0x2b.success ? (_0x1e.close(), _0x8.ui.showClanModal()) : (alert(_0x2b.error || 'Failed to leave clan'), _0x1e.setButtonLoading('leave', !1));
           } catch (_0x2a) {
@@ -2840,8 +2971,12 @@ _0x8.ui = {
           try {
             let _0x2c = await (await _0x8.api.makeRequest('/api/clans/kick', {
               method: 'POST',
-              headers: { 'Content-Type': 'application/json' },
-              body: JSON.stringify({ domain: _0x2a })
+              headers: {
+                'Content-Type': 'application/json'
+              },
+              body: JSON.stringify({
+                domain: _0x2a
+              })
             })).json();
             _0x2c.success ? (_0x8.ui.showClanModal(), _0x2.close()) : (alert(_0x2c.error || 'Failed to kick member'), _0x1e.disabled = !1, _0x1e.textContent = 'Kick');
           } catch (_0x2b) {
@@ -2856,8 +2991,12 @@ _0x8.ui = {
         try {
           let _0x2c = await (await _0x8.api.makeRequest('/api/clans/cancel-invite', {
             method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({ invite: parseInt(_0x2a) })
+            headers: {
+              'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+              invite: parseInt(_0x2a)
+            })
           })).json();
           _0x2c.success ? _0x1e.closest('.clan-pending-item').remove() : (alert(_0x2c.error || 'Failed to cancel invite'), _0x1e.disabled = !1, _0x1e.textContent = 'Cancel');
         } catch (_0x2b) {
@@ -2865,7 +3004,8 @@ _0x8.ui = {
         }
       });
     });
-    let _0x1b = _0x2.element.querySelector('#clan-invite-btn'), _0x1f = _0x2.element.querySelector('#clan-invite-domain');
+    let _0x1b = _0x2.element.querySelector('#clan-invite-btn'),
+      _0x1f = _0x2.element.querySelector('#clan-invite-domain');
     _0x1b && _0x1f && _0x1b.addEventListener('click', async () => {
       let _0x1e = _0x1f.value.trim();
       if (!_0x1e) {
@@ -2876,8 +3016,12 @@ _0x8.ui = {
       try {
         let _0x2b = await (await _0x8.api.makeRequest('/api/clans/invite', {
           method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({ domain: _0x1e })
+          headers: {
+            'Content-Type': 'application/json'
+          },
+          body: JSON.stringify({
+            domain: _0x1e
+          })
         })).json();
         _0x2b.success ? (_0x1f.value = '', _0x8.ui.showClanModal(), _0x2.close()) : (alert(_0x2b.error || 'Failed to send invite'), _0x1b.disabled = !1, _0x1b.textContent = 'Send Invite');
       } catch (_0x2a) {
@@ -2930,8 +3074,12 @@ _0x8.ui = {
         try {
           let _0x2a = await (await _0x8.api.makeRequest('/api/clans/accept-invite', {
             method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({ invite: parseInt(_0x1d) })
+            headers: {
+              'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+              invite: parseInt(_0x1d)
+            })
           })).json();
           _0x2a.success ? (_0x8.ui.pendingClanInvites = _0x8.ui.pendingClanInvites.filter(_0x2b => _0x2b.id !== parseInt(_0x1d)), _0x8.ui.updateClanIndicator(), _0x8.ui.showClanModal(), _0x2.close()) : (alert(_0x2a.error || 'Failed to accept invite'), _0x1c.disabled = !1, _0x1c.textContent = 'Accept');
         } catch (_0x1e) {
@@ -2945,8 +3093,12 @@ _0x8.ui = {
         try {
           let _0x2a = await (await _0x8.api.makeRequest('/api/clans/reject-invite', {
             method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({ invite: parseInt(_0x1d) })
+            headers: {
+              'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+              invite: parseInt(_0x1d)
+            })
           })).json();
           _0x2a.success ? (_0x8.ui.pendingClanInvites = _0x8.ui.pendingClanInvites.filter(_0x2b => _0x2b.id !== parseInt(_0x1d)), _0x8.ui.updateClanIndicator(), _0x1c.closest('.clan-invite-item').remove()) : (alert(_0x2a.error || 'Failed to reject invite'), _0x1c.disabled = !1, _0x1c.textContent = 'Reject');
         } catch (_0x1e) {
@@ -2954,7 +3106,8 @@ _0x8.ui = {
         }
       });
     });
-    let _0xb = _0x2.element.querySelector('#clan-create-btn'), _0x1a = _0x2.element.querySelector('#clan-create-name');
+    let _0xb = _0x2.element.querySelector('#clan-create-btn'),
+      _0x1a = _0x2.element.querySelector('#clan-create-name');
     _0xb && _0x1a && _0xb.addEventListener('click', async () => {
       let _0x1c = _0x1a.value.trim();
       if (!_0x1c) {
@@ -2973,8 +3126,12 @@ _0x8.ui = {
       try {
         let _0x1e = await (await _0x8.api.makeRequest('/api/clans/create', {
           method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({ name: _0x1c })
+          headers: {
+            'Content-Type': 'application/json'
+          },
+          body: JSON.stringify({
+            name: _0x1c
+          })
         })).json();
         _0x1e.success ? (_0x8.ui.showClanModal(), _0x2.close()) : (alert(_0x1e.error || 'Failed to create clan'), _0xb.disabled = !1, _0xb.textContent = 'Create Clan');
       } catch (_0x1d) {
@@ -2994,8 +3151,7 @@ _0x8.ui = {
     let _0x2 = new _0xc({
       title: 'Admin: All Clan Invites',
       content: '<p>Loading...</p>',
-      buttons: [
-        {
+      buttons: [{
           text: 'Back',
           type: 'cancel',
           id: 'back',
@@ -3034,8 +3190,12 @@ _0x8.ui = {
               try {
                 let _0x1f = await (await _0x8.api.makeRequest('/api/clans/admin/delete-invite', {
                   method: 'POST',
-                  headers: { 'Content-Type': 'application/json' },
-                  body: JSON.stringify({ invite: parseInt(_0x1a) })
+                  headers: {
+                    'Content-Type': 'application/json'
+                  },
+                  body: JSON.stringify({
+                    invite: parseInt(_0x1a)
+                  })
                 })).json();
                 _0x1f.success ? _0xb.closest('.clan-invite-item').remove() : (alert(_0x1f.error || 'Failed to delete invite'), _0xb.disabled = !1, _0xb.textContent = 'Delete');
               } catch (_0x1b) {
@@ -3054,8 +3214,7 @@ _0x8.ui = {
     let _0x2 = new _0xc({
       title: 'Admin: All Clans',
       content: '<p>Loading...</p>',
-      buttons: [
-        {
+      buttons: [{
           text: 'Back',
           type: 'cancel',
           id: 'back',
@@ -3092,7 +3251,8 @@ _0x8.ui = {
                         </div>`;
           _0xa += '</div>', _0x2.setContent(_0xa), _0x2.element.querySelectorAll('.clan-jump-owner').forEach(_0xb => {
             _0xb.addEventListener('click', () => {
-              let _0x1a = parseInt(_0xb.dataset.x), _0x1b = parseInt(_0xb.dataset.y);
+              let _0x1a = parseInt(_0xb.dataset.x),
+                _0x1b = parseInt(_0xb.dataset.y);
               _0x8.camera && !isNaN(_0x1a) && !isNaN(_0x1b) && (_0x8.camera.centerOn(_0x1a * 250 + 250 / 2, _0x1b * 250 + 250 / 2), _0x2.close());
             });
           }), _0x2.element.querySelectorAll('.clan-member-kick').forEach(_0xb => {
@@ -3103,8 +3263,12 @@ _0x8.ui = {
                 try {
                   let _0x1f = await (await _0x8.api.makeRequest('/api/clans/admin/disband', {
                     method: 'POST',
-                    headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify({ clan_id: parseInt(_0x1a) })
+                    headers: {
+                      'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({
+                      clan_id: parseInt(_0x1a)
+                    })
                   })).json();
                   _0x1f.success ? _0xb.closest('.clan-member-item').remove() : (alert(_0x1f.error || 'Failed to disband clan'), _0xb.disabled = !1, _0xb.textContent = 'Disband');
                 } catch (_0x1b) {
@@ -3141,20 +3305,23 @@ _0x8.ui = {
                 </div>
             `,
       buttons: [{
-          text: 'Cancel',
-          type: 'cancel',
-          id: 'cancel',
-          onClick: _0xb => _0xb.close()
-        }]
+        text: 'Cancel',
+        type: 'cancel',
+        id: 'cancel',
+        onClick: _0xb => _0xb.close()
+      }]
     });
     _0x3.open();
-    let _0x4 = _0x3.element.querySelector('#option-transfer'), _0xa = _0x3.element.querySelector('#option-free');
+    let _0x4 = _0x3.element.querySelector('#option-transfer'),
+      _0xa = _0x3.element.querySelector('#option-free');
     _0x4.addEventListener('click', async () => {
       _0x4.disabled = !0, _0xa.disabled = !0, _0x4.innerHTML = '<strong>Loading...</strong>';
       try {
         let _0x1a = await (await _0x8.api.makeRequest('/api/getcode', {
           method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
+          headers: {
+            'Content-Type': 'application/json'
+          },
           body: JSON.stringify({
             x: _0x2.x,
             y: _0x2.y
@@ -3181,8 +3348,7 @@ _0x8.ui = {
         console.error(_0xb), alert('Failed to get tile code: ' + _0xb.message), _0x4.disabled = !1, _0xa.disabled = !1, _0x4.innerHTML = '<strong>\uD83D\uDD11 Transfer to Someone</strong><span>Get a code to share with another person. They can use this code to take the tile.</span>';
       }
     }), _0xa.addEventListener('click', () => {
-      _0x3.setContent(`<p>Are you sure you want to free the tile at (${ _0x2.x }, ${ _0x2.y })?</p><p>The tile for <strong>${ _0x8.ui.escapeHTML(_0x2.domain) }</strong> will become available for <strong>anyone</strong> to claim.</p>`), _0x3.buttons = [
-        {
+      _0x3.setContent(`<p>Are you sure you want to free the tile at (${ _0x2.x }, ${ _0x2.y })?</p><p>The tile for <strong>${ _0x8.ui.escapeHTML(_0x2.domain) }</strong> will become available for <strong>anyone</strong> to claim.</p>`), _0x3.buttons = [{
           text: 'Back',
           type: 'cancel',
           id: 'back',
@@ -3199,7 +3365,9 @@ _0x8.ui = {
             try {
               let _0x1f = await (await _0x8.api.makeRequest('/api/free', {
                 method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
+                headers: {
+                  'Content-Type': 'application/json'
+                },
                 body: JSON.stringify({
                   x: _0x2.x,
                   y: _0x2.y
@@ -3232,7 +3400,9 @@ _0x8.ui = {
       alert('Please select a site first');
       return;
     }
-    let _0x4 = _0x3.domain, _0xa = _0x3.tile ? `<strong>Warning</strong>Your current tile at (${ _0x3.tile.x }, ${ _0x3.tile.y }) will be freed and your site will be moved to this new tile.` : null, _0xb = new _0xc({
+    let _0x4 = _0x3.domain,
+      _0xa = _0x3.tile ? `<strong>Warning</strong>Your current tile at (${ _0x3.tile.x }, ${ _0x3.tile.y }) will be freed and your site will be moved to this new tile.` : null,
+      _0xb = new _0xc({
         title: 'Take Tile',
         content: `
                 <p>Enter the code to take the tile at (${ _0x2.x }, ${ _0x2.y }) for <strong>${ _0x8.ui.escapeHTML(_0x4) }</strong>:</p>
@@ -3241,8 +3411,7 @@ _0x8.ui = {
                 </div>
             `,
         warning: _0xa,
-        buttons: [
-          {
+        buttons: [{
             text: 'Cancel',
             type: 'cancel',
             id: 'cancel',
@@ -3262,7 +3431,9 @@ _0x8.ui = {
               try {
                 let _0x1d = await (await _0x8.api.makeRequest('/api/take', {
                   method: 'POST',
-                  headers: { 'Content-Type': 'application/json' },
+                  headers: {
+                    'Content-Type': 'application/json'
+                  },
                   body: JSON.stringify({
                     x: _0x2.x,
                     y: _0x2.y,
@@ -3301,8 +3472,7 @@ _0x8.ui = {
                 <p>Are you sure you want to <strong>free</strong> the tile at (${ _0x2.x }, ${ _0x2.y })?</p>
                 <p>This will remove <strong>${ _0x8.ui.escapeHTML(_0x2.domain) }</strong> from this tile.</p>
             `,
-      buttons: [
-        {
+      buttons: [{
           text: 'Cancel',
           type: 'cancel',
           id: 'cancel',
@@ -3317,7 +3487,9 @@ _0x8.ui = {
             try {
               let _0xb = await (await _0x8.api.makeRequest('/api/admin/free', {
                 method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
+                headers: {
+                  'Content-Type': 'application/json'
+                },
                 body: JSON.stringify({
                   x: _0x2.x,
                   y: _0x2.y
@@ -3344,8 +3516,7 @@ _0x8.ui = {
                 </ul>
             `,
       warning: '<strong>Destructive Action</strong>This action cannot be undone easily!',
-      buttons: [
-        {
+      buttons: [{
           text: 'Cancel',
           type: 'cancel',
           id: 'cancel',
@@ -3360,7 +3531,9 @@ _0x8.ui = {
             try {
               let _0xb = await (await _0x8.api.makeRequest('/api/admin/ban', {
                 method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
+                headers: {
+                  'Content-Type': 'application/json'
+                },
                 body: JSON.stringify({
                   x: _0x2.x,
                   y: _0x2.y
@@ -3376,15 +3549,15 @@ _0x8.ui = {
     }).open();
   },
   showAdminLockModal: (_0x2, _0x3) => {
-    let _0x4 = _0x3 ? 'unlock' : 'lock', _0xa = _0x3 ? 'unlocked' : 'locked';
+    let _0x4 = _0x3 ? 'unlock' : 'lock',
+      _0xa = _0x3 ? 'unlocked' : 'locked';
     new _0xc({
       title: `Admin: ${ _0x3 ? 'Unlock' : 'Lock' } Tile`,
       content: `
                 <p>Are you sure you want to <strong>${ _0x4 }</strong> the tile at (${ _0x2.x }, ${ _0x2.y })?</p>
                 ${ _0x3 ? '<p>This tile will become available for claiming again.</p>' : '<p>This tile will be reserved and cannot be claimed by regular users.</p>' }
             `,
-      buttons: [
-        {
+      buttons: [{
           text: 'Cancel',
           type: 'cancel',
           id: 'cancel',
@@ -3399,7 +3572,9 @@ _0x8.ui = {
             try {
               let _0x1f = await (await _0x8.api.makeRequest('/api/admin/lock', {
                 method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
+                headers: {
+                  'Content-Type': 'application/json'
+                },
                 body: JSON.stringify({
                   x: _0x2.x,
                   y: _0x2.y,
@@ -3430,11 +3605,11 @@ _0x8.ui = {
                         <p class="modal-hint">Share this code to allow someone to claim this locked tile.</p>
                     `,
           buttons: [{
-              text: 'Close',
-              type: 'cancel',
-              id: 'close',
-              onClick: _0x1a => _0x1a.close()
-            }]
+            text: 'Close',
+            type: 'cancel',
+            id: 'close',
+            onClick: _0x1a => _0x1a.close()
+          }]
         });
         _0xa.open();
         let _0xb = _0xa.element.querySelector('#copy-lock-code-btn');
@@ -3464,11 +3639,11 @@ _0x8.ui = {
                         <p class="modal-hint">This is the secret code for this tile. Share it to allow someone to take this tile.</p>
                     `,
           buttons: [{
-              text: 'Close',
-              type: 'cancel',
-              id: 'close',
-              onClick: _0x1a => _0x1a.close()
-            }]
+            text: 'Close',
+            type: 'cancel',
+            id: 'close',
+            onClick: _0x1a => _0x1a.close()
+          }]
         });
         _0xa.open();
         let _0xb = _0xa.element.querySelector('#copy-tile-code-btn');
@@ -3497,8 +3672,7 @@ _0x8.ui = {
                     <input type="number" id="swap-y-input" class="modal-input" placeholder="Enter Y..." autocomplete="off" />
                 </div>
             `,
-      buttons: [
-        {
+      buttons: [{
           text: 'Cancel',
           type: 'cancel',
           id: 'cancel',
@@ -3509,7 +3683,10 @@ _0x8.ui = {
           type: 'confirm',
           id: 'confirm',
           onClick: async _0x4 => {
-            let _0xa = _0x3.element.querySelector('#swap-x-input'), _0xb = _0x3.element.querySelector('#swap-y-input'), _0x1a = parseInt(_0xa.value.trim()), _0x1b = parseInt(_0xb.value.trim());
+            let _0xa = _0x3.element.querySelector('#swap-x-input'),
+              _0xb = _0x3.element.querySelector('#swap-y-input'),
+              _0x1a = parseInt(_0xa.value.trim()),
+              _0x1b = parseInt(_0xb.value.trim());
             if (isNaN(_0x1a) || isNaN(_0x1b)) {
               alert('Please enter valid X and Y coordinates');
               return;
@@ -3522,7 +3699,9 @@ _0x8.ui = {
             try {
               let _0x1c = await (await _0x8.api.makeRequest('/api/admin/swap', {
                 method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
+                headers: {
+                  'Content-Type': 'application/json'
+                },
                 body: JSON.stringify({
                   x1: _0x2.x,
                   y1: _0x2.y,
@@ -3531,7 +3710,8 @@ _0x8.ui = {
                 })
               })).json();
               _0x1c.success ? (_0x4.close(), _0x2.setActive(!1), setTimeout(() => {
-                let _0x1d = _0x8.plot.getTile(_0x2.x, _0x2.y), _0x1e = _0x8.plot.getTile(_0x1a, _0x1b);
+                let _0x1d = _0x8.plot.getTile(_0x2.x, _0x2.y),
+                  _0x1e = _0x8.plot.getTile(_0x1a, _0x1b);
                 _0x1d && (_0x1d.setActive(!1), _0x1d.fetchContent('/index.html', !0)), _0x1e && (_0x1e.setActive(!1), _0x1e.fetchContent('/index.html', !0));
               }, 100)) : (alert(_0x1c.error || 'Failed to swap tiles'), _0x4.setButtonLoading('confirm', !1));
             } catch (_0x1f) {
@@ -3547,13 +3727,17 @@ _0x8.ui = {
     }, 100);
   },
   createAdminControl: _0x2 => {
-    let _0x3 = _0x8.ui.createElement('div', { class: 'tile-admin-panel' });
+    let _0x3 = _0x8.ui.createElement('div', {
+      class: 'tile-admin-panel'
+    });
     _0x2.free || (_0x3.appendChild(_0x8.ui.createElement('button', {
       innerText: 'Edit',
       onclick: () => {
         _0x8.ui.showDashboard(_0x2.domain);
       }
-    })), _0x3.appendChild(_0x8.ui.createElement('span', { class: 'separator' })), _0x3.appendChild(_0x8.ui.createElement('button', {
+    })), _0x3.appendChild(_0x8.ui.createElement('span', {
+      class: 'separator'
+    })), _0x3.appendChild(_0x8.ui.createElement('button', {
       innerText: 'Free',
       onclick: () => {
         _0x8.ui.showAdminFreeModal(_0x2);
@@ -3570,7 +3754,8 @@ _0x8.ui = {
         _0x8.ui.showAdminSwapModal(_0x2);
       }
     })));
-    let _0x4 = _0x8.plot.lockCache[_0x2.x + ',' + _0x2.y], _0xa = _0x8.ui.createElement('button', {
+    let _0x4 = _0x8.plot.lockCache[_0x2.x + ',' + _0x2.y],
+      _0xa = _0x8.ui.createElement('button', {
         innerText: _0x4 ? 'Unlock' : 'Lock',
         onclick: async () => {
           try {
@@ -3581,7 +3766,9 @@ _0x8.ui = {
           }
         }
       });
-    if (_0x2.free || _0x3.appendChild(_0x8.ui.createElement('span', { class: 'separator' })), _0x3.appendChild(_0xa), _0x4) {
+    if (_0x2.free || _0x3.appendChild(_0x8.ui.createElement('span', {
+        class: 'separator'
+      })), _0x3.appendChild(_0xa), _0x4) {
       let _0xb = _0x8.ui.createElement('button', {
         innerText: 'Show',
         onclick: () => {
@@ -3610,7 +3797,8 @@ _0x8.ui = {
                 </div>
                 <div class="tile-controls">
             `
-      }), _0x4 = _0x3.querySelector('.tile-controls');
+      }),
+      _0x4 = _0x3.querySelector('.tile-controls');
     if (_0x2.free)
       _0x8.plot.lockCache[_0x2.x + ',' + _0x2.y] ? _0x4.appendChild(_0x8.ui.createElement('button', {
         class: 'btn',
@@ -3657,7 +3845,8 @@ _0x8.ui = {
         _0xa.target.innerText = 'Copied!', setTimeout(() => {
           _0xa.target.innerText = 'Link';
         }, 500);
-        let _0xb = _0x2.x * 250 + 250 / 2, _0x1a = _0x2.y * 250 + 250 / 2;
+        let _0xb = _0x2.x * 250 + 250 / 2,
+          _0x1a = _0x2.y * 250 + 250 / 2;
         navigator.clipboard.writeText(`https://webtiles.kicya.net/#${ _0xb },${ _0x1a }`);
       }
     })), _0x4.appendChild(_0x8.ui.createElement('button', {
@@ -3677,14 +3866,19 @@ _0x8.ui = {
   createVoteMenu: _0x2 => {
     if (_0x2.free || !_0x2.domain)
       return null;
-    let _0x3 = _0x8.ui.createElement('div', { class: 'tile-vote-menu' }), _0x4 = _0x8.ui.createElement('button', {
+    let _0x3 = _0x8.ui.createElement('div', {
+        class: 'tile-vote-menu'
+      }),
+      _0x4 = _0x8.ui.createElement('button', {
         class: 'vote-btn vote-up',
         innerHTML: '\u25B2',
         onclick: () => _0x8.ui.handleVote(_0x2, 1, _0x4, _0xb, _0xa)
-      }), _0xa = _0x8.ui.createElement('div', {
+      }),
+      _0xa = _0x8.ui.createElement('div', {
         class: 'vote-score',
         innerText: '...'
-      }), _0xb = _0x8.ui.createElement('button', {
+      }),
+      _0xb = _0x8.ui.createElement('button', {
         class: 'vote-btn vote-down',
         innerHTML: '\u25BC',
         onclick: () => _0x8.ui.handleVote(_0x2, -1, _0x4, _0xb, _0xa)
@@ -3710,12 +3904,16 @@ _0x8.ui = {
       location.href = 'https://kicya.net/auth/login?redirect=' + encodeURIComponent('https://webtiles.kicya.net/');
       return;
     }
-    let _0x1a = _0x4.classList.contains('active'), _0x1b = _0xa.classList.contains('active'), _0x1f = _0x3;
+    let _0x1a = _0x4.classList.contains('active'),
+      _0x1b = _0xa.classList.contains('active'),
+      _0x1f = _0x3;
     (_0x3 === 1 && _0x1a || _0x3 === -1 && _0x1b) && (_0x1f = 0), _0x4.disabled = !0, _0xa.disabled = !0;
     try {
       let _0x1d = await (await _0x8.api.makeRequest('/api/votes/vote', {
         method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
+        headers: {
+          'Content-Type': 'application/json'
+        },
         body: JSON.stringify({
           domain: _0x2.domain,
           vote: _0x1f
@@ -3767,7 +3965,11 @@ _0x8.ui = {
       alert('You must have a tile to attack from');
       return;
     }
-    let _0x4 = _0x8.user.selectedSite.domain, _0xa = _0x2.domain, _0xb = 0, _0x1a = null, _0x1b = null;
+    let _0x4 = _0x8.user.selectedSite.domain,
+      _0xa = _0x2.domain,
+      _0xb = 0,
+      _0x1a = null,
+      _0x1b = null;
     try {
       let _0x1e = await (await _0x8.api.makeRequest(`/api/attack/success-chance?attacked_domain=${ encodeURIComponent(_0xa) }`)).json();
       _0x1e.success ? (_0xb = _0x1e.successChance, _0x1a = _0x1e.cooldown) : _0x1b = _0x1e.error || 'Failed to get attack success chance';
@@ -3804,8 +4006,7 @@ _0x8.ui = {
                     If successful, your tile and the attacked tile will swap positions.
                 </p>
             `,
-      buttons: [
-        {
+      buttons: [{
           text: 'Cancel',
           type: 'cancel',
           id: 'cancel',
@@ -3820,7 +4021,9 @@ _0x8.ui = {
             try {
               let _0x2a = await (await _0x8.api.makeRequest('/api/attack/perform', {
                 method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
+                headers: {
+                  'Content-Type': 'application/json'
+                },
                 body: JSON.stringify({
                   x: _0x2.x,
                   y: _0x2.y
@@ -3843,11 +4046,11 @@ _0x8.ui = {
                     created_at: Date.now()
                   });
                 }, 500), _0x1d.buttons = [{
-                    text: 'Close',
-                    type: 'cancel',
-                    id: 'close',
-                    onClick: _0x2c => _0x2c.close()
-                  }];
+                  text: 'Close',
+                  type: 'cancel',
+                  id: 'close',
+                  onClick: _0x2c => _0x2c.close()
+                }];
                 let _0x2b = _0x1d.element.querySelector('.modal-actions');
                 _0x2b.innerHTML = '', _0x1d._buttonElements.clear();
                 for (let _0x2c of _0x1d.buttons)
@@ -3861,11 +4064,11 @@ _0x8.ui = {
                                         ${ _0x8.ui.escapeHTML(_0x2a.error || 'The attack was unsuccessful.') }
                                     </p>
                                 `), _0x1d.buttons = [{
-                    text: 'Close',
-                    type: 'cancel',
-                    id: 'close',
-                    onClick: _0x2c => _0x2c.close()
-                  }];
+                  text: 'Close',
+                  type: 'cancel',
+                  id: 'close',
+                  onClick: _0x2c => _0x2c.close()
+                }];
                 let _0x2b = _0x1d.element.querySelector('.modal-actions');
                 _0x2b.innerHTML = '', _0x1d._buttonElements.clear();
                 for (let _0x2c of _0x1d.buttons)
@@ -3892,10 +4095,14 @@ _0x8.ui = {
       alert('Your site must have a tile to embed it');
       return;
     }
-    let _0x2 = _0x8.user.selectedSite.domain, _0x3 = !1, _0x4 = _0x33 => {
+    let _0x2 = _0x8.user.selectedSite.domain,
+      _0x3 = !1,
+      _0x4 = _0x33 => {
         let _0x34 = `/e/${ _0x2 }`;
         return _0x33 ? `${ _0x34 }?dark=true` : _0x34;
-      }, _0xa = _0x33 => `<iframe src="https://webtiles.kicya.net${ _0x4(_0x33) }" width="250" height="270" frameborder="0"></iframe>`, _0xb = document.createElement('div');
+      },
+      _0xa = _0x33 => `<iframe src="https://webtiles.kicya.net${ _0x4(_0x33) }" width="250" height="270" frameborder="0"></iframe>`,
+      _0xb = document.createElement('div');
     _0xb.style.cssText = 'display: flex; gap: 20px; align-items: flex-start; flex-wrap: wrap;';
     let _0x1a = document.createElement('div');
     _0x1a.style.cssText = 'min-width: 250px; max-width: 100%;';
@@ -3935,19 +4142,21 @@ _0x8.ui = {
       title: 'Embed Tile',
       content: _0xb,
       buttons: [{
-          text: 'Close',
-          type: 'cancel',
-          id: 'close',
-          onClick: _0x33 => _0x33.close()
-        }]
+        text: 'Close',
+        type: 'cancel',
+        id: 'close',
+        onClick: _0x33 => _0x33.close()
+      }]
     });
     _0x2f.open(), _0x2f.element && (_0x2f.element.style.maxWidth = '700px');
   }
 };
+
 function _0x69() {
   if (!_0x8.user)
     return;
-  let _0x2 = _0x8.ui.siteSelector.value, _0x3 = _0x8.user.sites.find(_0xa => _0xa.domain === _0x2);
+  let _0x2 = _0x8.ui.siteSelector.value,
+    _0x3 = _0x8.user.sites.find(_0xa => _0xa.domain === _0x2);
   _0x2 === 'select' || _0x2 === 'add' || !_0x3 ? (_0x8.ui.siteJumpButton.hidden = !0, _0x8.ui.siteEditButton.hidden = !0, _0x8.ui.siteEmbedButton.hidden = !0, _0x8.ui.siteClanButton.hidden = !0) : (_0x8.ui.siteEditButton.hidden = !1, _0x8.ui.siteJumpButton.hidden = !_0x3.tile, _0x8.ui.siteClanButton.hidden = !_0x3.tile, _0x8.ui.siteEmbedButton.hidden = !_0x3.tile), _0x8.user.selectedSite = _0x3;
   let _0x4 = _0x8?.plot?.activeTile;
   _0x4 && (_0x4.setActive(!1), _0x4.setActive(!0));
@@ -3966,14 +4175,20 @@ _0x8.ui.siteSelector && _0x8.ui.siteSelector.addEventListener('change', () => {
   _0x69();
 });
 _0x69();
-var _0x67 = document.getElementById('dashboard-modal'), _0x65 = document.getElementById('dashboard-iframe'), _0x6a = document.getElementById('dashboard-modal-close'), _0x66 = document.getElementById('dashboard-modal-title'), _0x68 = document.getElementById('app');
+var _0x67 = document.getElementById('dashboard-modal'),
+  _0x65 = document.getElementById('dashboard-iframe'),
+  _0x6a = document.getElementById('dashboard-modal-close'),
+  _0x66 = document.getElementById('dashboard-modal-title'),
+  _0x68 = document.getElementById('app');
 _0x8.ui.siteEditButton && _0x8.ui.siteEditButton.addEventListener('click', () => {
   !_0x8.user || !_0x8.user.selectedSite || _0x8.ui.showDashboard(_0x8.user.selectedSite.domain);
 });
 _0x8.ui.siteJumpButton && _0x8.ui.siteJumpButton.addEventListener('click', () => {
   if (!_0x8.user || !_0x8.user.selectedSite || !_0x8.user.selectedSite.tile)
     return;
-  let _0x2 = _0x8.user.selectedSite.tile, _0x3 = _0x2.x * 250 + 250 / 2, _0x4 = _0x2.y * 250 + 250 / 2;
+  let _0x2 = _0x8.user.selectedSite.tile,
+    _0x3 = _0x2.x * 250 + 250 / 2,
+    _0x4 = _0x2.y * 250 + 250 / 2;
   _0x8.camera.centerOn(_0x3, _0x4);
 });
 _0x8.ui.siteCenterButton && _0x8.ui.siteCenterButton.addEventListener('click', () => {
@@ -3985,6 +4200,7 @@ _0x8.ui.siteClanButton && _0x8.ui.siteClanButton.addEventListener('click', () =>
 _0x8.ui.siteEmbedButton && _0x8.ui.siteEmbedButton.addEventListener('click', () => {
   _0x8.ui.showEmbedModal();
 });
+
 function _0x6b() {
   _0x67.classList.remove('active'), _0x65.src = '', _0x68 && (_0x68.style.display = ''), _0x8.camera && _0x8.camera.setZoomEnabled(!0);
 }
@@ -3992,16 +4208,18 @@ _0x6a && _0x6a.addEventListener('click', _0x6b);
 _0x8.ui.zoomSlider.addEventListener('input', _0x2 => {
   _0x8.camera.zoomTo(_0x8.camera.width / 2, _0x8.camera.height / 2, +_0x2.target.value);
 });
-var _0x6c = document.getElementById('kicya-menu-toggle'), _0x6d = document.getElementById('kicya-links');
-_0x6c && _0x6d && (_0x6c.addEventListener('click', function (_0x2) {
+var _0x6c = document.getElementById('kicya-menu-toggle'),
+  _0x6d = document.getElementById('kicya-links');
+_0x6c && _0x6d && (_0x6c.addEventListener('click', function(_0x2) {
   _0x2.stopPropagation(), _0x6d.classList.toggle('active');
-}), document.addEventListener('click', function (_0x2) {
+}), document.addEventListener('click', function(_0x2) {
   !_0x6d.contains(_0x2.target) && !_0x6c.contains(_0x2.target) && _0x6d.classList.remove('active');
-}), _0x6d.querySelectorAll('a').forEach(function (_0x2) {
-  _0x2.addEventListener('click', function () {
+}), _0x6d.querySelectorAll('a').forEach(function(_0x2) {
+  _0x2.addEventListener('click', function() {
     _0x6d.classList.remove('active');
   });
 }));
+
 function _0x6e() {
   if (!_0x8.user || localStorage.getItem('rules_accepted'))
     return;
@@ -4019,13 +4237,13 @@ function _0x6e() {
             </ul>
         `,
     buttons: [{
-        text: 'OK',
-        type: 'confirm',
-        id: 'ok',
-        onClick: _0x3 => {
-          localStorage.setItem('rules_accepted', '1'), _0x3.close();
-        }
-      }]
+      text: 'OK',
+      type: 'confirm',
+      id: 'ok',
+      onClick: _0x3 => {
+        localStorage.setItem('rules_accepted', '1'), _0x3.close();
+      }
+    }]
   }).open();
 }
 _0x6e();
@@ -4036,13 +4254,15 @@ var _0x70 = class {
     this.ws = null, this.reconnectTimeout = null, this.handlers = new Map(), this.binaryHandlers = [], this.connected = !1, this.messageQueue = [], this.connectionAttempted = !1, this.consecutiveFailures = 0, this.lastConnectionTime = 0, this.waitForCaptchaAndConnect();
   }
   async waitForCaptchaAndConnect() {
-    let _0x3 = _0x8.api.getToken(), _0x4 = _0x8.api.getTokenExpiry();
+    let _0x3 = _0x8.api.getToken(),
+      _0x4 = _0x8.api.getTokenExpiry();
     if (!_0x8.api.getTurnstileSiteKey()) {
       this.connect();
       return;
     }
     (!_0x3 || _0x4 < Date.now()) && await _0x8.api.showCaptchaModal();
-    let _0xa = 60000, _0xb = Date.now();
+    let _0xa = 60000,
+      _0xb = Date.now();
     for (; !_0x8.api.getToken() || _0x8.api.getTokenExpiry() < Date.now();) {
       if (Date.now() - _0xb > _0xa) {
         console.error('[WS] Captcha timeout');
@@ -4055,7 +4275,8 @@ var _0x70 = class {
     this.connect();
   }
   connect() {
-    let _0x3 = location.protocol === 'https:' ? 'wss:' : 'ws:', _0x4 = _0x8.api.getToken() || '';
+    let _0x3 = location.protocol === 'https:' ? 'wss:' : 'ws:',
+      _0x4 = _0x8.api.getToken() || '';
     this.connectionAttempted = !0, this.lastConnectionTime = Date.now(), this.ws = new WebSocket(`${ _0x3 }//${ location.host }/ws?t=${ encodeURIComponent(_0x4) }`), this.ws.binaryType = 'arraybuffer', this.ws.onopen = () => {
       console.log('[WS] Connected'), this.connected = !0, this.consecutiveFailures = 0, this.emit('open');
       for (let _0xa of this.messageQueue)
@@ -4088,9 +4309,11 @@ var _0x70 = class {
     let _0x3 = Math.min(3000 * Math.pow(2, this.consecutiveFailures), 30000);
     this.reconnectTimeout = setTimeout(async () => {
       this.reconnectTimeout = null;
-      let _0x4 = _0x8.api.getToken(), _0xa = _0x8.api.getTokenExpiry();
+      let _0x4 = _0x8.api.getToken(),
+        _0xa = _0x8.api.getTokenExpiry();
       (!_0x4 || _0xa < Date.now()) && await _0x8.api.showCaptchaModal();
-      let _0xb = 30000, _0x1a = Date.now();
+      let _0xb = 30000,
+        _0x1a = Date.now();
       for (; !_0x8.api.getToken() || _0x8.api.getTokenExpiry() < Date.now();) {
         if (Date.now() - _0x1a > _0xb) {
           console.error('[WS] Reconnect captcha timeout');
@@ -4107,7 +4330,8 @@ var _0x70 = class {
   off(_0x3, _0x4) {
     if (!this.handlers.has(_0x3))
       return;
-    let _0xa = this.handlers.get(_0x3), _0xb = _0xa.indexOf(_0x4);
+    let _0xa = this.handlers.get(_0x3),
+      _0xb = _0xa.indexOf(_0x4);
     _0xb !== -1 && _0xa.splice(_0xb, 1);
   }
   onBinary(_0x3) {
@@ -5418,7 +5642,11 @@ var _0x72 = new Set([
     'zone',
     'zuerich',
     'zw'
-  ]), _0x73 = 100, _0x74 = 3, _0x75 = 5000, _0x76 = class {
+  ]),
+  _0x73 = 100,
+  _0x74 = 3,
+  _0x75 = 5000,
+  _0x76 = class {
     constructor() {
       this.messages = [], this.isOpen = !0, this.unreadCount = 0, this.container = document.getElementById('chat-container'), this.messageTimestamps = [], this.showedRules = !1, this.container && (this.createUI(), this.setupWsHandlers(), this.setupInputHandlers(), this.createUserMenu(), this.createModMenu());
     }
@@ -5429,7 +5657,9 @@ var _0x72 = new Set([
         let _0x4 = _0x3.target.closest('.chat-coord-link');
         if (_0x4) {
           _0x3.preventDefault();
-          let _0xa = parseInt(_0x4.dataset.x), _0xb = parseInt(_0x4.dataset.y), _0x1b = 50 / 2;
+          let _0xa = parseInt(_0x4.dataset.x),
+            _0xb = parseInt(_0x4.dataset.y),
+            _0x1b = 50 / 2;
           !isNaN(_0xa) && !isNaN(_0xb) && _0x8.camera && _0xa >= -_0x1b && _0xa <= _0x1b && _0xb >= -_0x1b && _0xb <= _0x1b && _0x8.camera.centerOn(_0xa * 250 + 250 / 2, _0xb * 250 + 250 / 2);
         }
       }), this.setupResize(), this.restoreSize();
@@ -5441,17 +5671,24 @@ var _0x72 = new Set([
       _0x4.id = 'chat-resize-top', _0x4.className = 'chat-resize-handle', this.container.appendChild(_0x4);
       let _0xa = document.createElement('div');
       _0xa.id = 'chat-resize-corner', _0xa.className = 'chat-resize-handle', this.container.appendChild(_0xa);
-      let _0xb = null, _0x1a = 0, _0x1b = 0, _0x1f = 0, _0x1c = 0, _0x1d = (_0x1e, _0x2a) => {
+      let _0xb = null,
+        _0x1a = 0,
+        _0x1b = 0,
+        _0x1f = 0,
+        _0x1c = 0,
+        _0x1d = (_0x1e, _0x2a) => {
           this.isOpen && (_0xb = _0x2a, _0x1a = _0x1e.clientX, _0x1b = _0x1e.clientY, _0x1f = this.container.offsetWidth, _0x1c = this.container.offsetHeight, document.body.style.userSelect = 'none', _0x2a === 'left' ? document.body.style.cursor = 'ew-resize' : _0x2a === 'top' ? document.body.style.cursor = 'ns-resize' : document.body.style.cursor = 'nwse-resize', _0x1e.preventDefault());
         };
       _0x3.addEventListener('mousedown', _0x1e => _0x1d(_0x1e, 'left')), _0x4.addEventListener('mousedown', _0x1e => _0x1d(_0x1e, 'top')), _0xa.addEventListener('mousedown', _0x1e => _0x1d(_0x1e, 'corner')), document.addEventListener('mousemove', _0x1e => {
         if (_0xb) {
           if (_0xb === 'left' || _0xb === 'corner') {
-            let _0x2a = _0x1a - _0x1e.clientX, _0x2b = Math.min(Math.max(_0x1f + _0x2a, 250), 800);
+            let _0x2a = _0x1a - _0x1e.clientX,
+              _0x2b = Math.min(Math.max(_0x1f + _0x2a, 250), 800);
             this.container.style.width = _0x2b + 'px';
           }
           if (_0xb === 'top' || _0xb === 'corner') {
-            let _0x2a = _0x1b - _0x1e.clientY, _0x2b = Math.min(Math.max(_0x1c + _0x2a, 100), 700);
+            let _0x2a = _0x1b - _0x1e.clientY,
+              _0x2b = Math.min(Math.max(_0x1c + _0x2a, 100), 700);
             this.container.style.height = _0x2b + 'px';
           }
         }
@@ -5546,7 +5783,9 @@ var _0x72 = new Set([
     }
     showUserMenu(_0x3, _0x4, _0xa) {
       this.userMenuTarget = _0x3, this.userMenu.hidden = !1;
-      let _0xb = this.userMenu.getBoundingClientRect(), _0x1a = window.innerHeight, _0x1b = window.innerWidth;
+      let _0xb = this.userMenu.getBoundingClientRect(),
+        _0x1a = window.innerHeight,
+        _0x1b = window.innerWidth;
       _0xa + _0xb.height > _0x1a && (_0xa = _0x1a - _0xb.height - 5), _0x4 + _0xb.width > _0x1b && (_0x4 = _0x1b - _0xb.width - 5), this.userMenu.style.left = _0x4 + 'px', this.userMenu.style.top = _0xa + 'px';
     }
     hideUserMenu() {
@@ -5596,7 +5835,9 @@ var _0x72 = new Set([
       if (_0x3.admin || _0x3.discord)
         return;
       this.modMenuTarget = _0x3, this.modMenu.querySelector('#mod-menu-user-id').textContent = _0x3.id || '-', this.modMenu.querySelector('#mod-menu-ip').textContent = _0x3.ip || '-', this.modMenu.hidden = !1;
-      let _0xb = this.modMenu.getBoundingClientRect(), _0x1a = window.innerHeight, _0x1b = window.innerWidth;
+      let _0xb = this.modMenu.getBoundingClientRect(),
+        _0x1a = window.innerHeight,
+        _0x1b = window.innerWidth;
       _0xa + _0xb.height > _0x1a && (_0xa = _0x1a - _0xb.height - 5), _0x4 + _0xb.width > _0x1b && (_0x4 = _0x1b - _0xb.width - 5), this.modMenu.style.left = _0x4 + 'px', this.modMenu.style.top = _0xa + 'px';
     }
     hideModMenu() {
@@ -5632,18 +5873,18 @@ var _0x72 = new Set([
     }
     addMessage(_0x3) {
       _0x3.time = Date.now();
-      let _0x4 = _0x8.cursors?.currentNick, _0xa = _0x8.user?.sites?.map(_0xb => _0xb.domain);
+      let _0x4 = _0x8.cursors?.currentNick,
+        _0xa = _0x8.user?.sites?.map(_0xb => _0xb.domain);
       if (_0x4 && _0x3.message) {
-        let _0xb = /@([a-zA-Z0-9][-a-zA-Z0-9]*(?:\.[a-zA-Z0-9][-a-zA-Z0-9]*)*\.[a-zA-Z]{2,})/g, _0x1a = _0x3.message.matchAll(_0xb);
+        let _0xb = /@([a-zA-Z0-9][-a-zA-Z0-9]*(?:\.[a-zA-Z0-9][-a-zA-Z0-9]*)*\.[a-zA-Z]{2,})/g,
+          _0x1a = _0x3.message.matchAll(_0xb);
         for (let _0x1b of _0x1a)
           if (_0xa.includes(_0x1b[1])) {
             _0x3.isPinged = !0;
             try {
               let _0x1f = new Audio('/s/ping.mp3');
-              _0x1f.volume = 0.5, _0x1f.play().catch(() => {
-              });
-            } catch {
-            }
+              _0x1f.volume = 0.5, _0x1f.play().catch(() => {});
+            } catch {}
             break;
           }
       }
@@ -5659,14 +5900,20 @@ var _0x72 = new Set([
       return _0x3.replace(/</g, '&lt;').replace(/>/g, '&gt;');
     }
     parseMessage(_0x3) {
-      let _0x4 = /@([a-zA-Z0-9][-a-zA-Z0-9]*(?:\.[a-zA-Z0-9][-a-zA-Z0-9]*)*\.[a-zA-Z]{2,})/g, _0xa = [];
+      let _0x4 = /@([a-zA-Z0-9][-a-zA-Z0-9]*(?:\.[a-zA-Z0-9][-a-zA-Z0-9]*)*\.[a-zA-Z]{2,})/g,
+        _0xa = [];
       _0x3 = _0x3.replace(_0x4, (_0x1e, _0x2a) => (_0xa.push(_0x2a), `<span class="chat-ping">@${ this.escapeHTML(_0x2a) }</span>`));
-      let _0xb = /(?!\.)(https?:\/\/[^\s<>"']+)|(?<![/])(\b(?:[a-zA-Z0-9][-a-zA-Z0-9]*\.)+([a-zA-Z]{2,})(?:\/[^\s<>"']*)?)/g, _0x1a = 250, _0x1f = 50 / 2;
+      let _0xb = /(?!\.)(https?:\/\/[^\s<>"']+)|(?<![/])(\b(?:[a-zA-Z0-9][-a-zA-Z0-9]*\.)+([a-zA-Z]{2,})(?:\/[^\s<>"']*)?)/g,
+        _0x1a = 250,
+        _0x1f = 50 / 2;
       _0x3 = _0x3.replace(_0xb, (_0x1e, _0x2a, _0x2b, _0x2c) => {
         if (_0x2a) {
           let _0x2d = _0x2a.match(/^https?:\/\/(?:www\.)?webtiles\.kicya\.net\/?#(-?\d+),(-?\d+)$/);
           if (_0x2d) {
-            let _0x2e = parseInt(_0x2d[1]), _0x2f = parseInt(_0x2d[2]), _0x33 = Math.floor(_0x2e / _0x1a), _0x34 = Math.floor(_0x2f / _0x1a);
+            let _0x2e = parseInt(_0x2d[1]),
+              _0x2f = parseInt(_0x2d[2]),
+              _0x33 = Math.floor(_0x2e / _0x1a),
+              _0x34 = Math.floor(_0x2f / _0x1a);
             if (_0x33 >= -_0x1f && _0x33 <= _0x1f && _0x34 >= -_0x1f && _0x34 <= _0x1f)
               return `<a href="#" class="chat-coord-link" data-x="${ _0x33 }" data-y="${ _0x34 }">${ _0x33 }, ${ _0x34 }</a>`;
           }
@@ -5680,7 +5927,8 @@ var _0x72 = new Set([
       });
       let _0x1c = /(-?\d+),\s*(-?\d+)/g;
       _0x3 = _0x3.replace(_0x1c, (_0x1e, _0x2a, _0x2b) => {
-        let _0x2c = parseInt(_0x2a), _0x2d = parseInt(_0x2b);
+        let _0x2c = parseInt(_0x2a),
+          _0x2d = parseInt(_0x2b);
         return _0x2c >= -_0x1f && _0x2c <= _0x1f && _0x2d >= -_0x1f && _0x2d <= _0x1f ? `<a href="#" class="chat-coord-link" data-x="${ _0x2a }" data-y="${ _0x2b }">${ _0x1e }</a>` : _0x1e;
       });
       let _0x1d = (_0x1e, _0x2a, _0x2b, _0x2c) => `<img class="emoji" src="https://cdn.discordapp.com/emojis/${ _0x2c }.${ _0x2a ? 'gif' : 'png' }?v=1" alt=":${ this.escapeHTML(_0x2b) }:" title=":${ this.escapeHTML(_0x2b) }:" width="20">`;
@@ -5748,7 +5996,9 @@ var _0x72 = new Set([
         if (_0xa) {
           let _0xb = _0xa.match(/^(-?\d+)\s+(-?\d+)$/);
           if (_0xb) {
-            let _0x1a = parseInt(_0xb[1]), _0x1b = parseInt(_0xb[2]), _0x1c = 50 / 2;
+            let _0x1a = parseInt(_0xb[1]),
+              _0x1b = parseInt(_0xb[2]),
+              _0x1c = 50 / 2;
             !isNaN(_0x1a) && !isNaN(_0x1b) && _0x8.camera && _0x1a >= -_0x1c && _0x1a <= _0x1c && _0x1b >= -_0x1c && _0x1b <= _0x1c ? (_0x8.camera.centerOn(_0x1a * 250 + 250 / 2, _0x1b * 250 + 250 / 2), this.showSystemMessage(`Jumped to ${ _0x1a }, ${ _0x1b }`)) : this.showSystemMessage(`Invalid coordinates. Must be between -${ _0x1c } and ${ _0x1c }`);
           } else {
             let _0x1a = _0xa;
@@ -5781,9 +6031,12 @@ var _0x72 = new Set([
   };
 _0x8.chat = new _0x76();
 var _0x77 = _0x8.chat;
-var _0x78 = document.getElementById('loading-text'), _0x79 = 0, _0x7a = setInterval(() => {
+var _0x78 = document.getElementById('loading-text'),
+  _0x79 = 0,
+  _0x7a = setInterval(() => {
     _0x78.innerText = `Loading${ '.'.repeat(_0x79++ % 4) }`;
-  }, 200), _0x7b = class {
+  }, 200),
+  _0x7b = class {
     constructor() {
       this.tiles = {}, this.container = document.getElementById('plot'), this.worldSize = _0x24, this.activeTile = null, this.tileCache = {}, this.lockCache = {}, this.loaded = !1, setInterval(() => {
         for (let _0x3 in this.tiles) {
@@ -5890,7 +6143,8 @@ var _0x78 = document.getElementById('loading-text'), _0x79 = 0, _0x7a = setInter
       if (_0x3 > this.worldSize / 2 || _0x3 < -this.worldSize / 2 || _0x4 > this.worldSize / 2 || _0x4 < -this.worldSize / 2)
         return null;
       if (!this.tiles[`${ _0x3 },${ _0x4 }`]) {
-        let _0xa = this.tileCache?.[_0x3]?.[_0x4], _0xb = typeof _0xa == 'string' ? _0xa : _0xa?.domain ?? null;
+        let _0xa = this.tileCache?.[_0x3]?.[_0x4],
+          _0xb = typeof _0xa == 'string' ? _0xa : _0xa?.domain ?? null;
         this.tiles[`${ _0x3 },${ _0x4 }`] = new _0x64({
           x: _0x3,
           y: _0x4,
@@ -5920,12 +6174,15 @@ var _0x78 = document.getElementById('loading-text'), _0x79 = 0, _0x7a = setInter
       }
       for (let _0x3 in this.tileCache)
         for (let _0x4 in this.tileCache[_0x3]) {
-          let _0xa = this.tileCache[_0x3][_0x4], _0xb = typeof _0xa == 'string' ? _0xa : _0xa?.domain ?? null, _0x1a = this.tiles[`${ _0x3 },${ _0x4 }`];
+          let _0xa = this.tileCache[_0x3][_0x4],
+            _0xb = typeof _0xa == 'string' ? _0xa : _0xa?.domain ?? null,
+            _0x1a = this.tiles[`${ _0x3 },${ _0x4 }`];
           _0x1a && _0x1a.domain !== _0xb && _0x1a.setDomain(_0xb);
         }
       this.loaded || setTimeout(() => {
         this.loaded = !0;
-        let _0x3 = document.getElementById('loading'), _0x4 = document.getElementById('app');
+        let _0x3 = document.getElementById('loading'),
+          _0x4 = document.getElementById('app');
         _0x3.hidden = !0, _0x4.hidden = !1, clearInterval(_0x7a);
       }, 300);
     }
@@ -5938,17 +6195,19 @@ var _0x78 = document.getElementById('loading-text'), _0x79 = 0, _0x7a = setInter
     }
   };
 _0x8.plot = new _0x7b();
-var _0x7c = document.getElementById('plot'), _0x7d = class {
+var _0x7c = document.getElementById('plot'),
+  _0x7d = class {
     constructor() {
       if (this.x = 0, this.y = 0, this.zoom = 1, this.width = window.innerWidth, this.height = window.innerHeight, this.renderedTiles = new Set(), this.centerOn(100, 100), location.hash.startsWith('#') && location.hash.includes(','))
         try {
           let [_0x2a, _0x2b] = location.hash.slice(1).split(',');
           this.centerOn(parseInt(_0x2a), parseInt(_0x2b)), location.hash = '';
-        } catch {
-        }
-      let _0x3 = 0, _0x4 = 0;
+        } catch {}
+      let _0x3 = 0,
+        _0x4 = 0;
       setInterval(() => {
-        let _0x2a = this.x + this.width / 2, _0x2b = this.y + this.height / 2;
+        let _0x2a = this.x + this.width / 2,
+          _0x2b = this.y + this.height / 2;
         (_0x2a != _0x3 || _0x2b != _0x4) && (_0x3 = _0x2a, _0x4 = _0x2b);
       }, 1000), window.addEventListener('resize', () => {
         this.width = window.innerWidth, this.height = window.innerHeight, this.renderTilesInView();
@@ -5962,35 +6221,48 @@ var _0x7c = document.getElementById('plot'), _0x7d = class {
         if (Math.abs(_0x2b) > 1 && Date.now() - _0xa > 100) {
           let _0x2d = _0x23.indexOf(this.zoom) + (_0x2b > 0 ? -1 : 1);
           if (_0x2d >= 1 && _0x2d < _0x23.length) {
-            let _0x2e = _0x8.mouse?.x || this.width / 2, _0x2f = _0x8.mouse?.y || this.height / 2;
+            let _0x2e = _0x8.mouse?.x || this.width / 2,
+              _0x2f = _0x8.mouse?.y || this.height / 2;
             this.zoomTo(_0x2e, _0x2f, _0x23[_0x2d]), _0xa = Date.now();
           }
         }
-      }, window.addEventListener('wheel', this.wheelHandler, { passive: !1 });
-      let _0xb = 0, _0x1a = {
+      }, window.addEventListener('wheel', this.wheelHandler, {
+        passive: !1
+      });
+      let _0xb = 0,
+        _0x1a = {
           x: 0,
           y: 0
-        }, _0x1b = _0x2a => {
-          let _0x2b = _0x2a[0].clientX - _0x2a[1].clientX, _0x2c = _0x2a[0].clientY - _0x2a[1].clientY;
+        },
+        _0x1b = _0x2a => {
+          let _0x2b = _0x2a[0].clientX - _0x2a[1].clientX,
+            _0x2c = _0x2a[0].clientY - _0x2a[1].clientY;
           return Math.sqrt(_0x2b * _0x2b + _0x2c * _0x2c);
-        }, _0x1f = _0x2a => ({
+        },
+        _0x1f = _0x2a => ({
           x: (_0x2a[0].clientX + _0x2a[1].clientX) / 2,
           y: (_0x2a[0].clientY + _0x2a[1].clientY) / 2
         });
       document.addEventListener('touchstart', _0x2a => {
         _0x2a.touches.length === 2 && (_0xb = _0x1b(_0x2a.touches), _0x1a = _0x1f(_0x2a.touches));
-      }, { passive: !0 }), document.addEventListener('touchmove', _0x2a => {
+      }, {
+        passive: !0
+      }), document.addEventListener('touchmove', _0x2a => {
         if (this.zoomEnabled && _0x2a.touches.length === 2) {
           if (_0x2a.target.closest('.tile.active'))
             return;
-          let _0x2b = _0x1b(_0x2a.touches), _0x2c = _0x1f(_0x2a.touches);
+          let _0x2b = _0x1b(_0x2a.touches),
+            _0x2c = _0x1f(_0x2a.touches);
           if (_0xb > 0) {
-            let _0x2d = _0x2b / _0xb, _0x2e = _0x23.indexOf(this.zoom);
+            let _0x2d = _0x2b / _0xb,
+              _0x2e = _0x23.indexOf(this.zoom);
             _0x2d > 1.1 && _0x2e < _0x23.length - 1 ? (this.zoomTo(_0x2c.x, _0x2c.y, _0x23[_0x2e + 1]), _0xb = _0x2b) : _0x2d < 0.9 && _0x2e > 1 && (this.zoomTo(_0x2c.x, _0x2c.y, _0x23[_0x2e - 1]), _0xb = _0x2b);
           }
           _0x1a = _0x2c, _0x2a.preventDefault();
         }
-      }, { passive: !1 }), document.addEventListener('touchend', _0x2a => {
+      }, {
+        passive: !1
+      }), document.addEventListener('touchend', _0x2a => {
         _0x2a.touches.length < 2 && (_0xb = 0);
       }), this.keysPressed = {
         ArrowUp: !1,
@@ -6000,13 +6272,15 @@ var _0x7c = document.getElementById('plot'), _0x7d = class {
       }, this.moveSpeed = 5;
       let _0x1c = _0x2a => {
           _0x2a.key in this.keysPressed && (_0x2a.preventDefault(), this.keysPressed[_0x2a.key] = !0);
-        }, _0x1d = _0x2a => {
+        },
+        _0x1d = _0x2a => {
           _0x2a.key in this.keysPressed && (_0x2a.preventDefault(), this.keysPressed[_0x2a.key] = !1);
         };
       window.addEventListener('keydown', _0x1c), window.addEventListener('keyup', _0x1d);
       let _0x1e = () => {
         if (!_0x8.plot?.activeTile) {
-          let _0x2a = 0, _0x2b = 0;
+          let _0x2a = 0,
+            _0x2b = 0;
           this.keysPressed.ArrowLeft && (_0x2a -= this.moveSpeed), this.keysPressed.ArrowRight && (_0x2a += this.moveSpeed), this.keysPressed.ArrowUp && (_0x2b -= this.moveSpeed), this.keysPressed.ArrowDown && (_0x2b += this.moveSpeed), (_0x2a !== 0 || _0x2b !== 0) && this.move(this.x + _0x2a, this.y + _0x2b);
         }
         requestAnimationFrame(_0x1e);
@@ -6020,37 +6294,52 @@ var _0x7c = document.getElementById('plot'), _0x7d = class {
       _0x7c.style.transform = `translate3d(${ -this.x }px, ${ -this.y }px, 0) scale(${ this.zoom })`;
     }
     zoomTo(_0x3, _0x4, _0xa) {
-      let _0xb = (this.x + _0x3) / this.zoom, _0x1a = (this.y + _0x4) / this.zoom;
+      let _0xb = (this.x + _0x3) / this.zoom,
+        _0x1a = (this.y + _0x4) / this.zoom;
       this.zoom = _0xa, this.x = _0xb * this.zoom - _0x3, this.y = _0x1a * this.zoom - _0x4, _0x8.ui.zoomSlider.value = this.zoom, this.move(this.x, this.y);
     }
     centerOn(_0x3, _0x4) {
-      let _0xa = _0x3 * this.zoom - this.width / 2, _0xb = _0x4 * this.zoom - this.height / 2;
-      this.move(_0xa, _0xb);
-    }
-    *getTilesInView() {
-      let _0x3 = _0x64.toTilePosition((this.x - 250 * this.zoom) / this.zoom, (this.y - 250 * this.zoom) / this.zoom), _0x4 = _0x64.toTilePosition((this.x + 250 * this.zoom + this.width) / this.zoom, (this.y + 250 * this.zoom + this.height) / this.zoom);
-      for (let _0xa = _0x3.x; _0xa < _0x4.x; _0xa++)
-        for (let _0xb = _0x3.y; _0xb < _0x4.y; _0xb++) {
-          let _0x1a = _0x8.plot.getTile(_0xa, _0xb);
-          _0x1a && (yield _0x1a);
-        }
-    }
-    *getTilesInViewWithBuffer(_0x3 = 500) {
-      let _0x4 = _0x64.toTilePosition((this.x - 250 * this.zoom - _0x3) / this.zoom, (this.y - 250 * this.zoom - _0x3) / this.zoom), _0xa = _0x64.toTilePosition((this.x + 250 * this.zoom + this.width + _0x3) / this.zoom, (this.y + 250 * this.zoom + this.height + _0x3) / this.zoom);
-      for (let _0xb = _0x4.x; _0xb < _0xa.x; _0xb++)
-        for (let _0x1a = _0x4.y; _0x1a < _0xa.y; _0x1a++) {
-          let _0x1b = _0x8.plot.getTile(_0xb, _0x1a);
-          _0x1b && (yield _0x1b);
-        }
-    }
+        let _0xa = _0x3 * this.zoom - this.width / 2,
+          _0xb = _0x4 * this.zoom - this.height / 2;
+        this.move(_0xa, _0xb);
+      }
+      * getTilesInView() {
+        let _0x3 = _0x64.toTilePosition((this.x - 250 * this.zoom) / this.zoom, (this.y - 250 * this.zoom) / this.zoom),
+          _0x4 = _0x64.toTilePosition((this.x + 250 * this.zoom + this.width) / this.zoom, (this.y + 250 * this.zoom + this.height) / this.zoom);
+        for (let _0xa = _0x3.x; _0xa < _0x4.x; _0xa++)
+          for (let _0xb = _0x3.y; _0xb < _0x4.y; _0xb++) {
+            let _0x1a = _0x8.plot.getTile(_0xa, _0xb);
+            _0x1a && (yield _0x1a);
+          }
+      }
+      * getTilesInViewWithBuffer(_0x3 = 500) {
+        let _0x4 = _0x64.toTilePosition((this.x - 250 * this.zoom - _0x3) / this.zoom, (this.y - 250 * this.zoom - _0x3) / this.zoom),
+          _0xa = _0x64.toTilePosition((this.x + 250 * this.zoom + this.width + _0x3) / this.zoom, (this.y + 250 * this.zoom + this.height + _0x3) / this.zoom);
+        for (let _0xb = _0x4.x; _0xb < _0xa.x; _0xb++)
+          for (let _0x1a = _0x4.y; _0x1a < _0xa.y; _0x1a++) {
+            let _0x1b = _0x8.plot.getTile(_0xb, _0x1a);
+            _0x1b && (yield _0x1b);
+          }
+      }
     isTileWithinBuffer(_0x3, _0x4 = 500) {
-      let _0xa = _0x3.x * 250, _0xb = _0x3.y * 250, _0x1a = 250, _0x1b = this.x / this.zoom, _0x1f = (this.x + this.width) / this.zoom, _0x1c = this.y / this.zoom, _0x1d = (this.y + this.height) / this.zoom, _0x1e = _0xa + _0x1a, _0x2a = _0xb + _0x1a, _0x2b = _0x4 / this.zoom, _0x2c = 0;
+      let _0xa = _0x3.x * 250,
+        _0xb = _0x3.y * 250,
+        _0x1a = 250,
+        _0x1b = this.x / this.zoom,
+        _0x1f = (this.x + this.width) / this.zoom,
+        _0x1c = this.y / this.zoom,
+        _0x1d = (this.y + this.height) / this.zoom,
+        _0x1e = _0xa + _0x1a,
+        _0x2a = _0xb + _0x1a,
+        _0x2b = _0x4 / this.zoom,
+        _0x2c = 0;
       _0x1e < _0x1b ? _0x2c = _0x1b - _0x1e : _0xa > _0x1f && (_0x2c = _0xa - _0x1f);
       let _0x2d = 0;
       return _0x2a < _0x1c ? _0x2d = _0x1c - _0x2a : _0xb > _0x1d && (_0x2d = _0xb - _0x1d), Math.sqrt(_0x2c * _0x2c + _0x2d * _0x2d) <= _0x2b;
     }
     renderTilesInView() {
-      let _0x3 = new Set(), _0x4 = 260;
+      let _0x3 = new Set(),
+        _0x4 = 260;
       for (let _0xa of this.getTilesInViewWithBuffer(_0x4))
         _0xa.render(), _0x3.add(_0xa);
       if (this.renderedTiles)
@@ -6066,24 +6355,33 @@ _0x8.camera = new _0x7d();
 var _0x7e = class {
   constructor() {
     this.x = 0, this.y = 0, this.worldX = 0, this.worldY = 0, this.tileX = 0, this.tileY = 0, this.down = !1;
-    let _0x3 = 0, _0x4 = 0, _0xa = 0, _0xb = 0, _0x1a = 0, _0x1b = (_0x1d, _0x1e, _0x2a) => {
+    let _0x3 = 0,
+      _0x4 = 0,
+      _0xa = 0,
+      _0xb = 0,
+      _0x1a = 0,
+      _0x1b = (_0x1d, _0x1e, _0x2a) => {
         if (!_0x2a.closest('#plot') || _0x2a.closest('.tile-info, .tile-admin-panel, .tile-vote-menu'))
           return !1;
         let _0x2b = _0x8.plot.getTile(this.tileX, this.tileY);
         return _0x8.plot.activeTile && _0x8.plot.activeTile.id === _0x2b.id ? !1 : (this.down = !0, _0xa = _0x1d, _0xb = _0x1e, _0x3 = _0x8.camera.x, _0x4 = _0x8.camera.y, _0x1a = Date.now(), !0);
-      }, _0x1f = () => {
+      },
+      _0x1f = () => {
         if (!this.down)
           return;
         this.down = !1;
-        let _0x1d = Math.abs(this.x - _0xa), _0x1e = Math.abs(this.y - _0xb);
+        let _0x1d = Math.abs(this.x - _0xa),
+          _0x1e = Math.abs(this.y - _0xb);
         Date.now() - _0x1a < 400 && _0x1d < 10 && _0x1e < 10 && _0x8.plot.getTile(this.tileX, this.tileY).setActive(!0);
-      }, _0x1c = (_0x1d, _0x1e) => {
+      },
+      _0x1c = (_0x1d, _0x1e) => {
         this.x = _0x1d, this.y = _0x1e;
         let _0x2a = _0x8.camera;
         this.worldX = (_0x2a.x + this.x) / _0x2a.zoom, this.worldY = (_0x2a.y + this.y) / _0x2a.zoom;
         let _0x2b = _0x64.toTilePosition(this.worldX, this.worldY);
         if (this.tileX = _0x2b.x, this.tileY = _0x2b.y, _0x8.ui.coords.textContent = `${ this.tileX }, ${ this.tileY }`, document.documentElement.style.setProperty('--coords-width', _0x8.ui.coords.offsetWidth + 'px'), this.down) {
-          let _0x2c = this.x - _0xa, _0x2d = this.y - _0xb;
+          let _0x2c = this.x - _0xa,
+            _0x2d = this.y - _0xb;
           _0x2a.move(_0x3 - _0x2c, _0x4 - _0x2d);
         }
       };
@@ -6098,7 +6396,9 @@ var _0x7e = class {
         let _0x1e = _0x1d.touches[0];
         _0x1b(_0x1e.clientX, _0x1e.clientY, _0x1e.target);
       }
-    }, { passive: !0 }), document.addEventListener('touchend', _0x1d => {
+    }, {
+      passive: !0
+    }), document.addEventListener('touchend', _0x1d => {
       _0x1f();
     }), document.addEventListener('touchcancel', _0x1d => {
       this.down = !1;
@@ -6107,11 +6407,23 @@ var _0x7e = class {
         let _0x1e = _0x1d.touches[0];
         _0x1c(_0x1e.clientX, _0x1e.clientY), this.down && _0x1e.target.closest('#plot') && !_0x1e.target.closest('.tile.active') && _0x1d.preventDefault();
       }
-    }, { passive: !1 });
+    }, {
+      passive: !1
+    });
   }
 };
 _0x8.mouse = new _0x7e();
-var _0x7f = document.getElementById('plot'), _0x80 = document.getElementById('dashboard-modal'), _0x81 = '/s/img/cursor.png', _0x82 = 150, _0x83 = 50, _0x84 = 100, _0x85 = 100, _0x86 = 150, _0x87 = 500, _0x88 = 0.6, _0x89 = class {
+var _0x7f = document.getElementById('plot'),
+  _0x80 = document.getElementById('dashboard-modal'),
+  _0x81 = '/s/img/cursor.png',
+  _0x82 = 150,
+  _0x83 = 50,
+  _0x84 = 100,
+  _0x85 = 100,
+  _0x86 = 150,
+  _0x87 = 500,
+  _0x88 = 0.6,
+  _0x89 = class {
     constructor() {
       this.cursors = new Map(), this.lastPositionSent = 0, this.currentNick = null, this.mouseWorldX = 0, this.mouseWorldY = 0, this.setupWsHandlers(), this.setupMouseTracking(), this.setupSiteChangeListener(), this.setupMiddleClick(), this.setupViewportChangeListener();
     }
@@ -6131,7 +6443,9 @@ var _0x7f = document.getElementById('plot'), _0x80 = document.getElementById('da
       }), _0x3.onBinary(_0x4 => {
         let _0xa = new Int32Array(_0x4);
         if (_0xa.length >= 3) {
-          let _0xb = _0xa[0], _0x1a = _0xa[1], _0x1b = _0xa[2];
+          let _0xb = _0xa[0],
+            _0x1a = _0xa[1],
+            _0x1b = _0xa[2];
           this.updateCursorPosition(_0xb, _0x1a, _0x1b);
         }
       });
@@ -6165,7 +6479,10 @@ var _0x7f = document.getElementById('plot'), _0x80 = document.getElementById('da
       let _0xa = _0x8.camera;
       if (!_0xa)
         return !0;
-      let _0xb = _0xa.x / _0xa.zoom, _0x1a = (_0xa.x + _0xa.width) / _0xa.zoom, _0x1b = _0xa.y / _0xa.zoom, _0x1f = (_0xa.y + _0xa.height) / _0xa.zoom;
+      let _0xb = _0xa.x / _0xa.zoom,
+        _0x1a = (_0xa.x + _0xa.width) / _0xa.zoom,
+        _0x1b = _0xa.y / _0xa.zoom,
+        _0x1f = (_0xa.y + _0xa.height) / _0xa.zoom;
       return _0x3 >= _0xb && _0x3 <= _0x1a && _0x4 >= _0x1b && _0x4 <= _0x1f;
     }
     updateElementPosition(_0x3, _0x4, _0xa) {
@@ -6190,7 +6507,10 @@ var _0x7f = document.getElementById('plot'), _0x80 = document.getElementById('da
       let _0xb = _0x3.querySelector('.cursor-nick');
       if (!_0xb)
         return;
-      let _0x1a = this.mouseWorldX - _0x4, _0x1b = this.mouseWorldY - _0xa, _0x1f = Math.sqrt(_0x1a * _0x1a + _0x1b * _0x1b), _0x1c = Math.max(0, 1 - _0x1f / _0x82);
+      let _0x1a = this.mouseWorldX - _0x4,
+        _0x1b = this.mouseWorldY - _0xa,
+        _0x1f = Math.sqrt(_0x1a * _0x1a + _0x1b * _0x1b),
+        _0x1c = Math.max(0, 1 - _0x1f / _0x82);
       _0xb.style.opacity = _0x1c;
     }
     updateAllNickOpacities() {
@@ -6198,7 +6518,9 @@ var _0x7f = document.getElementById('plot'), _0x80 = document.getElementById('da
         _0x3.element && this.updateNickOpacity(_0x3.element, _0x3.x, _0x3.y);
     }
     getCursorOpacityFromCenter() {
-      let _0x3 = this.mouseWorldX - _0x84, _0x4 = this.mouseWorldY - _0x85, _0xa = Math.sqrt(_0x3 * _0x3 + _0x4 * _0x4);
+      let _0x3 = this.mouseWorldX - _0x84,
+        _0x4 = this.mouseWorldY - _0x85,
+        _0xa = Math.sqrt(_0x3 * _0x3 + _0x4 * _0x4);
       return _0xa <= _0x86 ? 0 : _0xa >= _0x87 ? _0x88 : (_0xa - _0x86) / (_0x87 - _0x86) * _0x88;
     }
     updateAllCursorOpacities() {
@@ -6244,9 +6566,12 @@ var _0x7f = document.getElementById('plot'), _0x80 = document.getElementById('da
       });
     }
     getClosestCursor() {
-      let _0x3 = null, _0x4 = 1 / 0;
+      let _0x3 = null,
+        _0x4 = 1 / 0;
       for (let _0xa of this.cursors.values()) {
-        let _0xb = this.mouseWorldX - _0xa.x, _0x1a = this.mouseWorldY - _0xa.y, _0x1b = Math.sqrt(_0xb * _0xb + _0x1a * _0x1a);
+        let _0xb = this.mouseWorldX - _0xa.x,
+          _0x1a = this.mouseWorldY - _0xa.y,
+          _0x1b = Math.sqrt(_0xb * _0xb + _0x1a * _0x1a);
         _0x1b < _0x4 && (_0x4 = _0x1b, _0x3 = _0xa);
       }
       return _0x3 ? {
@@ -6274,9 +6599,11 @@ var _0x7f = document.getElementById('plot'), _0x80 = document.getElementById('da
     escapeHTML(_0x3) {
       return _0x3 ? _0x3.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;').replace(/'/g, '&#039;') : '';
     }
-  }, _0x8a = _0x89;
+  },
+  _0x8a = _0x89;
 if ('serviceWorker' in navigator) {
-  let _0x3 = 'sw_version', _0x4 = async () => {
+  let _0x3 = 'sw_version',
+    _0x4 = async () => {
       try {
         let _0xb = await navigator.serviceWorker.register('/sw.js');
         return console.log('[SW] Service Worker registered:', _0xb.scope), _0xb;
@@ -6285,7 +6612,8 @@ if ('serviceWorker' in navigator) {
       }
     };
   (async () => {
-    let _0xb = localStorage.getItem(_0x3), _0x1a = '12';
+    let _0xb = localStorage.getItem(_0x3),
+      _0x1a = '12';
     if (_0xb !== _0x1a) {
       console.log(`[SW] Version mismatch: stored=${ _0xb }, current=${ _0x1a }`);
       let _0x1b = await navigator.serviceWorker.getRegistrations();
@@ -6299,7 +6627,9 @@ if ('serviceWorker' in navigator) {
     } else
       (await navigator.serviceWorker.getRegistrations()).length === 0 && await _0x4();
   })(), navigator.serviceWorker.ready.then(() => {
-    navigator.serviceWorker.controller.postMessage({ type: 'clear-cache' });
+    navigator.serviceWorker.controller.postMessage({
+      type: 'clear-cache'
+    });
   });
 }
 _0x8.cursors = new _0x8a();
