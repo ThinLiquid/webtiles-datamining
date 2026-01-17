@@ -1,11 +1,12 @@
-/* 2b37f30b003bc3d4898dbf227a0e41ed365be7e3f3844779cde8e48a11ac03da */
+/* 8fc419844a719dba33959bd13fdfc67dcd27a6a5c28b167cc33da0596ca663c4 */
 var _0x0 = {
     user: null,
     settings: {
       logCalls: localStorage.logCalls === 'true',
       disableJS: localStorage.disableJS === 'true'
     }
-  }, _0x1 = document.getElementById('user-data');
+  },
+  _0x1 = document.getElementById('user-data');
 if (_0x1)
   try {
     let _0x2 = JSON.parse(_0x1.textContent);
@@ -14,13 +15,19 @@ if (_0x1)
     console.error(_0x2);
   }
 var _0x3 = _0x0;
+
 function _0x4(_0x2, _0x5, _0x6) {
-  let _0x7 = new WeakMap(), _0x8 = 2048, _0x9 = 10000, _0xa = new WeakMap();
-  function _0xb(_0xc) {
-  }
+  let _0x7 = new WeakMap(),
+    _0x8 = 2048,
+    _0x9 = 10000,
+    _0xa = new WeakMap();
+
+  function _0xb(_0xc) {}
+
   function _0xd() {
     _0xa.clear = new WeakMap();
   }
+
   function _0xe(_0xc, _0xf) {
     if (!_0xc)
       return null;
@@ -29,27 +36,29 @@ function _0x4(_0x2, _0x5, _0x6) {
     let _0x10 = _0x2.createObject(_0x11);
     return _0x10.native = _0xc, _0x10.canvas = _0xf, _0x7.set(_0xc, _0x10), _0x10;
   }
-  let _0x12 = _0x2.createNativeFunction(function () {
+  let _0x12 = _0x2.createNativeFunction(function() {
     throw TypeError('Illegal constructor');
   }, !0);
   _0x2.setProperty(_0x5, 'CanvasGradient', _0x12);
   let _0x13 = _0x2.getProperty(_0x12, 'prototype');
-  _0x2.setProperty(_0x13, 'addColorStop', _0x2.createNativeFunction(function (_0xc, _0xf) {
+  _0x2.setProperty(_0x13, 'addColorStop', _0x2.createNativeFunction(function(_0xc, _0xf) {
     this.native.addColorStop(_0xc, _0xf);
   }));
+
   function _0x14(_0xc) {
     let _0xf = _0x2.createObject(_0x12);
     return _0xf.native = _0xc, _0xf;
   }
-  let _0x15 = _0x2.createNativeFunction(function () {
+  let _0x15 = _0x2.createNativeFunction(function() {
     throw TypeError('Illegal constructor');
   }, !0);
   _0x2.setProperty(_0x5, 'CanvasPattern', _0x15);
+
   function _0x16(_0xc) {
     let _0xf = _0x2.createObject(_0x15);
     return _0xf.native = _0xc, _0xf;
   }
-  let _0x17 = _0x2.createNativeFunction(function (_0xc, _0xf) {
+  let _0x17 = _0x2.createNativeFunction(function(_0xc, _0xf) {
     if (_0xc > _0x8 || _0xf > _0x8)
       throw new Error(`ImageData size exceeds maximum (${ _0x8 }x${ _0x8 })`);
     _0x3.settings.logCalls && console.log(_0x6.domain, 'create ImageData', this, _0xc, _0xf);
@@ -59,30 +68,31 @@ function _0x4(_0x2, _0x5, _0x6) {
   _0x2.setProperty(_0x5, 'ImageData', _0x17);
   let _0x18 = _0x2.getProperty(_0x17, 'prototype');
   _0x2.setProperty(_0x18, 'width', Interpreter.VALUE_IN_DESCRIPTOR, {
-    get: _0x2.createNativeFunction(function () {
+    get: _0x2.createNativeFunction(function() {
       return this.native.width;
     })
   }), _0x2.setProperty(_0x18, 'height', Interpreter.VALUE_IN_DESCRIPTOR, {
-    get: _0x2.createNativeFunction(function () {
+    get: _0x2.createNativeFunction(function() {
       return this.native.height;
     })
   }), _0x2.setProperty(_0x18, 'data', Interpreter.VALUE_IN_DESCRIPTOR, {
-    get: _0x2.createNativeFunction(function () {
-      let _0xc = this.native.data, _0xf = _0x2.createObjectProto(_0x2.ARRAY_PROTO);
+    get: _0x2.createNativeFunction(function() {
+      let _0xc = this.native.data,
+        _0xf = _0x2.createObjectProto(_0x2.ARRAY_PROTO);
       _0x2.setProperty(_0xf, 'length', _0xc.length);
       let _0x10 = _0x2.nativeToPseudo({});
-      _0x2.setProperty(_0x10, 'length', _0xc.length), _0x2.setProperty(_0x10, 'get', _0x2.createNativeFunction(function (_0x19) {
+      _0x2.setProperty(_0x10, 'length', _0xc.length), _0x2.setProperty(_0x10, 'get', _0x2.createNativeFunction(function(_0x19) {
         return _0xc[_0x19];
-      })), _0x2.setProperty(_0x10, 'set', _0x2.createNativeFunction(function (_0x19, _0x1a) {
+      })), _0x2.setProperty(_0x10, 'set', _0x2.createNativeFunction(function(_0x19, _0x1a) {
         _0x3.settings.logCalls && console.log(_0x6.domain, 'setImageData', this, _0x19, _0x1a), _0xc[_0x19] = _0x1a;
       }));
       for (let _0x19 = 0; _0x19 < Math.min(_0xc.length, 1000); _0x19++)
         (_0x1a => {
           _0x2.setProperty(_0x10, _0x1a, Interpreter.VALUE_IN_DESCRIPTOR, {
-            get: _0x2.createNativeFunction(function () {
+            get: _0x2.createNativeFunction(function() {
               return _0xc[_0x1a];
             }),
-            set: _0x2.createNativeFunction(function (_0x1b) {
+            set: _0x2.createNativeFunction(function(_0x1b) {
               _0x3.settings.logCalls && console.log(_0x6.domain, 'setImageData', this, _0x1a, _0x1b), _0xc[_0x1a] = _0x1b;
             })
           });
@@ -90,15 +100,17 @@ function _0x4(_0x2, _0x5, _0x6) {
       return _0x10;
     })
   });
+
   function _0x1c(_0xc) {
     let _0xf = _0x2.createObject(_0x17);
     return _0xf.native = _0xc, _0xf;
   }
-  let _0x1d = _0x2.createNativeFunction(function () {
+  let _0x1d = _0x2.createNativeFunction(function() {
     throw TypeError('Illegal constructor');
   }, !0);
   _0x2.setProperty(_0x5, 'TextMetrics', _0x1d);
-  let _0x1e = _0x2.getProperty(_0x1d, 'prototype'), _0x1f = [
+  let _0x1e = _0x2.getProperty(_0x1d, 'prototype'),
+    _0x1f = [
       'width',
       'actualBoundingBoxLeft',
       'actualBoundingBoxRight',
@@ -114,60 +126,63 @@ function _0x4(_0x2, _0x5, _0x6) {
     ];
   for (let _0xc of _0x1f)
     _0x2.setProperty(_0x1e, _0xc, Interpreter.VALUE_IN_DESCRIPTOR, {
-      get: _0x2.createNativeFunction(function () {
+      get: _0x2.createNativeFunction(function() {
         return this.native[_0xc];
       })
     });
+
   function _0x20(_0xc) {
     let _0xf = _0x2.createObject(_0x1d);
     return _0xf.native = _0xc, _0xf;
   }
-  let _0x21 = _0x2.createNativeFunction(function (_0xc) {
+  let _0x21 = _0x2.createNativeFunction(function(_0xc) {
     _0xc && _0xc.native ? this.native = new Path2D(_0xc.native) : typeof _0xc == 'string' ? this.native = new Path2D(_0xc) : this.native = new Path2D();
   }, !0);
   _0x2.setProperty(_0x5, 'Path2D', _0x21);
-  let _0x22 = _0x2.getProperty(_0x21, 'prototype'), _0x23 = {
-      addPath: function (_0xc, _0xf) {
+  let _0x22 = _0x2.getProperty(_0x21, 'prototype'),
+    _0x23 = {
+      addPath: function(_0xc, _0xf) {
         _0xc?.native && this.native.addPath(_0xc.native, _0xf);
       },
-      closePath: function () {
+      closePath: function() {
         this.native.closePath();
       },
-      moveTo: function (_0xc, _0xf) {
+      moveTo: function(_0xc, _0xf) {
         this.native.moveTo(_0xc, _0xf);
       },
-      lineTo: function (_0xc, _0xf) {
+      lineTo: function(_0xc, _0xf) {
         this.native.lineTo(_0xc, _0xf);
       },
-      bezierCurveTo: function (_0xc, _0xf, _0x10, _0x19, _0x1a, _0x1b) {
+      bezierCurveTo: function(_0xc, _0xf, _0x10, _0x19, _0x1a, _0x1b) {
         this.native.bezierCurveTo(_0xc, _0xf, _0x10, _0x19, _0x1a, _0x1b);
       },
-      quadraticCurveTo: function (_0xc, _0xf, _0x10, _0x19) {
+      quadraticCurveTo: function(_0xc, _0xf, _0x10, _0x19) {
         this.native.quadraticCurveTo(_0xc, _0xf, _0x10, _0x19);
       },
-      arc: function (_0xc, _0xf, _0x10, _0x19, _0x1a, _0x1b) {
+      arc: function(_0xc, _0xf, _0x10, _0x19, _0x1a, _0x1b) {
         this.native.arc(_0xc, _0xf, _0x10, _0x19, _0x1a, _0x1b);
       },
-      arcTo: function (_0xc, _0xf, _0x10, _0x19, _0x1a) {
+      arcTo: function(_0xc, _0xf, _0x10, _0x19, _0x1a) {
         this.native.arcTo(_0xc, _0xf, _0x10, _0x19, _0x1a);
       },
-      ellipse: function (_0xc, _0xf, _0x10, _0x19, _0x1a, _0x1b, _0x24, _0x25) {
+      ellipse: function(_0xc, _0xf, _0x10, _0x19, _0x1a, _0x1b, _0x24, _0x25) {
         this.native.ellipse(_0xc, _0xf, _0x10, _0x19, _0x1a, _0x1b, _0x24, _0x25);
       },
-      rect: function (_0xc, _0xf, _0x10, _0x19) {
+      rect: function(_0xc, _0xf, _0x10, _0x19) {
         this.native.rect(_0xc, _0xf, _0x10, _0x19);
       },
-      roundRect: function (_0xc, _0xf, _0x10, _0x19, _0x1a) {
+      roundRect: function(_0xc, _0xf, _0x10, _0x19, _0x1a) {
         this.native.roundRect(_0xc, _0xf, _0x10, _0x19, _0x1a);
       }
     };
   for (let [_0xc, _0xf] of Object.entries(_0x23))
     _0x2.setProperty(_0x22, _0xc, _0x2.createNativeFunction(_0xf));
-  let _0x11 = _0x2.createNativeFunction(function () {
+  let _0x11 = _0x2.createNativeFunction(function() {
     throw TypeError('Illegal constructor');
   }, !0);
   _0x2.setProperty(_0x5, 'CanvasRenderingContext2D', _0x11);
-  let _0x26 = _0x2.getProperty(_0x11, 'prototype'), _0x27 = [
+  let _0x26 = _0x2.getProperty(_0x11, 'prototype'),
+    _0x27 = [
       'globalAlpha',
       'globalCompositeOperation',
       'lineWidth',
@@ -189,10 +204,10 @@ function _0x4(_0x2, _0x5, _0x6) {
     ];
   for (let _0xc of _0x27)
     _0x2.setProperty(_0x26, _0xc, Interpreter.VALUE_IN_DESCRIPTOR, {
-      get: _0x2.createNativeFunction(function () {
+      get: _0x2.createNativeFunction(function() {
         return this.native[_0xc];
       }),
-      set: _0x2.createNativeFunction(function (_0xf) {
+      set: _0x2.createNativeFunction(function(_0xf) {
         _0x3.settings.logCalls && console.log(_0x6.domain, 'context set ' + _0xc, this, _0xf), this.native[_0xc] = _0xf;
       })
     });
@@ -201,111 +216,111 @@ function _0x4(_0x2, _0x5, _0x6) {
       'strokeStyle'
     ])
     _0x2.setProperty(_0x26, _0xc, Interpreter.VALUE_IN_DESCRIPTOR, {
-      get: _0x2.createNativeFunction(function () {
+      get: _0x2.createNativeFunction(function() {
         let _0xf = this.native[_0xc];
         return _0xf;
       }),
-      set: _0x2.createNativeFunction(function (_0xf) {
+      set: _0x2.createNativeFunction(function(_0xf) {
         _0xf?.native ? this.native[_0xc] = _0xf.native : this.native[_0xc] = _0xf;
       })
     });
   _0x2.setProperty(_0x26, 'canvas', Interpreter.VALUE_IN_DESCRIPTOR, {
-    get: _0x2.createNativeFunction(function () {
+    get: _0x2.createNativeFunction(function() {
       return this.canvas;
     })
   });
   let _0x28 = {
-    clearRect: function (_0xc, _0xf, _0x10, _0x19) {
+    clearRect: function(_0xc, _0xf, _0x10, _0x19) {
       this.native, this.native.clearRect(_0xc, _0xf, _0x10, _0x19);
     },
-    fillRect: function (_0xc, _0xf, _0x10, _0x19) {
+    fillRect: function(_0xc, _0xf, _0x10, _0x19) {
       this.native, this.native.fillRect(_0xc, _0xf, _0x10, _0x19);
     },
-    strokeRect: function (_0xc, _0xf, _0x10, _0x19) {
+    strokeRect: function(_0xc, _0xf, _0x10, _0x19) {
       this.native, this.native.strokeRect(_0xc, _0xf, _0x10, _0x19);
     },
-    fillText: function (_0xc, _0xf, _0x10, _0x19) {
+    fillText: function(_0xc, _0xf, _0x10, _0x19) {
       this.native, _0x19 !== void 0 ? this.native.fillText(String(_0xc).slice(0, 1000), _0xf, _0x10, _0x19) : this.native.fillText(String(_0xc).slice(0, 1000), _0xf, _0x10);
     },
-    strokeText: function (_0xc, _0xf, _0x10, _0x19) {
+    strokeText: function(_0xc, _0xf, _0x10, _0x19) {
       this.native, _0x19 !== void 0 ? this.native.strokeText(String(_0xc).slice(0, 1000), _0xf, _0x10, _0x19) : this.native.strokeText(String(_0xc).slice(0, 1000), _0xf, _0x10);
     },
-    measureText: function (_0xc) {
+    measureText: function(_0xc) {
       return _0x20(this.native.measureText(String(_0xc).slice(0, 1000)));
     },
-    getLineDash: function () {
+    getLineDash: function() {
       return _0x2.nativeToPseudo(this.native.getLineDash());
     },
-    setLineDash: function (_0xc) {
+    setLineDash: function(_0xc) {
       let _0xf = _0x2.pseudoToNative(_0xc);
       this.native.setLineDash(_0xf);
     },
-    createLinearGradient: function (_0xc, _0xf, _0x10, _0x19) {
+    createLinearGradient: function(_0xc, _0xf, _0x10, _0x19) {
       return _0x14(this.native.createLinearGradient(_0xc, _0xf, _0x10, _0x19));
     },
-    createRadialGradient: function (_0xc, _0xf, _0x10, _0x19, _0x1a, _0x1b) {
+    createRadialGradient: function(_0xc, _0xf, _0x10, _0x19, _0x1a, _0x1b) {
       return _0x14(this.native.createRadialGradient(_0xc, _0xf, _0x10, _0x19, _0x1a, _0x1b));
     },
-    createConicGradient: function (_0xc, _0xf, _0x10) {
+    createConicGradient: function(_0xc, _0xf, _0x10) {
       return _0x14(this.native.createConicGradient(_0xc, _0xf, _0x10));
     },
-    createPattern: function (_0xc, _0xf) {
+    createPattern: function(_0xc, _0xf) {
       let _0x10 = _0xc?.native || _0xc;
       if (!_0x10)
         return null;
       let _0x19 = this.native.createPattern(_0x10, _0xf);
       return _0x19 ? _0x16(_0x19) : null;
     },
-    beginPath: function () {
+    beginPath: function() {
       this.native.beginPath();
     },
-    closePath: function () {
+    closePath: function() {
       this.native.closePath();
     },
-    moveTo: function (_0xc, _0xf) {
+    moveTo: function(_0xc, _0xf) {
       this.native.moveTo(_0xc, _0xf);
     },
-    lineTo: function (_0xc, _0xf) {
+    lineTo: function(_0xc, _0xf) {
       this.native.lineTo(_0xc, _0xf);
     },
-    bezierCurveTo: function (_0xc, _0xf, _0x10, _0x19, _0x1a, _0x1b) {
+    bezierCurveTo: function(_0xc, _0xf, _0x10, _0x19, _0x1a, _0x1b) {
       this.native.bezierCurveTo(_0xc, _0xf, _0x10, _0x19, _0x1a, _0x1b);
     },
-    quadraticCurveTo: function (_0xc, _0xf, _0x10, _0x19) {
+    quadraticCurveTo: function(_0xc, _0xf, _0x10, _0x19) {
       this.native.quadraticCurveTo(_0xc, _0xf, _0x10, _0x19);
     },
-    arc: function (_0xc, _0xf, _0x10, _0x19, _0x1a, _0x1b) {
+    arc: function(_0xc, _0xf, _0x10, _0x19, _0x1a, _0x1b) {
       this.native.arc(_0xc, _0xf, _0x10, _0x19, _0x1a, _0x1b);
     },
-    arcTo: function (_0xc, _0xf, _0x10, _0x19, _0x1a) {
+    arcTo: function(_0xc, _0xf, _0x10, _0x19, _0x1a) {
       this.native.arcTo(_0xc, _0xf, _0x10, _0x19, _0x1a);
     },
-    ellipse: function (_0xc, _0xf, _0x10, _0x19, _0x1a, _0x1b, _0x24, _0x25) {
+    ellipse: function(_0xc, _0xf, _0x10, _0x19, _0x1a, _0x1b, _0x24, _0x25) {
       this.native.ellipse(_0xc, _0xf, _0x10, _0x19, _0x1a, _0x1b, _0x24, _0x25);
     },
-    rect: function (_0xc, _0xf, _0x10, _0x19) {
+    rect: function(_0xc, _0xf, _0x10, _0x19) {
       this.native.rect(_0xc, _0xf, _0x10, _0x19);
     },
-    roundRect: function (_0xc, _0xf, _0x10, _0x19, _0x1a) {
+    roundRect: function(_0xc, _0xf, _0x10, _0x19, _0x1a) {
       let _0x1b = _0x2.pseudoToNative(_0x1a);
       this.native.roundRect(_0xc, _0xf, _0x10, _0x19, _0x1b);
     },
-    fill: function (_0xc, _0xf) {
+    fill: function(_0xc, _0xf) {
       this.native, _0xc?.native ? this.native.fill(_0xc.native, _0xf) : this.native.fill(_0xc);
     },
-    stroke: function (_0xc) {
+    stroke: function(_0xc) {
       this.native, _0xc?.native ? this.native.stroke(_0xc.native) : this.native.stroke();
     },
-    clip: function (_0xc, _0xf) {
+    clip: function(_0xc, _0xf) {
       _0xc?.native ? this.native.clip(_0xc.native, _0xf) : this.native.clip(_0xc);
     },
-    isPointInPath: function (_0xc, _0xf, _0x10, _0x19) {
+    isPointInPath: function(_0xc, _0xf, _0x10, _0x19) {
       return _0xc?.native ? this.native.isPointInPath(_0xc.native, _0xf, _0x10, _0x19) : this.native.isPointInPath(_0xc, _0xf, _0x10);
     },
-    isPointInStroke: function (_0xc, _0xf, _0x10) {
+    isPointInStroke: function(_0xc, _0xf, _0x10) {
       return _0xc?.native ? this.native.isPointInStroke(_0xc.native, _0xf, _0x10) : this.native.isPointInStroke(_0xc, _0xf);
     },
-    getTransform: function () {
+    getTransform: function() {
       let _0xc = this.native.getTransform();
       return _0x2.nativeToPseudo({
         a: _0xc.a,
@@ -316,63 +331,63 @@ function _0x4(_0x2, _0x5, _0x6) {
         f: _0xc.f
       });
     },
-    rotate: function (_0xc) {
+    rotate: function(_0xc) {
       this.native.rotate(_0xc);
     },
-    scale: function (_0xc, _0xf) {
+    scale: function(_0xc, _0xf) {
       this.native.scale(_0xc, _0xf);
     },
-    translate: function (_0xc, _0xf) {
+    translate: function(_0xc, _0xf) {
       this.native.translate(_0xc, _0xf);
     },
-    transform: function (_0xc, _0xf, _0x10, _0x19, _0x1a, _0x1b) {
+    transform: function(_0xc, _0xf, _0x10, _0x19, _0x1a, _0x1b) {
       this.native.transform(_0xc, _0xf, _0x10, _0x19, _0x1a, _0x1b);
     },
-    setTransform: function (_0xc, _0xf, _0x10, _0x19, _0x1a, _0x1b) {
+    setTransform: function(_0xc, _0xf, _0x10, _0x19, _0x1a, _0x1b) {
       if (typeof _0xc == 'object' && _0xc !== null) {
         let _0x24 = _0x2.pseudoToNative(_0xc);
         this.native.setTransform(_0x24);
       } else
         this.native.setTransform(_0xc, _0xf, _0x10, _0x19, _0x1a, _0x1b);
     },
-    resetTransform: function () {
+    resetTransform: function() {
       this.native.resetTransform();
     },
-    drawImage: function (_0xc, _0xf, _0x10, _0x19, _0x1a, _0x1b, _0x24, _0x25, _0x29) {
+    drawImage: function(_0xc, _0xf, _0x10, _0x19, _0x1a, _0x1b, _0x24, _0x25, _0x29) {
       this.native;
       let _0x2a = _0xc?.native || _0xc;
       _0x2a && (_0x25 !== void 0 ? this.native.drawImage(_0x2a, _0xf, _0x10, _0x19, _0x1a, _0x1b, _0x24, _0x25, _0x29) : _0x19 !== void 0 ? this.native.drawImage(_0x2a, _0xf, _0x10, _0x19, _0x1a) : this.native.drawImage(_0x2a, _0xf, _0x10));
     },
-    createImageData: function (_0xc, _0xf) {
+    createImageData: function(_0xc, _0xf) {
       if (_0xc?.native)
         return _0x1c(this.native.createImageData(_0xc.native));
       if (_0xc > _0x8 || _0xf > _0x8)
         throw new Error(`ImageData size exceeds maximum (${ _0x8 }x${ _0x8 })`);
       return _0x1c(this.native.createImageData(_0xc, _0xf));
     },
-    getImageData: function (_0xc, _0xf, _0x10, _0x19) {
+    getImageData: function(_0xc, _0xf, _0x10, _0x19) {
       if (_0x10 > _0x8 || _0x19 > _0x8)
         throw new Error(`ImageData size exceeds maximum (${ _0x8 }x${ _0x8 })`);
       return _0x1c(this.native.getImageData(_0xc, _0xf, _0x10, _0x19));
     },
-    putImageData: function (_0xc, _0xf, _0x10, _0x19, _0x1a, _0x1b, _0x24) {
+    putImageData: function(_0xc, _0xf, _0x10, _0x19, _0x1a, _0x1b, _0x24) {
       this.native, _0xc?.native && (_0x19 !== void 0 ? this.native.putImageData(_0xc.native, _0xf, _0x10, _0x19, _0x1a, _0x1b, _0x24) : this.native.putImageData(_0xc.native, _0xf, _0x10));
     },
-    save: function () {
+    save: function() {
       this.native.save();
     },
-    restore: function () {
+    restore: function() {
       this.native.restore();
     },
-    reset: function () {
+    reset: function() {
       this.native.reset();
     }
   };
   for (let [_0xc, _0xf] of Object.entries(_0x28))
     _0x2.setProperty(_0x26, _0xc, _0x2.createNativeFunction(_0xf));
   return {
-    extendElement: function (_0xc, _0xf) {
-      _0x2.setProperty(_0xc, 'getContext', _0x2.createNativeFunction(function (_0x10, _0x19) {
+    extendElement: function(_0xc, _0xf) {
+      _0x2.setProperty(_0xc, 'getContext', _0x2.createNativeFunction(function(_0x10, _0x19) {
         _0x3.settings.logCalls && console.log(_0x6.domain, 'getContext', this, _0x10, _0x19);
         let _0x1a = this.native;
         if (_0x1a.tagName !== 'CANVAS')
@@ -383,20 +398,20 @@ function _0x4(_0x2, _0x5, _0x6) {
         }
         throw new Error(`Context type "${ _0x10 }" is not supported`);
       })), _0x2.setProperty(_0xc, 'width', Interpreter.VALUE_IN_DESCRIPTOR, {
-        get: _0x2.createNativeFunction(function () {
+        get: _0x2.createNativeFunction(function() {
           return this.native.tagName === 'CANVAS' ? this.native.width : this.native.width;
         }),
-        set: _0x2.createNativeFunction(function (_0x10) {
+        set: _0x2.createNativeFunction(function(_0x10) {
           _0x3.settings.logCalls && console.log(_0x6.domain, 'set width', this, _0x10), this.native.tagName === 'CANVAS' && (this.native.width = Math.min(_0x10, _0x8));
         })
       }), _0x2.setProperty(_0xc, 'height', Interpreter.VALUE_IN_DESCRIPTOR, {
-        get: _0x2.createNativeFunction(function () {
+        get: _0x2.createNativeFunction(function() {
           return this.native.tagName === 'CANVAS' ? this.native.height : this.native.height;
         }),
-        set: _0x2.createNativeFunction(function (_0x10) {
+        set: _0x2.createNativeFunction(function(_0x10) {
           _0x3.settings.logCalls && console.log(_0x6.domain, 'set height', this, _0x10), this.native.tagName === 'CANVAS' && (this.native.height = Math.min(_0x10, _0x8));
         })
-      }), _0x2.setProperty(_0xc, 'toDataURL', _0x2.createNativeFunction(function (_0x10, _0x19) {
+      }), _0x2.setProperty(_0xc, 'toDataURL', _0x2.createNativeFunction(function(_0x10, _0x19) {
         if (this.native.tagName !== 'CANVAS')
           throw new Error('toDataURL is only available on canvas elements');
         return _0x3.settings.logCalls && console.log(_0x6.domain, 'toDataURL', this, _0x10, _0x19), this.native.toDataURL(_0x10, _0x19);
@@ -406,8 +421,11 @@ function _0x4(_0x2, _0x5, _0x6) {
     contextToPseudo: _0xe
   };
 }
+
 function _0x2b(_0x2, _0x5, _0x6) {
-  let _0xa = 0, _0xb = window.location.origin;
+  let _0xa = 0,
+    _0xb = window.location.origin;
+
   function _0xd(_0x17) {
     if (typeof _0x17 != 'string' || _0x17.startsWith('/') || _0x17.startsWith('./') || _0x17.startsWith('../') || !_0x17.startsWith('http://') && !_0x17.startsWith('https://'))
       return !1;
@@ -421,8 +439,10 @@ function _0x2b(_0x2, _0x5, _0x6) {
       return !1;
     }
   }
-  let _0xe = 0, _0x12 = _0x2.nativeToPseudo({});
+  let _0xe = 0,
+    _0x12 = _0x2.nativeToPseudo({});
   _0x2.setProperty(_0x5, '__xhrCallbacks', _0x12);
+
   function _0x13(_0x17, ..._0x18) {
     if (!_0x17 || typeof _0x17 != 'object')
       return;
@@ -431,23 +451,24 @@ function _0x2b(_0x2, _0x5, _0x6) {
     let _0x1d = _0x18.map((_0x1f, _0x20) => {
         let _0x21 = 'arg' + _0x1c + '_' + _0x20;
         return _0x2.setProperty(_0x12, _0x21, _0x1f), _0x21;
-      }), _0x1e = _0x1d.map(_0x1f => `__xhrCallbacks.${ _0x1f }`).join(',');
+      }),
+      _0x1e = _0x1d.map(_0x1f => `__xhrCallbacks.${ _0x1f }`).join(',');
     _0x2.appendCode(`__xhrCallbacks.fn${ _0x1c }(${ _0x1e }); delete __xhrCallbacks.fn${ _0x1c }; ${ _0x1d.map(_0x1f => `delete __xhrCallbacks.${ _0x1f }`).join('; ') };`);
   }
-  let _0x14 = _0x2.createNativeFunction(function () {
+  let _0x14 = _0x2.createNativeFunction(function() {
     _0x3.settings.logCalls && console.log(_0x6.domain, 'XMLHttpRequest', this), this.native = new window.XMLHttpRequest(), this._method = null, this._url = null, this._async = !0, this._headers = {}, this._eventHandlers = {};
     let _0x18 = this;
-    this.native.onreadystatechange = function () {
+    this.native.onreadystatechange = function() {
       _0x2.setProperty(_0x18, 'readyState', _0x18.native.readyState), _0x18.native.readyState === 4 && (_0x2.setProperty(_0x18, 'status', _0x18.native.status), _0x2.setProperty(_0x18, 'statusText', _0x18.native.statusText), _0x2.setProperty(_0x18, 'responseText', _0x18.native.responseText?.slice(0, 5242880) || ''), _0x2.setProperty(_0x18, 'responseURL', _0x18.native.responseURL), _0xa = Math.max(0, _0xa - 1)), _0x18._eventHandlers.onreadystatechange && _0x13(_0x18._eventHandlers.onreadystatechange);
-    }, this.native.onload = function () {
+    }, this.native.onload = function() {
       _0x18._eventHandlers.onload && _0x13(_0x18._eventHandlers.onload);
-    }, this.native.onerror = function () {
+    }, this.native.onerror = function() {
       _0xa = Math.max(0, _0xa - 1), _0x18._eventHandlers.onerror && _0x13(_0x18._eventHandlers.onerror);
-    }, this.native.ontimeout = function () {
+    }, this.native.ontimeout = function() {
       _0xa = Math.max(0, _0xa - 1), _0x18._eventHandlers.ontimeout && _0x13(_0x18._eventHandlers.ontimeout);
-    }, this.native.onabort = function () {
+    }, this.native.onabort = function() {
       _0xa = Math.max(0, _0xa - 1), _0x18._eventHandlers.onabort && _0x13(_0x18._eventHandlers.onabort);
-    }, this.native.onprogress = function (_0x1c) {
+    }, this.native.onprogress = function(_0x1c) {
       if (_0x18._eventHandlers.onprogress) {
         let _0x1d = _0x2.nativeToPseudo({
           loaded: _0x1c.loaded,
@@ -456,9 +477,9 @@ function _0x2b(_0x2, _0x5, _0x6) {
         });
         _0x13(_0x18._eventHandlers.onprogress, _0x1d);
       }
-    }, this.native.onloadstart = function () {
+    }, this.native.onloadstart = function() {
       _0x18._eventHandlers.onloadstart && _0x13(_0x18._eventHandlers.onloadstart);
-    }, this.native.onloadend = function () {
+    }, this.native.onloadend = function() {
       _0x18._eventHandlers.onloadend && _0x13(_0x18._eventHandlers.onloadend);
     }, _0x2.setProperty(this, 'readyState', 0), _0x2.setProperty(this, 'status', 0), _0x2.setProperty(this, 'statusText', ''), _0x2.setProperty(this, 'responseText', ''), _0x2.setProperty(this, 'responseURL', '');
   }, !0);
@@ -477,40 +498,40 @@ function _0x2b(_0x2, _0x5, _0x6) {
   ];
   for (let _0x17 of _0x16)
     _0x2.setProperty(_0x15, _0x17, Interpreter.VALUE_IN_DESCRIPTOR, {
-      get: _0x2.createNativeFunction(function () {
+      get: _0x2.createNativeFunction(function() {
         return this._eventHandlers[_0x17] || null;
       }),
-      set: _0x2.createNativeFunction(function (_0x18) {
+      set: _0x2.createNativeFunction(function(_0x18) {
         _0x3.settings.logCalls && console.log(_0x6.domain, 'XMLHttpRequest set ' + _0x17, this, _0x18), this._eventHandlers[_0x17] = _0x18;
       })
     });
   _0x2.setProperty(_0x15, 'timeout', Interpreter.VALUE_IN_DESCRIPTOR, {
-    get: _0x2.createNativeFunction(function () {
+    get: _0x2.createNativeFunction(function() {
       return this.native.timeout;
     }),
-    set: _0x2.createNativeFunction(function (_0x17) {
+    set: _0x2.createNativeFunction(function(_0x17) {
       this.native.timeout = Math.min(_0x17, 30000);
     })
   }), _0x2.setProperty(_0x15, 'withCredentials', Interpreter.VALUE_IN_DESCRIPTOR, {
-    get: _0x2.createNativeFunction(function () {
+    get: _0x2.createNativeFunction(function() {
       return this.native.withCredentials;
     }),
-    set: _0x2.createNativeFunction(function (_0x17) {
+    set: _0x2.createNativeFunction(function(_0x17) {
       this.native.withCredentials = !1;
     })
   }), _0x2.setProperty(_0x15, 'responseType', Interpreter.VALUE_IN_DESCRIPTOR, {
-    get: _0x2.createNativeFunction(function () {
+    get: _0x2.createNativeFunction(function() {
       return this.native.responseType;
     }),
-    set: _0x2.createNativeFunction(function (_0x17) {
+    set: _0x2.createNativeFunction(function(_0x17) {
       (_0x17 === '' || _0x17 === 'text' || _0x17 === 'json') && (this.native.responseType = _0x17);
     })
   }), _0x2.setProperty(_0x15, 'response', Interpreter.VALUE_IN_DESCRIPTOR, {
-    get: _0x2.createNativeFunction(function () {
+    get: _0x2.createNativeFunction(function() {
       let _0x17 = this.native.response;
       return this.native.responseType === 'json' ? _0x2.nativeToPseudo(_0x17) : typeof _0x17 == 'string' ? _0x17.slice(0, 5242880) : _0x17;
     })
-  }), _0x2.setProperty(_0x15, 'open', _0x2.createNativeFunction(function (_0x17, _0x18, _0x1c, _0x1d, _0x1e) {
+  }), _0x2.setProperty(_0x15, 'open', _0x2.createNativeFunction(function(_0x17, _0x18, _0x1c, _0x1d, _0x1e) {
     if (!_0xd(_0x18))
       throw new Error(`XHR request blocked: URL "${ _0x18 }" is not allowed. Only absolute URLs to external origins are permitted.`);
     let _0x1f = [
@@ -525,7 +546,7 @@ function _0x2b(_0x2, _0x5, _0x6) {
     if (_0x17 = String(_0x17).toUpperCase(), !_0x1f.includes(_0x17))
       throw new Error(`HTTP method "${ _0x17 }" is not allowed`);
     _0x3.settings.logCalls && console.log(_0x6.domain, 'XMLHttpRequest open', this, _0x17, _0x18, _0x1c, _0x1d, _0x1e), this._method = _0x17, this._url = _0x18, this._async = _0x1c !== !1, this.native.open(_0x17, _0x18, this._async), this.native.timeout = 30000, _0x2.setProperty(this, 'readyState', this.native.readyState);
-  })), _0x2.setProperty(_0x15, 'setRequestHeader', _0x2.createNativeFunction(function (_0x17, _0x18) {
+  })), _0x2.setProperty(_0x15, 'setRequestHeader', _0x2.createNativeFunction(function(_0x17, _0x18) {
     if ([
         'cookie',
         'cookie2',
@@ -537,23 +558,30 @@ function _0x2b(_0x2, _0x5, _0x6) {
       ].includes(_0x17.toLowerCase()))
       throw new Error(`Setting header "${ _0x17 }" is not allowed`);
     _0x3.settings.logCalls && console.log(_0x6.domain, 'XMLHttpRequest setRequestHeader', this, _0x17, _0x18), this._headers[_0x17] = _0x18, this.native.setRequestHeader(_0x17, _0x18);
-  })), _0x2.setProperty(_0x15, 'send', _0x2.createNativeFunction(function (_0x17) {
+  })), _0x2.setProperty(_0x15, 'send', _0x2.createNativeFunction(function(_0x17) {
     if (_0xa >= 5)
       throw new Error('Maximum concurrent requests (5) exceeded');
     _0x3.settings.logCalls && console.log(_0x6.domain, 'XMLHttpRequest send', this, _0x17), _0xa++;
     let _0x18 = null;
     _0x17 != null && (typeof _0x17 == 'string' ? _0x18 = _0x17.slice(0, 5242880) : typeof _0x17 == 'object' && (_0x18 = JSON.stringify(_0x2.pseudoToNative(_0x17)))), this.native.send(_0x18);
-  })), _0x2.setProperty(_0x15, 'abort', _0x2.createNativeFunction(function () {
+  })), _0x2.setProperty(_0x15, 'abort', _0x2.createNativeFunction(function() {
     _0x3.settings.logCalls && console.log(_0x6.domain, 'XMLHttpRequest abort', this), this.native.abort(), _0xa = Math.max(0, _0xa - 1);
-  })), _0x2.setProperty(_0x15, 'getResponseHeader', _0x2.createNativeFunction(function (_0x17) {
+  })), _0x2.setProperty(_0x15, 'getResponseHeader', _0x2.createNativeFunction(function(_0x17) {
     return this.native.getResponseHeader(_0x17);
-  })), _0x2.setProperty(_0x15, 'getAllResponseHeaders', _0x2.createNativeFunction(function () {
+  })), _0x2.setProperty(_0x15, 'getAllResponseHeaders', _0x2.createNativeFunction(function() {
     return this.native.getAllResponseHeaders();
-  })), _0x2.setProperty(_0x15, 'overrideMimeType', _0x2.createNativeFunction(function (_0x17) {
+  })), _0x2.setProperty(_0x15, 'overrideMimeType', _0x2.createNativeFunction(function(_0x17) {
     this.native.overrideMimeType(_0x17);
   }));
 }
-var _0x2c = 'webtiles_storage', _0x2d = 1, _0x2e = 'localStorage', _0x2f = 1024 * 1024, _0x30 = 100, _0x31 = null, _0x32 = null;
+var _0x2c = 'webtiles_storage',
+  _0x2d = 1,
+  _0x2e = 'localStorage',
+  _0x2f = 1024 * 1024,
+  _0x30 = 100,
+  _0x31 = null,
+  _0x32 = null;
+
 function _0x33() {
   return _0x32 || (_0x32 = new Promise((_0x2, _0x5) => {
     let _0x6 = indexedDB.open(_0x2c, _0x2d);
@@ -566,7 +594,9 @@ function _0x33() {
           'site',
           'key'
         ]
-      }).createIndex('site', 'site', { unique: !1 });
+      }).createIndex('site', 'site', {
+        unique: !1
+      });
     };
   }), _0x32);
 }
@@ -630,9 +660,10 @@ async function _0x39(_0x2) {
     }, _0xa.onerror = () => _0x6(_0xa.error);
   });
 }
+
 function _0x3a(_0x2, _0x5, _0x6) {
   let _0x7 = _0x2.nativeToPseudo({});
-  _0x2.setProperty(_0x7, 'getItem', _0x2.createAsyncFunction(function (_0x8, _0x9) {
+  _0x2.setProperty(_0x7, 'getItem', _0x2.createAsyncFunction(function(_0x8, _0x9) {
     if (_0x3.settings.logCalls && console.log(_0x6, 'localStorage.getItem', this, _0x8), _0x8 == null) {
       _0x9(null);
       return;
@@ -640,7 +671,7 @@ function _0x3a(_0x2, _0x5, _0x6) {
     _0x8 = String(_0x8), _0x34(_0x6, _0x8).then(_0xa => _0x9(_0xa)).catch(_0xa => {
       console.error('localStorage.getItem error:', _0xa), _0x9(null);
     });
-  })), _0x2.setProperty(_0x7, 'setItem', _0x2.createAsyncFunction(function (_0x8, _0x9, _0xa) {
+  })), _0x2.setProperty(_0x7, 'setItem', _0x2.createAsyncFunction(function(_0x8, _0x9, _0xa) {
     if (_0x3.settings.logCalls && console.log(_0x6, 'localStorage.setItem', this, _0x8, _0x9), _0x8 == null) {
       _0xa();
       return;
@@ -652,7 +683,8 @@ function _0x3a(_0x2, _0x5, _0x6) {
       _0x34(_0x6, _0x8).then(_0xe => {
         if (_0xe === null && _0xd >= _0x30)
           throw new Error(`localStorage item limit exceeded (max ${ _0x30 } items)`);
-        let _0x13 = _0xe ? (_0x8.length + _0xe.length) * 2 : 0, _0x14 = (_0x8.length + _0x9.length) * 2;
+        let _0x13 = _0xe ? (_0x8.length + _0xe.length) * 2 : 0,
+          _0x14 = (_0x8.length + _0x9.length) * 2;
         if (_0xb - _0x13 + _0x14 > _0x2f)
           throw new Error(`localStorage size limit exceeded (max ${ _0x2f / 1024 }KB)`);
         return _0x35(_0x6, _0x8, _0x9);
@@ -662,7 +694,7 @@ function _0x3a(_0x2, _0x5, _0x6) {
     }).catch(_0xb => {
       console.error('localStorage.setItem error:', _0xb), _0xa();
     });
-  })), _0x2.setProperty(_0x7, 'removeItem', _0x2.createAsyncFunction(function (_0x8, _0x9) {
+  })), _0x2.setProperty(_0x7, 'removeItem', _0x2.createAsyncFunction(function(_0x8, _0x9) {
     if (_0x3.settings.logCalls && console.log(_0x6, 'localStorage.removeItem', this, _0x8), _0x8 == null) {
       _0x9();
       return;
@@ -670,18 +702,20 @@ function _0x3a(_0x2, _0x5, _0x6) {
     _0x8 = String(_0x8), _0x36(_0x6, _0x8).then(() => _0x9()).catch(_0xa => {
       console.error('localStorage.removeItem error:', _0xa), _0x9();
     });
-  })), _0x2.setProperty(_0x7, 'clear', _0x2.createAsyncFunction(function (_0x8) {
+  })), _0x2.setProperty(_0x7, 'clear', _0x2.createAsyncFunction(function(_0x8) {
     _0x3.settings.logCalls && console.log(_0x6, 'localStorage.clear', this), _0x39(_0x6).then(() => _0x8()).catch(_0x9 => {
       console.error('localStorage.clear error:', _0x9), _0x8();
     });
-  })), _0x2.setProperty(_0x7, 'key', _0x2.createAsyncFunction(function (_0x8, _0x9) {
+  })), _0x2.setProperty(_0x7, 'key', _0x2.createAsyncFunction(function(_0x8, _0x9) {
     _0x8 = parseInt(_0x8) || 0, _0x37(_0x6).then(_0xa => {
       _0x9(_0x8 >= 0 && _0x8 < _0xa.length ? _0xa[_0x8] : null);
     }).catch(_0xa => {
       console.error('localStorage.key error:', _0xa), _0x9(null);
     });
-  })), _0x2.setProperty(_0x7, 'getLength', _0x2.createAsyncFunction(function (_0x8) {
-    _0x38(_0x6).then(({count: _0x9}) => _0x8(_0x9)).catch(_0x9 => {
+  })), _0x2.setProperty(_0x7, 'getLength', _0x2.createAsyncFunction(function(_0x8) {
+    _0x38(_0x6).then(({
+      count: _0x9
+    }) => _0x8(_0x9)).catch(_0x9 => {
       console.error('localStorage.getLength error:', _0x9), _0x8(0);
     });
   })), _0x2.setProperty(_0x5, 'localStorage', _0x7), _0x2.setProperty(_0x5, 'sessionStorage', _0x7);
@@ -689,12 +723,12 @@ function _0x3a(_0x2, _0x5, _0x6) {
 _0x33().catch(_0x2 => {
   console.error('Failed to initialize storage DB:', _0x2);
 });
+
 function _0x3b(_0x2, _0x5, _0x6, _0x7) {
-  let _0x8 = _0x2.createNativeFunction(function () {
-  }, !0);
+  let _0x8 = _0x2.createNativeFunction(function() {}, !0);
   _0x2.setProperty(_0x5, 'DOMParser', _0x8);
   let _0x9 = _0x2.getProperty(_0x8, 'prototype');
-  _0x2.setProperty(_0x9, 'parseFromString', _0x2.createNativeFunction(function (_0xa, _0xb) {
+  _0x2.setProperty(_0x9, 'parseFromString', _0x2.createNativeFunction(function(_0xa, _0xb) {
     if (_0x3.settings.logCalls && console.log(_0x7.domain, 'DOMParser parseFromString', this, _0xa, _0xb), ![
         'text/html',
         'text/xml',
@@ -705,312 +739,342 @@ function _0x3b(_0x2, _0x5, _0x6, _0x7) {
       throw new Error(`DOMParser: Unsupported MIME type "${ _0xb }"`);
     if (typeof _0xa != 'string' && (_0xa = String(_0xa)), _0xa.length > 100000)
       throw new Error('DOMParser: Input string too large (max 100KB)');
-    let _0x12 = new DOMParser().parseFromString(_0xa, _0xb), _0x13 = _0x2.createObjectProto(_0x2.OBJECT_PROTO);
+    let _0x12 = new DOMParser().parseFromString(_0xa, _0xb),
+      _0x13 = _0x2.createObjectProto(_0x2.OBJECT_PROTO);
+
     function _0x14(_0x15) {
       if (_0x15 == null)
         return null;
       let _0x16 = _0x2.createObjectProto(_0x2.OBJECT_PROTO);
       return _0x16.native = _0x15, _0x16.fromDOMParser = !0, _0x2.setProperty(_0x16, 'nodeName', Interpreter.VALUE_IN_DESCRIPTOR, {
-        get: _0x2.createNativeFunction(function () {
+        get: _0x2.createNativeFunction(function() {
           return this.native.nodeName;
         })
       }), _0x2.setProperty(_0x16, 'nodeType', Interpreter.VALUE_IN_DESCRIPTOR, {
-        get: _0x2.createNativeFunction(function () {
+        get: _0x2.createNativeFunction(function() {
           return this.native.nodeType;
         })
       }), _0x2.setProperty(_0x16, 'nodeValue', Interpreter.VALUE_IN_DESCRIPTOR, {
-        get: _0x2.createNativeFunction(function () {
+        get: _0x2.createNativeFunction(function() {
           return this.native.nodeValue;
         }),
-        set: _0x2.createNativeFunction(function (_0x17) {
+        set: _0x2.createNativeFunction(function(_0x17) {
           _0x3.settings.logCalls && console.log(_0x7.domain, 'DOMParser set nodeValue', this, _0x17), this.native.nodeValue = _0x17;
         })
       }), _0x2.setProperty(_0x16, 'textContent', Interpreter.VALUE_IN_DESCRIPTOR, {
-        get: _0x2.createNativeFunction(function () {
+        get: _0x2.createNativeFunction(function() {
           return this.native.textContent;
         }),
-        set: _0x2.createNativeFunction(function (_0x17) {
+        set: _0x2.createNativeFunction(function(_0x17) {
           _0x3.settings.logCalls && console.log(_0x7.domain, 'DOMParser set textContent', this, _0x17), this.native.textContent = String(_0x17).slice(0, 50000);
         })
       }), _0x2.setProperty(_0x16, 'tagName', Interpreter.VALUE_IN_DESCRIPTOR, {
-        get: _0x2.createNativeFunction(function () {
+        get: _0x2.createNativeFunction(function() {
           return this.native.tagName;
         })
       }), _0x2.setProperty(_0x16, 'id', Interpreter.VALUE_IN_DESCRIPTOR, {
-        get: _0x2.createNativeFunction(function () {
+        get: _0x2.createNativeFunction(function() {
           return this.native.id;
         }),
-        set: _0x2.createNativeFunction(function (_0x17) {
+        set: _0x2.createNativeFunction(function(_0x17) {
           _0x3.settings.logCalls && console.log(_0x7.domain, 'DOMParser set id', this, _0x17), this.native.id = String(_0x17).slice(0, 100);
         })
       }), _0x2.setProperty(_0x16, 'className', Interpreter.VALUE_IN_DESCRIPTOR, {
-        get: _0x2.createNativeFunction(function () {
+        get: _0x2.createNativeFunction(function() {
           return this.native.className;
         }),
-        set: _0x2.createNativeFunction(function (_0x17) {
+        set: _0x2.createNativeFunction(function(_0x17) {
           _0x3.settings.logCalls && console.log(_0x7.domain, 'DOMParser set className', this, _0x17), this.native.className = String(_0x17).slice(0, 1000);
         })
       }), _0x2.setProperty(_0x16, 'innerHTML', Interpreter.VALUE_IN_DESCRIPTOR, {
-        get: _0x2.createNativeFunction(function () {
+        get: _0x2.createNativeFunction(function() {
           return this.native.innerHTML;
         }),
-        set: _0x2.createNativeFunction(function (_0x17) {
+        set: _0x2.createNativeFunction(function(_0x17) {
           throw new Error('innerHTML is not allowed. Create elements using document.createElement and append them instead or use innerText instead.');
         })
       }), _0x2.setProperty(_0x16, 'outerHTML', Interpreter.VALUE_IN_DESCRIPTOR, {
-        get: _0x2.createNativeFunction(function () {
+        get: _0x2.createNativeFunction(function() {
           return this.native.outerHTML;
         })
       }), _0x2.setProperty(_0x16, 'children', Interpreter.VALUE_IN_DESCRIPTOR, {
-        get: _0x2.createNativeFunction(function () {
-          let _0x17 = Array.from(this.native.children), _0x18 = _0x2.createObjectProto(_0x2.ARRAY_PROTO);
+        get: _0x2.createNativeFunction(function() {
+          let _0x17 = Array.from(this.native.children),
+            _0x18 = _0x2.createObjectProto(_0x2.ARRAY_PROTO);
           for (let _0x1c = 0; _0x1c < _0x17.length; _0x1c++)
             _0x2.setProperty(_0x18, _0x1c, _0x14(_0x17[_0x1c]));
           return _0x2.setProperty(_0x18, 'length', _0x17.length), _0x18;
         })
       }), _0x2.setProperty(_0x16, 'childNodes', Interpreter.VALUE_IN_DESCRIPTOR, {
-        get: _0x2.createNativeFunction(function () {
-          let _0x17 = Array.from(this.native.childNodes), _0x18 = _0x2.createObjectProto(_0x2.ARRAY_PROTO);
+        get: _0x2.createNativeFunction(function() {
+          let _0x17 = Array.from(this.native.childNodes),
+            _0x18 = _0x2.createObjectProto(_0x2.ARRAY_PROTO);
           for (let _0x1c = 0; _0x1c < _0x17.length; _0x1c++)
             _0x2.setProperty(_0x18, _0x1c, _0x14(_0x17[_0x1c]));
           return _0x2.setProperty(_0x18, 'length', _0x17.length), _0x18;
         })
       }), _0x2.setProperty(_0x16, 'firstChild', Interpreter.VALUE_IN_DESCRIPTOR, {
-        get: _0x2.createNativeFunction(function () {
+        get: _0x2.createNativeFunction(function() {
           return _0x14(this.native.firstChild);
         })
       }), _0x2.setProperty(_0x16, 'lastChild', Interpreter.VALUE_IN_DESCRIPTOR, {
-        get: _0x2.createNativeFunction(function () {
+        get: _0x2.createNativeFunction(function() {
           return _0x14(this.native.lastChild);
         })
       }), _0x2.setProperty(_0x16, 'firstElementChild', Interpreter.VALUE_IN_DESCRIPTOR, {
-        get: _0x2.createNativeFunction(function () {
+        get: _0x2.createNativeFunction(function() {
           return _0x14(this.native.firstElementChild);
         })
       }), _0x2.setProperty(_0x16, 'lastElementChild', Interpreter.VALUE_IN_DESCRIPTOR, {
-        get: _0x2.createNativeFunction(function () {
+        get: _0x2.createNativeFunction(function() {
           return _0x14(this.native.lastElementChild);
         })
       }), _0x2.setProperty(_0x16, 'parentNode', Interpreter.VALUE_IN_DESCRIPTOR, {
-        get: _0x2.createNativeFunction(function () {
+        get: _0x2.createNativeFunction(function() {
           if (!this.fromDOMParser)
             throw new Error('No access.');
           return this.native.isSameNode(_0x6) ? null : (_0x3.settings.logCalls && console.log(_0x7.domain, 'DOMParser get parentNode', this), _0x14(this.native.parentNode));
         })
       }), _0x2.setProperty(_0x16, 'parentElement', Interpreter.VALUE_IN_DESCRIPTOR, {
-        get: _0x2.createNativeFunction(function () {
+        get: _0x2.createNativeFunction(function() {
           if (!this.fromDOMParser)
             throw new Error('No access.');
           return this.native.isSameNode(_0x6) ? null : (_0x3.settings.logCalls && console.log(_0x7.domain, 'DOMParser get parentElement', this), _0x14(this.native.parentElement));
         })
       }), _0x2.setProperty(_0x16, 'nextSibling', Interpreter.VALUE_IN_DESCRIPTOR, {
-        get: _0x2.createNativeFunction(function () {
+        get: _0x2.createNativeFunction(function() {
           if (!this.fromDOMParser)
             throw new Error('No access.');
           return this.native.isSameNode(_0x6) ? null : (_0x3.settings.logCalls && console.log(_0x7.domain, 'DOMParser get nextSibling', this), _0x14(this.native.nextSibling));
         })
       }), _0x2.setProperty(_0x16, 'previousSibling', Interpreter.VALUE_IN_DESCRIPTOR, {
-        get: _0x2.createNativeFunction(function () {
+        get: _0x2.createNativeFunction(function() {
           if (!this.fromDOMParser)
             throw new Error('No access.');
           return this.native.isSameNode(_0x6) ? null : (_0x3.settings.logCalls && console.log(_0x7.domain, 'DOMParser get previousSibling', this), _0x14(this.native.previousSibling));
         })
-      }), _0x2.setProperty(_0x16, 'getAttributeNames', _0x2.createNativeFunction(function () {
+      }), _0x2.setProperty(_0x16, 'getAttributeNames', _0x2.createNativeFunction(function() {
         if (!this.fromDOMParser)
           throw new Error('No access.');
-        let _0x17 = Array.from(this.native.getAttributeNames()), _0x18 = _0x2.createObjectProto(_0x2.ARRAY_PROTO);
+        let _0x17 = Array.from(this.native.getAttributeNames()),
+          _0x18 = _0x2.createObjectProto(_0x2.ARRAY_PROTO);
         for (let _0x1c = 0; _0x1c < _0x17.length; _0x1c++)
           _0x2.setProperty(_0x18, _0x1c, _0x17[_0x1c]);
         return _0x2.setProperty(_0x18, 'length', _0x17.length), _0x18;
-      })), _0x2.setProperty(_0x16, 'getAttribute', _0x2.createNativeFunction(function (_0x17) {
+      })), _0x2.setProperty(_0x16, 'getAttribute', _0x2.createNativeFunction(function(_0x17) {
         if (!this.fromDOMParser)
           throw new Error('No access.');
         return this.native.getAttribute(_0x17);
-      })), _0x2.setProperty(_0x16, 'setAttribute', _0x2.createNativeFunction(function (_0x17, _0x18) {
+      })), _0x2.setProperty(_0x16, 'setAttribute', _0x2.createNativeFunction(function(_0x17, _0x18) {
         if (!this.fromDOMParser)
           throw new Error('No access.');
         if (_0x17 = String(_0x17).toLowerCase(), _0x17.startsWith('on'))
           throw new Error('Event handlers are not allowed');
         this.native.setAttribute(_0x17, String(_0x18)), _0x3.settings.logCalls && console.log(_0x7.domain, 'DOMParser set attribute', this, _0x17, _0x18);
-      })), _0x2.setProperty(_0x16, 'hasAttribute', _0x2.createNativeFunction(function (_0x17) {
+      })), _0x2.setProperty(_0x16, 'hasAttribute', _0x2.createNativeFunction(function(_0x17) {
         if (!this.fromDOMParser)
           throw new Error('No access.');
         return this.native.hasAttribute(_0x17);
-      })), _0x2.setProperty(_0x16, 'removeAttribute', _0x2.createNativeFunction(function (_0x17) {
+      })), _0x2.setProperty(_0x16, 'removeAttribute', _0x2.createNativeFunction(function(_0x17) {
         if (!this.fromDOMParser)
           throw new Error('No access.');
         if (this.native.isSameNode(_0x6))
           throw new Error('No access.');
         this.native.removeAttribute(_0x17), _0x3.settings.logCalls && console.log(_0x7.domain, 'DOMParser remove attribute', this, _0x17);
-      })), _0x2.setProperty(_0x16, 'querySelector', _0x2.createNativeFunction(function (_0x17) {
+      })), _0x2.setProperty(_0x16, 'querySelector', _0x2.createNativeFunction(function(_0x17) {
         if (!this.fromDOMParser)
           throw new Error('No access.');
         return _0x14(this.native.querySelector(_0x17));
-      })), _0x2.setProperty(_0x16, 'querySelectorAll', _0x2.createNativeFunction(function (_0x17) {
+      })), _0x2.setProperty(_0x16, 'querySelectorAll', _0x2.createNativeFunction(function(_0x17) {
         if (!this.fromDOMParser)
           throw new Error('No access.');
-        let _0x18 = Array.from(this.native.querySelectorAll(_0x17)), _0x1c = _0x2.createObjectProto(_0x2.ARRAY_PROTO);
+        let _0x18 = Array.from(this.native.querySelectorAll(_0x17)),
+          _0x1c = _0x2.createObjectProto(_0x2.ARRAY_PROTO);
         for (let _0x1d = 0; _0x1d < _0x18.length; _0x1d++)
           _0x2.setProperty(_0x1c, _0x1d, _0x14(_0x18[_0x1d]));
         return _0x2.setProperty(_0x1c, 'length', _0x18.length), _0x1c;
-      })), _0x2.setProperty(_0x16, 'getElementsByTagName', _0x2.createNativeFunction(function (_0x17) {
+      })), _0x2.setProperty(_0x16, 'getElementsByTagName', _0x2.createNativeFunction(function(_0x17) {
         if (!this.fromDOMParser)
           throw new Error('No access.');
-        let _0x18 = Array.from(this.native.getElementsByTagName(_0x17)), _0x1c = _0x2.createObjectProto(_0x2.ARRAY_PROTO);
+        let _0x18 = Array.from(this.native.getElementsByTagName(_0x17)),
+          _0x1c = _0x2.createObjectProto(_0x2.ARRAY_PROTO);
         for (let _0x1d = 0; _0x1d < _0x18.length; _0x1d++)
           _0x2.setProperty(_0x1c, _0x1d, _0x14(_0x18[_0x1d]));
         return _0x2.setProperty(_0x1c, 'length', _0x18.length), _0x1c;
-      })), _0x2.setProperty(_0x16, 'getElementsByClassName', _0x2.createNativeFunction(function (_0x17) {
+      })), _0x2.setProperty(_0x16, 'getElementsByClassName', _0x2.createNativeFunction(function(_0x17) {
         if (!this.fromDOMParser)
           throw new Error('No access.');
-        let _0x18 = Array.from(this.native.getElementsByClassName(_0x17)), _0x1c = _0x2.createObjectProto(_0x2.ARRAY_PROTO);
+        let _0x18 = Array.from(this.native.getElementsByClassName(_0x17)),
+          _0x1c = _0x2.createObjectProto(_0x2.ARRAY_PROTO);
         for (let _0x1d = 0; _0x1d < _0x18.length; _0x1d++)
           _0x2.setProperty(_0x1c, _0x1d, _0x14(_0x18[_0x1d]));
         return _0x2.setProperty(_0x1c, 'length', _0x18.length), _0x1c;
-      })), _0x2.setProperty(_0x16, 'getElementById', _0x2.createNativeFunction(function (_0x17) {
+      })), _0x2.setProperty(_0x16, 'getElementById', _0x2.createNativeFunction(function(_0x17) {
         if (!this.fromDOMParser)
           throw new Error('No access.');
         return _0x14(this.native.getElementById ? this.native.getElementById(_0x17) : null);
       })), _0x16;
     }
     return _0x2.setProperty(_0x13, 'documentElement', Interpreter.VALUE_IN_DESCRIPTOR, {
-      get: _0x2.createNativeFunction(function () {
+      get: _0x2.createNativeFunction(function() {
         return _0x14(_0x12.documentElement);
       })
     }), _0x2.setProperty(_0x13, 'head', Interpreter.VALUE_IN_DESCRIPTOR, {
-      get: _0x2.createNativeFunction(function () {
+      get: _0x2.createNativeFunction(function() {
         return _0x3.settings.logCalls && console.log(_0x7.domain, 'DOMParser get head', this), _0x14(_0x12.head);
       })
     }), _0x2.setProperty(_0x13, 'body', Interpreter.VALUE_IN_DESCRIPTOR, {
-      get: _0x2.createNativeFunction(function () {
+      get: _0x2.createNativeFunction(function() {
         return _0x3.settings.logCalls && console.log(_0x7.domain, 'DOMParser get body', this), _0x14(_0x12.body);
       })
     }), _0x2.setProperty(_0x13, 'title', Interpreter.VALUE_IN_DESCRIPTOR, {
-      get: _0x2.createNativeFunction(function () {
+      get: _0x2.createNativeFunction(function() {
         return _0x12.title;
       })
-    }), _0x2.setProperty(_0x13, 'querySelector', _0x2.createNativeFunction(function (_0x15) {
+    }), _0x2.setProperty(_0x13, 'querySelector', _0x2.createNativeFunction(function(_0x15) {
       return _0x14(_0x12.querySelector(_0x15));
-    })), _0x2.setProperty(_0x13, 'querySelectorAll', _0x2.createNativeFunction(function (_0x15) {
-      let _0x16 = Array.from(_0x12.querySelectorAll(_0x15)), _0x17 = _0x2.createObjectProto(_0x2.ARRAY_PROTO);
+    })), _0x2.setProperty(_0x13, 'querySelectorAll', _0x2.createNativeFunction(function(_0x15) {
+      let _0x16 = Array.from(_0x12.querySelectorAll(_0x15)),
+        _0x17 = _0x2.createObjectProto(_0x2.ARRAY_PROTO);
       for (let _0x18 = 0; _0x18 < _0x16.length; _0x18++)
         _0x2.setProperty(_0x17, _0x18, _0x14(_0x16[_0x18]));
       return _0x2.setProperty(_0x17, 'length', _0x16.length), _0x17;
-    })), _0x2.setProperty(_0x13, 'getElementById', _0x2.createNativeFunction(function (_0x15) {
+    })), _0x2.setProperty(_0x13, 'getElementById', _0x2.createNativeFunction(function(_0x15) {
       return _0x14(_0x12.getElementById(_0x15));
-    })), _0x2.setProperty(_0x13, 'getElementsByTagName', _0x2.createNativeFunction(function (_0x15) {
-      let _0x16 = Array.from(_0x12.getElementsByTagName(_0x15)), _0x17 = _0x2.createObjectProto(_0x2.ARRAY_PROTO);
+    })), _0x2.setProperty(_0x13, 'getElementsByTagName', _0x2.createNativeFunction(function(_0x15) {
+      let _0x16 = Array.from(_0x12.getElementsByTagName(_0x15)),
+        _0x17 = _0x2.createObjectProto(_0x2.ARRAY_PROTO);
       for (let _0x18 = 0; _0x18 < _0x16.length; _0x18++)
         _0x2.setProperty(_0x17, _0x18, _0x14(_0x16[_0x18]));
       return _0x2.setProperty(_0x17, 'length', _0x16.length), _0x17;
-    })), _0x2.setProperty(_0x13, 'getElementsByClassName', _0x2.createNativeFunction(function (_0x15) {
-      let _0x16 = Array.from(_0x12.getElementsByClassName(_0x15)), _0x17 = _0x2.createObjectProto(_0x2.ARRAY_PROTO);
+    })), _0x2.setProperty(_0x13, 'getElementsByClassName', _0x2.createNativeFunction(function(_0x15) {
+      let _0x16 = Array.from(_0x12.getElementsByClassName(_0x15)),
+        _0x17 = _0x2.createObjectProto(_0x2.ARRAY_PROTO);
       for (let _0x18 = 0; _0x18 < _0x16.length; _0x18++)
         _0x2.setProperty(_0x17, _0x18, _0x14(_0x16[_0x18]));
       return _0x2.setProperty(_0x17, 'length', _0x16.length), _0x17;
     })), _0x13;
   }));
 }
+
 function _0x3c(_0x2, _0x5, _0x6, _0x7) {
-  let _0x8 = new WeakMap(), _0x9 = 1000, _0xa = 5, _0xb = new WeakMap(), _0xd = 0, _0xe = _0x2.nativeToPseudo({});
+  let _0x8 = new WeakMap(),
+    _0x9 = 1000,
+    _0xa = 5,
+    _0xb = new WeakMap(),
+    _0xd = 0,
+    _0xe = _0x2.nativeToPseudo({});
   _0x2.setProperty(_0x5, '__eventCallbacks', _0xe);
+
   function _0x12(_0x2a, _0x3d) {
     let _0x3e = _0xd++;
     _0x2.setProperty(_0xe, 'fn' + _0x3e, _0x2a), _0x2.setProperty(_0xe, 'ev' + _0x3e, _0x3d), _0x2.appendCode(`__eventCallbacks.fn${ _0x3e }(__eventCallbacks.ev${ _0x3e }); delete __eventCallbacks.fn${ _0x3e }; delete __eventCallbacks.ev${ _0x3e };`);
   }
+
   function _0x13() {
     return _0x6.getElementsByTagName('*').length;
   }
+
   function _0x14(_0x2a = 1) {
     if (_0x13() + _0x2a > _0x9)
       throw new Error(`DOM element limit exceeded (max ${ _0x9 })`);
   }
+
   function _0x15(_0x2a) {
     return _0x2a instanceof Element ? 1 + _0x2a.getElementsByTagName('*').length : 0;
   }
+
   function _0x16(_0x2a, _0x3d = !1) {
     if (_0x2a == null)
       return null;
     if (_0x8.has(_0x2a))
       return _0x8.get(_0x2a);
-    let _0x3e = _0x2a instanceof Element ? _0x22 : _0x1d, _0x3f = _0x2.createObject(_0x3e);
+    let _0x3e = _0x2a instanceof Element ? _0x22 : _0x1d,
+      _0x3f = _0x2.createObject(_0x3e);
     return _0x3f.native = _0x2a, _0x3f.fromDOMParser || (_0x3f.fromDOMParser = _0x3d), _0x8.set(_0x2a, _0x3f), _0x3f;
   }
+
   function _0x17(_0x2a) {
     return _0x2a && _0x6.contains(_0x2a);
   }
+
   function _0x18(_0x2a) {
     return _0x17(_0x2a) ? _0x2a : null;
   }
+
   function _0x1c(_0x2a) {
     let _0x3d = _0x2.createObjectProto(_0x2.ARRAY_PROTO);
     for (let _0x3e = 0; _0x3e < _0x2a.length; _0x3e++)
       _0x2.setProperty(_0x3d, _0x3e, _0x16(_0x2a[_0x3e]));
     return _0x2.setProperty(_0x3d, 'length', _0x2a.length), _0x3d;
   }
-  let _0x1d = _0x2.createNativeFunction(function () {
+  let _0x1d = _0x2.createNativeFunction(function() {
     throw TypeError('Illegal constructor');
   }, !0);
   _0x2.setProperty(_0x5, 'Node', _0x1d);
-  let _0x1e = _0x2.getProperty(_0x1d, 'prototype'), _0x1f = {
-      firstChild: function () {
+  let _0x1e = _0x2.getProperty(_0x1d, 'prototype'),
+    _0x1f = {
+      firstChild: function() {
         return _0x16(_0x18(this.native.firstChild));
       },
-      lastChild: function () {
+      lastChild: function() {
         return _0x16(_0x18(this.native.lastChild));
       },
-      parentNode: function () {
+      parentNode: function() {
         return _0x16(_0x18(this.native.parentNode));
       },
-      parentElement: function () {
+      parentElement: function() {
         return _0x16(_0x18(this.native.parentElement));
       },
-      nextSibling: function () {
+      nextSibling: function() {
         return _0x16(_0x18(this.native.nextSibling));
       },
-      previousSibling: function () {
+      previousSibling: function() {
         return _0x16(_0x18(this.native.previousSibling));
       },
-      childNodes: function () {
+      childNodes: function() {
         let _0x2a = Array.from(this.native.childNodes).filter(_0x17);
         return _0x1c(_0x2a);
       },
-      nodeName: function () {
+      nodeName: function() {
         return this.native.nodeName;
       },
-      nodeType: function () {
+      nodeType: function() {
         return this.native.nodeType;
       },
-      nodeValue: function () {
+      nodeValue: function() {
         return this.native.nodeValue;
       },
-      textContent: function () {
+      textContent: function() {
         return this.native.textContent;
       }
-    }, _0x20 = {
-      textContent: function (_0x2a) {
+    },
+    _0x20 = {
+      textContent: function(_0x2a) {
         _0x3.settings.logCalls && console.log(_0x7.domain, 'set textContent', this, _0x2a), this.native.textContent = _0x2a;
       },
-      nodeValue: function (_0x2a) {
+      nodeValue: function(_0x2a) {
         _0x3.settings.logCalls && console.log(_0x7.domain, 'set nodeValue', this, _0x2a), this.native.nodeValue = _0x2a;
       }
     };
   for (let [_0x2a, _0x3d] of Object.entries(_0x1f)) {
-    let _0x3e = { get: _0x2.createNativeFunction(_0x3d) };
+    let _0x3e = {
+      get: _0x2.createNativeFunction(_0x3d)
+    };
     _0x20[_0x2a] && (_0x3e.set = _0x2.createNativeFunction(_0x20[_0x2a])), _0x2.setProperty(_0x1e, _0x2a, Interpreter.VALUE_IN_DESCRIPTOR, _0x3e);
   }
   let _0x21 = {
-    hasChildNodes: function () {
+    hasChildNodes: function() {
       return this.native.hasChildNodes();
     },
-    appendChild: function (_0x2a) {
+    appendChild: function(_0x2a) {
       if (!_0x2a?.native)
         return null;
       if (_0x2a.fromDOMParser)
         throw new Error('You cannot append DOMParser elements to the DOM.');
       return _0x14(_0x15(_0x2a.native)), this.native.appendChild(_0x2a.native), _0x3.settings.logCalls && console.log(_0x7.domain, 'appendChild', this, _0x2a), _0x2a;
     },
-    append: function (_0x2a) {
+    append: function(_0x2a) {
       for (let _0x3d of _0x2a)
         if (_0x3d?.native) {
           if (_0x3d.fromDOMParser)
@@ -1019,10 +1083,10 @@ function _0x3c(_0x2, _0x5, _0x6, _0x7) {
         }
       return _0x3.settings.logCalls && console.log(_0x7.domain, 'append', this, _0x2a), _0x2a;
     },
-    removeChild: function (_0x2a) {
+    removeChild: function(_0x2a) {
       return !_0x2a?.native || !_0x17(_0x2a.native) ? null : (_0x3.settings.logCalls && console.log(_0x7.domain, 'removeChild', this, _0x2a), _0x16(this.native.removeChild(_0x2a.native)));
     },
-    insertBefore: function (_0x2a, _0x3d) {
+    insertBefore: function(_0x2a, _0x3d) {
       if (!_0x2a?.native)
         return null;
       if (_0x2a.fromDOMParser)
@@ -1033,18 +1097,18 @@ function _0x3c(_0x2, _0x5, _0x6, _0x7) {
       let _0x3e = _0x3d?.native || null;
       return this.native.insertBefore(_0x2a.native, _0x3e), _0x3.settings.logCalls && console.log(_0x7.domain, 'insertBefore', this, _0x2a, _0x3e), _0x2a;
     },
-    cloneNode: function (_0x2a) {
+    cloneNode: function(_0x2a) {
       return _0x3.settings.logCalls && console.log(_0x7.domain, 'cloneNode', this, _0x2a), _0x16(this.native.cloneNode(_0x2a), this.fromDOMParser);
     },
-    contains: function (_0x2a) {
+    contains: function(_0x2a) {
       return _0x2a?.native ? this.native.contains(_0x2a.native) : !1;
     },
-    remove: function () {
+    remove: function() {
       if (this.native.isSameNode(_0x6))
         throw new Error('No access.');
       this.native.remove(), _0x3.settings.logCalls && console.log(_0x7.domain, 'remove', this);
     },
-    after: function (_0x2a) {
+    after: function(_0x2a) {
       if (!_0x2a?.native)
         return null;
       if (_0x2a.fromDOMParser)
@@ -1053,7 +1117,7 @@ function _0x3c(_0x2, _0x5, _0x6, _0x7) {
         throw new Error('No access.');
       return _0x14(_0x15(_0x2a.native)), this.native.after(_0x2a.native), _0x3.settings.logCalls && console.log(_0x7.domain, 'after', this, _0x2a), _0x2a;
     },
-    before: function (_0x2a) {
+    before: function(_0x2a) {
       if (!_0x2a?.native)
         return null;
       if (_0x2a.fromDOMParser)
@@ -1065,12 +1129,13 @@ function _0x3c(_0x2, _0x5, _0x6, _0x7) {
   };
   for (let [_0x2a, _0x3d] of Object.entries(_0x21))
     _0x2.setProperty(_0x1e, _0x2a, _0x2.createNativeFunction(_0x3d));
-  let _0x22 = _0x2.createNativeFunction(function () {
+  let _0x22 = _0x2.createNativeFunction(function() {
     throw TypeError('Illegal constructor');
   }, !0);
   _0x2.setProperty(_0x5, 'Element', _0x22);
   let _0x23 = _0x2.createObject(_0x1d);
   _0x2.setProperty(_0x22, 'prototype', _0x23);
+
   function _0x11(_0x2a) {
     if (!_0x2a)
       return '';
@@ -1094,278 +1159,279 @@ function _0x3c(_0x2, _0x5, _0x6, _0x7) {
     }
   }
   let _0x26 = {
-      innerText: function () {
+      innerText: function() {
         return this.native.innerText;
       },
-      innerHTML: function () {
+      innerHTML: function() {
         return this.native.innerHTML;
       },
-      outerHTML: function () {
+      outerHTML: function() {
         return this.native.outerHTML;
       },
-      id: function () {
+      id: function() {
         return this.native.id;
       },
-      className: function () {
+      className: function() {
         return this.native.className;
       },
-      tagName: function () {
+      tagName: function() {
         return this.native.tagName;
       },
-      children: function () {
+      children: function() {
         let _0x2a = Array.from(this.native.children).filter(_0x17);
         return _0x1c(_0x2a);
       },
-      firstElementChild: function () {
+      firstElementChild: function() {
         return _0x16(_0x18(this.native.firstElementChild));
       },
-      lastElementChild: function () {
+      lastElementChild: function() {
         return _0x16(_0x18(this.native.lastElementChild));
       },
-      nextElementSibling: function () {
+      nextElementSibling: function() {
         return _0x16(_0x18(this.native.nextElementSibling));
       },
-      previousElementSibling: function () {
+      previousElementSibling: function() {
         return _0x16(_0x18(this.native.previousElementSibling));
       },
-      childElementCount: function () {
+      childElementCount: function() {
         return this.native.childElementCount;
       },
-      src: function () {
+      src: function() {
         return this.native.src;
       },
-      href: function () {
+      href: function() {
         return this.native.href;
       },
-      hidden: function () {
+      hidden: function() {
         return this.native.hidden;
       },
-      disabled: function () {
+      disabled: function() {
         return this.native.disabled;
       },
-      checked: function () {
+      checked: function() {
         return this.native.checked;
       },
-      selected: function () {
+      selected: function() {
         return this.native.selected;
       },
-      readOnly: function () {
+      readOnly: function() {
         return this.native.readOnly;
       },
-      required: function () {
+      required: function() {
         return this.native.required;
       },
-      draggable: function () {
+      draggable: function() {
         return this.native.draggable;
       },
-      title: function () {
+      title: function() {
         return this.native.title;
       },
-      alt: function () {
+      alt: function() {
         return this.native.alt;
       },
-      name: function () {
+      name: function() {
         return this.native.name;
       },
-      type: function () {
+      type: function() {
         return this.native.type;
       },
-      value: function () {
+      value: function() {
         return this.native.value;
       },
-      placeholder: function () {
+      placeholder: function() {
         return this.native.placeholder;
       },
-      tabIndex: function () {
+      tabIndex: function() {
         return this.native.tabIndex;
       },
-      offsetWidth: function () {
+      offsetWidth: function() {
         return this.native.offsetWidth;
       },
-      offsetHeight: function () {
+      offsetHeight: function() {
         return this.native.offsetHeight;
       },
-      offsetTop: function () {
+      offsetTop: function() {
         return this.native.offsetTop;
       },
-      offsetLeft: function () {
+      offsetLeft: function() {
         return this.native.offsetLeft;
       },
-      clientWidth: function () {
+      clientWidth: function() {
         return this.native.clientWidth;
       },
-      clientHeight: function () {
+      clientHeight: function() {
         return this.native.clientHeight;
       },
-      scrollWidth: function () {
+      scrollWidth: function() {
         return this.native.scrollWidth;
       },
-      scrollHeight: function () {
+      scrollHeight: function() {
         return this.native.scrollHeight;
       },
-      scrollTop: function () {
+      scrollTop: function() {
         return this.native.scrollTop;
       },
-      scrollLeft: function () {
+      scrollLeft: function() {
         return this.native.scrollLeft;
       },
-      currentTime: function () {
+      currentTime: function() {
         return this.native.currentTime || 0;
       },
-      duration: function () {
+      duration: function() {
         return this.native.duration || 0;
       },
-      paused: function () {
+      paused: function() {
         return this.native.paused !== void 0 ? this.native.paused : !0;
       },
-      ended: function () {
+      ended: function() {
         return this.native.ended || !1;
       },
-      muted: function () {
+      muted: function() {
         return this.native.muted || !1;
       },
-      volume: function () {
+      volume: function() {
         return this.native.volume !== void 0 ? this.native.volume : 1;
       },
-      loop: function () {
+      loop: function() {
         return this.native.loop || !1;
       },
-      autoplay: function () {
+      autoplay: function() {
         return this.native.autoplay || !1;
       },
-      controls: function () {
+      controls: function() {
         return this.native.controls || !1;
       },
-      playbackRate: function () {
+      playbackRate: function() {
         return this.native.playbackRate !== void 0 ? this.native.playbackRate : 1;
       },
-      defaultPlaybackRate: function () {
+      defaultPlaybackRate: function() {
         return this.native.defaultPlaybackRate !== void 0 ? this.native.defaultPlaybackRate : 1;
       },
-      currentSrc: function () {
+      currentSrc: function() {
         return this.native.currentSrc || '';
       },
-      readyState: function () {
+      readyState: function() {
         return this.native.readyState || 0;
       },
-      networkState: function () {
+      networkState: function() {
         return this.native.networkState || 0;
       },
-      seeking: function () {
+      seeking: function() {
         return this.native.seeking || !1;
       },
-      preload: function () {
+      preload: function() {
         return this.native.preload || 'auto';
       },
-      poster: function () {
+      poster: function() {
         return this.native.poster || '';
       },
-      videoWidth: function () {
+      videoWidth: function() {
         return this.native.videoWidth || 0;
       },
-      videoHeight: function () {
+      videoHeight: function() {
         return this.native.videoHeight || 0;
       }
-    }, _0x27 = {
-      innerText: function (_0x2a) {
+    },
+    _0x27 = {
+      innerText: function(_0x2a) {
         this.native.innerText = _0x2a.slice(0, 1000);
       },
-      innerHTML: function (_0x2a) {
+      innerHTML: function(_0x2a) {
         throw new Error('innerHTML is not allowed. Create elements using document.createElement and append them instead or use innerText instead.');
       },
-      id: function (_0x2a) {
+      id: function(_0x2a) {
         if (this.native.className === 'tile-body')
           throw new Error('No access.');
         this.native.id = _0x2a, _0x3.settings.logCalls && console.log(_0x7.domain, 'set id', this, _0x2a);
       },
-      className: function (_0x2a) {
+      className: function(_0x2a) {
         if (this.native.className === 'tile-body')
           throw new Error('No access.');
         this.native.className = _0x2a, _0x3.settings.logCalls && console.log(_0x7.domain, 'set className', this, _0x2a);
       },
-      src: function (_0x2a) {
+      src: function(_0x2a) {
         this.native.src = _0x11(_0x2a), _0x3.settings.logCalls && console.log(_0x7.domain, 'set src', this, _0x2a);
       },
-      href: function (_0x2a) {
+      href: function(_0x2a) {
         this.native.href = this.native.tagName === 'A' ? _0x2a : _0x11(_0x2a), _0x3.settings.logCalls && console.log(_0x7.domain, 'set href', this, _0x2a);
       },
-      hidden: function (_0x2a) {
+      hidden: function(_0x2a) {
         if (this.native.className === 'tile-body')
           throw new Error('No access.');
         this.native.hidden = !!_0x2a;
       },
-      disabled: function (_0x2a) {
+      disabled: function(_0x2a) {
         if (this.native.className === 'tile-body')
           throw new Error('No access.');
         this.native.disabled = !!_0x2a;
       },
-      checked: function (_0x2a) {
+      checked: function(_0x2a) {
         this.native.checked = !!_0x2a;
       },
-      selected: function (_0x2a) {
+      selected: function(_0x2a) {
         this.native.selected = !!_0x2a;
       },
-      readOnly: function (_0x2a) {
+      readOnly: function(_0x2a) {
         this.native.readOnly = !!_0x2a;
       },
-      required: function (_0x2a) {
+      required: function(_0x2a) {
         this.native.required = !!_0x2a;
       },
-      draggable: function (_0x2a) {
+      draggable: function(_0x2a) {
         this.native.draggable = !!_0x2a;
       },
-      title: function (_0x2a) {
+      title: function(_0x2a) {
         this.native.title = String(_0x2a).slice(0, 1000);
       },
-      alt: function (_0x2a) {
+      alt: function(_0x2a) {
         this.native.alt = String(_0x2a).slice(0, 1000);
       },
-      name: function (_0x2a) {
+      name: function(_0x2a) {
         this.native.name = String(_0x2a).slice(0, 100);
       },
-      type: function (_0x2a) {
+      type: function(_0x2a) {
         this.native.type = String(_0x2a).slice(0, 50);
       },
-      value: function (_0x2a) {
+      value: function(_0x2a) {
         this.native.value = String(_0x2a).slice(0, 10000);
       },
-      placeholder: function (_0x2a) {
+      placeholder: function(_0x2a) {
         this.native.placeholder = String(_0x2a).slice(0, 500);
       },
-      tabIndex: function (_0x2a) {
+      tabIndex: function(_0x2a) {
         this.native.tabIndex = parseInt(_0x2a) || 0;
       },
-      scrollTop: function (_0x2a) {
+      scrollTop: function(_0x2a) {
         this.native.scrollTop = _0x2a;
       },
-      scrollLeft: function (_0x2a) {
+      scrollLeft: function(_0x2a) {
         this.native.scrollLeft = _0x2a;
       },
-      currentTime: function (_0x2a) {
+      currentTime: function(_0x2a) {
         this.native instanceof HTMLMediaElement && (this.native.currentTime = Math.max(0, Number(_0x2a) || 0));
       },
-      muted: function (_0x2a) {
+      muted: function(_0x2a) {
         this.native instanceof HTMLMediaElement && (this.native.muted = !!_0x2a);
       },
-      volume: function (_0x2a) {
+      volume: function(_0x2a) {
         this.native instanceof HTMLMediaElement && (this.native.volume = Math.max(0, Math.min(1, Number(_0x2a) || 0)));
       },
-      loop: function (_0x2a) {
+      loop: function(_0x2a) {
         this.native instanceof HTMLMediaElement && (this.native.loop = !!_0x2a);
       },
-      autoplay: function (_0x2a) {
+      autoplay: function(_0x2a) {
         this.native instanceof HTMLMediaElement && (this.native.autoplay = !!_0x2a);
       },
-      controls: function (_0x2a) {
+      controls: function(_0x2a) {
         this.native instanceof HTMLMediaElement && (this.native.controls = !!_0x2a);
       },
-      playbackRate: function (_0x2a) {
+      playbackRate: function(_0x2a) {
         this.native instanceof HTMLMediaElement && (this.native.playbackRate = Math.max(0.25, Math.min(4, Number(_0x2a) || 1)));
       },
-      defaultPlaybackRate: function (_0x2a) {
+      defaultPlaybackRate: function(_0x2a) {
         this.native instanceof HTMLMediaElement && (this.native.defaultPlaybackRate = Math.max(0.25, Math.min(4, Number(_0x2a) || 1)));
       },
-      preload: function (_0x2a) {
+      preload: function(_0x2a) {
         if (this.native instanceof HTMLMediaElement) {
           let _0x3d = [
             'none',
@@ -1375,25 +1441,28 @@ function _0x3c(_0x2, _0x5, _0x6, _0x7) {
           this.native.preload = _0x3d.includes(_0x2a) ? _0x2a : 'auto';
         }
       },
-      poster: function (_0x2a) {
+      poster: function(_0x2a) {
         this.native instanceof HTMLVideoElement && (this.native.poster = _0x11(_0x2a));
       }
     };
   for (let [_0x2a, _0x3d] of Object.entries(_0x26)) {
-    let _0x3e = { get: _0x2.createNativeFunction(_0x3d) };
+    let _0x3e = {
+      get: _0x2.createNativeFunction(_0x3d)
+    };
     _0x27[_0x2a] && (_0x3e.set = _0x2.createNativeFunction(_0x27[_0x2a])), _0x2.setProperty(_0x23, _0x2a, Interpreter.VALUE_IN_DESCRIPTOR, _0x3e);
   }
   let _0x28 = {
-    getAttributeNames: function () {
-      let _0x2a = Array.from(this.native.getAttributeNames()), _0x3d = _0x2.createObjectProto(_0x2.ARRAY_PROTO);
+    getAttributeNames: function() {
+      let _0x2a = Array.from(this.native.getAttributeNames()),
+        _0x3d = _0x2.createObjectProto(_0x2.ARRAY_PROTO);
       for (let _0x3e = 0; _0x3e < _0x2a.length; _0x3e++)
         _0x2.setProperty(_0x3d, _0x3e, _0x2a[_0x3e]);
       return _0x2.setProperty(_0x3d, 'length', _0x2a.length), _0x3d;
     },
-    getAttribute: function (_0x2a) {
+    getAttribute: function(_0x2a) {
       return this.native.getAttribute(_0x2a);
     },
-    setAttribute: function (_0x2a, _0x3d) {
+    setAttribute: function(_0x2a, _0x3d) {
       if (this.native.className === 'tile-body')
         throw new Error('No access.');
       if (_0x2a = String(_0x2a).toLowerCase(), _0x3d = String(_0x3d), _0x3.settings.logCalls && console.log(_0x7.domain, 'setAttribute', this, _0x2a, _0x3d), _0x2a === 'style' && _0x3d.includes('animation-play-state') && _0x3d.includes('!important'))
@@ -1417,60 +1486,60 @@ function _0x3c(_0x2, _0x5, _0x6, _0x7) {
       }
       this.native.setAttribute(_0x2a, _0x3d);
     },
-    focus: function () {
+    focus: function() {
       this.native.focus();
     },
-    blur: function () {
+    blur: function() {
       this.native.blur();
     },
-    click: function () {
+    click: function() {
       this.native.click();
     },
-    scrollIntoView: function (_0x2a) {
+    scrollIntoView: function(_0x2a) {
       _0x2a && typeof _0x2a == 'object' ? this.native.scrollIntoView(_0x2.pseudoToNative(_0x2a)) : this.native.scrollIntoView(_0x2a);
     },
-    scrollTo: function (_0x2a, _0x3d) {
+    scrollTo: function(_0x2a, _0x3d) {
       this.native.scrollTo(_0x2a, _0x3d);
     },
-    scrollBy: function (_0x2a, _0x3d) {
+    scrollBy: function(_0x2a, _0x3d) {
       this.native.scrollBy(_0x2a, _0x3d);
     },
-    removeAttribute: function (_0x2a) {
+    removeAttribute: function(_0x2a) {
       if (this.native.className === 'tile-body')
         throw new Error('No access.');
       if (_0x2a = String(_0x2a).toLowerCase(), _0x2a === 'target')
         throw new Error('removing target is not allowed');
       _0x3.settings.logCalls && console.log(_0x7.domain, 'removeAttribute', this, _0x2a), this.native.removeAttribute(_0x2a);
     },
-    hasAttribute: function (_0x2a) {
+    hasAttribute: function(_0x2a) {
       return this.native.hasAttribute(_0x2a);
     },
-    querySelector: function (_0x2a) {
+    querySelector: function(_0x2a) {
       let _0x3d = this.native.querySelector(_0x2a);
       return _0x16(_0x18(_0x3d));
     },
-    querySelectorAll: function (_0x2a) {
+    querySelectorAll: function(_0x2a) {
       let _0x3d = Array.from(this.native.querySelectorAll(_0x2a)).filter(_0x17);
       return _0x1c(_0x3d);
     },
-    getElementsByClassName: function (_0x2a) {
+    getElementsByClassName: function(_0x2a) {
       let _0x3d = Array.from(this.native.getElementsByClassName(_0x2a)).filter(_0x17);
       return _0x1c(_0x3d);
     },
-    getElementsByTagName: function (_0x2a) {
+    getElementsByTagName: function(_0x2a) {
       let _0x3d = Array.from(this.native.getElementsByTagName(_0x2a)).filter(_0x17);
       return _0x1c(_0x3d);
     },
-    closest: function (_0x2a) {
+    closest: function(_0x2a) {
       let _0x3d = this.native.closest(_0x2a);
       for (; _0x3d && !_0x6.contains(_0x3d);)
         _0x3d = null;
       return _0x16(_0x3d);
     },
-    matches: function (_0x2a) {
+    matches: function(_0x2a) {
       return this.native.matches(_0x2a);
     },
-    classList: function () {
+    classList: function() {
       if (this.native.className === 'tile-body')
         throw new Error('No access.');
       let _0x2a = this.native.classList;
@@ -1482,7 +1551,7 @@ function _0x3c(_0x2, _0x5, _0x6, _0x7) {
         replace: (_0x3d, _0x3e) => _0x2a.replace(_0x3d, _0x3e)
       });
     },
-    getBoundingClientRect: function () {
+    getBoundingClientRect: function() {
       let _0x2a = this.native.getBoundingClientRect();
       return _0x2.nativeToPseudo({
         x: _0x2a.x,
@@ -1495,15 +1564,18 @@ function _0x3c(_0x2, _0x5, _0x6, _0x7) {
         left: _0x2a.left
       });
     },
-    play: function () {
+    play: function() {
       if (!(this.native instanceof HTMLMediaElement))
         return _0x2.createObjectProto(_0x2.OBJECT_PROTO);
       if (!this.native.isConnected)
         throw new Error('Element is not connected to the DOM. Append it to the DOM before playing.');
-      let _0x2a = _0x2.createObjectProto(_0x2.OBJECT_PROTO), _0x3d = this, _0x3e = null, _0x3f = null;
-      return _0x3.settings.logCalls && console.log(_0x7.domain, 'play', this), _0x2.setProperty(_0x2a, 'then', _0x2.createNativeFunction(function (_0x40) {
+      let _0x2a = _0x2.createObjectProto(_0x2.OBJECT_PROTO),
+        _0x3d = this,
+        _0x3e = null,
+        _0x3f = null;
+      return _0x3.settings.logCalls && console.log(_0x7.domain, 'play', this), _0x2.setProperty(_0x2a, 'then', _0x2.createNativeFunction(function(_0x40) {
         return _0x3e = _0x40, _0x2a;
-      })), _0x2.setProperty(_0x2a, 'catch', _0x2.createNativeFunction(function (_0x40) {
+      })), _0x2.setProperty(_0x2a, 'catch', _0x2.createNativeFunction(function(_0x40) {
         return _0x3f = _0x40, _0x2a;
       })), _0x3d.native.play().then(() => {
         _0x3e && _0x12(_0x3e, _0x2.nativeToPseudo(void 0));
@@ -1514,22 +1586,26 @@ function _0x3c(_0x2, _0x5, _0x6, _0x7) {
         }));
       }), _0x2a;
     },
-    pause: function () {
+    pause: function() {
       this.native instanceof HTMLMediaElement && this.native.pause();
     },
-    load: function () {
+    load: function() {
       this.native instanceof HTMLMediaElement && this.native.load();
     },
-    canPlayType: function (_0x2a) {
+    canPlayType: function(_0x2a) {
       return this.native instanceof HTMLMediaElement ? this.native.canPlayType(String(_0x2a || '')) : '';
     },
-    fastSeek: function (_0x2a) {
+    fastSeek: function(_0x2a) {
       this.native instanceof HTMLMediaElement && typeof this.native.fastSeek == 'function' && this.native.fastSeek(Math.max(0, Number(_0x2a) || 0));
     },
-    getAnimations: function (_0x2a) {
+    getAnimations: function(_0x2a) {
       if (!this.native.getAnimations)
         return _0x1c([]);
-      let _0x3d = _0x2a ? { subtree: !!_0x2.pseudoToNative(_0x2a)?.subtree } : {}, _0x3e = this.native.getAnimations(_0x3d), _0x3f = _0x2.createObjectProto(_0x2.ARRAY_PROTO);
+      let _0x3d = _0x2a ? {
+          subtree: !!_0x2.pseudoToNative(_0x2a)?.subtree
+        } : {},
+        _0x3e = this.native.getAnimations(_0x3d),
+        _0x3f = _0x2.createObjectProto(_0x2.ARRAY_PROTO);
       for (let _0x40 = 0; _0x40 < _0x3e.length; _0x40++)
         _0x3f.properties[_0x40] = _0xc(_0x3e[_0x40]);
       return _0x2.setProperty(_0x3f, 'length', _0x3e.length), _0x3f;
@@ -1537,109 +1613,115 @@ function _0x3c(_0x2, _0x5, _0x6, _0x7) {
   };
   for (let [_0x2a, _0x3d] of Object.entries(_0x28))
     _0x2.setProperty(_0x23, _0x2a, _0x2.createNativeFunction(_0x3d));
+
   function _0xc(_0x2a) {
     let _0x3d = _0x2.createObjectProto(_0x2.OBJECT_PROTO);
     return _0x2.setProperty(_0x3d, 'id', Interpreter.VALUE_IN_DESCRIPTOR, {
-      get: _0x2.createNativeFunction(function () {
+      get: _0x2.createNativeFunction(function() {
         return _0x2a.id;
       })
     }), _0x2.setProperty(_0x3d, 'playState', Interpreter.VALUE_IN_DESCRIPTOR, {
-      get: _0x2.createNativeFunction(function () {
+      get: _0x2.createNativeFunction(function() {
         return _0x2a.playState;
       })
     }), _0x2.setProperty(_0x3d, 'pending', Interpreter.VALUE_IN_DESCRIPTOR, {
-      get: _0x2.createNativeFunction(function () {
+      get: _0x2.createNativeFunction(function() {
         return _0x2a.pending;
       })
     }), _0x2.setProperty(_0x3d, 'replaceState', Interpreter.VALUE_IN_DESCRIPTOR, {
-      get: _0x2.createNativeFunction(function () {
+      get: _0x2.createNativeFunction(function() {
         return _0x2a.replaceState;
       })
     }), _0x2.setProperty(_0x3d, 'currentTime', Interpreter.VALUE_IN_DESCRIPTOR, {
-      get: _0x2.createNativeFunction(function () {
+      get: _0x2.createNativeFunction(function() {
         return _0x2a.currentTime;
       }),
-      set: _0x2.createNativeFunction(function (_0x3e) {
+      set: _0x2.createNativeFunction(function(_0x3e) {
         _0x2a.currentTime = _0x3e;
       })
     }), _0x2.setProperty(_0x3d, 'playbackRate', Interpreter.VALUE_IN_DESCRIPTOR, {
-      get: _0x2.createNativeFunction(function () {
+      get: _0x2.createNativeFunction(function() {
         return _0x2a.playbackRate;
       }),
-      set: _0x2.createNativeFunction(function (_0x3e) {
+      set: _0x2.createNativeFunction(function(_0x3e) {
         _0x2a.playbackRate = Math.max(-10, Math.min(10, Number(_0x3e) || 1));
       })
     }), _0x2.setProperty(_0x3d, 'startTime', Interpreter.VALUE_IN_DESCRIPTOR, {
-      get: _0x2.createNativeFunction(function () {
+      get: _0x2.createNativeFunction(function() {
         return _0x2a.startTime;
       }),
-      set: _0x2.createNativeFunction(function (_0x3e) {
+      set: _0x2.createNativeFunction(function(_0x3e) {
         _0x2a.startTime = _0x3e;
       })
-    }), _0x2.setProperty(_0x3d, 'play', _0x2.createNativeFunction(function () {
+    }), _0x2.setProperty(_0x3d, 'play', _0x2.createNativeFunction(function() {
       _0x2a.play();
-    })), _0x2.setProperty(_0x3d, 'pause', _0x2.createNativeFunction(function () {
+    })), _0x2.setProperty(_0x3d, 'pause', _0x2.createNativeFunction(function() {
       _0x2a.pause();
-    })), _0x2.setProperty(_0x3d, 'cancel', _0x2.createNativeFunction(function () {
+    })), _0x2.setProperty(_0x3d, 'cancel', _0x2.createNativeFunction(function() {
       _0x2a.cancel();
-    })), _0x2.setProperty(_0x3d, 'finish', _0x2.createNativeFunction(function () {
+    })), _0x2.setProperty(_0x3d, 'finish', _0x2.createNativeFunction(function() {
       _0x2a.finish();
-    })), _0x2.setProperty(_0x3d, 'reverse', _0x2.createNativeFunction(function () {
+    })), _0x2.setProperty(_0x3d, 'reverse', _0x2.createNativeFunction(function() {
       _0x2a.reverse();
-    })), _0x2.setProperty(_0x3d, 'updatePlaybackRate', _0x2.createNativeFunction(function (_0x3e) {
+    })), _0x2.setProperty(_0x3d, 'updatePlaybackRate', _0x2.createNativeFunction(function(_0x3e) {
       _0x2a.updatePlaybackRate(Math.max(-10, Math.min(10, Number(_0x3e) || 1)));
     })), _0x3d;
   }
+
   function _0xf(_0x2a) {
-    let _0x3d = _0x2.createObjectProto(_0x2.OBJECT_PROTO), _0x3e = _0x2a ? _0x2a.length : 0;
-    return _0x2.setProperty(_0x3d, 'length', _0x3e), _0x2.setProperty(_0x3d, 'start', _0x2.createNativeFunction(function (_0x3f) {
+    let _0x3d = _0x2.createObjectProto(_0x2.OBJECT_PROTO),
+      _0x3e = _0x2a ? _0x2a.length : 0;
+    return _0x2.setProperty(_0x3d, 'length', _0x3e), _0x2.setProperty(_0x3d, 'start', _0x2.createNativeFunction(function(_0x3f) {
       if (!_0x2a || _0x3f < 0 || _0x3f >= _0x2a.length)
         throw new Error('Index out of bounds');
       return _0x2a.start(_0x3f);
-    })), _0x2.setProperty(_0x3d, 'end', _0x2.createNativeFunction(function (_0x3f) {
+    })), _0x2.setProperty(_0x3d, 'end', _0x2.createNativeFunction(function(_0x3f) {
       if (!_0x2a || _0x3f < 0 || _0x3f >= _0x2a.length)
         throw new Error('Index out of bounds');
       return _0x2a.end(_0x3f);
     })), _0x3d;
   }
   _0x2.setProperty(_0x23, 'buffered', Interpreter.VALUE_IN_DESCRIPTOR, {
-    get: _0x2.createNativeFunction(function () {
+    get: _0x2.createNativeFunction(function() {
       return this.native instanceof HTMLMediaElement ? _0xf(this.native.buffered) : _0xf(null);
     })
   }), _0x2.setProperty(_0x23, 'played', Interpreter.VALUE_IN_DESCRIPTOR, {
-    get: _0x2.createNativeFunction(function () {
+    get: _0x2.createNativeFunction(function() {
       return this.native instanceof HTMLMediaElement ? _0xf(this.native.played) : _0xf(null);
     })
   }), _0x2.setProperty(_0x23, 'seekable', Interpreter.VALUE_IN_DESCRIPTOR, {
-    get: _0x2.createNativeFunction(function () {
+    get: _0x2.createNativeFunction(function() {
       return this.native instanceof HTMLMediaElement ? _0xf(this.native.seekable) : _0xf(null);
     })
   }), _0x2.setProperty(_0x23, 'classList', Interpreter.VALUE_IN_DESCRIPTOR, {
-    get: _0x2.createNativeFunction(function () {
-      let _0x2a = this.native.classList, _0x3d = _0x2.nativeToPseudo({});
-      return _0x2.setProperty(_0x3d, 'add', _0x2.createNativeFunction(function (..._0x3e) {
+    get: _0x2.createNativeFunction(function() {
+      let _0x2a = this.native.classList,
+        _0x3d = _0x2.nativeToPseudo({});
+      return _0x2.setProperty(_0x3d, 'add', _0x2.createNativeFunction(function(..._0x3e) {
         if (this.native.className === 'tile-body')
           throw new Error('No access.');
         _0x2a.add(..._0x3e);
-      })), _0x2.setProperty(_0x3d, 'remove', _0x2.createNativeFunction(function (..._0x3e) {
+      })), _0x2.setProperty(_0x3d, 'remove', _0x2.createNativeFunction(function(..._0x3e) {
         if (this.native.className === 'tile-body')
           throw new Error('No access.');
         _0x2a.remove(..._0x3e);
-      })), _0x2.setProperty(_0x3d, 'toggle', _0x2.createNativeFunction(function (_0x3e, _0x3f) {
+      })), _0x2.setProperty(_0x3d, 'toggle', _0x2.createNativeFunction(function(_0x3e, _0x3f) {
         if (this.native.className === 'tile-body')
           throw new Error('No access.');
         return _0x2a.toggle(_0x3e, _0x3f);
-      })), _0x2.setProperty(_0x3d, 'contains', _0x2.createNativeFunction(function (_0x3e) {
+      })), _0x2.setProperty(_0x3d, 'contains', _0x2.createNativeFunction(function(_0x3e) {
         return _0x2a.contains(_0x3e);
-      })), _0x2.setProperty(_0x3d, 'replace', _0x2.createNativeFunction(function (_0x3e, _0x3f) {
+      })), _0x2.setProperty(_0x3d, 'replace', _0x2.createNativeFunction(function(_0x3e, _0x3f) {
         if (this.native.className === 'tile-body')
           throw new Error('No access.');
         return _0x2a.replace(_0x3e, _0x3f);
       })), _0x3d;
     })
   }), _0x2.setProperty(_0x23, 'style', Interpreter.VALUE_IN_DESCRIPTOR, {
-    get: _0x2.createNativeFunction(function () {
-      let _0x2a = this.native.style, _0x3d = _0x2.nativeToPseudo({}), _0x3e = [
+    get: _0x2.createNativeFunction(function() {
+      let _0x2a = this.native.style,
+        _0x3d = _0x2.nativeToPseudo({}),
+        _0x3e = [
           'color',
           'backgroundColor',
           'width',
@@ -1674,49 +1756,50 @@ function _0x3c(_0x2, _0x5, _0x6, _0x7) {
         ];
       for (let _0x3f of _0x3e)
         _0x2.setProperty(_0x3d, _0x3f, Interpreter.VALUE_IN_DESCRIPTOR, {
-          get: _0x2.createNativeFunction(function () {
+          get: _0x2.createNativeFunction(function() {
             return _0x2a[_0x3f];
           }),
-          set: _0x2.createNativeFunction(function (_0x40) {
+          set: _0x2.createNativeFunction(function(_0x40) {
             _0x2a[_0x3f] = _0x40, _0x3.settings.logCalls && console.log(_0x7.domain, 'set style', this, _0x3f, _0x40);
           })
         });
       return _0x2.setProperty(_0x3d, 'cssText', Interpreter.VALUE_IN_DESCRIPTOR, {
-        get: _0x2.createNativeFunction(function () {
+        get: _0x2.createNativeFunction(function() {
           return _0x2a.cssText;
         }),
-        set: _0x2.createNativeFunction(function (_0x3f) {
+        set: _0x2.createNativeFunction(function(_0x3f) {
           _0x2a.cssText = _0x3f, _0x3.settings.logCalls && console.log(_0x7.domain, 'set cssText', this, _0x3f);
         })
-      }), _0x2.setProperty(_0x3d, 'setProperty', _0x2.createNativeFunction(function (_0x3f, _0x40, _0x41) {
+      }), _0x2.setProperty(_0x3d, 'setProperty', _0x2.createNativeFunction(function(_0x3f, _0x40, _0x41) {
         if (this.native?.className === 'tile-body')
           throw new Error('No access.');
         _0x2a.setProperty(_0x3f, _0x40, _0x41), _0x3.settings.logCalls && console.log(_0x7.domain, 'setProperty', this, _0x3f, _0x40, _0x41);
-      })), _0x2.setProperty(_0x3d, 'getPropertyValue', _0x2.createNativeFunction(function (_0x3f) {
+      })), _0x2.setProperty(_0x3d, 'getPropertyValue', _0x2.createNativeFunction(function(_0x3f) {
         return _0x2a.getPropertyValue(_0x3f);
-      })), _0x2.setProperty(_0x3d, 'removeProperty', _0x2.createNativeFunction(function (_0x3f) {
+      })), _0x2.setProperty(_0x3d, 'removeProperty', _0x2.createNativeFunction(function(_0x3f) {
         if (this.native?.className === 'tile-body')
           throw new Error('No access.');
         return _0x3.settings.logCalls && console.log(_0x7.domain, 'removeProperty', this, _0x3f), _0x2a.removeProperty(_0x3f);
       })), _0x3d;
     })
   }), _0x2.setProperty(_0x23, 'dataset', Interpreter.VALUE_IN_DESCRIPTOR, {
-    get: _0x2.createNativeFunction(function () {
-      let _0x2a = this.native.dataset, _0x3d = _0x2.nativeToPseudo({});
+    get: _0x2.createNativeFunction(function() {
+      let _0x2a = this.native.dataset,
+        _0x3d = _0x2.nativeToPseudo({});
       for (let _0x3e in _0x2a)
         _0x2.setProperty(_0x3d, _0x3e, _0x2a[_0x3e]);
-      return _0x2.setProperty(_0x3d, 'get', _0x2.createNativeFunction(function (_0x3e) {
+      return _0x2.setProperty(_0x3d, 'get', _0x2.createNativeFunction(function(_0x3e) {
         return _0x2a[_0x3e];
-      })), _0x2.setProperty(_0x3d, 'set', _0x2.createNativeFunction(function (_0x3e, _0x3f) {
+      })), _0x2.setProperty(_0x3d, 'set', _0x2.createNativeFunction(function(_0x3e, _0x3f) {
         _0x2a[_0x3e] = String(_0x3f).slice(0, 1000), _0x3.settings.logCalls && console.log(_0x7.domain, 'set dataset', this, _0x3e, _0x3f);
-      })), _0x2.setProperty(_0x3d, 'delete', _0x2.createNativeFunction(function (_0x3e) {
+      })), _0x2.setProperty(_0x3d, 'delete', _0x2.createNativeFunction(function(_0x3e) {
         delete _0x2a[_0x3e], _0x3.settings.logCalls && console.log(_0x7.domain, 'delete dataset', this, _0x3e);
-      })), _0x2.setProperty(_0x3d, 'has', _0x2.createNativeFunction(function (_0x3e) {
+      })), _0x2.setProperty(_0x3d, 'has', _0x2.createNativeFunction(function(_0x3e) {
         return _0x3e in _0x2a;
       })), _0x3d;
     })
   }), _0x2.setProperty(_0x23, 'offsetParent', Interpreter.VALUE_IN_DESCRIPTOR, {
-    get: _0x2.createNativeFunction(function () {
+    get: _0x2.createNativeFunction(function() {
       return _0x16(_0x18(this.native.offsetParent));
     })
   });
@@ -1793,8 +1876,10 @@ function _0x3c(_0x2, _0x5, _0x6, _0x7) {
     'error',
     'load'
   ];
+
   function _0x19(_0x2a) {
-    let _0x3d = _0x2.nativeToPseudo({}), _0x3e = [
+    let _0x3d = _0x2.nativeToPseudo({}),
+      _0x3e = [
         'type',
         'bubbles',
         'cancelable',
@@ -1840,15 +1925,19 @@ function _0x3c(_0x2, _0x5, _0x6, _0x7) {
       for (let _0x40 of _0x3f)
         _0x2.setProperty(_0x3d, _0x40, _0x2a[_0x40]);
     }
-    return typeof TouchEvent == 'function' && _0x2a instanceof TouchEvent && (_0x2.setProperty(_0x3d, 'touches', _0x2.nativeToPseudo({ length: _0x2a.touches.length })), _0x2.setProperty(_0x3d, 'changedTouches', _0x2.nativeToPseudo({ length: _0x2a.changedTouches.length }))), typeof WheelEvent == 'function' && _0x2a instanceof WheelEvent && (_0x2.setProperty(_0x3d, 'deltaX', _0x2a.deltaX), _0x2.setProperty(_0x3d, 'deltaY', _0x2a.deltaY), _0x2.setProperty(_0x3d, 'deltaZ', _0x2a.deltaZ), _0x2.setProperty(_0x3d, 'deltaMode', _0x2a.deltaMode)), _0x2a.target && _0x17(_0x2a.target) && _0x2.setProperty(_0x3d, 'target', _0x16(_0x2a.target)), _0x2a.currentTarget && _0x17(_0x2a.currentTarget) && _0x2.setProperty(_0x3d, 'currentTarget', _0x16(_0x2a.currentTarget)), _0x2.setProperty(_0x3d, 'preventDefault', _0x2.createNativeFunction(function () {
+    return typeof TouchEvent == 'function' && _0x2a instanceof TouchEvent && (_0x2.setProperty(_0x3d, 'touches', _0x2.nativeToPseudo({
+      length: _0x2a.touches.length
+    })), _0x2.setProperty(_0x3d, 'changedTouches', _0x2.nativeToPseudo({
+      length: _0x2a.changedTouches.length
+    }))), typeof WheelEvent == 'function' && _0x2a instanceof WheelEvent && (_0x2.setProperty(_0x3d, 'deltaX', _0x2a.deltaX), _0x2.setProperty(_0x3d, 'deltaY', _0x2a.deltaY), _0x2.setProperty(_0x3d, 'deltaZ', _0x2a.deltaZ), _0x2.setProperty(_0x3d, 'deltaMode', _0x2a.deltaMode)), _0x2a.target && _0x17(_0x2a.target) && _0x2.setProperty(_0x3d, 'target', _0x16(_0x2a.target)), _0x2a.currentTarget && _0x17(_0x2a.currentTarget) && _0x2.setProperty(_0x3d, 'currentTarget', _0x16(_0x2a.currentTarget)), _0x2.setProperty(_0x3d, 'preventDefault', _0x2.createNativeFunction(function() {
       _0x2a.preventDefault();
-    })), _0x2.setProperty(_0x3d, 'stopPropagation', _0x2.createNativeFunction(function () {
+    })), _0x2.setProperty(_0x3d, 'stopPropagation', _0x2.createNativeFunction(function() {
       _0x2a.stopPropagation();
-    })), _0x2.setProperty(_0x3d, 'stopImmediatePropagation', _0x2.createNativeFunction(function () {
+    })), _0x2.setProperty(_0x3d, 'stopImmediatePropagation', _0x2.createNativeFunction(function() {
       _0x2a.stopImmediatePropagation();
     })), _0x3d;
   }
-  _0x2.setProperty(_0x23, 'addEventListener', _0x2.createNativeFunction(function (_0x2a, _0x3d) {
+  _0x2.setProperty(_0x23, 'addEventListener', _0x2.createNativeFunction(function(_0x2a, _0x3d) {
     if (!_0x2a || typeof _0x2a != 'string' || !_0x3d || typeof _0x3d != 'object')
       return;
     if (_0x2a = _0x2a.toLowerCase(), !_0x10.includes(_0x2a))
@@ -1863,7 +1952,7 @@ function _0x3c(_0x2, _0x5, _0x6, _0x7) {
       throw new Error(`Maximum listeners (${ _0xa }) reached for event "${ _0x2a }"`);
     if (_0x40.some(_0x42 => _0x42.pseudo === _0x3d))
       return;
-    let _0x41 = function (_0x42) {
+    let _0x41 = function(_0x42) {
       let _0x43 = _0x19(_0x42);
       _0x12(_0x3d, _0x43);
     };
@@ -1871,7 +1960,7 @@ function _0x3c(_0x2, _0x5, _0x6, _0x7) {
       pseudo: _0x3d,
       native: _0x41
     }), _0x3e.addEventListener(_0x2a, _0x41);
-  })), _0x2.setProperty(_0x23, 'removeEventListener', _0x2.createNativeFunction(function (_0x2a, _0x3d) {
+  })), _0x2.setProperty(_0x23, 'removeEventListener', _0x2.createNativeFunction(function(_0x2a, _0x3d) {
     if (!_0x2a || typeof _0x2a != 'string' || !_0x3d || typeof _0x3d != 'object')
       return;
     _0x3.settings.logCalls && console.log(_0x7.domain, 'removeEventListener', this, _0x2a, _0x3d), _0x2a = _0x2a.toLowerCase();
@@ -1881,7 +1970,8 @@ function _0x3c(_0x2, _0x5, _0x6, _0x7) {
     let _0x3f = _0xb.get(_0x3e);
     if (!_0x3f.has(_0x2a))
       return;
-    let _0x40 = _0x3f.get(_0x2a), _0x41 = _0x40.findIndex(_0x42 => _0x42.pseudo === _0x3d);
+    let _0x40 = _0x3f.get(_0x2a),
+      _0x41 = _0x40.findIndex(_0x42 => _0x42.pseudo === _0x3d);
     _0x41 !== -1 && (_0x3e.removeEventListener(_0x2a, _0x40[_0x41].native), _0x40.splice(_0x41, 1));
   }));
   let _0x1a = [
@@ -1935,21 +2025,23 @@ function _0x3c(_0x2, _0x5, _0x6, _0x7) {
   for (let _0x2a of _0x1a) {
     let _0x3d = 'on' + _0x2a;
     _0x2.setProperty(_0x23, _0x3d, Interpreter.VALUE_IN_DESCRIPTOR, {
-      get: _0x2.createNativeFunction(function () {
+      get: _0x2.createNativeFunction(function() {
         let _0x3e = this.native;
         if (!_0xb.has(_0x3e))
           return null;
-        let _0x3f = _0xb.get(_0x3e), _0x40 = `__${ _0x3d }`;
+        let _0x3f = _0xb.get(_0x3e),
+          _0x40 = `__${ _0x3d }`;
         return _0x3f.get(_0x40) || null;
       }),
-      set: _0x2.createNativeFunction(function (_0x3e) {
+      set: _0x2.createNativeFunction(function(_0x3e) {
         let _0x3f = this.native;
         _0xb.has(_0x3f) || _0xb.set(_0x3f, new Map());
-        let _0x40 = _0xb.get(_0x3f), _0x41 = `__${ _0x3d }`;
+        let _0x40 = _0xb.get(_0x3f),
+          _0x41 = `__${ _0x3d }`;
         _0x3.settings.logCalls && console.log(_0x7.domain, 'setOn' + _0x2a, this, _0x3e);
         let _0x42 = _0x40.get(_0x41 + '_native');
         if (_0x42 && (_0x3f.removeEventListener(_0x2a, _0x42), _0x40.delete(_0x41), _0x40.delete(_0x41 + '_native')), _0x3e && typeof _0x3e == 'object') {
-          let _0x43 = function (_0x44) {
+          let _0x43 = function(_0x44) {
             let _0x45 = _0x19(_0x44);
             _0x12(_0x3e, _0x45);
           };
@@ -1962,26 +2054,26 @@ function _0x3c(_0x2, _0x5, _0x6, _0x7) {
   let _0x24 = _0x2.nativeToPseudo({});
   _0x2.setProperty(_0x5, 'document', _0x24);
   let _0x25 = {
-    getElementById: function (_0x2a) {
+    getElementById: function(_0x2a) {
       let _0x3d = _0x6.querySelector(`#${ CSS.escape(_0x2a) }`);
       return _0x16(_0x3d);
     },
-    getElementsByClassName: function (_0x2a) {
+    getElementsByClassName: function(_0x2a) {
       let _0x3d = Array.from(_0x6.getElementsByClassName(_0x2a));
       return _0x1c(_0x3d);
     },
-    getElementsByTagName: function (_0x2a) {
+    getElementsByTagName: function(_0x2a) {
       let _0x3d = Array.from(_0x6.getElementsByTagName(_0x2a));
       return _0x1c(_0x3d);
     },
-    querySelector: function (_0x2a) {
+    querySelector: function(_0x2a) {
       return _0x16(_0x6.querySelector(_0x2a));
     },
-    querySelectorAll: function (_0x2a) {
+    querySelectorAll: function(_0x2a) {
       let _0x3d = Array.from(_0x6.querySelectorAll(_0x2a));
       return _0x1c(_0x3d);
     },
-    createElement: function (_0x2a) {
+    createElement: function(_0x2a) {
       if (typeof _0x2a != 'string')
         throw new Error('Invalid tag');
       if (_0x2a = _0x2a.toLowerCase().trim(), [
@@ -2006,27 +2098,27 @@ function _0x3c(_0x2, _0x5, _0x6, _0x7) {
         throw new Error('Creating ' + _0x2a + ' elements is not allowed');
       return _0x3.settings.logCalls && console.log(_0x7.domain, 'createElement', this, _0x2a), _0x16(document.createElement(_0x2a));
     },
-    createTextNode: function (_0x2a) {
+    createTextNode: function(_0x2a) {
       return _0x3.settings.logCalls && console.log(_0x7.domain, 'createTextNode', this, _0x2a), _0x16(document.createTextNode(_0x2a));
     }
   };
   for (let [_0x2a, _0x3d] of Object.entries(_0x25))
     _0x2.setProperty(_0x24, _0x2a, _0x2.createNativeFunction(_0x3d));
   _0x2.setProperty(_0x24, 'body', Interpreter.VALUE_IN_DESCRIPTOR, {
-    get: _0x2.createNativeFunction(function () {
+    get: _0x2.createNativeFunction(function() {
       return _0x3.settings.logCalls && console.log(_0x7.domain, 'get body', this), _0x16(_0x6);
     })
   }), _0x2.setProperty(_0x24, 'documentElement', Interpreter.VALUE_IN_DESCRIPTOR, {
-    get: _0x2.createNativeFunction(function () {
+    get: _0x2.createNativeFunction(function() {
       return _0x3.settings.logCalls && console.log(_0x7.domain, 'get documentElement', this), _0x16(_0x6);
     })
   });
   let _0x29 = _0x2.nativeToPseudo({});
   _0x2.setProperty(_0x5, 'location', _0x29), _0x2.setProperty(_0x29, 'href', Interpreter.VALUE_IN_DESCRIPTOR, {
-    get: _0x2.createNativeFunction(function () {
+    get: _0x2.createNativeFunction(function() {
       return `/t/${ _0x7.domain }${ _0x7.path }`;
     }),
-    set: _0x2.createNativeFunction(function (_0x2a) {
+    set: _0x2.createNativeFunction(function(_0x2a) {
       if (typeof _0x2a == 'string') {
         _0x3.settings.logCalls && console.log(_0x7.domain, 'set href', this, _0x2a);
         try {
@@ -2049,19 +2141,19 @@ function _0x3c(_0x2, _0x5, _0x6, _0x7) {
         }
       }
     })
-  }), _0x2.setProperty(_0x29, 'reload', _0x2.createNativeFunction(function () {
+  }), _0x2.setProperty(_0x29, 'reload', _0x2.createNativeFunction(function() {
     _0x7.fetchContent(_0x7.path, !0).then(() => _0x7.setActive(!0));
   }));
 }
 var _0x46 = {
     console: {
-      log: function (..._0x2) {
+      log: function(..._0x2) {
         this.logCount++ > 1000 || console.log(`[${ this.tile.domain }]`, ..._0x2);
       },
-      error: function (..._0x2) {
+      error: function(..._0x2) {
         this.logCount++ > 1000 || console.error(`[${ this.tile.domain }]`, ..._0x2);
       },
-      warn: function (..._0x2) {
+      warn: function(..._0x2) {
         this.logCount++ > 1000 || console.warn(`[${ this.tile.domain }]`, ..._0x2);
       }
     },
@@ -2082,7 +2174,8 @@ var _0x46 = {
     btoa(_0x2) {
       return btoa(_0x2);
     }
-  }, _0x47 = class {
+  },
+  _0x47 = class {
     constructor(_0x5) {
       this.running = !1, this.logCount = 0, this.alertCount = 0, this.tile = _0x5, this.waitUntil = null, this.index = 0, this.sizeLimitReached = !1, this.interpreter = new Interpreter('', (_0x6, _0x7) => {
         let _0x8 = (_0x9, _0xa) => {
@@ -2090,25 +2183,27 @@ var _0x46 = {
             if (typeof _0xd == 'function')
               _0x6.setProperty(_0xa, _0xb, _0x6.createNativeFunction(_0xd.bind(this)));
             else if (typeof _0xd == 'object' && _0xd !== null) {
-              let _0xe = _0x6.nativeToPseudo({});
-              _0x8(_0xd, _0xe), _0x6.setProperty(_0xa, _0xb, _0xe);
-            }
+            let _0xe = _0x6.nativeToPseudo({});
+            _0x8(_0xd, _0xe), _0x6.setProperty(_0xa, _0xb, _0xe);
+          }
         };
         _0x8(_0x46, _0x7), _0x3c(_0x6, _0x7, this.tile.contentElement, this.tile), _0x6.setProperty(_0x7, 'embedded', _0x6.nativeToPseudo(!!this.tile.embed));
       }), this.runInterval = null, this.running = !1;
     }
     roughValueMemorySize() {
-      let _0x5 = new Set(), _0x6 = [this.interpreter.getStateStack()], _0x7 = 0;
+      let _0x5 = new Set(),
+        _0x6 = [this.interpreter.getStateStack()],
+        _0x7 = 0;
       for (; _0x6.length;) {
-        let _0x8 = _0x6.pop(), _0x9 = typeof _0x8;
+        let _0x8 = _0x6.pop(),
+          _0x9 = typeof _0x8;
         if (_0x7 += 8, _0x9 === 'string' && !_0x5.has(_0x8))
           _0x5.add(_0x8), _0x7 += _0x8.length * 2;
         else if (_0x9 === 'object' && _0x8 !== null && !_0x5.has(_0x8)) {
           _0x5.add(_0x8);
           try {
             _0x6.push(...Object.keys(_0x8), ...Object.values(_0x8));
-          } catch {
-          }
+          } catch {}
         }
       }
       return _0x7;
@@ -2141,8 +2236,11 @@ var _0x46 = {
     runCode(_0x5) {
       _0x3.settings.disableJS || this.interpreter.appendCode(_0x5);
     }
-  }, _0x48 = _0x47;
-var _0x49 = document.getElementById('plot'), _0x4a = new CSSStyleSheet(), _0x4b = () => {
+  },
+  _0x48 = _0x47;
+var _0x49 = document.getElementById('plot'),
+  _0x4a = new CSSStyleSheet(),
+  _0x4b = () => {
     _0x4a.replaceSync(`
         .tile-body:not(.active) * {
             animation-play-state: paused !important;
@@ -2217,7 +2315,9 @@ var _0x4d = class _0x2 {
           console.error(_0xe);
         }
       }
-    }), this.shadow = _0x6.attachShadow({ mode: 'open' });
+    }), this.shadow = _0x6.attachShadow({
+      mode: 'open'
+    });
     let _0x7 = document.createElement('div');
     _0x7.className = 'tile-body', this.embed && _0x7.classList.add('embedded'), _0x7.style = 'width: 100%!important; height: 100%!important;position:absolute!important;top:0!important;left:0!important;', this.contentElement = _0x7, this.contentElement.innerHTML = this.preview ? 'Loading preview...' : `Loading ${ this.x }, ${ this.y }...`, this.shadow.appendChild(_0x7), _0x5.appendChild(_0x6), this.fonts = document.createElement('style'), _0x5.appendChild(this.fonts), this.fetchContent(this.path), this.container && this.container.appendChild(_0x5), _0x3.plot?.lockCache[this.x + ',' + this.y] && this.setLocked(!0);
   }
@@ -2291,7 +2391,10 @@ var _0x4d = class _0x2 {
           if (!_0xa?.element)
             continue;
           _0xa.element.classList.add('clan-highlight');
-          let _0xb = _0x8.has(`${ _0x9.x },${ _0x9.y - 1 }`), _0xd = _0x8.has(`${ _0x9.x },${ _0x9.y + 1 }`), _0xe = _0x8.has(`${ _0x9.x - 1 },${ _0x9.y }`), _0x12 = _0x8.has(`${ _0x9.x + 1 },${ _0x9.y }`);
+          let _0xb = _0x8.has(`${ _0x9.x },${ _0x9.y - 1 }`),
+            _0xd = _0x8.has(`${ _0x9.x },${ _0x9.y + 1 }`),
+            _0xe = _0x8.has(`${ _0x9.x - 1 },${ _0x9.y }`),
+            _0x12 = _0x8.has(`${ _0x9.x + 1 },${ _0x9.y }`);
           if (!_0xb) {
             let _0x13 = document.createElement('div');
             _0x13.className = 'clan-border clan-border-top', _0xa.element.appendChild(_0x13);
@@ -2328,7 +2431,8 @@ var _0x4d = class _0x2 {
     this.locked = _0x5, this.element && this.element.classList.toggle('locked', _0x5), this.fetchContent('/index.html', !0);
   }
 };
-var _0x4e = JSON.parse(document.getElementById('embed-data').textContent), _0x4f = document.getElementById('tile');
+var _0x4e = JSON.parse(document.getElementById('embed-data').textContent),
+  _0x4f = document.getElementById('tile');
 window.tile = new _0x4d({
   domain: _0x4e.domain,
   container: _0x4f,
