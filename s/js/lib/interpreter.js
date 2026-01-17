@@ -1,4 +1,3 @@
-/* 3d3975fd0c2adcd0ce25d6e3bfe4ba0f53bcfc1d84f1193a9642959af52ba2aa */
 ! function(e, t) {
   return 'object' == typeof exports && 'object' == typeof module ? t(exports) : 'function' == typeof define && define.amd ? define(['exports'], t) : void t(e.acorn || (e.acorn = {}));
 }('undefined' == typeof globalThis ? this || window : globalThis, function(e) {
