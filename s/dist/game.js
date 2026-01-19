@@ -1,4 +1,4 @@
-/* a649998eedd15119f45ab868a15d221ee9cd068ea2fc379023bfabc9f57eed55 */
+/* b0bc4bc2f10d00ccfa7b83bfe00b624359fa744f4e19f0e55eda076986628e07 */
 var _0x0 = Object.defineProperty;
 var _0x1 = (_0x2, _0x3, _0x4) =>
   _0x3 in _0x2
@@ -5497,10 +5497,12 @@ _0x8.ui = {
             ((_0xa.target.innerText = "Copied!"),
               setTimeout(() => {
                 _0xa.target.innerText = "Link";
-              }, 500),
-              navigator.clipboard.writeText(
-                `https://webtiles.kicya.net/#${_0x2.domain}`,
-              ));
+              }, 500));
+            let _0xb = _0x2.x * 250 + 250 / 2,
+              _0x1a = _0x2.y * 250 + 250 / 2;
+            navigator.clipboard.writeText(
+              `https://webtiles.kicya.net/#${_0x2.domain ?? `${_0xb},${_0x1a}`}`,
+            );
           },
         }),
       ),
