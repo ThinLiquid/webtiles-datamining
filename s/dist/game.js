@@ -1,4 +1,4 @@
-/* 947bb7cb138724a936649cb5fd4c6eba03e65459d7f35bd01cf4ece0d5dc44c1 */
+/* a649998eedd15119f45ab868a15d221ee9cd068ea2fc379023bfabc9f57eed55 */
 var _0x0 = Object.defineProperty;
 var _0x1 = (_0x2, _0x3, _0x4) =>
   _0x3 in _0x2
@@ -8335,11 +8335,6 @@ var _0x78 = document.getElementById("loading-text"),
       }
       return this.tiles[`${_0x3},${_0x4}`];
     }
-    findTileByDomain(_0x3) {
-      for (let _0x4 in this.tiles)
-        if (this.tiles[_0x4].domain === _0x3) return this.tiles[_0x4];
-      return null;
-    }
     removeTile(_0x3) {
       (_0x3.unrender(), delete this.tiles[`${_0x3.x},${_0x3.y}`]);
     }
@@ -8376,26 +8371,34 @@ var _0x78 = document.getElementById("loading-text"),
             _0x1a = this.tiles[`${_0x3},${_0x4}`];
           _0x1a && _0x1a.domain !== _0xb && _0x1a.setDomain(_0xb);
         }
-      (this.loaded ||
+      this.loaded ||
+        (setTimeout(() => {
+          if (location.hash.startsWith("#") && location.hash.includes(".")) {
+            let _0x3 = location.hash.slice(1);
+            for (let _0x4 in this.tileCache)
+              for (let _0xa in this.tileCache[_0x4]) {
+                let _0xb = this.tileCache[_0x4][_0xa];
+                if (
+                  (typeof _0xb == "string" ? _0xb : (_0xb?.domain ?? null)) ===
+                  _0x3
+                ) {
+                  _0x8.camera.centerOn(
+                    parseInt(_0x4) * 250 + 250 / 2,
+                    parseInt(_0xa) * 250 + 250 / 2,
+                  );
+                  let _0x1b = window.location.href.split("#")[0];
+                  window.history.replaceState({}, "", _0x1b);
+                  return;
+                }
+              }
+          }
+        }, 100),
         setTimeout(() => {
           this.loaded = !0;
           let _0x3 = document.getElementById("loading"),
             _0x4 = document.getElementById("app");
           ((_0x3.hidden = !0), (_0x4.hidden = !1), clearInterval(_0x7a));
-        }, 300),
-        setTimeout(() => {
-          if (location.hash.startsWith("#") && location.hash.includes(".")) {
-            let _0x3 = location.hash.slice(1),
-              _0x4 = this.findTileByDomain(_0x3);
-            _0x4 &&
-              _0x8.camera.centerOn(
-                _0x4.x * 250 + 250 / 2,
-                _0x4.y * 250 + 250 / 2,
-              );
-            let _0xa = window.location.href.split("#")[0];
-            window.history.replaceState({}, "", _0xa);
-          }
-        }, 200));
+        }, 300));
     }
     async fetchLocks() {
       this.lockCache = (
