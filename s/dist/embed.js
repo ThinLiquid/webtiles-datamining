@@ -1,4 +1,4 @@
-/* 0189f7736e6825bb046a26dd5986a702e8b1b3bda41104c98fd809b9b79d13e3 */
+/* be5e3cd763aecf5cdc533e83fc38b2617378913fb09fe2b6d68cacd0e2c7281a */
 var _0x0 = {
     user: null,
     settings: {
@@ -2030,6 +2030,11 @@ function _0x3c(_0x2, _0x5, _0x6, _0x7) {
     },
     _0x27 = {
       innerText: function (_0x2a) {
+        if (this.native.isSameNode(_0x6)) throw new Error("No access.");
+        if (this.native.tagName === "SCRIPT" || this.native.tagName === "STYLE")
+          throw new Error(
+            "You're not allowed to set innerText on script or style elements.",
+          );
         this.native.innerText = _0x2a.slice(0, 1000);
       },
       innerHTML: function (_0x2a) {
@@ -2038,15 +2043,13 @@ function _0x3c(_0x2, _0x5, _0x6, _0x7) {
         );
       },
       id: function (_0x2a) {
-        if (this.native.className === "tile-body")
-          throw new Error("No access.");
+        if (this.native.isSameNode(_0x6)) throw new Error("No access.");
         ((this.native.id = _0x2a),
           _0x3.settings.logCalls &&
             console.log(_0x7.domain, "set id", this, _0x2a));
       },
       className: function (_0x2a) {
-        if (this.native.className === "tile-body")
-          throw new Error("No access.");
+        if (this.native.isSameNode(_0x6)) throw new Error("No access.");
         ((this.native.className = _0x2a),
           _0x3.settings.logCalls &&
             console.log(_0x7.domain, "set className", this, _0x2a));
@@ -2063,13 +2066,11 @@ function _0x3c(_0x2, _0x5, _0x6, _0x7) {
             console.log(_0x7.domain, "set href", this, _0x2a));
       },
       hidden: function (_0x2a) {
-        if (this.native.className === "tile-body")
-          throw new Error("No access.");
+        if (this.native.isSameNode(_0x6)) throw new Error("No access.");
         this.native.hidden = !!_0x2a;
       },
       disabled: function (_0x2a) {
-        if (this.native.className === "tile-body")
-          throw new Error("No access.");
+        if (this.native.isSameNode(_0x6)) throw new Error("No access.");
         this.native.disabled = !!_0x2a;
       },
       checked: function (_0x2a) {
@@ -2179,7 +2180,7 @@ function _0x3c(_0x2, _0x5, _0x6, _0x7) {
       return this.native.getAttribute(_0x2a);
     },
     setAttribute: function (_0x2a, _0x3d) {
-      if (this.native.className === "tile-body") throw new Error("No access.");
+      if (this.native.isSameNode(_0x6)) throw new Error("No access.");
       if (
         ((_0x2a = String(_0x2a).toLowerCase()),
         (_0x3d = String(_0x3d)),
@@ -2235,7 +2236,7 @@ function _0x3c(_0x2, _0x5, _0x6, _0x7) {
       this.native.scrollBy(_0x2a, _0x3d);
     },
     removeAttribute: function (_0x2a) {
-      if (this.native.className === "tile-body") throw new Error("No access.");
+      if (this.native.isSameNode(_0x6)) throw new Error("No access.");
       if (((_0x2a = String(_0x2a).toLowerCase()), _0x2a === "target"))
         throw new Error("removing target is not allowed");
       (_0x3.settings.logCalls &&
@@ -2274,7 +2275,7 @@ function _0x3c(_0x2, _0x5, _0x6, _0x7) {
       return this.native.matches(_0x2a);
     },
     classList: function () {
-      if (this.native.className === "tile-body") throw new Error("No access.");
+      if (this.native.isSameNode(_0x6)) throw new Error("No access.");
       let _0x2a = this.native.classList;
       return _0x2.nativeToPseudo({
         add: (..._0x3d) => _0x2a.add(..._0x3d),
@@ -2522,8 +2523,7 @@ function _0x3c(_0x2, _0x5, _0x6, _0x7) {
             _0x3d,
             "add",
             _0x2.createNativeFunction(function (..._0x3e) {
-              if (this.native.className === "tile-body")
-                throw new Error("No access.");
+              if (this.native.isSameNode(_0x6)) throw new Error("No access.");
               _0x2a.add(..._0x3e);
             }),
           ),
@@ -2531,8 +2531,7 @@ function _0x3c(_0x2, _0x5, _0x6, _0x7) {
             _0x3d,
             "remove",
             _0x2.createNativeFunction(function (..._0x3e) {
-              if (this.native.className === "tile-body")
-                throw new Error("No access.");
+              if (this.native.isSameNode(_0x6)) throw new Error("No access.");
               _0x2a.remove(..._0x3e);
             }),
           ),
@@ -2540,8 +2539,7 @@ function _0x3c(_0x2, _0x5, _0x6, _0x7) {
             _0x3d,
             "toggle",
             _0x2.createNativeFunction(function (_0x3e, _0x3f) {
-              if (this.native.className === "tile-body")
-                throw new Error("No access.");
+              if (this.native.isSameNode(_0x6)) throw new Error("No access.");
               return _0x2a.toggle(_0x3e, _0x3f);
             }),
           ),
@@ -2556,8 +2554,7 @@ function _0x3c(_0x2, _0x5, _0x6, _0x7) {
             _0x3d,
             "replace",
             _0x2.createNativeFunction(function (_0x3e, _0x3f) {
-              if (this.native.className === "tile-body")
-                throw new Error("No access.");
+              if (this.native.isSameNode(_0x6)) throw new Error("No access.");
               return _0x2a.replace(_0x3e, _0x3f);
             }),
           ),
@@ -2628,8 +2625,7 @@ function _0x3c(_0x2, _0x5, _0x6, _0x7) {
             _0x3d,
             "setProperty",
             _0x2.createNativeFunction(function (_0x3f, _0x40, _0x41) {
-              if (this.native?.className === "tile-body")
-                throw new Error("No access.");
+              if (this.native?.isSameNode(_0x6)) throw new Error("No access.");
               (_0x2a.setProperty(_0x3f, _0x40, _0x41),
                 _0x3.settings.logCalls &&
                   console.log(
@@ -2653,8 +2649,7 @@ function _0x3c(_0x2, _0x5, _0x6, _0x7) {
             _0x3d,
             "removeProperty",
             _0x2.createNativeFunction(function (_0x3f) {
-              if (this.native?.className === "tile-body")
-                throw new Error("No access.");
+              if (this.native?.isSameNode(_0x6)) throw new Error("No access.");
               return (
                 _0x3.settings.logCalls &&
                   console.log(_0x7.domain, "removeProperty", this, _0x3f),
